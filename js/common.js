@@ -38,10 +38,21 @@ const Common = (() => {
         });
     }
 
+    function initStickyNav() {
+        const header = document.getElementById('masthead');
+        if (!header) return;
+        const update = () => {
+            document.documentElement.style.setProperty('--header-height', header.offsetHeight + 'px');
+        };
+        update();
+        window.addEventListener('resize', update);
+    }
+
     function init() {
         initFontSize();
         initLangSelect();
         initNavHighlight();
+        initStickyNav();
     }
 
     return { init };

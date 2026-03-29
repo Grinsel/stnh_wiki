@@ -37,16 +37,47 @@
             const counts = GlobalSearch.getStats();
             const total = GlobalSearch.getTotalCount();
 
+            // Each module card: label, href, and breakdown of sub-types
             const moduleStats = [
-                { label: 'Events', count: counts.event || 0, href: 'events.html' },
-                { label: 'Ships', count: (counts.ship || 0) + (counts.component || 0), href: 'ships.html' },
-                { label: 'Buildings', count: (counts.building || 0) + (counts.district || 0), href: 'buildings.html' },
-                { label: 'Traits', count: (counts.trait || 0) + (counts.tradition || 0) + (counts.ascension_perk || 0), href: 'traits.html' },
-                { label: 'Governments', count: (counts.government || 0) + (counts.civic || 0) + (counts.authority || 0) + (counts.policy || 0) + (counts.edict || 0), href: 'governments.html' },
-                { label: 'Megastructures', count: (counts.megastructure || 0) + (counts.relic || 0), href: 'megastructures.html' },
-                { label: 'Anomalies', count: (counts.anomaly || 0) + (counts.archaeology || 0), href: 'anomalies.html' },
-                { label: 'Empires', count: (counts.empire || 0) + (counts.species || 0), href: 'empires.html' },
-                { label: 'Economy', count: (counts.job || 0) + (counts.deposit || 0), href: 'economy.html' },
+                { label: 'Events', href: 'events.html', parts: [
+                    { name: 'Events', count: counts.event || 0 },
+                ]},
+                { label: 'Ships', href: 'ships.html', parts: [
+                    { name: 'Ships', count: counts.ship || 0 },
+                    { name: 'Components', count: counts.component || 0 },
+                ]},
+                { label: 'Buildings', href: 'buildings.html', parts: [
+                    { name: 'Buildings', count: counts.building || 0 },
+                    { name: 'Districts', count: counts.district || 0 },
+                ]},
+                { label: 'Traits', href: 'traits.html', parts: [
+                    { name: 'Traits', count: counts.trait || 0 },
+                    { name: 'Traditions', count: counts.tradition || 0 },
+                    { name: 'Asc. Perks', count: counts.ascension_perk || 0 },
+                ]},
+                { label: 'Governments', href: 'governments.html', parts: [
+                    { name: 'Governments', count: counts.government || 0 },
+                    { name: 'Civics', count: counts.civic || 0 },
+                    { name: 'Authorities', count: counts.authority || 0 },
+                    { name: 'Policies', count: counts.policy || 0 },
+                    { name: 'Edicts', count: counts.edict || 0 },
+                ]},
+                { label: 'Megastructures', href: 'megastructures.html', parts: [
+                    { name: 'Megastructures', count: counts.megastructure || 0 },
+                    { name: 'Relics', count: counts.relic || 0 },
+                ]},
+                { label: 'Anomalies', href: 'anomalies.html', parts: [
+                    { name: 'Anomalies', count: counts.anomaly || 0 },
+                    { name: 'Archaeology', count: counts.archaeology || 0 },
+                ]},
+                { label: 'Empires', href: 'empires.html', parts: [
+                    { name: 'Empires', count: counts.empire || 0 },
+                    { name: 'Species', count: counts.species || 0 },
+                ]},
+                { label: 'Economy', href: 'economy.html', parts: [
+                    { name: 'Jobs', count: counts.job || 0 },
+                    { name: 'Deposits', count: counts.deposit || 0 },
+                ]},
             ];
 
             let lastUpdateInfo = '';
@@ -66,10 +97,21 @@
             `;
 
             for (const mod of moduleStats) {
+                const totalCount = mod.parts.reduce((s, p) => s + p.count, 0);
+                const hasParts = mod.parts.length > 1;
+                let breakdownHtml = '';
+                if (hasParts) {
+                    breakdownHtml = '<div class="stat-breakdown">'
+                        + mod.parts.map(p =>
+                            `<span class="stat-part">${p.name} <b>${p.count.toLocaleString()}</b></span>`
+                        ).join('')
+                        + '</div>';
+                }
                 html += `
                     <a href="${mod.href}" class="stat-card clickable">
                         <div class="stat-label">${mod.label}</div>
-                        <div class="stat-value">${mod.count.toLocaleString()}</div>
+                        <div class="stat-value">${totalCount.toLocaleString()}</div>
+                        ${breakdownHtml}
                     </a>
                 `;
             }

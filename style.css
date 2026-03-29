@@ -801,6 +801,9 @@ body.in-iframe #site-footer {
 #wiki-nav {
     background: var(--bg-header);
     border-bottom: 1px solid rgba(209,206,4,0.3);
+    position: sticky;
+    top: var(--header-height, 46px);
+    z-index: 99;
 }
 
 .nav-inner {
@@ -1093,6 +1096,26 @@ body.in-iframe #site-footer {
 .stat-card.clickable:hover {
     border-color: rgba(209, 206, 4, 0.3);
     background: var(--bg-card-hover);
+}
+
+.stat-breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.15rem 0.6rem;
+    margin-top: 0.35rem;
+    padding-top: 0.3rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.stat-part {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.stat-part b {
+    color: var(--text-primary);
+    font-weight: 500;
 }
 
 /* Full Search Results Page */
