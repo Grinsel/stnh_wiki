@@ -19929,5 +19929,20 @@
     "images": {
       "skipped": true
     }
+  },
+  "modules": {
+    "images": {
+      "timestamp": "2026-03-29T21:08:17.914400",
+      "elapsed_seconds": 57.3,
+      "results": {
+        "images": {
+          "total": 731,
+          "converted": 731,
+          "skipped": 0,
+          "failed": 0,
+          "errors": []
+        }
+      }
+    }
   }
 }
