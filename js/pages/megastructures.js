@@ -4,7 +4,7 @@
 (async function initMegastructures() {
     const listEl = document.getElementById('item-list');
     if (!listEl) return;
-    listEl.innerHTML = '<div class="loading">Loading megastructure data</div>';
+    listEl.innerHTML = '<div class="loading">' + I18n.ui('ui.loading.megastructures') + '</div>';
 
     AppState.init();
     Common.init();
@@ -48,23 +48,23 @@
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
             let html = `<div class="detail-meta">`;
-            html += `<span class="detail-meta-item">ID: ${esc(item.id)}</span>`;
-            if (item.source_file) html += `<span class="detail-meta-item">File: ${esc(item.source_file)}</span>`;
+            html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
+            if (item.source_file) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
             html += `</div>`;
 
             // Megastructure-specific
             if (activeTab === 'megastructures') {
                 const stats = [];
-                if (item.build_time) stats.push(['Build Time', item.build_time]);
-                if (item.entity) stats.push(['Entity', item.entity]);
-                if (item.upgrade_from) stats.push(['Upgrade From', item.upgrade_from]);
-                if (item.sensor_range) stats.push(['Sensor Range', item.sensor_range]);
+                if (item.build_time) stats.push([I18n.ui('ui.meta.build_time'), item.build_time]);
+                if (item.entity) stats.push([I18n.ui('ui.meta.entity'), item.entity]);
+                if (item.upgrade_from) stats.push([I18n.ui('ui.meta.upgrade_from'), item.upgrade_from]);
+                if (item.sensor_range) stats.push([I18n.ui('ui.meta.sensor_range'), item.sensor_range]);
                 if (stats.length) {
-                    html += `<div class="detail-section"><div class="detail-section-title">Stats</div>`;
+                    html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.stats')}</div>`;
                     html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${esc(v)}</span>`).join('')}</div></div>`;
                 }
                 if (item.prerequisites && item.prerequisites.length) {
-                    html += `<div class="detail-section"><div class="detail-section-title">Prerequisites</div>`;
+                    html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.prerequisites')}</div>`;
                     html += `<div class="detail-meta">${item.prerequisites.map(t => `<span class="detail-meta-item">${esc(I18n.t(t) || t)}</span>`).join('')}</div></div>`;
                 }
             }
@@ -72,45 +72,41 @@
             // Relic-specific
             if (activeTab === 'relics') {
                 const stats = [];
-                if (item.activation_duration) stats.push(['Activation Duration', item.activation_duration]);
-                if (item.score) stats.push(['Score', item.score]);
+                if (item.activation_duration) stats.push([I18n.ui('ui.meta.activation_duration'), item.activation_duration]);
+                if (item.score) stats.push([I18n.ui('ui.meta.score'), item.score]);
                 if (stats.length) {
-                    html += `<div class="detail-section"><div class="detail-section-title">Stats</div>`;
+                    html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.stats')}</div>`;
                     html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${esc(v)}</span>`).join('')}</div></div>`;
                 }
             }
 
             // Resources
             if (item.resources) {
-                html += `<div class="detail-section"><div class="detail-section-title">Resources</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.resources, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.resources, I18n.ui('ui.detail.resources'))}</div>`;
             }
 
             // Modifier
             if (item.modifier) {
-                html += `<div class="detail-section"><div class="detail-section-title">Modifiers</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.modifier, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.modifier, I18n.ui('ui.detail.modifiers'))}</div>`;
             }
 
             // Active effect (relics)
             if (item.active_effect) {
-                html += `<div class="detail-section"><div class="detail-section-title">Active Effect</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.active_effect, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.active_effect, I18n.ui('ui.detail.active_effect'))}</div>`;
             }
 
             // Possible
             if (item.possible) {
-                html += `<div class="detail-section"><div class="detail-section-title">Possible</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.possible, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.possible, I18n.ui('ui.detail.possible'))}</div>`;
             }
 
             // On build complete (megastructures)
             if (item.on_build_complete) {
-                html += `<div class="detail-section"><div class="detail-section-title">On Build Complete</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.on_build_complete, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.on_build_complete, I18n.ui('ui.detail.on_build_complete'))}</div>`;
             }
 
             detailContent.innerHTML = html;
+            SharedRender.initToggles(detailContent);
             detailPanel.classList.remove('hidden');
         }
 
@@ -126,9 +122,7 @@
         });
 
         // Language change
-        document.getElementById('lang-select').addEventListener('change', async (e) => {
-            AppState.set('lang', e.target.value);
-            await I18n.setLanguage(e.target.value);
+        document.addEventListener('wiki-lang-changed', () => {
             for (const item of megastructures) item.name = I18n.t(item.name_key) || item.id;
             for (const item of relics) item.name = I18n.t(item.name_key) || item.id;
             renderAll();
@@ -148,7 +142,7 @@
             items.sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
 
             const total = activeTab === 'megastructures' ? megastructures.length : relics.length;
-            document.getElementById('filter-stats').textContent = `${items.length} / ${total} ${activeTab}`;
+            document.getElementById('filter-stats').textContent = `${items.length} / ${total} ${I18n.ui('ui.tab.' + activeTab)}`;
 
             const totalPages = Math.ceil(items.length / PAGE_SIZE);
             const pageItems = items.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
@@ -162,13 +156,13 @@
                             <span class="item-card-id">${esc(item.id)}</span>
                         </div>
                         <div class="item-card-meta">`;
-                if (item.build_time) html += `<span class="detail-meta-item">Build: ${esc(item.build_time)}</span>`;
-                if (item.upgrade_from) html += `<span class="detail-meta-item">From: ${esc(item.upgrade_from)}</span>`;
-                if (item.activation_duration) html += `<span class="detail-meta-item">Duration: ${esc(item.activation_duration)}</span>`;
-                if (item.score) html += `<span class="detail-meta-item">Score: ${esc(item.score)}</span>`;
+                if (item.build_time) html += `<span class="detail-meta-item">${I18n.ui('ui.card.build')}: ${esc(item.build_time)}</span>`;
+                if (item.upgrade_from) html += `<span class="detail-meta-item">${I18n.ui('ui.card.from')}: ${esc(item.upgrade_from)}</span>`;
+                if (item.activation_duration) html += `<span class="detail-meta-item">${I18n.ui('ui.card.duration')}: ${esc(item.activation_duration)}</span>`;
+                if (item.score) html += `<span class="detail-meta-item">${I18n.ui('ui.card.score')}: ${esc(item.score)}</span>`;
                 html += `</div></div></div>`;
             }
-            listEl.innerHTML = html || '<div class="loading" style="animation:none">No items found</div>';
+            listEl.innerHTML = html || '<div class="loading" style="animation:none">' + I18n.ui('ui.empty.no_items') + '</div>';
 
             listEl.querySelectorAll('.item-card').forEach(card => {
                 card.addEventListener('click', () => {
@@ -201,7 +195,7 @@
         }
 
     } catch (err) {
-        listEl.innerHTML = `<div class="loading" style="animation:none">Failed to load data: ${err.message}</div>`;
+        listEl.innerHTML = `<div class="loading" style="animation:none">${I18n.ui('ui.error.load_failed')}: ${err.message}</div>`;
         console.error(err);
     }
 

@@ -5,7 +5,7 @@
 (async function initEvents() {
     const listEl = document.getElementById('event-list');
     if (!listEl) return;
-    listEl.innerHTML = '<div class="loading">Loading event data</div>';
+    listEl.innerHTML = '<div class="loading">' + I18n.ui('ui.loading.events') + '</div>';
 
     // Initialize shared UI
     AppState.init();
@@ -71,7 +71,7 @@
             }
         }
     } catch (err) {
-        listEl.innerHTML = `<div class="loading" style="animation:none">Failed to load data: ${err.message}</div>`;
+        listEl.innerHTML = `<div class="loading" style="animation:none">${I18n.ui('ui.error.load_failed')}: ${err.message}</div>`;
         console.error(err);
         return;
     }
@@ -102,10 +102,7 @@
     });
 
     // Language change: re-resolve event names and re-render
-    document.getElementById('lang-select').addEventListener('change', async (e) => {
-        const lang = e.target.value;
-        AppState.set('lang', lang);
-        await I18n.setLanguage(lang);
+    document.addEventListener('wiki-lang-changed', () => {
         const eventsIndex = DataManager.getEventsIndex();
         for (const ev of eventsIndex) {
             ev.name = I18n.t(ev.id + '.name') || ev.name || ev.id;

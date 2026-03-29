@@ -4,7 +4,7 @@
 (async function initTraits() {
     const listEl = document.getElementById('item-list');
     if (!listEl) return;
-    listEl.innerHTML = '<div class="loading">Loading trait data</div>';
+    listEl.innerHTML = '<div class="loading">' + I18n.ui('ui.loading.traits') + '</div>';
 
     AppState.init();
     Common.init();
@@ -60,55 +60,52 @@
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
             let html = `<div class="detail-meta">`;
-            html += `<span class="detail-meta-item">ID: ${esc(item.id)}</span>`;
-            if (item.leader_class) html += `<span class="detail-meta-item">Class: ${esc(item.leader_class)}</span>`;
-            if (item.rarity) html += `<span class="detail-meta-item">Rarity: ${esc(item.rarity)}</span>`;
-            if (item.tier) html += `<span class="detail-meta-item">Tier: ${esc(item.tier)}</span>`;
-            if (item.tree) html += `<span class="detail-meta-item">Tree: ${esc(item.tree)}</span>`;
-            if (item.role) html += `<span class="detail-meta-item">Role: ${esc(item.role)}</span>`;
-            if (item.cost != null) html += `<span class="detail-meta-item">Cost: ${item.cost}</span>`;
-            html += `<span class="detail-meta-item">File: ${esc(item.source_file)}</span>`;
+            html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
+            if (item.leader_class) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.class')}: ${esc(item.leader_class)}</span>`;
+            if (item.rarity) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.rarity')}: ${esc(item.rarity)}</span>`;
+            if (item.tier) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.tier')}: ${esc(item.tier)}</span>`;
+            if (item.tree) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.tree')}: ${esc(item.tree)}</span>`;
+            if (item.role) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.role')}: ${esc(item.role)}</span>`;
+            if (item.cost != null) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.cost')}: ${item.cost}</span>`;
+            html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
             html += `</div>`;
 
             // Desc (from loc)
             const descKey = item.id + '_desc';
             const desc = I18n.t(descKey);
             if (desc && desc !== descKey) {
-                html += `<div class="detail-section"><div class="detail-section-title">Description</div>`;
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.description')}</div>`;
                 html += `<div class="detail-desc">${esc(desc)}</div></div>`;
             }
 
             if (item.prerequisites && item.prerequisites.length) {
-                html += `<div class="detail-section"><div class="detail-section-title">Prerequisites</div>`;
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.prerequisites')}</div>`;
                 html += `<div class="detail-meta">${item.prerequisites.map(t => `<span class="detail-meta-item">${esc(I18n.t(t) || t)}</span>`).join('')}</div></div>`;
             }
 
             if (item.opposites && item.opposites.length) {
-                html += `<div class="detail-section"><div class="detail-section-title">Opposites</div>`;
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.opposites')}</div>`;
                 html += `<div class="detail-meta">${item.opposites.map(o => `<span class="detail-meta-item">${esc(I18n.t(o) || o)}</span>`).join('')}</div></div>`;
             }
 
             if (item.modifier) {
-                html += `<div class="detail-section"><div class="detail-section-title">Modifiers</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.modifier, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.modifier, I18n.ui('ui.detail.modifiers'))}</div>`;
             }
 
             if (item.possible) {
-                html += `<div class="detail-section"><div class="detail-section-title">Requirements</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.possible, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.possible, I18n.ui('ui.detail.requirements'))}</div>`;
             }
 
             if (item.on_enabled) {
-                html += `<div class="detail-section"><div class="detail-section-title">On Enabled</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.on_enabled, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.on_enabled, I18n.ui('ui.detail.on_enabled'))}</div>`;
             }
 
             if (item.tradition_swap) {
-                html += `<div class="detail-section"><div class="detail-section-title">Tradition Swaps</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.tradition_swap, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.tradition_swap, I18n.ui('ui.detail.tradition_swaps'))}</div>`;
             }
 
             detailContent.innerHTML = html;
+            SharedRender.initToggles(detailContent);
             detailPanel.classList.remove('hidden');
         }
 
@@ -126,9 +123,7 @@
         classSel.addEventListener('change', () => { currentPage = 1; renderAll(); });
         treeSel.addEventListener('change', () => { currentPage = 1; renderAll(); });
 
-        document.getElementById('lang-select').addEventListener('change', async (e) => {
-            AppState.set('lang', e.target.value);
-            await I18n.setLanguage(e.target.value);
+        document.addEventListener('wiki-lang-changed', () => {
             for (const item of traits) item.name = I18n.t(item.name_key) || item.id;
             for (const item of traditions) item.name = I18n.t(item.name_key) || item.id;
             for (const item of perks) item.name = I18n.t(item.name_key) || item.id;
@@ -162,7 +157,7 @@
             });
 
             items.sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
-            document.getElementById('filter-stats').textContent = `${items.length} / ${total} ${activeTab}`;
+            document.getElementById('filter-stats').textContent = `${items.length} / ${total} ${I18n.ui('ui.tab.' + activeTab)}`;
 
             const totalPages = Math.ceil(items.length / PAGE_SIZE);
             const pageItems = items.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
@@ -182,7 +177,7 @@
                 if (item.role && item.role !== 'node') html += `<span class="detail-meta-item">${esc(item.role)}</span>`;
                 html += `</div></div></div>`;
             }
-            listEl.innerHTML = html || '<div class="loading" style="animation:none">No items found</div>';
+            listEl.innerHTML = html || '<div class="loading" style="animation:none">' + I18n.ui('ui.empty.no_items') + '</div>';
 
             listEl.querySelectorAll('.item-card').forEach(card => {
                 card.addEventListener('click', () => {
@@ -215,7 +210,7 @@
         }
 
     } catch (err) {
-        listEl.innerHTML = `<div class="loading" style="animation:none">Failed to load data: ${err.message}</div>`;
+        listEl.innerHTML = `<div class="loading" style="animation:none">${I18n.ui('ui.error.load_failed')}: ${err.message}</div>`;
         console.error(err);
     }
 

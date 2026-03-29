@@ -14,7 +14,7 @@
                 <h1>ST:NH <span class="accent">Wiki</span></h1>
             </div>
             <div class="header-search">
-                <input type="text" id="search-input" placeholder="Search buildings &amp; districts..." autocomplete="off">
+                <input type="text" id="search-input" placeholder="Search buildings &amp; districts..." data-i18n-placeholder="ui.search.buildings" autocomplete="off">
             </div>
             <div class="header-controls">
                 <select id="lang-select" title="Language">
@@ -38,17 +38,17 @@
     <!-- Wiki Navigation -->
     <nav id="wiki-nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-link">Hub</a>
-            <a href="events.html" class="nav-link">Events</a>
-            <a href="tech.html" class="nav-link">Tech Tree</a>
-            <a href="ships.html" class="nav-link">Ships</a>
-            <a href="buildings.html" class="nav-link">Buildings</a>
-            <a href="traits.html" class="nav-link">Traits</a>
-            <a href="governments.html" class="nav-link">Governments</a>
-            <a href="megastructures.html" class="nav-link">Megastructures</a>
-            <a href="anomalies.html" class="nav-link">Anomalies</a>
-            <a href="empires.html" class="nav-link">Empires</a>
-            <a href="economy.html" class="nav-link">Economy</a>
+            <a href="index.html" class="nav-link" data-i18n="ui.nav.hub">Hub</a>
+            <a href="events.html" class="nav-link" data-i18n="ui.nav.events">Events</a>
+            <a href="tech.html" class="nav-link" data-i18n="ui.nav.tech">Tech Tree</a>
+            <a href="ships.html" class="nav-link" data-i18n="ui.nav.ships">Ships</a>
+            <a href="buildings.html" class="nav-link" data-i18n="ui.nav.buildings">Buildings</a>
+            <a href="traits.html" class="nav-link" data-i18n="ui.nav.traits">Traits</a>
+            <a href="governments.html" class="nav-link" data-i18n="ui.nav.governments">Governments</a>
+            <a href="megastructures.html" class="nav-link" data-i18n="ui.nav.megastructures">Megastructures</a>
+            <a href="anomalies.html" class="nav-link" data-i18n="ui.nav.anomalies">Anomalies</a>
+            <a href="empires.html" class="nav-link" data-i18n="ui.nav.empires">Empires</a>
+            <a href="economy.html" class="nav-link" data-i18n="ui.nav.economy">Economy</a>
         </div>
     </nav>
 
@@ -56,13 +56,13 @@
     <div id="filter-bar">
         <div class="filter-inner">
             <div class="filter-group tab-buttons">
-                <button class="tab-btn active" data-tab="buildings">Buildings</button>
-                <button class="tab-btn" data-tab="districts">Districts</button>
+                <button class="tab-btn active" data-tab="buildings" data-i18n="ui.tab.buildings">Buildings</button>
+                <button class="tab-btn" data-tab="districts" data-i18n="ui.tab.districts">Districts</button>
             </div>
             <div class="filter-group" id="filter-category-group">
-                <label>Category</label>
+                <label data-i18n="ui.filter.category">Category</label>
                 <select id="filter-category">
-                    <option value="">All Categories</option>
+                    <option value="" data-i18n="ui.filter.all_categories">All Categories</option>
                 </select>
             </div>
             <div class="filter-stats" id="filter-stats">Loading...</div>
@@ -78,7 +78,7 @@
         <aside id="detail-panel" class="hidden">
             <div class="detail-header">
                 <button id="detail-close" title="Close">&#10005;</button>
-                <h2 id="detail-title">Detail</h2>
+                <h2 id="detail-title" data-i18n="ui.detail.detail">Detail</h2>
             </div>
             <div id="detail-content"></div>
         </aside>
@@ -90,8 +90,11 @@
 
     <script src="js/data.js"></script>
     <script src="js/state.js"></script>
+    <script src="js/ui-strings.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/common.js"></script>
+    <script src="js/humanize.js"></script>
+    <script src="js/shared-render.js"></script>
     <script src="js/pages/buildings.js"></script>
 </body>
 </html>

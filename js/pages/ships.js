@@ -4,7 +4,7 @@
 (async function initShips() {
     const listEl = document.getElementById('item-list');
     if (!listEl) return;
-    listEl.innerHTML = '<div class="loading">Loading ship data</div>';
+    listEl.innerHTML = '<div class="loading">' + I18n.ui('ui.loading.ships') + '</div>';
 
     AppState.init();
     Common.init();
@@ -73,59 +73,58 @@
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
             let html = `<div class="detail-meta">`;
-            html += `<span class="detail-meta-item">ID: ${esc(item.id)}</span>`;
-            if (item.class) html += `<span class="detail-meta-item">Class: ${esc(item.class)}</span>`;
-            if (item.type) html += `<span class="detail-meta-item">Type: ${esc(item.type)}</span>`;
-            if (item.size) html += `<span class="detail-meta-item">Size: ${esc(item.size)}</span>`;
-            html += `<span class="detail-meta-item">File: ${esc(item.source_file)}</span>`;
+            html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
+            if (item.class) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.class')}: ${esc(item.class)}</span>`;
+            if (item.type) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.type')}: ${esc(item.type)}</span>`;
+            if (item.size) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.size')}: ${esc(item.size)}</span>`;
+            html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
             html += `</div>`;
 
             // Stats
             const stats = [];
-            if (item.max_hitpoints) stats.push(['HP', item.max_hitpoints]);
-            if (item.max_speed) stats.push(['Speed', item.max_speed]);
-            if (item.base_buildtime) stats.push(['Build Time', item.base_buildtime]);
-            if (item.power) stats.push(['Power', item.power]);
-            if (item.damage) stats.push(['Damage', `${item.damage.min}-${item.damage.max}`]);
-            if (item.range) stats.push(['Range', item.range]);
-            if (item.accuracy) stats.push(['Accuracy', item.accuracy]);
-            if (item.tracking) stats.push(['Tracking', item.tracking]);
+            if (item.max_hitpoints) stats.push([I18n.ui('ui.meta.hp'), item.max_hitpoints]);
+            if (item.max_speed) stats.push([I18n.ui('ui.meta.speed'), item.max_speed]);
+            if (item.base_buildtime) stats.push([I18n.ui('ui.meta.build_time'), item.base_buildtime]);
+            if (item.power) stats.push([I18n.ui('ui.meta.power'), item.power]);
+            if (item.damage) stats.push([I18n.ui('ui.meta.damage'), `${item.damage.min}-${item.damage.max}`]);
+            if (item.range) stats.push([I18n.ui('ui.meta.range'), item.range]);
+            if (item.accuracy) stats.push([I18n.ui('ui.meta.accuracy'), item.accuracy]);
+            if (item.tracking) stats.push([I18n.ui('ui.meta.tracking'), item.tracking]);
             if (stats.length) {
-                html += `<div class="detail-section"><div class="detail-section-title">Stats</div>`;
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.stats')}</div>`;
                 html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${v}</span>`).join('')}</div></div>`;
             }
 
             // Prerequisites
             if (item.prerequisites && item.prerequisites.length) {
-                html += `<div class="detail-section"><div class="detail-section-title">Prerequisites</div>`;
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.prerequisites')}</div>`;
                 html += `<div class="detail-meta">${item.prerequisites.map(t => `<span class="detail-meta-item">${esc(I18n.t(t) || t)}</span>`).join('')}</div></div>`;
             }
 
             // Resources
             if (item.resources) {
-                html += `<div class="detail-section"><div class="detail-section-title">Resources</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.resources, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.resources, I18n.ui('ui.detail.resources'))}</div>`;
             }
 
             // Modifier
             if (item.modifier) {
-                html += `<div class="detail-section"><div class="detail-section-title">Modifiers</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.modifier, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.modifier, I18n.ui('ui.detail.modifiers'))}</div>`;
             }
 
             // Section slots (ships)
             if (item.section_slots && item.section_slots.length) {
-                html += `<div class="detail-section"><div class="detail-section-title">Section Slots</div>`;
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.section_slots')}</div>`;
                 html += `<div class="detail-meta">${item.section_slots.map(s => `<span class="detail-meta-item">${esc(s.name)}</span>`).join('')}</div></div>`;
             }
 
             // Tags (components)
             if (item.tags && item.tags.length) {
-                html += `<div class="detail-section"><div class="detail-section-title">Tags</div>`;
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.tags')}</div>`;
                 html += `<div class="detail-meta">${item.tags.map(t => `<span class="detail-meta-item">${esc(t)}</span>`).join('')}</div></div>`;
             }
 
             detailContent.innerHTML = html;
+            SharedRender.initToggles(detailContent);
             detailPanel.classList.remove('hidden');
         }
 
@@ -146,9 +145,7 @@
         document.getElementById('filter-comptype').addEventListener('change', () => { currentPage = 1; renderAll(); });
 
         // Language change
-        document.getElementById('lang-select').addEventListener('change', async (e) => {
-            AppState.set('lang', e.target.value);
-            await I18n.setLanguage(e.target.value);
+        document.addEventListener('wiki-lang-changed', () => {
             for (const item of ships) item.name = I18n.t(item.name_key) || item.id;
             for (const item of components) item.name = I18n.t(item.name_key) || item.id;
             renderAll();
@@ -180,7 +177,7 @@
 
             // Stats
             const total = activeTab === 'ships' ? ships.length : components.length;
-            document.getElementById('filter-stats').textContent = `${items.length} / ${total} ${activeTab}`;
+            document.getElementById('filter-stats').textContent = `${items.length} / ${total} ${I18n.ui('ui.tab.' + activeTab)}`;
 
             // Paginate
             const totalPages = Math.ceil(items.length / PAGE_SIZE);
@@ -199,10 +196,10 @@
                 if (item.class) html += `<span class="detail-meta-item">${esc(item.class)}</span>`;
                 if (item.type) html += `<span class="detail-meta-item">${esc(item.type)}</span>`;
                 if (item.size) html += `<span class="detail-meta-item">${esc(item.size)}</span>`;
-                if (item.prerequisites && item.prerequisites.length) html += `<span class="detail-meta-item">Tech: ${item.prerequisites.length}</span>`;
+                if (item.prerequisites && item.prerequisites.length) html += `<span class="detail-meta-item">${I18n.ui('ui.card.tech')}: ${item.prerequisites.length}</span>`;
                 html += `</div></div></div>`;
             }
-            listEl.innerHTML = html || '<div class="loading" style="animation:none">No items found</div>';
+            listEl.innerHTML = html || '<div class="loading" style="animation:none">' + I18n.ui('ui.empty.no_items') + '</div>';
 
             // Click handler
             listEl.querySelectorAll('.item-card').forEach(card => {
@@ -237,7 +234,7 @@
         }
 
     } catch (err) {
-        listEl.innerHTML = `<div class="loading" style="animation:none">Failed to load data: ${err.message}</div>`;
+        listEl.innerHTML = `<div class="loading" style="animation:none">${I18n.ui('ui.error.load_failed')}: ${err.message}</div>`;
         console.error(err);
     }
 

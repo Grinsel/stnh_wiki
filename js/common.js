@@ -23,8 +23,11 @@ const Common = (() => {
         const sel = document.getElementById('lang-select');
         if (!sel) return;
         sel.value = AppState.get('lang');
-        sel.addEventListener('change', (e) => {
+        sel.addEventListener('change', async (e) => {
             AppState.set('lang', e.target.value);
+            await I18n.setLanguage(e.target.value);
+            applyUiStrings();
+            document.dispatchEvent(new CustomEvent('wiki-lang-changed'));
         });
     }
 
@@ -48,12 +51,25 @@ const Common = (() => {
         window.addEventListener('resize', update);
     }
 
+    function applyUiStrings() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            el.textContent = I18n.ui(el.dataset.i18n);
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            el.placeholder = I18n.ui(el.dataset.i18nPlaceholder);
+        });
+        document.querySelectorAll('[data-i18n-title]').forEach(el => {
+            el.title = I18n.ui(el.dataset.i18nTitle);
+        });
+    }
+
     function init() {
         initFontSize();
         initLangSelect();
         initNavHighlight();
         initStickyNav();
+        applyUiStrings();
     }
 
-    return { init };
+    return { init, applyUiStrings };
 })();

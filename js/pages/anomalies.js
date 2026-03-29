@@ -4,7 +4,7 @@
 (async function initAnomalies() {
     const listEl = document.getElementById('item-list');
     if (!listEl) return;
-    listEl.innerHTML = '<div class="loading">Loading anomaly data</div>';
+    listEl.innerHTML = '<div class="loading">' + I18n.ui('ui.loading.anomalies') + '</div>';
 
     AppState.init();
     Common.init();
@@ -56,59 +56,58 @@
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
             let html = `<div class="detail-meta">`;
-            html += `<span class="detail-meta-item">ID: ${esc(item.id)}</span>`;
-            if (item.desc) html += `<span class="detail-meta-item">Desc: ${esc(I18n.t(item.desc) || item.desc)}</span>`;
-            if (item.source_file) html += `<span class="detail-meta-item">File: ${esc(item.source_file)}</span>`;
+            html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
+            if (item.desc) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.desc')}: ${esc(I18n.t(item.desc) || item.desc)}</span>`;
+            if (item.source_file) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
             html += `</div>`;
 
             // Anomaly-specific
             if (activeTab === 'anomalies') {
                 const stats = [];
-                if (item.level != null) stats.push(['Level', item.level]);
-                if (item.picture) stats.push(['Picture', item.picture]);
-                if (item.max_once) stats.push(['Max Once', 'Yes']);
+                if (item.level != null) stats.push([I18n.ui('ui.meta.level'), item.level]);
+                if (item.picture) stats.push([I18n.ui('ui.meta.picture'), item.picture]);
+                if (item.max_once) stats.push([I18n.ui('ui.meta.max_once'), I18n.ui('ui.misc.yes')]);
                 if (stats.length) {
-                    html += `<div class="detail-section"><div class="detail-section-title">Stats</div>`;
+                    html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.stats')}</div>`;
                     html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${esc(v)}</span>`).join('')}</div></div>`;
                 }
                 if (item.on_success && item.on_success.length) {
-                    html += `<div class="detail-section"><div class="detail-section-title">Success Outcomes</div>`;
+                    html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.success_outcomes')}</div>`;
                     html += `<div class="detail-meta">${item.on_success.map(o => `<span class="detail-meta-item">${esc(o.event)} (weight: ${esc(o.weight)})</span>`).join('')}</div></div>`;
                 }
                 if (item.spawn_chance) {
-                    html += `<div class="detail-section"><div class="detail-section-title">Spawn Chance</div>`;
-                    html += `<div class="code-block">${esc(JSON.stringify(item.spawn_chance, null, 2))}</div></div>`;
+                    html += `<div class="detail-section">${SharedRender.dualView(item.spawn_chance, I18n.ui('ui.detail.spawn_chance'))}</div>`;
                 }
             }
 
             // Archaeology-specific
             if (activeTab === 'archaeology') {
                 const stats = [];
-                if (item.stages_count != null) stats.push(['Stages', item.stages_count]);
-                if (item.max_instances != null) stats.push(['Max Instances', item.max_instances]);
-                if (item.picture) stats.push(['Picture', item.picture]);
+                if (item.stages_count != null) stats.push([I18n.ui('ui.meta.stages'), item.stages_count]);
+                if (item.max_instances != null) stats.push([I18n.ui('ui.meta.max_instances'), item.max_instances]);
+                if (item.picture) stats.push([I18n.ui('ui.meta.picture'), item.picture]);
                 if (stats.length) {
-                    html += `<div class="detail-section"><div class="detail-section-title">Stats</div>`;
+                    html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.stats')}</div>`;
                     html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${esc(v)}</span>`).join('')}</div></div>`;
                 }
                 if (item.stages && item.stages.length) {
-                    html += `<div class="detail-section"><div class="detail-section-title">Stages</div>`;
+                    html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.stages')}</div>`;
                     for (let i = 0; i < item.stages.length; i++) {
                         const s = item.stages[i];
-                        html += `<div class="detail-meta"><span class="detail-meta-item">Stage ${i+1}: difficulty ${esc(s.difficulty)}</span>`;
-                        if (s.event) html += `<span class="detail-meta-item">Event: ${esc(s.event)}</span>`;
-                        if (s.icon) html += `<span class="detail-meta-item">Icon: ${esc(s.icon)}</span>`;
+                        html += `<div class="detail-meta"><span class="detail-meta-item">${I18n.ui('ui.misc.stage')} ${i+1}: ${I18n.ui('ui.misc.difficulty')} ${esc(s.difficulty)}</span>`;
+                        if (s.event) html += `<span class="detail-meta-item">${I18n.ui('ui.misc.event')}: ${esc(s.event)}</span>`;
+                        if (s.icon) html += `<span class="detail-meta-item">${I18n.ui('ui.misc.icon')}: ${esc(s.icon)}</span>`;
                         html += `</div>`;
                     }
                     html += `</div>`;
                 }
                 if (item.weight) {
-                    html += `<div class="detail-section"><div class="detail-section-title">Weight</div>`;
-                    html += `<div class="code-block">${esc(JSON.stringify(item.weight, null, 2))}</div></div>`;
+                    html += `<div class="detail-section">${SharedRender.dualView(item.weight, I18n.ui('ui.detail.weight'))}</div>`;
                 }
             }
 
             detailContent.innerHTML = html;
+            SharedRender.initToggles(detailContent);
             detailPanel.classList.remove('hidden');
         }
 
@@ -127,9 +126,7 @@
         levelSel.addEventListener('change', () => { currentPage = 1; renderAll(); });
 
         // Language change
-        document.getElementById('lang-select').addEventListener('change', async (e) => {
-            AppState.set('lang', e.target.value);
-            await I18n.setLanguage(e.target.value);
+        document.addEventListener('wiki-lang-changed', () => {
             for (const item of anomalies) item.name = I18n.t(item.name_key) || I18n.t(item.desc) || item.id;
             for (const item of archaeology) item.name = I18n.t(item.name_key) || I18n.t(item.desc) || item.id;
             renderAll();
@@ -153,7 +150,7 @@
             items.sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
 
             const total = activeTab === 'anomalies' ? anomalies.length : archaeology.length;
-            document.getElementById('filter-stats').textContent = `${items.length} / ${total} ${activeTab}`;
+            document.getElementById('filter-stats').textContent = `${items.length} / ${total} ${I18n.ui('ui.tab.' + activeTab)}`;
 
             const totalPages = Math.ceil(items.length / PAGE_SIZE);
             const pageItems = items.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
@@ -167,13 +164,13 @@
                             <span class="item-card-id">${esc(item.id)}</span>
                         </div>
                         <div class="item-card-meta">`;
-                if (item.level != null) html += `<span class="detail-meta-item">Level ${esc(item.level)}</span>`;
-                if (item.stages_count != null) html += `<span class="detail-meta-item">${esc(item.stages_count)} stages</span>`;
-                if (item.max_once) html += `<span class="detail-meta-item">Unique</span>`;
-                if (item.on_success) html += `<span class="detail-meta-item">${item.on_success.length} outcomes</span>`;
+                if (item.level != null) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.level')} ${esc(item.level)}</span>`;
+                if (item.stages_count != null) html += `<span class="detail-meta-item">${esc(item.stages_count)} ${I18n.ui('ui.card.stages')}</span>`;
+                if (item.max_once) html += `<span class="detail-meta-item">${I18n.ui('ui.badge.unique')}</span>`;
+                if (item.on_success) html += `<span class="detail-meta-item">${item.on_success.length} ${I18n.ui('ui.card.outcomes')}</span>`;
                 html += `</div></div></div>`;
             }
-            listEl.innerHTML = html || '<div class="loading" style="animation:none">No items found</div>';
+            listEl.innerHTML = html || '<div class="loading" style="animation:none">' + I18n.ui('ui.empty.no_items') + '</div>';
 
             listEl.querySelectorAll('.item-card').forEach(card => {
                 card.addEventListener('click', () => {
@@ -206,7 +203,7 @@
         }
 
     } catch (err) {
-        listEl.innerHTML = `<div class="loading" style="animation:none">Failed to load data: ${err.message}</div>`;
+        listEl.innerHTML = `<div class="loading" style="animation:none">${I18n.ui('ui.error.load_failed')}: ${err.message}</div>`;
         console.error(err);
     }
 

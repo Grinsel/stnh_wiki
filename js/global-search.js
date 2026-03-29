@@ -71,6 +71,53 @@ const GlobalSearch = (() => {
         'event',
     ];
 
+    // Faction synonym map: canonical name -> aliases
+    const FACTION_ALIASES = {
+        'federation': ['ufp', 'fed', 'starfleet', 'united federation', 'uss'],
+        'klingon':    ['kdf', 'klingon empire', 'iks', 'qonos'],
+        'romulan':    ['rse', 'rom', 'romulan star empire', 'tal shiar'],
+        'cardassian': ['car', 'cardassian union', 'obsidian order'],
+        'dominion':   ['dom', 'the dominion', 'founders', 'jem hadar', 'vorta'],
+        'borg':       ['brg', 'borg collective', 'unimatrix'],
+        'ferengi':    ['fer', 'ferengi alliance', 'fms'],
+        'bajoran':    ['baj', 'bajor'],
+        'vulcan':     ['vul', 'vulcanoid'],
+        'andorian':   ['and', 'andoria'],
+        'tholian':    ['tho'],
+        'breen':      ['bre'],
+        'undine':     ['und', 'species 8472'],
+        'xindi':      ['xin'],
+        'terran':     ['ter', 'terran empire', 'mirror universe', 'iss'],
+        'hirogen':    ['hir'],
+        'krenim':     ['kre'],
+        'son_a':      ['son', 'sona'],
+        'nausicaan':  ['nau'],
+        'pakled':     ['pak'],
+        'vidiian':    ['vid'],
+    };
+
+    // Build reverse lookup: alias -> set of all synonyms (including canonical)
+    const _aliasLookup = {};
+    for (const [canonical, aliases] of Object.entries(FACTION_ALIASES)) {
+        const all = [canonical, ...aliases];
+        for (const term of all) {
+            _aliasLookup[term] = all;
+        }
+    }
+
+    /**
+     * Expand search terms with faction synonyms.
+     * Each input term becomes an array of alternatives to match against.
+     * e.g. ['fed'] -> [['fed', 'federation', 'ufp', 'starfleet', ...]]
+     *      ['phaser'] -> [['phaser']]
+     */
+    function _expandTerms(terms) {
+        return terms.map(term => {
+            const synonyms = _aliasLookup[term];
+            return synonyms ? synonyms : [term];
+        });
+    }
+
     const TYPE_TABS = {
         'ship': 'ships',
         'component': 'components',
@@ -124,19 +171,21 @@ const GlobalSearch = (() => {
         return { typeFilter, terms };
     }
 
-    function _matchItem(item, terms) {
+    function _matchItem(item, expandedTerms) {
         const name = (typeof I18n !== 'undefined' && locReady)
             ? (I18n.t(item.nk) || item.nk || item.id)
             : (item.nk || item.id);
-        const searchable = `${item.id} ${name}`.toLowerCase();
-        if (!terms.every(t => searchable.includes(t))) return null;
+        const metaStr = item.x ? Object.values(item.x).join(' ') : '';
+        const searchable = `${item.id} ${name} ${metaStr}`.toLowerCase();
+        // Each term group must have at least one alternative matching
+        if (!expandedTerms.every(alts => alts.some(a => searchable.includes(a)))) return null;
         return {
             id: item.id,
             name: name,
             type: item.t,
             module: item.m,
             meta: item.x || {},
-            label: TYPE_LABELS[item.t] || item.t,
+            label: (typeof I18n !== 'undefined' && I18n.ui) ? (I18n.ui('ui.type.' + item.t) || TYPE_LABELS[item.t] || item.t) : (TYPE_LABELS[item.t] || item.t),
             page: modulePages ? modulePages[item.m] : null,
             tab: TYPE_TABS[item.t] || null,
         };
@@ -150,13 +199,14 @@ const GlobalSearch = (() => {
         if (!searchIndex || !query || !query.trim()) return [];
         const { typeFilter, terms } = _parseQuery(query);
         if (!terms.length) return [];
+        const expandedTerms = _expandTerms(terms);
 
         const buckets = {};  // type -> results[]
         const counts = {};   // type -> total match count
 
         for (const item of searchIndex) {
             if (typeFilter && item.t !== typeFilter) continue;
-            const result = _matchItem(item, terms);
+            const result = _matchItem(item, expandedTerms);
             if (!result) continue;
 
             const t = item.t;
@@ -198,11 +248,12 @@ const GlobalSearch = (() => {
         if (!searchIndex || !query || !query.trim()) return [];
         const { typeFilter, terms } = _parseQuery(query);
         if (!terms.length) return [];
+        const expandedTerms = _expandTerms(terms);
 
         const results = [];
         for (const item of searchIndex) {
             if (typeFilter && item.t !== typeFilter) continue;
-            const result = _matchItem(item, terms);
+            const result = _matchItem(item, expandedTerms);
             if (result) results.push(result);
         }
         return results;
@@ -234,9 +285,26 @@ const GlobalSearch = (() => {
         return searchIndex ? searchIndex.length : 0;
     }
 
+    /**
+     * Returns expanded synonym info for a query, so the UI can show what was searched.
+     * e.g. "fed phaser" -> [{ term: 'fed', synonyms: ['federation','ufp','starfleet',...] }, { term: 'phaser', synonyms: null }]
+     */
+    function getExpandedInfo(query) {
+        const { terms } = _parseQuery(query);
+        const info = [];
+        for (const term of terms) {
+            const synonyms = _aliasLookup[term];
+            if (synonyms) {
+                // Return all synonyms except the term itself
+                info.push({ term, synonyms: synonyms.filter(s => s !== term) });
+            }
+        }
+        return info;
+    }
+
     return {
         init, searchPreview, searchFull, getItemUrl,
-        setLocReady, getStats, getTotalCount,
+        setLocReady, getStats, getTotalCount, getExpandedInfo,
         TYPE_LABELS, TYPE_ORDER,
     };
 })();

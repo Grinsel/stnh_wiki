@@ -4,7 +4,7 @@
 (async function initBuildings() {
     const listEl = document.getElementById('item-list');
     if (!listEl) return;
-    listEl.innerHTML = '<div class="loading">Loading building data</div>';
+    listEl.innerHTML = '<div class="loading">' + I18n.ui('ui.loading.buildings') + '</div>';
 
     AppState.init();
     Common.init();
@@ -52,39 +52,37 @@
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
             let html = `<div class="detail-meta">`;
-            html += `<span class="detail-meta-item">ID: ${esc(item.id)}</span>`;
-            if (item.category) html += `<span class="detail-meta-item">Category: ${esc(item.category)}</span>`;
-            if (item.base_buildtime) html += `<span class="detail-meta-item">Build Time: ${item.base_buildtime}</span>`;
-            if (item.capital) html += `<span class="detail-meta-item">Capital</span>`;
-            html += `<span class="detail-meta-item">File: ${esc(item.source_file)}</span>`;
+            html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id') + ': '}${esc(item.id)}</span>`;
+            if (item.category) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.category') + ': '}${esc(item.category)}</span>`;
+            if (item.base_buildtime) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.build_time') + ': '}${item.base_buildtime}</span>`;
+            if (item.capital) html += `<span class="detail-meta-item">${I18n.ui('ui.badge.capital')}</span>`;
+            html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file') + ': '}${esc(item.source_file)}</span>`;
             html += `</div>`;
 
             if (item.prerequisites && item.prerequisites.length) {
-                html += `<div class="detail-section"><div class="detail-section-title">Prerequisites</div>`;
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.prerequisites')}</div>`;
                 html += `<div class="detail-meta">${item.prerequisites.map(t => `<span class="detail-meta-item">${esc(I18n.t(t) || t)}</span>`).join('')}</div></div>`;
             }
 
             if (item.upgrades && item.upgrades.length) {
-                html += `<div class="detail-section"><div class="detail-section-title">Upgrades To</div>`;
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.upgrades_to')}</div>`;
                 html += `<div class="detail-meta">${item.upgrades.map(u => `<span class="detail-meta-item">${esc(I18n.t(u) || u)}</span>`).join('')}</div></div>`;
             }
 
             if (item.resources) {
-                html += `<div class="detail-section"><div class="detail-section-title">Resources</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.resources, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.resources, I18n.ui('ui.detail.resources'))}</div>`;
             }
 
             if (item.modifier) {
-                html += `<div class="detail-section"><div class="detail-section-title">Modifiers</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.modifier, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.modifier, I18n.ui('ui.detail.modifiers'))}</div>`;
             }
 
             if (item.potential) {
-                html += `<div class="detail-section"><div class="detail-section-title">Potential</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.potential, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.potential, I18n.ui('ui.detail.potential'))}</div>`;
             }
 
             detailContent.innerHTML = html;
+            SharedRender.initToggles(detailContent);
             detailPanel.classList.remove('hidden');
         }
 
@@ -101,9 +99,7 @@
 
         catSel.addEventListener('change', () => { currentPage = 1; renderAll(); });
 
-        document.getElementById('lang-select').addEventListener('change', async (e) => {
-            AppState.set('lang', e.target.value);
-            await I18n.setLanguage(e.target.value);
+        document.addEventListener('wiki-lang-changed', () => {
             for (const item of buildings) item.name = I18n.t(item.name_key) || item.id;
             for (const item of districts) item.name = I18n.t(item.name_key) || item.id;
             renderAll();
@@ -127,7 +123,7 @@
             items.sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
 
             const total = activeTab === 'buildings' ? buildings.length : districts.length;
-            document.getElementById('filter-stats').textContent = `${items.length} / ${total} ${activeTab}`;
+            document.getElementById('filter-stats').textContent = `${items.length} / ${total} ${I18n.ui('ui.tab.' + activeTab)}`;
 
             const totalPages = Math.ceil(items.length / PAGE_SIZE);
             const pageItems = items.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
@@ -142,11 +138,11 @@
                         </div>
                         <div class="item-card-meta">`;
                 if (item.category) html += `<span class="detail-meta-item">${esc(item.category)}</span>`;
-                if (item.base_buildtime) html += `<span class="detail-meta-item">Build: ${item.base_buildtime}</span>`;
-                if (item.prerequisites && item.prerequisites.length) html += `<span class="detail-meta-item">Tech: ${item.prerequisites.length}</span>`;
+                if (item.base_buildtime) html += `<span class="detail-meta-item">${I18n.ui('ui.card.build') + ':'} ${item.base_buildtime}</span>`;
+                if (item.prerequisites && item.prerequisites.length) html += `<span class="detail-meta-item">${I18n.ui('ui.card.tech') + ':'} ${item.prerequisites.length}</span>`;
                 html += `</div></div></div>`;
             }
-            listEl.innerHTML = html || '<div class="loading" style="animation:none">No items found</div>';
+            listEl.innerHTML = html || '<div class="loading" style="animation:none">' + I18n.ui('ui.empty.no_items') + '</div>';
 
             listEl.querySelectorAll('.item-card').forEach(card => {
                 card.addEventListener('click', () => {
@@ -178,7 +174,7 @@
         }
 
     } catch (err) {
-        listEl.innerHTML = `<div class="loading" style="animation:none">Failed to load data: ${err.message}</div>`;
+        listEl.innerHTML = `<div class="loading" style="animation:none">${I18n.ui('ui.error.load_failed')}: ${err.message}</div>`;
         console.error(err);
     }
 

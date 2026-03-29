@@ -15,7 +15,7 @@ const EventList = (() => {
 
         const listEl = document.getElementById('event-list');
         if (pageEvents.length === 0) {
-            listEl.innerHTML = '<div class="loading" style="animation:none">No events found</div>';
+            listEl.innerHTML = '<div class="loading" style="animation:none">' + I18n.ui('ui.empty.no_events') + '</div>';
             document.getElementById('pagination').innerHTML = '';
             return;
         }
@@ -23,7 +23,7 @@ const EventList = (() => {
         listEl.innerHTML = pageEvents.map(e => {
             let prefix = '';
             if (e._searchDivider) {
-                prefix = '<div class="search-section-divider">Other namespaces</div>';
+                prefix = '<div class="search-section-divider">' + I18n.ui('ui.empty.other_namespaces') + '</div>';
             }
             return prefix + Render.eventCard(e, query);
         }).join('');

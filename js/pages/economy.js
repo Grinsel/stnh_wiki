@@ -4,7 +4,7 @@
 (async function initEconomy() {
     const listEl = document.getElementById('item-list');
     if (!listEl) return;
-    listEl.innerHTML = '<div class="loading">Loading economy data</div>';
+    listEl.innerHTML = '<div class="loading">' + I18n.ui('ui.loading.economy') + '</div>';
 
     AppState.init();
     Common.init();
@@ -33,7 +33,7 @@
 
         function populateCategories() {
             const cats = activeTab === 'jobs' ? jobCats : depCats;
-            catSel.innerHTML = '<option value="">All Categories</option>';
+            catSel.innerHTML = '<option value="">' + I18n.ui('ui.filter.all_categories') + '</option>';
             for (const c of cats) {
                 catSel.add(new Option(c, c));
             }
@@ -63,19 +63,19 @@
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
             let html = `<div class="detail-meta">`;
-            html += `<span class="detail-meta-item">ID: ${esc(item.id)}</span>`;
-            if (item.category) html += `<span class="detail-meta-item">Category: ${esc(item.category)}</span>`;
-            if (item.source_file) html += `<span class="detail-meta-item">File: ${esc(item.source_file)}</span>`;
+            html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
+            if (item.category) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.category')}: ${esc(item.category)}</span>`;
+            if (item.source_file) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
             html += `</div>`;
 
             // Job-specific
             if (activeTab === 'jobs') {
                 const stats = [];
-                if (item.building_icon) stats.push(['Building Icon', item.building_icon]);
-                if (item.condition) stats.push(['Condition', item.condition]);
-                if (item.is_capped_by_modifier) stats.push(['Capped by Modifier', 'Yes']);
+                if (item.building_icon) stats.push([I18n.ui('ui.meta.building_icon'), item.building_icon]);
+                if (item.condition) stats.push([I18n.ui('ui.meta.condition'), item.condition]);
+                if (item.is_capped_by_modifier) stats.push([I18n.ui('ui.meta.capped_by_modifier'), I18n.ui('ui.misc.yes')]);
                 if (stats.length) {
-                    html += `<div class="detail-section"><div class="detail-section-title">Info</div>`;
+                    html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.info')}</div>`;
                     html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${esc(v)}</span>`).join('')}</div></div>`;
                 }
             }
@@ -83,51 +83,46 @@
             // Deposit-specific
             if (activeTab === 'deposits') {
                 const stats = [];
-                if (item.is_null) stats.push(['Null Deposit', 'Yes']);
-                if (item.is_for_colonizable) stats.push(['For Colonizable', 'Yes']);
+                if (item.is_null) stats.push([I18n.ui('ui.meta.null_deposit'), I18n.ui('ui.misc.yes')]);
+                if (item.is_for_colonizable) stats.push([I18n.ui('ui.meta.for_colonizable'), I18n.ui('ui.misc.yes')]);
                 if (stats.length) {
-                    html += `<div class="detail-section"><div class="detail-section-title">Info</div>`;
+                    html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.info')}</div>`;
                     html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${esc(v)}</span>`).join('')}</div></div>`;
                 }
             }
 
             // Resources
             if (item.resources) {
-                html += `<div class="detail-section"><div class="detail-section-title">Resources</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.resources, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.resources, I18n.ui('ui.detail.resources'))}</div>`;
             }
 
             // Modifier
             if (item.modifier) {
-                html += `<div class="detail-section"><div class="detail-section-title">Modifiers</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.modifier, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.modifier, I18n.ui('ui.detail.modifiers'))}</div>`;
             }
 
             // Possible
             if (item.possible) {
-                html += `<div class="detail-section"><div class="detail-section-title">Possible</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.possible, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.possible, I18n.ui('ui.detail.possible'))}</div>`;
             }
 
             // Potential
             if (item.potential) {
-                html += `<div class="detail-section"><div class="detail-section-title">Potential</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.potential, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.potential, I18n.ui('ui.detail.potential'))}</div>`;
             }
 
             // Drop weight (deposits)
             if (item.drop_weight) {
-                html += `<div class="detail-section"><div class="detail-section-title">Drop Weight</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.drop_weight, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.drop_weight, I18n.ui('ui.detail.drop_weight'))}</div>`;
             }
 
             // Weight (jobs)
             if (item.weight) {
-                html += `<div class="detail-section"><div class="detail-section-title">Weight</div>`;
-                html += `<div class="code-block">${esc(JSON.stringify(item.weight, null, 2))}</div></div>`;
+                html += `<div class="detail-section">${SharedRender.dualView(item.weight, I18n.ui('ui.detail.weight'))}</div>`;
             }
 
             detailContent.innerHTML = html;
+            SharedRender.initToggles(detailContent);
             detailPanel.classList.remove('hidden');
         }
 
@@ -146,9 +141,7 @@
         catSel.addEventListener('change', () => { currentPage = 1; renderAll(); });
 
         // Language change
-        document.getElementById('lang-select').addEventListener('change', async (e) => {
-            AppState.set('lang', e.target.value);
-            await I18n.setLanguage(e.target.value);
+        document.addEventListener('wiki-lang-changed', () => {
             for (const item of jobs) item.name = I18n.t(item.name_key) || item.id;
             for (const item of deposits) item.name = I18n.t(item.name_key) || item.id;
             renderAll();
@@ -170,7 +163,7 @@
             items.sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
 
             const total = activeTab === 'jobs' ? jobs.length : deposits.length;
-            document.getElementById('filter-stats').textContent = `${items.length} / ${total} ${activeTab}`;
+            document.getElementById('filter-stats').textContent = `${items.length} / ${total} ${I18n.ui('ui.tab.' + activeTab)}`;
 
             const totalPages = Math.ceil(items.length / PAGE_SIZE);
             const pageItems = items.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
@@ -186,10 +179,10 @@
                         <div class="item-card-meta">`;
                 if (item.category) html += `<span class="detail-meta-item">${esc(item.category)}</span>`;
                 if (item.building_icon) html += `<span class="detail-meta-item">${esc(item.building_icon)}</span>`;
-                if (item.is_for_colonizable) html += `<span class="detail-meta-item">Colonizable</span>`;
+                if (item.is_for_colonizable) html += `<span class="detail-meta-item">${I18n.ui('ui.badge.colonizable')}</span>`;
                 html += `</div></div></div>`;
             }
-            listEl.innerHTML = html || '<div class="loading" style="animation:none">No items found</div>';
+            listEl.innerHTML = html || '<div class="loading" style="animation:none">' + I18n.ui('ui.empty.no_items') + '</div>';
 
             listEl.querySelectorAll('.item-card').forEach(card => {
                 card.addEventListener('click', () => {
@@ -222,7 +215,7 @@
         }
 
     } catch (err) {
-        listEl.innerHTML = `<div class="loading" style="animation:none">Failed to load data: ${err.message}</div>`;
+        listEl.innerHTML = `<div class="loading" style="animation:none">${I18n.ui('ui.error.load_failed')}: ${err.message}</div>`;
         console.error(err);
     }
 

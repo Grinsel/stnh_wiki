@@ -818,17 +818,17 @@
     <!-- Wiki Navigation -->
     <nav id="wiki-nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-link">Hub</a>
-            <a href="events.html" class="nav-link">Events</a>
-            <a href="tech.html" class="nav-link">Tech Tree</a>
-            <a href="ships.html" class="nav-link">Ships</a>
-            <a href="buildings.html" class="nav-link">Buildings</a>
-            <a href="traits.html" class="nav-link">Traits</a>
-            <a href="governments.html" class="nav-link">Governments</a>
-            <a href="megastructures.html" class="nav-link">Megastructures</a>
-            <a href="anomalies.html" class="nav-link">Anomalies</a>
-            <a href="empires.html" class="nav-link">Empires</a>
-            <a href="economy.html" class="nav-link">Economy</a>
+            <a href="index.html" class="nav-link" data-i18n="ui.nav.hub">Hub</a>
+            <a href="events.html" class="nav-link" data-i18n="ui.nav.events">Events</a>
+            <a href="tech.html" class="nav-link" data-i18n="ui.nav.tech">Tech Tree</a>
+            <a href="ships.html" class="nav-link" data-i18n="ui.nav.ships">Ships</a>
+            <a href="buildings.html" class="nav-link" data-i18n="ui.nav.buildings">Buildings</a>
+            <a href="traits.html" class="nav-link" data-i18n="ui.nav.traits">Traits</a>
+            <a href="governments.html" class="nav-link" data-i18n="ui.nav.governments">Governments</a>
+            <a href="megastructures.html" class="nav-link" data-i18n="ui.nav.megastructures">Megastructures</a>
+            <a href="anomalies.html" class="nav-link" data-i18n="ui.nav.anomalies">Anomalies</a>
+            <a href="empires.html" class="nav-link" data-i18n="ui.nav.empires">Empires</a>
+            <a href="economy.html" class="nav-link" data-i18n="ui.nav.economy">Economy</a>
         </div>
     </nav>
 
@@ -1095,6 +1095,18 @@
         </div>
     </div>
     <script src="js/state.js"></script>
+    <script src="js/ui-strings.js"></script>
+    <script>
+        // Minimal I18n for tech page (no full localisation needed)
+        if (typeof I18n === 'undefined') {
+            var I18n = { ui: function(key) {
+                var lang = (typeof AppState !== 'undefined' && AppState.get) ? AppState.get('lang') : 'english';
+                var entry = (typeof UI_STRINGS !== 'undefined') ? UI_STRINGS[key] : null;
+                if (!entry) return key;
+                return entry[lang] || entry['english'] || key;
+            }};
+        }
+    </script>
     <script src="js/common.js"></script>
     <script>AppState.init(); Common.init();</script>
     <script src="https://d3js.org/d3.v7.min.js"></script>

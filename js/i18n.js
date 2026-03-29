@@ -24,8 +24,15 @@ const I18n = (() => {
         return locData[key] || fallbackData[key] || key;
     }
 
+    function ui(key) {
+        if (!key) return '';
+        const entry = typeof UI_STRINGS !== 'undefined' ? UI_STRINGS[key] : null;
+        if (!entry) return key;
+        return entry[currentLang] || entry['english'] || key;
+    }
+
     function getLang() { return currentLang; }
     function getData() { return locData; }
 
-    return { setLanguage, t, getLang, getData };
+    return { setLanguage, t, ui, getLang, getData };
 })();
