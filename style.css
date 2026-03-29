@@ -1057,6 +1057,87 @@ body.in-iframe #site-footer {
     line-height: 1.4;
 }
 
+/* Card Count Badge (top-right corner) */
+.card-count {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-gold-solid);
+    font-family: 'federation-ds9-title', 'Tungsten-Light', Helvetica, sans-serif;
+    letter-spacing: 1px;
+}
+
+.section-card {
+    position: relative;
+}
+
+/* Card Breakdown Tags */
+.card-breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.5rem;
+    margin-top: 0.4rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.card-breakdown-tag {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.card-breakdown-tag b {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Hub Meta (Total Items + Last Update) */
+.hub-meta {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.hub-meta-item b {
+    color: var(--accent-gold-solid);
+}
+
+.hub-meta-sep {
+    margin: 0 0.5rem;
+    opacity: 0.4;
+}
+
+/* Theme Picker */
+.theme-picker {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    padding-right: 0.6rem;
+}
+
+.theme-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    padding: 0;
+}
+
+.theme-dot:hover {
+    transform: scale(1.25);
+}
+
+.theme-dot.active {
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.7);
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
     #namespace-sidebar { width: 180px; }

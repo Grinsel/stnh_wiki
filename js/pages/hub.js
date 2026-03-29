@@ -1,6 +1,6 @@
 /**
  * Hub page - landing page for the STNH Wiki.
- * Shows stats dashboard, global search, and section cards.
+ * Injects item counts into section cards as badges.
  * Search: live preview dropdown while typing, full results page on Enter.
  */
 (async function initHub() {
@@ -29,120 +29,99 @@
     }
 
     // ========================================
-    // Stats Dashboard
+    // Inject counts into Section Cards + Hub Meta
     // ========================================
-    const statsEl = document.getElementById('stats-dashboard');
-    if (statsEl) {
-        if (searchReady) {
-            const counts = GlobalSearch.getStats();
-            const total = GlobalSearch.getTotalCount();
+    if (searchReady) {
+        const counts = GlobalSearch.getStats();
+        const total = GlobalSearch.getTotalCount();
 
-            // Each module card: label, href, and breakdown of sub-types
-            const moduleStats = [
-                { label: I18n.ui('ui.nav.events'), href: 'events.html', parts: [
-                    { name: I18n.ui('ui.nav.events'), count: counts.event || 0 },
-                ]},
-                { label: I18n.ui('ui.nav.ships'), href: 'ships.html', parts: [
-                    { name: I18n.ui('ui.tab.ships'), count: counts.ship || 0 },
-                    { name: I18n.ui('ui.tab.components'), count: counts.component || 0 },
-                ]},
-                { label: I18n.ui('ui.nav.buildings'), href: 'buildings.html', parts: [
-                    { name: I18n.ui('ui.tab.buildings'), count: counts.building || 0 },
-                    { name: I18n.ui('ui.tab.districts'), count: counts.district || 0 },
-                ]},
-                { label: I18n.ui('ui.nav.traits'), href: 'traits.html', parts: [
-                    { name: I18n.ui('ui.tab.traits'), count: counts.trait || 0 },
-                    { name: I18n.ui('ui.tab.traditions'), count: counts.tradition || 0 },
-                    { name: I18n.ui('ui.tab.perks'), count: counts.ascension_perk || 0 },
-                ]},
-                { label: I18n.ui('ui.nav.governments'), href: 'governments.html', parts: [
-                    { name: I18n.ui('ui.tab.governments'), count: counts.government || 0 },
-                    { name: I18n.ui('ui.tab.civics'), count: counts.civic || 0 },
-                    { name: I18n.ui('ui.tab.authorities'), count: counts.authority || 0 },
-                    { name: I18n.ui('ui.tab.policies'), count: counts.policy || 0 },
-                    { name: I18n.ui('ui.tab.edicts'), count: counts.edict || 0 },
-                ]},
-                { label: I18n.ui('ui.nav.megastructures'), href: 'megastructures.html', parts: [
-                    { name: I18n.ui('ui.tab.megastructures'), count: counts.megastructure || 0 },
-                    { name: I18n.ui('ui.tab.relics'), count: counts.relic || 0 },
-                ]},
-                { label: I18n.ui('ui.nav.anomalies'), href: 'anomalies.html', parts: [
-                    { name: I18n.ui('ui.tab.anomalies'), count: counts.anomaly || 0 },
-                    { name: I18n.ui('ui.tab.archaeology'), count: counts.archaeology || 0 },
-                ]},
-                { label: I18n.ui('ui.nav.empires'), href: 'empires.html', parts: [
-                    { name: I18n.ui('ui.tab.empires'), count: counts.empire || 0 },
-                    { name: I18n.ui('ui.tab.species'), count: counts.species || 0 },
-                ]},
-                { label: I18n.ui('ui.nav.economy'), href: 'economy.html', parts: [
-                    { name: I18n.ui('ui.tab.jobs'), count: counts.job || 0 },
-                    { name: I18n.ui('ui.tab.deposits'), count: counts.deposit || 0 },
-                ]},
-            ];
+        // Module → sub-type breakdown mapping
+        const moduleBreakdown = {
+            events:         [{ key: 'event', label: 'ui.nav.events' }],
+            tech:           [{ key: 'tech', label: 'ui.nav.tech' }],
+            ships:          [
+                { key: 'ship', label: 'ui.tab.ships' },
+                { key: 'component', label: 'ui.tab.components' },
+            ],
+            buildings:      [
+                { key: 'building', label: 'ui.tab.buildings' },
+                { key: 'district', label: 'ui.tab.districts' },
+            ],
+            traits:         [
+                { key: 'trait', label: 'ui.tab.traits' },
+                { key: 'tradition', label: 'ui.tab.traditions' },
+                { key: 'ascension_perk', label: 'ui.tab.perks' },
+            ],
+            governments:    [
+                { key: 'government', label: 'ui.tab.governments' },
+                { key: 'civic', label: 'ui.tab.civics' },
+                { key: 'authority', label: 'ui.tab.authorities' },
+                { key: 'policy', label: 'ui.tab.policies' },
+                { key: 'edict', label: 'ui.tab.edicts' },
+            ],
+            megastructures: [
+                { key: 'megastructure', label: 'ui.tab.megastructures' },
+                { key: 'relic', label: 'ui.tab.relics' },
+            ],
+            anomalies:      [
+                { key: 'anomaly', label: 'ui.tab.anomalies' },
+                { key: 'archaeology', label: 'ui.tab.archaeology' },
+            ],
+            empires:        [
+                { key: 'empire', label: 'ui.tab.empires' },
+                { key: 'species', label: 'ui.tab.species' },
+            ],
+            economy:        [
+                { key: 'job', label: 'ui.tab.jobs' },
+                { key: 'deposit', label: 'ui.tab.deposits' },
+            ],
+        };
 
-            let lastUpdateInfo = '';
+        // Inject badges into each section card
+        document.querySelectorAll('.section-card[data-module]').forEach(card => {
+            const mod = card.dataset.module;
+            const parts = moduleBreakdown[mod];
+            if (!parts) return;
+
+            const totalCount = parts.reduce((s, p) => s + (counts[p.key] || 0), 0);
+            if (totalCount === 0) return;
+
+            // Counter badge (top-right)
+            const badge = document.createElement('span');
+            badge.className = 'card-count';
+            badge.textContent = totalCount.toLocaleString();
+            card.appendChild(badge);
+
+            // Sub-type breakdown (only if multiple sub-types)
+            if (parts.length > 1) {
+                const breakdown = document.createElement('div');
+                breakdown.className = 'card-breakdown';
+                breakdown.innerHTML = parts
+                    .filter(p => (counts[p.key] || 0) > 0)
+                    .map(p => `<span class="card-breakdown-tag">${I18n.ui(p.label)} <b>${(counts[p.key] || 0).toLocaleString()}</b></span>`)
+                    .join('');
+                card.appendChild(breakdown);
+            }
+        });
+
+        // Hub meta line (total + last update)
+        const metaEl = document.getElementById('hub-meta');
+        if (metaEl) {
+            let lastUpdateStr = '';
             try {
                 const lastUpdate = await DataManager.loadJSON('assets/last_update.json');
                 if (lastUpdate && lastUpdate.timestamp) {
                     const d = new Date(lastUpdate.timestamp);
-                    lastUpdateInfo = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+                    lastUpdateStr = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
                 }
             } catch (e) { /* ignore */ }
 
-            let html = `
-                <div class="stat-card highlight">
-                    <div class="stat-label">${I18n.ui('ui.hub.total_items')}</div>
-                    <div class="stat-value">${total.toLocaleString()}</div>
-                </div>
-            `;
-
-            for (const mod of moduleStats) {
-                const totalCount = mod.parts.reduce((s, p) => s + p.count, 0);
-                const hasParts = mod.parts.length > 1;
-                let breakdownHtml = '';
-                if (hasParts) {
-                    breakdownHtml = '<div class="stat-breakdown">'
-                        + mod.parts.map(p =>
-                            `<span class="stat-part">${p.name} <b>${p.count.toLocaleString()}</b></span>`
-                        ).join('')
-                        + '</div>';
-                }
-                html += `
-                    <a href="${mod.href}" class="stat-card clickable">
-                        <div class="stat-label">${mod.label}</div>
-                        <div class="stat-value">${totalCount.toLocaleString()}</div>
-                        ${breakdownHtml}
-                    </a>
-                `;
+            let metaHtml = `<span class="hub-meta-item">${I18n.ui('ui.hub.total_items')}: <b>${total.toLocaleString()}</b></span>`;
+            if (lastUpdateStr) {
+                metaHtml += `<span class="hub-meta-sep">&middot;</span>`;
+                metaHtml += `<span class="hub-meta-item">${I18n.ui('ui.hub.last_update')}: <b>${lastUpdateStr}</b></span>`;
             }
-
-            if (lastUpdateInfo) {
-                html += `
-                    <div class="stat-card">
-                        <div class="stat-label">${I18n.ui('ui.hub.last_update')}</div>
-                        <div class="stat-value">${lastUpdateInfo}</div>
-                    </div>
-                `;
-            }
-
-            statsEl.innerHTML = html;
-        } else {
-            try {
-                const lastUpdate = await DataManager.loadJSON('assets/last_update.json');
-                if (lastUpdate) {
-                    const ts = lastUpdate.timestamp
-                        ? new Date(lastUpdate.timestamp).toLocaleString()
-                        : 'Unknown';
-                    statsEl.innerHTML = `
-                        <div class="stat-card">
-                            <div class="stat-label">${I18n.ui('ui.hub.last_update')}</div>
-                            <div class="stat-value">${ts}</div>
-                        </div>
-                    `;
-                }
-            } catch (e) {
-                statsEl.innerHTML = '';
-            }
+            metaEl.innerHTML = metaHtml;
         }
     }
 
