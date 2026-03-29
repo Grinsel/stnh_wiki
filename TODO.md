@@ -1,0 +1,352 @@
+# STNH Wiki – Master TODO
+
+> Off-Game Wiki für die Star Trek: New Horizons Mod (Stellaris).
+> Ziel: Alle spielrelevanten Daten der Mod als durchsuchbare, verlinkte Website bereitstellen.
+> Ansatz: Schrittweise – jede Sektion ist ein eigenständiges Modul mit eigenem Python-Pipeline-Schritt und eigener Web-Seite.
+> Datenquelle: `git01/New-Horizons-Development` (read-only)
+> Techtree-Daten: Kopie aus `git09/stnh_techtree_interactive` (git09 bleibt unangetastet – live Website!)
+> Projekt-Ort: `git10/stnh_wiki`
+> Design: Vanilla HTML/CSS/JS, dunkles Star-Trek-Theme (wie Event Browser), keine Frameworks.
+
+---
+
+## Phase 0 – Projekt-Grundlage
+
+- [ ] **0.1 Projekt-Skelett erstellen**
+  - Verzeichnisstruktur: `update/`, `assets/`, `js/`, `fonts/`, `pictures/`, `icons/`
+  - `update/config.py` mit Pfaden zu git01-Mod und git10-Wiki
+  - `update/parse_pdx.py` – Kopie des bewährten rekursiven Parsers aus dem Event Browser
+  - `update/parse_localisation.py` – Kopie aus dem Event Browser
+  - `.gitignore`, `requirements.txt`
+
+- [ ] **0.2 Gemeinsames Frontend-Gerüst**
+  - `index.html` – Landing Page / Hub mit Navigation zu allen Sektionen
+  - `style.css` – Basis-Theme (dark, Star-Trek-Fonts, responsive)
+  - `js/data.js`, `js/state.js`, `js/i18n.js`, `js/search.js` – Kern-Module
+  - 7-Sprachen-Support von Anfang an
+
+- [ ] **0.3 Shared Data Pipeline**
+  - `update/UPDATE_WIKI.py` – Master-Orchestrator (wie `UPDATE_EVENTS.py`)
+  - Phase-System: Validation → Localisation → GFX → Module → JSON-Output
+  - `update/parse_localisation.py` → `assets/localisation/*.json`
+  - `update/parse_gfx_mappings.py` → `assets/pictures_map.json`
+
+- [ ] **0.4 GitHub Pages Deployment**
+  - `.github/workflows/deploy.yml`
+  - `UPDATE.bat` / `UPDATE_QUICK.bat`
+
+---
+
+## Phase 1 – Events (Event Browser Migration)
+
+- [ ] **1.1 Event-Pipeline aus git10/stnh_event_browser übernehmen**
+  - Parser bereits vorhanden – adaptieren für Wiki-Struktur
+  - Output: `assets/events_index.json`, `assets/events_detail/*.json`
+  - Event-Bilder: `pictures/*.webp`
+
+- [ ] **1.2 Event-Browser Web-Seite**
+  - Bestehendes Frontend portieren in Wiki-Layout
+  - Filter, Suche, Namespace-Navigation, Detail-Panel, Chain-Viewer
+
+- [ ] **1.3 Verlinkung: Events ↔ andere Module**
+  - Events ↔ Techs, Events ↔ Gebäude, Events ↔ Relics, etc.
+
+---
+
+## Phase 2 – Schiffe & Komponenten
+
+- [ ] **2.1 Ship Parser**
+  - `update/parse_ships.py`
+  - Quellen: `common/ship_sizes/` (47 Dateien)
+  - Daten: Name, Klasse, Größe, HP, Sektionen, Required Tech, Faction
+  - Output: `assets/ships.json`
+
+- [ ] **2.2 Component Parser**
+  - `update/parse_components.py`
+  - Quellen: `common/component_templates/` (97 Dateien)
+  - Daten: Name, Typ (Waffe/Schild/Antrieb/etc.), Tier, Stats, Required Tech
+  - Output: `assets/components.json`
+
+- [ ] **2.3 Schiffe & Komponenten Web-Seite**
+  - Schiffsliste mit Filtern (Klasse, Faction, Tier)
+  - Schiff-Detailansicht mit Sektionen und möglichen Komponenten
+  - Komponenten-Liste mit Vergleich
+  - Verlinkung: Schiff ↔ Tech, Komponente ↔ Tech
+
+---
+
+## Phase 3 – Gebäude & Distrikte
+
+- [ ] **3.1 Building Parser**
+  - `update/parse_buildings.py`
+  - Quellen: `common/buildings/` (36 Dateien)
+  - Daten: Name, Kategorie, Kosten, Unterhalt, Modifiers, Jobs, Required Tech, Upgrade-Pfad
+  - Output: `assets/buildings.json`
+
+- [ ] **3.2 District Parser**
+  - `update/parse_districts.py`
+  - Quellen: `common/districts/`
+  - Output: `assets/districts.json`
+
+- [ ] **3.3 Gebäude & Distrikte Web-Seite**
+  - Gebäudeliste mit Filtern (Kategorie, Tier, Faction)
+  - Detail-Panel mit Kosten, Jobs, Modifiers
+  - Upgrade-Ketten visualisieren
+  - Verlinkung: Gebäude ↔ Tech, Gebäude ↔ Jobs
+
+---
+
+## Phase 4 – Traits & Traditionen
+
+- [ ] **4.1 Trait Parser**
+  - `update/parse_traits.py`
+  - Quellen: `common/traits/` (50 Dateien)
+  - Daten: Name, Typ (Species/Leader/Ruler), Kosten, Modifiers, Gegensätze
+  - Output: `assets/traits.json`
+
+- [ ] **4.2 Tradition Parser**
+  - `update/parse_traditions.py`
+  - Quellen: `common/traditions/` (38 Dateien)
+  - Daten: Name, Kategorie, Stufe, Effekte, Adoption/Finish-Boni
+  - Output: `assets/traditions.json`
+
+- [ ] **4.3 Ascension Perks Parser**
+  - `update/parse_ascension_perks.py`
+  - Quellen: `common/ascension_perks/` (2 Dateien)
+  - Output: `assets/ascension_perks.json`
+
+- [ ] **4.4 Traits & Traditionen Web-Seite**
+  - Trait-Browser mit Filtern (Typ, Kosten, Effekt-Kategorie)
+  - Traditions-Bäume visualisieren
+  - Ascension-Perks-Übersicht
+  - Verlinkung: Trait ↔ Species, Tradition ↔ Tech
+
+---
+
+## Phase 5 – Regierung & Diplomatie
+
+- [ ] **5.1 Government Parser**
+  - `update/parse_governments.py`
+  - Quellen: `common/governments/` (27 Dateien), `common/governments/authorities/`, `common/governments/civics/`
+  - Daten: Regierungstyp, Ethik-Anforderungen, Civics, Boni
+  - Output: `assets/governments.json`
+
+- [ ] **5.2 Policies & Edicts Parser**
+  - `update/parse_policies.py`, `update/parse_edicts.py`
+  - Quellen: `common/policies/`, `common/edicts/`
+  - Output: `assets/policies.json`, `assets/edicts.json`
+
+- [ ] **5.3 Regierung & Diplomatie Web-Seite**
+  - Regierungsformen-Browser
+  - Civic-Katalog
+  - Policy- und Edikt-Übersicht
+  - Verlinkung: Government ↔ Ethik, Civic ↔ Tech
+
+---
+
+## Phase 6 – Megastrukturen & Relics
+
+- [ ] **6.1 Megastructure Parser**
+  - `update/parse_megastructures.py`
+  - Quellen: `common/megastructures/` (51 Dateien)
+  - Daten: Name, Stufen, Kosten, Bauzeit, Effekte, Required Tech/Ascension Perk
+  - Output: `assets/megastructures.json`
+
+- [ ] **6.2 Relics Parser**
+  - `update/parse_relics.py`
+  - Quellen: `common/relics/` (16 Dateien)
+  - Daten: Name, Passive Effekte, Aktive Effekte, Cooldown, Trigger
+  - Output: `assets/relics.json`
+
+- [ ] **6.3 Megastrukturen & Relics Web-Seite**
+  - Mega-Galerie mit Baustufen
+  - Relics-Katalog
+  - Verlinkung: Mega ↔ Tech, Mega ↔ Ascension Perk
+
+---
+
+## Phase 7 – Anomalien & Archäologie
+
+- [ ] **7.1 Anomaly Parser**
+  - `update/parse_anomalies.py`
+  - Quellen: `common/anomalies/`
+  - Daten: Name, Kategorie, Mögliche Ergebnisse, Trigger
+  - Output: `assets/anomalies.json`
+
+- [ ] **7.2 Archaeological Sites Parser**
+  - `update/parse_archaeology.py`
+  - Quellen: `common/archaeological_site_types/`
+  - Daten: Name, Kapitel, Belohnungen, Narrative
+  - Output: `assets/archaeology.json`
+
+- [ ] **7.3 Anomalien & Archäologie Web-Seite**
+  - Anomalie-Browser
+  - Archäologie-Storylines mit Kapitel-Darstellung
+  - Verlinkung: Anomalie ↔ Event, Archäologie ↔ Event ↔ Relic
+
+---
+
+## Phase 8 – Fraktionen & Empires
+
+- [ ] **8.1 Prescripted Countries Parser**
+  - `update/parse_empires.py`
+  - Quellen: `prescripted_countries/`
+  - Daten: Name, Species, Ethik, Government, Civics, Traits, Origin, Schiffe, Startposition
+  - Output: `assets/empires.json`
+
+- [ ] **8.2 Species & Portraits Parser**
+  - `update/parse_species.py`
+  - Quellen: `common/species_classes/`, `common/species_archetypes/`, Portrait-Dateien
+  - Output: `assets/species.json`
+
+- [ ] **8.3 Fraktionen & Empires Web-Seite**
+  - Fraktions-Enzyklopädie mit Portraits
+  - Empire-Steckbriefe (Government, Ethik, Traits, Ships)
+  - Species-Katalog
+  - Verlinkung: Fraktion ↔ Ships, Fraktion ↔ Techs, Fraktion ↔ Events
+
+---
+
+## Phase 9 – Ressourcen & Wirtschaft
+
+- [ ] **9.1 Jobs Parser**
+  - `update/parse_jobs.py`
+  - Quellen: `common/pop_jobs/` (31 Dateien)
+  - Output: `assets/jobs.json`
+
+- [ ] **9.2 Deposits Parser**
+  - `update/parse_deposits.py`
+  - Quellen: `common/deposits/` (27 Dateien)
+  - Output: `assets/deposits.json`
+
+- [ ] **9.3 Wirtschaft Web-Seite**
+  - Job-Übersicht mit Produktion/Konsum
+  - Deposit-Katalog
+  - Verlinkung: Job ↔ Building, Deposit ↔ Planet-Typ
+
+---
+
+## Phase 10 – Suche & Vernetzung (Cross-Module)
+
+- [ ] **10.1 Globale Volltextsuche**
+  - Über alle Module hinweg suchen
+  - Suchindex: `assets/search_index.json`
+  - Prefix-basiert: `tech:`, `event:`, `ship:`, `building:`, etc.
+
+- [ ] **10.2 Cross-Referenz-System**
+  - Bidirektionale Links zwischen allen Modulen generieren
+  - `assets/cross_references.json`
+  - z.B. Tech → Gebäude die es freischaltet → Events die daran hängen
+
+- [ ] **10.3 Landing Page / Hub**
+  - Statistik-Dashboard: Anzahl Techs, Events, Ships, etc.
+  - Zuletzt aktualisiert
+  - Quick-Links zu allen Sektionen
+  - Featured/Random Item Spotlight
+
+---
+
+## Phase 11 – Techtree (Kopie aus git09 → Wiki integrieren)
+
+> **WICHTIG:** git09/stnh_techtree_interactive ist eine öffentliche Live-Website!
+> Wir erstellen eine **Kopie** des Projekts ins Wiki und arbeiten nur an der Kopie.
+> git09 bleibt unangetastet, bis die Wiki-Version vollständig funktioniert.
+> Erst wenn alles läuft: git09 archivieren und auf Wiki-Techtree umleiten.
+
+- [ ] **11.1 Kopie des Techtree-Projekts anlegen**
+  - Relevante Dateien aus git09 nach `stnh_wiki/` kopieren (nicht git09 verändern!)
+  - Parser, Assets, Icons, JS/D3-Visualisierung
+  - An Wiki-Verzeichnisstruktur anpassen
+
+- [ ] **11.2 Techtree-Parser in Wiki-Pipeline integrieren**
+  - `update/parse_technologies.py` – Balance-Center-Bridge adaptieren oder ersetzen
+  - Component/Ship-Name/Reverse-Unlock Parser übernehmen
+  - In `UPDATE_WIKI.py` einbinden
+  - Output: `assets/technologies.json`, `icons/tech/`
+
+- [ ] **11.3 Techtree Web-Seite im Wiki**
+  - `tech.html` – D3.js Graph-Visualisierung einbetten
+  - `showcase.js` + Layout-Engines portieren ins Wiki-Layout
+  - Filter: Area, Tier, Faction, Kategorie, Unlock-Typ
+  - Tech-Detail-Panel mit Icon, Beschreibung, Prerequisites, Unlocks
+
+- [ ] **11.4 Verlinkung: Tech ↔ andere Module**
+  - Techs ↔ Events, Techs ↔ Buildings, Techs ↔ Ships, etc.
+
+- [ ] **11.5 git09 ablösen**
+  - Wiki-Techtree verifizieren (Feature-Parität mit git09)
+  - git09 archivieren / Redirect auf Wiki setzen
+
+---
+
+## Zukünftige Ideen (Backlog)
+
+- [ ] Name Lists Browser (168 Dateien – Namens-Generatoren)
+- [ ] Starbase-Modul-Katalog
+- [ ] Map/Galaxy-Viewer (Setup-Szenarien)
+- [ ] Übersetzungs-Dashboard (Vergleich der 7 Sprachen, fehlende Keys)
+- [ ] Mod-Changelog / Version-Tracker
+- [ ] Community-Beitrags-System (GitHub Issues Integration)
+- [ ] Druckbare Faction-Guides (PDF-Export)
+
+---
+
+## Architektur-Notizen
+
+### Verzeichnisstruktur (Ziel)
+```
+stnh_wiki/
+├── index.html                    # Hub / Landing Page
+├── events.html                   # Event Browser
+├── tech.html                     # Techtree
+├── ships.html                    # Schiffe & Komponenten
+├── buildings.html                # Gebäude & Distrikte
+├── traits.html                   # Traits & Traditionen
+├── governments.html              # Regierung & Diplomatie
+├── megastructures.html           # Megastrukturen & Relics
+├── anomalies.html                # Anomalien & Archäologie
+├── empires.html                  # Fraktionen & Empires
+├── economy.html                  # Wirtschaft
+├── style.css                     # Gemeinsames Theme
+├── js/                           # Shared JS-Module
+│   ├── data.js
+│   ├── state.js
+│   ├── i18n.js
+│   ├── search.js
+│   ├── filters.js
+│   ├── render.js
+│   └── main.js
+├── fonts/
+├── assets/                       # Generierte JSON-Daten
+│   ├── localisation/
+│   ├── events_index.json
+│   ├── technologies.json
+│   ├── ships.json
+│   ├── ...
+│   └── cross_references.json
+├── pictures/                     # Event-Bilder (WebP)
+├── icons/                        # Tech/Item-Icons (WebP)
+├── update/                       # Python Data Pipeline
+│   ├── UPDATE_WIKI.py            # Master-Orchestrator
+│   ├── config.py
+│   ├── parse_pdx.py
+│   ├── parse_localisation.py
+│   ├── parse_events.py
+│   ├── parse_technologies.py
+│   ├── parse_ships.py
+│   ├── parse_buildings.py
+│   ├── ...
+│   └── requirements.txt
+├── .github/workflows/deploy.yml
+├── UPDATE.bat
+└── UPDATE_QUICK.bat
+```
+
+### Design-Prinzipien
+1. **Kein Build-System** – Vanilla HTML/CSS/JS, direkt im Browser lauffähig
+2. **Ein Parser pro Modul** – Jeder Datentyp hat seinen eigenen Parser
+3. **Shared PDX-Parser** – `parse_pdx.py` ist die gemeinsame Basis
+4. **JSON als Zwischenformat** – Python generiert JSON, JS rendert
+5. **Progressive Enhancement** – Jedes Modul funktioniert standalone
+6. **Cross-References optional** – Module verlinken sich, sind aber unabhängig
+7. **7-Sprachen-Support** – Von Anfang an eingebaut
