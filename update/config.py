@@ -14,6 +14,7 @@ from pathlib import Path
 
 STNH_MOD_ROOT = r"C:\Users\marcj\git01\New-Horizons-Development"
 WIKI_ROOT = r"C:\Users\marcj\git10\stnh_wiki"
+VANILLA_ROOT = r"C:\Program Files (x86)\Steam\steamapps\common\Stellaris"
 
 # ==========================================
 # SOURCE PATHS (READ-ONLY) - Core
@@ -25,6 +26,13 @@ MOD_ON_ACTIONS_DIR = os.path.join(STNH_MOD_ROOT, "common", "on_actions")
 MOD_EVENT_CHAINS_DIR = os.path.join(STNH_MOD_ROOT, "common", "event_chains")
 MOD_INTERFACE_DIR = os.path.join(STNH_MOD_ROOT, "interface")
 MOD_GFX_EVENT_PICTURES = os.path.join(STNH_MOD_ROOT, "gfx", "event_pictures")
+
+# ==========================================
+# SOURCE PATHS (READ-ONLY) - Vanilla Stellaris
+# ==========================================
+
+VANILLA_INTERFACE_DIR = os.path.join(VANILLA_ROOT, "interface")
+VANILLA_GFX_EVENT_PICTURES = os.path.join(VANILLA_ROOT, "gfx", "event_pictures")
 
 # ==========================================
 # SOURCE PATHS (READ-ONLY) - Future Phases

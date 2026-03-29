@@ -44,7 +44,10 @@ const DataManager = (() => {
 
     function getPictureUrl(gfxName) {
         if (!gfxName || !picturesMap) return null;
-        const entry = picturesMap[gfxName];
+        let entry = picturesMap[gfxName];
+        // Fuzzy fallback: try common variants for mismatched sprite names
+        if (!entry) entry = picturesMap[gfxName + '+Era'] || picturesMap[gfxName + 'Era'];
+        if (!entry && gfxName.startsWith('GFX_')) entry = picturesMap['sth_' + gfxName];
         if (!entry) return null;
         return `pictures/${entry.texture_name}.webp`;
     }

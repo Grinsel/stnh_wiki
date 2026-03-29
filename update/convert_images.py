@@ -8,12 +8,14 @@ import json
 import subprocess
 import time
 from config import (
-    MOD_GFX_EVENT_PICTURES, OUTPUT_ASSETS_DIR, OUTPUT_PICTURES_DIR
+    STNH_MOD_ROOT, VANILLA_ROOT,
+    MOD_GFX_EVENT_PICTURES, VANILLA_GFX_EVENT_PICTURES,
+    OUTPUT_ASSETS_DIR, OUTPUT_PICTURES_DIR
 )
 
 
 def get_referenced_pictures(events_index_path, pictures_map_path):
-    """Get dict of texture_name -> frames for pictures used by events."""
+    """Get dict of texture_name -> {frames, texture_path} for pictures used by events."""
     referenced = {}
 
     # Load index
@@ -31,11 +33,23 @@ def get_referenced_pictures(events_index_path, pictures_map_path):
     with open(pictures_map_path, 'r', encoding='utf-8') as f:
         gfx_map = json.load(f)
 
-    # Map GFX names to texture filenames + frame count
+    # Map GFX names to texture filenames + frame count + texture_path
     for pic_ref in pic_refs:
-        if pic_ref in gfx_map:
-            entry = gfx_map[pic_ref]
-            referenced[entry['texture_name']] = entry.get('frames', 1)
+        entry = gfx_map.get(pic_ref)
+        # Fuzzy fallback: try common variants (e.g. "sth_GFX_evt_X" -> "sth_GFX_evt_X+Era", "XEra")
+        if not entry:
+            for suffix in ['+Era', 'Era']:
+                entry = gfx_map.get(pic_ref + suffix)
+                if entry:
+                    break
+        # Prefix fallback: event uses "GFX_X" but map has "sth_GFX_X"
+        if not entry and pic_ref.startswith('GFX_'):
+            entry = gfx_map.get('sth_' + pic_ref)
+        if entry:
+            referenced[entry['texture_name']] = {
+                'frames': entry.get('frames', 1),
+                'texture_path': entry.get('texture_path', ''),
+            }
 
     return referenced
 
@@ -54,7 +68,7 @@ def convert_images(force=False):
     referenced = get_referenced_pictures(events_index_path, pictures_map_path)
     print(f"  Referenced pictures: {len(referenced)}")
 
-    animated_count = sum(1 for f in referenced.values() if f > 1)
+    animated_count = sum(1 for r in referenced.values() if r['frames'] > 1)
     print(f"  Animated (multi-frame): {animated_count}")
 
     if not os.path.isdir(MOD_GFX_EVENT_PICTURES):
@@ -63,12 +77,37 @@ def convert_images(force=False):
 
     os.makedirs(OUTPUT_PICTURES_DIR, exist_ok=True)
 
-    for fn in sorted(os.listdir(MOD_GFX_EVENT_PICTURES)):
-        if not fn.endswith('.dds'):
-            continue
-        base_name = fn[:-4]
+    # Build DDS lookup: base_name -> full_path (mod recursive first, vanilla fallback)
+    dds_lookup = {}
+    # Vanilla event_pictures first (so mod overrides)
+    if os.path.isdir(VANILLA_GFX_EVENT_PICTURES):
+        for root, dirs, files in os.walk(VANILLA_GFX_EVENT_PICTURES):
+            for fn in files:
+                if fn.endswith('.dds'):
+                    dds_lookup[fn[:-4]] = os.path.join(root, fn)
+    # Mod event_pictures recursive (overrides vanilla)
+    for root, dirs, files in os.walk(MOD_GFX_EVENT_PICTURES):
+        for fn in files:
+            if fn.endswith('.dds'):
+                dds_lookup[fn[:-4]] = os.path.join(root, fn)
 
-        if base_name not in referenced:
+    # For any referenced texture not yet found, try resolving via texture_path
+    for base_name, info in referenced.items():
+        if base_name in dds_lookup:
+            continue
+        tex_path = info.get('texture_path', '')
+        if not tex_path:
+            continue
+        # texture_path is relative (e.g. "gfx/interface/leaders/...")
+        # Try mod first, then vanilla
+        for root_dir in [STNH_MOD_ROOT, VANILLA_ROOT]:
+            candidate = os.path.join(root_dir, tex_path.replace('/', os.sep))
+            if os.path.exists(candidate):
+                dds_lookup[base_name] = candidate
+                break
+
+    for base_name in sorted(referenced.keys()):
+        if base_name not in dds_lookup:
             continue
 
         stats['total'] += 1
@@ -78,8 +117,8 @@ def convert_images(force=False):
             stats['skipped'] += 1
             continue
 
-        input_path = os.path.join(MOD_GFX_EVENT_PICTURES, fn)
-        num_frames = referenced[base_name]
+        input_path = dds_lookup[base_name]
+        num_frames = referenced[base_name]['frames']
 
         try:
             if num_frames > 1:

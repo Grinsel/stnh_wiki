@@ -66,6 +66,9 @@ def extract_event(event_type, block, source_file, namespace):
     after = get_value(block, 'after')
     after_data = _serialize_block(after) if isinstance(after, list) else None
 
+    # Base event (inheritance)
+    base_event = get_value(block, 'base')
+
     # Flags
     is_triggered_only = get_value(block, 'is_triggered_only')
     hide_window = get_value(block, 'hide_window')
@@ -101,6 +104,7 @@ def extract_event(event_type, block, source_file, namespace):
         'location': location,
         'triggered_events': triggered_events,
         'source_file': os.path.basename(source_file),
+        'base': str(base_event) if base_event and isinstance(base_event, str) and '.' in str(base_event) else None,
     }
 
 
@@ -198,6 +202,30 @@ def _to_bool(val):
     return False
 
 
+def _resolve_base_inheritance(events):
+    """Resolve base= inheritance: copy missing fields from base event to child."""
+    by_id = {ev['id']: ev for ev in events}
+    inheritable = ['picture', 'title_key', 'desc_keys', 'options', 'trigger',
+                   'immediate', 'after', 'mean_time_to_happen', 'is_triggered_only',
+                   'hide_window', 'fire_only_once', 'diplomatic', 'location']
+    resolved = 0
+    for ev in events:
+        if not ev.get('base'):
+            continue
+        base = by_id.get(ev['base'])
+        if not base:
+            continue
+        for field in inheritable:
+            # Only inherit if child has no value (None, empty list, False for bools)
+            child_val = ev.get(field)
+            if child_val is None or child_val == [] or child_val == '':
+                base_val = base.get(field)
+                if base_val is not None and base_val != [] and base_val != '':
+                    ev[field] = base_val
+        resolved += 1
+    return resolved
+
+
 def parse_all_events():
     """Parse all event files. Returns (events_list, namespaces_dict, stats)."""
     all_events = []
@@ -246,6 +274,10 @@ def parse_all_events():
                                 stats['events'] += 1
                                 if namespace and namespace in namespaces:
                                     namespaces[namespace]['event_count'] += 1
+
+    # Resolve base= inheritance
+    resolved = _resolve_base_inheritance(all_events)
+    stats['base_resolved'] = resolved
 
     return all_events, namespaces, stats
 

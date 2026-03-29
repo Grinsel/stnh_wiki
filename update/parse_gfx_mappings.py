@@ -6,7 +6,7 @@ Maps GFX sprite names to DDS texture file paths.
 import os
 import re
 import json
-from config import MOD_INTERFACE_DIR, OUTPUT_ASSETS_DIR
+from config import MOD_INTERFACE_DIR, VANILLA_INTERFACE_DIR, OUTPUT_ASSETS_DIR
 
 
 # Regex to extract sprite definitions from .gfx files
@@ -21,18 +21,15 @@ TEXTURE_RE = re.compile(r'texturefile\s*=\s*"?([^"\s}]+)"?')
 FRAMES_RE = re.compile(r'noOfFrames\s*=\s*(\d+)')
 
 
-def parse_gfx_mappings():
-    """Parse all .gfx files for sprite -> texture mappings."""
-    mappings = {}
-
-    if not os.path.isdir(MOD_INTERFACE_DIR):
-        print(f"  [WARN] Interface directory not found: {MOD_INTERFACE_DIR}")
-        return mappings
-
-    for fn in sorted(os.listdir(MOD_INTERFACE_DIR)):
+def _parse_gfx_dir(directory, mappings):
+    """Parse .gfx files from a directory into mappings dict. Later calls override earlier entries."""
+    if not os.path.isdir(directory):
+        return 0
+    count = 0
+    for fn in sorted(os.listdir(directory)):
         if not fn.endswith('.gfx'):
             continue
-        fp = os.path.join(MOD_INTERFACE_DIR, fn)
+        fp = os.path.join(directory, fn)
         try:
             with open(fp, 'r', encoding='utf-8-sig') as f:
                 content = f.read()
@@ -48,11 +45,9 @@ def parse_gfx_mappings():
                 continue
             name = name_m.group(1)
             texture = tex_m.group(1)
-            # Extract just the filename from the path
             texture_name = os.path.basename(texture)
             if texture_name.endswith('.dds'):
-                texture_name = texture_name[:-4]  # strip .dds
-            # Extract noOfFrames if present
+                texture_name = texture_name[:-4]
             frames = 1
             frames_m = FRAMES_RE.search(block)
             if frames_m:
@@ -62,6 +57,25 @@ def parse_gfx_mappings():
                 'texture_name': texture_name,
                 'frames': frames,
             }
+            count += 1
+    return count
+
+
+def parse_gfx_mappings():
+    """Parse .gfx files for sprite -> texture mappings. Vanilla first, mod overrides."""
+    mappings = {}
+
+    # Vanilla first (mod will override matching names)
+    vanilla_count = _parse_gfx_dir(VANILLA_INTERFACE_DIR, mappings)
+    if vanilla_count:
+        print(f"  Vanilla sprites: {vanilla_count}")
+
+    # Mod overrides vanilla
+    if not os.path.isdir(MOD_INTERFACE_DIR):
+        print(f"  [WARN] Interface directory not found: {MOD_INTERFACE_DIR}")
+        return mappings
+    mod_count = _parse_gfx_dir(MOD_INTERFACE_DIR, mappings)
+    print(f"  Mod sprites: {mod_count}")
 
     return mappings
 
