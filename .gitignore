@@ -22,5 +22,9 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 
+# Techtree pipeline
+update/techtree/__pycache__/
+update/techtree/logs/
+
 # Claude
 .claude/

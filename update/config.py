@@ -1,0 +1,148 @@
+"""
+Configuration for STNH Wiki Data Pipeline
+
+Reads mod data from git01/New-Horizons-Development/ (READ-ONLY)
+Writes generated data to git10/stnh_wiki/assets/
+"""
+
+import os
+from pathlib import Path
+
+# ==========================================
+# PATH CONFIGURATION
+# ==========================================
+
+STNH_MOD_ROOT = r"C:\Users\marcj\git01\New-Horizons-Development"
+WIKI_ROOT = r"C:\Users\marcj\git10\stnh_wiki"
+
+# ==========================================
+# SOURCE PATHS (READ-ONLY) - Core
+# ==========================================
+
+MOD_EVENTS_DIR = os.path.join(STNH_MOD_ROOT, "events")
+MOD_LOCALISATION_DIR = os.path.join(STNH_MOD_ROOT, "localisation")
+MOD_ON_ACTIONS_DIR = os.path.join(STNH_MOD_ROOT, "common", "on_actions")
+MOD_EVENT_CHAINS_DIR = os.path.join(STNH_MOD_ROOT, "common", "event_chains")
+MOD_INTERFACE_DIR = os.path.join(STNH_MOD_ROOT, "interface")
+MOD_GFX_EVENT_PICTURES = os.path.join(STNH_MOD_ROOT, "gfx", "event_pictures")
+
+# ==========================================
+# SOURCE PATHS (READ-ONLY) - Future Phases
+# ==========================================
+
+MOD_TECHNOLOGY_DIR = os.path.join(STNH_MOD_ROOT, "common", "technology")
+MOD_SHIP_SIZES_DIR = os.path.join(STNH_MOD_ROOT, "common", "ship_sizes")
+MOD_COMPONENT_TEMPLATES_DIR = os.path.join(STNH_MOD_ROOT, "common", "component_templates")
+MOD_BUILDINGS_DIR = os.path.join(STNH_MOD_ROOT, "common", "buildings")
+MOD_TRAITS_DIR = os.path.join(STNH_MOD_ROOT, "common", "traits")
+MOD_GOVERNMENTS_DIR = os.path.join(STNH_MOD_ROOT, "common", "governments")
+MOD_MEGASTRUCTURES_DIR = os.path.join(STNH_MOD_ROOT, "common", "megastructures")
+MOD_ANOMALIES_DIR = os.path.join(STNH_MOD_ROOT, "common", "anomalies")
+MOD_DEPOSITS_DIR = os.path.join(STNH_MOD_ROOT, "common", "deposits")
+MOD_DECISIONS_DIR = os.path.join(STNH_MOD_ROOT, "common", "decisions")
+MOD_DISTRICTS_DIR = os.path.join(STNH_MOD_ROOT, "common", "districts")
+MOD_TRADITIONS_DIR = os.path.join(STNH_MOD_ROOT, "common", "traditions")
+MOD_ASCENSION_PERKS_DIR = os.path.join(STNH_MOD_ROOT, "common", "ascension_perks")
+MOD_EDICTS_DIR = os.path.join(STNH_MOD_ROOT, "common", "edicts")
+MOD_POLICIES_DIR = os.path.join(STNH_MOD_ROOT, "common", "policies")
+MOD_CIVICS_DIR = os.path.join(STNH_MOD_ROOT, "common", "governments", "civics")
+MOD_AUTHORITIES_DIR = os.path.join(STNH_MOD_ROOT, "common", "governments", "authorities")
+MOD_ARMIES_DIR = os.path.join(STNH_MOD_ROOT, "common", "armies")
+
+# ==========================================
+# OUTPUT PATHS (WRITE)
+# ==========================================
+
+OUTPUT_ASSETS_DIR = os.path.join(WIKI_ROOT, "assets")
+OUTPUT_EVENTS_DETAIL_DIR = os.path.join(OUTPUT_ASSETS_DIR, "events_detail")
+OUTPUT_LOCALISATION_DIR = os.path.join(OUTPUT_ASSETS_DIR, "localisation")
+OUTPUT_PICTURES_DIR = os.path.join(WIKI_ROOT, "pictures")
+OUTPUT_ICONS_DIR = os.path.join(WIKI_ROOT, "icons")
+
+# ==========================================
+# LANGUAGES
+# ==========================================
+
+LANGUAGES = [
+    "english",
+    "german",
+    "french",
+    "spanish",
+    "russian",
+    "polish",
+    "braz_por",
+]
+
+LANGUAGE_SUFFIXES = {
+    "english": "l_english",
+    "german": "l_german",
+    "french": "l_french",
+    "spanish": "l_spanish",
+    "russian": "l_russian",
+    "polish": "l_polish",
+    "braz_por": "l_braz_por",
+}
+
+# ==========================================
+# EVENT TYPES
+# ==========================================
+
+EVENT_TYPES = [
+    "country_event",
+    "planet_event",
+    "fleet_event",
+    "ship_event",
+    "pop_event",
+    "observer_event",
+    "situation_event",
+]
+
+# ==========================================
+# VALIDATION
+# ==========================================
+
+def validate_paths():
+    errors = []
+    if not os.path.exists(STNH_MOD_ROOT):
+        errors.append(f"STNH Mod root not found: {STNH_MOD_ROOT}")
+    if not os.path.exists(MOD_LOCALISATION_DIR):
+        errors.append(f"Localisation directory not found: {MOD_LOCALISATION_DIR}")
+    if not os.path.exists(MOD_INTERFACE_DIR):
+        errors.append(f"Interface directory not found: {MOD_INTERFACE_DIR}")
+
+    # Create output dirs
+    for d in [OUTPUT_ASSETS_DIR, OUTPUT_EVENTS_DETAIL_DIR, OUTPUT_LOCALISATION_DIR,
+              OUTPUT_PICTURES_DIR, OUTPUT_ICONS_DIR]:
+        os.makedirs(d, exist_ok=True)
+
+    if errors:
+        raise FileNotFoundError("\n".join(errors))
+    return True
+
+
+def print_config():
+    print("=" * 60)
+    print("STNH Wiki - Configuration")
+    print("=" * 60)
+    print(f"\nMod Source (READ-ONLY):")
+    print(f"  Root:       {STNH_MOD_ROOT}")
+    print(f"  Events:     {MOD_EVENTS_DIR}")
+    print(f"  Loc:        {MOD_LOCALISATION_DIR}")
+    print(f"  On-Actions: {MOD_ON_ACTIONS_DIR}")
+    print(f"  Chains:     {MOD_EVENT_CHAINS_DIR}")
+    print(f"  Interface:  {MOD_INTERFACE_DIR}")
+    print(f"\nOutput (WRITE):")
+    print(f"  Assets:     {OUTPUT_ASSETS_DIR}")
+    print(f"  Pictures:   {OUTPUT_PICTURES_DIR}")
+    print(f"  Icons:      {OUTPUT_ICONS_DIR}")
+    print("=" * 60)
+
+
+if __name__ == "__main__":
+    try:
+        validate_paths()
+        print_config()
+        print("\n[OK] Configuration validated successfully!")
+    except Exception as e:
+        print(f"\n[ERROR] {e}")
+        exit(1)

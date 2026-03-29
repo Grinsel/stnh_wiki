@@ -1,0 +1,2 @@
+# No third-party dependencies required.
+# parse_pdx.py uses a custom recursive-descent parser (stdlib only).

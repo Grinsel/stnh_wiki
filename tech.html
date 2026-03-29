@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STNH Wiki - Tech Tree</title>
+    <link rel="icon" type="image/png" href="assets/tech/PDGIco.png">
+    <script>
+        (function() {
+            try {
+                var cookie = document.cookie || '';
+                var pair = cookie.split('; ').find(function(r){ return r.indexOf('landing_seen=') === 0; });
+                if (pair && pair.split('=')[1] === '1') {
+                    document.documentElement.setAttribute('data-landing-seen', '1');
+                }
+            } catch(e) { /* no-op */ }
+        })();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3c80ff;
+            --secondary: #ffb400;
+            --society: #36d673;
+            --bg: #181c24;
+            --panel-bg: #23272c;
+            --border: #32404c;
+            --font: 'Roboto', Arial, sans-serif;
+            --shadow: 0 0 32px #000a, 0 1px 6px #0005;
+        }
+        body {
+            background: var(--bg);
+            color: #d6e3f2;
+            font-family: var(--font);
+            margin: 0;
+        }
+        header {
+            background: linear-gradient(90deg, #23272c 70%, #39424e 100%);
+            padding: 0 0 0 0;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 24px #0008;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            padding: 16px 40px 12px 32px;
+        }
+        .header-content img {
+            height: 48px;
+        }
+        /* Right-aligned header icon */
+        #title-icon { margin-left: auto; height: 36px; }
+        .header-content h1 {
+            margin: 0;
+            font-size: 2.1rem;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+        /* Beta/WIP pill in header */
+        .beta-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            background: #c8373722;
+            border: 1px solid #c8373788;
+            color: #ffc4c4;
+            cursor: pointer;
+            user-select: none;
+        }
+        .beta-pill:hover { background: #c8373740; }
+        #main-container {
+            display: flex;
+            margin: 0;
+            height: calc(100vh - 89px); /* Adjusted for header */
+            gap: 20px;
+            padding: 20px;
+        }
+        #sidebar {
+            width: 340px;
+            flex-shrink: 0;
+            background: var(--panel-bg);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            padding: 28px 24px 24px 24px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        #sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+        #sidebar::-webkit-scrollbar-track {
+            background: #23272c;
+            border-radius: 10px;
+        }
+        #sidebar::-webkit-scrollbar-thumb {
+            background: #3c80ff;
+            border-radius: 10px;
+        }
+        #sidebar::-webkit-scrollbar-thumb:hover {
+            background: #5a9bff;
+        }
+        .tab-container {
+            display: flex;
+            margin-bottom: 18px;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #2c3138;
+            border-radius: 10px 10px 0 0;
+            border: 1px solid var(--border);
+            border-bottom: none;
+            margin-right: 5px;
+            font-size: 1rem;
+            color: #a0b0c0;
+            transition: background 0.3s, color 0.3s;
+        }
+        .tab.active {
+            background: var(--panel-bg);
+            color: #fff;
+            border-bottom: 1px solid var(--panel-bg);
+        }
+        .tab-content {
+            position: relative;
+        }
+        #general-panel {
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+        #details-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--panel-bg);
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+            padding: 20px;
+            border-radius: 0 0 18px 18px;
+        }
+        #details-panel.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        #general-panel.hidden {
+            opacity: 0;
+        }
+        #sidebar h2 {
+            margin-top: 0;
+            margin-bottom: 18px;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+        }
+        #tech-counter {
+            font-size: 1.05rem;
+            margin-bottom: 26px;
+            padding: 6px 0 12px 0;
+            border-bottom: 1px solid #34405a;
+        }
+        .legend {
+            margin-bottom: 32px;
+            margin-top: 10px;
+        }
+        .legend-row {
+            margin-bottom: 9px;
+            display: flex; align-items: center;
+            font-size: 1rem;
+        }
+        .legend-bullet {
+            display: inline-block;
+            width: 20px; height: 20px;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+        .physics { background: var(--primary); }
+        .engineering { background: var(--secondary); }
+        .society { background: var(--society); }
+        #filters label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 4px;
+            font-size: 1rem;
+        }
+        .filters-divider {
+            border-top: 1px solid #34405a;
+            margin-top: 24px;
+            padding-top: 18px;
+        }
+        #filters select, #filters input[type="text"] {
+            width: 100%;
+            padding: 8px 10px;
+            background: #232b3d;
+            color: #eaf2ff;
+            border: 1px solid #2a3451;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            font-family: var(--font);
+            box-sizing: border-box;
+        }
+        /* Faction Autocomplete Styles */
+        .faction-autocomplete {
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .faction-autocomplete input {
+            width: 100%;
+            padding: 8px 10px;
+            background: #232b3d;
+            color: #eaf2ff;
+            border: 1px solid #2a3451;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: var(--font);
+            box-sizing: border-box;
+        }
+        .faction-autocomplete input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .autocomplete-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 320px;
+            overflow-y: auto;
+            background: #1a1e27;
+            border: 1px solid var(--primary);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        .autocomplete-dropdown.hidden {
+            display: none;
+        }
+        .autocomplete-group-header {
+            padding: 6px 10px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--primary);
+            background: #232b3d;
+            border-bottom: 1px solid #2a3451;
+            position: sticky;
+            top: 0;
+        }
+        .autocomplete-item {
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #2a345166;
+        }
+        .autocomplete-item:hover,
+        .autocomplete-item.selected {
+            background: #3c4b7a;
+        }
+        .autocomplete-item .empire-name {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .autocomplete-item .ships-icon {
+            color: #ffd700;
+            margin-left: 8px;
+            font-size: 0.9rem;
+        }
+        .autocomplete-empty {
+            padding: 12px;
+            text-align: center;
+            color: #a0b0c0;
+            font-style: italic;
+        }
+        .autocomplete-hint {
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            color: #a0b0c0;
+            background: #232b3d;
+            border-bottom: 1px solid #2a3451;
+        }
+        #filters button {
+            width: 100%;
+            padding: 8px 10px;
+            background: #232b3d;
+            color: #eaf2ff;
+            border: 1px solid #3c80ff88;
+            border-radius: 8px;
+            margin-top: 4px;
+            font-size: 1rem;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: background 0.15s, border 0.15s;
+        }
+        #filters button:hover {
+            background: #3c4b7a;
+            border-color: #3c80ff;
+        }
+        .search-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            margin-bottom: 8px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #232b3d;
+            transition: .4s;
+            border-radius: 24px;
+            border: 1px solid #2a3451;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        #tree-panel {
+            position: relative;
+            flex: 1;
+            background: var(--panel-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 26px 22px 26px 22px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-width: 0; /* Allow shrinking */
+            box-sizing: border-box;
+        }
+        #tree-toolbar {
+            margin-bottom: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        #tree-toolbar label {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            margin-right: 2px;
+        }
+        #tree-toolbar select, #tree-toolbar input[type="text"], #tree-toolbar button {
+            background: #232b3d;
+            color: #eaf2ff;
+            border: 1px solid #3c80ff88;
+            border-radius: 8px;
+            padding: 7px 14px;
+            font-size: 1rem;
+            font-family: var(--font);
+            margin-right: 6px;
+            transition: background 0.15s, border 0.15s;
+        }
+        #tree-toolbar button {
+            cursor: pointer;
+            font-weight: 500;
+        }
+        #tree-toolbar button:hover, #tree-toolbar select:focus, #tree-toolbar input:focus {
+            background: #3c4b7a;
+            border-color: #3c80ff;
+        }
+        #tech-tree {
+            width: 100%;
+            height: 800px;
+            position: relative;
+            border-radius: 14px;
+            border: 1.5px solid #293040;
+            background: linear-gradient(120deg, #23272c 85%, #223449 100%);
+            box-shadow: 0 0 16px #0009;
+            margin-top: 8px;
+        }
+        /* Centered initial load button inside tech-tree */
+        #load-tree-center-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 12px #0009;
+            z-index: 120; /* above legend */
+        }
+        #load-tree-center-button:hover { background: #5a9bff; }
+        #landing-card {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: none;
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            z-index: 10;
+            margin-top: 8px;
+        }
+        #landing-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(18, 20, 25, 0.75);
+            border-radius: 20px;
+            z-index: -1;
+        }
+        .landing-content {
+            color: #eaf2ff;
+            text-align: center;
+            padding: 40px;
+            max-width: 600px;
+            background: rgba(35, 39, 44, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px #000a;
+            border: 1px solid #3c80ff66;
+        }
+        .landing-content h2 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            color: var(--primary);
+        }
+        .landing-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        #show-tree-button {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #show-tree-button:hover {
+            background: #5a9bff;
+        }
+        .hidden {
+            display: none !important;
+        }
+        /* Prevent landing card flicker when cookie indicates it was already seen */
+        html[data-landing-seen="1"] #landing-card {
+            display: none !important;
+        }
+        .tech-node {
+            cursor: pointer;
+            filter: drop-shadow(3px 3px 2px rgba(0,0,0,0.7));
+        }
+        .tech-node rect {
+            stroke-width: 4px;
+        }
+        /* Path highlighting - dimmed non-path elements */
+        .tech-node.path-dimmed {
+            opacity: 0.15;
+            transition: opacity 0.2s ease;
+        }
+        .tech-node.path-dimmed rect {
+            filter: saturate(0.2);
+        }
+        .link.path-dimmed {
+            opacity: 0.05;
+            transition: opacity 0.2s ease;
+        }
+        /* Path highlighting - highlighted path elements */
+        .link.path-highlight {
+            stroke: cyan !important;
+            stroke-width: 3px !important;
+            stroke-opacity: 1 !important;
+        }
+        .tech-node.path-highlight rect {
+            stroke: cyan !important;
+            stroke-width: 3px !important;
+        }
+        /* Ghost nodes (missing prerequisites) */
+        .ghost-node {
+            pointer-events: none;
+        }
+        .ghost-node rect {
+            fill-opacity: 0.4 !important;
+            stroke-dasharray: 5,5 !important;
+        }
+        .ghost-link {
+            stroke-dasharray: 5,5 !important;
+            stroke-opacity: 0.6 !important;
+        }
+        /* Path direction toggle button */
+        #path-direction-btn {
+            background: #2a3a5a;
+            color: #8af;
+            border: 1px solid #3c80ff88;
+            padding: 7px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: var(--font);
+            transition: background 0.15s, border 0.15s;
+        }
+        #path-direction-btn:hover {
+            background: #3c4b7a;
+            border-color: #3c80ff;
+        }
+        #path-direction-btn.active-dependents {
+            background: #5a3a2a;
+            color: #fa8;
+            border-color: #ff803c88;
+        }
+        #path-direction-btn.active-dependents:hover {
+            background: #7a4b3a;
+            border-color: #ff803c;
+        }
+        /* Category highlighting - dim non-matching techs */
+        .tech-node.category-dimmed {
+            opacity: 0.2;
+            transition: opacity 0.3s ease;
+        }
+        .tech-node.category-dimmed rect {
+            filter: saturate(0.3);
+        }
+        .link.category-dimmed {
+            opacity: 0.1;
+            transition: opacity 0.3s ease;
+        }
+        .tech-node text {
+            fill: #dddddd;
+            font-size: 10px;
+            text-shadow: 0 0 3px black, 0 0 3px black;
+        }
+        .tech-node .node-icon {
+            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.8));
+        }
+        .tech-node .unlock-type-icon {
+            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.9));
+            fill: #ffffff;
+        }
+        #view-legend {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(35, 39, 44, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 10px #000a;
+            z-index: 100;
+        }
+        .view-legend-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .view-legend-bullet {
+            width: 15px;
+            height: 15px;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+        /* Help button in tech-tree (top-right) */
+        #help-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #232b3d;
+            color: #eaf2ff;
+            border: 1px solid #3c80ff88;
+            cursor: pointer;
+            box-shadow: 0 2px 10px #000a;
+            z-index: 101; /* above legend */
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        #help-button:hover { background: #3c4b7a; border-color: #3c80ff; }
+        #popup-viewport {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #popup-content {
+            width: 90%;
+            height: 90%;
+            background: var(--panel-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        #popup-toolbar {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        #popup-tech-tree {
+            position: relative;
+            flex-grow: 1;
+            border-radius: 14px;
+            border: 1.5px solid #293040;
+            background: linear-gradient(120deg, #23272c 85%, #223449 100%);
+        }
+        #popup-placeholder {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #a0b0c0;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 0 20px;
+            width: calc(100% - 40px);
+            pointer-events: none;
+        }
+        #tooltip {
+            position: absolute;
+            display: none;
+            background-color: #1a1e27f9;
+            border: 1.5px solid #3c80ff88;
+            padding: 14px 18px;
+            border-radius: 11px;
+            color: #dddddd;
+            font-size: 1rem;
+            z-index: 50;
+            pointer-events: none;
+            max-width: 380px;
+            box-shadow: 0 2px 12px #0009;
+        }
+        /* Phase 3: Enhanced Effect Display */
+        .effects-section {
+            margin: 10px 0;
+            padding: 8px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 6px;
+        }
+        .effect-category {
+            margin: 6px 0;
+        }
+        .effect-category-label {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+        .effect-item {
+            margin-left: 1.2em;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #d6e3f2;
+        }
+        /* Unlocks section - similar to effects */
+        .unlocks-section {
+            margin: 10px 0;
+            padding: 8px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 6px;
+            border-left: 3px solid #ffd700;
+        }
+        .unlock-category {
+            margin: 6px 0;
+        }
+        .unlock-category-label {
+            font-weight: bold;
+            color: #ffd700;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .unlock-type-img {
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
+            margin-right: 4px;
+            filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.5));
+        }
+        .unlock-item {
+            margin-left: 1.5em;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #d6e3f2;
+            padding: 2px 0;
+        }
+        /* Help overlay styles */
+        #help-viewport {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #help-content {
+            width: min(720px, 92%);
+            background: var(--panel-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 18px 18px 6px 18px;
+            border: 1px solid #3c80ff66;
+        }
+        #help-toolbar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 6px;
+        }
+        #help-toolbar button {
+            background: #232b3d;
+            color: #eaf2ff;
+            border: 1px solid #3c80ff88;
+            border-radius: 8px;
+            padding: 7px 14px;
+            font-size: 1rem;
+            font-family: var(--font);
+            cursor: pointer;
+        }
+        #help-toolbar button:hover { background: #3c4b7a; border-color: #3c80ff; }
+        @media (max-width: 1300px) {
+            #main-container { 
+                flex-direction: column; 
+                height: auto;
+            }
+            #sidebar { 
+                width: 100%;
+                height: auto;
+                max-height: 50vh; /* Limit height on smaller screens */
+                margin-bottom: 20px;
+            }
+            #tree-panel { 
+                min-width: unset; 
+            }
+        }
+        @media (max-width: 800px) {
+            .header-content { flex-direction: column; gap: 10px; padding: 12px 10px; }
+            #main-container { padding: 0 2vw; }
+            #sidebar, #tree-panel { padding: 10px 2vw; }
+            #tree-panel { min-width: unset; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Star Trek: New Horizons Technology Tree</h1>
+            <span id="beta-badge" class="beta-pill" role="button" tabindex="0" title="This tool is under active development. Click for details.">Beta / WIP</span>
+            <img id="title-icon" src="assets/tech/PDGIco.png" alt="App Icon">
+        </div>
+    </header>
+    <div id="main-container">
+        <aside id="sidebar">
+            <div class="tab-container">
+                <div class="tab active" id="general-tab">General</div>
+                <div class="tab" id="details-tab">Tech Details</div>
+            </div>
+            <div class="tab-content">
+                <div id="general-panel">
+                    <h2>Information</h2>
+                    <div id="tech-counter">Displayed Technologies: 0</div>
+                    <div id="filters">
+                        <label for="faction-search">Select Empire:</label>
+                        <div class="faction-autocomplete">
+                            <input type="text" id="faction-search" placeholder="Search empires..." autocomplete="off">
+                            <div id="faction-dropdown" class="autocomplete-dropdown hidden"></div>
+                        </div>
+                        <div id="faction-info" style="margin-top: 4px; margin-bottom: 12px; font-size: 0.95rem; color: #a0b0c0;">
+                            <span id="faction-tech-count">Loading factions...</span>
+                        </div>
+                        <div class="search-options" style="margin-top: 8px; margin-bottom: 8px;">
+                            <label for="faction-exclusive-toggle" style="margin: 0;">Faction Exclusive</label>
+                            <label class="switch">
+                                <input type="checkbox" id="faction-exclusive-toggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <!-- LEGACY: Hidden for now, replaced by faction-select -->
+                        <div style="display: none;">
+                            <label for="species-select" class="filters-divider">Select Empire (Legacy):</label>
+                            <select id="species-select">
+                                <option value="all">All</option>
+                            </select>
+                            <div class="search-options" style="margin-top: 8px; margin-bottom: 8px;">
+                                <label for="species-exclusive-toggle" style="margin: 0;">Exclusive</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="species-exclusive-toggle">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <label for="area-select" class="filters-divider">Select Research Branch:</label>
+                        <select id="area-select">
+                            <option value="all">All</option>
+                            <option value="physics">Physics</option>
+                            <option value="society">Society</option>
+                            <option value="engineering">Engineering</option>
+                        </select>
+                        <label for="category-select">Select Category:</label>
+                        <select id="category-select">
+                            <option value="all">All</option>
+                        </select>
+                        <label for="unlock-select" style="margin-top: 10px; display: block;">Select Unlock:</label>
+                        <select id="unlock-select">
+                            <option value="all">All</option>
+                        </select>
+                        <div class="search-options" style="margin-top: 8px; margin-bottom: 8px;">
+                            <label for="filter-highlight-toggle" style="margin: 0;">Highlight Filters</label>
+                            <label class="switch">
+                                <input type="checkbox" id="filter-highlight-toggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <label for="start-tier-select" class="filters-divider">Select Tier Range:</label>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <select id="start-tier-select" style="width: 100%; margin: 0;">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                            </select>
+                            <span style="font-size: 1rem; color: #a0b0c0;">to</span>
+                            <select id="end-tier-select" style="width: 100%; margin: 0;">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                            </select>
+                        </div>
+                        <button id="show-tier-button" style="width: 100%;">Show Tier Range</button>
+                        <label for="search-input" class="filters-divider">Search: (any word or number)</label>
+                        <input type="text" id="search-input" placeholder="Enter tech name...">
+                        <div class="search-options">
+                            <label for="search-scope-toggle" style="margin: 0;">Search All Techs</label>
+                            <label class="switch">
+                                <input type="checkbox" id="search-scope-toggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="search-options">
+                            <label for="search-name-only-toggle" style="margin: 0;">Search Name/ID Only</label>
+                            <label class="switch">
+                                <input type="checkbox" id="search-name-only-toggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <button id="search-button">Search</button>
+                        <button id="search-back-button" style="display: none; margin-top: 8px;">Return to Previous View</button>
+                    </div>
+                </div>
+                <div id="details-panel">
+                    <h2>Technology Details</h2>
+                    <div id="tech-details-content">
+                        <p>Click on a technology to see its details here.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <main id="tree-panel">
+            <div id="tree-toolbar">
+                <button id="reset-button">Reload Page</button>
+                <button id="load-tree-button" style="display: none;">Main Tree</button>
+                <button id="share-button">Share View</button>
+                <button id="render-path-button" style="display: none;">Show Tech Path</button>
+                <label for="layout-select">Layout:</label>
+                <select id="layout-select">
+                    <option value="force-directed">Force-directed</option>
+                    <option value="force-directed-arrows">Force-directed Arrows</option>
+                    <option value="disjoint-force-directed">Disjoint force-directed</option>
+                </select>
+                <button id="toggle-layout-button">Toggle Tiers</button>
+                <button id="path-direction-btn" title="Toggle: Prerequisites ↔ Dependents">← Prereqs</button>
+                <label for="performance-toggle" style="margin: 0;">Performance mode</label>
+                <label class="switch">
+                    <input type="checkbox" id="performance-toggle" checked>
+                    <span class="slider"></span>
+                </label>
+                <button id="back-button" style="display: none;">< Back</button>
+                <button id="forward-button" style="display: none;">Forward ></button>                
+            </div>
+            <div id="landing-card">
+                <div class="landing-content">
+                    <h2>Welcome to the Star Trek: New Horizons Tech Tree!</h2>
+                    <p>An interactive tool to explore the technologies of the ST:NH mod.</p>
+                    <ul style="text-align: left; max-width: 500px; margin: 18px auto 0 auto; font-size: 1.07rem; padding-left: 20px;">
+                        <li>
+                            <b>Explore the Tree:</b> Use filters, search, or simply pan and zoom to navigate the entire tech tree.
+                        </li>
+                        <li>
+                            <b>Branch Inspection:</b> Click any technology to focus on its specific dependency branch. Use the new <b>Back/Forward buttons</b> to navigate your history.
+                        </li>
+                        <li>
+                            <b>Path Analysis:</b> Right-click a technology to select it as a start point, and right-click another to set an end point. Then, render the direct path or all prerequisites in a focused popup view.
+                        </li>
+                        <li>
+                            <b>Share Your View:</b> Use the "Copy Link" button to generate a shareable URL that saves your current filters, layout, and even a focused technology or calculated path.
+                        </li>
+                        <li>
+                            <b>Customizable UI:</b> Choose from multiple layouts (including one with dependency arrows) and drag the control panel anywhere on the screen.
+                        </li>
+                    </ul>
+                    <div style="background: #c8373722; border: 1px solid #c8373788; border-radius: 8px; padding: 13px 16px 11px 16px; margin-top: 22px; color: #ffc4c4; font-size: 1rem;">
+                        <b>Beta / WIP:</b><br>
+                        This tool is still in development. Some features may not be fully functional.
+                    </div>
+                    <div style="background: #222d38dd; border-radius: 8px; padding: 13px 16px 11px 16px; margin-top: 22px; color: #ffe38c; font-size: 1rem;">
+                        <b>Tip:</b><br>
+                        The more general your search or filters, the bigger (and slower) the tech tree becomes. Try to be specific for best results!
+                    </div>
+                    <button id="show-tree-button" style="margin-top: 28px;">Show Tech Tree</button>
+                </div>
+            </div>
+            <div id="tech-tree">
+                <button id="load-tree-center-button">Show Tech Tree</button>
+                <div id="view-legend" class="hidden">
+                    <div class="view-legend-row"><span class="view-legend-bullet physics"></span> Physics</div>
+                    <div class="view-legend-row"><span class="view-legend-bullet engineering"></span> Engineering</div>
+                    <div class="view-legend-row"><span class="view-legend-bullet society"></span> Society</div>
+                    <div class="view-legend-row">
+                        <span class="view-legend-bullet" style="background: repeating-linear-gradient(45deg, #000 0 2px, transparent 4px 6px), #fff; border: 1px solid #000;"></span>
+                        Tier
+                    </div>
+                    <div class="view-legend-row" style="margin-top: 10px;">
+                        <span style="margin-right: 8px;">Zoom</span>
+                        <button id="zoom-in-button" style="width: 25px; height: 25px; margin-right: 5px;">+</button>
+                        <button id="zoom-out-button" style="width: 25px; height: 25px;">-</button>
+                    </div>
+                    <div class="view-legend-row" style="margin-top: 8px;">
+                        <span style="margin-right: 8px;">Tooltip</span>
+                        <label class="switch" style="transform: scale(0.8);">
+                            <input type="checkbox" id="tooltip-toggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <button id="help-button">?</button>
+            </div>
+        </main>
+    </div>
+    <div id="tooltip"></div>
+    <div id="popup-viewport" class="hidden">
+        <div id="popup-content">
+            <div id="popup-toolbar">
+                <button id="popup-copy-button">🔗 Copy Link</button>
+                <button id="popup-close-button">Close</button>
+            </div>
+            <div id="popup-tech-tree">
+                <div id="popup-placeholder"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Help overlay -->
+    <div id="help-viewport" class="hidden">
+        <div id="help-content">
+            <div id="help-toolbar">
+                <button id="help-close-button">Close</button>
+            </div>
+            <ul style="text-align: left; max-width: 720px; margin: 8px auto 0 auto; font-size: 1.07rem; padding-left: 20px;">
+                <li>
+                    <b>Explore the Tree:</b> Use filters, search, or simply pan and zoom to navigate the entire tech tree.
+                </li>
+                <li>
+                    <b>Branch Inspection:</b> Click any technology to focus on its specific dependency branch. Use the new <b>Back/Forward buttons</b> to navigate your history.
+                </li>
+                <li>
+                    <b>Path Analysis:</b> Right-click a technology to select it as a start point, and right-click another to set an end point. Then, render the direct path or all prerequisites in a focused popup view.
+                </li>
+                <li>
+                    <b>Share Your View:</b> Use the "Copy Link" button to generate a shareable URL that saves your current filters, layout, and even a focused technology or calculated path.
+                </li>
+                <li>
+                    <b>Customizable UI:</b> Choose from multiple layouts (including one with dependency arrows).
+                </li>
+                <li>
+                    <b>Tier Indicators:</b> Each technology shows a small white wedge on the left with diagonal black stripes. The number of stripes equals the tech's tier (up to T11).
+                </li>
+            </ul>
+            <div style="background: #c8373722; border: 1px solid #c8373788; border-radius: 8px; padding: 13px 16px 11px 16px; margin: 16px auto 0 auto; color: #ffc4c4; font-size: 1rem; max-width: 720px;">
+                <b>Beta / WIP:</b><br>
+                This tool is still in development. Some features may not be fully functional.
+            </div>
+            <div style="background: #222d38dd; border-radius: 8px; padding: 13px 16px 11px 16px; margin: 16px auto; color: #ffe38c; font-size: 1rem; max-width: 720px;">
+                <b>Tip:</b><br>
+                The more general your search or filters, the bigger (and slower) the tech tree becomes. Try to be specific for best results!
+            </div>
+        </div>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script type="module" src="js/tech/main.js"></script>
+  </body>
+  </html>

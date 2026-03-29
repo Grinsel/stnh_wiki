@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ships - ST:NH Wiki</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="masthead">
+        <div class="header-inner">
+            <div class="site-title">
+                <h1>ST:NH <span class="accent">Wiki</span></h1>
+            </div>
+            <div class="header-search">
+                <input type="text" id="search-input" placeholder="Search ships &amp; components..." autocomplete="off">
+            </div>
+            <div class="header-controls">
+                <select id="lang-select" title="Language">
+                    <option value="english">English</option>
+                    <option value="german">Deutsch</option>
+                    <option value="french">Fran&ccedil;ais</option>
+                    <option value="spanish">Espa&ntilde;ol</option>
+                    <option value="russian">&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;</option>
+                    <option value="polish">Polski</option>
+                    <option value="braz_por">Portugu&ecirc;s</option>
+                </select>
+                <div class="font-size-control" title="Text Size">
+                    <span class="font-size-label">Text</span>
+                    <button id="font-size-down" aria-label="Decrease text size">&minus;</button>
+                    <button id="font-size-up" aria-label="Increase text size">+</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Wiki Navigation -->
+    <nav id="wiki-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-link">Hub</a>
+            <a href="events.html" class="nav-link">Events</a>
+            <a href="tech.html" class="nav-link">Tech Tree</a>
+            <a href="ships.html" class="nav-link">Ships</a>
+            <a href="buildings.html" class="nav-link">Buildings</a>
+            <a href="traits.html" class="nav-link">Traits</a>
+            <a href="governments.html" class="nav-link">Governments</a>
+            <a href="#" class="nav-link disabled">Megastructures</a>
+            <a href="#" class="nav-link disabled">Anomalies</a>
+            <a href="#" class="nav-link disabled">Empires</a>
+            <a href="#" class="nav-link disabled">Economy</a>
+        </div>
+    </nav>
+
+    <!-- Filter Bar -->
+    <div id="filter-bar">
+        <div class="filter-inner">
+            <div class="filter-group tab-buttons">
+                <button class="tab-btn active" data-tab="ships">Ships</button>
+                <button class="tab-btn" data-tab="components">Components</button>
+            </div>
+            <div class="filter-group" id="filter-class-group">
+                <label>Class</label>
+                <select id="filter-class">
+                    <option value="">All Classes</option>
+                </select>
+            </div>
+            <div class="filter-group hidden" id="filter-size-group">
+                <label>Size</label>
+                <select id="filter-size">
+                    <option value="">All Sizes</option>
+                </select>
+            </div>
+            <div class="filter-group hidden" id="filter-comptype-group">
+                <label>Type</label>
+                <select id="filter-comptype">
+                    <option value="">All Types</option>
+                    <option value="weapon">Weapon</option>
+                    <option value="utility">Utility</option>
+                    <option value="strike_craft">Strike Craft</option>
+                </select>
+            </div>
+            <div class="filter-stats" id="filter-stats">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="content-layout">
+        <main id="item-list-panel">
+            <div id="item-list"></div>
+            <div id="pagination"></div>
+        </main>
+        <aside id="detail-panel" class="hidden">
+            <div class="detail-header">
+                <button id="detail-close" title="Close">&#10005;</button>
+                <h2 id="detail-title">Detail</h2>
+            </div>
+            <div id="detail-content"></div>
+        </aside>
+    </div>
+
+    <footer id="site-footer">
+        <p>ST:NH Wiki &mdash; Data from <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=688086068" target="_blank">Star Trek: New Horizons</a> mod</p>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/pages/ships.js"></script>
+</body>
+</html>

@@ -12,26 +12,26 @@
 
 ## Phase 0 – Projekt-Grundlage
 
-- [ ] **0.1 Projekt-Skelett erstellen**
+- [x] **0.1 Projekt-Skelett erstellen**
   - Verzeichnisstruktur: `update/`, `assets/`, `js/`, `fonts/`, `pictures/`, `icons/`
   - `update/config.py` mit Pfaden zu git01-Mod und git10-Wiki
   - `update/parse_pdx.py` – Kopie des bewährten rekursiven Parsers aus dem Event Browser
   - `update/parse_localisation.py` – Kopie aus dem Event Browser
   - `.gitignore`, `requirements.txt`
 
-- [ ] **0.2 Gemeinsames Frontend-Gerüst**
+- [x] **0.2 Gemeinsames Frontend-Gerüst**
   - `index.html` – Landing Page / Hub mit Navigation zu allen Sektionen
   - `style.css` – Basis-Theme (dark, Star-Trek-Fonts, responsive)
   - `js/data.js`, `js/state.js`, `js/i18n.js`, `js/search.js` – Kern-Module
   - 7-Sprachen-Support von Anfang an
 
-- [ ] **0.3 Shared Data Pipeline**
+- [x] **0.3 Shared Data Pipeline**
   - `update/UPDATE_WIKI.py` – Master-Orchestrator (wie `UPDATE_EVENTS.py`)
   - Phase-System: Validation → Localisation → GFX → Module → JSON-Output
   - `update/parse_localisation.py` → `assets/localisation/*.json`
   - `update/parse_gfx_mappings.py` → `assets/pictures_map.json`
 
-- [ ] **0.4 GitHub Pages Deployment**
+- [x] **0.4 GitHub Pages Deployment**
   - `.github/workflows/deploy.yml`
   - `UPDATE.bat` / `UPDATE_QUICK.bat`
 
@@ -39,35 +39,35 @@
 
 ## Phase 1 – Events (Event Browser Migration)
 
-- [ ] **1.1 Event-Pipeline aus git10/stnh_event_browser übernehmen**
+- [x] **1.1 Event-Pipeline aus git10/stnh_event_browser übernehmen**
   - Parser bereits vorhanden – adaptieren für Wiki-Struktur
   - Output: `assets/events_index.json`, `assets/events_detail/*.json`
   - Event-Bilder: `pictures/*.webp`
 
-- [ ] **1.2 Event-Browser Web-Seite**
+- [x] **1.2 Event-Browser Web-Seite**
   - Bestehendes Frontend portieren in Wiki-Layout
   - Filter, Suche, Namespace-Navigation, Detail-Panel, Chain-Viewer
 
-- [ ] **1.3 Verlinkung: Events ↔ andere Module**
+- [x] **1.3 Verlinkung: Events ↔ andere Module**
   - Events ↔ Techs, Events ↔ Gebäude, Events ↔ Relics, etc.
 
 ---
 
 ## Phase 2 – Schiffe & Komponenten
 
-- [ ] **2.1 Ship Parser**
+- [x] **2.1 Ship Parser**
   - `update/parse_ships.py`
   - Quellen: `common/ship_sizes/` (47 Dateien)
   - Daten: Name, Klasse, Größe, HP, Sektionen, Required Tech, Faction
   - Output: `assets/ships.json`
 
-- [ ] **2.2 Component Parser**
+- [x] **2.2 Component Parser**
   - `update/parse_components.py`
   - Quellen: `common/component_templates/` (97 Dateien)
   - Daten: Name, Typ (Waffe/Schild/Antrieb/etc.), Tier, Stats, Required Tech
   - Output: `assets/components.json`
 
-- [ ] **2.3 Schiffe & Komponenten Web-Seite**
+- [x] **2.3 Schiffe & Komponenten Web-Seite**
   - Schiffsliste mit Filtern (Klasse, Faction, Tier)
   - Schiff-Detailansicht mit Sektionen und möglichen Komponenten
   - Komponenten-Liste mit Vergleich
@@ -77,18 +77,18 @@
 
 ## Phase 3 – Gebäude & Distrikte
 
-- [ ] **3.1 Building Parser**
+- [x] **3.1 Building Parser**
   - `update/parse_buildings.py`
   - Quellen: `common/buildings/` (36 Dateien)
   - Daten: Name, Kategorie, Kosten, Unterhalt, Modifiers, Jobs, Required Tech, Upgrade-Pfad
   - Output: `assets/buildings.json`
 
-- [ ] **3.2 District Parser**
+- [x] **3.2 District Parser**
   - `update/parse_districts.py`
   - Quellen: `common/districts/`
   - Output: `assets/districts.json`
 
-- [ ] **3.3 Gebäude & Distrikte Web-Seite**
+- [x] **3.3 Gebäude & Distrikte Web-Seite**
   - Gebäudeliste mit Filtern (Kategorie, Tier, Faction)
   - Detail-Panel mit Kosten, Jobs, Modifiers
   - Upgrade-Ketten visualisieren
@@ -98,24 +98,24 @@
 
 ## Phase 4 – Traits & Traditionen
 
-- [ ] **4.1 Trait Parser**
+- [x] **4.1 Trait Parser**
   - `update/parse_traits.py`
   - Quellen: `common/traits/` (50 Dateien)
   - Daten: Name, Typ (Species/Leader/Ruler), Kosten, Modifiers, Gegensätze
   - Output: `assets/traits.json`
 
-- [ ] **4.2 Tradition Parser**
+- [x] **4.2 Tradition Parser**
   - `update/parse_traditions.py`
   - Quellen: `common/traditions/` (38 Dateien)
   - Daten: Name, Kategorie, Stufe, Effekte, Adoption/Finish-Boni
   - Output: `assets/traditions.json`
 
-- [ ] **4.3 Ascension Perks Parser**
+- [x] **4.3 Ascension Perks Parser**
   - `update/parse_ascension_perks.py`
   - Quellen: `common/ascension_perks/` (2 Dateien)
   - Output: `assets/ascension_perks.json`
 
-- [ ] **4.4 Traits & Traditionen Web-Seite**
+- [x] **4.4 Traits & Traditionen Web-Seite**
   - Trait-Browser mit Filtern (Typ, Kosten, Effekt-Kategorie)
   - Traditions-Bäume visualisieren
   - Ascension-Perks-Übersicht
@@ -125,18 +125,18 @@
 
 ## Phase 5 – Regierung & Diplomatie
 
-- [ ] **5.1 Government Parser**
+- [x] **5.1 Government Parser**
   - `update/parse_governments.py`
   - Quellen: `common/governments/` (27 Dateien), `common/governments/authorities/`, `common/governments/civics/`
   - Daten: Regierungstyp, Ethik-Anforderungen, Civics, Boni
   - Output: `assets/governments.json`
 
-- [ ] **5.2 Policies & Edicts Parser**
+- [x] **5.2 Policies & Edicts Parser**
   - `update/parse_policies.py`, `update/parse_edicts.py`
   - Quellen: `common/policies/`, `common/edicts/`
   - Output: `assets/policies.json`, `assets/edicts.json`
 
-- [ ] **5.3 Regierung & Diplomatie Web-Seite**
+- [x] **5.3 Regierung & Diplomatie Web-Seite**
   - Regierungsformen-Browser
   - Civic-Katalog
   - Policy- und Edikt-Übersicht
@@ -253,12 +253,16 @@
 > git09 bleibt unangetastet, bis die Wiki-Version vollständig funktioniert.
 > Erst wenn alles läuft: git09 archivieren und auf Wiki-Techtree umleiten.
 
-- [ ] **11.1 Kopie des Techtree-Projekts anlegen**
-  - Relevante Dateien aus git09 nach `stnh_wiki/` kopieren (nicht git09 verändern!)
-  - Parser, Assets, Icons, JS/D3-Visualisierung
-  - An Wiki-Verzeichnisstruktur anpassen
+- [x] **11.1 Kopie des Techtree-Projekts anlegen**
+  - Relevante Dateien aus git09 nach `stnh_wiki/` kopiert (git09 unverändert!)
+  - Frontend (tech.html, js/tech/, tech_showcase.js), Assets (assets/tech/), Icons (icons/tech/, icons/unlock_types/)
+  - Pfade angepasst (HTML, JS fetch(), Icon-Pfade, config.py)
+  - Hub-Navigation aktiviert, UPDATE_WIKI.py erweitert (techtree stub)
+  - ~1.750 Dateien, ~33 MB
 
 - [ ] **11.2 Techtree-Parser in Wiki-Pipeline integrieren**
+  - Pipeline kopiert nach `update/techtree/` (27 Scripts), aber noch nicht lauffähig
+  - `balance_center_bridge.py` benötigt `balance_center/` (existiert nicht in git01)
   - `update/parse_technologies.py` – Balance-Center-Bridge adaptieren oder ersetzen
   - Component/Ship-Name/Reverse-Unlock Parser übernehmen
   - In `UPDATE_WIKI.py` einbinden
