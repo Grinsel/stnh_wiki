@@ -141,6 +141,46 @@ def phase_governments():
     return generate_all()
 
 
+def phase_megastructures():
+    """Phase: Megastructures & Relics."""
+    print("\n" + "=" * 60)
+    print("PHASE: MEGASTRUCTURES & RELICS")
+    print("=" * 60)
+
+    from generate_megastructures_json import generate_all
+    return generate_all()
+
+
+def phase_anomalies():
+    """Phase: Anomalies & Archaeology."""
+    print("\n" + "=" * 60)
+    print("PHASE: ANOMALIES & ARCHAEOLOGY")
+    print("=" * 60)
+
+    from generate_anomalies_json import generate_all
+    return generate_all()
+
+
+def phase_empires():
+    """Phase: Empires & Species."""
+    print("\n" + "=" * 60)
+    print("PHASE: EMPIRES & SPECIES")
+    print("=" * 60)
+
+    from generate_empires_json import generate_all
+    return generate_all()
+
+
+def phase_economy():
+    """Phase: Economy (Jobs & Deposits)."""
+    print("\n" + "=" * 60)
+    print("PHASE: ECONOMY (JOBS & DEPOSITS)")
+    print("=" * 60)
+
+    from generate_economy_json import generate_all
+    return generate_all()
+
+
 def phase_content():
     """Phase 5: Run all content modules."""
     print("\n" + "=" * 60)
@@ -152,7 +192,29 @@ def phase_content():
     results['buildings'] = phase_buildings()
     results['traits'] = phase_traits()
     results['governments'] = phase_governments()
+    results['megastructures'] = phase_megastructures()
+    results['anomalies'] = phase_anomalies()
+    results['empires'] = phase_empires()
+    results['economy'] = phase_economy()
     return results
+
+
+def phase_search():
+    """Phase: Search Index & Cross-References."""
+    print("\n" + "=" * 60)
+    print("PHASE: SEARCH INDEX & CROSS-REFERENCES")
+    print("=" * 60)
+
+    from generate_search_index import generate_search_index
+    from generate_cross_references import generate_cross_references
+
+    search_stats = generate_search_index()
+    xref_stats = generate_cross_references()
+
+    return {
+        'search_index': search_stats,
+        'cross_references': xref_stats,
+    }
 
 
 def phase_techtree():
@@ -224,7 +286,13 @@ ONLY_MODULES = {
     'buildings':   ['localisation', 'buildings'],
     'traits':      ['localisation', 'traits'],
     'governments': ['localisation', 'governments'],
-    'content':     ['localisation', 'ships', 'buildings', 'traits', 'governments'],
+    'megastructures': ['localisation', 'megastructures'],
+    'anomalies':      ['localisation', 'anomalies'],
+    'empires':        ['localisation', 'empires'],
+    'economy':        ['localisation', 'economy'],
+    'search':         ['search'],
+    'content':        ['localisation', 'ships', 'buildings', 'traits', 'governments',
+                       'megastructures', 'anomalies', 'empires', 'economy', 'search'],
 }
 
 
@@ -264,6 +332,16 @@ def main():
             results['traits'] = phase_traits()
         if 'governments' in phases:
             results['governments'] = phase_governments()
+        if 'megastructures' in phases:
+            results['megastructures'] = phase_megastructures()
+        if 'anomalies' in phases:
+            results['anomalies'] = phase_anomalies()
+        if 'empires' in phases:
+            results['empires'] = phase_empires()
+        if 'economy' in phases:
+            results['economy'] = phase_economy()
+        if 'search' in phases:
+            results['search'] = phase_search()
         if 'images' in phases:
             results['images'] = phase_images(skip=args.skip_images)
         if 'techtree' in phases:
@@ -278,6 +356,11 @@ def main():
         results['buildings'] = phase_buildings()
         results['traits'] = phase_traits()
         results['governments'] = phase_governments()
+        results['megastructures'] = phase_megastructures()
+        results['anomalies'] = phase_anomalies()
+        results['empires'] = phase_empires()
+        results['economy'] = phase_economy()
+        results['search'] = phase_search()
         results['images'] = phase_images(skip=args.skip_images)
         module_name = 'full'
 

@@ -29,7 +29,8 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 | Sprachen | 7 (EN, DE, FR, ES, RU, PL, BR-PT) |
 | Loc-Keys | ~200.000+ pro Sprache |
 | GFX Sprites | 3.960 gesamt, ~728 Event-Bilder |
-| Pipeline-Laufzeit | ~9 Sekunden (ohne Bilder) |
+| Content-Items | ~10.873 (Ships, Buildings, Traits, Govs, Megas, Anomalies, Empires, Economy) |
+| Pipeline-Laufzeit | ~12 Sekunden (ohne Bilder) |
 | Frontend | Vanilla HTML/CSS/JS (kein Framework) |
 | Deployment | GitHub Pages (automatisch bei push) |
 | Abhängigkeiten | Keine (Python stdlib + ImageMagick für Bilder) |
@@ -79,11 +80,11 @@ Das Wiki wird modular aufgebaut. Jede Phase ist ein eigenständiges Modul:
 | 3 | Gebäude & Distrikte | ✓ Fertig |
 | 4 | Traits & Traditionen | ✓ Fertig |
 | 5 | Regierung & Diplomatie | ✓ Fertig |
-| 6 | Megastrukturen & Relics | Geplant |
-| 7 | Anomalien & Archäologie | Geplant |
-| 8 | Fraktionen & Empires | Geplant |
-| 9 | Ressourcen & Wirtschaft | Geplant |
-| 10 | Suche & Vernetzung (Cross-Module) | Geplant |
+| 6 | Megastrukturen & Relics | ✓ Fertig |
+| 7 | Anomalien & Archäologie | ✓ Fertig |
+| 8 | Fraktionen & Empires | ✓ Fertig |
+| 9 | Ressourcen & Wirtschaft | ✓ Fertig |
+| 10 | Suche & Vernetzung (Cross-Module) | ✓ Fertig |
 | 11 | Techtree (Kopie aus git09) | 11.1 Fertig (Kopie + Frontend) |
 
 ---
@@ -212,6 +213,11 @@ Phase 5: Content        → Ships, Buildings, Traits, Governments
    5b: Buildings        → generate_buildings_json.generate_all()
    5c: Traits           → generate_traits_json.generate_all()
    5d: Governments      → generate_governments_json.generate_all()
+   5e: Megastructures   → generate_megastructures_json.generate_all()
+   5f: Anomalies        → generate_anomalies_json.generate_all()
+   5g: Empires          → generate_empires_json.generate_all()
+   5h: Economy          → generate_economy_json.generate_all()
+   5i: Search           → generate_search_index + generate_cross_references
 Phase 6: Images         → convert_images.convert_images()  [optional]
 Phase 7: Summary        → Statistiken + last_update.json
 ```
@@ -224,8 +230,13 @@ python UPDATE_WIKI.py --only events       # Nur Events-Modul
 python UPDATE_WIKI.py --only ships        # Nur Ships & Components
 python UPDATE_WIKI.py --only buildings    # Nur Buildings & Districts
 python UPDATE_WIKI.py --only traits       # Nur Traits, Traditions, Ascension Perks
-python UPDATE_WIKI.py --only governments  # Nur Governments, Civics, Policies, Edicts
-python UPDATE_WIKI.py --only content      # Alle Content-Module (Ships+Buildings+Traits+Govs)
+python UPDATE_WIKI.py --only governments     # Nur Governments, Civics, Policies, Edicts
+python UPDATE_WIKI.py --only megastructures  # Nur Megastructures & Relics
+python UPDATE_WIKI.py --only anomalies       # Nur Anomalies & Archaeology
+python UPDATE_WIKI.py --only empires         # Nur Empires & Species
+python UPDATE_WIKI.py --only economy         # Nur Jobs & Deposits
+python UPDATE_WIKI.py --only search          # Nur Search Index & Cross-References
+python UPDATE_WIKI.py --only content         # Alle Content-Module (alle 8 Module + Search)
 python UPDATE_WIKI.py --only loc          # Nur Localisation
 python UPDATE_WIKI.py --only gfx          # Nur GFX-Mappings
 python UPDATE_WIKI.py --only images       # Nur Bildkonvertierung
@@ -464,8 +475,10 @@ Multi-Page-Website ohne Build-Tools, Frameworks oder npm. Vanilla HTML/CSS/JS.
 | Buildings | `buildings.html` | Buildings & districts, Kategorie-Filter |
 | Traits | `traits.html` | Traits, traditions & ascension perks, Class/Tree-Filter |
 | Governments | `governments.html` | Governments, civics, authorities, policies, edicts |
-
-Zukünftige Seiten: `megastructures.html`, `anomalies.html`, etc.
+| Megastructures | `megastructures.html` | Megastructures & relics, build stages, upgrades |
+| Anomalies | `anomalies.html` | Anomaly categories & archaeological sites, stages |
+| Empires | `empires.html` | Prescripted empires & species classes, ethics, civics |
+| Economy | `economy.html` | Pop jobs & deposits, categories, resources |
 
 ### 4.2 Shared Module
 

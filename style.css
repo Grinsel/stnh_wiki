@@ -980,6 +980,259 @@ body.in-iframe #site-footer {
 }
 
 /* =============================================================================
+   Global Search (Hub)
+   ============================================================================= */
+
+.global-search-results {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.global-search-results.hidden {
+    display: none;
+}
+
+.search-results-inner {
+    background: var(--bg-card);
+    border: 1px solid rgba(209, 206, 4, 0.2);
+    border-radius: 6px;
+    padding: 0.75rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.search-results-header {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.search-no-results {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 1rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.search-group {
+    margin-bottom: 0.6rem;
+}
+
+.search-group-title {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent-gold);
+    margin-bottom: 0.3rem;
+    padding: 0.2rem 0;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px;
+    transition: background 0.15s;
+    text-decoration: none;
+    color: inherit;
+}
+
+.search-result-item:hover {
+    background: rgba(209, 206, 4, 0.08);
+}
+
+.search-result-name {
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    flex-shrink: 0;
+}
+
+.search-result-id {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-family: monospace;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.search-result-meta {
+    font-size: 0.6rem;
+    color: var(--accent-gold);
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+/* Enhanced stat cards */
+.stat-card.highlight {
+    border-color: rgba(209, 206, 4, 0.3);
+    background: rgba(209, 206, 4, 0.05);
+}
+
+.stat-card.highlight .stat-value {
+    font-size: 1.2rem;
+    color: var(--accent-gold);
+}
+
+.stat-card.clickable {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.stat-card.clickable:hover {
+    border-color: rgba(209, 206, 4, 0.3);
+    background: var(--bg-card-hover);
+}
+
+/* Full Search Results Page */
+.full-results {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.full-results-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.btn-back {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--text-primary);
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: border-color 0.2s;
+}
+
+.btn-back:hover {
+    border-color: var(--accent-gold);
+}
+
+.full-results-summary {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.full-results-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+}
+
+.type-filter-btn {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-muted);
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.15s;
+}
+
+.type-filter-btn:hover {
+    border-color: rgba(209, 206, 4, 0.3);
+    color: var(--text-primary);
+}
+
+.type-filter-btn.active {
+    background: rgba(209, 206, 4, 0.1);
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+.full-results-group {
+    margin-bottom: 1.25rem;
+}
+
+.full-results-group-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent-gold);
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid rgba(209, 206, 4, 0.15);
+}
+
+.full-results-group-title .count {
+    font-weight: normal;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.full-results-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-result-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+}
+
+.full-result-item:hover {
+    background: rgba(209, 206, 4, 0.08);
+}
+
+.full-result-name {
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    flex-shrink: 0;
+}
+
+.full-result-id {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-family: monospace;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.full-result-meta {
+    margin-left: auto;
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+}
+
+.meta-tag {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    padding: 0.1rem 0.35rem;
+    border-radius: 2px;
+}
+
+/* =============================================================================
    Content Module Pages (Ships, Buildings, Traits, Governments)
    ============================================================================= */
 

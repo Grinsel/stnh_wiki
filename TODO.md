@@ -146,19 +146,19 @@
 
 ## Phase 6 – Megastrukturen & Relics
 
-- [ ] **6.1 Megastructure Parser**
+- [x] **6.1 Megastructure Parser**
   - `update/parse_megastructures.py`
   - Quellen: `common/megastructures/` (51 Dateien)
   - Daten: Name, Stufen, Kosten, Bauzeit, Effekte, Required Tech/Ascension Perk
   - Output: `assets/megastructures.json`
 
-- [ ] **6.2 Relics Parser**
+- [x] **6.2 Relics Parser**
   - `update/parse_relics.py`
   - Quellen: `common/relics/` (16 Dateien)
   - Daten: Name, Passive Effekte, Aktive Effekte, Cooldown, Trigger
   - Output: `assets/relics.json`
 
-- [ ] **6.3 Megastrukturen & Relics Web-Seite**
+- [x] **6.3 Megastrukturen & Relics Web-Seite**
   - Mega-Galerie mit Baustufen
   - Relics-Katalog
   - Verlinkung: Mega ↔ Tech, Mega ↔ Ascension Perk
@@ -167,19 +167,19 @@
 
 ## Phase 7 – Anomalien & Archäologie
 
-- [ ] **7.1 Anomaly Parser**
+- [x] **7.1 Anomaly Parser**
   - `update/parse_anomalies.py`
   - Quellen: `common/anomalies/`
   - Daten: Name, Kategorie, Mögliche Ergebnisse, Trigger
   - Output: `assets/anomalies.json`
 
-- [ ] **7.2 Archaeological Sites Parser**
+- [x] **7.2 Archaeological Sites Parser**
   - `update/parse_archaeology.py`
   - Quellen: `common/archaeological_site_types/`
   - Daten: Name, Kapitel, Belohnungen, Narrative
   - Output: `assets/archaeology.json`
 
-- [ ] **7.3 Anomalien & Archäologie Web-Seite**
+- [x] **7.3 Anomalien & Archäologie Web-Seite**
   - Anomalie-Browser
   - Archäologie-Storylines mit Kapitel-Darstellung
   - Verlinkung: Anomalie ↔ Event, Archäologie ↔ Event ↔ Relic
@@ -188,18 +188,18 @@
 
 ## Phase 8 – Fraktionen & Empires
 
-- [ ] **8.1 Prescripted Countries Parser**
+- [x] **8.1 Prescripted Countries Parser**
   - `update/parse_empires.py`
   - Quellen: `prescripted_countries/`
   - Daten: Name, Species, Ethik, Government, Civics, Traits, Origin, Schiffe, Startposition
   - Output: `assets/empires.json`
 
-- [ ] **8.2 Species & Portraits Parser**
+- [x] **8.2 Species & Portraits Parser**
   - `update/parse_species.py`
   - Quellen: `common/species_classes/`, `common/species_archetypes/`, Portrait-Dateien
   - Output: `assets/species.json`
 
-- [ ] **8.3 Fraktionen & Empires Web-Seite**
+- [x] **8.3 Fraktionen & Empires Web-Seite**
   - Fraktions-Enzyklopädie mit Portraits
   - Empire-Steckbriefe (Government, Ethik, Traits, Ships)
   - Species-Katalog
@@ -209,17 +209,17 @@
 
 ## Phase 9 – Ressourcen & Wirtschaft
 
-- [ ] **9.1 Jobs Parser**
+- [x] **9.1 Jobs Parser**
   - `update/parse_jobs.py`
   - Quellen: `common/pop_jobs/` (31 Dateien)
   - Output: `assets/jobs.json`
 
-- [ ] **9.2 Deposits Parser**
+- [x] **9.2 Deposits Parser**
   - `update/parse_deposits.py`
   - Quellen: `common/deposits/` (27 Dateien)
   - Output: `assets/deposits.json`
 
-- [ ] **9.3 Wirtschaft Web-Seite**
+- [x] **9.3 Wirtschaft Web-Seite**
   - Job-Übersicht mit Produktion/Konsum
   - Deposit-Katalog
   - Verlinkung: Job ↔ Building, Deposit ↔ Planet-Typ
@@ -228,21 +228,21 @@
 
 ## Phase 10 – Suche & Vernetzung (Cross-Module)
 
-- [ ] **10.1 Globale Volltextsuche**
+- [x] **10.1 Globale Volltextsuche**
   - Über alle Module hinweg suchen
-  - Suchindex: `assets/search_index.json`
-  - Prefix-basiert: `tech:`, `event:`, `ship:`, `building:`, etc.
+  - Suchindex: `assets/search_index.json` (19.740 Items, 2.6 MB)
+  - Prefix-basiert: `ship:`, `event:`, `building:`, `trait:`, `civic:`, `mega:`, etc.
 
-- [ ] **10.2 Cross-Referenz-System**
+- [x] **10.2 Cross-Referenz-System**
   - Bidirektionale Links zwischen allen Modulen generieren
-  - `assets/cross_references.json`
-  - z.B. Tech → Gebäude die es freischaltet → Events die daran hängen
+  - `assets/cross_references.json` (303 KB)
+  - Tech → 1.231 Tech-Unlock-Mappings, 307 Building-Upgrade-Chains, 56 Anomalie-Events, 29 Archäologie-Events, 110 Empire-Refs
 
-- [ ] **10.3 Landing Page / Hub**
-  - Statistik-Dashboard: Anzahl Techs, Events, Ships, etc.
-  - Zuletzt aktualisiert
-  - Quick-Links zu allen Sektionen
-  - Featured/Random Item Spotlight
+- [x] **10.3 Landing Page / Hub**
+  - Statistik-Dashboard: Anzahl pro Modul (Events, Ships, Buildings, etc.)
+  - Zuletzt aktualisiert (Timestamp aus last_update.json)
+  - Quick-Links zu allen Sektionen (klickbare Stat-Cards)
+  - Globale Suche direkt auf der Hub-Seite
 
 ---
 

@@ -47,6 +47,11 @@ MOD_EDICTS_DIR = os.path.join(STNH_MOD_ROOT, "common", "edicts")
 MOD_POLICIES_DIR = os.path.join(STNH_MOD_ROOT, "common", "policies")
 MOD_CIVICS_DIR = os.path.join(STNH_MOD_ROOT, "common", "governments", "civics")
 MOD_AUTHORITIES_DIR = os.path.join(STNH_MOD_ROOT, "common", "governments", "authorities")
+MOD_RELICS_DIR = os.path.join(STNH_MOD_ROOT, "common", "relics")
+MOD_ARCHAEOLOGICAL_SITES_DIR = os.path.join(STNH_MOD_ROOT, "common", "archaeological_site_types")
+MOD_PRESCRIPTED_COUNTRIES_DIR = os.path.join(STNH_MOD_ROOT, "prescripted_countries")
+MOD_SPECIES_CLASSES_DIR = os.path.join(STNH_MOD_ROOT, "common", "species_classes")
+MOD_JOBS_DIR = os.path.join(STNH_MOD_ROOT, "common", "pop_jobs")
 MOD_ARMIES_DIR = os.path.join(STNH_MOD_ROOT, "common", "armies")
 
 # ==========================================

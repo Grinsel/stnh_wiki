@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ships - ST:NH Wiki</title>
+    <title>Empires - ST:NH Wiki</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
                 <h1>ST:NH <span class="accent">Wiki</span></h1>
             </div>
             <div class="header-search">
-                <input type="text" id="search-input" placeholder="Search ships &amp; components..." autocomplete="off">
+                <input type="text" id="search-input" placeholder="Search empires &amp; species..." autocomplete="off">
             </div>
             <div class="header-controls">
                 <select id="lang-select" title="Language">
@@ -56,28 +56,19 @@
     <div id="filter-bar">
         <div class="filter-inner">
             <div class="filter-group tab-buttons">
-                <button class="tab-btn active" data-tab="ships">Ships</button>
-                <button class="tab-btn" data-tab="components">Components</button>
+                <button class="tab-btn active" data-tab="empires">Empires</button>
+                <button class="tab-btn" data-tab="species">Species</button>
             </div>
-            <div class="filter-group" id="filter-class-group">
-                <label>Class</label>
-                <select id="filter-class">
-                    <option value="">All Classes</option>
+            <div class="filter-group" id="filter-authority-group">
+                <label>Authority</label>
+                <select id="filter-authority">
+                    <option value="">All Authorities</option>
                 </select>
             </div>
-            <div class="filter-group hidden" id="filter-size-group">
-                <label>Size</label>
-                <select id="filter-size">
-                    <option value="">All Sizes</option>
-                </select>
-            </div>
-            <div class="filter-group hidden" id="filter-comptype-group">
-                <label>Type</label>
-                <select id="filter-comptype">
-                    <option value="">All Types</option>
-                    <option value="weapon">Weapon</option>
-                    <option value="utility">Utility</option>
-                    <option value="strike_craft">Strike Craft</option>
+            <div class="filter-group hidden" id="filter-archetype-group">
+                <label>Archetype</label>
+                <select id="filter-archetype">
+                    <option value="">All Archetypes</option>
                 </select>
             </div>
             <div class="filter-stats" id="filter-stats">Loading...</div>
@@ -107,6 +98,6 @@
     <script src="js/state.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/common.js"></script>
-    <script src="js/pages/ships.js"></script>
+    <script src="js/pages/empires.js"></script>
 </body>
 </html>

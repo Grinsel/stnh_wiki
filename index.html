@@ -13,6 +13,9 @@
             <div class="site-title">
                 <h1>ST:NH <span class="accent">Wiki</span></h1>
             </div>
+            <div class="header-search">
+                <input type="text" id="global-search-input" placeholder="Search all 19,000+ items... (ship:, event:, building:, ...)" autocomplete="off">
+            </div>
             <div class="header-controls">
                 <select id="lang-select" title="Language">
                     <option value="english">English</option>
@@ -42,12 +45,15 @@
             <a href="buildings.html" class="nav-link">Buildings</a>
             <a href="traits.html" class="nav-link">Traits</a>
             <a href="governments.html" class="nav-link">Governments</a>
-            <a href="#" class="nav-link disabled">Megastructures</a>
-            <a href="#" class="nav-link disabled">Anomalies</a>
-            <a href="#" class="nav-link disabled">Empires</a>
-            <a href="#" class="nav-link disabled">Economy</a>
+            <a href="megastructures.html" class="nav-link">Megastructures</a>
+            <a href="anomalies.html" class="nav-link">Anomalies</a>
+            <a href="empires.html" class="nav-link">Empires</a>
+            <a href="economy.html" class="nav-link">Economy</a>
         </div>
     </nav>
+
+    <!-- Global Search Results -->
+    <div id="global-search-results" class="global-search-results hidden"></div>
 
     <!-- Main Content -->
     <main id="hub-content">
@@ -88,14 +94,22 @@
                     <h3>Governments</h3>
                     <p>Government types, civics, authorities, policies, and edicts.</p>
                 </a>
-                <div class="section-card disabled">
+                <a href="megastructures.html" class="section-card">
                     <h3>Megastructures</h3>
-                    <p>Megastructure types, build stages, and requirements.</p>
-                </div>
-                <div class="section-card disabled">
+                    <p>Megastructure types, relics, build stages, and requirements.</p>
+                </a>
+                <a href="anomalies.html" class="section-card">
                     <h3>Anomalies</h3>
-                    <p>Anomaly categories, outcomes, and triggered events.</p>
-                </div>
+                    <p>Anomaly categories, archaeological sites, outcomes, and events.</p>
+                </a>
+                <a href="empires.html" class="section-card">
+                    <h3>Empires</h3>
+                    <p>Prescripted empires, species classes, factions, and portraits.</p>
+                </a>
+                <a href="economy.html" class="section-card">
+                    <h3>Economy</h3>
+                    <p>Pop jobs, deposits, resource production, and economic chains.</p>
+                </a>
             </section>
         </div>
     </main>
@@ -108,6 +122,7 @@
     <script src="js/state.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/common.js"></script>
+    <script src="js/global-search.js"></script>
     <script src="js/pages/hub.js"></script>
 </body>
 </html>
