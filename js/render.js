@@ -14,6 +14,43 @@ const Render = (() => {
             ? `<div class="event-card-thumb"><img src="${picUrl}" alt="" loading="lazy" onerror="this.parentElement.innerHTML=''"></div>`
             : `<div class="event-card-thumb"></div>`;
 
+        // Chain-head card
+        if (event._chainHead) {
+            return `
+                <div class="event-card chain-head" data-event-id="${event.id}" data-namespace="${event.ns}" data-chain-id="${event._chainId}">
+                    ${thumbHtml}
+                    <div class="event-card-body">
+                        <div class="event-card-header">
+                            <span class="chain-badge">\u26d3 ${event._chainSize} Events</span>
+                            <span class="event-type-badge ${typeClass}">${typeLabel}</span>
+                            <span class="event-card-name">${name}</span>
+                            <span class="event-card-id">${event.id}</span>
+                        </div>
+                        <div class="event-card-snippet">${snippet}</div>
+                    </div>
+                    <button class="chain-expand" title="Expand chain">\u25BC</button>
+                </div>
+            `;
+        }
+
+        // Chain-member card (collapsed by default)
+        if (event._chainCollapsed) {
+            return `
+                <div class="event-card chain-member" data-event-id="${event.id}" data-namespace="${event.ns}" data-chain-id="${event._chainId}">
+                    ${thumbHtml}
+                    <div class="event-card-body">
+                        <div class="event-card-header">
+                            <span class="event-type-badge ${typeClass}">${typeLabel}</span>
+                            <span class="event-card-name">${name}</span>
+                            <span class="event-card-id">${event.id}</span>
+                        </div>
+                        <div class="event-card-snippet">${snippet}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Normal card
         return `
             <div class="event-card" data-event-id="${event.id}" data-namespace="${event.ns}">
                 ${thumbHtml}

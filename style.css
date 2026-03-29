@@ -1489,6 +1489,160 @@ body.in-iframe #site-footer {
     margin-top: 0.1rem;
 }
 
+/* =============================================================================
+   Event Chain Grouping + Chain Navigation Sidebar
+   ============================================================================= */
+
+/* Chain-Head Card */
+.chain-head {
+    border-left: 3px solid var(--accent-gold);
+    position: relative;
+}
+
+.chain-badge {
+    font-size: 0.55rem;
+    background: rgba(209, 206, 4, 0.15);
+    color: var(--accent-gold);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.chain-expand {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    align-self: center;
+    flex-shrink: 0;
+    transition: color 0.2s;
+}
+.chain-expand:hover {
+    color: var(--accent-gold);
+}
+
+/* Chain Group (collapsed members) */
+.chain-group {
+    padding-left: 1rem;
+    border-left: 2px solid rgba(209, 206, 4, 0.2);
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.chain-group .chain-member {
+    opacity: 0.9;
+    border-left: none;
+}
+
+.chain-member-wrap.chain-hidden-extra {
+    display: none;
+}
+
+.chain-show-more {
+    background: rgba(209, 206, 4, 0.08);
+    border: 1px solid rgba(209, 206, 4, 0.2);
+    color: var(--accent-gold);
+    cursor: pointer;
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-family: inherit;
+    width: 100%;
+    margin-top: 0.3rem;
+    transition: background 0.2s;
+}
+.chain-show-more:hover {
+    background: rgba(209, 206, 4, 0.18);
+}
+
+/* Chain Navigation Sidebar */
+.chain-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.chain-nav-back {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-family: inherit;
+    text-align: left;
+    transition: color 0.2s, border-color 0.2s;
+    margin-bottom: 0.3rem;
+}
+.chain-nav-back:hover {
+    color: var(--accent-gold);
+    border-color: rgba(209, 206, 4, 0.3);
+}
+
+.chain-nav-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.chain-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.15rem 0.3rem;
+    font-size: 0.6rem;
+    cursor: pointer;
+    border-radius: 3px;
+    color: var(--text-muted);
+    transition: background 0.15s, color 0.15s;
+    min-height: 1.3rem;
+}
+
+.chain-nav-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.chain-nav-item.active {
+    background: rgba(209, 206, 4, 0.15);
+    color: var(--accent-gold);
+}
+
+.chain-nav-item.root {
+    font-size: 0.65rem;
+    font-weight: 600;
+}
+
+.chain-nav-arrow {
+    color: rgba(209, 206, 4, 0.4);
+    font-size: 0.55rem;
+    flex-shrink: 0;
+}
+
+.chain-nav-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
+}
+
+.chain-nav-id {
+    font-size: 0.5rem;
+    color: rgba(255, 255, 255, 0.25);
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: none;
+}
+
+.chain-nav-item:hover .chain-nav-id {
+    display: inline;
+}
+
 /* Responsive for content pages */
 @media (max-width: 921px) {
     .content-layout { flex-direction: column; }

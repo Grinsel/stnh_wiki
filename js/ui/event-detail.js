@@ -13,6 +13,16 @@ const EventDetail = (() => {
         titleEl().textContent = eventId;
         AppState.set('selectedEvent', eventId);
 
+        // Switch sidebar to chain nav if this event is in a chain
+        if (ChainIndex.isBuilt()) {
+            const chain = ChainIndex.getChain(eventId);
+            if (chain) {
+                NamespaceNav.showChainNav(chain, eventId);
+            } else if (NamespaceNav.isChainMode()) {
+                NamespaceNav.showNamespaceNav();
+            }
+        }
+
         DataManager.loadNamespaceDetail(namespace).then(events => {
             const event = events.find(e => e.id === eventId);
             if (!event) {

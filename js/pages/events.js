@@ -59,6 +59,14 @@
         EventDetail.init();
         ChainViewer.init();
 
+        // Build chain index from relationships
+        try {
+            const rels = await DataManager.loadRelationships();
+            ChainIndex.build(rels);
+        } catch (e) {
+            console.warn('Chain index not available:', e.message);
+        }
+
         // Initial render
         renderAll();
 
@@ -131,10 +139,13 @@
             });
         }
 
+        // Group by chain
+        const grouped = Filters.groupByChain(filtered);
+
         // Update stats
         document.getElementById('filter-stats').textContent =
             `${filtered.length} / ${index.length} events`;
 
-        EventList.render(filtered, state.page || 1, state.search);
+        EventList.render(grouped, state.page || 1, state.search);
     }
 })();

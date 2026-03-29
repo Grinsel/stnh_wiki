@@ -93,5 +93,90 @@ const Filters = (() => {
         return [...set].sort();
     }
 
-    return { apply, populateDropdowns };
+    /**
+     * Group filtered events by chain. Chain-head events get markers,
+     * remaining chain members are marked as collapsed.
+     */
+    function groupByChain(filteredEvents) {
+        if (!ChainIndex.isBuilt()) return filteredEvents;
+
+        // Clean previous chain markers
+        for (const e of filteredEvents) {
+            delete e._chainId;
+            delete e._chainHead;
+            delete e._chainSize;
+            delete e._chainCollapsed;
+        }
+
+        // Track which chains have visible members (as a set for O(1) lookup)
+        const chainVisibleSet = {};  // chainId → Set of event ids
+        const eventById = {};        // eventId → event object
+        for (const e of filteredEvents) {
+            const chain = ChainIndex.getChain(e.id);
+            if (chain) {
+                if (!chainVisibleSet[chain.id]) chainVisibleSet[chain.id] = new Set();
+                chainVisibleSet[chain.id].add(e.id);
+                eventById[e.id] = e;
+            }
+        }
+
+        // Determine head for each chain (root if visible, else first in topological order)
+        const chainHead = {};
+        for (const [chainId, visibleSet] of Object.entries(chainVisibleSet)) {
+            if (visibleSet.size < 2) continue;
+            const chain = ChainIndex.getChain([...visibleSet][0]);
+            if (!chain) continue;
+            // Use root if visible, otherwise first visible in topological order
+            if (visibleSet.has(chain.root)) {
+                chainHead[chainId] = chain.root;
+            } else {
+                chainHead[chainId] = chain.members.find(m => visibleSet.has(m));
+            }
+        }
+
+        // Build result: when we encounter the first event of a chain, emit head + members
+        const seenChains = new Set();
+        const result = [];
+        for (const e of filteredEvents) {
+            const chain = ChainIndex.getChain(e.id);
+            if (!chain) {
+                result.push(e);
+                continue;
+            }
+
+            const visibleSet = chainVisibleSet[chain.id];
+
+            // Not enough visible members to group
+            if (!visibleSet || visibleSet.size < 2) {
+                e._chainId = chain.id;
+                result.push(e);
+                continue;
+            }
+
+            if (seenChains.has(chain.id)) continue; // Already emitted
+            seenChains.add(chain.id);
+
+            const headId = chainHead[chain.id];
+            // Emit head event
+            const headEvent = eventById[headId];
+            headEvent._chainId = chain.id;
+            headEvent._chainHead = true;
+            headEvent._chainSize = visibleSet.size;
+            result.push(headEvent);
+
+            // Emit members in topological order
+            for (const memberId of chain.members) {
+                if (memberId !== headId && visibleSet.has(memberId)) {
+                    const m = eventById[memberId];
+                    m._chainId = chain.id;
+                    m._chainCollapsed = true;
+                    result.push(m);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    return { apply, populateDropdowns, groupByChain };
 })();
