@@ -28,7 +28,7 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 | Namespaces | 287 (272 Detail-JSONs) |
 | Sprachen | 7 (EN, DE, FR, ES, RU, PL, BR-PT) |
 | Loc-Keys | ~200.000+ pro Sprache |
-| GFX Sprites | 3.960 gesamt, ~728 Event-Bilder |
+| GFX Sprites | 3.960 gesamt, ~731 Event-Bilder |
 | Content-Items | ~10.873 (Ships, Buildings, Traits, Govs, Megas, Anomalies, Empires, Economy) |
 | Pipeline-Laufzeit | ~12 Sekunden (ohne Bilder) |
 | Frontend | Vanilla HTML/CSS/JS (kein Framework) |
@@ -141,6 +141,7 @@ stnh_wiki/
 │   ├── i18n.js                        # Mehrsprachigkeit (7 Sprachen)
 │   ├── search.js                      # Volltextsuche mit Prefixen
 │   ├── filters.js                     # Filterlogik (AND-Pipeline)
+│   ├── chain-index.js                 # Chain-Index (Connected Components aus Relationships)
 │   ├── render.js                      # HTML-Rendering (Cards + Detail)
 │   ├── pages/                         # Seiten-Controller
 │   │   ├── hub.js                     # Hub / Landing Page
@@ -388,7 +389,7 @@ def main() → (loc_data, stats):
 def main() → {sprite_name: {texturefile, frames}}
     """Parst 45 .gfx-Dateien, extrahiert spriteType und
     frameAnimatedSpriteType Blöcke.
-    Ergebnis: 3.960 Sprites, davon ~728 Event-Bilder."""
+    Ergebnis: 3.960 Sprites, davon ~731 Event-Bilder."""
 ```
 
 ### 3.8 On-Actions-Parser: `parse_on_actions.py`
@@ -508,7 +509,7 @@ URL-synchronisierter State mit localStorage-Persistenz.
 ```javascript
 const AppState = (() => {
     // State-Felder (URL-Parameter):
-    // search, type, faction, category, namespace,
+    // search, type, faction, category, namespace, chain,
     // showHidden, triggeredOnly, page, lang, selectedEvent, sort
 
     init()                     // URL-Parameter lesen
@@ -550,13 +551,34 @@ Utility-Funktionen die von mehreren Modulen genutzt werden.
 
 ### 4.3 Event-Module
 
+#### `js/chain-index.js` - Chain-Index
+
+Baut Connected Components aus `relationships.json` und ermöglicht Chain-Navigation.
+
+```javascript
+const ChainIndex = (() => {
+    build(relationships)       // BFS: Connected Components aus Trigger-Graph
+    getChain(eventId)          // → {id, root, members[], size} oder null
+    getAllChains()              // → Alle Chains (nur ≥2 Events)
+    isBuilt()                  // → Boolean
+    getRelationships()         // → Gespeicherte Relationships-Daten
+
+    // Algorithmus:
+    // 1. Adjacency-Liste (undirected: triggers + triggered_by)
+    // 2. BFS → Connected Components
+    // 3. Root-Erkennung: Event mit wenigsten triggered_by
+    // 4. Topologische Sortierung (BFS vom Root, trigger-Kanten)
+    // 5. Nur Chains mit ≥2 Events werden indexiert
+})();
+```
+
 #### `js/filters.js` - Filter-Pipeline
 
 ```javascript
 const Filters = (() => {
     apply(events, state)       // → Gefilterte Events (AND-Logik)
     populateDropdowns(events)  // → Dropdowns aus Daten befüllen
-    // Pipeline: Type → Faction → Category → Hidden → Search → Namespace
+    // Pipeline: Type → Faction → Category → Hidden → Search → Namespace → Chain
 })();
 ```
 
@@ -573,7 +595,10 @@ const Render = (() => {
 
 #### `js/ui/event-list.js` - Paginierte Event-Liste (100 pro Seite)
 #### `js/ui/event-detail.js` - Event-Detailansicht mit allen Feldern
-#### `js/ui/namespace-nav.js` - Sidebar mit Faction-Gruppierung
+#### `js/ui/namespace-nav.js` - Sidebar mit Faction-Gruppierung und Chain-Navigation
+
+Die Sidebar zeigt unter jedem Namespace die zugehörigen Chains (via ChainIndex). Chains werden als ausklappbare Gruppen dargestellt mit Chain-Tiefe und Member-Anzahl. Klick auf eine Chain filtert die Event-Liste auf deren Members.
+
 #### `js/ui/chain-viewer.js` - Event-Chain-Visualisierung (rekursiver Tree-Build)
 
 ### 4.4 Page-Controller
@@ -588,8 +613,9 @@ Initialisiert den Event Browser:
 - DataManager.loadInitial()
 - I18n.setLanguage(default)
 - Event-Namen aus Loc-Keys auflösen
-- Filter-Dropdowns befüllen
-- Namespace-Sidebar rendern
+- DataManager.loadRelationships() → ChainIndex.build()
+- Filter-Dropdowns befüllen (inkl. Chain-Filter)
+- Namespace-Sidebar rendern (mit Chain-Gruppen)
 - EventDetail + ChainViewer init
 - Initiales Rendering
 
@@ -639,7 +665,7 @@ Tungsten-Light.ttf          /* Badges und Labels */
 │ tions  │ [Card] [Card] [Card]    │ Meta-Badges   │
 │  └ NS  │ [Card] [Card] [Card]    │ Beschreibung  │
 │  └ NS  │                         │ Trigger       │
-│        │ Pagination              │ Optionen      │
+│   └ ⛓  │ Pagination              │ Optionen      │
 │        │                         │ Effekte       │
 ├────────┴─────────────────────────┴───────────────┤
 │ Footer                                            │
