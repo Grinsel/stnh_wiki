@@ -1,0 +1,317 @@
+[
+  {
+    "id": "bajoran",
+    "name": "Bajoran",
+    "short_name": "BAJ",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "bajoran_story",
+    "name": "Bajoran Story",
+    "short_name": "BAJ",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "borg",
+    "name": "Borg Collective",
+    "short_name": "BC",
+    "color": "#00cc00",
+    "playable": true,
+    "tech_count": 1991,
+    "has_unique_ships": true
+  },
+  {
+    "id": "breen",
+    "name": "Breen",
+    "short_name": "BRE",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "cardassian",
+    "name": "Cardassian Union",
+    "short_name": "CU",
+    "color": "#cc6600",
+    "playable": true,
+    "tech_count": 1991,
+    "has_unique_ships": true
+  },
+  {
+    "id": "civil_undine",
+    "name": "Civil Undine",
+    "short_name": "CIV",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "delta_quadrant_hostile",
+    "name": "Delta Quadrant Hostile",
+    "short_name": "DEL",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "delta_quadrant_peaceful",
+    "name": "Delta Quadrant Peaceful",
+    "short_name": "DEL",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "dominion",
+    "name": "The Dominion",
+    "short_name": "DOM",
+    "color": "#9966cc",
+    "playable": true,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "federation",
+    "name": "United Federation of Planets",
+    "short_name": "UFP",
+    "color": "#0066cc",
+    "playable": true,
+    "tech_count": 1991,
+    "has_unique_ships": true
+  },
+  {
+    "id": "ferengi",
+    "name": "Ferengi",
+    "short_name": "FER",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "haakonian",
+    "name": "Haakonian",
+    "short_name": "HAA",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "hirogen",
+    "name": "Hirogen",
+    "short_name": "HIR",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "hive",
+    "name": "Hive",
+    "short_name": "HIV",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "iconian",
+    "name": "Iconian",
+    "short_name": "ICO",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "kessok",
+    "name": "Kessok",
+    "short_name": "KES",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "klingon",
+    "name": "Klingon Empire",
+    "short_name": "KDF",
+    "color": "#cc0000",
+    "playable": true,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "klingon_houses",
+    "name": "Klingon Houses",
+    "short_name": "KLI",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "klingon-cardassian_alliance",
+    "name": "Klingon-Cardassian Alliance",
+    "short_name": "KLI",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "krenim",
+    "name": "Krenim",
+    "short_name": "KRE",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "machine",
+    "name": "Machine",
+    "short_name": "MAC",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "nausicaan",
+    "name": "Nausicaan",
+    "short_name": "NAU",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "pakled",
+    "name": "Pakled",
+    "short_name": "PAK",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "romulan",
+    "name": "Romulan Star Empire",
+    "short_name": "RSE",
+    "color": "#00cc66",
+    "playable": true,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "second",
+    "name": "Second",
+    "short_name": "SEC",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "son'a",
+    "name": "Son'A",
+    "short_name": "SON",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "sth_fallen",
+    "name": "Sth Fallen",
+    "short_name": "STH",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "synthetic",
+    "name": "Synthetic",
+    "short_name": "SYN",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "terran_empire",
+    "name": "Terran Empire",
+    "short_name": "TER",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "turei",
+    "name": "Turei",
+    "short_name": "TUR",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "undine",
+    "name": "Undine",
+    "short_name": "UND",
+    "color": "#cc00cc",
+    "playable": true,
+    "tech_count": 1991,
+    "has_unique_ships": true
+  },
+  {
+    "id": "vidiian",
+    "name": "Vidiian",
+    "short_name": "VID",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "vulcan_story",
+    "name": "Vulcan Story",
+    "short_name": "VUL",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "vulcanoid",
+    "name": "Vulcanoid",
+    "short_name": "VUL",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": false
+  },
+  {
+    "id": "xindi",
+    "name": "Xindi",
+    "short_name": "XIN",
+    "color": "#cccccc",
+    "playable": false,
+    "tech_count": 1991,
+    "has_unique_ships": true
+  }
+]

@@ -1,0 +1,972 @@
+[
+  {
+    "id": "acamariansovereignty",
+    "name": "Acamarian",
+    "short_name": "ACA",
+    "quadrant": "beta",
+    "graphical_culture": "generic_05",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "andorianempire",
+    "name": "Andorian",
+    "short_name": "ADR",
+    "quadrant": "beta",
+    "graphical_culture": "andorian_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "antedianshoals",
+    "name": "Antedean",
+    "short_name": "ATE",
+    "quadrant": "alpha",
+    "graphical_culture": "generic_06",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "anticanpacks",
+    "name": "Antican",
+    "short_name": "ANT",
+    "quadrant": "alpha",
+    "graphical_culture": "antican_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "argrathiancommonwealth",
+    "name": "Argrathi",
+    "short_name": "ARG",
+    "quadrant": "gamma",
+    "graphical_culture": "generic_01",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "bajoranrepublic",
+    "name": "Bajoran",
+    "short_name": "BAJ",
+    "quadrant": "alpha",
+    "graphical_culture": "bajoran_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "unitedcongressofbanea",
+    "name": "Banea",
+    "short_name": "BAN",
+    "quadrant": "delta",
+    "graphical_culture": "delta_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "benzariancommonwealth",
+    "name": "Benzite",
+    "short_name": "BEN",
+    "quadrant": "beta",
+    "graphical_culture": "generic_05",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "betazoidhouses",
+    "name": "Betazoid",
+    "short_name": "BET",
+    "quadrant": "alpha",
+    "graphical_culture": "generic_01",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "bolianleague",
+    "name": "Bolian",
+    "short_name": "BOL",
+    "quadrant": "beta",
+    "graphical_culture": "bolian_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "borgcollective",
+    "name": "Borg",
+    "short_name": "BRG",
+    "quadrant": "major",
+    "graphical_culture": "borg_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "breenconfederacy",
+    "name": "Breen",
+    "short_name": "BRE",
+    "quadrant": "alpha",
+    "graphical_culture": "breen_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "brunaliempire",
+    "name": "Brunali",
+    "short_name": "BRU",
+    "quadrant": "delta",
+    "graphical_culture": "generic_02",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "bynardomains",
+    "name": "Bynar",
+    "short_name": "BYN",
+    "quadrant": "alpha",
+    "graphical_culture": "generic_01",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "caitianunion",
+    "name": "Caitian",
+    "short_name": "CAT",
+    "quadrant": "alpha",
+    "graphical_culture": "caitian_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "cardassianunion",
+    "name": "Cardassian",
+    "short_name": "CAR",
+    "quadrant": "major",
+    "graphical_culture": "cardassian_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "chelariansovereignty",
+    "name": "Chelarian",
+    "short_name": "CHEL",
+    "quadrant": "beta",
+    "graphical_culture": "generic_06",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": "has_aquatics"
+  },
+  {
+    "id": "cheronitenation",
+    "name": "Cheronite",
+    "short_name": "CHE",
+    "quadrant": "beta",
+    "graphical_culture": "generic_01",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "cravicimperative",
+    "name": "Cravic",
+    "short_name": "CRA",
+    "quadrant": "delta",
+    "graphical_culture": "cravic_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "deltanunion",
+    "name": "Deltan",
+    "short_name": "DEL",
+    "quadrant": "alpha",
+    "graphical_culture": "generic_01",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "denobulanunity",
+    "name": "Denobulan",
+    "short_name": "DEN",
+    "quadrant": "alpha",
+    "graphical_culture": "denobulan_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "devoreimperium",
+    "name": "Devore",
+    "short_name": "DEV",
+    "quadrant": "delta",
+    "graphical_culture": "delta_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "dosiconfederacy",
+    "name": "Dosi",
+    "short_name": "DOS",
+    "quadrant": "gamma",
+    "graphical_culture": "generic_02",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "elaurianauditorium",
+    "name": "El-Aurian",
+    "short_name": "ELA",
+    "quadrant": "delta",
+    "graphical_culture": "generic_08",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "fendomarstates",
+    "name": "Fen Domar",
+    "short_name": "FEN",
+    "quadrant": "beta",
+    "graphical_culture": "generic_01",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "ferengialliance",
+    "name": "Ferengi",
+    "short_name": "FER",
+    "quadrant": "major",
+    "graphical_culture": "ferengi_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": "has_megacorp"
+  },
+  {
+    "id": "flaxianhegemony",
+    "name": "Flaxian",
+    "short_name": "FLA",
+    "quadrant": "beta",
+    "graphical_culture": "generic_01",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "thedominion",
+    "name": "Founder",
+    "short_name": "DOM",
+    "quadrant": "major",
+    "graphical_culture": "dominion_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "garidianrepublic",
+    "name": "Garidian",
+    "short_name": "GAR",
+    "quadrant": "beta",
+    "graphical_culture": "romulan",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "gornempire",
+    "name": "Gorn",
+    "short_name": "GOR",
+    "quadrant": "beta",
+    "graphical_culture": "gorn_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "haakonianorder",
+    "name": "Haakonian",
+    "short_name": "HAA",
+    "quadrant": "delta",
+    "graphical_culture": "generic_01",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "hazarituatara",
+    "name": "Hazari",
+    "short_name": "HAZ",
+    "quadrant": "delta",
+    "graphical_culture": "hazari_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "hirogenhunters",
+    "name": "Hirogen",
+    "short_name": "HIR",
+    "quadrant": "delta",
+    "graphical_culture": "hirogen_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "confederationearth",
+    "name": "Human",
+    "short_name": "FED",
+    "quadrant": "alternate",
+    "graphical_culture": "confederation",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "hurqstagnancy",
+    "name": "Hur'Q",
+    "short_name": "HUR",
+    "quadrant": "gamma",
+    "graphical_culture": "generic_01",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "husnockascendency",
+    "name": "Husnock",
+    "short_name": "HUS",
+    "quadrant": "beta",
+    "graphical_culture": "husnock_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "hydrankingdom",
+    "name": "Hydran",
+    "short_name": "HYDR",
+    "quadrant": "alpha",
+    "graphical_culture": "hydran_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "karemmanfoundation",
+    "name": "Karemma",
+    "short_name": "KAR",
+    "quadrant": "gamma",
+    "graphical_culture": "karemma_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": "has_megacorp"
+  },
+  {
+    "id": "kazonsects",
+    "name": "Kazon",
+    "short_name": "KAZ",
+    "quadrant": "delta",
+    "graphical_culture": "kazon_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "kessokheliolatry",
+    "name": "Kessok",
+    "short_name": "KES",
+    "quadrant": "alpha",
+    "graphical_culture": "kessok_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "kinshayaholyorder",
+    "name": "Kinshaya",
+    "short_name": "KIN",
+    "quadrant": "beta",
+    "graphical_culture": "nyberite_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "klingonempire",
+    "name": "Klingon",
+    "short_name": "KDF",
+    "quadrant": "major",
+    "graphical_culture": "klingon",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "kobalirepublic",
+    "name": "Kobali",
+    "short_name": "KOB",
+    "quadrant": "delta",
+    "graphical_culture": "kobali_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "kraylorrepublic",
+    "name": "Kraylor",
+    "short_name": "KRA",
+    "quadrant": "delta",
+    "graphical_culture": "delta_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "krenimimperium",
+    "name": "Krenim",
+    "short_name": "KRE",
+    "quadrant": "delta",
+    "graphical_culture": "krenim_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "kriosdynasty",
+    "name": "Kriosian",
+    "short_name": "KRI",
+    "quadrant": "beta",
+    "graphical_culture": "generic_01",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "kzintiempire",
+    "name": "Kzinti",
+    "short_name": "KZI",
+    "quadrant": "alpha",
+    "graphical_culture": "kzinti_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "lissepianparliaments",
+    "name": "Lissepian",
+    "short_name": "LIS",
+    "quadrant": "alpha",
+    "graphical_culture": "generic_02",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "lurianprincipality",
+    "name": "Lurian",
+    "short_name": "LUR",
+    "quadrant": "alpha",
+    "graphical_culture": "generic_02",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "lyranstarempire",
+    "name": "Lyran",
+    "short_name": "LYN",
+    "quadrant": "alpha",
+    "graphical_culture": "lyran_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "lyridiandiaspora",
+    "name": "Lyridian",
+    "short_name": "LYR",
+    "quadrant": "delta",
+    "graphical_culture": "generic_03",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "malonsanctity",
+    "name": "Malon",
+    "short_name": "MAL",
+    "quadrant": "delta",
+    "graphical_culture": "malon_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": "has_toxoids"
+  },
+  {
+    "id": "medusancorporium",
+    "name": "Medusan",
+    "short_name": "MED",
+    "quadrant": "beta",
+    "graphical_culture": "generic_07",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "moneanmaritimesovereignty",
+    "name": "Monean",
+    "short_name": "MON",
+    "quadrant": "delta",
+    "graphical_culture": "generic_06",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": "has_aquatics"
+  },
+  {
+    "id": "moralistates",
+    "name": "Morali",
+    "short_name": "MOR",
+    "quadrant": "beta",
+    "graphical_culture": "generic_05",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "nausicaantribes",
+    "name": "Nausicaan",
+    "short_name": "NAU",
+    "quadrant": "beta",
+    "graphical_culture": "nausicaan_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "norcadianharmony",
+    "name": "Norcadian",
+    "short_name": "NRC",
+    "quadrant": "delta",
+    "graphical_culture": "generic_01",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": "has_megacorp"
+  },
+  {
+    "id": "nyberritealliance",
+    "name": "Nyberrite",
+    "short_name": "NYB",
+    "quadrant": "gamma",
+    "graphical_culture": "nyberite_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "orionfreestates",
+    "name": "Orion",
+    "short_name": "ORI",
+    "quadrant": "beta",
+    "graphical_culture": "orion_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": "has_megacorp"
+  },
+  {
+    "id": "oscheanhunters",
+    "name": "Oschean",
+    "short_name": "OSC",
+    "quadrant": "gamma",
+    "graphical_culture": "generic_04",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "pakledgroupings",
+    "name": "Pakled",
+    "short_name": "PAK",
+    "quadrant": "beta",
+    "graphical_culture": "pakled_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "paradancommonwealth",
+    "name": "Paradan",
+    "short_name": "PAR",
+    "quadrant": "gamma",
+    "graphical_culture": "delta_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "pralorauxiliary",
+    "name": "Pralor APU",
+    "short_name": "PRA",
+    "quadrant": "delta",
+    "graphical_culture": "pralor_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": "has_synthetic_dawn_and_machine_age"
+  },
+  {
+    "id": "rakharianfreestates",
+    "name": "Rakhari",
+    "short_name": "RAK",
+    "quadrant": "gamma",
+    "graphical_culture": "generic_01",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "rigellianconsortium",
+    "name": "Rigellian",
+    "short_name": "RIG",
+    "quadrant": "beta",
+    "graphical_culture": "generic_05",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "romulanstarempire",
+    "name": "Romulan",
+    "short_name": "ROM",
+    "quadrant": "major",
+    "graphical_culture": "romulan",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "saurianleague",
+    "name": "Saurian",
+    "short_name": "SAU",
+    "quadrant": "alpha",
+    "graphical_culture": "generic_02",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "selayclutches",
+    "name": "Selay",
+    "short_name": "SEL",
+    "quadrant": "alpha",
+    "graphical_culture": "selay_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "sheliakcorporate",
+    "name": "Sheliak",
+    "short_name": "SHE",
+    "quadrant": "alpha",
+    "graphical_culture": "sheliak_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "skrreeanrepublic",
+    "name": "Skrreean",
+    "short_name": "SKR",
+    "quadrant": "gamma",
+    "graphical_culture": "generic_02",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "sulibancabal",
+    "name": "Suliban",
+    "short_name": "SUL",
+    "quadrant": "beta",
+    "graphical_culture": "suliban_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "trogoranempire",
+    "name": "T'Rogoran",
+    "short_name": "TRO",
+    "quadrant": "gamma",
+    "graphical_culture": "generic_01",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "talarianrepublic",
+    "name": "Talarian",
+    "short_name": "TLR",
+    "quadrant": "alpha",
+    "graphical_culture": "generic_02",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "talaxianempire",
+    "name": "Talaxian",
+    "short_name": "TAL",
+    "quadrant": "delta",
+    "graphical_culture": "talaxian_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "tamarianunity",
+    "name": "Tamarian",
+    "short_name": "TAM",
+    "quadrant": "alpha",
+    "graphical_culture": "generic_05",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "tellariantechnocracy",
+    "name": "Tellarite",
+    "short_name": "TEL",
+    "quadrant": "alpha",
+    "graphical_culture": "tellarite_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "tholianassembly",
+    "name": "Tholian",
+    "short_name": "THO",
+    "quadrant": "alpha",
+    "graphical_culture": "tholian_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "trabealliance",
+    "name": "Trabe",
+    "short_name": "TRA",
+    "quadrant": "delta",
+    "graphical_culture": "trabe_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "trillrepublic",
+    "name": "Trill",
+    "short_name": "TRI",
+    "quadrant": "alpha",
+    "graphical_culture": "generic_02",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "tureicommonwealth",
+    "name": "Turei",
+    "short_name": "TUR",
+    "quadrant": "delta",
+    "graphical_culture": "generic_02",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "tzenkethicoalition",
+    "name": "Tzenkethi",
+    "short_name": "TZE",
+    "quadrant": "alpha",
+    "graphical_culture": "tzenkethi_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "undinevanguard",
+    "name": "Undine",
+    "short_name": "UND",
+    "quadrant": "major",
+    "graphical_culture": "undine_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "unitedearth",
+    "name": "United Earth",
+    "short_name": "FED",
+    "quadrant": "major",
+    "graphical_culture": "federation",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "vaadwaursupremacy",
+    "name": "Vaadwaur",
+    "short_name": "VAA",
+    "quadrant": "delta",
+    "graphical_culture": "vaadwaur_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "valerianfreeholds",
+    "name": "Valerian",
+    "short_name": "VLR",
+    "quadrant": "alpha",
+    "graphical_culture": "generic_02",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "valtesesenate",
+    "name": "Valtese",
+    "short_name": "VAL",
+    "quadrant": "beta",
+    "graphical_culture": "generic_05",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "vaunakatorder",
+    "name": "Vau N'Akat",
+    "short_name": "VAU",
+    "quadrant": "delta",
+    "graphical_culture": "iconian_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "vidiiansodality",
+    "name": "Vidiian",
+    "short_name": "VID",
+    "quadrant": "delta",
+    "graphical_culture": "vidiian_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "voththeocracy",
+    "name": "Voth",
+    "short_name": "VOT",
+    "quadrant": "delta",
+    "graphical_culture": "voth_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "vulcanhighcommand",
+    "name": "Vulcan",
+    "short_name": "VUL",
+    "quadrant": "beta",
+    "graphical_culture": "vulcan_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "wadiemirates",
+    "name": "Wadi",
+    "short_name": "WAD",
+    "quadrant": "gamma",
+    "graphical_culture": "generic_02",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "xepoliteguilds",
+    "name": "Xepolite",
+    "short_name": "XEP",
+    "quadrant": "alpha",
+    "graphical_culture": "generic_02",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "xindicouncil",
+    "name": "Xindi-Primate",
+    "short_name": "XINMAM",
+    "quadrant": "alpha",
+    "graphical_culture": "xindi_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "yaderanrepublic",
+    "name": "Yaderan",
+    "short_name": "YAD",
+    "quadrant": "gamma",
+    "graphical_culture": "generic_04",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "yridianleague",
+    "name": "Yridian",
+    "short_name": "YRI",
+    "quadrant": "alpha",
+    "graphical_culture": "generic_02",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": "has_megacorp"
+  },
+  {
+    "id": "zahltechnocracy",
+    "name": "Zahl",
+    "short_name": "ZAH",
+    "quadrant": "delta",
+    "graphical_culture": "zahl_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
+    "id": "zakdornalliance",
+    "name": "Zakdorn",
+    "short_name": "ZAK",
+    "quadrant": "beta",
+    "graphical_culture": "generic_05",
+    "has_unique_ships": false,
+    "playable": true,
+    "playable_condition": null
+  }
+]
