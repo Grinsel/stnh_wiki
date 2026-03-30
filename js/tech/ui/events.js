@@ -120,7 +120,7 @@ export function attachEventHandlers({ elements, state, actions }) {
   });
 
   // Save state on change
-  ;['species-select','area-select','layout-select','search-input','start-tier-select','end-tier-select','performance-toggle']
+  ;['species-select','area-select','layout-select','tech-filter-input','start-tier-select','end-tier-select','performance-toggle']
     .forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;

@@ -1,13 +1,23 @@
 # STNH Wiki - Projektdokumentation
 
-Vollständige technische Dokumentation des Star Trek: New Horizons Wiki.
+Vollstaendige technische Dokumentation des Star Trek: New Horizons Wiki.
 Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des STNH Stellaris-Mods.
+
+> **Hinweis:** Die Dokumentation ist auch in spezialisierten Einzeldateien im `docs/`-Ordner verfuegbar:
+> | Datei | Inhalt |
+> |---|---|
+> | `docs/ARCHITECTURE.md` | Systemuebersicht, Datenfluss, Frontend-Architektur, Design-Prinzipien |
+> | `docs/PIPELINE.md` | Python-Pipeline: Master-Script, Parser, Generatoren, Konfiguration |
+> | `docs/FRONTEND.md` | JS-Module, Page-Controller-Skeleton, Events/Tech-Module, Design-System |
+> | `docs/FILE_STRUCTURE.md` | Vollstaendiger annotierter Verzeichnisbaum |
+> | `docs/ASSETS.md` | Alle 30 JSON-Dateien, Bilder, Icons, Cross-References, Suchindex |
+> | `docs/DEVELOPMENT.md` | Lokale Einrichtung, Deployment, Module hinzufuegen, Wartung |
 
 ---
 
 ## Inhaltsverzeichnis
 
-1. [Projektübersicht](#1-projektübersicht)
+1. [Projektuebersicht](#1-projektuebersicht)
 2. [Verzeichnisstruktur](#2-verzeichnisstruktur)
 3. [Daten-Pipeline (Python)](#3-daten-pipeline-python)
 4. [Frontend (HTML/CSS/JS)](#4-frontend-htmlcssjs)
@@ -19,73 +29,105 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 
 ---
 
-## 1. Projektübersicht
+## 1. Projektuebersicht
 
 | Eigenschaft | Wert |
 |---|---|
-| Events | ~8.867 |
-| Event-Dateien | 430 (0 Parse-Fehler) |
-| Namespaces | 287 (272 Detail-JSONs) |
+| HTML-Seiten | 11 (Hub + 9 Content + Tech Tree) |
+| Events | ~8.867 (430 Dateien, 287 Namespaces) |
+| Techs | ~2.600 (D3.js Graph, aus git09 kopiert) |
+| Content-Items (Non-Event) | ~10.873 (Ships, Buildings, Traits, Govs, Megas, Anomalies, Empires, Economy) |
+| Suchindex | ~19.740 Items (2,6 MB, cross-module) |
 | Sprachen | 7 (EN, DE, FR, ES, RU, PL, BR-PT) |
 | Loc-Keys | ~200.000+ pro Sprache |
-| GFX Sprites | 3.960 gesamt, ~731 Event-Bilder |
-| Content-Items | ~10.873 (Ships, Buildings, Traits, Govs, Megas, Anomalies, Empires, Economy) |
+| GFX Sprites | 3.960 gesamt, ~986 konvertierte Bilder |
+| Tech-Icons | 1.659 (WebP, aus git09) |
+| JSON-Assets | 30 Dateien + 272 Event-Detail-JSONs |
+| JS-Dateien | 50 (12 shared + 10 pages + 4 UI + 24 tech) |
+| Python-Pipeline | 44 Dateien (5 master + 14 generators + 24 parsers + config) |
 | Pipeline-Laufzeit | ~12 Sekunden (ohne Bilder) |
-| Frontend | Vanilla HTML/CSS/JS (kein Framework) |
-| Deployment | GitHub Pages (automatisch bei push) |
-| Abhängigkeiten | Keine (Python stdlib + ImageMagick für Bilder) |
+| Projektgroesse | ~294 MB |
+| Frontend | Vanilla HTML/CSS/JS (kein Framework, kein Build-Tool) |
+| Deployment | GitHub Pages (automatisch bei push auf master) |
+| Abhaengigkeiten | Python 3.8+ (stdlib), ImageMagick (nur fuer Bilder), D3.js v7 (CDN, nur tech.html) |
 
 ### Architektur-Diagramm
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  STNH Mod (git01/)                              [READ-ONLY] │
-│  ├── events/*.txt            (430 Dateien, PDX-Syntax)      │
-│  ├── localisation/{lang}/    (7 Sprachen, .yml)             │
-│  ├── interface/*.gfx         (45 Dateien, Sprite-Defs)      │
-│  ├── common/on_actions/      (18 Dateien)                    │
-│  ├── common/event_chains/    (19 Dateien)                    │
-│  └── gfx/event_pictures/     (DDS-Quelldateien)             │
-└──────────────────────┬──────────────────────────────────────┘
-                       │ Python Pipeline
-                       │ ├── UPDATE_WIKI.py      (Gesamt-Updater)
-                       │ ├── UPDATE_EVENTS.py    (Events-Modul)
-                       │ ├── UPDATE_LOC.py       (Nur Localisation)
-                       │ ├── UPDATE_GFX.py       (Nur GFX)
-                       │ └── UPDATE_IMAGES.py    (Nur Bilder)
-                       ▼
-┌─────────────────────────────────────────────────────────────┐
-│  STNH Wiki (git10/)                                          │
-│  ├── index.html              (Hub / Landing Page)            │
-│  ├── events.html             (Event Browser)                 │
-│  ├── assets/                 (generierte JSON-Dateien)       │
-│  ├── pictures/               (konvertierte WebP-Bilder)      │
-│  ├── js/                     (Frontend-Module)               │
-│  └── style.css               (Dark Theme)                    │
-└──────────────────────┬──────────────────────────────────────┘
-                       │ git push → GitHub Pages
-                       ▼
++----------------------------------------------------------------+
+|  STNH Mod (git01/)                                 [READ-ONLY] |
+|  +-- events/*.txt                (430 Dateien, PDX-Syntax)     |
+|  +-- localisation/{lang}/        (7 Sprachen, .yml)            |
+|  +-- interface/*.gfx             (45 Dateien, Sprite-Defs)     |
+|  +-- gfx/event_pictures/         (DDS-Quelldateien)            |
+|  +-- common/                                                    |
+|  |   +-- on_actions/             (18 Dateien)                  |
+|  |   +-- event_chains/           (19 Dateien)                  |
+|  |   +-- ship_sizes/             (47 Dateien)                  |
+|  |   +-- component_templates/    (97 Dateien)                  |
+|  |   +-- buildings/              (36 Dateien)                  |
+|  |   +-- districts/              Distrikte                     |
+|  |   +-- traits/                 (50 Dateien)                  |
+|  |   +-- traditions/             (38 Dateien)                  |
+|  |   +-- ascension_perks/        (2 Dateien)                   |
+|  |   +-- governments/            (27 Dateien, +authorities/, +civics/) |
+|  |   +-- policies/               Richtlinien                   |
+|  |   +-- edicts/                 Edikte                        |
+|  |   +-- megastructures/         (51 Dateien)                  |
+|  |   +-- relics/                 (16 Dateien)                  |
+|  |   +-- anomalies/              Anomalien                     |
+|  |   +-- archaeological_site_types/  Archaeologie              |
+|  |   +-- pop_jobs/               (31 Dateien)                  |
+|  |   +-- deposits/               (27 Dateien)                  |
+|  |   +-- species_classes/        Spezies                       |
+|  |   +-- species_archetypes/     Archetypen                    |
+|  +-- prescripted_countries/      Empires                       |
++----------------------------------------------------------------+
+                    | Python Pipeline
+                    | +-- UPDATE_WIKI.py      (Master-Orchestrator)
+                    | +-- 24 Parser + 14 Generatoren
+                    v
++----------------------------------------------------------------+
+|  STNH Wiki (git10/stnh_wiki/)                                   |
+|  +-- 11 HTML-Seiten              (Hub, Events, Tech, 8 Content)|
+|  +-- assets/                     (30 JSON + 272 Event-Details) |
+|  +-- pictures/                   (986 WebP-Bilder)             |
+|  +-- icons/tech/                 (1.659 Tech-Icons)            |
+|  +-- js/                         (50 JS-Module)                |
+|  +-- style.css                   (38 KB, Dark Theme)           |
++----------------------------------------------------------------+
+                    | git push -> GitHub Pages
+                    v
               [ Live Website ]
 ```
 
 ### Phasen-System
 
-Das Wiki wird modular aufgebaut. Jede Phase ist ein eigenständiges Modul:
-
 | Phase | Modul | Status |
 |---|---|---|
-| 0 | Projekt-Grundlage (Skeleton, Pipeline, Frontend) | ✓ Fertig |
-| 1 | Events (Event Browser Migration) | ✓ Fertig |
-| 2 | Schiffe & Komponenten | ✓ Fertig |
-| 3 | Gebäude & Distrikte | ✓ Fertig |
-| 4 | Traits & Traditionen | ✓ Fertig |
-| 5 | Regierung & Diplomatie | ✓ Fertig |
-| 6 | Megastrukturen & Relics | ✓ Fertig |
-| 7 | Anomalien & Archäologie | ✓ Fertig |
-| 8 | Fraktionen & Empires | ✓ Fertig |
-| 9 | Ressourcen & Wirtschaft | ✓ Fertig |
-| 10 | Suche & Vernetzung (Cross-Module) | ✓ Fertig |
-| 11 | Techtree (Kopie aus git09) | 11.1 Fertig (Kopie + Frontend) |
+| 0 | Projekt-Grundlage (Skeleton, Pipeline, Frontend) | Fertig |
+| 1 | Events (Event Browser Migration) | Fertig |
+| 2 | Schiffe & Komponenten | Fertig |
+| 3 | Gebaeude & Distrikte | Fertig |
+| 4 | Traits & Traditionen | Fertig |
+| 5 | Regierung & Diplomatie | Fertig |
+| 6 | Megastrukturen & Relics | Fertig |
+| 7 | Anomalien & Archaeologie | Fertig |
+| 8 | Fraktionen & Empires | Fertig |
+| 9 | Ressourcen & Wirtschaft | Fertig |
+| 10 | Suche & Vernetzung (Cross-Module) | Fertig |
+| 11 | Techtree (Kopie aus git09) | 11.1 Fertig (Kopie + Frontend), 11.2-11.6 offen |
+
+### Cross-Cutting Features (nicht phasengebunden)
+
+| Feature | Beschreibung |
+|---|---|
+| GlobalSearch | Cross-module Suche auf allen 11 Seiten (initGlobalSearch in common.js) |
+| Hamburger-Menue | Responsive Navigation ab 768px (initHamburger in common.js) |
+| OG-Tags | Open Graph Meta-Tags fuer Social-Media-Preview auf allen Seiten |
+| Faction-Themes | 9 waehlbare Farbschemata (Cardassian, Federation, Klingon, ...) |
+| 7-Sprachen-UI | UI-Strings in ui-strings.js, Mod-Content via i18n.js |
+| Font-Size-Control | Dynamische Schriftgroesse (90%-160%) |
 
 ---
 
@@ -93,107 +135,167 @@ Das Wiki wird modular aufgebaut. Jede Phase ist ein eigenständiges Modul:
 
 ```
 stnh_wiki/
-│
-├── .github/
-│   └── workflows/
-│       └── deploy.yml                 # GitHub Pages Auto-Deployment
-│
-├── assets/                            # [GENERIERT] JSON-Daten
-│   ├── events_index.json              # Event-Index (2,6 MB)
-│   ├── namespaces.json                # Namespace-Metadaten (44 KB)
-│   ├── relationships.json             # Event-Trigger-Graph (636 KB)
-│   ├── on_actions.json                # On-Action → Event Mappings (32 KB)
-│   ├── event_chains.json              # Event-Chain-Definitionen (12 KB)
-│   ├── pictures_map.json              # GFX-Name → Textur-Pfad (648 KB)
-│   ├── last_update.json               # Timestamp + Phasen-Statistiken
-│   ├── _no_namespace.json             # Events ohne Namespace
-│   ├── events_detail/                 # Detail-JSONs pro Namespace (272 Dateien)
-│   │   ├── STH_federation_flavour.json
-│   │   ├── STH_klingon_story.json
-│   │   └── ...
-│   └── localisation/                  # Loc-Keys pro Sprache (7 Dateien)
-│       ├── english.json               # ~200k Keys
-│       ├── german.json
-│       └── ...
-│
-├── pictures/                          # [GENERIERT] WebP Event-Bilder
-│
-├── icons/                             # Tech/Item-Icons
-│   ├── tech/                          # 1.659 Tech-Icons (WebP, aus git09)
-│   ├── unlock_types/                  # 25 Unlock-Type-Icons (WebP)
-│   └── tech_icon_mappings.json        # Icon-Name → Datei-Mapping
-│
-├── fonts/                             # Star Trek Schriftarten
-│   ├── federation-ds9-title.TTF
-│   └── Tungsten-Light.ttf
-│
-├── js/                                # Frontend JavaScript
-│   ├── tech/                          # Techtree JS-Module (aus git09)
-│   │   ├── main.js                    # Einstiegspunkt → tech_showcase.js
-│   │   ├── data.js                    # Daten-Laden (fetch assets/tech/*.json)
-│   │   ├── render.js                  # D3.js Rendering + LOD
-│   │   ├── filters.js                 # Filter-Logik
-│   │   ├── search.js, state.js, factions.js
-│   │   └── ui/                        # UI-Komponenten + Layouts
-│   ├── common.js                      # Gemeinsame Hilfsfunktionen
-│   ├── data.js                        # DataManager - Asynchrones Laden
-│   ├── state.js                       # AppState - URL-synchronisierter State
-│   ├── i18n.js                        # Mehrsprachigkeit (7 Sprachen)
-│   ├── search.js                      # Volltextsuche mit Prefixen
-│   ├── filters.js                     # Filterlogik (AND-Pipeline)
-│   ├── chain-index.js                 # Chain-Index (Connected Components aus Relationships)
-│   ├── render.js                      # HTML-Rendering (Cards + Detail)
-│   ├── pages/                         # Seiten-Controller
-│   │   ├── hub.js                     # Hub / Landing Page
-│   │   └── events.js                  # Event Browser
-│   └── ui/                            # UI-Komponenten
-│       ├── event-list.js              # Paginierte Event-Liste
-│       ├── event-detail.js            # Event-Detailansicht
-│       ├── namespace-nav.js           # Sidebar-Navigation
-│       └── chain-viewer.js            # Event-Chain-Visualisierung
-│
-├── update/                            # Python Daten-Pipeline
-│   ├── techtree/                      # Techtree-Pipeline (27 Scripts, aus git09)
-│   │   ├── UPDATE_TECHTREE_FULL.py    # Techtree Master-Script
-│   │   ├── config.py                  # Pfade auf Wiki angepasst
-│   │   ├── create_tech_json_new.py    # Hauptparser
-│   │   ├── balance_center_bridge.py   # Benötigt balance_center/ (noch nicht lauffähig)
-│   │   └── logs/                      # Techtree-Update-Logs
-│   ├── UPDATE_WIKI.py                 # Master-Orchestrator (alle Phasen)
-│   ├── UPDATE_EVENTS.py               # Modul-Updater: Events
-│   ├── UPDATE_LOC.py                  # Modul-Updater: Localisation
-│   ├── UPDATE_GFX.py                  # Modul-Updater: GFX-Mappings
-│   ├── UPDATE_IMAGES.py               # Modul-Updater: Bildkonvertierung
-│   ├── config.py                      # Pfade & Konfiguration
-│   ├── parse_pdx.py                   # Rekursiver PDX-Parser
-│   ├── parse_events.py                # Event-Extraktion
-│   ├── parse_localisation.py          # Lokalisierungs-Parser
-│   ├── parse_gfx_mappings.py          # GFX Sprite-Mappings
-│   ├── parse_on_actions.py            # On-Action-Parser
-│   ├── parse_event_chains.py          # Event-Chain-Parser
-│   ├── build_relationships.py         # Trigger-Graph-Builder
-│   ├── generate_events_json.py        # JSON-Generierung + Faction-Mapping
-│   ├── convert_images.py              # DDS → WebP Konvertierung
-│   └── requirements.txt               # Python-Abhängigkeiten
-│
-├── index.html                         # Hub / Landing Page
-├── events.html                        # Event Browser
-├── tech.html                          # Techtree (D3.js Visualisierung, aus git09)
-├── tech_showcase.js                   # Techtree Legacy-Einstiegspunkt
-├── tech_localisation_map.json         # Techtree Lokalisierung (21 MB)
-├── tech_trigger_map.json              # Techtree Trigger-Map
-├── pre_tree_bg.png                    # Techtree Hintergrundbild
-├── style.css                          # Gemeinsames Dark Theme (16 KB)
-│
-├── UPDATE.bat                         # Gesamt-Update + Deploy
-├── UPDATE_QUICK.bat                   # Gesamt-Update ohne Bilder + Deploy
-├── UPDATE_EVENTS.bat                  # Events-Update
-├── UPDATE_EVENTS_QUICK.bat            # Events-Update ohne Bilder
-├── UPDATE_TECHTREE.bat                # Techtree-Pipeline starten
-│
-├── DOCUMENTATION.md                   # Diese Datei
-├── TODO.md                            # Master-Projektplan (12 Phasen)
-└── .gitignore
+|
++-- .github/
+|   +-- workflows/
+|       +-- deploy.yml                 # GitHub Pages Auto-Deployment
+|
++-- assets/                            # [GENERIERT] JSON-Daten (30 Dateien)
+|   +-- events_index.json              # Event-Index (2,6 MB)
+|   +-- namespaces.json                # Namespace-Metadaten (42 KB)
+|   +-- relationships.json             # Event-Trigger-Graph (637 KB)
+|   +-- on_actions.json                # On-Action -> Event Mappings (30 KB)
+|   +-- event_chains.json              # Event-Chain-Definitionen (12 KB)
+|   +-- pictures_map.json              # GFX-Name -> Textur-Pfad (1,2 MB)
+|   +-- ships.json                     # Schiffe (320 KB)
+|   +-- components.json                # Komponenten (4,9 MB)
+|   +-- buildings.json                 # Gebaeude (506 KB)
+|   +-- districts.json                 # Distrikte (44 KB)
+|   +-- traits.json                    # Traits (213 KB)
+|   +-- traditions.json                # Traditionen (151 KB)
+|   +-- ascension_perks.json           # Aufstiegsvorteile (34 KB)
+|   +-- governments.json               # Regierungen (60 KB)
+|   +-- civics.json                    # Buergerrechte (159 KB)
+|   +-- authorities.json               # Autoritaeten (7,6 KB)
+|   +-- policies.json                  # Richtlinien (63 KB)
+|   +-- edicts.json                    # Edikte (49 KB)
+|   +-- megastructures.json            # Megastrukturen (160 KB)
+|   +-- relics.json                    # Relikte (61 KB)
+|   +-- anomalies.json                 # Anomalien (68 KB)
+|   +-- archaeology.json               # Archaeologie (25 KB)
+|   +-- empires.json                   # Imperien (115 KB)
+|   +-- species.json                   # Spezies (74 KB)
+|   +-- jobs.json                      # Berufe (219 KB)
+|   +-- deposits.json                  # Lagerstetten (237 KB)
+|   +-- search_index.json              # Suchindex cross-module (2,6 MB, ~19.740 Items)
+|   +-- cross_references.json          # Bidirektionale Cross-Refs (303 KB)
+|   +-- module_pages.json              # Modul -> HTML-Seite Mapping
+|   +-- last_update.json               # Timestamp + Statistiken
+|   +-- events_detail/                 # Detail-JSONs pro Namespace (272 Dateien)
+|   +-- localisation/                  # Loc-Keys pro Sprache (7 Dateien)
+|   +-- tech/                          # Techtree-Assets (aus git09)
+|
++-- pictures/                          # [GENERIERT] WebP Event-Bilder (986 Dateien)
+|
++-- icons/                             # Tech/Item-Icons
+|   +-- tech/                          # 1.659 Tech-Icons (WebP, aus git09)
+|   +-- unlock_types/                  # 25 Unlock-Type-Icons (WebP)
+|   +-- tech_icon_mappings.json        # Icon-Name -> Datei-Mapping
+|
++-- fonts/                             # Star Trek Schriftarten
+|   +-- federation-ds9-title.TTF
+|   +-- Tungsten-Light.ttf
+|
++-- js/                                # Frontend JavaScript (50 Dateien)
+|   +-- common.js                      # Shared: Theme, Font, Lang, Nav, Hamburger, GlobalSearch
+|   +-- data.js                        # DataManager - Asynchrones JSON-Laden + Cache
+|   +-- state.js                       # AppState - URL-synchronisierter State
+|   +-- i18n.js                        # Internationalisierung (7 Sprachen)
+|   +-- ui-strings.js                  # UI-String-Definitionen (310+ Keys)
+|   +-- global-search.js              # GlobalSearch - Cross-Module Prefix-Suche
+|   +-- search.js                      # SearchEngine - Event-spezifische Suche
+|   +-- filters.js                     # Filter-Pipeline (AND-Logik, Events)
+|   +-- chain-index.js                 # Chain-Index (Connected Components)
+|   +-- render.js                      # Event HTML-Rendering (Cards + Detail)
+|   +-- humanize.js                    # PDX-Syntax -> lesbarer Text
+|   +-- shared-render.js               # Gemeinsames Rendering fuer Content-Module
+|   +-- pages/                         # 10 Seiten-Controller
+|   |   +-- hub.js                     # Hub: Stats, GlobalSearch Full-Results
+|   |   +-- events.js                  # Events: Filter, Sidebar, Detail, Chains
+|   |   +-- ships.js                   # Ships: Tabs (Ships/Components), Filter, Detail
+|   |   +-- buildings.js               # Buildings: Tabs (Buildings/Districts), Filter
+|   |   +-- traits.js                  # Traits: Tabs (Traits/Traditions/Perks), Filter
+|   |   +-- governments.js             # Govs: Tabs (Govs/Civics/Auth/Policies/Edicts)
+|   |   +-- megastructures.js          # Megas: Tabs (Megastructures/Relics)
+|   |   +-- anomalies.js              # Anomalies: Tabs (Anomalies/Archaeology)
+|   |   +-- empires.js                 # Empires: Tabs (Empires/Species)
+|   |   +-- economy.js                 # Economy: Tabs (Jobs/Deposits)
+|   +-- ui/                            # 4 UI-Komponenten (nur Events)
+|   |   +-- event-list.js              # Paginierte Event-Liste
+|   |   +-- event-detail.js            # Event-Detailansicht
+|   |   +-- namespace-nav.js           # Sidebar-Navigation
+|   |   +-- chain-viewer.js            # Event-Chain-Visualisierung
+|   +-- tech/                          # 24 Tech-Module (aus git09)
+|       +-- main.js                    # Einstiegspunkt (ES Module)
+|       +-- data.js, render.js, filters.js, search.js, state.js, factions.js
+|       +-- ui/                        # Tech UI-Komponenten
+|           +-- events.js, zoom.js, tabs.js, tiers.js, popup.js, ...
+|           +-- layouts/               # 5 Layout-Engines (force, grid, tier, arrows, disjoint)
+|
++-- update/                            # Python Daten-Pipeline (44 Dateien)
+|   +-- UPDATE_WIKI.py                 # Master-Orchestrator (alle Phasen)
+|   +-- UPDATE_EVENTS.py               # Modul-Updater: Events
+|   +-- UPDATE_LOC.py                  # Modul-Updater: Localisation
+|   +-- UPDATE_GFX.py                  # Modul-Updater: GFX-Mappings
+|   +-- UPDATE_IMAGES.py               # Modul-Updater: Bildkonvertierung
+|   +-- config.py                      # Pfade & Konfiguration
+|   +-- parse_pdx.py                   # Rekursiver PDX-Parser (Basis fuer alle)
+|   +-- parse_helpers.py               # Gemeinsame Parser-Hilfsfunktionen
+|   +-- parse_localisation.py          # Lokalisierungs-Parser (7 Sprachen)
+|   +-- parse_gfx_mappings.py          # GFX Sprite-Mappings
+|   +-- parse_events.py                # Event-Extraktion
+|   +-- parse_on_actions.py            # On-Action-Parser
+|   +-- parse_event_chains.py          # Event-Chain-Parser
+|   +-- parse_ships.py                 # Schiffe
+|   +-- parse_components.py            # Komponenten
+|   +-- parse_buildings.py             # Gebaeude
+|   +-- parse_districts.py             # Distrikte
+|   +-- parse_traits.py                # Traits
+|   +-- parse_traditions.py            # Traditionen
+|   +-- parse_ascension_perks.py       # Aufstiegsvorteile
+|   +-- parse_governments.py           # Regierungen
+|   +-- parse_policies.py              # Richtlinien
+|   +-- parse_edicts.py                # Edikte
+|   +-- parse_megastructures.py        # Megastrukturen
+|   +-- parse_relics.py                # Relikte
+|   +-- parse_anomalies.py             # Anomalien
+|   +-- parse_archaeology.py           # Archaeologie
+|   +-- parse_empires.py               # Imperien
+|   +-- parse_species.py               # Spezies
+|   +-- parse_jobs.py                  # Berufe
+|   +-- parse_deposits.py              # Lagerstetten
+|   +-- build_relationships.py         # Event-Trigger-Graph
+|   +-- generate_events_json.py        # Events JSON + Faction-Mapping
+|   +-- generate_ships_json.py         # Ships + Components JSON
+|   +-- generate_buildings_json.py     # Buildings + Districts JSON
+|   +-- generate_traits_json.py        # Traits + Traditions + Perks JSON
+|   +-- generate_governments_json.py   # Govs + Civics + Auth + Policies + Edicts JSON
+|   +-- generate_megastructures_json.py# Megastructures + Relics JSON
+|   +-- generate_anomalies_json.py     # Anomalies + Archaeology JSON
+|   +-- generate_empires_json.py       # Empires + Species JSON
+|   +-- generate_economy_json.py       # Jobs + Deposits JSON
+|   +-- generate_search_index.py       # Cross-Module Suchindex
+|   +-- generate_cross_references.py   # Bidirektionale Cross-Refs
+|   +-- convert_images.py              # DDS -> WebP Konvertierung
+|   +-- techtree/                      # Techtree-Pipeline (27 Scripts, aus git09, NOCH NICHT LAUFFAEHIG)
+|
++-- index.html                         # Hub / Landing Page
++-- events.html                        # Event Browser
++-- tech.html                          # Tech Tree (D3.js, eigenes Inline-CSS)
++-- ships.html                         # Schiffe & Komponenten
++-- buildings.html                     # Gebaeude & Distrikte
++-- traits.html                        # Traits & Traditionen
++-- governments.html                   # Regierung & Diplomatie
++-- megastructures.html                # Megastrukturen & Relics
++-- anomalies.html                     # Anomalien & Archaeologie
++-- empires.html                       # Fraktionen & Empires
++-- economy.html                       # Wirtschaft
++-- style.css                          # Gemeinsames Dark Theme (38 KB)
++-- tech_showcase.js                   # Techtree Legacy-Einstiegspunkt
++-- tech_localisation_map.json         # Techtree Lokalisierung (21 MB)
++-- tech_trigger_map.json              # Techtree Trigger-Map
++-- pre_tree_bg.png                    # Techtree Hintergrundbild
+|
++-- UPDATE.bat                         # Gesamt-Update + Deploy
++-- UPDATE_QUICK.bat                   # Gesamt-Update ohne Bilder + Deploy
++-- UPDATE_EVENTS.bat                  # Events-Update
++-- UPDATE_EVENTS_QUICK.bat            # Events-Update ohne Bilder
++-- UPDATE_TECHTREE.bat                # Techtree-Pipeline starten
+|
++-- CLAUDE.md                          # Entwickler-Handover (Einstiegspunkt)
++-- DOCUMENTATION.md                   # Diese Datei (ausfuehrliche Doku)
++-- TODO.md                            # Master-Projektplan (12 Phasen + Backlog)
++-- .gitignore
 ```
 
 ---
@@ -205,318 +307,212 @@ stnh_wiki/
 Orchestriert alle Phasen der Datenverarbeitung:
 
 ```
-Phase 1: Validation     → config.validate_paths()
-Phase 2: Localisation   → parse_localisation.main()
-Phase 3: GFX Mapping    → parse_gfx_mappings.main()
-Phase 4: Events         → generate_events_json.generate_all()
-Phase 5: Content        → Ships, Buildings, Traits, Governments
-   5a: Ships            → generate_ships_json.generate_all()
-   5b: Buildings        → generate_buildings_json.generate_all()
-   5c: Traits           → generate_traits_json.generate_all()
-   5d: Governments      → generate_governments_json.generate_all()
-   5e: Megastructures   → generate_megastructures_json.generate_all()
-   5f: Anomalies        → generate_anomalies_json.generate_all()
-   5g: Empires          → generate_empires_json.generate_all()
-   5h: Economy          → generate_economy_json.generate_all()
-   5i: Search           → generate_search_index + generate_cross_references
-Phase 6: Images         → convert_images.convert_images()  [optional]
-Phase 7: Summary        → Statistiken + last_update.json
+Phase 1: Validation     -> config.validate_paths()
+Phase 2: Localisation   -> parse_localisation.main()
+Phase 3: GFX Mapping    -> parse_gfx_mappings.main()
+Phase 4: Events         -> generate_events_json.generate_all()
+Phase 5: Content
+   5a: Ships            -> generate_ships_json.generate_all()
+   5b: Buildings        -> generate_buildings_json.generate_all()
+   5c: Traits           -> generate_traits_json.generate_all()
+   5d: Governments      -> generate_governments_json.generate_all()
+   5e: Megastructures   -> generate_megastructures_json.generate_all()
+   5f: Anomalies        -> generate_anomalies_json.generate_all()
+   5g: Empires          -> generate_empires_json.generate_all()
+   5h: Economy          -> generate_economy_json.generate_all()
+   5i: Search           -> generate_search_index + generate_cross_references
+Phase 6: Images         -> convert_images.convert_images()  [optional]
+Phase 7: Summary        -> Statistiken + last_update.json
 ```
 
 **Aufruf:**
 ```bash
-python UPDATE_WIKI.py                     # Vollständig (~9s + Bilder)
-python UPDATE_WIKI.py --skip-images       # Ohne Bilder (~9s)
-python UPDATE_WIKI.py --only events       # Nur Events-Modul
-python UPDATE_WIKI.py --only ships        # Nur Ships & Components
-python UPDATE_WIKI.py --only buildings    # Nur Buildings & Districts
-python UPDATE_WIKI.py --only traits       # Nur Traits, Traditions, Ascension Perks
-python UPDATE_WIKI.py --only governments     # Nur Governments, Civics, Policies, Edicts
+python UPDATE_WIKI.py                        # Vollstaendig (~12s + Bilder)
+python UPDATE_WIKI.py --skip-images          # Ohne Bilder (~12s)
+python UPDATE_WIKI.py --only events          # Nur Events-Modul
+python UPDATE_WIKI.py --only ships           # Nur Ships & Components
+python UPDATE_WIKI.py --only buildings       # Nur Buildings & Districts
+python UPDATE_WIKI.py --only traits          # Nur Traits, Traditions, Perks
+python UPDATE_WIKI.py --only governments     # Nur Govs, Civics, Policies, Edicts
 python UPDATE_WIKI.py --only megastructures  # Nur Megastructures & Relics
 python UPDATE_WIKI.py --only anomalies       # Nur Anomalies & Archaeology
 python UPDATE_WIKI.py --only empires         # Nur Empires & Species
 python UPDATE_WIKI.py --only economy         # Nur Jobs & Deposits
 python UPDATE_WIKI.py --only search          # Nur Search Index & Cross-References
-python UPDATE_WIKI.py --only content         # Alle Content-Module (alle 8 Module + Search)
-python UPDATE_WIKI.py --only loc          # Nur Localisation
-python UPDATE_WIKI.py --only gfx          # Nur GFX-Mappings
-python UPDATE_WIKI.py --only images       # Nur Bildkonvertierung
+python UPDATE_WIKI.py --only content         # Alle 8 Content-Module + Search
+python UPDATE_WIKI.py --only loc             # Nur Localisation
+python UPDATE_WIKI.py --only gfx             # Nur GFX-Mappings
+python UPDATE_WIKI.py --only images          # Nur Bildkonvertierung
 ```
 
-### 3.2 Modul-Updater
+### 3.2 Parser-Architektur
 
-Für schnelle Einzelaktualisierungen stehen spezialisierte Updater bereit:
+Alle Parser nutzen `parse_pdx.py` als gemeinsame Basis (rekursiver Descent Parser).
 
-| Script | Phasen | Zweck |
-|---|---|---|
-| `UPDATE_EVENTS.py` | Validation → Loc → GFX → Events → Images | Komplettes Events-Update |
-| `UPDATE_LOC.py` | Validation → Localisation | Nur Lokalisierung |
-| `UPDATE_GFX.py` | Validation → GFX | Nur GFX-Mappings |
-| `UPDATE_IMAGES.py` | Validation → Images | Nur Bildkonvertierung |
+**Warum kein PLY?** PLY hatte Probleme mit Error Recovery bei PDX-Sonderfaellen (Doppelpunkte in IDs, Operatoren, @Variablen).
 
-Jeder Modul-Updater:
-- Führt `phase_validation()` aus (Pfade prüfen)
-- Führt nur seine eigenen Phasen aus
-- Schreibt eigenen Eintrag in `last_update.json` (merge, nicht überschreiben)
-- Kann standalone aufgerufen werden: `python UPDATE_EVENTS.py`
-- Unterstützt `--skip-images` wo relevant
+```python
+# parse_pdx.py - Tokenizer + Parser
+class PdxLexer:
+    # Token: COMMENT, STRING, OPERATOR, LBRACE, RBRACE, VARIABLE, NUMBER, WORD
+    def tokenize(text) -> list[Token]
+
+class PdxParser:
+    def parse(text) -> list[dict]
+    # key = value       -> {'key': 'value'}
+    # key = { ... }     -> {'key': [nested...]}
+    # { val1 val2 }     -> [val1, val2]
+
+# Hilfsfunktionen
+def get_value(data, key, default=None)
+def get_all_values(data, key)
+def get_blocks(data, key)
+```
 
 ### 3.3 Konfiguration: `config.py`
 
-Zentrale Pfad- und Datendefinitionen:
-
 ```python
-# === PFADE ANPASSEN ===
-
-# Stellaris-Mod-Verzeichnis (Quelldaten, read-only)
+# Nur diese beiden Pfade muessen angepasst werden:
 STNH_MOD_ROOT = r"C:\Users\marcj\git01\New-Horizons-Development"
-
-# Wiki Repository (Ausgabe)
 WIKI_ROOT = r"C:\Users\marcj\git10\stnh_wiki"
 
 # Automatisch abgeleitet:
-MOD_EVENTS_DIR       = STNH_MOD_ROOT / "events"
-MOD_LOCALISATION_DIR = STNH_MOD_ROOT / "localisation"
-MOD_ON_ACTIONS_DIR   = STNH_MOD_ROOT / "common/on_actions"
-MOD_EVENT_CHAINS_DIR = STNH_MOD_ROOT / "common/event_chains"
-MOD_INTERFACE_DIR    = STNH_MOD_ROOT / "interface"
-MOD_GFX_EVENT_PICTURES = STNH_MOD_ROOT / "gfx/event_pictures"
+MOD_EVENTS_DIR, MOD_LOCALISATION_DIR, MOD_ON_ACTIONS_DIR, ...
+OUTPUT_ASSETS_DIR, OUTPUT_PICTURES_DIR, OUTPUT_ICONS_DIR, ...
 
-OUTPUT_ASSETS_DIR        = WIKI_ROOT / "assets"
-OUTPUT_EVENTS_DETAIL_DIR = OUTPUT_ASSETS_DIR / "events_detail"
-OUTPUT_LOCALISATION_DIR  = OUTPUT_ASSETS_DIR / "localisation"
-OUTPUT_PICTURES_DIR      = WIKI_ROOT / "pictures"
-OUTPUT_ICONS_DIR         = WIKI_ROOT / "icons"
-
-# Sprachen (Unterordner in localisation/)
-LANGUAGES = ['english', 'german', 'french', 'spanish',
-             'russian', 'polish', 'braz_por']
-
-# Event-Typen (PDX-Schlüsselwörter)
-EVENT_TYPES = ['country_event', 'planet_event', 'fleet_event',
-               'ship_event', 'pop_event', 'observer_event',
-               'situation_event']
-
-# Funktionen
-validate_paths()  # Prüft ob alle Quellpfade existieren
-print_config()    # Gibt Konfiguration aus
+LANGUAGES = ['english', 'german', 'french', 'spanish', 'russian', 'polish', 'braz_por']
 ```
 
-**Zum Anpassen für andere Systeme:** Nur `STNH_MOD_ROOT` und `WIKI_ROOT` ändern.
+### 3.4 Parser & Generatoren pro Modul
 
-### 3.4 PDX-Parser: `parse_pdx.py`
+| Modul | Parser | Generator | Output-JSONs |
+|---|---|---|---|
+| Events | parse_events, parse_on_actions, parse_event_chains, build_relationships | generate_events_json | events_index, events_detail/*, namespaces, relationships, on_actions, event_chains |
+| Localisation | parse_localisation | (direkt) | localisation/{lang}.json |
+| GFX | parse_gfx_mappings | (direkt) | pictures_map.json |
+| Ships | parse_ships, parse_components | generate_ships_json | ships.json, components.json |
+| Buildings | parse_buildings, parse_districts | generate_buildings_json | buildings.json, districts.json |
+| Traits | parse_traits, parse_traditions, parse_ascension_perks | generate_traits_json | traits.json, traditions.json, ascension_perks.json |
+| Governments | parse_governments, parse_policies, parse_edicts | generate_governments_json | governments.json, civics.json, authorities.json, policies.json, edicts.json |
+| Megastructures | parse_megastructures, parse_relics | generate_megastructures_json | megastructures.json, relics.json |
+| Anomalies | parse_anomalies, parse_archaeology | generate_anomalies_json | anomalies.json, archaeology.json |
+| Empires | parse_empires, parse_species | generate_empires_json | empires.json, species.json |
+| Economy | parse_jobs, parse_deposits | generate_economy_json | jobs.json, deposits.json |
+| Search | (alle obigen) | generate_search_index, generate_cross_references | search_index.json, cross_references.json, module_pages.json |
+| Images | (GFX-Mapping) | convert_images | pictures/*.webp |
 
-Eigenentwickelter rekursiver Parser für Stellaris PDX-Syntax (nicht PLY-basiert).
-
-**Warum kein PLY?** PLY hatte Probleme mit Error Recovery bei den vielen Sonderfällen der PDX-Syntax (Doppelpunkte in IDs, Operatoren, @Variablen).
-
-**Architektur:**
+### 3.5 Lokalisierungs-Parser
 
 ```python
-# Tokenizer
-class PdxLexer:
-    """Regex-basierter Tokenizer für PDX-Syntax."""
-    # Token-Typen: COMMENT, STRING, OPERATOR (>=, <=, >, <, =),
-    #              LBRACE, RBRACE, VARIABLE (@name), NUMBER, WORD
-    def tokenize(text) → list[Token]
-
-# Parser
-class PdxParser:
-    """Rekursiver Descent Parser."""
-    def parse(text) → list[dict]
-    # Erkennt automatisch:
-    # - key = value       → {'key': 'value'}
-    # - key = { ... }     → {'key': [nested...]}   (Block)
-    # - { val1 val2 }     → [val1, val2]           (Liste)
-
-# Hilfsfunktionen
-def get_value(data, key, default=None)   # Einzelwert
-def get_all_values(data, key)             # Alle Werte eines Keys
-def get_blocks(data, key)                 # Alle Blöcke eines Keys
+# parse_localisation.py
+# Parst .yml-Dateien aller 7 Sprachen
+# Regex: key:0 "value" oder key: "value"
+# Encoding: UTF-8-SIG mit latin-1 Fallback
+# Format-Codes (§R, §W, etc.) werden entfernt
+# $key$-Referenzen werden rekursiv aufgeloest (Loop-Protection)
 ```
 
-### 3.5 Event-Parser: `parse_events.py`
-
-Extrahiert alle Events aus den 430 Event-Dateien.
+### 3.6 Bildkonvertierung
 
 ```python
-# Pro Event extrahierte Felder:
-event = {
-    'id':               'STH_federation_flavour.100',
-    'type':             'country_event',
-    'namespace':        'STH_federation_flavour',
-    'source_file':      'STH_federation_flavour_events.txt',
-    'title':            'STH_federation_flavour.100.name',
-    'descriptions':     [{'text': 'loc_key', 'trigger': {...}}],
-    'picture':          'GFX_evt_federation_council',
-    'is_triggered_only': True,
-    'hide_window':      False,
-    'fire_only_once':   True,
-    'diplomatic':       False,
-    'trigger':          [...],
-    'immediate':        [...],
-    'after':            [...],
-    'mean_time_to_happen': [...],
-    'options':          [{
-        'name': 'loc_key',
-        'allow': [...],
-        'trigger': [...],
-        'ai_chance': [...],
-        'effects': [...],
-        'triggered_events': ['event.id1', 'event.id2']
-    }],
-    'triggered_events': ['event.id1', ...]
-}
+# convert_images.py
+# DDS -> WebP via ImageMagick (magick convert)
+# Animierte Sprites: Erster Frame zugeschnitten
+# Resize: 480px Breite, proportional, Qualitaet 80
+# Inkrementell: Nur neue/geaenderte Bilder
+# Voraussetzung: ImageMagick im PATH
 ```
-
-### 3.6 Lokalisierungs-Parser: `parse_localisation.py`
-
-```python
-def main() → (loc_data, stats):
-    """Parst .yml-Dateien aller 7 Sprachen.
-    Regex: key:0 "value" oder key: "value"
-    Encoding: UTF-8-SIG mit latin-1 Fallback
-    Format-Codes (§R, §W, etc.) werden entfernt.
-    $key$-Referenzen werden rekursiv aufgelöst.
-    Loop-Protection verhindert Endlos-Rekursion."""
-```
-
-**Bekanntes Problem:** Einige `.yml`-Dateien haben Encoding-Probleme. Der Parser versucht zuerst UTF-8-SIG, dann latin-1 als Fallback.
-
-### 3.7 GFX-Mapping-Parser: `parse_gfx_mappings.py`
-
-```python
-def main() → {sprite_name: {texturefile, frames}}
-    """Parst 45 .gfx-Dateien, extrahiert spriteType und
-    frameAnimatedSpriteType Blöcke.
-    Ergebnis: 3.960 Sprites, davon ~731 Event-Bilder."""
-```
-
-### 3.8 On-Actions-Parser: `parse_on_actions.py`
-
-```python
-def parse_on_actions() → {on_action_name: [event_ids]}
-    """Parst 18 On-Action-Dateien.
-    Unterstützt: events = { id1 id2 } und
-                 country_event = { id = X }"""
-```
-
-### 3.9 Event-Chains-Parser: `parse_event_chains.py`
-
-```python
-def parse_event_chains() → {chain_id: {title, desc, picture, icon, counters}}
-    """Parst 19 Event-Chain-Dateien."""
-```
-
-### 3.10 JSON-Generierung: `generate_events_json.py`
-
-Zentrale Datei für die Ausgabe-Generierung. Enthält auch die **Faction-Zuordnung**.
-
-```python
-FACTION_PATTERNS = {
-    'federation': ['federation', 'fed_', 'starfleet', 'earth_', 'human_'],
-    'klingon':    ['klingon', 'klg_'],
-    'romulan':    ['romulan', 'rom_', 'reman'],
-    'cardassian': ['cardassian', 'card_'],
-    'dominion':   ['dominion'],
-    'borg':       ['borg'],
-    'ferengi':    ['ferengi'],
-    'bajoran':    ['bajor'],
-    ...
-    'generic':    [],  # Fallback
-}
-
-def detect_faction(namespace) → str
-def detect_category(namespace, source_file) → str
-def generate_all() → stats
-```
-
-**Neue Faction hinzufügen:**
-1. Neuen Eintrag in `FACTION_PATTERNS` hinzufügen
-2. Pattern-Strings sind Teilstring-Matches auf den lowercased Namespace-Namen
-3. Frontend erkennt neue Factions automatisch (keine Änderung nötig)
-
-### 3.11 Beziehungs-Graph: `build_relationships.py`
-
-```python
-def build_relationships(events) → {event_id: {triggers: [...], triggered_by: [...]}}
-    """Baut bidirektionalen Trigger-Graph.
-    Berücksichtigt: Event-Level und Option-Level triggered_events."""
-```
-
-### 3.12 Bildkonvertierung: `convert_images.py`
-
-```python
-def convert_images() → stats:
-    """Konvertiert Event-referenzierte DDS-Bilder zu WebP.
-    Benötigt: ImageMagick (magick convert)
-
-    - Animierte Sprites (frames > 1): Erster Frame wird zugeschnitten
-    - Einzelbilder: Direkte Konvertierung
-    - Resize: 480px Breite, proportionale Höhe, Qualität 80
-    - Nur neue/geänderte Bilder werden konvertiert (Timestamp-Check)"""
-```
-
-**Voraussetzung:** [ImageMagick](https://imagemagick.org/) muss installiert sein (`magick` im PATH). Wird bei `--skip-images` übersprungen.
 
 ---
 
 ## 4. Frontend (HTML/CSS/JS)
 
-### 4.1 Seitenstruktur
+### 4.1 Seiten-Uebersicht
 
-Multi-Page-Website ohne Build-Tools, Frameworks oder npm. Vanilla HTML/CSS/JS.
+| Seite | Datei | Such-Input-ID | Tabs | Eigene Scripts |
+|---|---|---|---|---|
+| Hub | index.html | global-search-input | - | hub.js |
+| Events | events.html | search-input | - | events.js + 7 Event-Module |
+| Tech Tree | tech.html | search-input (Header) + tech-filter-input (Sidebar) | - | tech/main.js (ES Module, D3.js) |
+| Ships | ships.html | search-input | Ships, Components | ships.js |
+| Buildings | buildings.html | search-input | Buildings, Districts | buildings.js |
+| Traits | traits.html | search-input | Traits, Traditions, Perks | traits.js |
+| Governments | governments.html | search-input | Govs, Civics, Auth, Policies, Edicts | governments.js |
+| Megastructures | megastructures.html | search-input | Megastructures, Relics | megastructures.js |
+| Anomalies | anomalies.html | search-input | Anomalies, Archaeology | anomalies.js |
+| Empires | empires.html | search-input | Empires, Species | empires.js |
+| Economy | economy.html | search-input | Jobs, Deposits | economy.js |
 
-| Seite | Datei | Beschreibung |
-|---|---|---|
-| Hub | `index.html` | Landing Page mit Navigation zu allen Modulen |
-| Events | `events.html` | Event Browser mit Filter, Suche, Detail-Panel |
-| Tech Tree | `tech.html` | Interaktiver Techtree (D3.js, ~2.600 Techs, eigenes CSS/JS) |
-| Ships | `ships.html` | Ship sizes & component templates, Tab-Umschaltung, Filter |
-| Buildings | `buildings.html` | Buildings & districts, Kategorie-Filter |
-| Traits | `traits.html` | Traits, traditions & ascension perks, Class/Tree-Filter |
-| Governments | `governments.html` | Governments, civics, authorities, policies, edicts |
-| Megastructures | `megastructures.html` | Megastructures & relics, build stages, upgrades |
-| Anomalies | `anomalies.html` | Anomaly categories & archaeological sites, stages |
-| Empires | `empires.html` | Prescripted empires & species classes, ethics, civics |
-| Economy | `economy.html` | Pop jobs & deposits, categories, resources |
+Alle Seiten (ausser index.html) teilen dieselbe Grundstruktur:
+- Header (Logo, Suche, Sprach-Dropdown, Theme-Picker, Font-Size)
+- Wiki-Navigation (11 Links, Hamburger auf Mobile)
+- GlobalSearch-Results-Container (Overlay-Dropdown)
+- Filter-Bar (Tabs + modulspezifische Filter)
+- Content (Liste + Detail-Panel)
+- Footer
+
+**tech.html Sonderfall:** Hat zusaetzlich eigenes Inline-CSS (~780 Zeilen), eigene D3.js-Abhaengigkeit (CDN), einen minimalen I18n-Shim statt des vollen i18n.js, und laed D3 + ES-Module. Die Sidebar-Suche nutzt `#tech-filter-input` (nicht `#search-input`), damit kein Konflikt mit dem GlobalSearch im Header.
 
 ### 4.2 Shared Module
 
-#### `js/data.js` - DataManager
+#### `js/common.js` - Gemeinsame Initialisierung
 
-Asynchrones Laden und Caching aller Daten.
+```javascript
+const Common = (() => {
+    initTheme()          // Faction-Theme laden (9 Themes)
+    injectThemePicker()  // Theme-Dots in Header injizieren
+    initFontSize()       // Font-Size-Buttons (90%-160%)
+    initLangSelect()     // Sprach-Dropdown -> I18n.setLanguage()
+    initNavHighlight()   // Aktive Nav-Page markieren
+    initHamburger()      // Mobile Hamburger-Menue injizieren (< 768px)
+    initStickyNav()      // Header-Hoehe als CSS-Variable
+    applyUiStrings()     // data-i18n Attribute ausfuellen
+    initGlobalSearch()   // GlobalSearch-Overlay (alle Seiten ausser Hub)
+    // Hub handled GlobalSearch selbst in hub.js
+})();
+```
+
+#### `js/global-search.js` - Cross-Module Suche
+
+```javascript
+const GlobalSearch = (() => {
+    init()                        // Laedt search_index.json + module_pages.json
+    searchPreview(query, perType) // Live-Dropdown: max N pro Typ (schnell)
+    searchFull(query)             // Alle Treffer (Enter auf Hub)
+    getItemUrl(result)            // URL mit ?search= und ?tab= Parameter
+    getStats()                    // Item-Counts pro Typ
+    getTotalCount()               // Gesamt-Anzahl (~19.740)
+    getExpandedInfo(query)        // Faction-Synonym-Info fuer UI-Hint
+
+    // Prefix-basiert: ship:, event:, building:, trait:, civic:, mega:, ...
+    // Faction-Synonyme: fed -> federation, ufp, starfleet, ...
+})();
+```
+
+#### `js/data.js` - DataManager
 
 ```javascript
 const DataManager = (() => {
-    loadInitial()              // → Promise: events_index + namespaces + pictures_map
-    loadNamespaceDetail(ns)    // → Promise: Lazy-Load Detail-JSON
-    loadLocalisation(lang)     // → Promise: Lazy-Load Sprachdatei
-    loadRelationships()        // → Promise: Trigger-Graph
-    loadOnActions()            // → Promise: On-Action-Mappings
-    loadEventChains()          // → Promise: Event-Chains
-
-    getIndex()                 // → events_index Daten
-    getNamespaces()            // → namespaces Daten
-    getPictureUrl(gfxName)     // → WebP-Pfad oder null
+    loadJSON(url)              // Generischer JSON-Loader mit Cache
+    loadInitial()              // Events: events_index + namespaces + pictures_map
+    loadNamespaceDetail(ns)    // Lazy-Load Detail-JSON
+    loadLocalisation(lang)     // Lazy-Load Sprachdatei
+    loadRelationships()        // Trigger-Graph
+    loadOnActions()            // On-Action-Mappings
+    loadEventChains()          // Event-Chains
+    getIndex(), getNamespaces(), getPictureUrl(gfxName)
 })();
 ```
 
 #### `js/state.js` - AppState
 
-URL-synchronisierter State mit localStorage-Persistenz.
-
 ```javascript
 const AppState = (() => {
-    // State-Felder (URL-Parameter):
-    // search, type, faction, category, namespace, chain,
-    // showHidden, triggeredOnly, page, lang, selectedEvent, sort
-
+    // URL-synchronisierter State mit localStorage-Persistenz
     init()                     // URL-Parameter lesen
-    get(key)                   // Wert lesen
-    set(key, value)            // Wert setzen + URL aktualisieren
-    setMultiple(updates)       // Mehrere Werte + URL
-    onChange(callback)          // Listener registrieren
+    get(key), set(key, value)  // Lesen/Schreiben + URL
+    setMultiple(updates)       // Mehrere Werte
+    onChange(callback)          // Listener
 })();
 ```
 
@@ -524,170 +520,139 @@ const AppState = (() => {
 
 ```javascript
 const I18n = (() => {
-    setLanguage(lang)          // Sprachdatei laden
-    t(key)                     // Übersetzen (Fallback: Key selbst)
-    getLang()                  // Aktuelle Sprache
+    setLanguage(lang)   // Sprachdatei laden
+    t(key)              // Mod-Content uebersetzen (Fallback: Key selbst)
+    ui(key)             // UI-String aus UI_STRINGS
 })();
 ```
 
-#### `js/search.js` - SearchEngine
+#### `js/ui-strings.js` - UI-String-Definitionen
+
+310+ Keys fuer Navigation, Tabs, Filter, Labels, Suchfelder, Detail-Titel, Badges, Fehlermeldungen etc. Jeder Key hat mindestens `english` und `german`, manche alle 7 Sprachen.
+
+#### `js/humanize.js` - PDX-Syntax -> lesbarer Text
+
+Konvertiert PDX-Trigger/Effekt-Bloecke in menschenlesbare Saetze.
+
+#### `js/shared-render.js` - Gemeinsames Rendering
+
+Rendering-Funktionen die von allen 8 Content-Seiten (nicht Events, nicht Hub) geteilt werden:
+- Item-Cards, Detail-Panels, Pagination, Tab-Umschaltung
+- Humanisierte Modifier/Trigger/Effekte
+
+### 4.3 Page-Controller-Muster (Content-Seiten)
+
+Alle 8 Content-Seiten (ships, buildings, traits, governments, megastructures, anomalies, empires, economy) folgen demselben IIFE-Pattern:
 
 ```javascript
-const SearchEngine = (() => {
-    search(query, events)      // → Gefilterte Events
-    highlightText(text, query) // → HTML mit <mark>-Tags
+(async function initModuleName() {
+    AppState.init();
+    Common.init();
+    await I18n.setLanguage(AppState.get('lang'));
 
-    // Such-Modi:
-    // "id:xyz"      → Event-ID-Suche
-    // "ns:xyz"      → Namespace-Suche
-    // "faction:xyz" → Faction-Suche
-    // "xyz abc"     → Multi-Term AND über id, name, ns, snippet
+    // Daten laden
+    const data = await DataManager.loadJSON('assets/module.json');
+
+    // Tabs initialisieren
+    // Filter initialisieren
+    // Suche (lokaler Filter auf #search-input)
+    // Rendering (Liste + Detail-Panel)
+    // URL-Parameter auswerten (?search=, ?tab=)
 })();
 ```
 
-#### `js/common.js` - Gemeinsame Hilfsfunktionen
+### 4.4 Events-Module (nur events.html)
 
-Utility-Funktionen die von mehreren Modulen genutzt werden.
+| Modul | Funktion |
+|---|---|
+| chain-index.js | BFS Connected Components aus Trigger-Graph |
+| filters.js | AND-Filter-Pipeline: Type -> Faction -> Category -> Hidden -> Search -> Namespace -> Chain |
+| render.js | Event-Cards + Detail-HTML |
+| search.js | Event-spezifische Suche (id:, ns:, faction:, Multi-Term AND) |
+| ui/event-list.js | Paginierte Liste (100 pro Seite) |
+| ui/event-detail.js | Detail-Panel mit Bild, Meta, Beschreibung, Trigger, Optionen, Effekte |
+| ui/namespace-nav.js | Sidebar: Faction-Gruppen -> Namespaces -> Chains |
+| ui/chain-viewer.js | Modal: Rekursive Chain-Visualisierung |
 
-### 4.3 Event-Module
+### 4.5 Tech-Module (nur tech.html, aus git09)
 
-#### `js/chain-index.js` - Chain-Index
+Eigenes modulares System (ES Modules), komplett getrennt von den Wiki-Shared-Modulen:
 
-Baut Connected Components aus `relationships.json` und ermöglicht Chain-Navigation.
+| Modul | Funktion |
+|---|---|
+| tech/main.js | Einstiegspunkt, Orchestrierung |
+| tech/data.js | Daten laden (assets/tech/*.json) |
+| tech/render.js | D3.js SVG-Rendering + LOD (Level of Detail) |
+| tech/filters.js | Filter: Area, Category, Species, Faction, Tier-Range |
+| tech/search.js | Tech-Suche + Autocomplete |
+| tech/state.js | localStorage + URL-State |
+| tech/factions.js | Faction-Daten + Icon-Mappings |
+| tech/ui/events.js | DOM Event-Handler (alle Buttons, Inputs, Keyboard) |
+| tech/ui/layouts/ | 5 Layout-Engines: force, grid, tier, arrows, disjoint |
+| tech/ui/zoom.js | D3 Zoom + Pan |
+| tech/ui/popup.js | Tech-Path-Analyse Popup |
+| tech/ui/tabs.js | Sidebar-Tab-Umschaltung |
 
-```javascript
-const ChainIndex = (() => {
-    build(relationships)       // BFS: Connected Components aus Trigger-Graph
-    getChain(eventId)          // → {id, root, members[], size} oder null
-    getAllChains()              // → Alle Chains (nur ≥2 Events)
-    isBuilt()                  // → Boolean
-    getRelationships()         // → Gespeicherte Relationships-Daten
-
-    // Algorithmus:
-    // 1. Adjacency-Liste (undirected: triggers + triggered_by)
-    // 2. BFS → Connected Components
-    // 3. Root-Erkennung: Event mit wenigsten triggered_by
-    // 4. Topologische Sortierung (BFS vom Root, trigger-Kanten)
-    // 5. Nur Chains mit ≥2 Events werden indexiert
-})();
-```
-
-#### `js/filters.js` - Filter-Pipeline
-
-```javascript
-const Filters = (() => {
-    apply(events, state)       // → Gefilterte Events (AND-Logik)
-    populateDropdowns(events)  // → Dropdowns aus Daten befüllen
-    // Pipeline: Type → Faction → Category → Hidden → Search → Namespace → Chain
-})();
-```
-
-#### `js/render.js` - HTML-Rendering
-
-```javascript
-const Render = (() => {
-    eventCard(event, query)    // → HTML für Event-Karte
-    eventDetail(event, rels)   // → HTML für Detailansicht
-    // Detail enthält: Bild, Meta-Badges, Beschreibungen,
-    // Trigger, Immediate, Options, After, MTTH, Beziehungen
-})();
-```
-
-#### `js/ui/event-list.js` - Paginierte Event-Liste (100 pro Seite)
-#### `js/ui/event-detail.js` - Event-Detailansicht mit allen Feldern
-#### `js/ui/namespace-nav.js` - Sidebar mit Faction-Gruppierung und Chain-Navigation
-
-Die Sidebar zeigt unter jedem Namespace die zugehörigen Chains (via ChainIndex). Chains werden als ausklappbare Gruppen dargestellt mit Chain-Tiefe und Member-Anzahl. Klick auf eine Chain filtert die Event-Liste auf deren Members.
-
-#### `js/ui/chain-viewer.js` - Event-Chain-Visualisierung (rekursiver Tree-Build)
-
-### 4.4 Page-Controller
-
-#### `js/pages/hub.js` - Hub / Landing Page
-
-Initialisiert die Landing Page mit Navigationslinks zu allen Wiki-Modulen.
-
-#### `js/pages/events.js` - Event Browser
-
-Initialisiert den Event Browser:
-- DataManager.loadInitial()
-- I18n.setLanguage(default)
-- Event-Namen aus Loc-Keys auflösen
-- DataManager.loadRelationships() → ChainIndex.build()
-- Filter-Dropdowns befüllen (inkl. Chain-Filter)
-- Namespace-Sidebar rendern (mit Chain-Gruppen)
-- EventDetail + ChainViewer init
-- Initiales Rendering
-
-### 4.5 Design-System (`style.css`)
-
-```css
-/* Basis-Schriftgröße (dynamisch per JS steuerbar) */
-html { font-size: var(--base-font-size, 118%); }
-
-/* Farbschema */
---bg:      #111111        /* Hintergrund */
---text:    #e4e7eb        /* Text */
---accent:  #d1ce04        /* Gold (Primär) */
---surface: #1a1a1a        /* Karten-Hintergrund */
-
-/* Event-Typ-Farben */
-country:   #4a9eff  (Blau)
-ship:      #4aff7a  (Grün)
-planet:    #c97a3a  (Orange)
-fleet:     #ff9a4a  (Hell-Orange)
-situation: #a64aff  (Lila)
-observer:  #ff4a8a  (Pink)
-pop:       #4affc8  (Cyan)
-
-/* Schriftarten */
-federation-ds9-title.TTF    /* Star Trek Überschriften */
-Tungsten-Light.ttf          /* Badges und Labels */
-
-/* Responsive Breakpoints */
-@media (max-width: 1200px)  /* Sidebar verstecken */
-@media (max-width: 921px)   /* Detail-Panel untendrunter */
-@media (max-width: 544px)   /* Mobile Layout */
-```
-
-### Event Browser Layout
+### 4.6 Design-System (`style.css`)
 
 ```
-┌──────────────────────────────────────────────────┐
-│ Header: Logo | Suchfeld | Sprach-Dropdown | Text ±│
-├──────────────────────────────────────────────────┤
-│ Filter-Bar: Typ | Faction | Kategorie | Toggles  │
-├────────┬─────────────────────────┬───────────────┤
-│ Side-  │ Event-Liste             │ Event-Detail  │
-│ bar    │ (paginiert, 100/Seite)  │ (sticky)      │
-│        │                         │               │
-│ Fac-   │ [Card] [Card] [Card]    │ Bild          │
-│ tions  │ [Card] [Card] [Card]    │ Meta-Badges   │
-│  └ NS  │ [Card] [Card] [Card]    │ Beschreibung  │
-│  └ NS  │                         │ Trigger       │
-│   └ ⛓  │ Pagination              │ Optionen      │
-│        │                         │ Effekte       │
-├────────┴─────────────────────────┴───────────────┤
-│ Footer                                            │
-└──────────────────────────────────────────────────┘
+Theme:
+  --bg-primary: #111111
+  --bg-header: #161618
+  --bg-card: rgba(0,0,0,0.86)
+  --text-primary: #e4e7eb
+  --accent-gold: rgba(209,206,4,0.69)  (dynamisch per Faction-Theme)
+
+Schriftarten:
+  federation-ds9-title.TTF   (Ueberschriften)
+  Tungsten-Light.ttf         (Badges/Labels)
+
+Responsive Breakpoints:
+  768px  - Hamburger-Menue aktiv
+  921px  - Header wraps, Detail-Panel unter Liste
+  544px  - Filter vertikal, Thumbnails ausgeblendet
+  1200px - Sidebar schmaler
 ```
 
 ---
 
 ## 5. Generierte Assets
 
-| Datei | Größe | Inhalt |
+| Datei | Groesse | Inhalt |
 |---|---|---|
 | `events_index.json` | 2,6 MB | Alle Events (kompakt): id, name, type, ns, pic, snippet, flags |
-| `events_detail/{ns}.json` | ~4 MB | Volle Event-Daten pro Namespace (272 Dateien) |
-| `namespaces.json` | 44 KB | Namespace → faction, category, source_files, event_count |
-| `relationships.json` | 636 KB | Event-Trigger-Graph (bidirektional) |
-| `on_actions.json` | 32 KB | on_action → [event_ids] |
+| `events_detail/{ns}.json` | ~4 MB | Volle Event-Daten (272 Dateien) |
+| `namespaces.json` | 42 KB | Namespace -> faction, category, source_files, event_count |
+| `relationships.json` | 637 KB | Event-Trigger-Graph (bidirektional) |
+| `on_actions.json` | 30 KB | on_action -> [event_ids] |
 | `event_chains.json` | 12 KB | Chain-Definitionen |
-| `pictures_map.json` | 648 KB | GFX-Name → {texturefile, frames} (3.960 Sprites) |
+| `pictures_map.json` | 1,2 MB | GFX-Name -> {texturefile, frames} (3.960 Sprites) |
+| `ships.json` | 320 KB | Schiffe: Name, Klasse, Groesse, HP, Sektionen, Tech |
+| `components.json` | 4,9 MB | Komponenten: Name, Typ, Tier, Stats, Tech |
+| `buildings.json` | 506 KB | Gebaeude: Name, Kategorie, Kosten, Modifier, Jobs, Tech |
+| `districts.json` | 44 KB | Distrikte |
+| `traits.json` | 213 KB | Traits: Name, Typ, Kosten, Modifier, Gegensaetze |
+| `traditions.json` | 151 KB | Traditionen: Name, Baum, Stufe, Effekte |
+| `ascension_perks.json` | 34 KB | Aufstiegsvorteile |
+| `governments.json` | 60 KB | Regierungen |
+| `civics.json` | 159 KB | Buergerrechte |
+| `authorities.json` | 7,6 KB | Autoritaeten |
+| `policies.json` | 63 KB | Richtlinien |
+| `edicts.json` | 49 KB | Edikte |
+| `megastructures.json` | 160 KB | Megastrukturen: Stufen, Kosten, Effekte, Tech |
+| `relics.json` | 61 KB | Relikte: Passive/Aktive Effekte, Cooldown |
+| `anomalies.json` | 68 KB | Anomalien: Kategorie, Ergebnisse, Trigger |
+| `archaeology.json` | 25 KB | Archaeologie: Kapitel, Belohnungen |
+| `empires.json` | 115 KB | Imperien: Species, Ethik, Government, Origin |
+| `species.json` | 74 KB | Spezies: Archetyp, Portraits |
+| `jobs.json` | 219 KB | Berufe: Produktion, Konsum |
+| `deposits.json` | 237 KB | Lagerstetten |
+| `search_index.json` | 2,6 MB | Cross-Module Suchindex (~19.740 Items) |
+| `cross_references.json` | 303 KB | Bidirektionale Cross-Refs |
+| `module_pages.json` | 248 B | Modul -> HTML-Seite Mapping |
+| `last_update.json` | 2,5 MB | Timestamp + Statistiken |
 | `localisation/{lang}.json` | ~100 KB | Loc-Keys pro Sprache (~200k Keys) |
-| `last_update.json` | ~1 KB | Timestamp + Phasen-Statistiken |
-| `pictures/*.webp` | ~6 MB | WebP-Bilder (480×204, Q80) |
+| `pictures/*.webp` | ~12 MB | WebP-Bilder (480x204, Q80, 986 Dateien) |
 
 ---
 
@@ -699,187 +664,103 @@ Tungsten-Light.ttf          /* Badges und Labels */
 on:
   push:
     branches: [master]
-  workflow_dispatch:        # Manuell auslösbar
+  workflow_dispatch:        # Manuell ausloesbar
 
 jobs:
   deploy:
-    permissions:
-      pages: write
-      id-token: write
-      contents: read
-    steps:
-      - Checkout
-      - Setup Pages
-      - Upload artifact (ganzes Repo)
-      - Deploy to GitHub Pages
-
-concurrency:
-  group: "pages"            # Nur ein Deployment gleichzeitig
+    permissions: pages: write, id-token: write, contents: read
+    steps: Checkout -> Setup Pages -> Upload artifact -> Deploy
+    concurrency: group "pages" (nur ein Deployment gleichzeitig)
 ```
 
-**Trigger:** Jeder Push auf `master` startet automatisch das Deployment. Manuell über GitHub Actions "Run workflow" möglich.
+**Trigger:** Jeder Push auf `master` startet automatisch das Deployment.
 
 ---
 
 ## 7. Update-Workflow
 
-### Gesamt-Update (mit Bildern)
+### Gesamt-Update
 
 ```
-UPDATE.bat per Doppelklick starten
-  │
-  ├── python UPDATE_WIKI.py
-  │   ├── Phase 1: Pfade validieren
-  │   ├── Phase 2: 7 Sprachen parsen
-  │   ├── Phase 3: GFX Sprites parsen
-  │   ├── Phase 4: Events parsen + JSON generieren
-  │   ├── Phase 5: Content Module (Stub)
-  │   ├── Phase 6: Bilder konvertieren (DDS → WebP)
-  │   └── Phase 7: Zusammenfassung
-  │
-  ├── git add assets/ pictures/ icons/ fonts/
-  ├── git commit -m "Update STNH Wiki - {datum}"
-  └── git push → GitHub Pages Deployment
+UPDATE.bat (oder UPDATE_QUICK.bat ohne Bilder)
+  |
+  +-- python UPDATE_WIKI.py [--skip-images]
+  |   +-- Phase 1-7 (alle Module)
+  |
+  +-- git add assets/ pictures/ icons/ fonts/
+  +-- git commit -m "Update STNH Wiki - {datum}"
+  +-- git push -> GitHub Pages Deployment
 ```
 
-### Schnell-Update (ohne Bilder)
-
-```
-UPDATE_QUICK.bat per Doppelklick starten
-  │
-  ├── python UPDATE_WIKI.py --skip-images
-  ├── git add assets/
-  ├── git commit -m "Update STNH Wiki (quick) - {datum}"
-  └── git push
-```
-
-### Modul-Update (nur Events)
-
-```
-UPDATE_EVENTS.bat per Doppelklick starten
-  │
-  └── python UPDATE_EVENTS.py
-      ├── Phase 1: Pfade validieren
-      ├── Phase 2: Localisation parsen
-      ├── Phase 3: GFX Sprites parsen
-      ├── Phase 4: Events parsen + JSON generieren
-      └── Phase 6: Bilder konvertieren
-```
-
-### Modul-Update ohne Bilder
-
-```
-UPDATE_EVENTS_QUICK.bat per Doppelklick starten
-  │
-  └── python UPDATE_EVENTS.py --skip-images
-```
-
-### Selektive Updates via Master-Script
+### Selektive Updates
 
 ```bash
-python UPDATE_WIKI.py --only events       # Wie UPDATE_EVENTS.py
-python UPDATE_WIKI.py --only loc          # Nur Localisation
-python UPDATE_WIKI.py --only gfx          # Nur GFX-Mappings
-python UPDATE_WIKI.py --only images       # Nur Bildkonvertierung
-python UPDATE_WIKI.py --only events --skip-images  # Events ohne Bilder
-python UPDATE_WIKI.py --only techtree             # Techtree (stub - zeigt Hinweis)
+python UPDATE_WIKI.py --only events         # Nur Events
+python UPDATE_WIKI.py --only content        # Alle 8 Content-Module + Search
+python UPDATE_WIKI.py --only search         # Nur Suchindex + Cross-Refs
+python UPDATE_WIKI.py --only loc            # Nur Localisation
 ```
 
 ---
 
 ## 8. Konfiguration anpassen
 
-### Anderes System / andere Pfade
+### Anderes System
 
-Nur `update/config.py` ändern:
-
+Nur `update/config.py` aendern:
 ```python
-# Diese beiden Pfade anpassen:
-STNH_MOD_ROOT = r"D:\Games\Stellaris\mod\stnh"       # Mod-Verzeichnis
-WIKI_ROOT = r"D:\Projects\stnh_wiki"                  # Wiki-Repo
+STNH_MOD_ROOT = r"D:\Games\Stellaris\mod\stnh"
+WIKI_ROOT = r"D:\Projects\stnh_wiki"
 ```
 
-### Neue Sprache hinzufügen
+### Neue Sprache
 
-1. `config.py`: Sprache zu `LANGUAGES` und `LANGUAGE_SUFFIXES` hinzufügen
-2. Sicherstellen, dass `localisation/{neue_sprache}/` im Mod existiert
-3. `events.html`: `<option>` zum Sprach-Dropdown hinzufügen
+1. `config.py`: Sprache zu `LANGUAGES` hinzufuegen
+2. Sicherstellen, dass `localisation/{sprache}/` im Mod existiert
+3. Alle HTML-Dateien: `<option>` zum Sprach-Dropdown hinzufuegen
 
-### Neue Faction hinzufügen
+### Neue Faction
 
-1. `generate_events_json.py`: Eintrag zu `FACTION_PATTERNS` hinzufügen:
-   ```python
-   'neue_faction': ['pattern1', 'pattern2'],
-   ```
-2. Frontend erkennt neue Factions automatisch (dynamische Sidebar)
-
-### Neuen Event-Typ unterstützen
-
-1. `config.py`: Typ zu `EVENT_TYPES` hinzufügen
-2. `style.css`: Farbe für neuen Typ definieren:
-   ```css
-   .type-badge.neuer_event { background: #farbe; }
-   ```
-
-### Schriftgröße anpassen
-
-- **Benutzer:** Text −/+ Buttons im Header
-- **Entwickler:** Default in `style.css`:
-  ```css
-  html { font-size: var(--base-font-size, 118%); }
-  ```
-- **Bereich:** 90% – 160% (in 10%-Schritten)
-- **Persistenz:** `localStorage`
-
-### Bilder-Qualität / Größe ändern
-
-In `convert_images.py` die ImageMagick-Parameter anpassen:
-- Zielbreite: `480` (resize Parameter, Höhe proportional)
-- Qualität: `80` (quality Parameter)
+1. `generate_events_json.py`: Eintrag zu `FACTION_PATTERNS` hinzufuegen
+2. Frontend erkennt neue Factions automatisch
 
 ---
 
 ## 9. Erweiterung & Wartung
 
-### Neues Modul hinzufügen (Pipeline)
+### Neues Modul hinzufuegen (Pipeline)
 
-1. Neue Datei `update/parse_neues_ding.py` erstellen
-2. Funktion `main() → data` implementieren (parse_pdx.py als Basis nutzen)
+1. Parser: `update/parse_neues_ding.py` (nutzt parse_pdx.py)
+2. Generator: `update/generate_neues_ding_json.py`
 3. In `UPDATE_WIKI.py` neue Phase einbinden
-4. JSON-Ausgabe in `assets/` generieren
-5. Optional: Eigenen Modul-Updater `UPDATE_NEUES_DING.py` erstellen
+4. In `generate_search_index.py` neuen Typ hinzufuegen
 
-### Neues Modul hinzufügen (Frontend)
+### Neues Modul hinzufuegen (Frontend)
 
-1. Neue HTML-Seite erstellen (z.B. `ships.html`)
-2. Page-Controller `js/pages/ships.js` erstellen
-3. Modul als IIFE (Revealing Module Pattern):
-   ```javascript
-   const ShipsPage = (() => {
-       function init() { ... }
-       function render() { ... }
-       return { init, render };
-   })();
-   ```
-4. In HTML einbinden (shared modules + page-specific modules)
-5. Navigation im Hub (`index.html`) aktualisieren
+1. HTML: Kopie einer bestehenden Content-Seite (z.B. ships.html)
+2. Page-Controller: `js/pages/neues_ding.js` (IIFE-Pattern wie oben)
+3. Tab-Definitionen, Filter, Rendering
+4. Navigation: Links in allen 11 HTML-Dateien + Hub-Cards in index.html
+5. OG-Tags in neuem HTML hinzufuegen
 
-### Häufige Wartungsaufgaben
+### Haeufige Wartungsaufgaben
 
 | Aufgabe | Datei(en) |
 |---|---|
-| Faction falsch zugeordnet | `generate_events_json.py` → `FACTION_PATTERNS` |
-| Neue Events werden nicht erkannt | `parse_pdx.py` (Parser-Fehler?) oder `parse_events.py` |
-| Bilder fehlen | `parse_gfx_mappings.py` + `convert_images.py` prüfen |
-| Lokalisierung fehlt/falsch | `parse_localisation.py` (Encoding? $key$-Referenzen?) |
-| Filter funktioniert nicht | `js/filters.js` |
-| Styling anpassen | `style.css` |
+| Faction falsch zugeordnet | `generate_events_json.py` -> `FACTION_PATTERNS` |
+| Parser-Fehler | `parse_pdx.py` (Basis) oder modulspezifischer Parser |
+| Bilder fehlen | `parse_gfx_mappings.py` + `convert_images.py` |
+| Lokalisierung falsch | `parse_localisation.py` (Encoding? $key$-Referenzen?) |
+| UI-String fehlt | `js/ui-strings.js` (Key hinzufuegen, min. english + german) |
+| Neuer Suchprefix | `js/global-search.js` -> `TYPE_PREFIXES` |
+| Styling | `style.css` (38 KB, dark theme) |
 
-### Abhängigkeiten
+### Abhaengigkeiten
 
-| Abhängigkeit | Version | Zweck | Erforderlich? |
+| Abhaengigkeit | Version | Zweck | Erforderlich? |
 |---|---|---|---|
 | Python | 3.8+ | Pipeline | Ja |
-| ImageMagick | 7+ | DDS→WebP | Nur für Bilder |
+| ImageMagick | 7+ | DDS->WebP | Nur fuer Bilder |
+| D3.js | v7 (CDN) | Tech Tree Visualisierung | Nur tech.html |
 | Git | - | Deployment | Ja |
-| npm/Node | - | - | Nicht benötigt |
+| npm/Node | - | - | Nicht benoetigt |

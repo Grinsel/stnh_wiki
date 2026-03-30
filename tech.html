@@ -3,7 +3,12 @@
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STNH Wiki - Tech Tree</title>
+    <title>Tech Tree - ST:NH Wiki</title>
+    <meta name="description" content="Interactive technology tree with ~2,600 techs. Explore prerequisites, unlocks, and faction-specific research paths.">
+    <meta property="og:title" content="Tech Tree - ST:NH Wiki">
+    <meta property="og:description" content="Interactive technology tree with ~2,600 techs. Explore prerequisites, unlocks, and faction-specific research paths.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ST:NH Wiki">
     <link rel="icon" type="image/png" href="assets/tech/PDGIco.png">
     <script>
         (function() {
@@ -805,7 +810,19 @@
             <div class="site-title">
                 <h1>ST:NH <span class="accent">Wiki</span></h1>
             </div>
+            <div class="header-search">
+                <input type="text" id="search-input" placeholder="Search all wiki..." data-i18n-placeholder="ui.search.global" autocomplete="off">
+            </div>
             <div class="header-controls">
+                <select id="lang-select" title="Language">
+                    <option value="english">English</option>
+                    <option value="german">Deutsch</option>
+                    <option value="french">Fran&ccedil;ais</option>
+                    <option value="spanish">Espa&ntilde;ol</option>
+                    <option value="russian">&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;</option>
+                    <option value="polish">Polski</option>
+                    <option value="braz_por">Portugu&ecirc;s</option>
+                </select>
                 <div class="font-size-control" title="Text Size">
                     <span class="font-size-label">Text</span>
                     <button id="font-size-down" aria-label="Decrease text size">&minus;</button>
@@ -831,6 +848,9 @@
             <a href="economy.html" class="nav-link" data-i18n="ui.nav.economy">Economy</a>
         </div>
     </nav>
+
+    <!-- Global Search Results -->
+    <div id="global-search-results" class="global-search-results hidden"></div>
 
     <!-- Tech Sub-Header -->
     <div class="tech-header">
@@ -936,8 +956,8 @@
                             </select>
                         </div>
                         <button id="show-tier-button" style="width: 100%;">Show Tier Range</button>
-                        <label for="search-input" class="filters-divider">Search: (any word or number)</label>
-                        <input type="text" id="search-input" placeholder="Enter tech name...">
+                        <label for="tech-filter-input" class="filters-divider">Search: (any word or number)</label>
+                        <input type="text" id="tech-filter-input" placeholder="Enter tech name...">
                         <div class="search-options">
                             <label for="search-scope-toggle" style="margin: 0;">Search All Techs</label>
                             <label class="switch">
@@ -1094,19 +1114,24 @@
             </div>
         </div>
     </div>
+    <script src="js/data.js"></script>
     <script src="js/state.js"></script>
     <script src="js/ui-strings.js"></script>
     <script>
         // Minimal I18n for tech page (no full localisation needed)
         if (typeof I18n === 'undefined') {
-            var I18n = { ui: function(key) {
-                var lang = (typeof AppState !== 'undefined' && AppState.get) ? AppState.get('lang') : 'english';
-                var entry = (typeof UI_STRINGS !== 'undefined') ? UI_STRINGS[key] : null;
-                if (!entry) return key;
-                return entry[lang] || entry['english'] || key;
-            }};
+            var I18n = {
+                ui: function(key) {
+                    var lang = (typeof AppState !== 'undefined' && AppState.get) ? AppState.get('lang') : 'english';
+                    var entry = (typeof UI_STRINGS !== 'undefined') ? UI_STRINGS[key] : null;
+                    if (!entry) return key;
+                    return entry[lang] || entry['english'] || key;
+                },
+                setLanguage: function() { return Promise.resolve(); }
+            };
         }
     </script>
+    <script src="js/global-search.js"></script>
     <script src="js/common.js"></script>
     <script>AppState.init(); Common.init();</script>
     <script src="https://d3js.org/d3.v7.min.js"></script>

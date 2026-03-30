@@ -67,7 +67,7 @@ export function saveState() {
     area: document.getElementById("area-select").value,
     category: document.getElementById("category-select").value,
     layout: document.getElementById("layout-select").value,
-    search: document.getElementById("search-input").value,
+    search: document.getElementById("tech-filter-input").value,
     tierStart: document.getElementById("start-tier-select").value,
     tierEnd: document.getElementById("end-tier-select").value,
     focus: window.currentFocusId || null,
@@ -88,7 +88,7 @@ export function applyState(state) {
   document.getElementById("area-select").value = state.area;
   document.getElementById("category-select").value = state.category;
   document.getElementById("layout-select").value = state.layout;
-  document.getElementById("search-input").value = state.search;
+  document.getElementById("tech-filter-input").value = state.search;
   document.getElementById("start-tier-select").value = state.tierStart;
   document.getElementById("end-tier-select").value = state.tierEnd;
   const perf = document.getElementById("performance-toggle");

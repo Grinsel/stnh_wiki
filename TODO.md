@@ -281,6 +281,11 @@
   - Wiki-Techtree verifizieren (Feature-Parität mit git09)
   - git09 archivieren / Redirect auf Wiki setzen
 
+- [ ] **11.6 Tech Tree Lokalisierung**
+  - Techtree aus git09 importiert, hat nur englische Einträge
+  - Lokalisierungsdaten für Techs aus git01 localisation/ extrahieren
+  - 7-Sprachen-Support wie bei allen anderen Modulen
+
 ---
 
 ## Zukünftige Ideen (Backlog)

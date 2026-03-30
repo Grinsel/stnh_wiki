@@ -101,6 +101,46 @@ const Common = (() => {
         });
     }
 
+    function initHamburger() {
+        const nav = document.getElementById('wiki-nav');
+        if (!nav) return;
+        const navInner = nav.querySelector('.nav-inner');
+        if (!navInner) return;
+
+        const btn = document.createElement('button');
+        btn.className = 'hamburger-btn';
+        btn.setAttribute('aria-label', 'Toggle navigation');
+        btn.innerHTML = '<span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span>';
+        nav.insertBefore(btn, navInner);
+
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const open = navInner.classList.toggle('nav-open');
+            btn.classList.toggle('active', open);
+        });
+
+        navInner.addEventListener('click', (e) => {
+            if (e.target.classList.contains('nav-link')) {
+                navInner.classList.remove('nav-open');
+                btn.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!nav.contains(e.target)) {
+                navInner.classList.remove('nav-open');
+                btn.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                navInner.classList.remove('nav-open');
+                btn.classList.remove('active');
+            }
+        });
+    }
+
     function initStickyNav() {
         const header = document.getElementById('masthead');
         if (!header) return;
@@ -123,14 +163,109 @@ const Common = (() => {
         });
     }
 
+    function esc(s) {
+        if (s == null) return '';
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function initGlobalSearch() {
+        if (typeof GlobalSearch === 'undefined') return;
+        // Hub page handles GlobalSearch via hub.js — skip to avoid duplicate listeners
+        if (document.getElementById('hub-content')) return;
+
+        const input = document.getElementById('search-input');
+        if (!input) return;
+
+        let container = document.getElementById('global-search-results');
+        if (!container) return;
+
+        let ready = false;
+        GlobalSearch.init().then(ok => {
+            ready = ok;
+            if (ok && typeof GlobalSearch.setLocReady === 'function') {
+                GlobalSearch.setLocReady(true);
+            }
+        });
+
+        let timer;
+
+        input.addEventListener('input', () => {
+            if (!ready) return;
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                const q = input.value.trim();
+                if (q.length < 2) { hideGlobalPreview(); return; }
+                renderGlobalPreview(q);
+            }, 150);
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') hideGlobalPreview();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!input.contains(e.target) && !container.contains(e.target)) {
+                hideGlobalPreview();
+            }
+        });
+
+        function hideGlobalPreview() {
+            container.classList.add('hidden');
+            container.innerHTML = '';
+        }
+
+        function renderGlobalPreview(query) {
+            const results = GlobalSearch.searchPreview(query, 3);
+            if (!results.length) {
+                container.innerHTML = '<div class="search-results-inner"><div class="search-no-results">' + (typeof I18n !== 'undefined' ? I18n.ui('ui.empty.no_results') : 'No results found') + '</div></div>';
+                container.classList.remove('hidden');
+                return;
+            }
+
+            const grouped = {};
+            for (const r of results) {
+                const key = r.label;
+                if (!grouped[key]) grouped[key] = { items: [], total: 0 };
+                grouped[key].items.push(r);
+                grouped[key].total = r._totalForType || grouped[key].items.length;
+            }
+
+            const uiStr = (k) => typeof I18n !== 'undefined' && I18n.ui ? I18n.ui(k) : k;
+            const totalMatches = Object.values(grouped).reduce((s, g) => s + g.total, 0);
+
+            let html = '<div class="search-results-inner">';
+            html += '<div class="search-results-header">' + uiStr('ui.search.global_results') + ' &mdash; ' + totalMatches + ' ' + (totalMatches !== 1 ? uiStr('ui.search.matches_plural') : uiStr('ui.search.matches')) + '</div>';
+
+            for (const [typeName, group] of Object.entries(grouped)) {
+                html += '<div class="search-group">';
+                html += '<div class="search-group-title">' + esc(typeName) + ' (' + group.total + ')</div>';
+                for (const item of group.items) {
+                    const url = GlobalSearch.getItemUrl(item);
+                    const name = item.name || item.id;
+                    html += '<a href="' + esc(url) + '" class="search-result-item">';
+                    html += '<span class="search-result-name">' + esc(name) + '</span>';
+                    html += '<span class="search-result-id">' + esc(item.id) + '</span>';
+                    html += '</a>';
+                }
+                html += '</div>';
+            }
+
+            html += '</div>';
+            container.innerHTML = html;
+            container.classList.remove('hidden');
+        }
+    }
+
     function init() {
         initTheme();
         injectThemePicker();
         initFontSize();
         initLangSelect();
         initNavHighlight();
+        initHamburger();
         initStickyNav();
         applyUiStrings();
+        initGlobalSearch();
     }
 
     return { init, applyUiStrings };
