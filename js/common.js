@@ -151,7 +151,10 @@ const Common = (() => {
             const nh = nav ? nav.offsetHeight : 0;
             document.documentElement.style.setProperty('--header-height', hh + 'px');
             if (nav) document.documentElement.style.setProperty('--nav-height', nh + 'px');
-            if (filterBar) document.documentElement.style.setProperty('--filter-bar-top', (hh + nh) + 'px');
+            if (filterBar) {
+                document.documentElement.style.setProperty('--filter-bar-top', (hh + nh) + 'px');
+                document.documentElement.style.setProperty('--detail-top', (hh + nh + filterBar.offsetHeight) + 'px');
+            }
         };
         update();
         window.addEventListener('resize', update);

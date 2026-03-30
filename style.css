@@ -1540,10 +1540,11 @@ body.in-iframe #site-footer {
 .content-layout #detail-panel {
     flex: 2;
     min-width: 0;
-    max-height: calc(100vh - 160px);
+    max-height: calc(100vh - var(--detail-top, 130px) - 2rem);
     overflow-y: auto;
     position: sticky;
-    top: 80px;
+    top: calc(var(--detail-top, 130px) + 1rem);
+    align-self: flex-start;
     background: var(--bg-card);
     border-radius: 6px;
     padding: 1rem;
