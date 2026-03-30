@@ -11,9 +11,11 @@ from config import MOD_BUILDINGS_DIR
 
 def extract_building(building_id, block, source_file):
     """Extract structured data from a building block."""
+    icon_key = get_value(block, 'icon') or building_id
     return {
         'id': building_id,
         'name_key': building_id,
+        'icon_key': icon_key,
         'category': get_value(block, 'category') or '',
         'base_buildtime': get_value(block, 'base_buildtime'),
         'base_cap_amount': get_value(block, 'base_cap_amount'),

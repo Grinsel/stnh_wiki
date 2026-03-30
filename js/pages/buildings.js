@@ -12,6 +12,18 @@
     const searchInput = document.getElementById('search-input');
     searchInput.value = AppState.get('search');
 
+    const CATEGORY_LABELS = {
+        amenity:       'Amenity',
+        army:          'Army',
+        government:    'Government',
+        manufacturing: 'Manufacturing',
+        pop_assembly:  'Pop Assembly',
+        research:      'Research',
+        resource:      'Resource',
+        trade:         'Trade',
+        unity:         'Unity',
+    };
+
     try {
         const [buildings, districts] = await Promise.all([
             DataManager.loadJSON('assets/buildings.json'),
@@ -22,10 +34,22 @@
         for (const item of buildings) item.name = I18n.t(item.name_key) || item.id;
         for (const item of districts) item.name = I18n.t(item.name_key) || item.id;
 
-        // Populate category dropdown
-        const categories = [...new Set(buildings.map(b => b.category).filter(Boolean))].sort();
-        const catSel = document.getElementById('filter-category');
-        for (const c of categories) catSel.add(new Option(c, c));
+        // Build category counts
+        const catCounts = {};
+        for (const b of buildings) { if (b.category) catCounts[b.category] = (catCounts[b.category] || 0) + 1; }
+
+        const categoryCategories = Object.keys(catCounts).sort().map(v => ({
+            value: v,
+            label: CATEGORY_LABELS[v] || v,
+            count: catCounts[v],
+        }));
+
+        const categoryChips = CategoryChips.create({
+            container: document.getElementById('filter-category-chips'),
+            categories: categoryCategories,
+            allLabel: 'All Categories',
+            onChange: () => { currentPage = 1; renderAll(); },
+        });
 
         let activeTab = 'buildings';
         let currentPage = 1;
@@ -38,7 +62,7 @@
                 btn.classList.add('active');
                 activeTab = btn.dataset.tab;
                 currentPage = 1;
-                document.getElementById('filter-category-group').classList.toggle('hidden', activeTab !== 'buildings');
+                document.getElementById('filter-category-chips').classList.toggle('hidden', activeTab !== 'buildings');
                 renderAll();
             });
         });
@@ -51,9 +75,12 @@
 
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
-            let html = `<div class="detail-meta">`;
+            const iconHtml = item.icon_key
+                ? `<img class="detail-icon" src="icons/buildings/${esc(item.icon_key)}.webp" alt="" onerror="this.style.display='none'">`
+                : '';
+            let html = `<div class="detail-meta" style="align-items:center">${iconHtml}`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id') + ': '}${esc(item.id)}</span>`;
-            if (item.category) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.category') + ': '}${esc(item.category)}</span>`;
+            if (item.category) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.category') + ': '}${esc(CATEGORY_LABELS[item.category] || item.category)}</span>`;
             if (item.base_buildtime) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.build_time') + ': '}${item.base_buildtime}</span>`;
             if (item.capital) html += `<span class="detail-meta-item">${I18n.ui('ui.badge.capital')}</span>`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file') + ': '}${esc(item.source_file)}</span>`;
@@ -97,8 +124,6 @@
             }, 200);
         });
 
-        catSel.addEventListener('change', () => { currentPage = 1; renderAll(); });
-
         document.addEventListener('wiki-lang-changed', () => {
             for (const item of buildings) item.name = I18n.t(item.name_key) || item.id;
             for (const item of districts) item.name = I18n.t(item.name_key) || item.id;
@@ -114,7 +139,7 @@
             items = items.filter(item => {
                 if (query && !(item.name || '').toLowerCase().includes(query) && !item.id.toLowerCase().includes(query)) return false;
                 if (activeTab === 'buildings') {
-                    const cat = catSel.value;
+                    const cat = categoryChips.getActive();
                     if (cat && item.category !== cat) return false;
                 }
                 return true;
@@ -130,14 +155,18 @@
 
             let html = '';
             for (const item of pageItems) {
+                const iconCol = item.icon_key
+                    ? `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/buildings/${esc(item.icon_key)}.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`
+                    : '';
                 html += `<div class="item-card" data-id="${esc(item.id)}">
+                    ${iconCol}
                     <div class="item-card-body">
                         <div class="item-card-header">
                             <span class="item-card-name">${esc(item.name || item.id)}</span>
                             <span class="item-card-id">${esc(item.id)}</span>
                         </div>
                         <div class="item-card-meta">`;
-                if (item.category) html += `<span class="detail-meta-item">${esc(item.category)}</span>`;
+                if (item.category) html += `<span class="detail-meta-item">${esc(CATEGORY_LABELS[item.category] || item.category)}</span>`;
                 if (item.base_buildtime) html += `<span class="detail-meta-item">${I18n.ui('ui.card.build') + ':'} ${item.base_buildtime}</span>`;
                 if (item.prerequisites && item.prerequisites.length) html += `<span class="detail-meta-item">${I18n.ui('ui.card.tech') + ':'} ${item.prerequisites.length}</span>`;
                 html += `</div></div></div>`;

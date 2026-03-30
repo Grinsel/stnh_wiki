@@ -143,12 +143,22 @@ const Common = (() => {
 
     function initStickyNav() {
         const header = document.getElementById('masthead');
+        const nav = document.getElementById('wiki-nav');
+        const filterBar = document.getElementById('filter-bar');
         if (!header) return;
         const update = () => {
-            document.documentElement.style.setProperty('--header-height', header.offsetHeight + 'px');
+            const hh = header.offsetHeight;
+            const nh = nav ? nav.offsetHeight : 0;
+            document.documentElement.style.setProperty('--header-height', hh + 'px');
+            if (nav) document.documentElement.style.setProperty('--nav-height', nh + 'px');
+            if (filterBar) document.documentElement.style.setProperty('--filter-bar-top', (hh + nh) + 'px');
         };
         update();
         window.addEventListener('resize', update);
+        // Re-measure after custom fonts load — they can change header/nav height
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(update);
+        }
     }
 
     function applyUiStrings() {

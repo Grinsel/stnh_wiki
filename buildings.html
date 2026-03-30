@@ -67,12 +67,7 @@
                 <button class="tab-btn active" data-tab="buildings" data-i18n="ui.tab.buildings">Buildings</button>
                 <button class="tab-btn" data-tab="districts" data-i18n="ui.tab.districts">Districts</button>
             </div>
-            <div class="filter-group" id="filter-category-group">
-                <label data-i18n="ui.filter.category">Category</label>
-                <select id="filter-category">
-                    <option value="" data-i18n="ui.filter.all_categories">All Categories</option>
-                </select>
-            </div>
+            <div id="filter-category-chips" class="cat-chip-bar"></div>
             <div class="filter-stats" id="filter-stats">Loading...</div>
         </div>
     </div>
@@ -103,6 +98,7 @@
     <script src="js/global-search.js"></script>
     <script src="js/common.js"></script>
     <script src="js/humanize.js"></script>
+    <script src="js/ui/category-chips.js"></script>
     <script src="js/shared-render.js"></script>
     <script src="js/pages/buildings.js"></script>
 </body>

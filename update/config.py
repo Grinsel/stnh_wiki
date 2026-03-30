@@ -33,6 +33,8 @@ MOD_GFX_EVENT_PICTURES = os.path.join(STNH_MOD_ROOT, "gfx", "event_pictures")
 
 VANILLA_INTERFACE_DIR = os.path.join(VANILLA_ROOT, "interface")
 VANILLA_GFX_EVENT_PICTURES = os.path.join(VANILLA_ROOT, "gfx", "event_pictures")
+VANILLA_LOCALISATION_DIR = os.path.join(VANILLA_ROOT, "localisation")
+VANILLA_BUILDINGS_DIR = os.path.join(VANILLA_ROOT, "common", "buildings")
 
 # ==========================================
 # SOURCE PATHS (READ-ONLY) - Future Phases

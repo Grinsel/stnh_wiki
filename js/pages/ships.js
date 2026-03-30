@@ -12,6 +12,38 @@
     const searchInput = document.getElementById('search-input');
     searchInput.value = AppState.get('search');
 
+    // Human-readable labels for ship class keys
+    const CLASS_LABELS = {
+        shipclass_military:           'Military',
+        shipclass_starbase:           'Starbase',
+        shipclass_science_ship:       'Science',
+        shipclass_colonizer:          'Colonizer',
+        shipclass_constructor:        'Constructor',
+        shipclass_transport:          'Transport',
+        shipclass_mining_station:     'Mining Station',
+        shipclass_research_station:   'Research Station',
+        shipclass_observation_station:'Observation Station',
+        shipclass_military_station:   'Military Station',
+    };
+
+    const COMPTYPE_LABELS = {
+        weapon:       'Weapon',
+        utility:      'Utility',
+        strike_craft: 'Strike Craft',
+    };
+
+    const SIZE_LABELS = {
+        small:          'Small',
+        medium:         'Medium',
+        large:          'Large',
+        extra_large:    'Extra Large',
+        titanic:        'Titanic',
+        torpedo:        'Torpedo',
+        point_defence:  'Point Defence',
+        aux:            'Aux',
+        planet_killer:  'Planet Killer',
+    };
+
     try {
         const [ships, components] = await Promise.all([
             DataManager.loadJSON('assets/ships.json'),
@@ -27,24 +59,82 @@
             item.name = I18n.t(item.name_key) || item.id;
         }
 
-        // Populate class dropdown
-        const classes = [...new Set(ships.map(s => s.class).filter(Boolean))].sort();
-        const classSel = document.getElementById('filter-class');
-        for (const c of classes) {
-            classSel.add(new Option(c, c));
-        }
-
-        // Populate size dropdown (components)
-        const sizes = [...new Set(components.map(c => c.size).filter(Boolean))].sort();
-        const sizeSel = document.getElementById('filter-size');
-        for (const s of sizes) {
-            sizeSel.add(new Option(s, s));
-        }
-
         // State
         let activeTab = 'ships';
         let currentPage = 1;
         const PAGE_SIZE = 100;
+
+        // --- Build class chip counts ---
+        function classCountMap() {
+            const m = {};
+            for (const s of ships) { if (s.class) m[s.class] = (m[s.class] || 0) + 1; }
+            return m;
+        }
+        function comptypeCountMap() {
+            const m = {};
+            for (const c of components) { if (c.type) m[c.type] = (m[c.type] || 0) + 1; }
+            return m;
+        }
+
+        // Build size count map optionally filtered by a component type
+        function sizeCountMap(filterType) {
+            const m = {};
+            for (const c of components) {
+                if (filterType && c.type !== filterType) continue;
+                const s = c.size ? c.size.toLowerCase() : null;
+                if (s) m[s] = (m[s] || 0) + 1;
+            }
+            return m;
+        }
+
+        // Build size category list from a count map
+        function sizeCategoriesFromCounts(counts) {
+            return Object.keys(counts).sort().map(v => ({
+                value: v,
+                label: SIZE_LABELS[v] || v,
+                count: counts[v],
+            }));
+        }
+
+        const classCounts = classCountMap();
+        const comptypeCounts = comptypeCountMap();
+
+        const classCategories = Object.keys(classCounts).sort().map(v => ({
+            value: v,
+            label: CLASS_LABELS[v] || v,
+            count: classCounts[v],
+        }));
+        const comptypeCategories = ['weapon', 'utility', 'strike_craft']
+            .filter(v => comptypeCounts[v])
+            .map(v => ({ value: v, label: COMPTYPE_LABELS[v] || v, count: comptypeCounts[v] }));
+
+        // --- Init chip bars ---
+        const classChips = CategoryChips.create({
+            container: document.getElementById('filter-class-chips'),
+            categories: classCategories,
+            allLabel: 'All Classes',
+            onChange: () => { currentPage = 1; renderAll(); },
+        });
+
+        const sizeChips = CategoryChips.create({
+            container: document.getElementById('filter-size-chips'),
+            categories: sizeCategoriesFromCounts(sizeCountMap(null)),
+            allLabel: 'All Sizes',
+            onChange: () => { currentPage = 1; renderAll(); },
+        });
+
+        const comptypeChips = CategoryChips.create({
+            container: document.getElementById('filter-comptype-chips'),
+            categories: comptypeCategories,
+            allLabel: 'All Types',
+            onChange: (typeValue) => {
+                // Rebuild size chips filtered to the selected type
+                const newSizeCounts = sizeCountMap(typeValue || null);
+                sizeChips.rebuild(sizeCategoriesFromCounts(newSizeCounts));
+                currentPage = 1;
+                renderAll();
+            },
+        });
 
         // Tab switching
         document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -54,10 +144,9 @@
                 activeTab = btn.dataset.tab;
                 currentPage = 1;
 
-                // Show/hide filters per tab
-                document.getElementById('filter-class-group').classList.toggle('hidden', activeTab !== 'ships');
-                document.getElementById('filter-size-group').classList.toggle('hidden', activeTab !== 'components');
-                document.getElementById('filter-comptype-group').classList.toggle('hidden', activeTab !== 'components');
+                document.getElementById('filter-class-chips').classList.toggle('hidden', activeTab !== 'ships');
+                document.getElementById('filter-comptype-chips').classList.toggle('hidden', activeTab !== 'components');
+                document.getElementById('filter-size-chips').classList.toggle('hidden', activeTab !== 'components');
                 renderAll();
             });
         });
@@ -139,11 +228,6 @@
             }, 200);
         });
 
-        // Filter changes
-        classSel.addEventListener('change', () => { currentPage = 1; renderAll(); });
-        sizeSel.addEventListener('change', () => { currentPage = 1; renderAll(); });
-        document.getElementById('filter-comptype').addEventListener('change', () => { currentPage = 1; renderAll(); });
-
         // Language change
         document.addEventListener('wiki-lang-changed', () => {
             for (const item of ships) item.name = I18n.t(item.name_key) || item.id;
@@ -161,13 +245,13 @@
             items = items.filter(item => {
                 if (query && !(item.name || '').toLowerCase().includes(query) && !item.id.toLowerCase().includes(query)) return false;
                 if (activeTab === 'ships') {
-                    const cls = classSel.value;
+                    const cls = classChips.getActive();
                     if (cls && item.class !== cls) return false;
                 } else {
-                    const size = sizeSel.value;
-                    if (size && item.size !== size) return false;
-                    const compType = document.getElementById('filter-comptype').value;
+                    const compType = comptypeChips.getActive();
                     if (compType && item.type !== compType) return false;
+                    const size = sizeChips.getActive();
+                    if (size && (item.size || '').toLowerCase() !== size) return false;
                 }
                 return true;
             });
@@ -193,9 +277,9 @@
                             <span class="item-card-id">${esc(item.id)}</span>
                         </div>
                         <div class="item-card-meta">`;
-                if (item.class) html += `<span class="detail-meta-item">${esc(item.class)}</span>`;
-                if (item.type) html += `<span class="detail-meta-item">${esc(item.type)}</span>`;
-                if (item.size) html += `<span class="detail-meta-item">${esc(item.size)}</span>`;
+                if (item.class) html += `<span class="detail-meta-item">${esc(CLASS_LABELS[item.class] || item.class)}</span>`;
+                if (item.type) html += `<span class="detail-meta-item">${esc(COMPTYPE_LABELS[item.type] || item.type)}</span>`;
+                if (item.size) html += `<span class="detail-meta-item">${esc(SIZE_LABELS[(item.size || '').toLowerCase()] || item.size)}</span>`;
                 if (item.prerequisites && item.prerequisites.length) html += `<span class="detail-meta-item">${I18n.ui('ui.card.tech')}: ${item.prerequisites.length}</span>`;
                 html += `</div></div></div>`;
             }

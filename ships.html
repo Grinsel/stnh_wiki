@@ -67,27 +67,9 @@
                 <button class="tab-btn active" data-tab="ships" data-i18n="ui.tab.ships">Ships</button>
                 <button class="tab-btn" data-tab="components" data-i18n="ui.tab.components">Components</button>
             </div>
-            <div class="filter-group" id="filter-class-group">
-                <label data-i18n="ui.filter.class">Class</label>
-                <select id="filter-class">
-                    <option value="" data-i18n="ui.filter.all_classes">All Classes</option>
-                </select>
-            </div>
-            <div class="filter-group hidden" id="filter-size-group">
-                <label data-i18n="ui.filter.size">Size</label>
-                <select id="filter-size">
-                    <option value="" data-i18n="ui.filter.all_sizes">All Sizes</option>
-                </select>
-            </div>
-            <div class="filter-group hidden" id="filter-comptype-group">
-                <label data-i18n="ui.filter.type">Type</label>
-                <select id="filter-comptype">
-                    <option value="" data-i18n="ui.filter.all_types">All Types</option>
-                    <option value="weapon">Weapon</option>
-                    <option value="utility">Utility</option>
-                    <option value="strike_craft">Strike Craft</option>
-                </select>
-            </div>
+            <div id="filter-class-chips" class="cat-chip-bar"></div>
+            <div id="filter-comptype-chips" class="cat-chip-bar hidden"></div>
+            <div id="filter-size-chips" class="cat-chip-bar hidden"></div>
             <div class="filter-stats" id="filter-stats">Loading...</div>
         </div>
     </div>
@@ -118,6 +100,7 @@
     <script src="js/global-search.js"></script>
     <script src="js/common.js"></script>
     <script src="js/humanize.js"></script>
+    <script src="js/ui/category-chips.js"></script>
     <script src="js/shared-render.js"></script>
     <script src="js/pages/ships.js"></script>
 </body>

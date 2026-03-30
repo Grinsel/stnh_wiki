@@ -10,7 +10,7 @@ import json
 import codecs
 from config import (
     MOD_LOCALISATION_DIR, OUTPUT_LOCALISATION_DIR,
-    LANGUAGES, LANGUAGE_SUFFIXES
+    LANGUAGES, LANGUAGE_SUFFIXES, VANILLA_LOCALISATION_DIR
 )
 
 # Regex to strip Stellaris format codes: §R, §G, §!, £energy, etc.
@@ -93,25 +93,30 @@ def parse_all_languages():
     stats = {}
 
     for lang in LANGUAGES:
-        lang_dir = os.path.join(MOD_LOCALISATION_DIR, lang)
-        suffix = LANGUAGE_SUFFIXES[lang]
-
-        if not os.path.isdir(lang_dir):
-            print(f"  [WARN] Language directory not found: {lang_dir}")
-            all_loc[lang] = {}
-            stats[lang] = 0
-            continue
-
         lang_data = {}
         file_count = 0
 
-        for fn in sorted(os.listdir(lang_dir)):
-            if not fn.endswith('.yml'):
-                continue
-            fp = os.path.join(lang_dir, fn)
-            file_data = parse_localisation_file(fp)
-            lang_data.update(file_data)
-            file_count += 1
+        # Load vanilla first (base), then mod on top (mod overrides vanilla)
+        vanilla_dir = os.path.join(VANILLA_LOCALISATION_DIR, lang)
+        if os.path.isdir(vanilla_dir):
+            for fn in sorted(os.listdir(vanilla_dir)):
+                if not fn.endswith('.yml'):
+                    continue
+                file_data = parse_localisation_file(os.path.join(vanilla_dir, fn))
+                lang_data.update(file_data)
+                file_count += 1
+
+        mod_dir = os.path.join(MOD_LOCALISATION_DIR, lang)
+        if not os.path.isdir(mod_dir):
+            print(f"  [WARN] Mod language directory not found: {mod_dir}")
+        else:
+            for fn in sorted(os.listdir(mod_dir)):
+                if not fn.endswith('.yml'):
+                    continue
+                fp = os.path.join(mod_dir, fn)
+                file_data = parse_localisation_file(fp)
+                lang_data.update(file_data)
+                file_count += 1
 
         # Resolve $key$ variable references
         lang_data = resolve_variable_refs(lang_data)
