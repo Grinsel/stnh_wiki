@@ -69,7 +69,7 @@ const Render = (() => {
     function dualView(block, label) {
         if (!block || (Array.isArray(block) && !block.length)) return '';
         const code = formatBlock(block);
-        const human = Humanize.humanizeBlock(block);
+        const human = Humanize.humanizeBlock(block, label);
         return `
             <div class="dual-view" data-label="${escapeHtml(label)}">
                 <div class="block-header">

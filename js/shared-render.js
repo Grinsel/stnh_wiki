@@ -73,7 +73,7 @@ const SharedRender = (() => {
         // Human view: use Humanize if available
         let human;
         if (typeof Humanize !== 'undefined' && Humanize.humanizeBlock) {
-            human = Humanize.humanizeBlock(data);
+            human = Humanize.humanizeBlock(data, label);
         } else {
             human = code; // Fallback to code if humanize not loaded
         }

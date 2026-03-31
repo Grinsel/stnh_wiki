@@ -706,6 +706,45 @@ h1, h2, h3, h4 {
     font-size: inherit;
 }
 
+/* Modifier values: positive (green) and negative (red) */
+.human-view .mod-positive { color: #4caf50; font-weight: 600; }
+.human-view .mod-negative { color: #e06060; font-weight: 600; }
+
+/* Section/block labels */
+.human-view .h-label {
+    color: var(--accent-gold);
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+/* Behind-the-scenes (hidden_effect, @variables, log) */
+.human-view .h-behind-scenes {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Inline condition connectors (or / and) */
+.human-view .cond-join {
+    color: var(--accent-gold);
+    font-weight: 600;
+    margin: 0 0.25em;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* AI weight summary */
+.human-view .ai-never  { color: #e06060; font-weight: 600; }
+.human-view .ai-boost  { color: #4caf50; font-weight: 600; }
+.human-view .ai-reduce { color: #f0a030; font-weight: 600; }
+.human-view .ai-base   { color: var(--text-muted); font-size: 0.9em; }
+
+/* Stronger names (traits, techs, civics etc) */
+.human-view strong {
+    color: #e4e7eb;
+    font-weight: 600;
+}
+
 /* Related Events */
 .related-events {
     display: flex;
