@@ -116,6 +116,7 @@ const UI_STRINGS = {
     'ui.detail.ruler':            { english: 'Ruler', german: 'Herrscher' },
     'ui.detail.portraits':        { english: 'Portraits', german: 'Portr\u00e4ts' },
     'ui.detail.drop_weight':      { english: 'Drop Weight', german: 'Fallgewichtung' },
+    'ui.detail.3d_model':         { english: '3D Model', german: '3D-Modell' },
 
     // ==========================================
     // Meta Labels
@@ -282,6 +283,7 @@ const UI_STRINGS = {
     'ui.empty.other_namespaces': { english: 'Other namespaces', german: 'Andere Namensr\u00e4ume' },
 
     'ui.error.load_failed':    { english: 'Failed to load data', german: 'Daten konnten nicht geladen werden' },
+    'ui.error.model_load_failed': { english: 'Could not load 3D model', german: '3D-Modell konnte nicht geladen werden' },
 
     // ==========================================
     // Search UI (Hub)
@@ -302,6 +304,8 @@ const UI_STRINGS = {
     // ==========================================
     // Misc
     // ==========================================
+    'ui.action.view_3d':       { english: 'View 3D Model', german: '3D-Modell anzeigen' },
+
     'ui.misc.yes':             { english: 'Yes', german: 'Ja' },
     'ui.misc.stage':           { english: 'Stage', german: 'Stufe' },
     'ui.misc.difficulty':      { english: 'difficulty', german: 'Schwierigkeit' },

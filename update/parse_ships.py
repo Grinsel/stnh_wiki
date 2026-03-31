@@ -35,8 +35,17 @@ def extract_ship(ship_id, block, source_file):
         'section_slots': _extract_section_slots(block),
         'combat_disengage_chance': get_value(block, 'combat_disengage_chance'),
         'icon_frame': get_value(block, 'icon_frame'),
+        'graphical_culture': _extract_graphical_culture(block),
         'source_file': os.path.basename(source_file),
     }
+
+
+def _extract_graphical_culture(block):
+    """Extract graphical_culture = { "federation" "terran" ... } -> list of strings."""
+    val = get_value(block, 'graphical_culture')
+    if isinstance(val, list):
+        return [str(v) for v in val if isinstance(v, str)]
+    return []
 
 
 def _extract_section_slots(block):

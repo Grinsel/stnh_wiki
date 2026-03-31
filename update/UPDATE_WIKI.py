@@ -242,6 +242,21 @@ def phase_images(skip=False):
     return stats
 
 
+def phase_ship_models(skip=False):
+    """Phase: Convert ship models to GLB."""
+    print("\n" + "=" * 60)
+    print("PHASE: SHIP MODELS (GLB)")
+    print("=" * 60)
+
+    if skip:
+        print("  [SKIPPED] --skip-images flag set")
+        return {'skipped': True}
+
+    from convert_ship_models import convert_all
+    stats = convert_all()
+    return stats
+
+
 def phase_building_icons(skip=False):
     """Phase: Convert DDS building icons to WebP."""
     print("\n" + "=" * 60)
@@ -300,6 +315,7 @@ ONLY_MODULES = {
     'building_icons': ['building_icons'],
     'techtree':    ['techtree'],
     'ships':       ['localisation', 'ships'],
+    'ship_models': ['localisation', 'ships', 'ship_models'],
     'buildings':   ['localisation', 'buildings', 'building_icons'],
     'traits':      ['localisation', 'traits'],
     'governments': ['localisation', 'governments'],
@@ -359,6 +375,8 @@ def main():
             results['economy'] = phase_economy()
         if 'search' in phases:
             results['search'] = phase_search()
+        if 'ship_models' in phases:
+            results['ship_models'] = phase_ship_models(skip=args.skip_images)
         if 'images' in phases:
             results['images'] = phase_images(skip=args.skip_images)
         if 'building_icons' in phases:
@@ -380,6 +398,7 @@ def main():
         results['empires'] = phase_empires()
         results['economy'] = phase_economy()
         results['search'] = phase_search()
+        results['ship_models'] = phase_ship_models(skip=args.skip_images)
         results['images'] = phase_images(skip=args.skip_images)
         results['building_icons'] = phase_building_icons(skip=args.skip_images)
         module_name = 'full'

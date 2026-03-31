@@ -71,6 +71,16 @@ Aus git09 kopiert, separate JSON-Struktur fuer den D3.js Techtree:
 - Faction-spezifische Baum-Daten
 - Von `tech/data.js` geladen (ES Module)
 
+## 3D-Modelle (`models/`)
+
+GLB-Dateien fuer den 3D Ship Viewer, organisiert nach Fraktion:
+- `models/{faction}/{ship_id}.glb` — Binary glTF, nur Geometrie (graues Material, keine Texturen)
+- 275 Ships, 1.263 Fraktionsvarianten
+- Median: 300 KB pro GLB, Gesamt: ~720 MB
+- **In `.gitignore`** — lokal generieren mit `python UPDATE_WIKI.py --only ship_models` (~20s)
+- Konvertiert aus PdxMesh-Binaerformat (.mesh) via `convert_ship_models.py`
+- Mapping: `assets/ship_models_map.json` (ship_id -> faction -> model info)
+
 ## Cross-References (`cross_references.json`)
 
 Bidirektionale Verlinkung zwischen allen Modulen:

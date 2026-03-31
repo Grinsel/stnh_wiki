@@ -7,10 +7,12 @@
 | Python | 3.8+ | Daten-Pipeline | Ja |
 | ImageMagick | 7+ | DDS -> WebP Bildkonvertierung | Nur fuer Bilder |
 | D3.js | v7 (CDN) | Tech Tree Visualisierung | Nur tech.html (wird vom CDN geladen) |
+| Three.js | v0.172 (CDN) | 3D Ship Viewer | Nur ships.html (lazy-loaded per Button-Click) |
+| pygltflib | 1.16+ | GLB-Erzeugung | Nur fuer Ship-Model-Pipeline |
 | Git | - | Versionierung + Deployment | Ja |
 | npm/Node | - | - | Nicht benoetigt |
 
-Die Python-Pipeline nutzt ausschliesslich Python-Standardbibliothek.
+Die Kern-Pipeline nutzt Python-Standardbibliothek. Die Ship-Model-Pipeline benoetigt `pygltflib` (`pip install -r update/requirements.txt`).
 
 ## Lokale Entwicklung
 

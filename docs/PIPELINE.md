@@ -21,8 +21,9 @@ Phase 5: Content
    5g: Empires          -> generate_empires_json.generate_all()
    5h: Economy          -> generate_economy_json.generate_all()
    5i: Search           -> generate_search_index + generate_cross_references
-Phase 6: Images         -> convert_images.convert_images()  [optional]
-Phase 7: Summary        -> Statistiken + last_update.json
+Phase 6: Ship Models    -> convert_ship_models.convert_all()  [optional]
+Phase 7: Images         -> convert_images.convert_images()  [optional]
+Phase 8: Summary        -> Statistiken + last_update.json
 ```
 
 ### Aufruf-Beispiele
@@ -44,6 +45,7 @@ python UPDATE_WIKI.py --only content         # Alle 8 Content-Module + Search
 python UPDATE_WIKI.py --only loc             # Nur Localisation
 python UPDATE_WIKI.py --only gfx             # Nur GFX-Mappings
 python UPDATE_WIKI.py --only images          # Nur Bildkonvertierung
+python UPDATE_WIKI.py --only ship_models    # Nur Ships + 3D-Modell-Konvertierung
 ```
 
 ## Parser-Architektur
@@ -94,7 +96,8 @@ LANGUAGES = ['english', 'german', 'french', 'spanish', 'russian', 'polish', 'bra
 | Events | parse_events, parse_on_actions, parse_event_chains, build_relationships | generate_events_json | events_index, events_detail/*, namespaces, relationships, on_actions, event_chains |
 | Localisation | parse_localisation | (direkt) | localisation/{lang}.json |
 | GFX | parse_gfx_mappings | (direkt) | pictures_map.json |
-| Ships | parse_ships, parse_components | generate_ships_json | ships.json, components.json |
+| Ships | parse_ships, parse_components, parse_ship_models | generate_ships_json | ships.json, components.json, ship_models_map.json |
+| Ship Models | pdx_mesh_reader, convert_ship_models | (direkt) | models/{faction}/{ship}.glb |
 | Buildings | parse_buildings, parse_districts | generate_buildings_json | buildings.json, districts.json |
 | Traits | parse_traits, parse_traditions, parse_ascension_perks | generate_traits_json | traits.json, traditions.json, ascension_perks.json |
 | Governments | parse_governments, parse_policies, parse_edicts | generate_governments_json | governments.json, civics.json, authorities.json, policies.json, edicts.json |
@@ -127,6 +130,28 @@ convert_images.py
 - Voraussetzung: ImageMagick im PATH
 ```
 
+## Ship Model Pipeline
+
+```
+Modell-Kette:
+  common/ship_sizes/*.txt          -> graphical_culture per ship_size
+  gfx/models/ships/{faction}/*.asset -> entity -> pdxmesh name
+  gfx/models/ships/{faction}/*.gfx   -> pdxmesh -> .mesh file + textures
+  gfx/models/ships/{faction}/*.mesh  -> Binary PdxMesh (@@b@ header)
+  gfx/models/ships/{faction}/*.dds   -> DDS-Texturen (Diffuse, Normal, Specular)
+
+Pipeline:
+  1. parse_ship_models.py  -> ship_models_map.json (ship_id -> faction -> model info)
+  2. pdx_mesh_reader.py    -> PdxMesh-Binaer-Parser (@@b@ -> Vertices, Normals, Triangles)
+  3. convert_ship_models.py -> .mesh -> .glb (nur Geometrie, pygltflib)
+
+Output:
+  models/{faction}/{ship_id}.glb  (nur Mesh-Geometrie, graues Material, keine Texturen)
+
+Inkrementell: Skip-if-exists (wie convert_images.py).
+Voraussetzungen: pygltflib>=1.16.0
+```
+
 ## Techtree-Pipeline (noch nicht lauffaehig)
 
 ```
@@ -143,7 +168,8 @@ Status: Kopiert, aber `balance_center_bridge.py` benoetigt `balance_center/` Ver
 | Abhaengigkeit | Version | Zweck | Erforderlich? |
 |---|---|---|---|
 | Python | 3.8+ | Pipeline | Ja |
-| ImageMagick | 7+ | DDS->WebP | Nur fuer Bilder |
+| pygltflib | 1.16+ | GLB-Erzeugung (Ship Models) | Nur fuer Ship Models |
+| ImageMagick | 7+ | DDS->WebP (Event-Bilder) | Nur fuer Bilder |
 | npm/Node | - | - | Nicht benoetigt |
 
-Die Pipeline nutzt ausschliesslich Python-Standardbibliothek (os, re, json, pathlib, subprocess fuer ImageMagick).
+Die Kern-Pipeline nutzt Python-Standardbibliothek. Die Ship-Model-Pipeline benoetigt zusaetzlich `pygltflib` (siehe `update/requirements.txt`).

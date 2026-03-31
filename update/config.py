@@ -65,6 +65,7 @@ MOD_PRESCRIPTED_COUNTRIES_DIR = os.path.join(STNH_MOD_ROOT, "prescripted_countri
 MOD_SPECIES_CLASSES_DIR = os.path.join(STNH_MOD_ROOT, "common", "species_classes")
 MOD_JOBS_DIR = os.path.join(STNH_MOD_ROOT, "common", "pop_jobs")
 MOD_ARMIES_DIR = os.path.join(STNH_MOD_ROOT, "common", "armies")
+MOD_SHIP_MODELS_DIR = os.path.join(STNH_MOD_ROOT, "gfx", "models", "ships")
 
 # ==========================================
 # OUTPUT PATHS (WRITE)
@@ -75,6 +76,7 @@ OUTPUT_EVENTS_DETAIL_DIR = os.path.join(OUTPUT_ASSETS_DIR, "events_detail")
 OUTPUT_LOCALISATION_DIR = os.path.join(OUTPUT_ASSETS_DIR, "localisation")
 OUTPUT_PICTURES_DIR = os.path.join(WIKI_ROOT, "pictures")
 OUTPUT_ICONS_DIR = os.path.join(WIKI_ROOT, "icons")
+OUTPUT_MODELS_DIR = os.path.join(WIKI_ROOT, "models")
 
 # ==========================================
 # LANGUAGES
@@ -129,7 +131,7 @@ def validate_paths():
 
     # Create output dirs
     for d in [OUTPUT_ASSETS_DIR, OUTPUT_EVENTS_DETAIL_DIR, OUTPUT_LOCALISATION_DIR,
-              OUTPUT_PICTURES_DIR, OUTPUT_ICONS_DIR]:
+              OUTPUT_PICTURES_DIR, OUTPUT_ICONS_DIR, OUTPUT_MODELS_DIR]:
         os.makedirs(d, exist_ok=True)
 
     if errors:

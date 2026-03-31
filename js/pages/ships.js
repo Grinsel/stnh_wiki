@@ -156,10 +156,12 @@
         const detailTitle = document.getElementById('detail-title');
         const detailContent = document.getElementById('detail-content');
         document.getElementById('detail-close').addEventListener('click', () => {
+            if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
             detailPanel.classList.add('hidden');
         });
 
         function showDetail(item) {
+            if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
             detailTitle.textContent = item.name || item.id;
             let html = `<div class="detail-meta">`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
@@ -212,8 +214,53 @@
                 html += `<div class="detail-meta">${item.tags.map(t => `<span class="detail-meta-item">${esc(t)}</span>`).join('')}</div></div>`;
             }
 
+            // 3D Model Viewer
+            if (item.has_model && item.model_factions && item.model_factions.length) {
+                html += `<div class="detail-section">`;
+                html += `<div class="detail-section-title">${I18n.ui('ui.detail.3d_model')}</div>`;
+
+                // Faction selector
+                if (item.model_factions.length > 1) {
+                    html += `<select class="ship-faction-select" id="model-faction-select">`;
+                    for (const f of item.model_factions) {
+                        html += `<option value="${esc(f)}">${esc(f)}</option>`;
+                    }
+                    html += `</select>`;
+                }
+
+                html += `<div class="ship-viewer-container">`;
+                html += `<div class="ship-viewer-placeholder" id="ship-viewer-area">`;
+                html += `<button class="ship-viewer-load-btn" id="load-3d-btn">${I18n.ui('ui.action.view_3d')}</button>`;
+                html += `</div></div></div>`;
+            }
+
             detailContent.innerHTML = html;
             SharedRender.initToggles(detailContent);
+
+            // Wire up 3D model button
+            if (item.has_model && item.model_factions && item.model_factions.length) {
+                const loadBtn = detailContent.querySelector('#load-3d-btn');
+                const viewerArea = detailContent.querySelector('#ship-viewer-area');
+                const factionSelect = detailContent.querySelector('#model-faction-select');
+
+                function getModelPath() {
+                    const faction = factionSelect ? factionSelect.value : item.model_factions[0];
+                    return `models/${faction}/${item.id}.glb`;
+                }
+
+                if (loadBtn) {
+                    loadBtn.addEventListener('click', () => {
+                        ShipViewer.createViewer(viewerArea, getModelPath());
+                    });
+                }
+
+                if (factionSelect) {
+                    factionSelect.addEventListener('change', () => {
+                        ShipViewer.createViewer(viewerArea, getModelPath());
+                    });
+                }
+            }
+
             detailPanel.classList.remove('hidden');
         }
 

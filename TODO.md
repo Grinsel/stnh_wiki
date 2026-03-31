@@ -73,6 +73,14 @@
   - Komponenten-Liste mit Vergleich
   - Verlinkung: Schiff ↔ Tech, Komponente ↔ Tech
 
+- [x] **2.4 3D Ship Model Viewer**
+  - `update/parse_ship_models.py` — .gfx/.asset Parser -> ship_models_map.json
+  - `update/pdx_mesh_reader.py` — PdxMesh Binaer-Parser (@@b@ Header)
+  - `update/convert_ship_models.py` — .mesh+.dds -> .glb (pygltflib + Pillow)
+  - `js/ship-viewer.js` — Three.js GLB Viewer (lazy-loaded, IIFE)
+  - 275 Ships, 1.263 Fraktionsvarianten als interaktive 3D-Modelle
+  - Fraktions-Dropdown zum Umschalten, Auto-Rotate, OrbitControls
+
 ---
 
 ## Phase 3 – Gebäude & Distrikte

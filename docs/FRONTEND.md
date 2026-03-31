@@ -266,6 +266,48 @@ GlobalSearch.init() -- laedt Index + module_pages.json
         Sidebar-Search (#tech-filter-input) -> Tech-eigene Suche
 ```
 
+## 3D Ship Viewer
+
+Die Ships-Seite enthaelt einen interaktiven 3D-Modell-Viewer fuer Schiffe mit `has_model: true`.
+
+### Architektur
+
+```javascript
+// js/ship-viewer.js (IIFE, lazy-loaded)
+const ShipViewer = (() => {
+    createViewer(container, glbPath)  // WebGL Canvas erstellen + GLB laden
+    dispose()                         // Aufraeumen bei Schiffswechsel
+})();
+```
+
+### Three.js Lazy-Loading
+
+Three.js (~700 KB) wird erst beim Button-Click geladen (nicht beim Seitenaufruf):
+- Three.js Core: CDN (UMD Global Build)
+- GLTFLoader + OrbitControls: CDN (ES Module, dynamisch importiert)
+- Version: 0.172.0 (pinned)
+
+### Viewer-Features
+
+- PerspectiveCamera (45 FOV) + AmbientLight + DirectionalLight
+- Auto-Center + Auto-Scale (BoundingBox -> Camera-Position)
+- OrbitControls (Drag = Rotate, Scroll = Zoom, Auto-Rotate)
+- Transparenter Hintergrund (passt zum Dark Theme)
+- Fraktions-Dropdown zum Umschalten zwischen Varianten
+- `dispose()` bei Schiffswechsel (kein WebGL-Context-Leak)
+- ResizeObserver fuer responsive Canvas-Groesse
+
+### Integration in ships.js
+
+```javascript
+// In showDetail():
+if (item.has_model) {
+    // Fraktions-Dropdown + "View 3D Model" Button rendern
+    // Button-Click -> ShipViewer.createViewer(container, 'models/{faction}/{id}.glb')
+    // Dropdown-Wechsel -> dispose() + neues GLB laden
+}
+```
+
 ## Design-System (`style.css`)
 
 ### Theme-Variablen

@@ -1,2 +1,3 @@
-# No third-party dependencies required.
-# parse_pdx.py uses a custom recursive-descent parser (stdlib only).
+# Core pipeline: stdlib only (parse_pdx.py, parse_localisation.py, etc.)
+# Ship model pipeline (3D GLB conversion):
+pygltflib>=1.16.0
