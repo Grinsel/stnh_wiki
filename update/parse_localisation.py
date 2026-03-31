@@ -105,7 +105,9 @@ def parse_all_languages():
                 file_data = parse_localisation_file(os.path.join(vanilla_dir, fn))
                 lang_data.update(file_data)
                 file_count += 1
+        vanilla_count = len(lang_data)
 
+        mod_count = 0
         mod_dir = os.path.join(MOD_LOCALISATION_DIR, lang)
         if not os.path.isdir(mod_dir):
             print(f"  [WARN] Mod language directory not found: {mod_dir}")
@@ -116,14 +118,19 @@ def parse_all_languages():
                 fp = os.path.join(mod_dir, fn)
                 file_data = parse_localisation_file(fp)
                 lang_data.update(file_data)
+                mod_count += len(file_data)
                 file_count += 1
 
         # Resolve $key$ variable references
+        unresolved_before = sum(1 for v in lang_data.values() if '$' in v)
         lang_data = resolve_variable_refs(lang_data)
+        unresolved_after = sum(1 for v in lang_data.values() if '$' in v)
+        resolved_count = unresolved_before - unresolved_after
 
         all_loc[lang] = lang_data
         stats[lang] = len(lang_data)
-        print(f"  {lang}: {file_count} files, {len(lang_data)} keys")
+        print(f"  {lang}: vanilla={vanilla_count} mod={mod_count} total={len(lang_data)}"
+              f" resolved={resolved_count} unresolvable={unresolved_after}")
 
     return all_loc, stats
 

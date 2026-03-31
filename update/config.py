@@ -26,6 +26,7 @@ MOD_ON_ACTIONS_DIR = os.path.join(STNH_MOD_ROOT, "common", "on_actions")
 MOD_EVENT_CHAINS_DIR = os.path.join(STNH_MOD_ROOT, "common", "event_chains")
 MOD_INTERFACE_DIR = os.path.join(STNH_MOD_ROOT, "interface")
 MOD_GFX_EVENT_PICTURES = os.path.join(STNH_MOD_ROOT, "gfx", "event_pictures")
+MOD_GFX_BUILDINGS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "buildings")
 
 # ==========================================
 # SOURCE PATHS (READ-ONLY) - Vanilla Stellaris
@@ -33,6 +34,7 @@ MOD_GFX_EVENT_PICTURES = os.path.join(STNH_MOD_ROOT, "gfx", "event_pictures")
 
 VANILLA_INTERFACE_DIR = os.path.join(VANILLA_ROOT, "interface")
 VANILLA_GFX_EVENT_PICTURES = os.path.join(VANILLA_ROOT, "gfx", "event_pictures")
+VANILLA_GFX_BUILDINGS_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "buildings")
 VANILLA_LOCALISATION_DIR = os.path.join(VANILLA_ROOT, "localisation")
 VANILLA_BUILDINGS_DIR = os.path.join(VANILLA_ROOT, "common", "buildings")
 

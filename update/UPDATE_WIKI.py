@@ -242,6 +242,22 @@ def phase_images(skip=False):
     return stats
 
 
+def phase_building_icons(skip=False):
+    """Phase: Convert DDS building icons to WebP."""
+    print("\n" + "=" * 60)
+    print("PHASE: BUILDING ICONS")
+    print("=" * 60)
+
+    if skip:
+        print("  [SKIPPED] --skip-images flag set")
+        return {'skipped': True}
+
+    from convert_building_icons import convert_building_icons
+    stats = convert_building_icons()
+    print(f"  Converted: {stats['converted']}, Skipped: {stats['skipped']}, Failed: {stats['failed']}")
+    return stats
+
+
 def write_log_entry(module, results, elapsed):
     """Write or merge a log entry into last_update.json.
 
@@ -281,9 +297,10 @@ ONLY_MODULES = {
     'loc':         ['localisation'],
     'gfx':         ['gfx'],
     'images':      ['images'],
+    'building_icons': ['building_icons'],
     'techtree':    ['techtree'],
     'ships':       ['localisation', 'ships'],
-    'buildings':   ['localisation', 'buildings'],
+    'buildings':   ['localisation', 'buildings', 'building_icons'],
     'traits':      ['localisation', 'traits'],
     'governments': ['localisation', 'governments'],
     'megastructures': ['localisation', 'megastructures'],
@@ -291,7 +308,7 @@ ONLY_MODULES = {
     'empires':        ['localisation', 'empires'],
     'economy':        ['localisation', 'economy'],
     'search':         ['search'],
-    'content':        ['localisation', 'ships', 'buildings', 'traits', 'governments',
+    'content':        ['localisation', 'ships', 'buildings', 'building_icons', 'traits', 'governments',
                        'megastructures', 'anomalies', 'empires', 'economy', 'search'],
 }
 
@@ -344,6 +361,8 @@ def main():
             results['search'] = phase_search()
         if 'images' in phases:
             results['images'] = phase_images(skip=args.skip_images)
+        if 'building_icons' in phases:
+            results['building_icons'] = phase_building_icons(skip=args.skip_images)
         if 'techtree' in phases:
             results['techtree'] = phase_techtree()
         module_name = args.only
@@ -362,6 +381,7 @@ def main():
         results['economy'] = phase_economy()
         results['search'] = phase_search()
         results['images'] = phase_images(skip=args.skip_images)
+        results['building_icons'] = phase_building_icons(skip=args.skip_images)
         module_name = 'full'
 
     # Summary
