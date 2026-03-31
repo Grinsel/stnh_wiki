@@ -20,6 +20,7 @@ Welcome to the Star Trek: New Horizons Wiki project. This file is your entry poi
 | `docs/FRONTEND.md` | JS modules, page controller skeleton, events/tech modules, design system |
 | `docs/FILE_STRUCTURE.md` | Complete annotated directory tree (wiki + mod source) |
 | `docs/ASSETS.md` | All 30 JSON files, images, icons, cross-references, search index |
+| `docs/HUMANIZE.md` | Humanize engine: Architektur, Maps, Modifier, Scopes, Erweiterung |
 | `docs/DEVELOPMENT.md` | Local setup, deployment, adding modules, maintenance, conventions |
 
 **Read order:** This file first, then `TODO.md` for open tasks, then `docs/` files as needed.
@@ -143,6 +144,8 @@ All 8 standard content pages (ships, buildings, traits, governments, megastructu
 | Fix parser error | `update/parse_pdx.py` (base) or module-specific parser |
 | Add UI translation | `js/ui-strings.js` (add key with min. english + german) |
 | Add search prefix | `js/global-search.js` → `TYPE_PREFIXES` |
+| Add PDX keyword to humanizer | `js/humanize.js` → `TRIGGER_MAP` or `EFFECT_MAP` (see `docs/HUMANIZE.md`) |
+| Add modifier display name | `js/humanize.js` → `MODIFIER_MAP` |
 | Change theme colors | `js/common.js` → `THEMES` object |
 | Fix mobile layout | `style.css` → `@media` rules + hamburger section |
 | Update data | `cd update && python UPDATE_WIKI.py --skip-images` |

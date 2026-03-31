@@ -94,15 +94,18 @@ const I18n = (() => {
 
 310+ Keys fuer Navigation, Tabs, Filter, Labels, Suchfelder, Detail-Titel, Badges, Fehlermeldungen etc. Jeder Key hat mindestens `english` und `german`, manche alle 7 Sprachen.
 
-### `js/humanize.js` — PDX-Syntax -> lesbarer Text
+### `js/humanize.js` — PDX-Syntax -> natuerliche Sprache
 
-Konvertiert PDX-Trigger/Effekt-Bloecke in menschenlesbare Saetze.
+Konvertiert geparste PDX-JSON-Strukturen (Trigger, Effekte, Modifier, Conditions) in
+menschenlesbare HTML-Ausgabe. Zielgruppe sind Spieler **ohne** Modding- oder PDX-Script-Kenntnisse.
+Details siehe `docs/HUMANIZE.md`.
 
 ### `js/shared-render.js` — Gemeinsames Rendering
 
 Rendering-Funktionen die von allen 8 Content-Seiten geteilt werden:
 - Item-Cards, Detail-Panels, Pagination, Tab-Umschaltung
-- Humanisierte Modifier/Trigger/Effekte
+- `dualView(data, label)`: Code/Human-Toggle, reicht `label` an `Humanize.humanizeBlock(data, label)` weiter
+- `initToggles(container)`: Click-Handler fuer den Toggle-Button
 
 ## Content-Page-Skeleton
 
