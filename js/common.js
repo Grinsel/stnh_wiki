@@ -276,8 +276,6 @@ const Common = (() => {
             '#namespace-sidebar',
             '#event-list-panel',
             '#item-list-panel',
-            '#event-detail-panel',
-            '#detail-panel',
         ];
         SELECTORS.forEach(sel => {
             const el = document.querySelector(sel);
