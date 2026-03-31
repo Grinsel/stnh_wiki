@@ -149,8 +149,10 @@ const Common = (() => {
         const update = () => {
             const hh = header.offsetHeight;
             const nh = nav ? nav.offsetHeight : 0;
+            const footer = document.getElementById('site-footer');
             document.documentElement.style.setProperty('--header-height', hh + 'px');
             if (nav) document.documentElement.style.setProperty('--nav-height', nh + 'px');
+            if (footer) document.documentElement.style.setProperty('--footer-height', footer.offsetHeight + 'px');
             if (filterBar) {
                 document.documentElement.style.setProperty('--filter-bar-top', (hh + nh) + 'px');
                 document.documentElement.style.setProperty('--detail-top', (hh + nh + filterBar.offsetHeight) + 'px');
@@ -269,6 +271,28 @@ const Common = (() => {
         }
     }
 
+    function initScrollFades() {
+        const SELECTORS = [
+            '#namespace-sidebar',
+            '#event-list-panel',
+            '#item-list-panel',
+            '#event-detail-panel',
+            '#detail-panel',
+        ];
+        SELECTORS.forEach(sel => {
+            const el = document.querySelector(sel);
+            if (!el) return;
+            el.classList.add('scroll-fade');
+            function update() {
+                el.classList.toggle('scroll-at-top',    el.scrollTop <= 1);
+                el.classList.toggle('scroll-at-bottom', el.scrollTop + el.clientHeight >= el.scrollHeight - 1);
+            }
+            el.addEventListener('scroll', update, { passive: true });
+            if (window.ResizeObserver) new ResizeObserver(update).observe(el);
+            update();
+        });
+    }
+
     function init() {
         initTheme();
         injectThemePicker();
@@ -279,6 +303,7 @@ const Common = (() => {
         initStickyNav();
         applyUiStrings();
         initGlobalSearch();
+        initScrollFades();
     }
 
     return { init, applyUiStrings };

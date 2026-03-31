@@ -229,7 +229,7 @@ h1, h2, h3, h4 {
 #namespace-sidebar {
     width: 220px;
     flex-shrink: 0;
-    max-height: calc(100vh - 160px);
+    max-height: calc(100vh - 160px - var(--footer-height, 38px));
     overflow-y: auto;
     position: sticky;
     top: 80px;
@@ -316,6 +316,8 @@ h1, h2, h3, h4 {
 #event-list-panel {
     flex: 1;
     min-width: 0;
+    max-height: calc(100vh - var(--detail-top, 160px) - 2rem - var(--footer-height, 38px));
+    overflow-y: auto;
 }
 
 #main-content:has(#event-detail-panel:not(.hidden)) #event-list-panel {
@@ -456,7 +458,7 @@ h1, h2, h3, h4 {
 #event-detail-panel {
     flex: 2;
     min-width: 0;
-    max-height: calc(100vh - 160px);
+    max-height: calc(100vh - 160px - var(--footer-height, 38px));
     overflow-y: auto;
     position: sticky;
     top: 80px;
@@ -818,6 +820,10 @@ h1, h2, h3, h4 {
     color: var(--text-muted);
     border-top: 1px solid rgba(255,255,255,0.05);
     margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    background: var(--bg-primary);
+    z-index: 10;
 }
 
 /* Search section divider */
@@ -911,6 +917,44 @@ mark {
 .font-size-control button:hover {
     background: rgba(209, 206, 4, 0.25);
     border-color: rgba(209, 206, 4, 0.5);
+}
+
+/* =============================================================================
+   Scroll Fade Indicators (mask-image approach — full-width, edge-attached)
+   ============================================================================= */
+
+.scroll-fade {
+    --_fade-size: 48px;
+    --_fade-top: 0%;
+    --_fade-bottom: 100%;
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black var(--_fade-top),
+        black var(--_fade-bottom),
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black var(--_fade-top),
+        black var(--_fade-bottom),
+        transparent 100%
+    );
+    transition: -webkit-mask-image 0.2s, mask-image 0.2s;
+}
+
+.scroll-fade.scroll-at-top {
+    --_fade-top: 0%;
+}
+.scroll-fade:not(.scroll-at-top) {
+    --_fade-top: var(--_fade-size);
+}
+.scroll-fade.scroll-at-bottom {
+    --_fade-bottom: 100%;
+}
+.scroll-fade:not(.scroll-at-bottom) {
+    --_fade-bottom: calc(100% - var(--_fade-size));
 }
 
 /* iframe embed mode */
@@ -1252,6 +1296,10 @@ body.in-iframe #site-footer {
         position: static;
     }
     #namespace-sidebar.collapsed { display: none; }
+    #event-list-panel {
+        max-height: none;
+        overflow-y: visible;
+    }
     #event-detail-panel {
         width: 100%;
         max-height: none;
@@ -1574,12 +1622,14 @@ body.in-iframe #site-footer {
 .content-layout #item-list-panel {
     flex: 1;
     min-width: 0;
+    max-height: calc(100vh - var(--detail-top, 130px) - 2rem - var(--footer-height, 38px));
+    overflow-y: auto;
 }
 
 .content-layout #detail-panel {
     flex: 2;
     min-width: 0;
-    max-height: calc(100vh - var(--detail-top, 130px) - 2rem);
+    max-height: calc(100vh - var(--detail-top, 130px) - 2rem - var(--footer-height, 38px));
     overflow-y: auto;
     position: sticky;
     top: calc(var(--detail-top, 130px) + 1rem);
@@ -1919,6 +1969,10 @@ body.in-iframe #site-footer {
 /* Responsive for content pages */
 @media (max-width: 921px) {
     .content-layout { flex-direction: column; }
+    .content-layout #item-list-panel {
+        max-height: none;
+        overflow-y: visible;
+    }
     .content-layout #detail-panel {
         width: 100%;
         max-height: none;
