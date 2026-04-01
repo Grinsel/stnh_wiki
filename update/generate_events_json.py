@@ -41,6 +41,7 @@ FACTION_PATTERNS = {
     'xindi': ['xindi'],
     'temporal': ['temporal', 'time_'],
     'mirror': ['mirror'],
+    'qpedia': ['qpedia'],
     'generic': [],
 }
 

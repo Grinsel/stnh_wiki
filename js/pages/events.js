@@ -52,6 +52,11 @@
         document.getElementById('filter-category').value = AppState.get('category');
         document.getElementById('filter-namespace').value = AppState.get('namespace');
 
+        // Default to Q-Pedia namespace if none selected
+        if (!AppState.get('namespace')) {
+            AppState.set('namespace', 'STH_qpedia');
+        }
+
         // Render namespace sidebar
         NamespaceNav.render();
 

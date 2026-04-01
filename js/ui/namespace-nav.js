@@ -20,6 +20,8 @@ const NamespaceNav = (() => {
 
         // Sort factions alphabetically, 'generic' always last
         const factionOrder = Object.keys(byFaction).sort((a, b) => {
+            if (a === 'qpedia') return -1;
+            if (b === 'qpedia') return 1;
             if (a === 'generic') return 1;
             if (b === 'generic') return -1;
             return a.localeCompare(b);
@@ -29,7 +31,7 @@ const NamespaceNav = (() => {
         for (const faction of factionOrder) {
             const items = byFaction[faction].sort((a, b) => a.name.localeCompare(b.name));
             const totalCount = items.reduce((s, m) => s + m.event_count, 0);
-            const isExpanded = expanded[faction] === true; // default collapsed
+            const isExpanded = expanded[faction] === true || faction === 'qpedia';
 
             html += `<div class="ns-faction-group">`;
             html += `<div class="ns-faction-label" data-faction="${faction}">
