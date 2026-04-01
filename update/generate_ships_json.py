@@ -51,7 +51,21 @@ def generate_all():
         else:
             ship['has_model'] = False
 
-    _write_json(os.path.join(OUTPUT_ASSETS_DIR, 'ships.json'), ships)
+    # Compute global stats for the UI
+    total_meshes = 0
+    for factions in model_map.values():
+        for info in factions.values():
+            total_meshes += 1 + len(info.get('attachments', []))
+
+    ships_output = {
+        'items': ships,
+        'stats': {
+            'ship_types': len(ships),
+            'model_variants': sum(len(f) for f in model_map.values()),
+            'total_meshes': total_meshes,
+        }
+    }
+    _write_json(os.path.join(OUTPUT_ASSETS_DIR, 'ships.json'), ships_output)
     _write_json(os.path.join(OUTPUT_ASSETS_DIR, 'components.json'), components)
     _write_json(os.path.join(OUTPUT_ASSETS_DIR, 'ship_models_map.json'), model_map)
 

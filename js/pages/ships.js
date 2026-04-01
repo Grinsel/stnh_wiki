@@ -45,10 +45,12 @@
     };
 
     try {
-        const [ships, components] = await Promise.all([
+        const [shipsData, components] = await Promise.all([
             DataManager.loadJSON('assets/ships.json'),
             DataManager.loadJSON('assets/components.json'),
         ]);
+        const ships = shipsData.items;
+        const globalStats = shipsData.stats;
         await I18n.setLanguage(AppState.get('lang'));
 
         // Resolve names
@@ -308,7 +310,15 @@
 
             // Stats
             const total = activeTab === 'ships' ? ships.length : components.length;
-            document.getElementById('filter-stats').textContent = `${items.length} / ${total} ${I18n.ui('ui.tab.' + activeTab)}`;
+            const statsEl = document.getElementById('filter-stats');
+            if (activeTab === 'ships') {
+                statsEl.innerHTML =
+                    `<span>${items.length} / ${total} Ship Types</span>` +
+                    `<span>${globalStats.model_variants} Models</span>` +
+                    `<span>${globalStats.total_meshes} Meshes</span>`;
+            } else {
+                statsEl.textContent = `${items.length} / ${total} ${I18n.ui('ui.tab.' + activeTab)}`;
+            }
 
             // Paginate
             const totalPages = Math.ceil(items.length / PAGE_SIZE);
