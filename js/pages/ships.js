@@ -327,10 +327,14 @@
             // Render list
             let html = '';
             for (const item of pageItems) {
+                const factionCount = item.model_factions ? item.model_factions.length : 0;
                 html += `<div class="item-card" data-id="${esc(item.id)}">
                     <div class="item-card-body">
-                        <div class="item-card-header">
-                            <span class="item-card-name">${esc(item.name || item.id)}</span>
+                        <div class="item-card-header">`;
+                if (item.has_model) {
+                    html += `<span class="model-badge">&#9670; 3D · ${factionCount} Factions</span>`;
+                }
+                html += `    <span class="item-card-name">${esc(item.name || item.id)}</span>
                             <span class="item-card-id">${esc(item.id)}</span>
                         </div>
                         <div class="item-card-meta">`;

@@ -1831,7 +1831,8 @@ body.in-iframe #site-footer {
     position: relative;
 }
 
-.chain-badge {
+.chain-badge,
+.model-badge {
     font-size: 0.55rem;
     background: rgba(209, 206, 4, 0.15);
     color: var(--accent-gold);
