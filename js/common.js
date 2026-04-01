@@ -215,7 +215,15 @@ const Common = (() => {
         });
 
         input.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') hideGlobalPreview();
+            if (e.key === 'Enter') {
+                hideGlobalPreview();
+                // Clear namespace filter so local search covers all events
+                if (typeof AppState !== 'undefined' && AppState.get('namespace')) {
+                    AppState.setMultiple({ namespace: '', page: 1 });
+                }
+            } else if (e.key === 'Escape') {
+                hideGlobalPreview();
+            }
         });
 
         document.addEventListener('click', (e) => {
