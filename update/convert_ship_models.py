@@ -2,6 +2,7 @@
 Ship model converter: PdxMesh (.mesh) -> GLB files (geometry only).
 
 Converts binary .mesh files to glTF/GLB format with a uniform gray material.
+Supports multi-mesh composition via attachment data (e.g. Borg Super Cube = skeleton + 8 cubes).
 No textures — just the 3D mesh for a visual impression of each ship model.
 
 Dependencies: pygltflib
@@ -9,6 +10,7 @@ Dependencies: pygltflib
 
 import os
 import json
+import math
 import time
 import struct
 
@@ -39,53 +41,32 @@ def _pack_ints(values):
         return struct.pack(f'<{len(values)}I', *values), 5125  # UNSIGNED_INT
 
 
-def convert_mesh_to_glb(mesh_file_path, model_scale, output_path):
-    """Convert a single .mesh file to .glb (geometry only, no textures).
+def _euler_to_quaternion(pitch_deg, roll_deg, yaw_deg):
+    """Convert Euler angles (degrees) to quaternion [x, y, z, w].
 
-    Args:
-        mesh_file_path: Relative path to .mesh file (from mod root)
-        model_scale: Combined entity+mesh scale factor
-        output_path: Where to write the .glb file
-
-    Returns:
-        True on success, False on failure
+    Stellaris uses degrees with ZYX convention (yaw, pitch, roll).
     """
-    _ensure_deps()
-    gltf = _pygltflib
+    p = math.radians(pitch_deg)
+    r = math.radians(roll_deg)
+    y = math.radians(yaw_deg)
 
-    full_mesh_path = os.path.join(STNH_MOD_ROOT, mesh_file_path.replace('/', os.sep))
-    if not os.path.isfile(full_mesh_path):
-        return False
+    cp, sp = math.cos(p * 0.5), math.sin(p * 0.5)
+    cr, sr = math.cos(r * 0.5), math.sin(r * 0.5)
+    cy, sy = math.cos(y * 0.5), math.sin(y * 0.5)
 
-    try:
-        root = parse_mesh_file(full_mesh_path)
-        mesh_data_list = extract_mesh_data(root)
-    except Exception:
-        return False
+    # ZYX order
+    qw = cp * cr * cy + sp * sr * sy
+    qx = sp * cr * cy - cp * sr * sy
+    qy = cp * sr * cy + sp * cr * sy
+    qz = cp * cr * sy - sp * sr * cy
 
-    if not mesh_data_list:
-        return False
+    return [qx, qy, qz, qw]
 
-    # Filter out meshes with no geometry
-    mesh_data_list = [m for m in mesh_data_list if m['vertex_count'] > 0 and m['triangle_count'] > 0]
-    if not mesh_data_list:
-        return False
 
-    # Single gray material for all sub-meshes
-    buffer_data = bytearray()
-    accessors = []
-    buffer_views = []
-    meshes_gltf = []
-    nodes = []
-
-    material = gltf.Material(
-        pbrMetallicRoughness=gltf.PbrMetallicRoughness(
-            baseColorFactor=[0.6, 0.6, 0.7, 1.0],
-            metallicFactor=0.3,
-            roughnessFactor=0.5,
-        ),
-        doubleSided=True,
-    )
+def _build_mesh_nodes(mesh_data_list, model_scale, gltf, buffer_data, accessors,
+                      buffer_views, meshes_gltf, material_idx):
+    """Build GLB nodes from parsed mesh data. Returns list of node indices."""
+    node_indices = []
 
     for mesh_data in mesh_data_list:
         positions = mesh_data['positions']
@@ -175,7 +156,7 @@ def convert_mesh_to_glb(mesh_file_path, model_scale, output_path):
         primitive = gltf.Primitive(
             attributes=gltf.Attributes(**attrs),
             indices=idx_acc,
-            material=0,
+            material=material_idx,
         )
 
         mesh_index = len(meshes_gltf)
@@ -183,12 +164,133 @@ def convert_mesh_to_glb(mesh_file_path, model_scale, output_path):
             primitives=[primitive],
             name=mesh_data['name'],
         ))
-        nodes.append(gltf.Node(mesh=mesh_index, name=mesh_data['name']))
+        node_indices.append(mesh_index)
+
+    return node_indices
+
+
+def _load_mesh_data(mesh_file_path):
+    """Load and filter mesh data from a .mesh file. Returns list or None."""
+    full_mesh_path = os.path.join(STNH_MOD_ROOT, mesh_file_path.replace('/', os.sep))
+    if not os.path.isfile(full_mesh_path):
+        return None
+    try:
+        root = parse_mesh_file(full_mesh_path)
+        mesh_data_list = extract_mesh_data(root)
+    except Exception:
+        return None
+    mesh_data_list = [m for m in mesh_data_list if m['vertex_count'] > 0 and m['triangle_count'] > 0]
+    return mesh_data_list if mesh_data_list else None
+
+
+def convert_ship_to_glb(mesh_file_path, model_scale, output_path, attachments=None):
+    """Convert a ship (primary mesh + optional attachments) to .glb.
+
+    Args:
+        mesh_file_path: Relative path to primary .mesh file (from mod root)
+        model_scale: Combined entity+mesh scale factor for primary mesh
+        output_path: Where to write the .glb file
+        attachments: Optional list of { mesh_file, scale, position, rotation }
+
+    Returns:
+        True on success, False on failure
+    """
+    _ensure_deps()
+    gltf = _pygltflib
+
+    primary_data = _load_mesh_data(mesh_file_path)
+    if not primary_data:
+        return False
+
+    buffer_data = bytearray()
+    accessors = []
+    buffer_views = []
+    meshes_gltf = []
+    nodes = []
+
+    material = gltf.Material(
+        pbrMetallicRoughness=gltf.PbrMetallicRoughness(
+            baseColorFactor=[0.6, 0.6, 0.7, 1.0],
+            metallicFactor=0.3,
+            roughnessFactor=0.5,
+        ),
+        doubleSided=True,
+    )
+
+    # Build primary mesh nodes
+    primary_mesh_indices = _build_mesh_nodes(
+        primary_data, model_scale, gltf, buffer_data, accessors,
+        buffer_views, meshes_gltf, 0
+    )
+    for mi in primary_mesh_indices:
+        nodes.append(gltf.Node(mesh=mi, name=f"primary_{mi}"))
+
+    # Build attachment mesh nodes
+    if attachments:
+        for att_idx, att in enumerate(attachments):
+            att_mesh_file = att.get('mesh_file', '')
+            att_scale = att.get('scale', 1.0)
+            att_position = att.get('position', [0, 0, 0])
+            att_rotation = att.get('rotation', [0, 0, 0])
+
+            att_data = _load_mesh_data(att_mesh_file)
+            if not att_data:
+                continue
+
+            att_mesh_indices = _build_mesh_nodes(
+                att_data, att_scale, gltf, buffer_data, accessors,
+                buffer_views, meshes_gltf, 0
+            )
+
+            if not att_mesh_indices:
+                continue
+
+            # Create child nodes for attachment meshes
+            child_node_indices = []
+            for mi in att_mesh_indices:
+                child_idx = len(nodes)
+                nodes.append(gltf.Node(mesh=mi, name=f"att{att_idx}_{mi}"))
+                child_node_indices.append(child_idx)
+
+            # Create a parent node with transform for the attachment group
+            has_transform = (att_position != [0, 0, 0] or att_rotation != [0, 0, 0])
+            if has_transform:
+                parent_idx = len(nodes)
+                parent_node = gltf.Node(
+                    name=f"attach_{att_idx}",
+                    children=child_node_indices,
+                )
+                # Apply translation (position scaled by primary model scale)
+                if att_position != [0, 0, 0]:
+                    parent_node.translation = att_position
+                # Apply rotation (Euler to quaternion)
+                if att_rotation != [0, 0, 0]:
+                    parent_node.rotation = _euler_to_quaternion(
+                        att_rotation[0], att_rotation[1], att_rotation[2]
+                    )
+                nodes.append(parent_node)
+                # Only the parent goes into the scene root; children are nested
+                # Mark child nodes to exclude from scene root
+                for ci in child_node_indices:
+                    nodes[ci]._is_child = True
+                nodes[parent_idx]._is_child = False
+            # No transform needed — just leave children at scene root
 
     if not nodes:
         return False
 
-    scene = gltf.Scene(nodes=list(range(len(nodes))))
+    # Build scene: only top-level nodes (not children of transform groups)
+    scene_node_indices = []
+    for i, node in enumerate(nodes):
+        if not getattr(node, '_is_child', False):
+            scene_node_indices.append(i)
+
+    # Clean up temporary _is_child attribute
+    for node in nodes:
+        if hasattr(node, '_is_child'):
+            del node._is_child
+
+    scene = gltf.Scene(nodes=scene_node_indices)
 
     glb = gltf.GLTF2(
         scene=0,
@@ -206,6 +308,10 @@ def convert_mesh_to_glb(mesh_file_path, model_scale, output_path):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     glb.save(output_path)
     return True
+
+
+# Keep old name as alias for backwards compatibility during transition
+convert_mesh_to_glb = convert_ship_to_glb
 
 
 def convert_all(skip_existing=True):
@@ -227,6 +333,7 @@ def convert_all(skip_existing=True):
     converted = 0
     skipped = 0
     failed = 0
+    multi_mesh = 0
     total = sum(len(factions) for factions in ship_models_map.values())
 
     print(f"  Converting {total} ship model variants to GLB (geometry only)...")
@@ -239,14 +346,18 @@ def convert_all(skip_existing=True):
                 skipped += 1
                 continue
 
-            success = convert_mesh_to_glb(
+            attachments = info.get('attachments')
+            success = convert_ship_to_glb(
                 mesh_file_path=info['mesh_file'],
                 model_scale=info.get('scale', 1.0),
                 output_path=output_path,
+                attachments=attachments,
             )
 
             if success:
                 converted += 1
+                if attachments:
+                    multi_mesh += 1
             else:
                 failed += 1
 
@@ -255,10 +366,11 @@ def convert_all(skip_existing=True):
         'converted': converted,
         'skipped': skipped,
         'failed': failed,
+        'multi_mesh': multi_mesh,
         'total': total,
         'elapsed': round(elapsed, 1),
     }
-    print(f"  Converted: {converted}, Skipped: {skipped}, Failed: {failed} ({elapsed:.1f}s)")
+    print(f"  Converted: {converted} ({multi_mesh} multi-mesh), Skipped: {skipped}, Failed: {failed} ({elapsed:.1f}s)")
     return stats
 
 

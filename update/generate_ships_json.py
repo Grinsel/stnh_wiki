@@ -43,6 +43,11 @@ def generate_all():
             faction_list = sorted(factions.keys())
             ship['model_factions'] = faction_list
             ship['default_model'] = f"{faction_list[0]}/{ship['id']}"
+            # Add attachment count from first faction variant
+            first_faction_info = factions[faction_list[0]]
+            att_count = len(first_faction_info.get('attachments', []))
+            if att_count > 0:
+                ship['attachment_count'] = att_count
         else:
             ship['has_model'] = False
 
