@@ -570,6 +570,11 @@ const Humanize = (() => {
 
         // --- Misc effects ---
         'custom_tooltip':       (v) => `<em>${esc(locOrClean(v))}</em>`,
+        'response_text':        (v) => {
+            const text = locOrClean(v);
+            return `<div class="response-text-block"><span class="h-label">Response text:</span> ${esc(text)}</div>`;
+        },
+        'is_dialog_only':       (v) => yn(v, '<em>Dialog only — no gameplay effects</em>', ''),
         'tooltip':              (v, d) => `<span class="h-label">Tooltip info:</span>${nested(v, d)}`,
         'begin_event_chain':    (v, d) => typeof v === 'string' ? `Begin event chain: <em>"${esc(v)}"</em>` : `<span class="h-label">Begin event chain:</span>${nested(v, d)}`,
         'end_event_chain':      (v) => `End event chain: <em>"${esc(v)}"</em>`,
