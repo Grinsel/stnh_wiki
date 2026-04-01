@@ -26,8 +26,6 @@ Desktop.ini
 update/techtree/__pycache__/
 update/techtree/logs/
 
-# 3D Ship Models (generated, ~720 MB — run python UPDATE_WIKI.py --only ship_models)
-models/
 
 # Claude
 .claude/
