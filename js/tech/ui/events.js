@@ -163,10 +163,6 @@ export function attachEventHandlers({ elements, state, actions }) {
   helpButton?.addEventListener('click', () => helpViewport?.classList.remove('hidden'));
   helpCloseButton?.addEventListener('click', () => helpViewport?.classList.add('hidden'));
   helpViewport?.addEventListener('click', (e) => { if (e.target === helpViewport) helpViewport.classList.add('hidden'); });
-  const betaBadge = document.getElementById('beta-badge');
-  const openHelp = () => { if (helpViewport) helpViewport.classList.remove('hidden'); };
-  betaBadge?.addEventListener('click', openHelp);
-  betaBadge?.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openHelp(); } });
   
   // Zoom controls
   zoomInButton?.addEventListener('click', () => zoomByFactor(window.svg, window.zoom, 1.2));

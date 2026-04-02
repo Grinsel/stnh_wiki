@@ -42,47 +42,6 @@
             flex-direction: column;
             min-height: 100vh;
         }
-        /* Tech sub-header (below wiki nav) */
-        .tech-header {
-            background: linear-gradient(90deg, #23272c 70%, #39424e 100%);
-            padding: 0 0 0 0;
-            border-bottom: 1px solid var(--border);
-            box-shadow: 0 4px 24px #0008;
-        }
-        .tech-header-content {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            padding: 10px 40px 8px 32px;
-        }
-        .tech-header-content img {
-            height: 32px;
-        }
-        /* Right-aligned header icon */
-        #title-icon { margin-left: auto; height: 28px; }
-        .tech-header-content h2 {
-            margin: 0;
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-            font-weight: 500;
-            font-family: var(--font);
-            color: #d6e3f2;
-        }
-        /* Beta/WIP pill in header */
-        .beta-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 10px;
-            border-radius: 999px;
-            font-size: 0.95rem;
-            background: #c8373722;
-            border: 1px solid #c8373788;
-            color: #ffc4c4;
-            cursor: pointer;
-            user-select: none;
-        }
-        .beta-pill:hover { background: #c8373740; }
         #main-container {
             display: flex;
             margin: 0;
@@ -796,7 +755,6 @@
             }
         }
         @media (max-width: 800px) {
-            .tech-header-content { flex-direction: column; gap: 10px; padding: 12px 10px; }
             #main-container { padding: 0 2vw; }
             #sidebar, #tree-panel { padding: 10px 2vw; }
             #tree-panel { min-width: unset; }
@@ -852,14 +810,6 @@
     <!-- Global Search Results -->
     <div id="global-search-results" class="global-search-results hidden"></div>
 
-    <!-- Tech Sub-Header -->
-    <div class="tech-header">
-        <div class="tech-header-content">
-            <h2>Technology Tree</h2>
-            <span id="beta-badge" class="beta-pill" role="button" tabindex="0" title="This tool is under active development. Click for details.">Beta / WIP</span>
-            <img id="title-icon" src="assets/tech/PDGIco.png" alt="App Icon">
-        </div>
-    </div>
     <div id="main-container">
         <aside id="sidebar">
             <div class="tab-container">
