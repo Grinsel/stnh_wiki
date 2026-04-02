@@ -107,6 +107,14 @@ Rendering-Funktionen die von allen 8 Content-Seiten geteilt werden:
 - `dualView(data, label)`: Code/Human-Toggle, reicht `label` an `Humanize.humanizeBlock(data, label)` weiter
 - `initToggles(container)`: Click-Handler fuer den Toggle-Button
 
+### `js/ship-viewer.js` — 3D Ship Viewer (nur ships.html)
+
+Three.js-basierter 3D-Modell-Viewer fuer Schiffe mit `has_model: true`. Lazy-loaded per Button-Click.
+
+### `js/ui/category-chips.js` — Chip-Bar Filter (ships.html, buildings.html)
+
+Wiederverwendbare UI-Komponente fuer Kategorie-Filter als Chip-Leiste. Wird von ships.js und buildings.js genutzt.
+
 ## Content-Page-Skeleton
 
 Alle 8 Standard-Content-Pages (ships, buildings, traits, governments, megastructures, anomalies, empires, economy) folgen demselben Aufbau:

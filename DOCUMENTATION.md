@@ -10,7 +10,7 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 > | `docs/PIPELINE.md` | Python-Pipeline: Master-Script, Parser, Generatoren, Konfiguration |
 > | `docs/FRONTEND.md` | JS-Module, Page-Controller-Skeleton, Events/Tech-Module, Design-System |
 > | `docs/FILE_STRUCTURE.md` | Vollstaendiger annotierter Verzeichnisbaum |
-> | `docs/ASSETS.md` | Alle 30 JSON-Dateien, Bilder, Icons, Cross-References, Suchindex |
+> | `docs/ASSETS.md` | Alle 31 JSON-Dateien, Bilder, Icons, Cross-References, Suchindex |
 > | `docs/DEVELOPMENT.md` | Lokale Einrichtung, Deployment, Module hinzufuegen, Wartung |
 
 ---
@@ -40,13 +40,13 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 | Suchindex | ~19.740 Items (2,6 MB, cross-module) |
 | Sprachen | 7 (EN, DE, FR, ES, RU, PL, BR-PT) |
 | Loc-Keys | ~200.000+ pro Sprache |
-| GFX Sprites | 3.960 gesamt, ~986 konvertierte Bilder |
+| GFX Sprites | 7.338 gesamt, ~986 konvertierte Event-Bilder, 754 Building-Icons |
 | Tech-Icons | 1.659 (WebP, aus git09) |
-| JSON-Assets | 30 Dateien + 272 Event-Detail-JSONs |
-| JS-Dateien | 50 (12 shared + 10 pages + 4 UI + 24 tech) |
-| Python-Pipeline | 44 Dateien (5 master + 14 generators + 24 parsers + config) |
+| JSON-Assets | 31 Dateien + 272 Event-Detail-JSONs |
+| JS-Dateien | 52 (12 shared + 10 pages + 5 UI + 24 tech + 1 ship-viewer) |
+| Python-Pipeline | 48 Dateien (5 master + 11 generators + 26 parsers + 3 converters + 1 builder + 1 mesh-reader + 1 config) |
 | Pipeline-Laufzeit | ~12 Sekunden (ohne Bilder) |
-| Projektgroesse | ~294 MB |
+| Projektgroesse | ~1,4 GB (inkl. 3D-Modelle, ohne: ~294 MB) |
 | Frontend | Vanilla HTML/CSS/JS (kein Framework, kein Build-Tool) |
 | Deployment | GitHub Pages (automatisch bei push auf master) |
 | Abhaengigkeiten | Python 3.8+ (stdlib), ImageMagick (nur fuer Bilder), D3.js v7 (CDN, nur tech.html) |
@@ -85,16 +85,17 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 +----------------------------------------------------------------+
                     | Python Pipeline
                     | +-- UPDATE_WIKI.py      (Master-Orchestrator)
-                    | +-- 24 Parser + 14 Generatoren
+                    | +-- 26 Parser + 11 Generatoren + 3 Konverter
                     v
 +----------------------------------------------------------------+
 |  STNH Wiki (git10/stnh_wiki/)                                   |
 |  +-- 11 HTML-Seiten              (Hub, Events, Tech, 8 Content)|
-|  +-- assets/                     (30 JSON + 272 Event-Details) |
+|  +-- assets/                     (31 JSON + 272 Event-Details) |
 |  +-- pictures/                   (986 WebP-Bilder)             |
 |  +-- icons/tech/                 (1.659 Tech-Icons)            |
-|  +-- js/                         (50 JS-Module)                |
-|  +-- style.css                   (38 KB, Dark Theme)           |
+|  +-- icons/buildings/            (754 Building-Icons)          |
+|  +-- js/                         (52 JS-Module)                |
+|  +-- style.css                   (44 KB, Dark Theme)           |
 +----------------------------------------------------------------+
                     | git push -> GitHub Pages
                     v
@@ -140,13 +141,13 @@ stnh_wiki/
 |   +-- workflows/
 |       +-- deploy.yml                 # GitHub Pages Auto-Deployment
 |
-+-- assets/                            # [GENERIERT] JSON-Daten (30 Dateien)
++-- assets/                            # [GENERIERT] JSON-Daten (31 Dateien)
 |   +-- events_index.json              # Event-Index (2,6 MB)
 |   +-- namespaces.json                # Namespace-Metadaten (42 KB)
 |   +-- relationships.json             # Event-Trigger-Graph (637 KB)
 |   +-- on_actions.json                # On-Action -> Event Mappings (30 KB)
 |   +-- event_chains.json              # Event-Chain-Definitionen (12 KB)
-|   +-- pictures_map.json              # GFX-Name -> Textur-Pfad (1,2 MB)
+|   +-- pictures_map.json              # GFX-Name -> Textur-Pfad (1,2 MB, 7.338 Sprites)
 |   +-- ships.json                     # Schiffe (320 KB)
 |   +-- components.json                # Komponenten (4,9 MB)
 |   +-- buildings.json                 # Gebaeude (506 KB)
@@ -167,6 +168,7 @@ stnh_wiki/
 |   +-- species.json                   # Spezies (74 KB)
 |   +-- jobs.json                      # Berufe (219 KB)
 |   +-- deposits.json                  # Lagerstetten (237 KB)
+|   +-- ship_models_map.json            # Ship-ID -> Fraktions-Modell Mapping (443 KB)
 |   +-- search_index.json              # Suchindex cross-module (2,6 MB, ~19.740 Items)
 |   +-- cross_references.json          # Bidirektionale Cross-Refs (303 KB)
 |   +-- module_pages.json              # Modul -> HTML-Seite Mapping
@@ -179,6 +181,7 @@ stnh_wiki/
 |
 +-- icons/                             # Tech/Item-Icons
 |   +-- tech/                          # 1.659 Tech-Icons (WebP, aus git09)
+|   +-- buildings/                     # 754 Building-Icons (WebP, aus DDS konvertiert)
 |   +-- unlock_types/                  # 25 Unlock-Type-Icons (WebP)
 |   +-- tech_icon_mappings.json        # Icon-Name -> Datei-Mapping
 |
@@ -186,7 +189,7 @@ stnh_wiki/
 |   +-- federation-ds9-title.TTF
 |   +-- Tungsten-Light.ttf
 |
-+-- js/                                # Frontend JavaScript (50 Dateien)
++-- js/                                # Frontend JavaScript (52 Dateien)
 |   +-- common.js                      # Shared: Theme, Font, Lang, Nav, Hamburger, GlobalSearch
 |   +-- data.js                        # DataManager - Asynchrones JSON-Laden + Cache
 |   +-- state.js                       # AppState - URL-synchronisierter State
@@ -199,6 +202,7 @@ stnh_wiki/
 |   +-- render.js                      # Event HTML-Rendering (Cards + Detail)
 |   +-- humanize.js                    # PDX-Syntax -> lesbarer Text
 |   +-- shared-render.js               # Gemeinsames Rendering fuer Content-Module
+|   +-- ship-viewer.js                 # 3D Ship Viewer (Three.js, lazy-loaded)
 |   +-- pages/                         # 10 Seiten-Controller
 |   |   +-- hub.js                     # Hub: Stats, GlobalSearch Full-Results
 |   |   +-- events.js                  # Events: Filter, Sidebar, Detail, Chains
@@ -210,11 +214,12 @@ stnh_wiki/
 |   |   +-- anomalies.js              # Anomalies: Tabs (Anomalies/Archaeology)
 |   |   +-- empires.js                 # Empires: Tabs (Empires/Species)
 |   |   +-- economy.js                 # Economy: Tabs (Jobs/Deposits)
-|   +-- ui/                            # 4 UI-Komponenten (nur Events)
+|   +-- ui/                            # 5 UI-Komponenten
 |   |   +-- event-list.js              # Paginierte Event-Liste
 |   |   +-- event-detail.js            # Event-Detailansicht
 |   |   +-- namespace-nav.js           # Sidebar-Navigation
 |   |   +-- chain-viewer.js            # Event-Chain-Visualisierung
+|   |   +-- category-chips.js          # Chip-Bar Filter (Ships, Buildings)
 |   +-- tech/                          # 24 Tech-Module (aus git09)
 |       +-- main.js                    # Einstiegspunkt (ES Module)
 |       +-- data.js, render.js, filters.js, search.js, state.js, factions.js
@@ -222,7 +227,7 @@ stnh_wiki/
 |           +-- events.js, zoom.js, tabs.js, tiers.js, popup.js, ...
 |           +-- layouts/               # 5 Layout-Engines (force, grid, tier, arrows, disjoint)
 |
-+-- update/                            # Python Daten-Pipeline (44 Dateien)
++-- update/                            # Python Daten-Pipeline (48 Dateien)
 |   +-- UPDATE_WIKI.py                 # Master-Orchestrator (alle Phasen)
 |   +-- UPDATE_EVENTS.py               # Modul-Updater: Events
 |   +-- UPDATE_LOC.py                  # Modul-Updater: Localisation
@@ -266,7 +271,10 @@ stnh_wiki/
 |   +-- generate_economy_json.py       # Jobs + Deposits JSON
 |   +-- generate_search_index.py       # Cross-Module Suchindex
 |   +-- generate_cross_references.py   # Bidirektionale Cross-Refs
-|   +-- convert_images.py              # DDS -> WebP Konvertierung
+|   +-- convert_images.py              # DDS -> WebP Konvertierung (Event-Bilder)
+|   +-- convert_building_icons.py     # DDS -> WebP Konvertierung (Building-Icons)
+|   +-- convert_ship_models.py        # PdxMesh -> GLB 3D-Modelle
+|   +-- pdx_mesh_reader.py            # Binaer-Parser fuer PdxMesh (.mesh)
 |   +-- techtree/                      # Techtree-Pipeline (27 Scripts, aus git09, NOCH NICHT LAUFFAEHIG)
 |
 +-- index.html                         # Hub / Landing Page
@@ -280,7 +288,7 @@ stnh_wiki/
 +-- anomalies.html                     # Anomalien & Archaeologie
 +-- empires.html                       # Fraktionen & Empires
 +-- economy.html                       # Wirtschaft
-+-- style.css                          # Gemeinsames Dark Theme (38 KB)
++-- style.css                          # Gemeinsames Dark Theme (44 KB)
 +-- tech_showcase.js                   # Techtree Legacy-Einstiegspunkt
 +-- tech_localisation_map.json         # Techtree Lokalisierung (21 MB)
 +-- tech_trigger_map.json              # Techtree Trigger-Map
@@ -626,7 +634,8 @@ Responsive Breakpoints:
 | `relationships.json` | 637 KB | Event-Trigger-Graph (bidirektional) |
 | `on_actions.json` | 30 KB | on_action -> [event_ids] |
 | `event_chains.json` | 12 KB | Chain-Definitionen |
-| `pictures_map.json` | 1,2 MB | GFX-Name -> {texturefile, frames} (3.960 Sprites) |
+| `pictures_map.json` | 1,2 MB | GFX-Name -> {texturefile, frames} (7.338 Sprites) |
+| `ship_models_map.json` | 443 KB | Ship-ID -> Fraktions-Modell Mapping |
 | `ships.json` | 320 KB | Schiffe: Name, Klasse, Groesse, HP, Sektionen, Tech |
 | `components.json` | 4,9 MB | Komponenten: Name, Typ, Tier, Stats, Tech |
 | `buildings.json` | 506 KB | Gebaeude: Name, Kategorie, Kosten, Modifier, Jobs, Tech |
@@ -753,7 +762,7 @@ WIKI_ROOT = r"D:\Projects\stnh_wiki"
 | Lokalisierung falsch | `parse_localisation.py` (Encoding? $key$-Referenzen?) |
 | UI-String fehlt | `js/ui-strings.js` (Key hinzufuegen, min. english + german) |
 | Neuer Suchprefix | `js/global-search.js` -> `TYPE_PREFIXES` |
-| Styling | `style.css` (38 KB, dark theme) |
+| Styling | `style.css` (44 KB, dark theme) |
 
 ### Abhaengigkeiten
 

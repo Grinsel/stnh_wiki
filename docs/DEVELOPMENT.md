@@ -158,10 +158,11 @@ UPDATE_TECHTREE.bat  # Techtree-Pipeline
 | Suchindex | ~19.740 Items |
 | Sprachen | 7 |
 | Loc-Keys | ~200.000+ pro Sprache |
-| GFX Sprites | 3.960 |
+| GFX Sprites | 7.338 |
 | Event-Bilder | 986 (WebP) |
+| Building-Icons | 754 (WebP) |
 | Tech-Icons | 1.659 (WebP) |
-| JSON-Assets | 30 + 272 Event-Details |
-| JS-Dateien | 50 |
-| Python-Pipeline | 44 Dateien |
-| Projektgroesse | ~294 MB |
+| JSON-Assets | 31 + 272 Event-Details |
+| JS-Dateien | 52 |
+| Python-Pipeline | 48 Dateien |
+| Projektgroesse | ~1,4 GB (inkl. 3D-Modelle, ohne: ~294 MB) |

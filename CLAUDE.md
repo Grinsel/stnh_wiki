@@ -6,7 +6,7 @@ Welcome to the Star Trek: New Horizons Wiki project. This file is your entry poi
 
 **What is this?** A modular off-game wiki for the STNH Stellaris mod. Vanilla HTML/CSS/JS, no build tools, no frameworks. Python pipeline generates JSON data, browser renders it.
 
-**Key numbers:** 11 HTML pages, ~19,740 searchable items, 50 JS files, 44 Python pipeline files, 294 MB total.
+**Key numbers:** 11 HTML pages, ~19,740 searchable items, 52 JS files, 48 Python pipeline files.
 
 ## Documentation
 
@@ -19,7 +19,7 @@ Welcome to the Star Trek: New Horizons Wiki project. This file is your entry poi
 | `docs/PIPELINE.md` | Python data pipeline: master script, parsers, generators, config |
 | `docs/FRONTEND.md` | JS modules, page controller skeleton, events/tech modules, design system |
 | `docs/FILE_STRUCTURE.md` | Complete annotated directory tree (wiki + mod source) |
-| `docs/ASSETS.md` | All 30 JSON files, images, icons, cross-references, search index |
+| `docs/ASSETS.md` | All 31 JSON files, images, icons, cross-references, search index |
 | `docs/HUMANIZE.md` | Humanize engine: Architektur, Maps, Modifier, Scopes, Erweiterung |
 | `docs/DEVELOPMENT.md` | Local setup, deployment, adding modules, maintenance, conventions |
 
@@ -31,23 +31,25 @@ Welcome to the Star Trek: New Horizons Wiki project. This file is your entry poi
 stnh_wiki/
   index.html, events.html, tech.html    11 HTML pages
   ships.html, buildings.html, ...
-  style.css                              Shared dark theme (38 KB)
-  js/                                    50 JS files
+  style.css                              Shared dark theme (44 KB)
+  js/                                    52 JS files
     common.js                            Shared init (theme, hamburger, global search)
     global-search.js                     Cross-module search (on all pages)
     data.js, state.js, i18n.js           Core shared modules
     ui-strings.js                        UI translations (310+ keys, 7 languages)
     pages/{hub,events,ships,...}.js       10 page controllers
     tech/                                Techtree modules (ES Modules, D3.js)
-  assets/                                Generated JSON data (30 files + 272 event details)
+  assets/                                Generated JSON data (31 files + 272 event details)
   update/                                Python data pipeline
     UPDATE_WIKI.py                       Master orchestrator
     config.py                            Paths (STNH_MOD_ROOT, WIKI_ROOT)
     parse_pdx.py                         Shared PDX parser (recursive descent)
-    parse_*.py                           24 module-specific parsers
+    parse_*.py                           26 module-specific parsers
+    convert_*.py                         3 converters (images, ship models, building icons)
     generate_*.py                        JSON generators
   pictures/                              986 WebP event images
   icons/tech/                            1,659 tech icons
+  icons/buildings/                       754 building icons
 ```
 
 ## Architecture

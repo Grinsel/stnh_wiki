@@ -67,6 +67,8 @@ Uebersetzt PDX-Effekt-Keywords:
 | `add_trait: {trait: X}` | Gain trait: **X** |
 | `save_event_target_as: "X"` | Remember this as target *"X"* |
 | `kill_leader: [...]` | Kill leader: ... |
+| `response_text: "loc_key"` | Response text: [aufgeloester Text] (als Block) |
+| `is_dialog_only: yes` | *Dialog only — no gameplay effects* |
 
 **Erweitern:** Neuen Eintrag in `EFFECT_MAP` hinzufuegen, gleiche Signatur wie TRIGGER_MAP.
 

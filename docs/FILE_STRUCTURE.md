@@ -9,13 +9,13 @@ stnh_wiki/
 |   +-- workflows/
 |       +-- deploy.yml                 # GitHub Pages Auto-Deployment
 |
-+-- assets/                            # [GENERIERT] JSON-Daten (30 Dateien)
++-- assets/                            # [GENERIERT] JSON-Daten (31 Dateien)
 |   +-- events_index.json              # Event-Index (2,6 MB)
 |   +-- namespaces.json                # Namespace-Metadaten (42 KB)
 |   +-- relationships.json             # Event-Trigger-Graph (637 KB)
 |   +-- on_actions.json                # On-Action -> Event Mappings (30 KB)
 |   +-- event_chains.json              # Event-Chain-Definitionen (12 KB)
-|   +-- pictures_map.json              # GFX-Name -> Textur-Pfad (1,2 MB)
+|   +-- pictures_map.json              # GFX-Name -> Textur-Pfad (1,2 MB, 7.338 Sprites)
 |   +-- ships.json                     # Schiffe (320 KB)
 |   +-- components.json                # Komponenten (4,9 MB)
 |   +-- buildings.json                 # Gebaeude (506 KB)
@@ -36,6 +36,7 @@ stnh_wiki/
 |   +-- species.json                   # Spezies (74 KB)
 |   +-- jobs.json                      # Berufe (219 KB)
 |   +-- deposits.json                  # Lagerstetten (237 KB)
+|   +-- ship_models_map.json            # Ship-ID -> Fraktions-Modell Mapping (443 KB)
 |   +-- search_index.json              # Suchindex cross-module (2,6 MB, ~19.740 Items)
 |   +-- cross_references.json          # Bidirektionale Cross-Refs (303 KB)
 |   +-- module_pages.json              # Modul -> HTML-Seite Mapping
@@ -48,6 +49,7 @@ stnh_wiki/
 |
 +-- icons/                             # Tech/Item-Icons
 |   +-- tech/                          # 1.659 Tech-Icons (WebP, aus git09)
+|   +-- buildings/                     # 754 Building-Icons (WebP, aus DDS konvertiert)
 |   +-- unlock_types/                  # 25 Unlock-Type-Icons (WebP)
 |   +-- tech_icon_mappings.json        # Icon-Name -> Datei-Mapping
 |
@@ -55,7 +57,7 @@ stnh_wiki/
 |   +-- federation-ds9-title.TTF
 |   +-- Tungsten-Light.ttf
 |
-+-- js/                                # Frontend JavaScript (50 Dateien)
++-- js/                                # Frontend JavaScript (52 Dateien)
 |   +-- common.js                      # Shared: Theme, Font, Lang, Nav, Hamburger, GlobalSearch
 |   +-- data.js                        # DataManager - Asynchrones JSON-Laden + Cache
 |   +-- state.js                       # AppState - URL-synchronisierter State
@@ -68,6 +70,7 @@ stnh_wiki/
 |   +-- render.js                      # Event HTML-Rendering (Cards + Detail)
 |   +-- humanize.js                    # PDX-Syntax -> lesbarer Text
 |   +-- shared-render.js               # Gemeinsames Rendering fuer Content-Module
+|   +-- ship-viewer.js                 # 3D Ship Viewer (Three.js, lazy-loaded)
 |   +-- pages/                         # 10 Seiten-Controller
 |   |   +-- hub.js                     # Hub: Stats, GlobalSearch Full-Results
 |   |   +-- events.js                  # Events: Filter, Sidebar, Detail, Chains
@@ -79,11 +82,12 @@ stnh_wiki/
 |   |   +-- anomalies.js              # Anomalies: Tabs (Anomalies/Archaeology)
 |   |   +-- empires.js                 # Empires: Tabs (Empires/Species)
 |   |   +-- economy.js                 # Economy: Tabs (Jobs/Deposits)
-|   +-- ui/                            # 4 UI-Komponenten (nur Events)
+|   +-- ui/                            # 5 UI-Komponenten
 |   |   +-- event-list.js              # Paginierte Event-Liste
 |   |   +-- event-detail.js            # Event-Detailansicht
 |   |   +-- namespace-nav.js           # Sidebar-Navigation
 |   |   +-- chain-viewer.js            # Event-Chain-Visualisierung
+|   |   +-- category-chips.js          # Chip-Bar Filter (Ships, Buildings)
 |   +-- tech/                          # 24 Tech-Module (aus git09)
 |       +-- main.js                    # Einstiegspunkt (ES Module)
 |       +-- data.js, render.js, filters.js, search.js, state.js, factions.js
@@ -91,7 +95,7 @@ stnh_wiki/
 |           +-- events.js, zoom.js, tabs.js, tiers.js, popup.js, ...
 |           +-- layouts/               # 5 Layout-Engines (force, grid, tier, arrows, disjoint)
 |
-+-- update/                            # Python Daten-Pipeline (44 Dateien)
++-- update/                            # Python Daten-Pipeline (48 Dateien)
 |   +-- UPDATE_WIKI.py                 # Master-Orchestrator (alle Phasen)
 |   +-- UPDATE_EVENTS.py               # Modul-Updater: Events
 |   +-- UPDATE_LOC.py                  # Modul-Updater: Localisation
@@ -135,7 +139,10 @@ stnh_wiki/
 |   +-- generate_economy_json.py       # Jobs + Deposits JSON
 |   +-- generate_search_index.py       # Cross-Module Suchindex
 |   +-- generate_cross_references.py   # Bidirektionale Cross-Refs
-|   +-- convert_images.py              # DDS -> WebP Konvertierung
+|   +-- convert_images.py              # DDS -> WebP Konvertierung (Event-Bilder)
+|   +-- convert_building_icons.py     # DDS -> WebP Konvertierung (Building-Icons)
+|   +-- convert_ship_models.py        # PdxMesh -> GLB 3D-Modelle
+|   +-- pdx_mesh_reader.py            # Binaer-Parser fuer PdxMesh (.mesh)
 |   +-- techtree/                      # Techtree-Pipeline (27 Scripts, aus git09, NOCH NICHT LAUFFAEHIG)
 |
 +-- docs/                              # Projekt-Dokumentation
@@ -144,6 +151,7 @@ stnh_wiki/
 |   +-- FRONTEND.md                    # Frontend JS-Module + Page-Skeleton + Design-System
 |   +-- FILE_STRUCTURE.md              # Diese Datei
 |   +-- ASSETS.md                      # Generierte Assets + Quell-Verzeichnisse
+|   +-- HUMANIZE.md                    # Humanize-Engine: Maps, Modifier, Scopes, Erweiterung
 |   +-- DEVELOPMENT.md                 # Lokale Entwicklung + Erweiterung + Wartung
 |
 +-- index.html                         # Hub / Landing Page
@@ -157,7 +165,7 @@ stnh_wiki/
 +-- anomalies.html                     # Anomalien & Archaeologie
 +-- empires.html                       # Fraktionen & Empires
 +-- economy.html                       # Wirtschaft
-+-- style.css                          # Gemeinsames Dark Theme (38 KB)
++-- style.css                          # Gemeinsames Dark Theme (44 KB)
 +-- tech_showcase.js                   # Techtree Legacy-Einstiegspunkt
 +-- tech_localisation_map.json         # Techtree Lokalisierung (21 MB)
 +-- tech_trigger_map.json              # Techtree Trigger-Map
@@ -188,7 +196,7 @@ git01/New-Horizons-Development/
 |   +-- russian/
 |   +-- polish/
 |   +-- braz_por/
-+-- interface/                45 .gfx-Dateien (3.960 Sprites)
++-- interface/                45 .gfx-Dateien (7.338 Sprites)
 +-- gfx/event_pictures/       DDS-Quelldateien
 +-- common/
 |   +-- on_actions/           18 Dateien

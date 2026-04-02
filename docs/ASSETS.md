@@ -12,7 +12,7 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 | `relationships.json` | 637 KB | Event-Trigger-Graph (bidirektional) |
 | `on_actions.json` | 30 KB | on_action -> [event_ids] |
 | `event_chains.json` | 12 KB | Chain-Definitionen |
-| `pictures_map.json` | 1,2 MB | GFX-Name -> {texturefile, frames} (3.960 Sprites) |
+| `pictures_map.json` | 1,2 MB | GFX-Name -> {texturefile, frames} (7.338 Sprites) |
 | `ships.json` | 320 KB | Schiffe: Name, Klasse, Groesse, HP, Sektionen, Tech |
 | `components.json` | 4,9 MB | Komponenten: Name, Typ, Tier, Stats, Tech |
 | `buildings.json` | 506 KB | Gebaeude: Name, Kategorie, Kosten, Modifier, Jobs, Tech |
@@ -33,6 +33,7 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 | `species.json` | 74 KB | Spezies: Archetyp, Portraits |
 | `jobs.json` | 219 KB | Berufe: Produktion, Konsum |
 | `deposits.json` | 237 KB | Lagerstetten |
+| `ship_models_map.json` | 443 KB | Ship-ID -> Fraktions-Modell Mapping |
 | `search_index.json` | 2,6 MB | Cross-Module Suchindex (~19.740 Items) |
 | `cross_references.json` | 303 KB | Bidirektionale Cross-Refs |
 | `module_pages.json` | 248 B | Modul -> HTML-Seite Mapping |
@@ -58,6 +59,12 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 - 1.659 WebP-Dateien
 - Kopiert aus git09 (nicht von Pipeline generiert)
 - Mapping: `icons/tech_icon_mappings.json`
+
+### Building-Icons (`icons/buildings/`)
+
+- 754 WebP-Dateien
+- Konvertiert aus DDS-Quellen via `convert_building_icons.py`
+- Werden auf der Buildings-Seite neben jedem Gebaeude angezeigt
 
 ### Unlock-Type-Icons (`icons/unlock_types/`)
 
