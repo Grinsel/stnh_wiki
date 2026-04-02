@@ -142,6 +142,10 @@
         const detailContent = document.getElementById('detail-content');
         document.getElementById('detail-close').addEventListener('click', () => {
             detailPanel.classList.add('hidden');
+            if (activeView === 'map' && galaxyMapReady) {
+                GalaxyMap.deselect();
+                GalaxyMap.setLegendVisible(true);
+            }
         });
 
         function showDetail(item) {
@@ -203,6 +207,7 @@
             detailContent.innerHTML = html;
             SharedRender.initToggles(detailContent);
             detailPanel.classList.remove('hidden');
+            if (activeView === 'map' && galaxyMapReady) GalaxyMap.setLegendVisible(false);
         }
         _showDetail = showDetail; // expose to loadGalaxyMap closure
 

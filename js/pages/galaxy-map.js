@@ -190,12 +190,12 @@ window.GalaxyMap = (function () {
             return `M ${ox} ${oy} L ${x1s} ${y1s} A ${R} ${R} 0 0 1 ${x2e} ${y2e} Z`;
         }
 
-        // [label, startDeg, endDeg, labelAngleDeg, color]
+        // [label, startDeg, endDeg, labelAngleDeg, color, greekLetter]
         const quads = [
-            ['Alpha',  90, 180, 135, '#5599ff'],
-            ['Beta',    0,  90,  45, '#44cc88'],
-            ['Gamma', 180, 270, 225, '#ff9933'],
-            ['Delta', 270, 360, 315, '#cc66ff'],
+            ['Alpha',  90, 180, 135, '#5599ff', 'α'],
+            ['Beta',    0,  90,  45, '#44cc88', 'β'],
+            ['Gamma', 180, 270, 225, '#ff9933', 'γ'],
+            ['Delta', 270, 360, 315, '#cc66ff', 'δ'],
         ];
 
         // Dividing lines through galactic origin
@@ -203,54 +203,52 @@ window.GalaxyMap = (function () {
         _quadLayer.appendChild(_el('line', { x1: ox, y1: y0, x2: ox, y2: y1, ...ls }));
         _quadLayer.appendChild(_el('line', { x1: x0, y1: oy, x2: x1, y2: oy, ...ls }));
 
-        quads.forEach(([label, startDeg, endDeg, midDeg, color], i) => {
+        quads.forEach(([label, startDeg, endDeg, midDeg, color, greek], i) => {
             const gradId = 'qgrad-' + i;
             _makeGradient(gradId, color);
-            // Quarter-circle sector with radial fade — no hard outer edge visible
             const sector = _el('path', { d: _sectorPath(startDeg, endDeg), fill: 'url(#' + gradId + ')', 'pointer-events': 'none' });
             _quadLayer.appendChild(sector);
 
-            // Label at 55% of R along the midpoint angle
-            const labelR = R * 0.35;
+            // Place label just off the galactic origin, 40px into each quadrant's diagonal
+            const offset = 40;
             const ma = midDeg * DEG;
-            const lx = ox + labelR * Math.cos(ma);
-            const ly = oy + labelR * Math.sin(ma);
-            const bigSz = 28;
+            const lx = ox + offset * Math.cos(ma);
+            const ly = oy + offset * Math.sin(ma);
 
+            // Large Greek letter
             const big = _el('text', {
                 x: lx, y: ly, 'text-anchor': 'middle', 'dominant-baseline': 'middle',
-                fill: color, 'font-size': bigSz, 'font-family': 'inherit', 'font-weight': 'bold',
-                opacity: 0.14, 'pointer-events': 'none', 'user-select': 'none',
+                fill: color, 'font-size': 48, 'font-family': 'inherit', 'font-weight': 'bold',
+                opacity: 0.18, 'pointer-events': 'none', 'user-select': 'none',
             });
-            big.textContent = label;
+            big.textContent = greek;
             _quadLayer.appendChild(big);
-
-            const small = _el('text', {
-                x: lx, y: ly + bigSz * 0.75, 'text-anchor': 'middle', 'dominant-baseline': 'middle',
-                fill: color, 'font-size': 11, 'font-family': 'inherit',
-                opacity: 0.45, 'pointer-events': 'none', 'user-select': 'none',
-            });
-            small.textContent = label + ' Quadrant';
-            _quadLayer.appendChild(small);
         });
     }
 
     // ── Legend ────────────────────────────────────────────────────────────────
+    let _legendEl;
+
     function _renderLegend() {
-        const y0 = SVG_H - 14;
-        const entries = Object.entries(QUADRANT_COLORS);
-        // Estimate total width to center the legend
-        const totalW = entries.reduce((sum, [label]) => sum + label.length * 5.2 + 22, 0) - 10;
-        let xOff = (SVG_W - totalW) / 2;
-        entries.forEach(([label, color]) => {
-            const g = _el('g', { 'pointer-events': 'none' });
-            g.appendChild(_el('circle', { cx: xOff+5, cy: y0-5, r: 4, fill: color }));
-            const t = _el('text', { x: xOff+13, y: y0, fill: '#bbb', 'font-size': 9, 'font-family': 'inherit' });
-            t.textContent = label;
-            g.appendChild(t);
-            _uiLayer.appendChild(g);
-            xOff += label.length * 5.2 + 22;
+        _legendEl = document.createElement('div');
+        _legendEl.style.cssText = 'position:absolute;left:10px;top:10px;z-index:5;background:rgba(6,14,30,0.85);border:1px solid #334;border-radius:6px;padding:10px 14px;pointer-events:none;font-size:0.8rem;line-height:1.9';
+        Object.entries(QUADRANT_COLORS).forEach(([label, color]) => {
+            const row = document.createElement('div');
+            row.style.cssText = 'display:flex;align-items:center;gap:8px;white-space:nowrap';
+            const dot = document.createElement('span');
+            dot.style.cssText = 'display:inline-block;width:10px;height:10px;border-radius:50%;background:' + color + ';flex-shrink:0';
+            const txt = document.createElement('span');
+            txt.style.color = '#bbb';
+            txt.textContent = label;
+            row.appendChild(dot);
+            row.appendChild(txt);
+            _legendEl.appendChild(row);
         });
+        _container.appendChild(_legendEl);
+    }
+
+    function setLegendVisible(visible) {
+        if (_legendEl) _legendEl.style.display = visible ? '' : 'none';
     }
 
     // ── Empire dots (no flags on map) ─────────────────────────────────────────
@@ -259,10 +257,32 @@ window.GalaxyMap = (function () {
         empires.forEach(emp => {
             const [sx, sy] = _toSVG(emp.x, emp.y);
             const color = QUADRANT_COLORS[emp.quadrant] || DEFAULT_COLOR;
-            const g = _el('g', { class: 'empire-node', 'data-id': emp.id, tabindex: 0, role: 'button', 'aria-label': emp.id });
+            const g = _el('g', { class: 'empire-node', 'data-id': emp.id, tabindex: 0, role: 'button', 'aria-label': emp.id, style: 'cursor:pointer' });
 
+            // Invisible hitbox — larger than the visible dot for easier interaction
+            g.appendChild(_el('circle', { cx: sx, cy: sy, r: ICON_R + 10, fill: 'transparent' }));
             // Halo
             g.appendChild(_el('circle', { cx: sx, cy: sy, r: ICON_R+3, fill: color, opacity: 0.12, 'pointer-events': 'none' }));
+            // Pulse ring (visible only when selected — animations use begin="indefinite" so they
+            // only run when explicitly started via beginElement())
+            const pulse = _el('circle', { cx: sx, cy: sy, r: ICON_R, fill: 'none', stroke: color, 'stroke-width': 2, opacity: 0, class: 'empire-pulse', 'pointer-events': 'none' });
+            const animR = document.createElementNS(NS, 'animate');
+            animR.setAttribute('attributeName', 'r');
+            animR.setAttribute('values', ICON_R + ';' + (ICON_R + 10) + ';' + ICON_R);
+            animR.setAttribute('dur', '1.6s');
+            animR.setAttribute('begin', 'indefinite');
+            animR.setAttribute('repeatCount', 'indefinite');
+            const animO = document.createElementNS(NS, 'animate');
+            animO.setAttribute('attributeName', 'opacity');
+            animO.setAttribute('values', '0.8;0;0.8');
+            animO.setAttribute('dur', '1.6s');
+            animO.setAttribute('begin', 'indefinite');
+            animO.setAttribute('repeatCount', 'indefinite');
+            pulse.appendChild(animR);
+            pulse.appendChild(animO);
+            pulse._animR = animR;
+            pulse._animO = animO;
+            g.appendChild(pulse);
             // Filled dot
             g.appendChild(_el('circle', { cx: sx, cy: sy, r: ICON_R, fill: color, opacity: 0.5, class: 'empire-ring' }));
             // Stroke ring
@@ -281,7 +301,7 @@ window.GalaxyMap = (function () {
 
             g.addEventListener('mouseenter', (e) => {
                 const rect = _container.getBoundingClientRect();
-                _showTooltip(e.clientX - rect.left, e.clientY - rect.top, emp);
+                _showTooltip(e.clientX - rect.left, e.clientY - rect.top, emp, sx, sy);
             });
             g.addEventListener('mouseleave', _hideTooltip);
             g.addEventListener('click', () => _selectEmpire(emp.id));
@@ -293,6 +313,8 @@ window.GalaxyMap = (function () {
     function _selectEmpire(id) {
         _selectedId = id;
         _updateSelection();
+        const emp = _mapData.find(e => e.id === id);
+        if (emp) _zoomTo(emp);
         if (_onEmpireClick) _onEmpireClick(id);
     }
 
@@ -303,16 +325,28 @@ window.GalaxyMap = (function () {
                 if (r.getAttribute('fill') === 'none') r.setAttribute('stroke-width', sel ? 3 : 1.5);
                 else r.setAttribute('opacity', sel ? 0.9 : 0.5);
             });
+            const pulse = g.querySelector('.empire-pulse');
+            if (pulse) {
+                if (sel) {
+                    pulse._animR.beginElement();
+                    pulse._animO.beginElement();
+                } else {
+                    pulse._animR.endElement();
+                    pulse._animO.endElement();
+                    pulse.setAttribute('r', ICON_R);
+                    pulse.setAttribute('opacity', 0);
+                }
+            }
         });
     }
 
-    function _showTooltip(cx, cy, emp) {
+    function _showTooltip(cx, cy, emp, dotSx, dotSy) {
         const color = QUADRANT_COLORS[emp.quadrant] || DEFAULT_COLOR;
         const displayName = emp.name || emp.id;
         _tooltip.innerHTML = '<div style="font-weight:bold;color:' + color + '">' + _esc(displayName) + '</div>' +
             (emp.system_name ? '<div style="color:#aaa;font-size:0.85em">' + _esc(emp.system_name) + '</div>' : '') +
             '<div style="color:#888;font-size:0.8em;margin-top:2px">' + _esc(emp.quadrant) + '</div>';
-        _tooltip.classList.remove('hidden');
+        _tooltip.classList.remove('hidden', 'visible');
         const tw = _tooltip.offsetWidth||140, th = _tooltip.offsetHeight||60;
         const cW = _container.clientWidth, cH = _container.clientHeight;
         let tx = cx+18, ty = cy-th/2;
@@ -321,6 +355,19 @@ window.GalaxyMap = (function () {
         if (ty+th > cH) ty = cH-th-4;
         _tooltip.style.left = tx + 'px';
         _tooltip.style.top  = ty + 'px';
+        // Set transform-origin to the empire dot's container-relative position
+        if (dotSx !== undefined) {
+            const svgRect = _svg.getBoundingClientRect();
+            const contRect = _container.getBoundingClientRect();
+            const fitScale = Math.min(svgRect.width / SVG_W, svgRect.height / SVG_H);
+            const offsetX = (svgRect.width  - SVG_W * fitScale) / 2;
+            const offsetY = (svgRect.height - SVG_H * fitScale) / 2;
+            const dotContX = (_transform.x + dotSx * _transform.k) * fitScale + offsetX + (svgRect.left - contRect.left);
+            const dotContY = (_transform.y + dotSy * _transform.k) * fitScale + offsetY + (svgRect.top  - contRect.top);
+            _tooltip.style.transformOrigin = (dotContX - tx) + 'px ' + (dotContY - ty) + 'px';
+        }
+        void _tooltip.offsetWidth;
+        _tooltip.classList.add('visible');
     }
     function _hideTooltip() { _tooltip.classList.add('hidden'); }
 
@@ -463,15 +510,35 @@ window.GalaxyMap = (function () {
         resetView();
     }
 
+    function _zoomTo(emp) {
+        const [sx, sy] = _toSVG(emp.x, emp.y);
+        const targetK = Math.max(_transform.k, 3);
+        const targetX = SVG_W/2 - sx*targetK;
+        const targetY = SVG_H/2 - sy*targetK;
+        const startK = _transform.k, startX = _transform.x, startY = _transform.y;
+        const dur = 500, t0 = performance.now();
+        function step(now) {
+            const p = Math.min(1, (now - t0) / dur);
+            const e = 1 - Math.pow(1 - p, 3); // ease-out cubic
+            _transform.k = startK + (targetK - startK) * e;
+            _transform.x = startX + (targetX - startX) * e;
+            _transform.y = startY + (targetY - startY) * e;
+            _applyTransform();
+            if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    }
+
     function highlight(id) {
         _selectedId = id;
         _updateSelection();
         const emp = _mapData.find(e => e.id === id);
-        if (!emp) return;
-        const [sx, sy] = _toSVG(emp.x, emp.y);
-        _transform.x = SVG_W/2 - sx*_transform.k;
-        _transform.y = SVG_H/2 - sy*_transform.k;
-        _applyTransform();
+        if (emp) _zoomTo(emp);
+    }
+
+    function deselect() {
+        _selectedId = null;
+        _updateSelection();
     }
 
     function resetView() {
@@ -482,7 +549,7 @@ window.GalaxyMap = (function () {
     function destroy() {
         if (_container) _container.innerHTML = '';
         _svg = _defs = _bgLayer = _quadLayer = _starLayer = _empireLayer = _uiLayer = null;
-        _tooltip = null; _container = null; _mapData = []; _drag = null;
+        _tooltip = null; _legendEl = null; _container = null; _mapData = []; _drag = null;
     }
 
     function _esc(s) {
@@ -490,5 +557,5 @@ window.GalaxyMap = (function () {
         return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     }
 
-    return { init, highlight, resetView, destroy };
+    return { init, highlight, deselect, setLegendVisible, resetView, destroy };
 })();
