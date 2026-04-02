@@ -58,34 +58,40 @@ window.GalaxyMap = (function () {
 
     // ── Milky Way spiral ─────────────────────────────────────────────────────
     function _renderMilkyWayBackground() {
-        const canvas = document.createElement('canvas');
-        canvas.width = SVG_W; canvas.height = SVG_H;
-        const ctx = canvas.getContext('2d');
-        // Centre spiral on the galactic origin, not SVG centre
         const [cx, cy] = _toSVG(0, 0);
-        // Radius must reach the farthest empire data corner from that origin
-        const maxR = Math.max(
-            Math.hypot(cx - PAD,          cy - PAD),
-            Math.hypot(SVG_W - PAD - cx,  cy - PAD),
-            Math.hypot(cx - PAD,          SVG_H - PAD - cy),
-            Math.hypot(SVG_W - PAD - cx,  SVG_H - PAD - cy),
-        ) * 1.1;
+        // Canvas must be large enough that its boundary is ALWAYS outside the SVG viewport,
+        // regardless of where the galactic origin falls. Half-size = max corner distance + margin.
+        const halfSize = Math.ceil(Math.max(
+            Math.hypot(cx,        cy),
+            Math.hypot(SVG_W-cx,  cy),
+            Math.hypot(cx,        SVG_H-cy),
+            Math.hypot(SVG_W-cx,  SVG_H-cy),
+        )) + 80;
+        const CW = halfSize * 2, CH = halfSize * 2;
+        // In canvas space the galactic origin is at the exact centre
+        const ocx = halfSize, ocy = halfSize;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = CW; canvas.height = CH;
+        const ctx = canvas.getContext('2d');
+
+        const maxR = halfSize * 0.9;  // spiral / haze radius — stays well within canvas
         const rng = _seededRng(99991);
 
-        // Deep-space radial gradient
-        const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxR * 1.4);
+        // Deep-space radial gradient — fades to fully transparent before canvas boundary
+        const bg = ctx.createRadialGradient(ocx, ocy, 0, ocx, ocy, maxR * 1.1);
         bg.addColorStop(0,   'rgba(20,30,60,0.9)');
         bg.addColorStop(0.5, 'rgba(8,15,35,0.6)');
         bg.addColorStop(1,   'rgba(0,0,0,0)');
         ctx.fillStyle = bg;
-        ctx.fillRect(0, 0, SVG_W, SVG_H);
+        ctx.fillRect(0, 0, CW, CH);
 
         // Background haze
         for (let i = 0; i < 800; i++) {
             const a = rng() * Math.PI * 2;
             const d = Math.pow(rng(), 1.3) * maxR;
             ctx.beginPath();
-            ctx.arc(cx + Math.cos(a)*d, cy + Math.sin(a)*d, 0.4 + rng()*0.8, 0, Math.PI*2);
+            ctx.arc(ocx + Math.cos(a)*d, ocy + Math.sin(a)*d, 0.4 + rng()*0.8, 0, Math.PI*2);
             ctx.fillStyle = 'rgba(200,210,255,' + (0.06 + rng()*0.14).toFixed(2) + ')';
             ctx.fill();
         }
@@ -100,25 +106,26 @@ window.GalaxyMap = (function () {
                 const alpha = Math.max(0, (0.5 - t*0.32) + (rng()-0.5)*0.22);
                 const g2 = Math.floor(210 + rng()*45);
                 ctx.beginPath();
-                ctx.arc(cx + Math.cos(theta)*r, cy + Math.sin(theta)*r, 0.3 + rng()*(1.1-t*0.5), 0, Math.PI*2);
+                ctx.arc(ocx + Math.cos(theta)*r, ocy + Math.sin(theta)*r, 0.3 + rng()*(1.1-t*0.5), 0, Math.PI*2);
                 ctx.fillStyle = 'rgba(200,' + g2 + ',255,' + alpha.toFixed(2) + ')';
                 ctx.fill();
             }
         }
 
-        // Bright core glow
-        const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxR*0.22);
+        // Bright core glow — back in the canvas, fades to 0 long before canvas boundary
+        const core = ctx.createRadialGradient(ocx, ocy, 0, ocx, ocy, maxR * 0.22);
         core.addColorStop(0,    'rgba(255,240,180,0.55)');
         core.addColorStop(0.35, 'rgba(180,160,255,0.22)');
         core.addColorStop(0.7,  'rgba(80,100,200,0.07)');
         core.addColorStop(1,    'rgba(0,0,0,0)');
         ctx.fillStyle = core;
-        ctx.fillRect(0, 0, SVG_W, SVG_H);
+        ctx.fillRect(0, 0, CW, CH);
 
+        // Place canvas centred on the galactic origin in SVG space
         _bgLayer.appendChild(_el('image', {
             href: canvas.toDataURL('image/png'),
-            x: 0, y: 0, width: SVG_W, height: SVG_H,
-            preserveAspectRatio: 'xMidYMid slice', 'pointer-events': 'none',
+            x: cx - halfSize, y: cy - halfSize, width: CW, height: CH,
+            'pointer-events': 'none',
         }));
     }
 
@@ -156,16 +163,26 @@ window.GalaxyMap = (function () {
     function _renderQuadrants() {
         const [ox, oy] = _toSVG(0, 0);
         const x0 = PAD, y0 = PAD, x1 = SVG_W - PAD, y1 = SVG_H - PAD;
-        // Large enough radius so the arc always escapes the viewport
-        const R = Math.hypot(SVG_W, SVG_H) * 1.2;
+        // R must reach every corner of the SVG from the galactic origin
+        const R = Math.max(
+            Math.hypot(ox - 0,     oy - 0),
+            Math.hypot(SVG_W - ox, oy - 0),
+            Math.hypot(ox - 0,     SVG_H - oy),
+            Math.hypot(SVG_W - ox, SVG_H - oy),
+        ) * 1.05;
         const DEG = Math.PI / 180;
 
+        // Radial gradient per quadrant color so the arc fades out and never shows a hard edge
+        function _makeGradient(id, color) {
+            const grad = _el('radialGradient', { id, cx: ox, cy: oy, r: R, gradientUnits: 'userSpaceOnUse' });
+            const s0 = _el('stop', { offset: '0%' });   s0.style.stopColor = color; s0.style.stopOpacity = '0.18';
+            const s1 = _el('stop', { offset: '70%' });  s1.style.stopColor = color; s1.style.stopOpacity = '0.06';
+            const s2 = _el('stop', { offset: '100%' }); s2.style.stopColor = color; s2.style.stopOpacity = '0';
+            grad.appendChild(s0); grad.appendChild(s1); grad.appendChild(s2);
+            _defs.appendChild(grad);
+        }
+
         // Helper: SVG arc path for a pie sector from the galactic origin
-        // In SVG (Y down, X mirrored): 0°=right, 90°=down, 180°=left, 270°=up
-        // Alpha(+gx,+gy) → SVG bottom-left = 90°→180°
-        // Beta (-gx,+gy) → SVG bottom-right = 0°→90°
-        // Gamma(+gx,-gy) → SVG top-left    = 180°→270°
-        // Delta(-gx,-gy) → SVG top-right   = 270°→360°
         function _sectorPath(startDeg, endDeg) {
             const s = startDeg * DEG, e = endDeg * DEG;
             const x1s = ox + R * Math.cos(s), y1s = oy + R * Math.sin(s);
@@ -186,9 +203,11 @@ window.GalaxyMap = (function () {
         _quadLayer.appendChild(_el('line', { x1: ox, y1: y0, x2: ox, y2: y1, ...ls }));
         _quadLayer.appendChild(_el('line', { x1: x0, y1: oy, x2: x1, y2: oy, ...ls }));
 
-        quads.forEach(([label, startDeg, endDeg, midDeg, color]) => {
-            // Quarter-circle sector
-            const sector = _el('path', { d: _sectorPath(startDeg, endDeg), fill: color, opacity: 0.045, 'pointer-events': 'none' });
+        quads.forEach(([label, startDeg, endDeg, midDeg, color], i) => {
+            const gradId = 'qgrad-' + i;
+            _makeGradient(gradId, color);
+            // Quarter-circle sector with radial fade — no hard outer edge visible
+            const sector = _el('path', { d: _sectorPath(startDeg, endDeg), fill: 'url(#' + gradId + ')', 'pointer-events': 'none' });
             _quadLayer.appendChild(sector);
 
             // Label at 55% of R along the midpoint angle
