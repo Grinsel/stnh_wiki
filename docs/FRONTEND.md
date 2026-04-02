@@ -18,6 +18,8 @@ Vanilla HTML/CSS/JS, kein Build-System, kein Framework. Jede HTML-Seite laedt Sh
 | Empires | empires.html | search-input | Empires, Species | empires.js |
 | Economy | economy.html | search-input | Jobs, Deposits | economy.js |
 
+**Galaxy Map:** Kein eigenes HTML — eingebettet in empires.html als Canvas-Modul via `galaxy-map.js`. Zeigt Empire-Startpositionen auf einer stilisierten Galaxiekarte. Daten aus `assets/galaxy_map.json`.
+
 ## Shared Module (alle Seiten)
 
 ### `js/common.js` — Gemeinsame Initialisierung
@@ -197,7 +199,7 @@ Alle 8 Standard-Content-Pages (ships, buildings, traits, governments, megastruct
 })();
 ```
 
-Dieses Pattern gilt fuer: ships.js, buildings.js, traits.js, governments.js, megastructures.js, anomalies.js, empires.js, economy.js.
+Dieses Pattern gilt fuer: ships.js, buildings.js, traits.js, governments.js, megastructures.js, anomalies.js, empires.js, economy.js. Galaxy-map.js folgt einem eigenen Canvas-basierten Pattern.
 
 ### Dual-Search-Verhalten
 
@@ -249,6 +251,9 @@ Eigenes modulares System (ES Modules), komplett getrennt von den Wiki-Shared-Mod
 - Minimaler I18n-Shim statt vollem i18n.js (nur `ui()` + `setLanguage()` als No-Op)
 - Sidebar-Suche: `#tech-filter-input` (umbenannt, damit kein Konflikt mit GlobalSearch auf `#search-input` im Header)
 - ES Modules (`type="module"`) statt IIFE
+- Tier-Layout als Default-Ansicht (kein separater Tech-Header)
+- Prerequisites mit klickbaren Links zu anderen Techs
+- Tech-Item-Map: Cross-Reference welche Items (Ships, Buildings, Components) eine Tech freischaltet
 
 ## GlobalSearch-Architektur
 

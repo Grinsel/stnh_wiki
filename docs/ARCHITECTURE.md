@@ -11,7 +11,7 @@ localisation/{lang}/  -->  parse_localisation.py -->  localisation/*.json     (a
 interface/*.gfx       -->  parse_gfx_mappings.py -->  pictures_map.json
 common/ship_sizes/    -->  parse_ships.py        -->  ships.json         -->  ships.html
 common/buildings/     -->  parse_buildings.py     -->  buildings.json     -->  buildings.html
-   ... (24 Parser)         ... (14 Generatoren)      ... (30 JSONs)         ... (11 Seiten)
+   ... (26 Parser)         ... (15 Generatoren)      ... (33 JSONs)         ... (11 Seiten)
 ```
 
 ## Datenfluss
@@ -33,7 +33,7 @@ common/buildings/     -->  parse_buildings.py     -->  buildings.json     -->  b
    |  - Cross-References berechnen
    |
    v
-4. JSON-Assets (assets/*.json, 30 Dateien + 272 Event-Details)
+4. JSON-Assets (assets/*.json, 33 Dateien + 272 Event-Details)
    |
    v
 5. Browser (Vanilla JS, kein Framework)

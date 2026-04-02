@@ -105,6 +105,8 @@ LANGUAGES = ['english', 'german', 'french', 'spanish', 'russian', 'polish', 'bra
 | Anomalies | parse_anomalies, parse_archaeology | generate_anomalies_json | anomalies.json, archaeology.json |
 | Empires | parse_empires, parse_species | generate_empires_json | empires.json, species.json |
 | Economy | parse_jobs, parse_deposits | generate_economy_json | jobs.json, deposits.json |
+| Galaxy Map | (Empires-Daten) | generate_galaxy_map_json | galaxy_map.json |
+| Tech Item Map | (Tech + Content-Daten) | generate_tech_item_map | tech_item_map.json |
 | Search | (alle obigen) | generate_search_index, generate_cross_references | search_index.json, cross_references.json, module_pages.json |
 | Images | (GFX-Mapping) | convert_images | pictures/*.webp |
 

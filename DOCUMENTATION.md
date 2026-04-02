@@ -10,7 +10,7 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 > | `docs/PIPELINE.md` | Python-Pipeline: Master-Script, Parser, Generatoren, Konfiguration |
 > | `docs/FRONTEND.md` | JS-Module, Page-Controller-Skeleton, Events/Tech-Module, Design-System |
 > | `docs/FILE_STRUCTURE.md` | Vollstaendiger annotierter Verzeichnisbaum |
-> | `docs/ASSETS.md` | Alle 31 JSON-Dateien, Bilder, Icons, Cross-References, Suchindex |
+> | `docs/ASSETS.md` | Alle 33 JSON-Dateien, Bilder, Icons, Cross-References, Suchindex |
 > | `docs/DEVELOPMENT.md` | Lokale Einrichtung, Deployment, Module hinzufuegen, Wartung |
 
 ---
@@ -42,9 +42,9 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 | Loc-Keys | ~200.000+ pro Sprache |
 | GFX Sprites | 7.338 gesamt, ~986 konvertierte Event-Bilder, 754 Building-Icons |
 | Tech-Icons | 1.659 (WebP, aus git09) |
-| JSON-Assets | 31 Dateien + 272 Event-Detail-JSONs |
-| JS-Dateien | 52 (12 shared + 10 pages + 5 UI + 24 tech + 1 ship-viewer) |
-| Python-Pipeline | 48 Dateien (5 master + 11 generators + 26 parsers + 3 converters + 1 builder + 1 mesh-reader + 1 config) |
+| JSON-Assets | 33 Dateien + 272 Event-Detail-JSONs |
+| JS-Dateien | 53 (12 shared + 11 pages + 5 UI + 24 tech + 1 ship-viewer) |
+| Python-Pipeline | 77 Dateien (50 core + 27 techtree) |
 | Pipeline-Laufzeit | ~12 Sekunden (ohne Bilder) |
 | Projektgroesse | ~1,4 GB (inkl. 3D-Modelle, ohne: ~294 MB) |
 | Frontend | Vanilla HTML/CSS/JS (kein Framework, kein Build-Tool) |
@@ -85,16 +85,16 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 +----------------------------------------------------------------+
                     | Python Pipeline
                     | +-- UPDATE_WIKI.py      (Master-Orchestrator)
-                    | +-- 26 Parser + 11 Generatoren + 3 Konverter
+                    | +-- 26 Parser + 13 Generatoren + 3 Konverter
                     v
 +----------------------------------------------------------------+
 |  STNH Wiki (git10/stnh_wiki/)                                   |
 |  +-- 11 HTML-Seiten              (Hub, Events, Tech, 8 Content)|
-|  +-- assets/                     (31 JSON + 272 Event-Details) |
+|  +-- assets/                     (33 JSON + 272 Event-Details) |
 |  +-- pictures/                   (986 WebP-Bilder)             |
 |  +-- icons/tech/                 (1.659 Tech-Icons)            |
 |  +-- icons/buildings/            (754 Building-Icons)          |
-|  +-- js/                         (52 JS-Module)                |
+|  +-- js/                         (53 JS-Module)                |
 |  +-- style.css                   (44 KB, Dark Theme)           |
 +----------------------------------------------------------------+
                     | git push -> GitHub Pages
@@ -117,7 +117,7 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 | 8 | Fraktionen & Empires | Fertig |
 | 9 | Ressourcen & Wirtschaft | Fertig |
 | 10 | Suche & Vernetzung (Cross-Module) | Fertig |
-| 11 | Techtree (Kopie aus git09) | 11.1 Fertig (Kopie + Frontend), 11.2-11.6 offen |
+| 11 | Techtree (Kopie aus git09) | 11.1 Fertig, 11.2 offen, 11.3+11.4 teilweise, 11.5+11.6 offen |
 
 ### Cross-Cutting Features (nicht phasengebunden)
 
@@ -141,7 +141,7 @@ stnh_wiki/
 |   +-- workflows/
 |       +-- deploy.yml                 # GitHub Pages Auto-Deployment
 |
-+-- assets/                            # [GENERIERT] JSON-Daten (31 Dateien)
++-- assets/                            # [GENERIERT] JSON-Daten (33 Dateien)
 |   +-- events_index.json              # Event-Index (2,6 MB)
 |   +-- namespaces.json                # Namespace-Metadaten (42 KB)
 |   +-- relationships.json             # Event-Trigger-Graph (637 KB)
@@ -169,6 +169,8 @@ stnh_wiki/
 |   +-- jobs.json                      # Berufe (219 KB)
 |   +-- deposits.json                  # Lagerstetten (237 KB)
 |   +-- ship_models_map.json            # Ship-ID -> Fraktions-Modell Mapping (443 KB)
+|   +-- galaxy_map.json                # Galaxy-Map Startpositionen (22 KB)
+|   +-- tech_item_map.json             # Tech -> Item Cross-Reference (1,05 MB)
 |   +-- search_index.json              # Suchindex cross-module (2,6 MB, ~19.740 Items)
 |   +-- cross_references.json          # Bidirektionale Cross-Refs (303 KB)
 |   +-- module_pages.json              # Modul -> HTML-Seite Mapping
@@ -176,6 +178,7 @@ stnh_wiki/
 |   +-- events_detail/                 # Detail-JSONs pro Namespace (272 Dateien)
 |   +-- localisation/                  # Loc-Keys pro Sprache (7 Dateien)
 |   +-- tech/                          # Techtree-Assets (aus git09)
+|   +-- flags/trek/                   # Empire-Flaggen (79 WebP)
 |
 +-- pictures/                          # [GENERIERT] WebP Event-Bilder (986 Dateien)
 |
@@ -189,7 +192,7 @@ stnh_wiki/
 |   +-- federation-ds9-title.TTF
 |   +-- Tungsten-Light.ttf
 |
-+-- js/                                # Frontend JavaScript (52 Dateien)
++-- js/                                # Frontend JavaScript (53 Dateien)
 |   +-- common.js                      # Shared: Theme, Font, Lang, Nav, Hamburger, GlobalSearch
 |   +-- data.js                        # DataManager - Asynchrones JSON-Laden + Cache
 |   +-- state.js                       # AppState - URL-synchronisierter State
@@ -203,7 +206,7 @@ stnh_wiki/
 |   +-- humanize.js                    # PDX-Syntax -> lesbarer Text
 |   +-- shared-render.js               # Gemeinsames Rendering fuer Content-Module
 |   +-- ship-viewer.js                 # 3D Ship Viewer (Three.js, lazy-loaded)
-|   +-- pages/                         # 10 Seiten-Controller
+|   +-- pages/                         # 11 Seiten-Controller
 |   |   +-- hub.js                     # Hub: Stats, GlobalSearch Full-Results
 |   |   +-- events.js                  # Events: Filter, Sidebar, Detail, Chains
 |   |   +-- ships.js                   # Ships: Tabs (Ships/Components), Filter, Detail
@@ -214,6 +217,7 @@ stnh_wiki/
 |   |   +-- anomalies.js              # Anomalies: Tabs (Anomalies/Archaeology)
 |   |   +-- empires.js                 # Empires: Tabs (Empires/Species)
 |   |   +-- economy.js                 # Economy: Tabs (Jobs/Deposits)
+|   |   +-- galaxy-map.js             # Galaxy Map: Empire-Startpositionen (Canvas)
 |   +-- ui/                            # 5 UI-Komponenten
 |   |   +-- event-list.js              # Paginierte Event-Liste
 |   |   +-- event-detail.js            # Event-Detailansicht
@@ -227,7 +231,7 @@ stnh_wiki/
 |           +-- events.js, zoom.js, tabs.js, tiers.js, popup.js, ...
 |           +-- layouts/               # 5 Layout-Engines (force, grid, tier, arrows, disjoint)
 |
-+-- update/                            # Python Daten-Pipeline (48 Dateien)
++-- update/                            # Python Daten-Pipeline (77 Dateien: 50 core + 27 techtree)
 |   +-- UPDATE_WIKI.py                 # Master-Orchestrator (alle Phasen)
 |   +-- UPDATE_EVENTS.py               # Modul-Updater: Events
 |   +-- UPDATE_LOC.py                  # Modul-Updater: Localisation
@@ -271,6 +275,8 @@ stnh_wiki/
 |   +-- generate_economy_json.py       # Jobs + Deposits JSON
 |   +-- generate_search_index.py       # Cross-Module Suchindex
 |   +-- generate_cross_references.py   # Bidirektionale Cross-Refs
+|   +-- generate_galaxy_map_json.py   # Galaxy-Map Startpositionen
+|   +-- generate_tech_item_map.py     # Tech -> Item Cross-Reference Map
 |   +-- convert_images.py              # DDS -> WebP Konvertierung (Event-Bilder)
 |   +-- convert_building_icons.py     # DDS -> WebP Konvertierung (Building-Icons)
 |   +-- convert_ship_models.py        # PdxMesh -> GLB 3D-Modelle
@@ -406,6 +412,8 @@ LANGUAGES = ['english', 'german', 'french', 'spanish', 'russian', 'polish', 'bra
 | Anomalies | parse_anomalies, parse_archaeology | generate_anomalies_json | anomalies.json, archaeology.json |
 | Empires | parse_empires, parse_species | generate_empires_json | empires.json, species.json |
 | Economy | parse_jobs, parse_deposits | generate_economy_json | jobs.json, deposits.json |
+| Galaxy Map | (Empires-Daten) | generate_galaxy_map_json | galaxy_map.json |
+| Tech Item Map | (Tech + Content-Daten) | generate_tech_item_map | tech_item_map.json |
 | Search | (alle obigen) | generate_search_index, generate_cross_references | search_index.json, cross_references.json, module_pages.json |
 | Images | (GFX-Mapping) | convert_images | pictures/*.webp |
 
@@ -656,6 +664,8 @@ Responsive Breakpoints:
 | `species.json` | 74 KB | Spezies: Archetyp, Portraits |
 | `jobs.json` | 219 KB | Berufe: Produktion, Konsum |
 | `deposits.json` | 237 KB | Lagerstetten |
+| `galaxy_map.json` | 22 KB | Galaxy-Map Empire-Startpositionen |
+| `tech_item_map.json` | 1,05 MB | Tech -> Item Cross-Reference (Ships, Buildings, Components) |
 | `search_index.json` | 2,6 MB | Cross-Module Suchindex (~19.740 Items) |
 | `cross_references.json` | 303 KB | Bidirektionale Cross-Refs |
 | `module_pages.json` | 248 B | Modul -> HTML-Seite Mapping |

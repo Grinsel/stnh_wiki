@@ -9,7 +9,7 @@ stnh_wiki/
 |   +-- workflows/
 |       +-- deploy.yml                 # GitHub Pages Auto-Deployment
 |
-+-- assets/                            # [GENERIERT] JSON-Daten (31 Dateien)
++-- assets/                            # [GENERIERT] JSON-Daten (33 Dateien)
 |   +-- events_index.json              # Event-Index (2,6 MB)
 |   +-- namespaces.json                # Namespace-Metadaten (42 KB)
 |   +-- relationships.json             # Event-Trigger-Graph (637 KB)
@@ -37,6 +37,8 @@ stnh_wiki/
 |   +-- jobs.json                      # Berufe (219 KB)
 |   +-- deposits.json                  # Lagerstetten (237 KB)
 |   +-- ship_models_map.json            # Ship-ID -> Fraktions-Modell Mapping (443 KB)
+|   +-- galaxy_map.json                # Galaxy-Map Startpositionen (22 KB)
+|   +-- tech_item_map.json             # Tech -> Item Cross-Reference (1,05 MB)
 |   +-- search_index.json              # Suchindex cross-module (2,6 MB, ~19.740 Items)
 |   +-- cross_references.json          # Bidirektionale Cross-Refs (303 KB)
 |   +-- module_pages.json              # Modul -> HTML-Seite Mapping
@@ -44,6 +46,7 @@ stnh_wiki/
 |   +-- events_detail/                 # Detail-JSONs pro Namespace (272 Dateien)
 |   +-- localisation/                  # Loc-Keys pro Sprache (7 Dateien)
 |   +-- tech/                          # Techtree-Assets (aus git09)
+|   +-- flags/trek/                   # Empire-Flaggen (79 WebP)
 |
 +-- pictures/                          # [GENERIERT] WebP Event-Bilder (986 Dateien)
 |
@@ -57,7 +60,7 @@ stnh_wiki/
 |   +-- federation-ds9-title.TTF
 |   +-- Tungsten-Light.ttf
 |
-+-- js/                                # Frontend JavaScript (52 Dateien)
++-- js/                                # Frontend JavaScript (53 Dateien)
 |   +-- common.js                      # Shared: Theme, Font, Lang, Nav, Hamburger, GlobalSearch
 |   +-- data.js                        # DataManager - Asynchrones JSON-Laden + Cache
 |   +-- state.js                       # AppState - URL-synchronisierter State
@@ -71,7 +74,7 @@ stnh_wiki/
 |   +-- humanize.js                    # PDX-Syntax -> lesbarer Text
 |   +-- shared-render.js               # Gemeinsames Rendering fuer Content-Module
 |   +-- ship-viewer.js                 # 3D Ship Viewer (Three.js, lazy-loaded)
-|   +-- pages/                         # 10 Seiten-Controller
+|   +-- pages/                         # 11 Seiten-Controller
 |   |   +-- hub.js                     # Hub: Stats, GlobalSearch Full-Results
 |   |   +-- events.js                  # Events: Filter, Sidebar, Detail, Chains
 |   |   +-- ships.js                   # Ships: Tabs (Ships/Components), Filter, Detail
@@ -82,6 +85,7 @@ stnh_wiki/
 |   |   +-- anomalies.js              # Anomalies: Tabs (Anomalies/Archaeology)
 |   |   +-- empires.js                 # Empires: Tabs (Empires/Species)
 |   |   +-- economy.js                 # Economy: Tabs (Jobs/Deposits)
+|   |   +-- galaxy-map.js             # Galaxy Map: Empire-Startpositionen (Canvas)
 |   +-- ui/                            # 5 UI-Komponenten
 |   |   +-- event-list.js              # Paginierte Event-Liste
 |   |   +-- event-detail.js            # Event-Detailansicht
@@ -95,7 +99,7 @@ stnh_wiki/
 |           +-- events.js, zoom.js, tabs.js, tiers.js, popup.js, ...
 |           +-- layouts/               # 5 Layout-Engines (force, grid, tier, arrows, disjoint)
 |
-+-- update/                            # Python Daten-Pipeline (48 Dateien)
++-- update/                            # Python Daten-Pipeline (77 Dateien: 50 core + 27 techtree)
 |   +-- UPDATE_WIKI.py                 # Master-Orchestrator (alle Phasen)
 |   +-- UPDATE_EVENTS.py               # Modul-Updater: Events
 |   +-- UPDATE_LOC.py                  # Modul-Updater: Localisation
@@ -139,6 +143,8 @@ stnh_wiki/
 |   +-- generate_economy_json.py       # Jobs + Deposits JSON
 |   +-- generate_search_index.py       # Cross-Module Suchindex
 |   +-- generate_cross_references.py   # Bidirektionale Cross-Refs
+|   +-- generate_galaxy_map_json.py   # Galaxy-Map Startpositionen
+|   +-- generate_tech_item_map.py     # Tech -> Item Cross-Reference Map
 |   +-- convert_images.py              # DDS -> WebP Konvertierung (Event-Bilder)
 |   +-- convert_building_icons.py     # DDS -> WebP Konvertierung (Building-Icons)
 |   +-- convert_ship_models.py        # PdxMesh -> GLB 3D-Modelle

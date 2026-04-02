@@ -34,6 +34,8 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 | `jobs.json` | 219 KB | Berufe: Produktion, Konsum |
 | `deposits.json` | 237 KB | Lagerstetten |
 | `ship_models_map.json` | 443 KB | Ship-ID -> Fraktions-Modell Mapping |
+| `galaxy_map.json` | 22 KB | Galaxy-Map Empire-Startpositionen |
+| `tech_item_map.json` | 1,05 MB | Tech -> Item Cross-Reference (Ships, Buildings, Components) |
 | `search_index.json` | 2,6 MB | Cross-Module Suchindex (~19.740 Items) |
 | `cross_references.json` | 303 KB | Bidirektionale Cross-Refs |
 | `module_pages.json` | 248 B | Modul -> HTML-Seite Mapping |
@@ -65,6 +67,12 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 - 754 WebP-Dateien
 - Konvertiert aus DDS-Quellen via `convert_building_icons.py`
 - Werden auf der Buildings-Seite neben jedem Gebaeude angezeigt
+
+### Empire-Flaggen (`assets/flags/trek/`)
+
+- 79 WebP-Dateien
+- Empire-Flaggen fuer die Empires-Seite und Galaxy Map
+- Konvertiert aus DDS-Quellen
 
 ### Unlock-Type-Icons (`icons/unlock_types/`)
 

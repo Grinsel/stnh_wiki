@@ -6,7 +6,7 @@ Welcome to the Star Trek: New Horizons Wiki project. This file is your entry poi
 
 **What is this?** A modular off-game wiki for the STNH Stellaris mod. Vanilla HTML/CSS/JS, no build tools, no frameworks. Python pipeline generates JSON data, browser renders it.
 
-**Key numbers:** 11 HTML pages, ~19,740 searchable items, 52 JS files, 48 Python pipeline files.
+**Key numbers:** 11 HTML pages, ~19,740 searchable items, 53 JS files, 77 Python pipeline files (50 core + 27 techtree).
 
 ## Documentation
 
@@ -19,7 +19,7 @@ Welcome to the Star Trek: New Horizons Wiki project. This file is your entry poi
 | `docs/PIPELINE.md` | Python data pipeline: master script, parsers, generators, config |
 | `docs/FRONTEND.md` | JS modules, page controller skeleton, events/tech modules, design system |
 | `docs/FILE_STRUCTURE.md` | Complete annotated directory tree (wiki + mod source) |
-| `docs/ASSETS.md` | All 31 JSON files, images, icons, cross-references, search index |
+| `docs/ASSETS.md` | All 33 JSON files, images, icons, cross-references, search index |
 | `docs/HUMANIZE.md` | Humanize engine: Architektur, Maps, Modifier, Scopes, Erweiterung |
 | `docs/DEVELOPMENT.md` | Local setup, deployment, adding modules, maintenance, conventions |
 
@@ -32,21 +32,23 @@ stnh_wiki/
   index.html, events.html, tech.html    11 HTML pages
   ships.html, buildings.html, ...
   style.css                              Shared dark theme (44 KB)
-  js/                                    52 JS files
+  js/                                    53 JS files
     common.js                            Shared init (theme, hamburger, global search)
     global-search.js                     Cross-module search (on all pages)
     data.js, state.js, i18n.js           Core shared modules
     ui-strings.js                        UI translations (310+ keys, 7 languages)
-    pages/{hub,events,ships,...}.js       10 page controllers
+    pages/{hub,events,ships,...}.js       11 page controllers (incl. galaxy-map)
     tech/                                Techtree modules (ES Modules, D3.js)
-  assets/                                Generated JSON data (31 files + 272 event details)
-  update/                                Python data pipeline
+  assets/                                Generated JSON data (33 files + 272 event details)
+    flags/trek/                          79 WebP empire flags
+  update/                                Python data pipeline (50 core + 27 techtree)
     UPDATE_WIKI.py                       Master orchestrator
     config.py                            Paths (STNH_MOD_ROOT, WIKI_ROOT)
     parse_pdx.py                         Shared PDX parser (recursive descent)
     parse_*.py                           26 module-specific parsers
     convert_*.py                         3 converters (images, ship models, building icons)
-    generate_*.py                        JSON generators
+    generate_*.py                        13 JSON generators
+    techtree/                            27 scripts (copied from git09, not yet functional)
   pictures/                              986 WebP event images
   icons/tech/                            1,659 tech icons
   icons/buildings/                       754 building icons
@@ -105,7 +107,7 @@ All 8 standard content pages (ships, buildings, traits, governments, megastructu
 
 - **index.html (Hub):** Landing page with section cards + stats. GlobalSearch with full-results mode (Enter → replaces page content). Handled by `hub.js`, NOT by `initGlobalSearch()` in common.js.
 - **events.html:** Most complex page. Has its own namespace sidebar, chain viewer modal, event detail panel. Uses chain-index.js for connected components.
-- **tech.html:** Imported from git09. Has its own inline CSS (~780 lines), D3.js (CDN), ES Modules. Sidebar search is `#tech-filter-input` (renamed to avoid conflict with GlobalSearch in header). Has a minimal I18n shim instead of full i18n.js.
+- **tech.html:** Imported from git09. Has its own inline CSS (~780 lines), D3.js (CDN), ES Modules. Sidebar search is `#tech-filter-input` (renamed to avoid conflict with GlobalSearch in header). Has a minimal I18n shim instead of full i18n.js. Tier-Layout is the default view (no separate tech-header).
 
 ## GlobalSearch Architecture
 
@@ -127,7 +129,8 @@ All 8 standard content pages (ships, buildings, traits, governments, megastructu
 - 11.6 TODO: Tech tree localisation (currently English only)
 
 ### Backlog ideas (from TODO.md)
-- Name Lists Browser, Starbase Module Catalog, Galaxy Viewer, Translation Dashboard, etc.
+- Name Lists Browser, Starbase Module Catalog, Translation Dashboard, etc.
+- Galaxy Map: Embedded in empires.html, shows empire starting positions (galaxy_map.json + galaxy-map.js)
 
 ## Conventions
 

@@ -162,7 +162,7 @@ UPDATE_TECHTREE.bat  # Techtree-Pipeline
 | Event-Bilder | 986 (WebP) |
 | Building-Icons | 754 (WebP) |
 | Tech-Icons | 1.659 (WebP) |
-| JSON-Assets | 31 + 272 Event-Details |
-| JS-Dateien | 52 |
-| Python-Pipeline | 48 Dateien |
+| JSON-Assets | 33 + 272 Event-Details |
+| JS-Dateien | 53 |
+| Python-Pipeline | 77 Dateien (50 core + 27 techtree) |
 | Projektgroesse | ~1,4 GB (inkl. 3D-Modelle, ohne: ~294 MB) |

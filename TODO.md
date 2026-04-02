@@ -276,14 +276,21 @@
   - In `UPDATE_WIKI.py` einbinden
   - Output: `assets/technologies.json`, `icons/tech/`
 
-- [ ] **11.3 Techtree Web-Seite im Wiki**
-  - `tech.html` – D3.js Graph-Visualisierung einbetten
-  - `showcase.js` + Layout-Engines portieren ins Wiki-Layout
-  - Filter: Area, Tier, Faction, Kategorie, Unlock-Typ
-  - Tech-Detail-Panel mit Icon, Beschreibung, Prerequisites, Unlocks
+- [~] **11.3 Techtree Web-Seite im Wiki** (teilweise fertig)
+  - [x] `tech.html` – D3.js Graph-Visualisierung eingebettet
+  - [x] `showcase.js` + Layout-Engines portiert ins Wiki-Layout
+  - [x] Filter: Area, Tier, Faction, Kategorie, Unlock-Typ
+  - [x] Tech-Detail-Panel mit Icon, Beschreibung, Prerequisites, Unlocks
+  - [x] Tier-Layout als Default-Ansicht (statt Force-Directed)
+  - [x] Tech-Header entfernt (Beta-Badge, Title)
+  - [x] Prerequisites mit klickbaren Links
+  - [x] Tech-Item-Map: Cross-Reference welche Items eine Tech freischaltet
+  - [ ] Weitere UI-Verfeinerungen offen
 
-- [ ] **11.4 Verlinkung: Tech ↔ andere Module**
-  - Techs ↔ Events, Techs ↔ Buildings, Techs ↔ Ships, etc.
+- [~] **11.4 Verlinkung: Tech ↔ andere Module** (teilweise fertig)
+  - [x] Tech-Item-Map (`tech_item_map.json`): Tech → Ships, Buildings, Components
+  - [x] Prerequisites-Links innerhalb des Techtrees
+  - [ ] Techs ↔ Events, Techs ↔ weitere Module
 
 - [ ] **11.5 git09 ablösen**
   - Wiki-Techtree verifizieren (Feature-Parität mit git09)
@@ -300,7 +307,7 @@
 
 - [ ] Name Lists Browser (168 Dateien – Namens-Generatoren)
 - [ ] Starbase-Modul-Katalog
-- [ ] Map/Galaxy-Viewer (Setup-Szenarien)
+- [x] Galaxy Map (Empire-Startpositionen, eingebettet in Empires-Seite, Canvas-basiert)
 - [ ] Übersetzungs-Dashboard (Vergleich der 7 Sprachen, fehlende Keys)
 - [ ] Mod-Changelog / Version-Tracker
 - [ ] Community-Beitrags-System (GitHub Issues Integration)
