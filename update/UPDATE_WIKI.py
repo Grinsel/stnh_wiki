@@ -211,31 +211,77 @@ def phase_content():
 
 
 def phase_search():
-    """Phase: Search Index & Cross-References."""
+    """Phase: Search Index & Cross-References & Tech-Item Map."""
     print("\n" + "=" * 60)
     print("PHASE: SEARCH INDEX & CROSS-REFERENCES")
     print("=" * 60)
 
     from generate_search_index import generate_search_index
     from generate_cross_references import generate_cross_references
+    from generate_tech_item_map import generate_tech_item_map
 
     search_stats = generate_search_index()
     xref_stats = generate_cross_references()
+    tech_map_stats = generate_tech_item_map()
 
     return {
         'search_index': search_stats,
         'cross_references': xref_stats,
+        'tech_item_map': tech_map_stats,
     }
 
 
 def phase_techtree():
-    """Phase: Techtree update (requires Balance Center)."""
+    """Phase: Techtree update - runs UPDATE_TECHTREE_FULL.py as subprocess."""
     print("\n" + "=" * 60)
     print("PHASE: TECHTREE")
     print("=" * 60)
-    print("  [INFO] Techtree update requires Balance Center")
-    print("  [INFO] Run update/techtree/UPDATE_TECHTREE_FULL.py manually")
-    return {'skipped': True, 'note': 'requires_balance_center'}
+
+    import subprocess
+
+    techtree_script = os.path.join(UPDATE_DIR, 'techtree', 'UPDATE_TECHTREE_FULL.py')
+    tech_json_dir = os.path.join(UPDATE_DIR.parent, 'assets', 'tech')
+
+    if not os.path.exists(techtree_script):
+        print(f"  [WARN] Techtree script not found: {techtree_script}")
+        print("  [INFO] Using existing tech JSONs (fallback)")
+        return {'skipped': True, 'fallback': True}
+
+    try:
+        print(f"  Running: {techtree_script}")
+        result = subprocess.run(
+            [sys.executable, techtree_script],
+            cwd=os.path.join(UPDATE_DIR, 'techtree'),
+            capture_output=True, text=True, timeout=300,
+        )
+        if result.returncode != 0:
+            print(f"  [WARN] Techtree script exited with code {result.returncode}")
+            if result.stderr:
+                for line in result.stderr.strip().split('\n')[-5:]:
+                    print(f"    {line}")
+            print("  [INFO] Using existing tech JSONs (fallback)")
+            return {'skipped': False, 'fallback': True, 'returncode': result.returncode}
+
+        # Print last few lines of output
+        if result.stdout:
+            for line in result.stdout.strip().split('\n')[-5:]:
+                print(f"    {line}")
+
+        # Verify output exists
+        expected = ['technology_physics.json', 'technology_engineering.json', 'technology_society.json']
+        found = sum(1 for f in expected if os.path.exists(os.path.join(tech_json_dir, f)))
+        print(f"  Tech JSONs: {found}/{len(expected)} present")
+
+        return {'skipped': False, 'fallback': False, 'tech_jsons': found}
+
+    except subprocess.TimeoutExpired:
+        print("  [WARN] Techtree script timed out (300s)")
+        print("  [INFO] Using existing tech JSONs (fallback)")
+        return {'skipped': False, 'fallback': True, 'timeout': True}
+    except Exception as e:
+        print(f"  [WARN] Techtree script failed: {e}")
+        print("  [INFO] Using existing tech JSONs (fallback)")
+        return {'skipped': False, 'fallback': True, 'error': str(e)}
 
 
 def phase_images(skip=False):
@@ -412,6 +458,7 @@ def main():
         results['empires'] = phase_empires()
         results['galaxy_map'] = phase_galaxy_map()
         results['economy'] = phase_economy()
+        results['techtree'] = phase_techtree()
         results['search'] = phase_search()
         results['ship_models'] = phase_ship_models(skip=args.skip_images)
         results['images'] = phase_images(skip=args.skip_images)

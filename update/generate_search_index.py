@@ -66,6 +66,18 @@ MODULES = [
     ('deposits.json', 'economy', 'deposit', lambda e: {
         'category': e.get('category', ''),
     }),
+    ('tech/technology_physics.json', 'tech', 'technology', lambda e: {
+        'area': 'physics',
+        'tier': e.get('tier', ''),
+    }),
+    ('tech/technology_engineering.json', 'tech', 'technology', lambda e: {
+        'area': 'engineering',
+        'tier': e.get('tier', ''),
+    }),
+    ('tech/technology_society.json', 'tech', 'technology', lambda e: {
+        'area': 'society',
+        'tier': e.get('tier', ''),
+    }),
 ]
 
 # Module -> page mapping for URLs
@@ -79,6 +91,7 @@ MODULE_PAGES = {
     'anomalies': 'anomalies.html',
     'empires': 'empires.html',
     'economy': 'economy.html',
+    'tech': 'tech.html',
 }
 
 

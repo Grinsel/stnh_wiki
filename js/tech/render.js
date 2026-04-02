@@ -1,7 +1,7 @@
 // Render module: shared rendering helpers
 // TODO: migrate renderStraightLinks, renderNodeBase, renderTierIndicator, renderNodeLabels, tooltip helpers, wrapText
 
-import { getTechName, isFactionExclusive, factionHasUniqueShips } from './data.js';  // NEW Phase 2
+import { getTechName, isFactionExclusive, factionHasUniqueShips, getTechUnlocks } from './data.js';
 
 /**
  * Map species ID to faction name for faction_ships lookup
@@ -146,12 +146,37 @@ function getEffectIcon(category) {
     return icons[category] || '⚙️';
 }
 
+// Mapping: unlock type display name -> cross-ref module key
+const UNLOCK_TYPE_TO_MODULE = {
+    'Building': 'buildings',
+    'Ship Type': 'ships',
+    'Component': 'components',
+    'Megastructure': 'megastructures',
+    'District': 'districts',
+    'Trait': 'traits',
+    'Edict': 'edicts',
+};
+
 /**
- * Format unlocks with grouping by type (similar to effects)
+ * Format unlocks with grouping by type (similar to effects).
+ * If techId is provided, items matching tech_item_map entries become clickable wiki-links.
  */
-function formatUnlocksGrouped(unlocksByType) {
+function formatUnlocksGrouped(unlocksByType, techId) {
     if (!unlocksByType || Object.keys(unlocksByType).length === 0) {
         return '';
+    }
+
+    // Build lookup from tech_item_map for this tech
+    const techUnlocks = techId ? getTechUnlocks(techId) : null;
+    // Build a reverse lookup: module_key -> Set of item IDs for fast matching
+    const moduleItemMap = {};
+    if (techUnlocks) {
+        for (const [moduleKey, items] of Object.entries(techUnlocks)) {
+            moduleItemMap[moduleKey] = {};
+            for (const item of items) {
+                moduleItemMap[moduleKey][item.id] = item;
+            }
+        }
     }
 
     // Build HTML
@@ -168,8 +193,28 @@ function formatUnlocksGrouped(unlocksByType) {
         html += `<div class="unlock-category">`;
         html += `<span class="unlock-category-label"><img src="icons/unlock_types/${iconFile}.webp" class="unlock-type-img" alt="${unlockType}"> ${unlockType}:</span>`;
 
-        items.forEach(item => {
-            html += `<div class="unlock-item">${item}</div>`;
+        const moduleKey = UNLOCK_TYPE_TO_MODULE[unlockType];
+        const moduleItems = moduleKey && moduleItemMap[moduleKey] ? moduleItemMap[moduleKey] : null;
+
+        items.forEach(displayName => {
+            // Try to find a matching item in the tech_item_map
+            let linked = false;
+            if (moduleItems) {
+                // Match by display name against item IDs or name_keys
+                for (const [itemId, itemData] of Object.entries(moduleItems)) {
+                    const itemName = itemData.nk || itemId;
+                    if (displayName === itemName || displayName === itemId ||
+                        displayName.toLowerCase() === itemName.toLowerCase()) {
+                        const url = itemData.p + '?search=' + encodeURIComponent(itemId) + '&tab=' + encodeURIComponent(itemData.tab);
+                        html += `<div class="unlock-item"><a href="${url}" class="wiki-link">${displayName}</a></div>`;
+                        linked = true;
+                        break;
+                    }
+                }
+            }
+            if (!linked) {
+                html += `<div class="unlock-item">${displayName}</div>`;
+            }
         });
 
         html += `</div>`;
@@ -522,8 +567,8 @@ export function formatTooltip(d, currentFactionId = 'all') {
             // If hasUniqueShips is false, we don't add any faction_ships - only generic ships shown
         }
 
-        // Use new grouped format
-        unlocksHtml = formatUnlocksGrouped(unlocksByType);
+        // Use new grouped format with wiki-links
+        unlocksHtml = formatUnlocksGrouped(unlocksByType, d.id);
     } else if (d.unlock_details && d.unlock_details.description) {
         // Fallback to description string (legacy)
         unlocksHtml = d.unlock_details.description;

@@ -107,5 +107,37 @@ const SharedRender = (() => {
         });
     }
 
-    return { formatBlock, dualView, initToggles, escapeHtml };
+    /**
+     * Render a single tech prerequisite as a clickable gold tag.
+     * Uses I18n to resolve the tech_id to a localized name.
+     */
+    function techLink(techId) {
+        const displayName = (typeof I18n !== 'undefined') ? (I18n.t(techId) || techId) : techId;
+        return `<span class="tech-link" data-tech-id="${escapeHtml(techId)}">${escapeHtml(displayName)}</span>`;
+    }
+
+    /**
+     * Map an array of prerequisite tech IDs to clickable tech-link spans.
+     */
+    function techLinks(prerequisites) {
+        if (!prerequisites || !prerequisites.length) return '';
+        return prerequisites.map(t => techLink(t)).join('');
+    }
+
+    /**
+     * Attach click handlers to all .tech-link elements within a container.
+     * Navigates to tech.html?focus=tech_id on click.
+     */
+    function initTechLinks(container) {
+        if (!container) return;
+        container.querySelectorAll('.tech-link').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const techId = el.dataset.techId;
+                if (techId) window.location.href = 'tech.html?focus=' + encodeURIComponent(techId);
+            });
+        });
+    }
+
+    return { formatBlock, dualView, initToggles, escapeHtml, techLink, techLinks, initTechLinks };
 })();

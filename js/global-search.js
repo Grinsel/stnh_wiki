@@ -33,6 +33,7 @@ const GlobalSearch = (() => {
         'species': 'species',
         'job': 'job', 'jobs': 'job',
         'deposit': 'deposit',
+        'tech': 'technology', 'technology': 'technology',
     };
 
     const TYPE_LABELS = {
@@ -57,10 +58,12 @@ const GlobalSearch = (() => {
         'species': 'Species',
         'job': 'Job',
         'deposit': 'Deposit',
+        'technology': 'Technology',
     };
 
     // Display order for grouped results
     const TYPE_ORDER = [
+        'technology',
         'ship', 'component', 'building', 'district',
         'trait', 'tradition', 'ascension_perk',
         'government', 'civic', 'authority', 'policy', 'edict',
@@ -139,6 +142,7 @@ const GlobalSearch = (() => {
         'species': 'species',
         'job': 'jobs',
         'deposit': 'deposits',
+        'technology': null,
     };
 
     async function init() {
@@ -261,6 +265,9 @@ const GlobalSearch = (() => {
 
     function getItemUrl(result) {
         if (!result.page) return '#';
+        if (result.type === 'technology') {
+            return result.page + '?focus=' + encodeURIComponent(result.id);
+        }
         let url = result.page + '?search=' + encodeURIComponent(result.id);
         if (result.tab) {
             url += '&tab=' + encodeURIComponent(result.tab);

@@ -6,6 +6,7 @@ let _techs = null;            // Array<Tech>
 let _species = null;          // Array<string>
 let _factions = null;         // Array<Faction> - NEW Phase 2
 let _empires = null;          // Array<Empire> - Prescripted countries
+let _techItemMap = null;      // { by_tech: {}, by_item: {} }
 let _indexById = null;        // Map<string, Tech>
 
 // --- Types (informal) ---
@@ -69,9 +70,26 @@ export async function loadEmpiresData() {
   return _empires;
 }
 
+export async function loadTechItemMap() {
+  if (_techItemMap) return _techItemMap;
+  try {
+    const res = await fetch('assets/tech_item_map.json');
+    _techItemMap = await res.json();
+  } catch (e) {
+    console.warn('Tech-Item Map not available:', e);
+    _techItemMap = { by_tech: {}, by_item: {} };
+  }
+  return _techItemMap;
+}
+
+export function getTechUnlocks(techId) {
+  if (!_techItemMap || !_techItemMap.by_tech) return null;
+  return _techItemMap.by_tech[techId] || null;
+}
+
 export async function initData() {
-  // Best-effort parallel preload (including factions and empires)
-  await Promise.all([loadTechnologyData(), loadSpeciesList(), loadFactionData(), loadEmpiresData()]);
+  // Best-effort parallel preload (including factions, empires, and tech-item map)
+  await Promise.all([loadTechnologyData(), loadSpeciesList(), loadFactionData(), loadEmpiresData(), loadTechItemMap()]);
   return { techs: _techs, species: _species, factions: _factions, empires: _empires };
 }
 

@@ -191,7 +191,7 @@
             // Prerequisites
             if (item.prerequisites && item.prerequisites.length) {
                 html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.prerequisites')}</div>`;
-                html += `<div class="detail-meta">${item.prerequisites.map(t => `<span class="detail-meta-item">${esc(I18n.t(t) || t)}</span>`).join('')}</div></div>`;
+                html += `<div class="detail-meta">${SharedRender.techLinks(item.prerequisites)}</div></div>`;
             }
 
             // Resources
@@ -238,6 +238,7 @@
 
             detailContent.innerHTML = html;
             SharedRender.initToggles(detailContent);
+            SharedRender.initTechLinks(detailContent);
 
             // Wire up 3D model button
             if (item.has_model && item.model_factions && item.model_factions.length) {

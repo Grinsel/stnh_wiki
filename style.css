@@ -773,6 +773,34 @@ h1, h2, h3, h4 {
 }
 .related-event-tag:hover { background: rgba(209, 206, 4, 0.25); }
 
+/* Tech prerequisite link tags */
+.tech-link {
+    display: inline-block;
+    font-size: 0.6rem;
+    padding: 0.1rem 0.35rem;
+    background: rgba(209, 206, 4, 0.1);
+    border-radius: 3px;
+    cursor: pointer;
+    color: var(--accent-gold);
+    margin: 0.1rem;
+}
+.tech-link:hover {
+    background: rgba(209, 206, 4, 0.25);
+    text-decoration: underline;
+}
+
+/* Wiki cross-links in techtree tooltips */
+.wiki-link {
+    color: #4a9eff;
+    text-decoration: none;
+    border-bottom: 1px dotted #4a9eff;
+    cursor: pointer;
+}
+.wiki-link:hover {
+    color: #7ab8ff;
+    border-bottom-style: solid;
+}
+
 /* Chain Viewer Modal */
 .modal {
     position: fixed;
