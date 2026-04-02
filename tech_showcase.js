@@ -1,5 +1,5 @@
 import { updateLOD, calculateAndRenderPath as calculateAndRenderPathController, formatTooltip, createSvgFor, getAreaColor } from './js/tech/render.js';
-import { buildLinksFromPrereqs, getConnectedTechIds, getPrerequisites as getPrerequisitesData, calculateAllPaths, loadTechnologyData, getAllTechsCached, isTechDataLoaded, filterTechsByFaction, isFactionExclusive } from './js/tech/data.js';  // NEW Phase 2: added filterTechsByFaction, isFactionExclusive
+import { buildLinksFromPrereqs, getConnectedTechIds, getPrerequisites as getPrerequisitesData, calculateAllPaths, loadTechnologyData, getAllTechsCached, isTechDataLoaded, filterTechsByFaction, isFactionExclusive, loadTechItemMap } from './js/tech/data.js';  // NEW Phase 2: added filterTechsByFaction, isFactionExclusive
 import { filterTechsByTier as filterTechsByTierData, filterTechs, loadSpeciesFilter, loadCategoryFilter, loadUnlockFilter, updateAdaptiveFilters } from './js/tech/filters.js';
 import { handleSearch as executeSearch } from './js/tech/search.js';
 import { renderForceDirectedArrowsGraph as arrowsLayout } from './js/tech/ui/layouts/arrows.js';
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Element References ---
     const speciesSelect = document.getElementById('species-select');
     const factionExclusiveToggle = document.getElementById('faction-exclusive-toggle');  // Phase 2: Renamed
-    const searchInput = document.getElementById('search-input');
+    const searchInput = document.getElementById('tech-filter-input');
     const searchButton = document.getElementById('search-button');
     const searchBackButton = document.getElementById('search-back-button');
     const searchScopeToggle = document.getElementById('search-scope-toggle');
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeTechId = null;
     let tierFilterActive = false;
     let lastLayout = 'force-directed';
-    let isTierBasedLayout = false;
+    let isTierBasedLayout = true;
     // Selection handler bound to current state (created after state vars exist)
     const handleNodeSelection = createHandleNodeSelection({
         getG: () => g,
@@ -354,8 +354,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadAndRenderTree() {
         // Ensure the UI is prepared so the container has a size
         prepareUI();
-        
-        loadTechnologyData().then(data => {
+
+        Promise.all([loadTechnologyData(), loadTechItemMap()]).then(([data]) => {
             if (Array.isArray(data)) {
                 allTechs = data;
                 // Initialize highlighting modules with tech data
@@ -385,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 historyIndex = 1;
             }
 
-            updateVisualization(currentState.species, activeTechId, false);
+            updateVisualization(currentState.species, activeTechId, false, activeTechId);
         });
     }
 
@@ -400,7 +400,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const hrSep = document.getElementById('jump-to-tech-hr');
 
         // NEW Phase 2: Pass current faction to tooltip
-        const html = tech ? formatTooltip(tech, getCurrentFaction()) : '<p>Click on a technology to see its details here.</p>';
+        let html;
+        try {
+            html = tech ? formatTooltip(tech, getCurrentFaction()) : '<p>Click on a technology to see its details here.</p>';
+        } catch (e) {
+            console.error('[renderTechDetails] formatTooltip error:', e);
+            html = `<p>Error rendering details: ${e.message}</p>`;
+        }
         techDetailsContent.innerHTML = html;
         if (hrSep) techDetailsContent.appendChild(hrSep);
         if (jumpBtn) techDetailsContent.appendChild(jumpBtn);
@@ -446,7 +452,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (exclusiveTechs.length === 0) {
                     // No exclusive techs for this faction - auto-disable toggle
                     factionExclusiveToggle.checked = false;
-                    console.log(`No exclusive techs for faction '${currentFaction}' - toggle disabled`);
                 } else {
                     baseTechs = exclusiveTechs;
                 }
@@ -794,17 +799,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedArea = areaSelect.value;
         const selectedLayout = layoutSelect.value;
 
+        // Update details panel BEFORE clearing focus so the original highlightId is used
+        const techSource = getAllTechsCached() || allTechs;
+        const tech = highlightId ? techSource.find(t => t.id === highlightId) : null;
+        renderTechDetails(tech);
+
         // Filter and potentially clear focus if disconnected
         const { filteredTechs, clearedFocus } = applyFilters({ selectedSpecies, activeTechId });
         if (clearedFocus) {
             activeTechId = null;
             window.currentFocusId = null;
         }
-
-        // Update details panel based on (potentially) updated focus
-        const techSource = getAllTechsCached() || allTechs;
-        const tech = activeTechId ? techSource.find(t => t.id === activeTechId) : null;
-        renderTechDetails(tech);
 
         // Render tree
         renderTree({ filteredTechs, selectedLayout, selectedSpecies, onEnd: zoomOnEndId ? () => zoomToTech(zoomOnEndId) : null });
@@ -818,7 +823,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // NEW Phase 2: Initialize faction dropdown
     initFactionDropdown().then(() => {
         registerFactionEvents();
-        console.log('[Phase 2] Faction system initialized');
     }).catch(err => console.error('[Phase 2] Faction initialization failed:', err));
 
     // Initialize filter highlighting event handlers (for Category AND Unlock)
