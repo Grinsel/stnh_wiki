@@ -1635,6 +1635,15 @@ body.in-iframe #site-footer {
     overflow-y: auto;
 }
 
+.content-layout #item-list-panel.map-view {
+    height: calc(100vh - var(--detail-top, 130px) - 2rem - var(--footer-height, 38px));
+    overflow: hidden;
+}
+
+.content-layout #item-list-panel.map-view #galaxy-map-container {
+    height: 100%;
+}
+
 .content-layout #detail-panel {
     flex: 2;
     min-width: 0;

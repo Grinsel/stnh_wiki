@@ -237,9 +237,12 @@ window.GalaxyMap = (function () {
 
     // ── Legend ────────────────────────────────────────────────────────────────
     function _renderLegend() {
-        let xOff = 12;
         const y0 = SVG_H - 14;
-        Object.entries(QUADRANT_COLORS).forEach(([label, color]) => {
+        const entries = Object.entries(QUADRANT_COLORS);
+        // Estimate total width to center the legend
+        const totalW = entries.reduce((sum, [label]) => sum + label.length * 5.2 + 22, 0) - 10;
+        let xOff = (SVG_W - totalW) / 2;
+        entries.forEach(([label, color]) => {
             const g = _el('g', { 'pointer-events': 'none' });
             g.appendChild(_el('circle', { cx: xOff+5, cy: y0-5, r: 4, fill: color }));
             const t = _el('text', { x: xOff+13, y: y0, fill: '#bbb', 'font-size': 9, 'font-family': 'inherit' });
@@ -276,9 +279,9 @@ window.GalaxyMap = (function () {
                 g.appendChild(lbl);
             }
 
-            g.addEventListener('mouseenter', () => {
+            g.addEventListener('mouseenter', (e) => {
                 const rect = _container.getBoundingClientRect();
-                _showTooltip(_transform.x + sx*_transform.k - rect.left, _transform.y + sy*_transform.k - rect.top, emp);
+                _showTooltip(e.clientX - rect.left, e.clientY - rect.top, emp);
             });
             g.addEventListener('mouseleave', _hideTooltip);
             g.addEventListener('click', () => _selectEmpire(emp.id));
@@ -305,7 +308,8 @@ window.GalaxyMap = (function () {
 
     function _showTooltip(cx, cy, emp) {
         const color = QUADRANT_COLORS[emp.quadrant] || DEFAULT_COLOR;
-        _tooltip.innerHTML = '<div style="font-weight:bold;color:' + color + '">' + _esc(emp.id) + '</div>' +
+        const displayName = emp.name || emp.id;
+        _tooltip.innerHTML = '<div style="font-weight:bold;color:' + color + '">' + _esc(displayName) + '</div>' +
             (emp.system_name ? '<div style="color:#aaa;font-size:0.85em">' + _esc(emp.system_name) + '</div>' : '') +
             '<div style="color:#888;font-size:0.8em;margin-top:2px">' + _esc(emp.quadrant) + '</div>';
         _tooltip.classList.remove('hidden');
@@ -320,12 +324,18 @@ window.GalaxyMap = (function () {
     }
     function _hideTooltip() { _tooltip.classList.add('hidden'); }
 
+    // Convert a clientX/Y point to SVG viewBox coordinates
+    function _clientToSVG(cx, cy) {
+        const pt = _svg.createSVGPoint();
+        pt.x = cx; pt.y = cy;
+        return pt.matrixTransform(_svg.getScreenCTM().inverse());
+    }
+
     // ── Zoom / Pan ────────────────────────────────────────────────────────────
     function _setupZoomPan() {
         _svg.addEventListener('wheel', (e) => {
             e.preventDefault();
-            const rect = _svg.getBoundingClientRect();
-            const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+            const { x: mx, y: my } = _clientToSVG(e.clientX, e.clientY);
             const newK = Math.max(0.4, Math.min(8, _transform.k * (e.deltaY < 0 ? 1.15 : 1/1.15)));
             _transform.x = mx - (mx - _transform.x) * (newK / _transform.k);
             _transform.y = my - (my - _transform.y) * (newK / _transform.k);
@@ -340,8 +350,12 @@ window.GalaxyMap = (function () {
         });
         window.addEventListener('mousemove', (e) => {
             if (!_drag) return;
-            _transform.x = _drag.tx0 + (e.clientX - _drag.startX);
-            _transform.y = _drag.ty0 + (e.clientY - _drag.startY);
+            // Translate in SVG viewBox units
+            const rect = _svg.getBoundingClientRect();
+            const svgW = rect.width, svgH = rect.height;
+            const fitScale = Math.min(svgW / SVG_W, svgH / SVG_H);
+            _transform.x = _drag.tx0 + (e.clientX - _drag.startX) / fitScale;
+            _transform.y = _drag.ty0 + (e.clientY - _drag.startY) / fitScale;
             _applyTransform();
         });
         window.addEventListener('mouseup', () => { _drag = null; if (_svg) _svg.style.cursor = 'grab'; });
@@ -354,14 +368,26 @@ window.GalaxyMap = (function () {
         _svg.addEventListener('touchmove', (e) => {
             if (e.touches.length === 1 && _drag) {
                 const t = e.touches[0];
-                _transform.x = _drag.tx0 + (t.clientX - _drag.startX);
-                _transform.y = _drag.ty0 + (t.clientY - _drag.startY);
+                const rect = _svg.getBoundingClientRect();
+                const fitScale = Math.min(rect.width / SVG_W, rect.height / SVG_H);
+                _transform.x = _drag.tx0 + (t.clientX - _drag.startX) / fitScale;
+                _transform.y = _drag.ty0 + (t.clientY - _drag.startY) / fitScale;
                 _applyTransform();
             }
             if (e.touches.length === 2 && lt) {
                 const d0 = Math.hypot(lt[0].clientX-lt[1].clientX, lt[0].clientY-lt[1].clientY);
                 const d1 = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY);
-                if (d0 > 0) { _transform.k = Math.max(0.4, Math.min(8, _transform.k*d1/d0)); _applyTransform(); }
+                if (d0 > 0) {
+                    // Zoom to midpoint of the two touches
+                    const mcx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+                    const mcy = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+                    const { x: mx, y: my } = _clientToSVG(mcx, mcy);
+                    const newK = Math.max(0.4, Math.min(8, _transform.k * d1 / d0));
+                    _transform.x = mx - (mx - _transform.x) * (newK / _transform.k);
+                    _transform.y = my - (my - _transform.y) * (newK / _transform.k);
+                    _transform.k = newK;
+                    _applyTransform();
+                }
                 lt = [e.touches[0], e.touches[1]];
             }
         }, { passive: true });
@@ -425,14 +451,8 @@ window.GalaxyMap = (function () {
         ctrlBar.appendChild(resetBtn);
         container.appendChild(ctrlBar);
 
-        // Fit container height to remaining viewport (no scroll needed)
-        function _fitHeight() {
-            const top = container.getBoundingClientRect().top + window.scrollY;
-            container.style.height = Math.max(300, window.innerHeight - top - 16) + 'px';
-        }
-        _fitHeight();
-        _resizeHandler = _fitHeight;
-        window.addEventListener('resize', _resizeHandler);
+        // Height is driven by CSS (.map-view #galaxy-map-container { height: 100% }).
+        // No JS resize handler needed.
 
         _renderMilkyWayBackground();
         _renderQuadrants();
@@ -460,7 +480,6 @@ window.GalaxyMap = (function () {
     }
 
     function destroy() {
-        if (_resizeHandler) { window.removeEventListener('resize', _resizeHandler); _resizeHandler = null; }
         if (_container) _container.innerHTML = '';
         _svg = _defs = _bgLayer = _quadLayer = _starLayer = _empireLayer = _uiLayer = null;
         _tooltip = null; _container = null; _mapData = []; _drag = null;

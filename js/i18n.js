@@ -21,7 +21,9 @@ const I18n = (() => {
 
     function t(key) {
         if (!key) return '';
-        return locData[key] || fallbackData[key] || key;
+        const raw = locData[key] || fallbackData[key] || key;
+        // Strip Stellaris in-game icon placeholders (£) and collapse extra whitespace
+        return raw.replace(/£/g, '').replace(/\s+/g, ' ').trim();
     }
 
     function ui(key) {

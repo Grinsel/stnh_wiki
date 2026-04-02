@@ -33,6 +33,7 @@
         listEl.classList.toggle('hidden', isMap);
         document.getElementById('pagination').classList.toggle('hidden', isMap);
         mapContainer.classList.toggle('hidden', !isMap);
+        document.getElementById('item-list-panel').classList.toggle('map-view', isMap);
 
         // Hide quadrant note / show appropriate filter controls
         document.getElementById('filter-authority-group').classList.toggle('hidden', isMap || activeTab !== 'empires');
@@ -67,6 +68,12 @@
                 galaxyMapData = await DataManager.loadJSON('assets/galaxy_map.json');
             }
             mapContainer.innerHTML = '';
+            // Enrich galaxy map empire entries with localised names from the full empire list
+            if (_empires.length) {
+                const nameMap = {};
+                for (const e of _empires) nameMap[e.id] = e.name;
+                for (const e of galaxyMapData.empires || []) e.name = nameMap[e.id] || e.id;
+            }
             GalaxyMap.init(mapContainer, galaxyMapData, (empireId) => {
                 // When empire clicked on map, show detail panel using full empire data
                 const emp = _empires.find(e => e.id === empireId);
