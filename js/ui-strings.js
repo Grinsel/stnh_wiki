@@ -42,6 +42,8 @@ const UI_STRINGS = {
     'ui.tab.species':         { english: 'Species', german: 'Spezies' },
     'ui.tab.jobs':            { english: 'Jobs', german: 'Berufe' },
     'ui.tab.deposits':        { english: 'Deposits', german: 'Lagerstätten' },
+    'ui.view.list':           { english: '☰ List', german: '☰ Liste' },
+    'ui.view.map':            { english: '✦ Galaxy Map', german: '✦ Galaxie-Karte' },
 
     // ==========================================
     // Filter Labels & Default Options

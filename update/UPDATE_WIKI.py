@@ -171,6 +171,16 @@ def phase_empires():
     return generate_all()
 
 
+def phase_galaxy_map():
+    """Phase: Galaxy Map JSON + Flag Images."""
+    print("\n" + "=" * 60)
+    print("PHASE: GALAXY MAP")
+    print("=" * 60)
+
+    from generate_galaxy_map_json import generate_galaxy_map
+    return generate_galaxy_map()
+
+
 def phase_economy():
     """Phase: Economy (Jobs & Deposits)."""
     print("\n" + "=" * 60)
@@ -195,6 +205,7 @@ def phase_content():
     results['megastructures'] = phase_megastructures()
     results['anomalies'] = phase_anomalies()
     results['empires'] = phase_empires()
+    results['galaxy_map'] = phase_galaxy_map()
     results['economy'] = phase_economy()
     return results
 
@@ -322,10 +333,11 @@ ONLY_MODULES = {
     'megastructures': ['localisation', 'megastructures'],
     'anomalies':      ['localisation', 'anomalies'],
     'empires':        ['localisation', 'empires'],
+    'galaxy_map':     ['galaxy_map'],
     'economy':        ['localisation', 'economy'],
     'search':         ['search'],
     'content':        ['localisation', 'ships', 'buildings', 'building_icons', 'traits', 'governments',
-                       'megastructures', 'anomalies', 'empires', 'economy', 'search'],
+                       'megastructures', 'anomalies', 'empires', 'galaxy_map', 'economy', 'search'],
 }
 
 
@@ -371,6 +383,8 @@ def main():
             results['anomalies'] = phase_anomalies()
         if 'empires' in phases:
             results['empires'] = phase_empires()
+        if 'galaxy_map' in phases:
+            results['galaxy_map'] = phase_galaxy_map()
         if 'economy' in phases:
             results['economy'] = phase_economy()
         if 'search' in phases:
@@ -396,6 +410,7 @@ def main():
         results['megastructures'] = phase_megastructures()
         results['anomalies'] = phase_anomalies()
         results['empires'] = phase_empires()
+        results['galaxy_map'] = phase_galaxy_map()
         results['economy'] = phase_economy()
         results['search'] = phase_search()
         results['ship_models'] = phase_ship_models(skip=args.skip_images)

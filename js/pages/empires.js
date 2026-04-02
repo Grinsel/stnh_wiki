@@ -2,7 +2,8 @@
  * Empires & Species page controller.
  */
 (async function initEmpires() {
-    const listEl = document.getElementById('item-list');
+    const listEl    = document.getElementById('item-list');
+    const mapContainer = document.getElementById('galaxy-map-container');
     if (!listEl) return;
     listEl.innerHTML = '<div class="loading">' + I18n.ui('ui.loading.empires') + '</div>';
 
@@ -11,6 +12,71 @@
 
     const searchInput = document.getElementById('search-input');
     searchInput.value = AppState.get('search');
+
+    // ── View toggle (List / Galaxy Map) ──────────────────────────────────────
+    let activeView = 'list';
+    let activeTab  = 'empires';  // hoisted so setView() can read it before try-block
+    let galaxyMapData = null;   // loaded lazily
+    let galaxyMapReady = false;
+
+    const viewListBtn = document.getElementById('view-list-btn');
+    const viewMapBtn  = document.getElementById('view-map-btn');
+    const viewToggleGroup = document.getElementById('view-toggle-group');
+
+    function setView(view) {
+        activeView = view;
+        const isMap = view === 'map';
+
+        viewListBtn.classList.toggle('active', !isMap);
+        viewMapBtn.classList.toggle('active', isMap);
+
+        listEl.classList.toggle('hidden', isMap);
+        document.getElementById('pagination').classList.toggle('hidden', isMap);
+        mapContainer.classList.toggle('hidden', !isMap);
+
+        // Hide quadrant note / show appropriate filter controls
+        document.getElementById('filter-authority-group').classList.toggle('hidden', isMap || activeTab !== 'empires');
+        document.getElementById('filter-archetype-group').classList.toggle('hidden', isMap || activeTab !== 'species');
+
+        if (isMap) {
+            // Only available for empires tab
+            if (activeTab !== 'empires') {
+                setView('list');
+                return;
+            }
+            loadGalaxyMap();
+        } else if (galaxyMapReady) {
+            GalaxyMap.destroy();
+            galaxyMapReady = false;
+        }
+    }
+
+    if (viewListBtn && viewMapBtn) {
+        viewListBtn.addEventListener('click', () => setView('list'));
+        viewMapBtn.addEventListener('click',  () => setView('map'));
+    }
+
+    // Hoisted empire/species arrays so loadGalaxyMap callback can access them
+    let _empires = [], _showDetail = null;
+
+    async function loadGalaxyMap() {
+        if (galaxyMapReady) return;
+        mapContainer.innerHTML = '<div class="loading">Loading galaxy map\u2026</div>';
+        try {
+            if (!galaxyMapData) {
+                galaxyMapData = await DataManager.loadJSON('assets/galaxy_map.json');
+            }
+            mapContainer.innerHTML = '';
+            GalaxyMap.init(mapContainer, galaxyMapData, (empireId) => {
+                // When empire clicked on map, show detail panel using full empire data
+                const emp = _empires.find(e => e.id === empireId);
+                if (emp && _showDetail) _showDetail(emp);
+            });
+            galaxyMapReady = true;
+        } catch (err) {
+            mapContainer.innerHTML = `<div class="loading" style="animation:none">Failed to load galaxy map: ${esc(err.message)}</div>`;
+        }
+    }
 
     try {
         const [empires, species] = await Promise.all([
@@ -21,6 +87,8 @@
 
         for (const item of empires) item.name = I18n.t(item.name_key) || item.id;
         for (const item of species) item.name = I18n.t(item.name_key) || item.id;
+
+        _empires = empires;   // expose to loadGalaxyMap closure
 
         // Populate authority dropdown
         const authorities = [...new Set(empires.map(e => e.authority).filter(Boolean))].sort();
@@ -36,19 +104,27 @@
             archSel.add(new Option(a, a));
         }
 
-        let activeTab = 'empires';
+        // activeTab already declared in outer scope; just reset for safety
+        activeTab = 'empires';
         let currentPage = 1;
         const PAGE_SIZE = 100;
 
         // Tab switching
-        document.querySelectorAll('.tab-btn').forEach(btn => {
+        document.querySelectorAll('.tab-btn[data-tab]').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-btn[data-tab]').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 activeTab = btn.dataset.tab;
                 currentPage = 1;
-                document.getElementById('filter-authority-group').classList.toggle('hidden', activeTab !== 'empires');
-                document.getElementById('filter-archetype-group').classList.toggle('hidden', activeTab !== 'species');
+                // Map view only makes sense for empires tab
+                if (viewToggleGroup) {
+                    viewToggleGroup.style.visibility = activeTab === 'empires' ? '' : 'hidden';
+                }
+                if (activeTab !== 'empires' && activeView === 'map') {
+                    setView('list');
+                }
+                document.getElementById('filter-authority-group').classList.toggle('hidden', activeView === 'map' || activeTab !== 'empires');
+                document.getElementById('filter-archetype-group').classList.toggle('hidden', activeView === 'map' || activeTab !== 'species');
                 renderAll();
             });
         });
@@ -68,8 +144,9 @@
             if (item.source_file) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
             html += `</div>`;
 
-            // Empire-specific
-            if (activeTab === 'empires') {
+            // Empire-specific (also shown when called from map view)
+            const isEmpire = activeTab === 'empires' || activeView === 'map';
+            if (isEmpire && item.authority !== undefined) {
                 const stats = [];
                 if (item.authority) stats.push([I18n.ui('ui.meta.authority'), item.authority]);
                 if (item.government) stats.push([I18n.ui('ui.meta.government'), item.government]);
@@ -120,6 +197,7 @@
             SharedRender.initToggles(detailContent);
             detailPanel.classList.remove('hidden');
         }
+        _showDetail = showDetail; // expose to loadGalaxyMap closure
 
         // Search
         let searchTimeout;
