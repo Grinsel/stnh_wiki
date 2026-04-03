@@ -37,6 +37,8 @@ from datetime import datetime
 UPDATE_DIR = Path(__file__).parent
 sys.path.insert(0, str(UPDATE_DIR))
 
+ASSETS_DIR = os.path.join(UPDATE_DIR.parent, 'assets')
+
 
 def print_banner():
     print("""
@@ -406,6 +408,10 @@ def main():
     results = {}
     results['validation'] = 'OK'
 
+    # Collect snapshots of all tracked JSONs before update
+    from diff_tracker import collect_snapshots, compute_all_changes, print_changes, save_changes
+    snapshots = collect_snapshots(ASSETS_DIR)
+
     if args.only:
         # Selective mode: run only specified phases
         phases = ONLY_MODULES[args.only]
@@ -465,6 +471,12 @@ def main():
         results['building_icons'] = phase_building_icons(skip=args.skip_images)
         module_name = 'full'
 
+    # Change tracking
+    all_diffs = compute_all_changes(snapshots, ASSETS_DIR)
+    print_changes(all_diffs)
+    changes_path = os.path.join(ASSETS_DIR, 'changes.json')
+    changes_report = save_changes(all_diffs, changes_path)
+
     # Summary
     elapsed = time.time() - start_time
     print("\n" + "=" * 60)
@@ -474,6 +486,8 @@ def main():
     print(f"  Timestamp: {datetime.now().isoformat()}")
     print(f"\n  Results written to: {os.path.join(UPDATE_DIR.parent, 'assets')}")
 
+    # Include change summary in log
+    results['changes'] = changes_report.get('summary', {})
     write_log_entry(module_name, results, elapsed)
 
     print("\n  [DONE] Update complete!")
