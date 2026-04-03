@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-04-03T22:30:31.403193",
-  "elapsed_seconds": 35.6,
+  "timestamp": "2026-04-03T22:54:33.046278",
+  "elapsed_seconds": 35.2,
   "results": {
     "localisation": {
-      "english": 240564,
-      "german": 240798,
-      "french": 251803,
-      "spanish": 240542,
-      "russian": 241081,
-      "polish": 241049,
-      "braz_por": 235117
+      "english": 240897,
+      "german": 241133,
+      "french": 252148,
+      "spanish": 240884,
+      "russian": 241417,
+      "polish": 241392,
+      "braz_por": 235461
     },
     "gfx": {
       "GFX_advisor_default_option_background": {
@@ -36704,10 +36704,10 @@
       }
     },
     "events": {
-      "events": 8867,
+      "events": 8873,
       "namespaces": 287,
       "files": 430,
-      "loc_keys": 240564,
+      "loc_keys": 240897,
       "on_actions": 196,
       "event_chains": 39,
       "gfx_sprites": 7338,
@@ -36721,7 +36721,7 @@
       "model_variants": 1415,
       "files": 142,
       "errors": 0,
-      "elapsed": 10.0
+      "elapsed": 9.5
     },
     "buildings": {
       "buildings": 653,
@@ -36789,10 +36789,10 @@
     },
     "search": {
       "search_index": {
-        "total_items": 21308,
+        "total_items": 21314,
         "size_kb": 2900,
         "by_type": {
-          "event": 8867,
+          "event": 8873,
           "component": 6406,
           "building": 653,
           "district": 56,
@@ -36836,20 +36836,33 @@
       }
     },
     "ship_models": {
-      "skipped": true
+      "converted": 0,
+      "skipped": 1415,
+      "failed": 0,
+      "multi_mesh": 0,
+      "total": 1415,
+      "elapsed": 0.0
     },
     "images": {
-      "skipped": true
+      "total": 986,
+      "converted": 0,
+      "skipped": 986,
+      "failed": 0,
+      "errors": []
     },
     "building_icons": {
-      "skipped": true
+      "total": 753,
+      "converted": 0,
+      "skipped": 753,
+      "failed": 0,
+      "errors": []
     },
     "changes": {
-      "total_added": 0,
+      "total_added": 6,
       "total_removed": 0,
-      "total_modified": 0,
-      "modules_changed": 0,
-      "modules_unchanged": 21
+      "total_modified": 13,
+      "modules_changed": 3,
+      "modules_unchanged": 18
     }
   }
 }

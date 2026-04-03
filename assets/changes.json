@@ -1,19 +1,52 @@
 {
-  "timestamp": "2026-04-03T22:30:31.402466",
+  "timestamp": "2026-04-03T22:54:33.045637",
   "summary": {
-    "total_added": 0,
+    "total_added": 6,
     "total_removed": 0,
-    "total_modified": 0,
-    "modules_changed": 0,
-    "modules_unchanged": 21
+    "total_modified": 13,
+    "modules_changed": 3,
+    "modules_unchanged": 18
   },
   "modules": {
     "events_index": {
       "old_count": 8867,
-      "new_count": 8867,
-      "added": [],
+      "new_count": 8873,
+      "added": [
+        {
+          "id": "STH_klingon_mechanics_new.402"
+        },
+        {
+          "id": "STH_onaction.7073"
+        },
+        {
+          "id": "STH_onaction.7074"
+        },
+        {
+          "id": "STH_onaction.7075"
+        },
+        {
+          "id": "STH_tng_mu.14"
+        },
+        {
+          "id": "STH_tng_mu.15"
+        }
+      ],
       "removed": [],
-      "modified": []
+      "modified": [
+        {
+          "id": "nhTest.6000",
+          "changed_fields": [
+            "name",
+            "snip"
+          ]
+        },
+        {
+          "id": "sth_iconian_crisis.44",
+          "changed_fields": [
+            "snip"
+          ]
+        }
+      ]
     },
     "ships": {
       "old_count": 423,
@@ -34,7 +67,33 @@
       "new_count": 56,
       "added": [],
       "removed": [],
-      "modified": []
+      "modified": [
+        {
+          "id": "district_city",
+          "changed_fields": [
+            "allow",
+            "potential"
+          ]
+        },
+        {
+          "id": "district_farming",
+          "changed_fields": [
+            "potential"
+          ]
+        },
+        {
+          "id": "district_generator",
+          "changed_fields": [
+            "potential"
+          ]
+        },
+        {
+          "id": "district_generator_underground",
+          "changed_fields": [
+            "potential"
+          ]
+        }
+      ]
     },
     "traits": {
       "old_count": 461,
@@ -139,7 +198,50 @@
       "new_count": 308,
       "added": [],
       "removed": [],
-      "modified": []
+      "modified": [
+        {
+          "id": "administrator_vorta",
+          "changed_fields": [
+            "possible"
+          ]
+        },
+        {
+          "id": "commodore",
+          "changed_fields": [
+            "possible"
+          ]
+        },
+        {
+          "id": "entertainer_jemhadar",
+          "changed_fields": [
+            "possible"
+          ]
+        },
+        {
+          "id": "founder_infiltrator",
+          "changed_fields": [
+            "possible"
+          ]
+        },
+        {
+          "id": "founder_yeslink",
+          "changed_fields": [
+            "possible"
+          ]
+        },
+        {
+          "id": "honored_first",
+          "changed_fields": [
+            "possible"
+          ]
+        },
+        {
+          "id": "soldier",
+          "changed_fields": [
+            "weight"
+          ]
+        }
+      ]
     },
     "deposits": {
       "old_count": 667,
