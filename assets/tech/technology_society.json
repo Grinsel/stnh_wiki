@@ -1133,6 +1133,13 @@
     "effects": [
       {
         "type": "modifier",
+        "key": "ship_armor_add",
+        "value": 100.0,
+        "display": "+100 Armor",
+        "component": "utility_large_casino_1"
+      },
+      {
+        "type": "modifier",
         "key": "ship_armor_mult",
         "value": 0.001,
         "display": "+0% Armor",
@@ -2723,7 +2730,7 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Army Type: Army | Decisions: Punishment Disease, End Punishment Disease",
+      "description": "Army Type: Army | Decisions: Punishment Disease, End Punishment Disease | Game Rule: Modify Species",
       "unlocks_by_type": {
         "Army Type": [
           "Army"
@@ -2731,6 +2738,9 @@
         "Decision": [
           "Punishment Disease",
           "End Punishment Disease"
+        ],
+        "Game Rule": [
+          "Modify Species"
         ]
       }
     },
@@ -2842,8 +2852,12 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "",
-      "unlocks_by_type": {}
+      "description": "Game Rule: Modify Species",
+      "unlocks_by_type": {
+        "Game Rule": [
+          "Modify Species"
+        ]
+      }
     },
     "faction_availability": {},
     "is_rare": false,
@@ -2873,8 +2887,12 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "",
-      "unlocks_by_type": {}
+      "description": "Game Rule: Modify Species",
+      "unlocks_by_type": {
+        "Game Rule": [
+          "Modify Species"
+        ]
+      }
     },
     "faction_availability": {},
     "is_rare": false,
@@ -5791,9 +5809,9 @@
     "effects": [
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_2_B"
       },
       {
@@ -5812,9 +5830,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_2_C"
       },
       {
@@ -5826,9 +5844,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_2_D"
       },
       {
@@ -5840,9 +5858,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_2_E"
       },
       {
@@ -5854,9 +5872,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_2_F"
       },
       {
@@ -5868,9 +5886,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_2_G"
       },
       {
@@ -5882,9 +5900,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_2_H"
       },
       {
@@ -5896,9 +5914,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_2_I"
       },
       {
@@ -5910,9 +5928,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_2_J"
       },
       {
@@ -5924,9 +5942,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_2_K"
       },
       {
@@ -5979,9 +5997,9 @@
     "effects": [
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REM_1_B"
       },
       {
@@ -5993,9 +6011,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REM_1_C"
       },
       {
@@ -6007,9 +6025,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REM_1_D"
       },
       {
@@ -6021,9 +6039,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REM_1_E"
       },
       {
@@ -6035,9 +6053,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REM_1_F"
       },
       {
@@ -6049,9 +6067,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REM_1_G"
       },
       {
@@ -6063,9 +6081,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REM_1_H"
       },
       {
@@ -6077,9 +6095,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REM_1_I"
       },
       {
@@ -6091,9 +6109,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REM_1_J"
       },
       {
@@ -6105,9 +6123,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REM_1_K"
       },
       {
@@ -6119,9 +6137,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REM_1_L"
       },
       {
@@ -6140,9 +6158,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "required_crew_rom_sword_scimitar_rom_2"
       },
       {
@@ -6192,9 +6210,9 @@
     "effects": [
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REMOTE_1_B"
       },
       {
@@ -6213,9 +6231,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REMOTE_1_C"
       },
       {
@@ -6234,9 +6252,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REMOTE_1_D"
       },
       {
@@ -6255,9 +6273,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REMOTE_1_E"
       },
       {
@@ -6276,9 +6294,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REMOTE_1_F"
       },
       {
@@ -6297,9 +6315,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REMOTE_1_G"
       },
       {
@@ -6318,9 +6336,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REMOTE_1_H"
       },
       {
@@ -6339,9 +6357,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REMOTE_1_I"
       },
       {
@@ -6360,9 +6378,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REMOTE_1_J"
       },
       {
@@ -6381,9 +6399,9 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
+        "key": "ship_interstellar_speed_mult",
         "value": -0.1,
-        "display": "-10% Hull",
+        "display": "-10% Interstellar Speed",
         "component": "REQUIRED_CREW_ROM_REMOTE_1_K"
       },
       {
@@ -7609,10 +7627,13 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom",
+      "description": "Other: Custom | Building: Secret 1 Generic",
       "unlocks_by_type": {
         "Other": [
           "Custom"
+        ],
+        "Building": [
+          "Secret 1 Generic"
         ]
       }
     },
@@ -16555,17 +16576,13 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Buildings: Orbital Capital 1, Orbital Capital 2, Orbital Capital 3, Orbital Capital 4, Orbital Capital 5, Deployment Post, Machine Capital 2, Machine Capital 3, Machine Capital 4, Machine Capital 5, Borg Capital 1, Borg Capital 2, Borg Capital 3, Borg Capital 4, Borg Capital 5, Capital Terran 3, Capital Terran 4, Capital Terran 5, Capital Confederacy 3, Capital Confederacy 4, Capital Confederacy 5, Menagerie Capital 5, Forge Capital 3, Forge Capital 4, Forge Capital 5, Religious Capital 2, Religious Capital 3, Religious Capital 4, Religious Capital Vulcan 2, Religious Capital Klingon 2, Religious Capital Hurq 2, Religious Capital Hurq 3, Religious Capital Hurq 4, Military Capital 3, Military Capital 4, Military Capital 5, University Capital 2, University Capital 3, University Capital 4, University Capital 5, Undine Capital 1, Undine Capital 2, Undine Capital 3, Undine Capital 4",
+      "description": "Other: Custom | Buildings: Orbital Capital 3, Deployment Post, Machine Capital 2, Machine Capital 3, Machine Capital 4, Machine Capital 5, Borg Capital 1, Borg Capital 2, Borg Capital 3, Borg Capital 4, Borg Capital 5, Forge Capital 3, Forge Capital 4, Forge Capital 5, Religious Capital 3, Religious Capital 4, Religious Capital Vulcan 2, Religious Capital Klingon 2, Religious Capital Hurq 2, Religious Capital Hurq 3, Religious Capital Hurq 4, Military Capital 3, Military Capital 4, Military Capital 5, University Capital 2, University Capital 3, University Capital 4, University Capital 5, Undine Capital 1, Undine Capital 2, Undine Capital 3, Undine Capital 4",
       "unlocks_by_type": {
         "Other": [
           "Custom"
         ],
         "Building": [
-          "Orbital Capital 1",
-          "Orbital Capital 2",
           "Orbital Capital 3",
-          "Orbital Capital 4",
-          "Orbital Capital 5",
           "Deployment Post",
           "Machine Capital 2",
           "Machine Capital 3",
@@ -16576,17 +16593,9 @@
           "Borg Capital 3",
           "Borg Capital 4",
           "Borg Capital 5",
-          "Capital Terran 3",
-          "Capital Terran 4",
-          "Capital Terran 5",
-          "Capital Confederacy 3",
-          "Capital Confederacy 4",
-          "Capital Confederacy 5",
-          "Menagerie Capital 5",
           "Forge Capital 3",
           "Forge Capital 4",
           "Forge Capital 5",
-          "Religious Capital 2",
           "Religious Capital 3",
           "Religious Capital 4",
           "Religious Capital Vulcan 2",
@@ -16639,17 +16648,12 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Buildings: Orbital Capital 1, Orbital Capital 2, Orbital Capital 3, Orbital Capital 4, Orbital Capital 5, Deployment Post, Machine Capital 2, Machine Capital 3, Machine Capital 4, Machine Capital 5, Borg Capital 1, Borg Capital 2, Borg Capital 3, Borg Capital 4, Borg Capital 5, Capital Terran 3, Capital Terran 4, Capital Terran 5, Capital Confederacy 3, Capital Confederacy 4, Capital Confederacy 5, Menagerie Capital 5, Forge Capital 3, Forge Capital 4, Forge Capital 5, Embassy Capital 2, Embassy Capital 3, Embassy Capital 4, Embassy Capital 5, University Capital 2, University Capital 3, University Capital 4, University Capital 5, Undine Capital 1, Undine Capital 2, Undine Capital 3, Undine Capital 4",
+      "description": "Other: Custom | Buildings: Deployment Post, Machine Capital 2, Machine Capital 3, Machine Capital 4, Machine Capital 5, Borg Capital 1, Borg Capital 2, Borg Capital 3, Borg Capital 4, Borg Capital 5, Undine Capital 1, Undine Capital 2, Undine Capital 3, Undine Capital 4",
       "unlocks_by_type": {
         "Other": [
           "Custom"
         ],
         "Building": [
-          "Orbital Capital 1",
-          "Orbital Capital 2",
-          "Orbital Capital 3",
-          "Orbital Capital 4",
-          "Orbital Capital 5",
           "Deployment Post",
           "Machine Capital 2",
           "Machine Capital 3",
@@ -16660,24 +16664,6 @@
           "Borg Capital 3",
           "Borg Capital 4",
           "Borg Capital 5",
-          "Capital Terran 3",
-          "Capital Terran 4",
-          "Capital Terran 5",
-          "Capital Confederacy 3",
-          "Capital Confederacy 4",
-          "Capital Confederacy 5",
-          "Menagerie Capital 5",
-          "Forge Capital 3",
-          "Forge Capital 4",
-          "Forge Capital 5",
-          "Embassy Capital 2",
-          "Embassy Capital 3",
-          "Embassy Capital 4",
-          "Embassy Capital 5",
-          "University Capital 2",
-          "University Capital 3",
-          "University Capital 4",
-          "University Capital 5",
           "Undine Capital 1",
           "Undine Capital 2",
           "Undine Capital 3",
@@ -16711,7 +16697,7 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Buildings: Capital 2, Orbital Capital 2, Machine Capital 2, Undine Capital 2, Monitor Station, Housing, Drone Storage, Alcove Storage",
+      "description": "Buildings: Capital 2, Orbital Capital 2, Machine Capital 2, Undine Capital 2, Monitor Station, Housing, Drone Storage, Alcove Storage | Zone Slots: Special, Admin",
       "unlocks_by_type": {
         "Building": [
           "Capital 2",
@@ -16722,6 +16708,10 @@
           "Housing",
           "Drone Storage",
           "Alcove Storage"
+        ],
+        "Zone Slot": [
+          "Special",
+          "Admin"
         ]
       }
     },
@@ -16753,7 +16743,7 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Buildings: Capital 3, Orbital Capital 3, Machine Capital 3, Borg Capital 3, Penal Capital 3, Penal Slave Colony 3, Resort Capital 3, Cloning Capital 3, Religious Capital 3, Religious Capital Hurq 3, Embassy Capital 3, University Capital 3, Undine Capital 3 | Zone Slots: City 04, City 05, Special, Admin",
+      "description": "Buildings: Capital 3, Orbital Capital 3, Machine Capital 3, Borg Capital 3, Penal Capital 3, Penal Slave Colony 3, Resort Capital 3, Cloning Capital 3, Religious Capital 3, Religious Capital Hurq 3, Embassy Capital 3, University Capital 3, Undine Capital 3 | Zone Slots: City 04, City 05",
       "unlocks_by_type": {
         "Building": [
           "Capital 3",
@@ -16772,9 +16762,7 @@
         ],
         "Zone Slot": [
           "City 04",
-          "City 05",
-          "Special",
-          "Admin"
+          "City 05"
         ]
       }
     },
@@ -17863,6 +17851,13 @@
         "key": "ship_weapon_damage",
         "value": 0.01,
         "display": "+0.01 Weapon Damage",
+        "component": "utility_medium_tactical_station_1"
+      },
+      {
+        "type": "modifier",
+        "key": "ship_armor_add",
+        "value": 100.0,
+        "display": "+100 Armor",
         "component": "utility_medium_tactical_station_1"
       },
       {
@@ -21951,16 +21946,9 @@
     "effects": [
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
-        "value": -0.1,
-        "display": "-10% Hull",
-        "component": "REQUIRED_CREW_KDF_2_C"
-      },
-      {
-        "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.1,
-        "display": "+0.10 Weapon Damage",
+        "value": 0.125,
+        "display": "+0.12 Weapon Damage",
         "component": "REQUIRED_CREW_KDF_2_C"
       },
       {
@@ -21972,37 +21960,37 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
-        "value": -0.1,
-        "display": "-10% Hull",
+        "key": "ship_evasion_mult",
+        "value": -0.01,
+        "display": "-1% Evasion",
+        "component": "REQUIRED_CREW_KDF_2_C"
+      },
+      {
+        "type": "modifier",
+        "key": "ship_weapon_damage",
+        "value": 0.125,
+        "display": "+0.12 Weapon Damage",
+        "component": "REQUIRED_CREW_KDF_2_D"
+      },
+      {
+        "type": "modifier",
+        "key": "ship_cloaking_detection_add",
+        "value": 1.0,
+        "display": "+1 Cloaking Detection",
+        "component": "REQUIRED_CREW_KDF_2_D"
+      },
+      {
+        "type": "modifier",
+        "key": "ship_evasion_mult",
+        "value": -0.01,
+        "display": "-1% Evasion",
         "component": "REQUIRED_CREW_KDF_2_D"
       },
       {
         "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.1,
-        "display": "+0.10 Weapon Damage",
-        "component": "REQUIRED_CREW_KDF_2_D"
-      },
-      {
-        "type": "modifier",
-        "key": "ship_cloaking_detection_add",
-        "value": 1.0,
-        "display": "+1 Cloaking Detection",
-        "component": "REQUIRED_CREW_KDF_2_D"
-      },
-      {
-        "type": "modifier",
-        "key": "ship_hull_mult",
-        "value": -0.1,
-        "display": "-10% Hull",
-        "component": "REQUIRED_CREW_KDF_2_E"
-      },
-      {
-        "type": "modifier",
-        "key": "ship_weapon_damage",
-        "value": 0.1,
-        "display": "+0.10 Weapon Damage",
+        "value": 0.125,
+        "display": "+0.12 Weapon Damage",
         "component": "REQUIRED_CREW_KDF_2_E"
       },
       {
@@ -22014,37 +22002,37 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
-        "value": -0.1,
-        "display": "-10% Hull",
+        "key": "ship_evasion_mult",
+        "value": -0.01,
+        "display": "-1% Evasion",
+        "component": "REQUIRED_CREW_KDF_2_E"
+      },
+      {
+        "type": "modifier",
+        "key": "ship_weapon_damage",
+        "value": 0.15,
+        "display": "+0.15 Weapon Damage",
+        "component": "REQUIRED_CREW_KDF_2_F"
+      },
+      {
+        "type": "modifier",
+        "key": "ship_cloaking_detection_add",
+        "value": 1.0,
+        "display": "+1 Cloaking Detection",
+        "component": "REQUIRED_CREW_KDF_2_F"
+      },
+      {
+        "type": "modifier",
+        "key": "ship_evasion_mult",
+        "value": -0.02,
+        "display": "-2% Evasion",
         "component": "REQUIRED_CREW_KDF_2_F"
       },
       {
         "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.1,
-        "display": "+0.10 Weapon Damage",
-        "component": "REQUIRED_CREW_KDF_2_F"
-      },
-      {
-        "type": "modifier",
-        "key": "ship_cloaking_detection_add",
-        "value": 1.0,
-        "display": "+1 Cloaking Detection",
-        "component": "REQUIRED_CREW_KDF_2_F"
-      },
-      {
-        "type": "modifier",
-        "key": "ship_hull_mult",
-        "value": -0.1,
-        "display": "-10% Hull",
-        "component": "REQUIRED_CREW_KDF_2_G"
-      },
-      {
-        "type": "modifier",
-        "key": "ship_weapon_damage",
-        "value": 0.1,
-        "display": "+0.10 Weapon Damage",
+        "value": 0.15,
+        "display": "+0.15 Weapon Damage",
         "component": "REQUIRED_CREW_KDF_2_G"
       },
       {
@@ -22056,16 +22044,16 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
-        "value": -0.1,
-        "display": "-10% Hull",
-        "component": "REQUIRED_CREW_KDF_2_H"
+        "key": "ship_evasion_mult",
+        "value": -0.02,
+        "display": "-2% Evasion",
+        "component": "REQUIRED_CREW_KDF_2_G"
       },
       {
         "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.1,
-        "display": "+0.10 Weapon Damage",
+        "value": 0.15,
+        "display": "+0.15 Weapon Damage",
         "component": "REQUIRED_CREW_KDF_2_H"
       },
       {
@@ -22077,16 +22065,16 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
-        "value": -0.1,
-        "display": "-10% Hull",
-        "component": "REQUIRED_CREW_KDF_2_I"
+        "key": "ship_evasion_mult",
+        "value": -0.02,
+        "display": "-2% Evasion",
+        "component": "REQUIRED_CREW_KDF_2_H"
       },
       {
         "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.1,
-        "display": "+0.10 Weapon Damage",
+        "value": 0.175,
+        "display": "+0.17 Weapon Damage",
         "component": "REQUIRED_CREW_KDF_2_I"
       },
       {
@@ -22098,16 +22086,16 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
-        "value": -0.1,
-        "display": "-10% Hull",
-        "component": "REQUIRED_CREW_KDF_2_J"
+        "key": "ship_evasion_mult",
+        "value": -0.03,
+        "display": "-3% Evasion",
+        "component": "REQUIRED_CREW_KDF_2_I"
       },
       {
         "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.1,
-        "display": "+0.10 Weapon Damage",
+        "value": 0.175,
+        "display": "+0.17 Weapon Damage",
         "component": "REQUIRED_CREW_KDF_2_J"
       },
       {
@@ -22119,16 +22107,16 @@
       },
       {
         "type": "modifier",
-        "key": "ship_hull_mult",
-        "value": -0.1,
-        "display": "-10% Hull",
-        "component": "REQUIRED_CREW_KDF_2_K"
+        "key": "ship_evasion_mult",
+        "value": -0.03,
+        "display": "-3% Evasion",
+        "component": "REQUIRED_CREW_KDF_2_J"
       },
       {
         "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.1,
-        "display": "+0.10 Weapon Damage",
+        "value": 0.175,
+        "display": "+0.17 Weapon Damage",
         "component": "REQUIRED_CREW_KDF_2_K"
       },
       {
@@ -22136,6 +22124,13 @@
         "key": "ship_cloaking_detection_add",
         "value": 1.0,
         "display": "+1 Cloaking Detection",
+        "component": "REQUIRED_CREW_KDF_2_K"
+      },
+      {
+        "type": "modifier",
+        "key": "ship_evasion_mult",
+        "value": -0.03,
+        "display": "-3% Evasion",
         "component": "REQUIRED_CREW_KDF_2_K"
       }
     ],
@@ -23017,50 +23012,50 @@
       {
         "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.075,
-        "display": "+0.07 Weapon Damage",
+        "value": 0.1,
+        "display": "+0.10 Weapon Damage",
         "component": "REQUIRED_CREW_HUNTER_I"
       },
       {
         "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.075,
-        "display": "+0.07 Weapon Damage",
+        "value": 0.1,
+        "display": "+0.10 Weapon Damage",
         "component": "REQUIRED_CREW_HUNTER_J"
       },
       {
         "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.075,
-        "display": "+0.07 Weapon Damage",
+        "value": 0.1,
+        "display": "+0.10 Weapon Damage",
         "component": "REQUIRED_CREW_HUNTER_K"
       },
       {
         "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.075,
-        "display": "+0.07 Weapon Damage",
+        "value": 0.125,
+        "display": "+0.12 Weapon Damage",
         "component": "REQUIRED_CREW_HUNTER_L"
       },
       {
         "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.075,
-        "display": "+0.07 Weapon Damage",
+        "value": 0.125,
+        "display": "+0.12 Weapon Damage",
         "component": "REQUIRED_CREW_HUNTER_M"
       },
       {
         "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.075,
-        "display": "+0.07 Weapon Damage",
+        "value": 0.15,
+        "display": "+0.15 Weapon Damage",
         "component": "REQUIRED_CREW_HUNTER_N"
       },
       {
         "type": "modifier",
         "key": "ship_weapon_damage",
-        "value": 0.075,
-        "display": "+0.07 Weapon Damage",
+        "value": 0.15,
+        "display": "+0.15 Weapon Damage",
         "component": "REQUIRED_CREW_HUNTER_O"
       }
     ],
@@ -25945,11 +25940,14 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Decisions: Punishment Disease, End Punishment Disease",
+      "description": "Decisions: Punishment Disease, End Punishment Disease | Game Rule: Modify Species",
       "unlocks_by_type": {
         "Decision": [
           "Punishment Disease",
           "End Punishment Disease"
+        ],
+        "Game Rule": [
+          "Modify Species"
         ]
       }
     },
@@ -26013,8 +26011,12 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "",
-      "unlocks_by_type": {}
+      "description": "Game Rule: Modify Species",
+      "unlocks_by_type": {
+        "Game Rule": [
+          "Modify Species"
+        ]
+      }
     },
     "faction_availability": {},
     "is_rare": true,
@@ -27776,8 +27778,12 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "",
-      "unlocks_by_type": {}
+      "description": "Game Rule: Modify Species",
+      "unlocks_by_type": {
+        "Game Rule": [
+          "Modify Species"
+        ]
+      }
     },
     "faction_availability": {},
     "is_rare": false,
@@ -28290,7 +28296,7 @@
     "faction_availability": {},
     "is_rare": false,
     "is_dangerous": false,
-    "is_reverse_engineerable": true,
+    "is_reverse_engineerable": false,
     "category": [
       "statecraft"
     ],
@@ -28606,7 +28612,7 @@
     "faction_availability": {},
     "is_rare": false,
     "is_dangerous": false,
-    "is_reverse_engineerable": true,
+    "is_reverse_engineerable": false,
     "category": [
       "statecraft"
     ],

@@ -18,25 +18,20 @@ from pathlib import Path
 import json
 
 # Add Balance Center to Python path
-BALANCE_CENTER_ROOT = Path(r"C:\Users\marcj\git01\New-Horizons-Development\balance_center")
+BALANCE_CENTER_ROOT = Path(r"C:\Users\marcj\git01\balance_center\balance_center")
+BALANCE_CENTER_AVAILABLE = False
 
-if not BALANCE_CENTER_ROOT.exists():
-    raise FileNotFoundError(
-        f"Balance Center not found at: {BALANCE_CENTER_ROOT}\n"
-        f"Please ensure the STNH mod repository is cloned to git01."
-    )
-
-sys.path.insert(0, str(BALANCE_CENTER_ROOT))
-
-try:
-    from engine.game_data_repository import GameDataRepository
-    from engine.parsers.faction_detector import FactionDetector
-    from engine.localization_loader import LocLoader
-except ImportError as e:
-    raise ImportError(
-        f"Failed to import Balance Center modules: {e}\n"
-        f"Please ensure Balance Center is properly set up in git01."
-    )
+if BALANCE_CENTER_ROOT.exists():
+    sys.path.insert(0, str(BALANCE_CENTER_ROOT))
+    try:
+        from engine.game_data_repository import GameDataRepository
+        from engine.parsers.faction_detector import FactionDetector
+        from engine.localization_loader import LocLoader
+        BALANCE_CENTER_AVAILABLE = True
+    except ImportError as e:
+        print(f"[WARNING] Balance Center found but imports failed: {e}")
+else:
+    print(f"[WARNING] Balance Center not found at: {BALANCE_CENTER_ROOT}")
 
 
 class BalanceCenterBridge:
@@ -56,7 +51,15 @@ class BalanceCenterBridge:
 
         Args:
             mod_root: Path to STNH mod root directory
+
+        Raises:
+            FileNotFoundError: If Balance Center is not available
         """
+        if not BALANCE_CENTER_AVAILABLE:
+            raise FileNotFoundError(
+                f"Balance Center not available at: {BALANCE_CENTER_ROOT}"
+            )
+
         self.mod_root = Path(mod_root)
 
         if not self.mod_root.exists():

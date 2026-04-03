@@ -52,7 +52,7 @@ LOCALISATION_FILE_PATTERN = "*_l_english.yml"
 # ==========================================
 
 # Balance Center Root Directory (for advanced parsing)
-BALANCE_CENTER_ROOT = os.path.join(STNH_MOD_ROOT, "balance_center")
+BALANCE_CENTER_ROOT = r"C:\Users\marcj\git01\balance_center\balance_center"
 
 # Toggle to use Balance Center parsers vs simple parsers
 # Set to False to fall back to simple regex-based parsing

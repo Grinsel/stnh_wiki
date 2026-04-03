@@ -15,7 +15,7 @@ Phase 1.3 of STNH Techtree Completion Plan
 import json
 import re
 from pathlib import Path
-from balance_center_bridge import BalanceCenterBridge
+from balance_center_bridge import BalanceCenterBridge, BALANCE_CENTER_AVAILABLE
 from component_parser import ComponentParser
 from supplemental_tech_parser import SupplementalTechParser
 from reverse_unlock_parser import ReverseUnlockParser
@@ -816,7 +816,12 @@ def generate_complete_tech_data():
 
     # 1. Initialize Balance Center Bridge
     print("Step 1: Initializing Balance Center Bridge...")
-    bridge = BalanceCenterBridge(STNH_MOD_ROOT)
+    bridge = None
+    try:
+        bridge = BalanceCenterBridge(STNH_MOD_ROOT)
+    except (ImportError, FileNotFoundError, Exception) as e:
+        print(f"  Balance Center unavailable: {e}")
+        print(f"  Will use Supplemental Parser as primary...")
     print()
 
     # 1b. Initialize Component Parser (Phase 3)
@@ -845,73 +850,151 @@ def generate_complete_tech_data():
     ship_names_mapping = build_tech_to_faction_ships_mapping(ship_sizes_dir, loc_dir, component_dir)
     print()
 
-    # 2. Extract ALL data
-    print("Step 2: Extracting data from Balance Center...")
-    data = bridge.get_all_technologies_with_metadata()
-    print()
+    # Build a simple loc_loader fallback if bridge is not available
+    loc_loader = None
+    if bridge is not None:
+        loc_loader = bridge.loc_loader
+    else:
+        # Build a simple dict-based loc_loader from localisation files
+        import codecs
+        print("  Building fallback localisation map...")
+        _loc_map = {}
+        loc_english_dir = os.path.join(STNH_MOD_ROOT, "localisation", "english")
+        if os.path.exists(loc_english_dir):
+            for fname in os.listdir(loc_english_dir):
+                if fname.endswith('_l_english.yml'):
+                    fpath = os.path.join(loc_english_dir, fname)
+                    try:
+                        with codecs.open(fpath, 'r', 'utf-8-sig') as f:
+                            for line in f:
+                                line = line.strip()
+                                if line and not line.startswith('#') and ':' in line:
+                                    import re as _re
+                                    m = _re.match(r'^\s*([\w\._-]+):\d?\s*"(.*)"\s*$', line)
+                                    if m:
+                                        _loc_map[m.group(1)] = m.group(2)
+                    except Exception:
+                        try:
+                            with codecs.open(fpath, 'r', 'latin-1') as f:
+                                for line in f:
+                                    line = line.strip()
+                                    if line and not line.startswith('#') and ':' in line:
+                                        import re as _re
+                                        m = _re.match(r'^\s*([\w\._-]+):\d?\s*"(.*)"\s*$', line)
+                                        if m:
+                                            _loc_map[m.group(1)] = m.group(2)
+                        except Exception:
+                            pass
+        print(f"  Loaded {len(_loc_map)} localisation keys")
 
-    technologies = data['technologies']
-    factions = data['factions']
-    faction_mappings = data['faction_mappings']
+        # Create a simple object with .get() method to match LocLoader interface
+        class _FallbackLocLoader:
+            def __init__(self, mapping):
+                self._map = mapping
+            def get(self, key, default=""):
+                return self._map.get(key, default)
+        loc_loader = _FallbackLocLoader(_loc_map)
 
-    print(f"  Extracted {len(technologies)} technologies")
-    print(f"  Found {len(factions)} factions")
-    print()
-
-    # 3. Transform to website format
-    print("Step 3: Transforming to website format...")
     techs_enhanced = []
+    factions = []
+    faction_mappings = {}
 
-    for i, tech in enumerate(technologies):
-        if (i + 1) % 500 == 0:
-            print(f"  Processing technology {i+1}/{len(technologies)}...")
+    if bridge is not None:
+        # 2. Extract ALL data from Balance Center
+        print("Step 2: Extracting data from Balance Center...")
+        data = bridge.get_all_technologies_with_metadata()
+        print()
 
-        try:
-            enhanced = transform_tech_to_website_format(
-                tech,
-                faction_mappings,
-                bridge.loc_loader,
-                component_parser,
-                reverse_unlocks,
-                icon_mappings,
-                ship_names_mapping
-            )
-            techs_enhanced.append(enhanced)
-        except Exception as e:
-            tech_id = tech.get('name', 'unknown')
-            print(f"  [WARNING] Failed to transform {tech_id}: {e}")
-            continue
+        technologies = data['technologies']
+        factions = data['factions']
+        faction_mappings = data['faction_mappings']
 
-    print(f"  Successfully transformed {len(techs_enhanced)} technologies")
-    print()
+        print(f"  Extracted {len(technologies)} technologies")
+        print(f"  Found {len(factions)} factions")
+        print()
 
-    # 3b. Add missing techs from Supplemental Parser
-    print("Step 3b: Adding missing techs from Supplemental Parser...")
-    supplemental_parser = SupplementalTechParser(STNH_MOD_ROOT)
-    all_techs_supplemental = supplemental_parser.parse_all_techs()
+        # 3. Transform to website format
+        print("Step 3: Transforming to website format...")
 
-    # Get tech IDs from Balance Center
-    bc_tech_ids = set(t['id'] for t in techs_enhanced)
+        for i, tech in enumerate(technologies):
+            if (i + 1) % 500 == 0:
+                print(f"  Processing technology {i+1}/{len(technologies)}...")
 
-    # Find missing techs
-    missing_count = 0
-    for supp_tech in all_techs_supplemental:
-        if supp_tech['name'] not in bc_tech_ids:
-            # Transform supplemental tech to website format
-            enhanced = transform_supplemental_tech_to_website_format(
-                supp_tech,
-                faction_mappings,
-                bridge.loc_loader,
-                component_parser,
-                reverse_unlocks,
-                icon_mappings,
-                ship_names_mapping
-            )
-            techs_enhanced.append(enhanced)
-            missing_count += 1
+            try:
+                enhanced = transform_tech_to_website_format(
+                    tech,
+                    faction_mappings,
+                    loc_loader,
+                    component_parser,
+                    reverse_unlocks,
+                    icon_mappings,
+                    ship_names_mapping
+                )
+                techs_enhanced.append(enhanced)
+            except Exception as e:
+                tech_id = tech.get('name', 'unknown')
+                print(f"  [WARNING] Failed to transform {tech_id}: {e}")
+                continue
 
-    print(f"  Added {missing_count} missing techs")
-    print(f"  Total techs now: {len(techs_enhanced)}")
+        print(f"  Successfully transformed {len(techs_enhanced)} technologies")
+        print()
+
+        # 3b. Add missing techs from Supplemental Parser
+        print("Step 3b: Adding missing techs from Supplemental Parser...")
+        supplemental_parser = SupplementalTechParser(STNH_MOD_ROOT)
+        all_techs_supplemental = supplemental_parser.parse_all_techs()
+
+        # Get tech IDs from Balance Center
+        bc_tech_ids = set(t['id'] for t in techs_enhanced)
+
+        # Find missing techs
+        missing_count = 0
+        for supp_tech in all_techs_supplemental:
+            if supp_tech['name'] not in bc_tech_ids:
+                enhanced = transform_supplemental_tech_to_website_format(
+                    supp_tech,
+                    faction_mappings,
+                    loc_loader,
+                    component_parser,
+                    reverse_unlocks,
+                    icon_mappings,
+                    ship_names_mapping
+                )
+                techs_enhanced.append(enhanced)
+                missing_count += 1
+
+        print(f"  Added {missing_count} missing techs")
+        print(f"  Total techs now: {len(techs_enhanced)}")
+    else:
+        # Fallback: Use Supplemental Parser as primary
+        print("Step 2: Using Supplemental Parser as primary (no Balance Center)...")
+        supplemental_parser = SupplementalTechParser(STNH_MOD_ROOT)
+        all_techs_supplemental = supplemental_parser.parse_all_techs()
+        print(f"  Parsed {len(all_techs_supplemental)} technologies")
+        print()
+
+        print("Step 3: Transforming to website format...")
+        for i, supp_tech in enumerate(all_techs_supplemental):
+            if (i + 1) % 500 == 0:
+                print(f"  Processing technology {i+1}/{len(all_techs_supplemental)}...")
+            try:
+                enhanced = transform_supplemental_tech_to_website_format(
+                    supp_tech,
+                    faction_mappings,
+                    loc_loader,
+                    component_parser,
+                    reverse_unlocks,
+                    icon_mappings,
+                    ship_names_mapping
+                )
+                techs_enhanced.append(enhanced)
+            except Exception as e:
+                tech_id = supp_tech.get('name', 'unknown')
+                print(f"  [WARNING] Failed to transform {tech_id}: {e}")
+                continue
+
+        print(f"  Successfully transformed {len(techs_enhanced)} technologies")
+        print()
 
     # 3c. Fix malformed area values from Balance Center parsing bug
     print("Step 3c: Fixing malformed area values...")
@@ -990,7 +1073,7 @@ def generate_complete_tech_data():
         faction_ships = tech.get('unlock_details', {}).get('faction_ships', {})
         factions_with_ships.update(faction_ships.keys())
 
-    empires_list = build_empires_list(prescripted_dir, bridge.loc_loader, factions_with_ships)
+    empires_list = build_empires_list(prescripted_dir, loc_loader, factions_with_ships)
     print(f"  Generated metadata for {len(empires_list)} empires")
     print()
 

@@ -765,14 +765,14 @@
   },
   {
     "id": "tech_ai_update_dummy_tech",
-    "name": "New Horizons",
+    "name": "Dummy AI Tech",
     "area": "engineering",
     "tier": 1,
     "cost": 500,
     "prerequisites": [],
     "weight": 0,
     "icon": "tech_ai_update_dummy_tech",
-    "description": "New Horizons",
+    "description": "Dummy Tech",
     "alternate_names": {},
     "effects": [],
     "unlock_details": {
@@ -1664,7 +1664,7 @@
       "other": [
         "ship"
       ],
-      "description": "Other: ship | Country Limits: Space Stations Limit, Starbase Nor Limit | Megastructures: Borg Catapult 1, Deep Space Station, NAME_deep_space_9, Nor Class Installation, Space Station Upgrade Stage 1, Space Station Upgrade Stage 2, Hyper Relay, Orbital Defense Grid, Orbital Battery Upgrade, Federation Recycle 01, Romulan Recycle 01, Klingon Recycle 01, Dominion Recycle 01, Cardassian Recycle 01, Generic Recycle 01, Borg Recycle 01, Undine Recycle 01, Research Starbase, Research Starbase, NAME_shipyard_earth_1 | Policy: policy_traffic_control_enabled | Ship Types: Starhold, Space Starbase, Starbase Nor, Cannon, Starbase | Tradable Action: Action Bulwark Technology",
+      "description": "Other: ship | Country Limits: Space Stations Limit, Starbase Nor Limit | Megastructures: Borg Catapult 1, Deep Space Station, NAME_deep_space_9, Nor Class Installation, Space Station Upgrade Stage 1, Space Station Upgrade Stage 2, Hyper Relay, Orbital Defense Grid, Orbital Defense Grid, Federation Recycle 01, Romulan Recycle 01, Klingon Recycle 01, Dominion Recycle 01, Cardassian Recycle 01, Generic Recycle 01, Borg Recycle 01, Undine Recycle 01, Research Starbase, Research Starbase, NAME_shipyard_earth_1 | Policy: policy_traffic_control_enabled | Ship Types: Starhold, Space Starbase, Starbase Nor, Cannon, Starbase | Tradable Action: Action Bulwark Technology",
       "unlocks_by_type": {
         "Other": [
           "ship"
@@ -1678,7 +1678,7 @@
           "Space Station Upgrade Stage 2",
           "Hyper Relay",
           "Orbital Defense Grid",
-          "Orbital Battery Upgrade",
+          "Orbital Defense Grid",
           "Federation Recycle 01",
           "Romulan Recycle 01",
           "Klingon Recycle 01",
@@ -10073,7 +10073,7 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Country Limit: Hero Ship Falchion Limit | Ship Types: Hero Ship Falchion, Warbird Sharien, Battleship Pontilus",
+      "description": "Other: Custom | Country Limit: Hero Ship Falchion Limit | Ship Section: Section Template | Ship Types: Hero Ship Falchion, Warbird Sharien, Battleship Pontilus",
       "unlocks_by_type": {
         "Other": [
           "Custom"
@@ -10084,6 +10084,9 @@
           "Battleship Pontilus",
           "Pontilus Class Battleship",
           "S'harien Class Warbird"
+        ],
+        "Ship Section": [
+          "Section Template"
         ],
         "Country Limit": [
           "Hero Ship Falchion Limit"
@@ -10212,7 +10215,7 @@
         "custom",
         "ship"
       ],
-      "description": "Other: Custom, ship | Ship Types: Battleship Dderidex, Shrike Cruiser Vasteme",
+      "description": "Other: Custom, ship | Ship Section: Section Template | Ship Types: Battleship Dderidex, Shrike Cruiser Vasteme",
       "unlocks_by_type": {
         "Other": [
           "Custom",
@@ -10222,6 +10225,9 @@
           "Battleship Dderidex",
           "Shrike Cruiser Vasteme",
           "D'Deridex Class Battleship"
+        ],
+        "Ship Section": [
+          "Section Template"
         ]
       }
     },
@@ -10463,8 +10469,7 @@
     "tier": 4,
     "cost": 5500,
     "prerequisites": [
-      "tech_engineering_industry_1314",
-      "tech_physics_11285"
+      "tech_engineering_industry_1314"
     ],
     "weight": 120,
     "icon": "tech_engineering_industry_1315",
@@ -13954,6 +13959,13 @@
         "key": "ship_speed_mult",
         "value": 0.06,
         "display": "+6% Speed",
+        "component": "utility_large_afterburner_1"
+      },
+      {
+        "type": "modifier",
+        "key": "ship_armor_add",
+        "value": 100.0,
+        "display": "+100 Armor",
         "component": "utility_large_afterburner_1"
       },
       {
@@ -27671,57 +27683,57 @@
       {
         "type": "modifier",
         "key": "damage_vs_country_type_borg_collective_mult",
-        "value": 0.25,
-        "display": "+25% Damage Vs Type Borg Collective",
-        "component": "TORPEDO_A_TRANSPHASIC_TORPEDO_1"
-      },
-      {
-        "type": "modifier",
-        "key": "damage_vs_country_type_assimilation_cube_mult",
-        "value": 0.25,
-        "display": "+25% Damage Vs Type Assimilation Cube",
-        "component": "TORPEDO_A_TRANSPHASIC_TORPEDO_1"
-      },
-      {
-        "type": "modifier",
-        "key": "damage_vs_country_type_borg_collective_mult",
         "value": 0.3,
         "display": "+30% Damage Vs Type Borg Collective",
-        "component": "TORPEDO_B_TRANSPHASIC_TORPEDO_1"
+        "component": "TORPEDO_A_TRANSPHASIC_TORPEDO_1"
       },
       {
         "type": "modifier",
         "key": "damage_vs_country_type_assimilation_cube_mult",
         "value": 0.3,
         "display": "+30% Damage Vs Type Assimilation Cube",
-        "component": "TORPEDO_B_TRANSPHASIC_TORPEDO_1"
+        "component": "TORPEDO_A_TRANSPHASIC_TORPEDO_1"
       },
       {
         "type": "modifier",
         "key": "damage_vs_country_type_borg_collective_mult",
         "value": 0.35,
         "display": "+35% Damage Vs Type Borg Collective",
-        "component": "TORPEDO_C_TRANSPHASIC_TORPEDO_1"
+        "component": "TORPEDO_B_TRANSPHASIC_TORPEDO_1"
       },
       {
         "type": "modifier",
         "key": "damage_vs_country_type_assimilation_cube_mult",
         "value": 0.35,
         "display": "+35% Damage Vs Type Assimilation Cube",
+        "component": "TORPEDO_B_TRANSPHASIC_TORPEDO_1"
+      },
+      {
+        "type": "modifier",
+        "key": "damage_vs_country_type_borg_collective_mult",
+        "value": 0.45,
+        "display": "+45% Damage Vs Type Borg Collective",
+        "component": "TORPEDO_C_TRANSPHASIC_TORPEDO_1"
+      },
+      {
+        "type": "modifier",
+        "key": "damage_vs_country_type_assimilation_cube_mult",
+        "value": 0.45,
+        "display": "+45% Damage Vs Type Assimilation Cube",
         "component": "TORPEDO_C_TRANSPHASIC_TORPEDO_1"
       },
       {
         "type": "modifier",
         "key": "damage_vs_country_type_borg_collective_mult",
-        "value": 0.4,
-        "display": "+40% Damage Vs Type Borg Collective",
+        "value": 0.5,
+        "display": "+50% Damage Vs Type Borg Collective",
         "component": "TORPEDO_D_TRANSPHASIC_TORPEDO_1"
       },
       {
         "type": "modifier",
         "key": "damage_vs_country_type_assimilation_cube_mult",
-        "value": 0.4,
-        "display": "+40% Damage Vs Type Assimilation Cube",
+        "value": 0.5,
+        "display": "+50% Damage Vs Type Assimilation Cube",
         "component": "TORPEDO_D_TRANSPHASIC_TORPEDO_1"
       },
       {

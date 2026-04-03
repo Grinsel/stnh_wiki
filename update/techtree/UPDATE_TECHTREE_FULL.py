@@ -153,12 +153,12 @@ def validate_environment(logger: UpdateLogger) -> bool:
     try:
         config.validate_paths()
         print(f"    STNH Mod: {config.STNH_MOD_ROOT}")
-        print(f"    Techtree: {config.TECHTREE_PROJECT_ROOT}")
+        print(f"    Wiki:     {config.WIKI_ROOT}")
         print(f"    Assets:   {config.OUTPUT_ASSETS_DIR}")
 
         logger.set_environment(
             stnh_mod_path=config.STNH_MOD_ROOT,
-            techtree_path=config.TECHTREE_PROJECT_ROOT
+            techtree_path=config.WIKI_ROOT
         )
 
     except FileNotFoundError as e:
@@ -170,11 +170,16 @@ def validate_environment(logger: UpdateLogger) -> bool:
     # Check Balance Center
     print("\n  Checking Balance Center...")
     try:
-        from balance_center_bridge import get_all_technologies_with_metadata
-        print("    Balance Center: Available")
-        balance_center_ok = True
+        from balance_center_bridge import BALANCE_CENTER_AVAILABLE
+        balance_center_ok = BALANCE_CENTER_AVAILABLE
+        if balance_center_ok:
+            print("    Balance Center: Available")
+        else:
+            print("    Balance Center: Not available")
+            print("    Will use supplemental parser as fallback")
+            logger.add_warning("Balance Center not available, using fallback parser")
     except ImportError as e:
-        print(f"    Balance Center: Not available ({e})")
+        print(f"    Balance Center: Import error ({e})")
         print("    Will use supplemental parser as fallback")
         balance_center_ok = False
         logger.add_warning("Balance Center not available, using fallback parser")
