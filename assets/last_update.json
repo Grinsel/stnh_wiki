@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-03T07:17:55.872207",
-  "elapsed_seconds": 49.0,
+  "timestamp": "2026-04-03T11:54:37.597361",
+  "elapsed_seconds": 35.3,
   "results": {
     "localisation": {
       "english": 240564,
@@ -36717,11 +36717,11 @@
     "ships": {
       "ships": 423,
       "components": 6406,
-      "ships_with_models": 275,
-      "model_variants": 1387,
+      "ships_with_models": 303,
+      "model_variants": 1415,
       "files": 142,
       "errors": 0,
-      "elapsed": 15.2
+      "elapsed": 9.3
     },
     "buildings": {
       "buildings": 653,
@@ -36760,7 +36760,7 @@
       "archaeology": 29,
       "files": 70,
       "errors": 0,
-      "elapsed": 0.2
+      "elapsed": 0.0
     },
     "empires": {
       "empires": 110,
@@ -36773,7 +36773,7 @@
       "placed": 105,
       "unplaced": 3,
       "flags_converted": 79,
-      "elapsed": 0.1
+      "elapsed": 0.0
     },
     "economy": {
       "jobs": 309,
@@ -36814,7 +36814,7 @@
           "deposit": 667,
           "technology": 618
         },
-        "elapsed": 0.3
+        "elapsed": 0.2
       },
       "cross_references": {
         "size_kb": 291,
@@ -36826,7 +36826,7 @@
           "empire_refs": 110,
           "building_upgrades": 307
         },
-        "elapsed": 0.0
+        "elapsed": 0.1
       },
       "tech_item_map": {
         "techs": 1132,
@@ -36836,13 +36836,26 @@
       }
     },
     "ship_models": {
-      "skipped": true
+      "converted": 0,
+      "skipped": 1415,
+      "failed": 0,
+      "multi_mesh": 0,
+      "total": 1415,
+      "elapsed": 0.0
     },
     "images": {
-      "skipped": true
+      "total": 986,
+      "converted": 0,
+      "skipped": 986,
+      "failed": 0,
+      "errors": []
     },
     "building_icons": {
-      "skipped": true
+      "total": 753,
+      "converted": 0,
+      "skipped": 753,
+      "failed": 0,
+      "errors": []
     }
   }
 }
