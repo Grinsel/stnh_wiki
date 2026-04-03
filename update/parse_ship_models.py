@@ -9,7 +9,7 @@ Uses a 4-strategy matching algorithm for reliable entity-to-ship assignment.
 
 import os
 from parse_pdx import parse_file, get_value, get_all_values, get_blocks
-from config import MOD_SHIP_MODELS_DIR, STNH_MOD_ROOT, MOD_SHIP_SIZES_DIR, MOD_PRESCRIPTED_COUNTRIES_DIR
+from config import MOD_SHIP_MODELS_DIR, STNH_MOD_ROOT, MOD_SHIP_SIZES_DIR, MOD_PRESCRIPTED_COUNTRIES_DIR, MOD_SECTION_TEMPLATES_DIR
 
 
 def parse_all_gfx(models_dir):
@@ -297,6 +297,83 @@ def parse_prescripted_cultures(prescripted_dir):
     return known_cultures
 
 
+def parse_all_ship_ids(ship_sizes_dir):
+    """Parse ship_sizes to get ALL ship_id keys (including those without graphical_culture).
+    Returns set of ship_id strings.
+    """
+    all_ids = set()
+    if not os.path.isdir(ship_sizes_dir):
+        return all_ids
+
+    for filename in sorted(os.listdir(ship_sizes_dir)):
+        if not filename.endswith('.txt'):
+            continue
+        filepath = os.path.join(ship_sizes_dir, filename)
+        parsed, error = parse_file(filepath)
+        if error:
+            continue
+        for entry in parsed:
+            if not isinstance(entry, dict):
+                continue
+            for ship_id in entry.keys():
+                all_ids.add(ship_id)
+
+    return all_ids
+
+
+def parse_section_template_entities(section_templates_dir):
+    """Parse section_templates to get entity names per ship_size.
+    Returns dict: ship_id -> set(entity_names)
+    """
+    result = {}
+    if not os.path.isdir(section_templates_dir):
+        return result
+
+    for filename in sorted(os.listdir(section_templates_dir)):
+        if not filename.endswith('.txt'):
+            continue
+        filepath = os.path.join(section_templates_dir, filename)
+        parsed, error = parse_file(filepath)
+        if error:
+            continue
+        for entry in parsed:
+            if not isinstance(entry, dict):
+                continue
+            if 'ship_section_template' not in entry:
+                continue
+            block = entry['ship_section_template']
+            if not isinstance(block, list):
+                continue
+            ship_size = get_value(block, 'ship_size')
+            entity = get_value(block, 'entity')
+            if ship_size and entity:
+                if isinstance(entity, str):
+                    entity = entity.strip('"')
+                if isinstance(ship_size, str):
+                    ship_size = ship_size.strip('"')
+                result.setdefault(ship_size, set()).add(entity)
+
+    return result
+
+
+def _is_frame_mesh(entity_name, entities, meshes, mod_root):
+    """Check if an entity's mesh is a frame placeholder (<4KB)."""
+    ent = entities.get(entity_name)
+    if not ent:
+        return True
+    pdxmesh_name = ent.get('pdxmesh')
+    if not pdxmesh_name:
+        return True
+    mesh_info = meshes.get(pdxmesh_name)
+    if not mesh_info or not mesh_info.get('file'):
+        return True
+    full_path = os.path.join(mod_root, mesh_info['file'].replace('/', os.sep))
+    try:
+        return os.path.getsize(full_path) < 4096
+    except OSError:
+        return True
+
+
 def _add_to_map(ship_models_map, ship_id, faction, entity_name, entities, meshes, mod_root):
     """Resolve entity attachment tree and add to the ship models map.
     Returns True if added, False if already present or failed.
@@ -332,37 +409,38 @@ def _add_to_map(ship_models_map, ship_id, faction, entity_name, entities, meshes
     return True
 
 
-def build_ship_models_map(models_dir, ship_sizes_dir, mod_root):
+def build_ship_models_map(models_dir, ship_sizes_dir, mod_root, section_templates_dir):
     """Build the complete ship models map.
 
-    Uses a 4-strategy matching algorithm:
+    Uses a 5-strategy matching algorithm:
     1. Direct coreA entity match
     2. Section_1 entity match
     3. Fuzzy name match with source_dir faction check
     4. Path-based fallback
+    5. Section-template entity match for ships without graphical_culture
 
     Returns:
         ship_models_map: dict of ship_id -> { faction -> { entity, mesh_file, scale, textures, attachments? } }
         stats: dict with counts
     """
-    print("  [1/5] Parsing .gfx files (pdxmesh definitions)...")
+    print("  [1/6] Parsing .gfx files (pdxmesh definitions)...")
     meshes, gfx_files, gfx_errors = parse_all_gfx(models_dir)
     print(f"    {len(meshes)} pdxmesh entries from {gfx_files} files ({gfx_errors} errors)")
 
-    print("  [2/5] Parsing .asset files (entity + locator + attach)...")
+    print("  [2/6] Parsing .asset files (entity + locator + attach)...")
     entities, asset_files, asset_errors = parse_all_assets(models_dir)
     attach_count = sum(len(e.get('attachments', [])) for e in entities.values())
     print(f"    {len(entities)} entities from {asset_files} files ({asset_errors} errors), {attach_count} attach refs")
 
-    print("  [3/5] Parsing graphical_culture from ship_sizes...")
+    print("  [3/6] Parsing graphical_culture from ship_sizes...")
     cultures = parse_graphical_cultures(ship_sizes_dir)
     print(f"    {len(cultures)} ship sizes with graphical_culture")
 
-    print("  [4/5] Parsing prescripted_countries for extra cultures...")
+    print("  [4/6] Parsing prescripted_countries for extra cultures...")
     extra_cultures = parse_prescripted_cultures(MOD_PRESCRIPTED_COUNTRIES_DIR)
     print(f"    {len(extra_cultures)} known graphical cultures from prescripted countries")
 
-    print("  [5/5] Building ship -> faction -> model mapping (4-strategy)...")
+    print("  [5/6] Building ship -> faction -> model mapping (Strategy 1-4)...")
 
     # Collect all known factions from cultures + prescripted + entity source_dirs
     all_factions = set()
@@ -384,7 +462,7 @@ def build_ship_models_map(models_dir, ship_sizes_dir, mod_root):
         faction_by_prefix.setdefault(base, []).append(f)
 
     ship_models_map = {}
-    matched_by_strategy = {1: 0, 2: 0, 3: 0, 4: 0}
+    matched_by_strategy = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
 
     for ship_id, gc_factions in cultures.items():
         for faction in gc_factions:
@@ -464,12 +542,27 @@ def build_ship_models_map(models_dir, ship_sizes_dir, mod_root):
                         matched_by_strategy[4] += 1
                         break
 
-    # Also try to match ships without graphical_culture (event ships etc.)
-    # by extracting faction from entity name prefix
-    ships_without_culture = set()
-    for ship_id in cultures:
-        if not cultures[ship_id]:
-            ships_without_culture.add(ship_id)
+    # Strategy 5: Section-template entity match for ships without graphical_culture
+    print("  [6/6] Matching event ships via section templates (Strategy 5)...")
+    all_ship_ids = parse_all_ship_ids(ship_sizes_dir)
+    ships_without_culture = all_ship_ids - set(cultures.keys())
+    section_entities = parse_section_template_entities(section_templates_dir)
+    print(f"    {len(ships_without_culture)} ships without graphical_culture, "
+          f"{len(section_entities)} ships with section templates")
+
+    for ship_id in sorted(ships_without_culture):
+        if ship_id in ship_models_map:
+            continue
+        ent_names = section_entities.get(ship_id, set())
+        if not ent_names:
+            continue
+        # Filter: only real meshes, no frames
+        real_entities = [e for e in ent_names if not _is_frame_mesh(e, entities, meshes, mod_root)]
+        if not real_entities:
+            continue
+        best = sorted(real_entities)[0]
+        if _add_to_map(ship_models_map, ship_id, 'other', best, entities, meshes, mod_root):
+            matched_by_strategy[5] += 1
 
     # Remove empty entries
     ship_models_map = {k: v for k, v in ship_models_map.items() if v}
@@ -493,12 +586,13 @@ def build_ship_models_map(models_dir, ship_sizes_dir, mod_root):
         'matched_strategy_2_section': matched_by_strategy[2],
         'matched_strategy_3_fuzzy': matched_by_strategy[3],
         'matched_strategy_4_path': matched_by_strategy[4],
+        'matched_strategy_5_section_tpl': matched_by_strategy[5],
         'errors': gfx_errors + asset_errors,
     }
 
     print(f"    {stats['ships_with_models']} ships with models, {stats['total_variants']} faction variants")
     print(f"    Strategy matches: coreA={matched_by_strategy[1]}, section={matched_by_strategy[2]}, "
-          f"fuzzy={matched_by_strategy[3]}, path={matched_by_strategy[4]}")
+          f"fuzzy={matched_by_strategy[3]}, path={matched_by_strategy[4]}, section_tpl={matched_by_strategy[5]}")
     print(f"    {stats['variants_with_attachments']} variants have multi-mesh attachments")
 
     return ship_models_map, stats
@@ -506,7 +600,7 @@ def build_ship_models_map(models_dir, ship_sizes_dir, mod_root):
 
 def parse_all():
     """Main entry point. Returns (ship_models_map, stats)."""
-    return build_ship_models_map(MOD_SHIP_MODELS_DIR, MOD_SHIP_SIZES_DIR, STNH_MOD_ROOT)
+    return build_ship_models_map(MOD_SHIP_MODELS_DIR, MOD_SHIP_SIZES_DIR, STNH_MOD_ROOT, MOD_SECTION_TEMPLATES_DIR)
 
 
 if __name__ == '__main__':
