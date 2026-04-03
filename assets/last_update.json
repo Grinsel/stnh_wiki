@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-03T11:54:37.597361",
-  "elapsed_seconds": 35.3,
+  "timestamp": "2026-04-03T11:56:38.275805",
+  "elapsed_seconds": 33.9,
   "results": {
     "localisation": {
       "english": 240564,
@@ -36721,7 +36721,7 @@
       "model_variants": 1415,
       "files": 142,
       "errors": 0,
-      "elapsed": 9.3
+      "elapsed": 9.4
     },
     "buildings": {
       "buildings": 653,
@@ -36826,7 +36826,7 @@
           "empire_refs": 110,
           "building_upgrades": 307
         },
-        "elapsed": 0.1
+        "elapsed": 0.0
       },
       "tech_item_map": {
         "techs": 1132,
@@ -36836,26 +36836,13 @@
       }
     },
     "ship_models": {
-      "converted": 0,
-      "skipped": 1415,
-      "failed": 0,
-      "multi_mesh": 0,
-      "total": 1415,
-      "elapsed": 0.0
+      "skipped": true
     },
     "images": {
-      "total": 986,
-      "converted": 0,
-      "skipped": 986,
-      "failed": 0,
-      "errors": []
+      "skipped": true
     },
     "building_icons": {
-      "total": 753,
-      "converted": 0,
-      "skipped": 753,
-      "failed": 0,
-      "errors": []
+      "skipped": true
     }
   }
 }
