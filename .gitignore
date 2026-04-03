@@ -27,5 +27,8 @@ update/techtree/__pycache__/
 update/techtree/logs/
 
 
+# Logs
+logs/
+
 # Claude
 .claude/

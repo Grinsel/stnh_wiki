@@ -2,6 +2,16 @@
 chcp 65001 >nul 2>&1
 setlocal
 
+if "%LOGGING_ACTIVE%"=="1" goto :skip_logging
+set LOGGING_ACTIVE=1
+if not exist "%~dp0logs" mkdir "%~dp0logs"
+for /f "tokens=1-3 delims=/.  " %%a in ('echo %date%') do set D=%%c-%%b-%%a
+for /f "tokens=1-2 delims=:." %%a in ('echo %time: =0%') do set T=%%a%%b
+set LOGFILE=%~dp0logs\UPDATE_EVENTS_%D%_%T%.log
+cmd /c "%~f0" 2>&1 | powershell -c "$input | Tee-Object -FilePath '%LOGFILE%'"
+exit /b %ERRORLEVEL%
+:skip_logging
+
 echo ============================================
 echo  STNH Wiki - Events Update
 echo ============================================
