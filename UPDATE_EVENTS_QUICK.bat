@@ -24,26 +24,29 @@ echo.
 
 git add -A
 git diff --cached --quiet
-if %ERRORLEVEL% neq 0 (
-    git commit -m "Pre-update commit - %date% %time:~0,8%"
-    if %ERRORLEVEL% neq 0 goto :commit_failed
-    echo Pre-update changes committed.
-) else (
+if %ERRORLEVEL% equ 0 (
     echo No local changes to commit.
+    goto :sync_pull
 )
+git commit -m "Pre-update commit - %date% %time:~0,8%"
+if %ERRORLEVEL% neq 0 goto :commit_failed
+echo Pre-update changes committed.
 
+:sync_pull
 git fetch origin
 git rev-list HEAD..origin/master --count > "%TEMP%\stnh_ahead.tmp"
 set /p AHEAD=<"%TEMP%\stnh_ahead.tmp"
 del "%TEMP%\stnh_ahead.tmp"
-if "%AHEAD%" neq "0" (
-    echo Remote is %AHEAD% commits ahead, pulling...
-    git pull --rebase origin master
-    if %ERRORLEVEL% neq 0 goto :pull_failed
-    echo Pull successful.
-) else (
+if "%AHEAD%" equ "0" (
     echo Remote is up to date.
+    goto :sync_done
 )
+echo Remote is %AHEAD% commits ahead, pulling...
+git pull --rebase origin master
+if %ERRORLEVEL% neq 0 goto :pull_failed
+echo Pull successful.
+
+:sync_done
 echo.
 
 echo [1/3] Running UPDATE_EVENTS.py --skip-images ...
