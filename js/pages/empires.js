@@ -140,11 +140,33 @@
         const detailPanel = document.getElementById('detail-panel');
         const detailTitle = document.getElementById('detail-title');
         const detailContent = document.getElementById('detail-content');
+
+        let _panelLeaveTimer = null;
+        function openDetailPanel() {
+            clearTimeout(_panelLeaveTimer);
+            const wasHidden = detailPanel.classList.contains('hidden');
+            detailPanel.classList.remove('hidden', 'detail-leaving');
+            if (wasHidden) {
+                detailPanel.classList.add('detail-entering');
+                void detailPanel.offsetWidth; // force reflow
+                detailPanel.classList.remove('detail-entering');
+            }
+        }
+        function closeDetailPanel() {
+            clearTimeout(_panelLeaveTimer);
+            detailPanel.classList.add('detail-leaving');
+            _panelLeaveTimer = setTimeout(() => {
+                detailPanel.classList.add('hidden');
+                detailPanel.classList.remove('detail-leaving');
+            }, 340);
+        }
+
         document.getElementById('detail-close').addEventListener('click', () => {
-            detailPanel.classList.add('hidden');
+            closeDetailPanel();
             if (activeView === 'map' && galaxyMapReady) {
                 GalaxyMap.deselect();
                 GalaxyMap.setLegendVisible(true);
+                GalaxyMap.resetView(true);
             }
         });
 
@@ -206,7 +228,7 @@
 
             detailContent.innerHTML = html;
             SharedRender.initToggles(detailContent);
-            detailPanel.classList.remove('hidden');
+            openDetailPanel();
             if (activeView === 'map' && galaxyMapReady) GalaxyMap.setLegendVisible(false);
         }
         _showDetail = showDetail; // expose to loadGalaxyMap closure

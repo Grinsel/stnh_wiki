@@ -541,9 +541,24 @@ window.GalaxyMap = (function () {
         _updateSelection();
     }
 
-    function resetView() {
-        _transform = { x: 0, y: 0, k: 1 };
-        _applyTransform();
+    function resetView(animated) {
+        if (!animated) {
+            _transform = { x: 0, y: 0, k: 1 };
+            _applyTransform();
+            return;
+        }
+        const startK = _transform.k, startX = _transform.x, startY = _transform.y;
+        const dur = 700, t0 = performance.now();
+        function step(now) {
+            const p = Math.min(1, (now - t0) / dur);
+            const e = 1 - Math.pow(1 - p, 3); // ease-out cubic
+            _transform.k = startK + (1 - startK) * e;
+            _transform.x = startX + (0 - startX) * e;
+            _transform.y = startY + (0 - startY) * e;
+            _applyTransform();
+            if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
     }
 
     function destroy() {

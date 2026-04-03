@@ -1681,19 +1681,43 @@ body.in-iframe #site-footer {
 }
 
 .content-layout #detail-panel {
-    flex: 2;
+    flex: 2 1 0%;
     min-width: 0;
     max-height: calc(100vh - var(--detail-top, 130px) - 2rem - var(--footer-height, 38px));
     overflow-y: auto;
+    overflow-x: hidden;
     position: sticky;
     top: calc(var(--detail-top, 130px) + 1rem);
     align-self: flex-start;
     background: var(--bg-card);
     border-radius: 6px;
     padding: 1rem;
+    transition: flex-grow 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                padding   0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity   0.32s ease;
 }
 
 .content-layout #detail-panel.hidden { display: none; }
+
+/* Slide-in start state — collapsed layout width + hidden opacity. JS removes this one frame after display:none is lifted. */
+.content-layout #detail-panel.detail-entering {
+    flex-grow: 0;
+    overflow: hidden;
+    padding: 0;
+    transform: translateX(40px);
+    opacity: 0;
+}
+
+/* Slide-out end state — collapses layout width + fades out. JS adds display:none once transition finishes. */
+.content-layout #detail-panel.detail-leaving {
+    flex-grow: 0;
+    overflow: hidden;
+    padding: 0;
+    transform: translateX(40px);
+    opacity: 0;
+    pointer-events: none;
+}
 
 /* Tab Buttons */
 .tab-buttons {
