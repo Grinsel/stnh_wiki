@@ -255,7 +255,32 @@
             renderAll();
         });
 
+        // Tab from URL (before renderAll)
+        const urlTab = AppState.get('tab');
+        if (urlTab) {
+            const tabBtn = document.querySelector(`.tab-btn[data-tab="${urlTab}"]`);
+            if (tabBtn) {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                tabBtn.classList.add('active');
+                activeTab = urlTab;
+                document.getElementById('filter-authority-group').classList.toggle('hidden', activeTab !== 'empires');
+                document.getElementById('filter-archetype-group').classList.toggle('hidden', activeTab !== 'species');
+                if (viewToggleGroup) viewToggleGroup.style.visibility = activeTab === 'empires' ? '' : 'hidden';
+            }
+        }
+
         renderAll();
+
+        // Auto-select item from URL (after renderAll)
+        const selectId = AppState.get('select');
+        if (selectId) {
+            const allItems = [...empires, ...species];
+            const item = allItems.find(i => i.id === selectId);
+            if (item) {
+                showDetail(item);
+                AppState.set('select', '');
+            }
+        }
 
         function renderAll() {
             const query = (AppState.get('search') || '').toLowerCase();

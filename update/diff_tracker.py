@@ -77,14 +77,15 @@ def compute_diff(old_items, new_items, label):
         new_json = json.dumps(new_items[item_id], sort_keys=True)
         if old_json != new_json:
             changed_fields = _find_changed_fields(old_items[item_id], new_items[item_id])
-            modified.append({'id': item_id, 'changed_fields': changed_fields})
+            modified.append({'id': item_id, 'changed_fields': changed_fields,
+                             'name_key': new_items[item_id].get('name_key') or new_items[item_id].get('name', '')})
 
     return {
         'label': label,
         'old_count': len(old_items),
         'new_count': len(new_items),
-        'added': [{'id': i} for i in added_ids],
-        'removed': [{'id': i} for i in removed_ids],
+        'added': [{'id': i, 'name_key': new_items[i].get('name_key') or new_items[i].get('name', '')} for i in added_ids],
+        'removed': [{'id': i, 'name_key': old_items[i].get('name_key') or old_items[i].get('name', '')} for i in removed_ids],
         'modified': modified,
     }
 
@@ -189,13 +190,38 @@ def print_changes(all_diffs):
 
 
 def save_changes(all_diffs, output_path):
-    """Write changes.json with full diff data."""
+    """Write changes.json with full diff data, archiving previous report to history."""
     total_added = sum(len(d['added']) for d in all_diffs)
     total_removed = sum(len(d['removed']) for d in all_diffs)
     total_modified = sum(len(d['modified']) for d in all_diffs)
     modules_changed = sum(1 for d in all_diffs
                           if d['added'] or d['removed'] or d['modified'])
     modules_unchanged = len(all_diffs) - modules_changed
+
+    # Archive previous changes.json to history before overwriting
+    history_path = os.path.join(os.path.dirname(output_path), 'changes_history.json')
+    if os.path.exists(output_path):
+        try:
+            with open(output_path, 'r', encoding='utf-8') as f:
+                old_report = json.load(f)
+            # Only archive if the old report had actual changes
+            old_summary = old_report.get('summary', {})
+            if (old_summary.get('total_added', 0) + old_summary.get('total_removed', 0)
+                    + old_summary.get('total_modified', 0)) > 0:
+                history = []
+                if os.path.exists(history_path):
+                    try:
+                        with open(history_path, 'r', encoding='utf-8') as f:
+                            history = json.load(f)
+                    except (json.JSONDecodeError, OSError):
+                        history = []
+                history.insert(0, old_report)
+                history = history[:50]  # Keep max 50 entries
+                with open(history_path, 'w', encoding='utf-8') as f:
+                    json.dump(history, f, indent=2, ensure_ascii=False)
+                print(f"  Archived previous report to: {history_path} ({len(history)} entries)")
+        except (json.JSONDecodeError, OSError):
+            pass  # No valid old report to archive
 
     modules = {}
     for diff in all_diffs:

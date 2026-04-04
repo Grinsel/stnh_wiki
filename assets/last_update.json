@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-03T22:54:33.046278",
-  "elapsed_seconds": 35.2,
+  "timestamp": "2026-04-04T07:59:34.273109",
+  "elapsed_seconds": 51.8,
   "results": {
     "localisation": {
       "english": 240897,
@@ -36721,14 +36721,14 @@
       "model_variants": 1415,
       "files": 142,
       "errors": 0,
-      "elapsed": 9.5
+      "elapsed": 15.9
     },
     "buildings": {
       "buildings": 653,
       "districts": 56,
       "files": 51,
       "errors": 0,
-      "elapsed": 0.2
+      "elapsed": 0.3
     },
     "traits": {
       "traits": 470,
@@ -36736,7 +36736,7 @@
       "ascension_perks": 58,
       "files": 90,
       "errors": 0,
-      "elapsed": 0.2
+      "elapsed": 0.4
     },
     "governments": {
       "governments": 185,
@@ -36746,28 +36746,28 @@
       "edicts": 86,
       "files": 34,
       "errors": 0,
-      "elapsed": 0.1
+      "elapsed": 0.2
     },
     "megastructures": {
       "megastructures": 116,
       "relics": 68,
       "files": 67,
       "errors": 0,
-      "elapsed": 0.1
+      "elapsed": 0.3
     },
     "anomalies": {
       "anomalies": 132,
       "archaeology": 29,
       "files": 70,
       "errors": 0,
-      "elapsed": 0.0
+      "elapsed": 0.2
     },
     "empires": {
       "empires": 110,
       "species": 255,
       "files": 47,
       "errors": 0,
-      "elapsed": 0.0
+      "elapsed": 0.1
     },
     "galaxy_map": {
       "placed": 105,
@@ -36780,7 +36780,7 @@
       "deposits": 667,
       "files": 58,
       "errors": 0,
-      "elapsed": 0.1
+      "elapsed": 0.3
     },
     "techtree": {
       "skipped": false,
@@ -36858,11 +36858,11 @@
       "errors": []
     },
     "changes": {
-      "total_added": 6,
+      "total_added": 0,
       "total_removed": 0,
-      "total_modified": 13,
-      "modules_changed": 3,
-      "modules_unchanged": 18
+      "total_modified": 0,
+      "modules_changed": 0,
+      "modules_unchanged": 21
     }
   }
 }

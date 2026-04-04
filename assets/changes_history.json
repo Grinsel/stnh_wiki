@@ -1,0 +1,263 @@
+[
+  {
+    "timestamp": "2026-04-03T22:54:33.045637",
+    "summary": {
+      "total_added": 6,
+      "total_removed": 0,
+      "total_modified": 13,
+      "modules_changed": 3,
+      "modules_unchanged": 18
+    },
+    "modules": {
+      "events_index": {
+        "old_count": 8867,
+        "new_count": 8873,
+        "added": [
+          {
+            "id": "STH_klingon_mechanics_new.402"
+          },
+          {
+            "id": "STH_onaction.7073"
+          },
+          {
+            "id": "STH_onaction.7074"
+          },
+          {
+            "id": "STH_onaction.7075"
+          },
+          {
+            "id": "STH_tng_mu.14"
+          },
+          {
+            "id": "STH_tng_mu.15"
+          }
+        ],
+        "removed": [],
+        "modified": [
+          {
+            "id": "nhTest.6000",
+            "changed_fields": [
+              "name",
+              "snip"
+            ]
+          },
+          {
+            "id": "sth_iconian_crisis.44",
+            "changed_fields": [
+              "snip"
+            ]
+          }
+        ]
+      },
+      "ships": {
+        "old_count": 423,
+        "new_count": 423,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "buildings": {
+        "old_count": 653,
+        "new_count": 653,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "districts": {
+        "old_count": 56,
+        "new_count": 56,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "district_city",
+            "changed_fields": [
+              "allow",
+              "potential"
+            ]
+          },
+          {
+            "id": "district_farming",
+            "changed_fields": [
+              "potential"
+            ]
+          },
+          {
+            "id": "district_generator",
+            "changed_fields": [
+              "potential"
+            ]
+          },
+          {
+            "id": "district_generator_underground",
+            "changed_fields": [
+              "potential"
+            ]
+          }
+        ]
+      },
+      "traits": {
+        "old_count": 461,
+        "new_count": 461,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traditions": {
+        "old_count": 448,
+        "new_count": 448,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "ascension_perks": {
+        "old_count": 58,
+        "new_count": 58,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "governments": {
+        "old_count": 185,
+        "new_count": 185,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "civics": {
+        "old_count": 332,
+        "new_count": 332,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "authorities": {
+        "old_count": 17,
+        "new_count": 17,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "policies": {
+        "old_count": 53,
+        "new_count": 53,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "edicts": {
+        "old_count": 86,
+        "new_count": 86,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "megastructures": {
+        "old_count": 116,
+        "new_count": 116,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "relics": {
+        "old_count": 68,
+        "new_count": 68,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "anomalies": {
+        "old_count": 132,
+        "new_count": 132,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "archaeology": {
+        "old_count": 29,
+        "new_count": 29,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "empires": {
+        "old_count": 110,
+        "new_count": 110,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "species": {
+        "old_count": 255,
+        "new_count": 255,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "jobs": {
+        "old_count": 308,
+        "new_count": 308,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "administrator_vorta",
+            "changed_fields": [
+              "possible"
+            ]
+          },
+          {
+            "id": "commodore",
+            "changed_fields": [
+              "possible"
+            ]
+          },
+          {
+            "id": "entertainer_jemhadar",
+            "changed_fields": [
+              "possible"
+            ]
+          },
+          {
+            "id": "founder_infiltrator",
+            "changed_fields": [
+              "possible"
+            ]
+          },
+          {
+            "id": "founder_yeslink",
+            "changed_fields": [
+              "possible"
+            ]
+          },
+          {
+            "id": "honored_first",
+            "changed_fields": [
+              "possible"
+            ]
+          },
+          {
+            "id": "soldier",
+            "changed_fields": [
+              "weight"
+            ]
+          }
+        ]
+      },
+      "deposits": {
+        "old_count": 667,
+        "new_count": 667,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "components": {
+        "old_count": 6406,
+        "new_count": 6406,
+        "added": [],
+        "removed": [],
+        "modified": []
+      }
+    }
+  }
+]

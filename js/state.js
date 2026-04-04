@@ -4,13 +4,15 @@
 const AppState = (() => {
     const defaults = {
         search: '',
+        select: '',
+        tab: '',
         page: 1,
         lang: 'english',
         type: '',
         faction: '',
         category: '',
         namespace: '',
-        showHidden: false,
+        showHidden: true,
         triggeredOnly: false,
         selectedEvent: '',
         sort: '',

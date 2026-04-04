@@ -104,6 +104,35 @@
             }
         });
 
+        // Dynamic description texts with real counts
+        const fmt = (n) => (n || 0).toLocaleString();
+        const DESC_TEMPLATES = {
+            events:         (c) => `Browse ${fmt(c.event)} events with full localisation in 7 languages.`,
+            tech:           (c) => `Interactive technology tree with ${fmt(c.tech)} techs, prerequisites and unlocks.`,
+            ships:          (c) => `${fmt(c.ship)} ship classes and ${fmt(c.component)} components with faction-specific designs.`,
+            buildings:      (c) => `${fmt(c.building)} buildings and ${fmt(c.district)} districts with production chains.`,
+            traits:         (c) => `${fmt(c.trait)} traits, ${fmt(c.tradition)} traditions, and ${fmt(c.ascension_perk)} ascension perks.`,
+            governments:    (c) => `${fmt(c.government)} governments, ${fmt(c.civic)} civics, ${fmt(c.policy)} policies, and ${fmt(c.edict)} edicts.`,
+            megastructures: (c) => `${fmt(c.megastructure)} megastructures and ${fmt(c.relic)} relics with build stages.`,
+            anomalies:      (c) => `${fmt(c.anomaly)} anomalies and ${fmt(c.archaeology)} archaeological sites with outcomes.`,
+            empires:        (c) => `${fmt(c.empire)} prescripted empires and ${fmt(c.species)} species with portraits.`,
+            economy:        (c) => `${fmt(c.job)} pop jobs and ${fmt(c.deposit)} deposits with economic chains.`,
+        };
+
+        document.querySelectorAll('.section-card[data-module]').forEach(card => {
+            const mod = card.dataset.module;
+            const tmpl = DESC_TEMPLATES[mod];
+            if (!tmpl) return;
+            const p = card.querySelector('p');
+            if (p) p.textContent = tmpl(counts);
+        });
+
+        // Dynamic search placeholder with real total
+        const searchEl = document.getElementById('global-search-input');
+        if (searchEl && total) {
+            searchEl.placeholder = `Search all ${total.toLocaleString()} items... (ship:, event:, building:, ...)`;
+        }
+
         // Hub meta line (total + last update)
         const metaEl = document.getElementById('hub-meta');
         if (metaEl) {
@@ -123,6 +152,198 @@
             }
             metaEl.innerHTML = metaHtml;
         }
+    }
+
+    // ========================================
+    // Update Notes Section
+    // ========================================
+    const CHANGE_MODULE_MAP = {
+        events_index:    { label: 'Events',          page: 'events.html',         tab: null },
+        ships:           { label: 'Ships',           page: 'ships.html',          tab: null },
+        buildings:       { label: 'Buildings',       page: 'buildings.html',       tab: null },
+        districts:       { label: 'Districts',       page: 'buildings.html',       tab: 'districts' },
+        traits:          { label: 'Traits',          page: 'traits.html',          tab: null },
+        traditions:      { label: 'Traditions',      page: 'traits.html',          tab: 'traditions' },
+        ascension_perks: { label: 'Ascension Perks', page: 'traits.html',          tab: 'perks' },
+        governments:     { label: 'Governments',     page: 'governments.html',     tab: null },
+        civics:          { label: 'Civics',          page: 'governments.html',     tab: 'civics' },
+        authorities:     { label: 'Authorities',     page: 'governments.html',     tab: 'authorities' },
+        policies:        { label: 'Policies',        page: 'governments.html',     tab: 'policies' },
+        edicts:          { label: 'Edicts',          page: 'governments.html',     tab: 'edicts' },
+        megastructures:  { label: 'Megastructures',  page: 'megastructures.html',  tab: null },
+        relics:          { label: 'Relics',          page: 'megastructures.html',  tab: 'relics' },
+        anomalies:       { label: 'Anomalies',       page: 'anomalies.html',       tab: null },
+        archaeology:     { label: 'Archaeology',     page: 'anomalies.html',       tab: 'archaeology' },
+        empires:         { label: 'Empires',         page: 'empires.html',         tab: null },
+        species:         { label: 'Species',         page: 'empires.html',         tab: 'species' },
+        jobs:            { label: 'Jobs',            page: 'economy.html',         tab: null },
+        deposits:        { label: 'Deposits',        page: 'economy.html',         tab: 'deposits' },
+        components:      { label: 'Components',      page: 'ships.html',           tab: 'components' },
+    };
+
+    function buildItemUrl(moduleKey, itemId) {
+        const mapping = CHANGE_MODULE_MAP[moduleKey];
+        if (!mapping) return '#';
+        if (moduleKey === 'events_index') {
+            return mapping.page + '?selectedEvent=' + encodeURIComponent(itemId);
+        }
+        let url = mapping.page + '?select=' + encodeURIComponent(itemId);
+        if (mapping.tab) url += '&tab=' + mapping.tab;
+        return url;
+    }
+
+    function formatChangeDate(isoStr) {
+        try {
+            const d = new Date(isoStr);
+            return d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        } catch (e) {
+            return isoStr;
+        }
+    }
+
+    function changeName(item) {
+        if (!item.name_key) return item.id;
+        return I18n.t(item.name_key) || item.name_key;
+    }
+
+    function renderUpdateNotes(changes, container, isHistory) {
+        const summary = changes.summary || {};
+        const modules = changes.modules || {};
+        const totalChanges = (summary.total_added || 0) + (summary.total_modified || 0) + (summary.total_removed || 0);
+
+        if (totalChanges === 0 && !isHistory) {
+            container.innerHTML = '<p class="update-no-changes">No changes in the latest update.</p>';
+            container.classList.remove('hidden');
+            return;
+        }
+
+        // Header
+        const dateStr = formatChangeDate(changes.timestamp);
+        const prefix = isHistory ? '' : 'Latest Update';
+        let html = `<div class="update-header">
+            <h3>${isHistory ? 'Update' : prefix} &mdash; ${esc(dateStr)}</h3>
+            <div class="update-summary-badges">`;
+        if (summary.total_added) html += `<span class="update-badge added">+${summary.total_added} new</span>`;
+        if (summary.total_modified) html += `<span class="update-badge modified">~${summary.total_modified} modified</span>`;
+        if (summary.total_removed) html += `<span class="update-badge removed">-${summary.total_removed} removed</span>`;
+        html += `</div></div>`;
+
+        // Determine if modules should be initially expanded
+        const expandAll = totalChanges <= 20;
+
+        // Modules with changes
+        for (const [moduleKey, mod] of Object.entries(modules)) {
+            const nAdd = (mod.added || []).length;
+            const nMod = (mod.modified || []).length;
+            const nRem = (mod.removed || []).length;
+            if (nAdd === 0 && nMod === 0 && nRem === 0) continue;
+
+            const mapping = CHANGE_MODULE_MAP[moduleKey] || { label: moduleKey };
+            const expanded = expandAll;
+
+            html += `<div class="update-module">`;
+            html += `<div class="update-module-header" data-toggle-module>`;
+            html += `<span class="update-module-toggle ${expanded ? 'expanded' : ''}">&#9654;</span>`;
+            html += `<span class="update-module-name">${esc(mapping.label)}</span>`;
+            if (mod.old_count !== undefined) {
+                html += `<span class="update-module-delta">${mod.old_count.toLocaleString()} &rarr; ${mod.new_count.toLocaleString()}</span>`;
+            }
+            html += `</div>`;
+            html += `<div class="update-module-body ${expanded ? '' : 'collapsed'}">`;
+
+            // Added items
+            for (const item of (mod.added || [])) {
+                const url = buildItemUrl(moduleKey, item.id);
+                html += `<div class="change-item change-added">
+                    <span class="change-icon">+</span>
+                    <a href="${esc(url)}">${esc(changeName(item))}</a>
+                    <span class="change-item-id">${esc(item.id)}</span>
+                </div>`;
+            }
+
+            // Modified items
+            for (const item of (mod.modified || [])) {
+                const url = buildItemUrl(moduleKey, item.id);
+                html += `<div class="change-item change-modified">
+                    <span class="change-icon">~</span>
+                    <a href="${esc(url)}">${esc(changeName(item))}</a>
+                    <span class="change-item-id">${esc(item.id)}</span>`;
+                if (item.changed_fields && item.changed_fields.length) {
+                    html += `<span class="change-fields">${item.changed_fields.map(f => `<span class="change-field-tag">${esc(f)}</span>`).join('')}</span>`;
+                }
+                html += `</div>`;
+            }
+
+            // Removed items
+            for (const item of (mod.removed || [])) {
+                html += `<div class="change-item change-removed">
+                    <span class="change-icon">-</span>
+                    <span class="change-id">${esc(changeName(item))}</span>
+                    <span class="change-item-id">${esc(item.id)}</span>
+                </div>`;
+            }
+
+            html += `</div></div>`;
+        }
+
+        container.innerHTML = (container.innerHTML || '') + html;
+        container.classList.remove('hidden');
+
+        // Wire up collapsible toggles
+        container.querySelectorAll('[data-toggle-module]').forEach(header => {
+            if (header._toggled) return;
+            header._toggled = true;
+            header.addEventListener('click', () => {
+                const toggle = header.querySelector('.update-module-toggle');
+                const body = header.nextElementSibling;
+                if (body) {
+                    body.classList.toggle('collapsed');
+                    toggle.classList.toggle('expanded');
+                }
+            });
+        });
+    }
+
+    // Load and render update notes
+    try {
+        const changes = await DataManager.loadJSON('assets/changes.json');
+        if (changes) {
+            const updateContainer = document.getElementById('update-notes');
+            if (updateContainer) {
+                renderUpdateNotes(changes, updateContainer, false);
+
+                // History toggle button
+                const historyBtn = document.createElement('button');
+                historyBtn.className = 'update-history-toggle';
+                historyBtn.textContent = 'Show previous updates';
+                let historyLoaded = false;
+                historyBtn.addEventListener('click', async () => {
+                    if (historyLoaded) return;
+                    historyLoaded = true;
+                    historyBtn.textContent = 'Loading...';
+                    try {
+                        const history = await DataManager.loadJSON('assets/changes_history.json');
+                        if (history && history.length) {
+                            const maxShow = Math.min(history.length, 5);
+                            for (let i = 0; i < maxShow; i++) {
+                                const entryDiv = document.createElement('div');
+                                entryDiv.className = 'update-history-entry';
+                                updateContainer.appendChild(entryDiv);
+                                renderUpdateNotes(history[i], entryDiv, true);
+                            }
+                        }
+                        historyBtn.remove();
+                    } catch (e) {
+                        historyBtn.textContent = 'No history available';
+                        historyBtn.style.opacity = '0.5';
+                        historyBtn.style.cursor = 'default';
+                    }
+                });
+                updateContainer.appendChild(historyBtn);
+            }
+        }
+    } catch (e) {
+        // No changes.json available, skip update notes
     }
 
     // ========================================

@@ -75,7 +75,7 @@ const UI_STRINGS = {
     // ==========================================
     // Search Placeholders
     // ==========================================
-    'ui.search.hub':          { english: 'Search all 19,000+ items... (ship:, event:, building:, ...)', german: 'Alle 19.000+ Eintr\u00e4ge durchsuchen... (ship:, event:, building:, ...)' },
+    'ui.search.hub':          { english: 'Search all items... (ship:, event:, building:, ...)', german: 'Alle Eintr\u00e4ge durchsuchen... (ship:, event:, building:, ...)' },
     'ui.search.ships':        { english: 'Search ships & components...', german: 'Schiffe & Komponenten durchsuchen...' },
     'ui.search.buildings':    { english: 'Search buildings & districts...', german: 'Geb\u00e4ude & Bezirke durchsuchen...' },
     'ui.search.traits':       { english: 'Search traits, traditions & perks...', german: 'Eigenschaften, Traditionen & Vorteile durchsuchen...' },
@@ -206,8 +206,8 @@ const UI_STRINGS = {
     'ui.hub.subtitle':         { english: 'Comprehensive off-game reference for the STNH Stellaris mod', german: 'Umfassendes Off-Game-Nachschlagewerk f\u00fcr die STNH Stellaris-Mod' },
     'ui.hub.total_items':      { english: 'Total Items', german: 'Gesamtanzahl' },
     'ui.hub.last_update':      { english: 'Last Update', german: 'Letztes Update' },
-    'ui.hub.desc_events':      { english: 'Browse 8,800+ events across 280+ namespaces with full localisation.', german: '\u00dcber 8.800 Ereignisse in 280+ Namensr\u00e4umen mit voller Lokalisierung durchsuchen.' },
-    'ui.hub.desc_tech':        { english: 'Interactive technology tree with ~2,600 techs, prerequisites and unlocks.', german: 'Interaktiver Technologiebaum mit ~2.600 Technologien, Voraussetzungen und Freischaltungen.' },
+    'ui.hub.desc_events':      { english: 'Browse all events with full localisation in 7 languages.', german: 'Alle Ereignisse mit voller Lokalisierung in 7 Sprachen durchsuchen.' },
+    'ui.hub.desc_tech':        { english: 'Interactive technology tree with prerequisites and unlocks.', german: 'Interaktiver Technologiebaum mit Voraussetzungen und Freischaltungen.' },
     'ui.hub.desc_ships':       { english: 'Ship classes, sizes, components, and faction-specific designs.', german: 'Schiffsklassen, Gr\u00f6\u00dfen, Komponenten und fraktionsspezifische Designs.' },
     'ui.hub.desc_buildings':   { english: 'Planetary buildings, districts, and their production chains.', german: 'Planetare Geb\u00e4ude, Bezirke und ihre Produktionsketten.' },
     'ui.hub.desc_traits':      { english: 'Leader traits, traditions, ascension perks and their effects.', german: 'Anf\u00fchrereigenschaften, Traditionen, Aufstiegsvorteile und ihre Effekte.' },
