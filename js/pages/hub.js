@@ -38,7 +38,7 @@
         // Module → sub-type breakdown mapping
         const moduleBreakdown = {
             events:         [{ key: 'event', label: 'ui.nav.events' }],
-            tech:           [{ key: 'tech', label: 'ui.nav.tech' }],
+            tech:           [{ key: 'technology', label: 'ui.nav.tech' }],
             ships:          [
                 { key: 'ship', label: 'ui.tab.ships' },
                 { key: 'component', label: 'ui.tab.components' },
@@ -108,8 +108,8 @@
         const fmt = (n) => (n || 0).toLocaleString();
         const DESC_TEMPLATES = {
             events:         (c) => `Browse ${fmt(c.event)} events with full localisation in 7 languages.`,
-            tech:           (c) => `Interactive technology tree with ${fmt(c.tech)} techs, prerequisites and unlocks.`,
-            ships:          (c) => `${fmt(c.ship)} ship classes and ${fmt(c.component)} components with faction-specific designs.`,
+            tech:           (c) => `Interactive technology tree with prerequisites and unlocks.`,
+            ships:          (c) => `Ship classes and components with faction-specific designs.`,
             buildings:      (c) => `${fmt(c.building)} buildings and ${fmt(c.district)} districts with production chains.`,
             traits:         (c) => `${fmt(c.trait)} traits, ${fmt(c.tradition)} traditions, and ${fmt(c.ascension_perk)} ascension perks.`,
             governments:    (c) => `${fmt(c.government)} governments, ${fmt(c.civic)} civics, ${fmt(c.policy)} policies, and ${fmt(c.edict)} edicts.`,
