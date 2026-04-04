@@ -98,6 +98,10 @@ const Common = (() => {
             if (href === currentPage || (currentPage === 'index.html' && href === 'index.html')) {
                 link.classList.add('active');
             }
+            // tech.html should highlight the tech-list.html nav link
+            if (currentPage === 'tech.html' && href === 'tech-list.html') {
+                link.classList.add('active');
+            }
         });
     }
 

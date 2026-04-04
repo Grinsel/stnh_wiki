@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technologies - ST:NH Wiki</title>
+    <meta name="description" content="Browse and search all ~2,000 technologies in Star Trek: New Horizons. Filter by area, category, tier, and empire.">
+    <meta property="og:title" content="Technologies - ST:NH Wiki">
+    <meta property="og:description" content="Browse and search all ~2,000 technologies in Star Trek: New Horizons. Filter by area, category, tier, and empire.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ST:NH Wiki">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="masthead">
+        <div class="header-inner">
+            <div class="site-title">
+                <h1>ST:NH <span class="accent">Wiki</span></h1>
+            </div>
+            <div class="header-search">
+                <input type="text" id="search-input" placeholder="Search technologies..." autocomplete="off">
+            </div>
+            <div class="header-controls">
+                <select id="lang-select" title="Language">
+                    <option value="english">English</option>
+                    <option value="german">Deutsch</option>
+                    <option value="french">Fran&ccedil;ais</option>
+                    <option value="spanish">Espa&ntilde;ol</option>
+                    <option value="russian">&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;</option>
+                    <option value="polish">Polski</option>
+                    <option value="braz_por">Portugu&ecirc;s</option>
+                </select>
+                <div class="font-size-control" title="Text Size">
+                    <span class="font-size-label">Text</span>
+                    <button id="font-size-down" aria-label="Decrease text size">&minus;</button>
+                    <button id="font-size-up" aria-label="Increase text size">+</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Wiki Navigation -->
+    <nav id="wiki-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-link" data-i18n="ui.nav.hub">Hub</a>
+            <a href="events.html" class="nav-link" data-i18n="ui.nav.events">Events</a>
+            <a href="tech-list.html" class="nav-link" data-i18n="ui.nav.tech">Tech Tree</a>
+            <a href="ships.html" class="nav-link" data-i18n="ui.nav.ships">Ships</a>
+            <a href="buildings.html" class="nav-link" data-i18n="ui.nav.buildings">Buildings</a>
+            <a href="traits.html" class="nav-link" data-i18n="ui.nav.traits">Traits</a>
+            <a href="governments.html" class="nav-link" data-i18n="ui.nav.governments">Governments</a>
+            <a href="megastructures.html" class="nav-link" data-i18n="ui.nav.megastructures">Megastructures</a>
+            <a href="anomalies.html" class="nav-link" data-i18n="ui.nav.anomalies">Anomalies</a>
+            <a href="empires.html" class="nav-link" data-i18n="ui.nav.empires">Empires</a>
+            <a href="economy.html" class="nav-link" data-i18n="ui.nav.economy">Economy</a>
+        </div>
+    </nav>
+
+    <!-- Global Search Results -->
+    <div id="global-search-results" class="global-search-results hidden"></div>
+
+    <!-- Filter Bar -->
+    <div id="filter-bar">
+        <div class="filter-inner">
+            <div class="filter-group tab-buttons">
+                <span class="tab-btn active">List View</span>
+                <a href="tech.html" class="tab-btn" style="text-decoration:none">Tree View</a>
+            </div>
+            <div id="filter-area-chips" class="cat-chip-bar"></div>
+            <div class="filter-group" style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
+                <select id="filter-category" title="Category">
+                    <option value="">All Categories</option>
+                </select>
+                <select id="filter-tier-start" title="Min Tier">
+                    <option value="">Min Tier</option>
+                </select>
+                <select id="filter-tier-end" title="Max Tier">
+                    <option value="">Max Tier</option>
+                </select>
+                <div class="empire-autocomplete" style="position:relative">
+                    <input type="text" id="empire-search" placeholder="Filter by empire..." autocomplete="off" style="width:180px">
+                    <div id="empire-dropdown" class="autocomplete-dropdown hidden"></div>
+                </div>
+            </div>
+            <div class="filter-stats" id="filter-stats">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="content-layout">
+        <main id="item-list-panel">
+            <div id="item-list"></div>
+            <div id="pagination"></div>
+        </main>
+        <aside id="detail-panel" class="hidden">
+            <div class="detail-header">
+                <button id="detail-close" title="Close">&#10005;</button>
+                <h2 id="detail-title">Detail</h2>
+            </div>
+            <div id="detail-content"></div>
+        </aside>
+    </div>
+
+    <footer id="site-footer">
+        <p>ST:NH Wiki &mdash; Data from <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=688086068" target="_blank">Star Trek: New Horizons</a> mod</p>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/ui-strings.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/global-search.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/humanize.js"></script>
+    <script src="js/ui/category-chips.js"></script>
+    <script src="js/shared-render.js"></script>
+    <script src="js/pages/tech-list.js"></script>
+</body>
+</html>
