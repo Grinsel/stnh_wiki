@@ -27,6 +27,8 @@
         const depCats = [...new Set(deposits.map(d => d.category).filter(Boolean))].sort();
         const catSel = document.getElementById('filter-category');
 
+        const ICON_DIRS = { jobs: 'jobs', deposits: 'deposits' };
+
         let activeTab = 'jobs';
         let currentPage = 1;
         const PAGE_SIZE = 100;
@@ -62,7 +64,12 @@
 
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
-            let html = `<div class="detail-meta">`;
+            const iconDir = ICON_DIRS[activeTab];
+            const iconStem = item.icon || '';
+            const iconHtml = iconDir && iconStem
+                ? `<img class="detail-icon" src="icons/${iconDir}/${esc(iconStem)}.webp" alt="" onerror="this.style.display='none'">`
+                : '';
+            let html = `<div class="detail-meta" style="align-items:center">${iconHtml}`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
             if (item.category) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.category')}: ${esc(item.category)}</span>`;
             if (item.source_file) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
@@ -193,7 +200,13 @@
 
             let html = '';
             for (const item of pageItems) {
+                const iconDir = ICON_DIRS[activeTab];
+                const iconStem = item.icon || '';
+                const iconCol = iconDir && iconStem
+                    ? `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/${iconDir}/${esc(iconStem)}.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`
+                    : '';
                 html += `<div class="item-card" data-id="${esc(item.id)}">
+                    ${iconCol}
                     <div class="item-card-body">
                         <div class="item-card-header">
                             <span class="item-card-name">${esc(item.name || item.id)}</span>

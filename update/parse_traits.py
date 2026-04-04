@@ -5,8 +5,32 @@ Parses common/traits/*.txt -> structured trait data.
 
 import os
 from parse_pdx import parse_file, get_value, get_all_values, get_blocks
-from parse_helpers import serialize_block, to_bool, extract_prerequisites, extract_modifiers, extract_list
-from config import MOD_TRAITS_DIR
+from parse_helpers import serialize_block, to_bool, extract_prerequisites, extract_modifiers, extract_list, _extract_icon_stem
+from config import MOD_TRAITS_DIR, OUTPUT_ICONS_DIR
+
+
+def _build_trait_icon_lookup():
+    icon_dir = os.path.join(OUTPUT_ICONS_DIR, 'traits')
+    if not os.path.isdir(icon_dir):
+        return set()
+    return set(f[:-5] for f in os.listdir(icon_dir) if f.endswith('.webp'))
+
+_TRAIT_ICONS = None
+
+def resolve_trait_icon(trait_id, icon_raw):
+    global _TRAIT_ICONS
+    if _TRAIT_ICONS is None:
+        _TRAIT_ICONS = _build_trait_icon_lookup()
+    # Tier 1: trait_id direkt
+    if trait_id in _TRAIT_ICONS:
+        return trait_id
+    # Tier 2: icon field from PDX (GFX_ stripped)
+    if icon_raw:
+        stem = _extract_icon_stem(icon_raw)
+        if stem in _TRAIT_ICONS:
+            return stem
+    # Fallback
+    return trait_id
 
 
 def extract_trait(trait_id, block, source_file):
@@ -29,7 +53,7 @@ def extract_trait(trait_id, block, source_file):
         'id': trait_id,
         'name_key': trait_id,
         'leader_class': leader_class,
-        'icon': icon,
+        'icon': resolve_trait_icon(trait_id, icon),
         'rarity': rarity,
         'tier': tier,
         'cost': get_value(block, 'cost'),

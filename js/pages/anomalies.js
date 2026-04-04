@@ -17,6 +17,7 @@
             DataManager.loadJSON('assets/anomalies.json'),
             DataManager.loadJSON('assets/archaeology.json'),
         ]);
+        await DataManager.loadPicturesMap();
         await I18n.setLanguage(AppState.get('lang'));
 
         for (const item of anomalies) item.name = I18n.t(item.name_key) || I18n.t(item.desc) || item.id;
@@ -55,7 +56,14 @@
 
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
-            let html = `<div class="detail-meta">`;
+            let html = '';
+            if (item.picture) {
+                const picUrl = DataManager.getPictureUrl(item.picture);
+                if (picUrl) {
+                    html += `<div class="detail-picture"><img src="${picUrl}" alt="" onerror="this.parentElement.style.display='none'"></div>`;
+                }
+            }
+            html += `<div class="detail-meta">`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
             if (item.desc) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.desc')}: ${esc(I18n.t(item.desc) || item.desc)}</span>`;
             if (item.source_file) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
@@ -65,7 +73,6 @@
             if (activeTab === 'anomalies') {
                 const stats = [];
                 if (item.level != null) stats.push([I18n.ui('ui.meta.level'), item.level]);
-                if (item.picture) stats.push([I18n.ui('ui.meta.picture'), item.picture]);
                 if (item.max_once) stats.push([I18n.ui('ui.meta.max_once'), I18n.ui('ui.misc.yes')]);
                 if (stats.length) {
                     html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.stats')}</div>`;
@@ -85,7 +92,6 @@
                 const stats = [];
                 if (item.stages_count != null) stats.push([I18n.ui('ui.meta.stages'), item.stages_count]);
                 if (item.max_instances != null) stats.push([I18n.ui('ui.meta.max_instances'), item.max_instances]);
-                if (item.picture) stats.push([I18n.ui('ui.meta.picture'), item.picture]);
                 if (stats.length) {
                     html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.stats')}</div>`;
                     html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${esc(v)}</span>`).join('')}</div></div>`;

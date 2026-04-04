@@ -14,6 +14,7 @@ def extract_deposit(dep_id, block, source_file):
     return {
         'id': dep_id,
         'name_key': dep_id,
+        'icon': get_value(block, 'icon') or dep_id,
         'is_null': to_bool(get_value(block, 'is_null')),
         'is_for_colonizable': to_bool(get_value(block, 'is_for_colonizable')),
         'category': get_value(block, 'category') or '',

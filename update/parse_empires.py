@@ -10,6 +10,25 @@ from parse_helpers import serialize_block, extract_list
 from config import MOD_PRESCRIPTED_COUNTRIES_DIR
 
 
+def extract_empire_flag_icon(block):
+    """Extract icon stem from empire_flag = { icon = { category file } } block."""
+    flag_block = get_value(block, 'empire_flag')
+    if not isinstance(flag_block, list):
+        return ''
+    icon_block = get_value(flag_block, 'icon')
+    if not isinstance(icon_block, list):
+        return ''
+    category = get_value(icon_block, 'category')
+    file_val = get_value(icon_block, 'file')
+    if not category or not file_val:
+        return ''
+    # Strip quotes and .dds extension
+    category = category.strip('"')
+    file_val = file_val.strip('"')
+    stem = file_val[:-4] if file_val.lower().endswith('.dds') else file_val
+    return f"{category}__{stem}"
+
+
 def extract_all_values_for_key(block, key):
     """Extract all values for a repeated key (e.g. multiple ethic = ...)."""
     values = []
@@ -82,6 +101,7 @@ def extract_empire(empire_id, block, source_file):
         'id': empire_id,
         'name_key': get_value(block, 'name') or empire_id,
         'adjective': get_value(block, 'adjective') or '',
+        'icon': extract_empire_flag_icon(block) or empire_id,
         'ship_prefix': get_value(block, 'ship_prefix') or '',
         'spawn_enabled': get_value(block, 'spawn_enabled') or '',
         'species': species,

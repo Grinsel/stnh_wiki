@@ -86,3 +86,21 @@ def extract_list(block, key):
     if isinstance(val, list):
         return [str(v) for v in val if isinstance(v, str)]
     return []
+
+
+def _extract_icon_stem(icon_value):
+    """Extract filename stem from a DDS path or GFX reference."""
+    if not icon_value:
+        return ''
+    # Strip quotes
+    icon_value = icon_value.strip('"')
+    # GFX_ prefix: GFX_leader_trait_X -> leader_trait_X
+    if icon_value.startswith('GFX_'):
+        return icon_value[4:]
+    # DDS path: gfx/interface/icons/.../name.dds -> name
+    if '/' in icon_value:
+        stem = icon_value.rsplit('/', 1)[-1]
+        if stem.lower().endswith('.dds'):
+            stem = stem[:-4]
+        return stem
+    return icon_value

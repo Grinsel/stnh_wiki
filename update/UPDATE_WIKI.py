@@ -316,20 +316,21 @@ def phase_ship_models(skip=False):
     return stats
 
 
-def phase_building_icons(skip=False):
-    """Phase: Convert DDS building icons to WebP."""
+def phase_all_icons(skip=False):
+    """Phase: Convert DDS icons to WebP for all categories."""
     print("\n" + "=" * 60)
-    print("PHASE: BUILDING ICONS")
+    print("PHASE: ALL ICONS")
     print("=" * 60)
 
     if skip:
         print("  [SKIPPED] --skip-images flag set")
         return {'skipped': True}
 
-    from convert_building_icons import convert_building_icons
-    stats = convert_building_icons()
-    print(f"  Converted: {stats['converted']}, Skipped: {stats['skipped']}, Failed: {stats['failed']}")
-    return stats
+    from convert_icons import convert_all_icons
+    result = convert_all_icons()
+    t = result['total']
+    print(f"  Total: {t['total']}, Converted: {t['converted']}, Skipped: {t['skipped']}, Failed: {t['failed']}")
+    return result
 
 
 def write_log_entry(module, results, elapsed):
@@ -371,11 +372,11 @@ ONLY_MODULES = {
     'loc':         ['localisation'],
     'gfx':         ['gfx'],
     'images':      ['images'],
-    'building_icons': ['building_icons'],
+    'icons':       ['all_icons'],
     'techtree':    ['techtree'],
     'ships':       ['localisation', 'ships'],
     'ship_models': ['localisation', 'ships', 'ship_models'],
-    'buildings':   ['localisation', 'buildings', 'building_icons'],
+    'buildings':   ['localisation', 'buildings', 'all_icons'],
     'traits':      ['localisation', 'traits'],
     'governments': ['localisation', 'governments'],
     'megastructures': ['localisation', 'megastructures'],
@@ -384,7 +385,7 @@ ONLY_MODULES = {
     'galaxy_map':     ['galaxy_map'],
     'economy':        ['localisation', 'economy'],
     'search':         ['search'],
-    'content':        ['localisation', 'ships', 'buildings', 'building_icons', 'traits', 'governments',
+    'content':        ['localisation', 'ships', 'buildings', 'all_icons', 'traits', 'governments',
                        'megastructures', 'anomalies', 'empires', 'galaxy_map', 'economy', 'search'],
 }
 
@@ -445,8 +446,8 @@ def main():
             results['ship_models'] = phase_ship_models(skip=args.skip_images)
         if 'images' in phases:
             results['images'] = phase_images(skip=args.skip_images)
-        if 'building_icons' in phases:
-            results['building_icons'] = phase_building_icons(skip=args.skip_images)
+        if 'all_icons' in phases:
+            results['all_icons'] = phase_all_icons(skip=args.skip_images)
         if 'techtree' in phases:
             results['techtree'] = phase_techtree()
         module_name = args.only
@@ -468,7 +469,7 @@ def main():
         results['search'] = phase_search()
         results['ship_models'] = phase_ship_models(skip=args.skip_images)
         results['images'] = phase_images(skip=args.skip_images)
-        results['building_icons'] = phase_building_icons(skip=args.skip_images)
+        results['all_icons'] = phase_all_icons(skip=args.skip_images)
         module_name = 'full'
 
     # Change tracking

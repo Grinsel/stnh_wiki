@@ -14,8 +14,9 @@ from config import (
 )
 
 
-def get_referenced_pictures(events_index_path, pictures_map_path):
-    """Get dict of texture_name -> {frames, texture_path} for pictures used by events."""
+def get_referenced_pictures(events_index_path, pictures_map_path,
+                            anomalies_path=None, archaeology_path=None):
+    """Get dict of texture_name -> {frames, texture_path} for pictures used by events/anomalies/archaeology."""
     referenced = {}
 
     # Load index
@@ -28,6 +29,24 @@ def get_referenced_pictures(events_index_path, pictures_map_path):
         pic = ev.get('pic')
         if pic and isinstance(pic, str):
             pic_refs.add(pic)
+
+    # Scan anomalies for picture references
+    if anomalies_path and os.path.exists(anomalies_path):
+        with open(anomalies_path, 'r', encoding='utf-8') as f:
+            anomalies = json.load(f)
+        for anom in anomalies:
+            pic = anom.get('picture')
+            if pic and isinstance(pic, str):
+                pic_refs.add(pic)
+
+    # Scan archaeology for picture references
+    if archaeology_path and os.path.exists(archaeology_path):
+        with open(archaeology_path, 'r', encoding='utf-8') as f:
+            sites = json.load(f)
+        for site in sites:
+            pic = site.get('picture')
+            if pic and isinstance(pic, str):
+                pic_refs.add(pic)
 
     # Load GFX mappings
     with open(pictures_map_path, 'r', encoding='utf-8') as f:
@@ -54,7 +73,7 @@ def get_referenced_pictures(events_index_path, pictures_map_path):
     return referenced
 
 
-def convert_images(force=False):
+def convert_images(force=False, anomalies_path=None, archaeology_path=None):
     """Convert DDS files to WebP. Returns stats dict."""
     stats = {'total': 0, 'converted': 0, 'skipped': 0, 'failed': 0, 'errors': []}
 
@@ -65,7 +84,15 @@ def convert_images(force=False):
         print("  [ERROR] Run generate_events_json.py first!")
         return stats
 
-    referenced = get_referenced_pictures(events_index_path, pictures_map_path)
+    # Default paths for anomalies/archaeology JSONs
+    if anomalies_path is None:
+        anomalies_path = os.path.join(OUTPUT_ASSETS_DIR, 'anomalies.json')
+    if archaeology_path is None:
+        archaeology_path = os.path.join(OUTPUT_ASSETS_DIR, 'archaeology.json')
+
+    referenced = get_referenced_pictures(events_index_path, pictures_map_path,
+                                         anomalies_path=anomalies_path,
+                                         archaeology_path=archaeology_path)
     print(f"  Referenced pictures: {len(referenced)}")
 
     animated_count = sum(1 for r in referenced.values() if r['frames'] > 1)

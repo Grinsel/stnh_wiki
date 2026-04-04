@@ -27,6 +27,18 @@ MOD_EVENT_CHAINS_DIR = os.path.join(STNH_MOD_ROOT, "common", "event_chains")
 MOD_INTERFACE_DIR = os.path.join(STNH_MOD_ROOT, "interface")
 MOD_GFX_EVENT_PICTURES = os.path.join(STNH_MOD_ROOT, "gfx", "event_pictures")
 MOD_GFX_BUILDINGS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "buildings")
+MOD_GFX_TRAITS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "traits")
+MOD_GFX_TRADITIONS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "traditions")
+MOD_GFX_ASCENSION_PERKS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "ascension_perks")
+MOD_GFX_CIVICS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "governments", "civics")
+MOD_GFX_AUTHORITIES_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "governments", "authorities")
+MOD_GFX_JOBS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "jobs")
+MOD_GFX_DEPOSITS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "deposits")
+MOD_GFX_RELICS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "relics")
+
+# Flag source directories (contain category subfolders: trek/, human/, etc.)
+MOD_FLAGS_DIR = os.path.join(STNH_MOD_ROOT, "flags")
+VANILLA_FLAGS_DIR = os.path.join(VANILLA_ROOT, "flags")
 
 # ==========================================
 # SOURCE PATHS (READ-ONLY) - Vanilla Stellaris
@@ -35,6 +47,14 @@ MOD_GFX_BUILDINGS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons
 VANILLA_INTERFACE_DIR = os.path.join(VANILLA_ROOT, "interface")
 VANILLA_GFX_EVENT_PICTURES = os.path.join(VANILLA_ROOT, "gfx", "event_pictures")
 VANILLA_GFX_BUILDINGS_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "buildings")
+VANILLA_GFX_TRAITS_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "traits")
+VANILLA_GFX_TRADITIONS_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "traditions")
+VANILLA_GFX_ASCENSION_PERKS_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "ascension_perks")
+VANILLA_GFX_CIVICS_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "governments", "civics")
+VANILLA_GFX_AUTHORITIES_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "governments", "authorities")
+VANILLA_GFX_JOBS_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "jobs")
+VANILLA_GFX_DEPOSITS_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "deposits")
+VANILLA_GFX_RELICS_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "relics")
 VANILLA_LOCALISATION_DIR = os.path.join(VANILLA_ROOT, "localisation")
 VANILLA_BUILDINGS_DIR = os.path.join(VANILLA_ROOT, "common", "buildings")
 

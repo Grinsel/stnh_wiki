@@ -14,6 +14,7 @@ def extract_perk(perk_id, block, source_file):
     return {
         'id': perk_id,
         'name_key': perk_id,
+        'icon': get_value(block, 'icon') or perk_id,
         'modifier': extract_modifiers(block, 'modifier'),
         'potential': serialize_block(get_value(block, 'potential')) if isinstance(get_value(block, 'potential'), list) else None,
         'possible': serialize_block(get_value(block, 'possible')) if isinstance(get_value(block, 'possible'), list) else None,

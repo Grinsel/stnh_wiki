@@ -5,7 +5,7 @@ Parses common/governments/*.txt, civics/*.txt, authorities/*.txt.
 
 import os
 from parse_pdx import parse_file, get_value, get_blocks
-from parse_helpers import serialize_block, to_bool, extract_modifiers
+from parse_helpers import serialize_block, to_bool, extract_modifiers, _extract_icon_stem
 from config import MOD_GOVERNMENTS_DIR, MOD_CIVICS_DIR, MOD_AUTHORITIES_DIR
 
 
@@ -27,6 +27,7 @@ def extract_civic(civic_id, block, source_file):
     return {
         'id': civic_id,
         'name_key': civic_id,
+        'icon': _extract_icon_stem(get_value(block, 'icon')) or civic_id,
         'is_origin': to_bool(get_value(block, 'is_origin')),
         'playable': serialize_block(get_value(block, 'playable')) if isinstance(get_value(block, 'playable'), list) else None,
         'potential': serialize_block(get_value(block, 'potential')) if isinstance(get_value(block, 'potential'), list) else None,
@@ -44,6 +45,7 @@ def extract_authority(auth_id, block, source_file):
     return {
         'id': auth_id,
         'name_key': auth_id,
+        'icon': _extract_icon_stem(get_value(block, 'icon')) or auth_id,
         'has_heir': to_bool(get_value(block, 'has_heir')),
         'election_type': get_value(block, 'election_type') or '',
         'election_term_years': get_value(block, 'election_term_years'),

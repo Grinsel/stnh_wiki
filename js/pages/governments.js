@@ -29,6 +29,8 @@
             }
         }
 
+        const ICON_DIRS = { civics: 'civics', authorities: 'authorities', edicts: 'edicts', policies: 'policies' };
+
         let activeTab = 'governments';
         let currentPage = 1;
         const PAGE_SIZE = 100;
@@ -53,7 +55,14 @@
 
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
-            let html = `<div class="detail-meta">`;
+            const iconDir = ICON_DIRS[activeTab];
+            const iconStem = item.icon || '';
+            const iconHtml = activeTab === 'policies'
+                ? `<img class="detail-icon" src="icons/edicts/edict_type_policy.webp" alt="" onerror="this.style.display='none'">`
+                : iconDir && iconStem
+                    ? `<img class="detail-icon" src="icons/${iconDir}/${esc(iconStem)}.webp" alt="" onerror="this.style.display='none'">`
+                    : '';
+            let html = `<div class="detail-meta" style="align-items:center">${iconHtml}`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
             if (item.ruler_title) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.ruler')}: ${esc(I18n.t(item.ruler_title) || item.ruler_title)}</span>`;
             if (item.election_type) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.election')}: ${esc(item.election_type)}</span>`;
@@ -98,8 +107,11 @@
                 html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.options')}</div>`;
                 for (const opt of item.options) {
                     const optName = I18n.t(opt.name) || opt.name;
+                    const optIconHtml = opt.icon
+                        ? `<img class="item-card-icon" src="icons/policies/${esc(opt.icon)}.webp" alt="" style="width:28px;height:28px;vertical-align:middle;margin-right:6px" onerror="this.style.display='none'">`
+                        : '';
                     html += `<div class="option-card">`;
-                    html += `<div class="option-name">${esc(optName)}</div>`;
+                    html += `<div class="option-name">${optIconHtml}${esc(optName)}</div>`;
                     if (opt.policy_flags && opt.policy_flags.length) {
                         html += `<div class="detail-meta">${opt.policy_flags.map(f => `<span class="detail-meta-item">${esc(f)}</span>`).join('')}</div>`;
                     }
@@ -191,7 +203,15 @@
 
             let html = '';
             for (const item of pageItems) {
+                const iconDir = ICON_DIRS[activeTab];
+                const iconStem = item.icon || '';
+                const iconCol = activeTab === 'policies'
+                    ? `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/edicts/edict_type_policy.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`
+                    : iconDir && iconStem
+                        ? `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/${iconDir}/${esc(iconStem)}.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`
+                        : '';
                 html += `<div class="item-card" data-id="${esc(item.id)}">
+                    ${iconCol}
                     <div class="item-card-body">
                         <div class="item-card-header">
                             <span class="item-card-name">${esc(item.name || item.id)}</span>

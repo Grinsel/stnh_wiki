@@ -172,7 +172,12 @@
 
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
-            let html = `<div class="detail-meta">`;
+            const iconDir = item.authority !== undefined ? 'flags' : '';
+            const iconStem = item.icon || item.id;
+            const iconHtml = iconDir
+                ? `<img class="detail-icon" src="icons/${iconDir}/${esc(iconStem)}.webp" alt="" onerror="this.style.display='none'">`
+                : '';
+            let html = `<div class="detail-meta" style="align-items:center">${iconHtml}`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
             if (item.source_file) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
             html += `</div>`;
@@ -308,7 +313,11 @@
 
             let html = '';
             for (const item of pageItems) {
+                const iconCol = (activeTab === 'empires' && item.icon)
+                    ? `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/flags/${esc(item.icon)}.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`
+                    : '';
                 html += `<div class="item-card" data-id="${esc(item.id)}">
+                    ${iconCol}
                     <div class="item-card-body">
                         <div class="item-card-header">
                             <span class="item-card-name">${esc(item.name || item.id)}</span>

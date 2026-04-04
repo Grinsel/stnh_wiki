@@ -13,11 +13,11 @@ from config import MOD_INTERFACE_DIR, VANILLA_INTERFACE_DIR, OUTPUT_ASSETS_DIR
 # Handles both spriteType and frameAnimatedSpriteType
 # Captures the full block so we can extract noOfFrames separately
 SPRITE_RE = re.compile(
-    r'(?:spriteType|frameAnimatedSpriteType)\s*=\s*\{([^}]*?name\s*=\s*"?\S+?"?\s+[^}]*?texturefile\s*=\s*"?[^"\s}]+"?[^}]*?)\}',
+    r'(?:spriteType|frameAnimatedSpriteType)\s*=\s*\{([^}]*?name\s*=\s*"?\S+?"?\s+[^}]*?[tT]exture[fF]ile\s*=\s*"?[^"\s}]+"?[^}]*?)\}',
     re.DOTALL
 )
 NAME_RE = re.compile(r'name\s*=\s*"?(\S+?)"?\s')
-TEXTURE_RE = re.compile(r'texturefile\s*=\s*"?([^"\s}]+)"?')
+TEXTURE_RE = re.compile(r'[tT]exture[fF]ile\s*=\s*"?([^"\s}]+)"?')
 FRAMES_RE = re.compile(r'noOfFrames\s*=\s*(\d+)')
 
 

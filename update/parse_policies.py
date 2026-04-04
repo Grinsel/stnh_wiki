@@ -5,7 +5,7 @@ Parses common/policies/*.txt -> structured policy data.
 
 import os
 from parse_pdx import parse_file, get_value, get_all_values, get_blocks
-from parse_helpers import serialize_block, to_bool, extract_modifiers, extract_list
+from parse_helpers import serialize_block, to_bool, extract_modifiers, extract_list, _extract_icon_stem
 from config import MOD_POLICIES_DIR
 
 
@@ -16,6 +16,7 @@ def extract_policy(policy_id, block, source_file):
     for opt_block in get_blocks(block, 'option'):
         opt = {
             'name': get_value(opt_block, 'name') or '',
+            'icon': _extract_icon_stem(get_value(opt_block, 'icon')),
             'policy_flags': extract_list(opt_block, 'policy_flags'),
             'modifier': extract_modifiers(opt_block, 'modifier'),
             'potential': serialize_block(get_value(opt_block, 'potential')) if isinstance(get_value(opt_block, 'potential'), list) else None,
@@ -26,6 +27,7 @@ def extract_policy(policy_id, block, source_file):
     return {
         'id': policy_id,
         'name_key': policy_id,
+        'icon': options[0]['icon'] if options and options[0].get('icon') else '',
         'potential': serialize_block(get_value(block, 'potential')) if isinstance(get_value(block, 'potential'), list) else None,
         'allow': serialize_block(get_value(block, 'allow')) if isinstance(get_value(block, 'allow'), list) else None,
         'options': options,

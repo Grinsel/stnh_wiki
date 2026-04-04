@@ -34,6 +34,8 @@
         const treeSel = document.getElementById('filter-tree');
         for (const t of trees) treeSel.add(new Option(t, t));
 
+        const ICON_DIRS = { traits: 'traits', traditions: 'traditions', ascension_perks: 'ascension_perks' };
+
         let activeTab = 'traits';
         let currentPage = 1;
         const PAGE_SIZE = 100;
@@ -59,7 +61,12 @@
 
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
-            let html = `<div class="detail-meta">`;
+            const iconDir = ICON_DIRS[activeTab];
+            const iconStem = item.icon || item.id;
+            const iconHtml = iconDir
+                ? `<img class="detail-icon" src="icons/${iconDir}/${esc(iconStem)}.webp" alt="" onerror="this.style.display='none'">`
+                : '';
+            let html = `<div class="detail-meta" style="align-items:center">${iconHtml}`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
             if (item.leader_class) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.class')}: ${esc(item.leader_class)}</span>`;
             if (item.rarity) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.rarity')}: ${esc(item.rarity)}</span>`;
@@ -189,7 +196,13 @@
 
             let html = '';
             for (const item of pageItems) {
+                const iconDir = ICON_DIRS[activeTab];
+                const iconStem = item.icon || item.id;
+                const iconCol = iconDir
+                    ? `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/${iconDir}/${esc(iconStem)}.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`
+                    : '';
                 html += `<div class="item-card" data-id="${esc(item.id)}">
+                    ${iconCol}
                     <div class="item-card-body">
                         <div class="item-card-header">
                             <span class="item-card-name">${esc(item.name || item.id)}</span>
