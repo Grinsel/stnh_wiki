@@ -2671,6 +2671,187 @@ body.in-iframe #site-footer {
 }
 
 /* =============================================================================
+   Tradition Tree Blocks
+   ============================================================================= */
+
+/* Grid of tree blocks */
+.tradition-trees-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+/* Single tree block */
+.tradition-tree-block {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 0.75rem;
+    transition: border-color 0.2s;
+}
+.tradition-tree-block:hover {
+    border-color: var(--card-border-hover);
+}
+
+/* Header: tree name + adopt button */
+.tradition-tree-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--card-border);
+}
+.tradition-tree-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-bright);
+    text-transform: capitalize;
+}
+
+/* Footer: finish button */
+.tradition-tree-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--card-border);
+}
+
+/* Bonus buttons (adopt/finish) */
+.tradition-bonus-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.5rem;
+    background: none;
+    border: 1px solid var(--accent-border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    transition: all 0.2s;
+}
+.tradition-bonus-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-border-hover);
+    background: var(--accent-glow);
+}
+.tradition-bonus-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* Tree body (contains levels + SVG arrows) */
+.tradition-tree-body {
+    position: relative;
+    min-height: 60px;
+}
+
+/* Level rows */
+.tradition-level {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+.tradition-level:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Node tile */
+.tradition-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.4rem;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    transition: border-color 0.2s, background 0.2s;
+    width: 80px;
+}
+.tradition-node:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-border);
+}
+.tradition-node img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+.tradition-node-name {
+    font-size: 0.6rem;
+    text-align: center;
+    line-height: 1.1;
+    color: var(--text-muted);
+    word-break: break-word;
+    max-width: 76px;
+}
+
+/* SVG arrows between nodes */
+.tradition-arrows {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: visible;
+}
+.tradition-arrows line {
+    stroke: var(--accent-dim);
+    stroke-width: 2;
+    marker-end: url(#arrowhead);
+}
+
+/* Tradition detail overlay (reuses relic overlay pattern) */
+.tradition-detail-overlay {
+    position: absolute;
+    background: rgba(12, 12, 20, 0.78);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--accent-border);
+    border-radius: 6px;
+    overflow: hidden;
+    z-index: 10;
+    transition: top 0.35s cubic-bezier(0.4,0,0.2,1),
+                left 0.35s cubic-bezier(0.4,0,0.2,1),
+                width 0.35s cubic-bezier(0.4,0,0.2,1),
+                height 0.35s cubic-bezier(0.4,0,0.2,1),
+                opacity 0.25s ease;
+}
+.tradition-detail-overlay .detail-inner {
+    opacity: 0;
+    transition: opacity 0.2s ease 0.2s;
+    padding: 1rem 1.25rem;
+    overflow-y: auto;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.tradition-detail-overlay.expanded .detail-inner {
+    opacity: 1;
+}
+
+/* Tree block staggered fade-in */
+.tradition-tree-block {
+    animation: fadeInUp 0.25s ease-out both;
+}
+.tradition-trees-grid .tradition-tree-block:nth-child(1)  { animation-delay: 0.02s; }
+.tradition-trees-grid .tradition-tree-block:nth-child(2)  { animation-delay: 0.04s; }
+.tradition-trees-grid .tradition-tree-block:nth-child(3)  { animation-delay: 0.06s; }
+.tradition-trees-grid .tradition-tree-block:nth-child(4)  { animation-delay: 0.08s; }
+.tradition-trees-grid .tradition-tree-block:nth-child(5)  { animation-delay: 0.10s; }
+.tradition-trees-grid .tradition-tree-block:nth-child(6)  { animation-delay: 0.12s; }
+.tradition-trees-grid .tradition-tree-block:nth-child(7)  { animation-delay: 0.14s; }
+.tradition-trees-grid .tradition-tree-block:nth-child(8)  { animation-delay: 0.16s; }
+.tradition-trees-grid .tradition-tree-block:nth-child(9)  { animation-delay: 0.18s; }
+.tradition-trees-grid .tradition-tree-block:nth-child(10) { animation-delay: 0.20s; }
+.tradition-trees-grid .tradition-tree-block:nth-child(11) { animation-delay: 0.22s; }
+.tradition-trees-grid .tradition-tree-block:nth-child(12) { animation-delay: 0.24s; }
+
+/* =============================================================================
    Event Chain Grouping + Chain Navigation Sidebar
    ============================================================================= */
 
@@ -2956,6 +3137,37 @@ body.in-iframe #site-footer {
     }
     .relic-detail-overlay .detail-inner {
         padding: 1rem;
+    }
+}
+
+/* Tradition trees — single column + smaller icons on mobile */
+@media (max-width: 921px) {
+    .tradition-trees-grid {
+        grid-template-columns: 1fr;
+    }
+    .tradition-node img {
+        width: 32px;
+        height: 32px;
+    }
+    .tradition-node {
+        width: 68px;
+    }
+    .tradition-node-name {
+        font-size: 0.55rem;
+        max-width: 64px;
+    }
+    .tradition-detail-overlay .detail-inner {
+        padding: 0.75rem;
+    }
+    .tradition-detail-overlay .relic-overlay-columns {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .tradition-detail-overlay .relic-overlay-col + .relic-overlay-col {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--accent-border);
+        padding-top: 0.75rem;
     }
 }
 
