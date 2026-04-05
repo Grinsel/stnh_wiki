@@ -23,6 +23,7 @@ const UI_STRINGS = {
     // Tab Buttons
     // ==========================================
     'ui.tab.ships':           { english: 'Ships', german: 'Schiffe' },
+    'ui.tab.models':          { english: 'Models', german: 'Modelle' },
     'ui.tab.components':      { english: 'Components', german: 'Komponenten' },
     'ui.tab.buildings':       { english: 'Buildings', german: 'Geb\u00e4ude' },
     'ui.tab.districts':       { english: 'Districts', german: 'Bezirke' },

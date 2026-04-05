@@ -28,6 +28,13 @@
         }
     }
 
+    // Load ships.json for model_variants count (not in search index)
+    let shipsStats = null;
+    try {
+        const shipsData = await DataManager.loadJSON('assets/ships.json');
+        if (shipsData && shipsData.stats) shipsStats = shipsData.stats;
+    } catch (e) { /* ignore */ }
+
     // ========================================
     // Inject counts into Section Cards + Hub Meta
     // ========================================
@@ -40,7 +47,7 @@
             events:         [{ key: 'event', label: 'ui.nav.events' }],
             tech:           [{ key: 'technology', label: 'ui.nav.tech' }],
             ships:          [
-                { key: 'ship', label: 'ui.tab.ships' },
+                { key: 'model', label: 'ui.tab.models' },
                 { key: 'component', label: 'ui.tab.components' },
             ],
             buildings:      [
@@ -77,6 +84,11 @@
             ],
         };
 
+        // Merge ships.json model_variants into counts
+        if (shipsStats) {
+            counts.model = shipsStats.model_variants;
+        }
+
         // Inject badges into each section card
         document.querySelectorAll('.section-card[data-module]').forEach(card => {
             const mod = card.dataset.module;
@@ -109,7 +121,7 @@
         const DESC_TEMPLATES = {
             events:         (c) => `Browse ${fmt(c.event)} events with full localisation in 7 languages.`,
             tech:           (c) => `Interactive technology tree with prerequisites and unlocks.`,
-            ships:          (c) => `Ship classes and components with faction-specific designs.`,
+            ships:          (c) => `${fmt(c.model)} 3D models and ${fmt(c.component)} components with faction-specific designs.`,
             buildings:      (c) => `${fmt(c.building)} buildings and ${fmt(c.district)} districts with production chains.`,
             traits:         (c) => `${fmt(c.trait)} traits, ${fmt(c.tradition)} traditions, and ${fmt(c.ascension_perk)} ascension perks.`,
             governments:    (c) => `${fmt(c.government)} governments, ${fmt(c.civic)} civics, ${fmt(c.policy)} policies, and ${fmt(c.edict)} edicts.`,

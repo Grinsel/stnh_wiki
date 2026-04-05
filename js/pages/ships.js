@@ -11,6 +11,7 @@
 
     const searchInput = document.getElementById('search-input');
     searchInput.value = AppState.get('search');
+    const showNoModelCheckbox = document.getElementById('show-no-model');
 
     // Human-readable labels for ship class keys
     const CLASS_LABELS = {
@@ -118,6 +119,8 @@
             onChange: () => { currentPage = 1; renderAll(); },
         });
 
+        showNoModelCheckbox.addEventListener('change', () => { currentPage = 1; renderAll(); });
+
         const sizeChips = CategoryChips.create({
             container: document.getElementById('filter-size-chips'),
             categories: sizeCategoriesFromCounts(sizeCountMap(null)),
@@ -147,6 +150,7 @@
                 currentPage = 1;
 
                 document.getElementById('filter-class-chips').classList.toggle('hidden', activeTab !== 'ships');
+                document.getElementById('filter-model-toggle').classList.toggle('hidden', activeTab !== 'ships');
                 document.getElementById('filter-comptype-chips').classList.toggle('hidden', activeTab !== 'components');
                 document.getElementById('filter-size-chips').classList.toggle('hidden', activeTab !== 'components');
                 renderAll();
@@ -294,6 +298,7 @@
                 tabBtn.classList.add('active');
                 activeTab = urlTab;
                 document.getElementById('filter-class-chips').classList.toggle('hidden', activeTab !== 'ships');
+                document.getElementById('filter-model-toggle').classList.toggle('hidden', activeTab !== 'ships');
                 document.getElementById('filter-comptype-chips').classList.toggle('hidden', activeTab !== 'components');
                 document.getElementById('filter-size-chips').classList.toggle('hidden', activeTab !== 'components');
             }
@@ -322,6 +327,7 @@
                 if (activeTab === 'ships') {
                     const cls = classChips.getActive();
                     if (cls && item.class !== cls) return false;
+                    if (!showNoModelCheckbox.checked && !item.has_model) return false;
                 } else {
                     const compType = comptypeChips.getActive();
                     if (compType && item.type !== compType) return false;
@@ -335,7 +341,9 @@
             items.sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
 
             // Stats
-            const total = activeTab === 'ships' ? ships.length : components.length;
+            const total = activeTab === 'ships'
+                ? (showNoModelCheckbox.checked ? ships.length : ships.filter(s => s.has_model).length)
+                : components.length;
             const statsEl = document.getElementById('filter-stats');
             if (activeTab === 'ships') {
                 statsEl.innerHTML =
