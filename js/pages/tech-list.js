@@ -335,7 +335,7 @@
 
             // --- Description ---
             if (tech.description && tech.description.trim()) {
-                html += `<div style="margin:0.75rem 0;padding:8px;background:rgba(0,0,0,0.3);border-left:3px solid var(--accent-gold-solid,#d1ce04);font-style:italic;line-height:1.5">${esc(tech.description)}</div>`;
+                html += `<div style="margin:0.75rem 0;padding:8px;background:rgba(0,0,0,0.3);border-left:3px solid var(--accent-bright);font-style:italic;line-height:1.5">${esc(tech.description)}</div>`;
             }
 
             // --- Prerequisites ---
