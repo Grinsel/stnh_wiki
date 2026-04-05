@@ -1794,6 +1794,40 @@ body.in-iframe #site-footer {
         max-height: none;
         position: static;
     }
+
+    /* Footer: no sticky on mobile */
+    #site-footer {
+        position: static;
+    }
+
+    /* Mobile collapsible filters */
+    .filter-toggle-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: none;
+        border: 1px solid var(--accent-border);
+        color: var(--text-muted);
+        padding: 0.3rem 0.7rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        cursor: pointer;
+    }
+    .filter-toggle-btn .toggle-arrow {
+        transition: transform 0.2s;
+    }
+    .filter-toggle-btn.open .toggle-arrow {
+        transform: rotate(180deg);
+    }
+
+    /* Hide collapsible children by default on mobile */
+    .filter-inner > .filter-collapsible {
+        display: none;
+    }
+    /* Show when toggled open */
+    .filter-inner.filters-open > .filter-collapsible {
+        display: flex;
+    }
 }
 
 @media (max-width: 544px) {

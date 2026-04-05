@@ -339,6 +339,44 @@ const Common = (() => {
         });
     }
 
+    function initMobileFilterToggle() {
+        const MQ = window.matchMedia('(max-width: 921px)');
+        const filterInner = document.querySelector('#filter-bar .filter-inner');
+        if (!filterInner) return;
+
+        // Mark all children that are NOT tabs/stats as collapsible
+        for (const child of filterInner.children) {
+            if (!child.classList.contains('tab-buttons') &&
+                !child.classList.contains('filter-stats')) {
+                child.classList.add('filter-collapsible');
+            }
+        }
+
+        // Create toggle button, insert after tab-buttons or at the start
+        const btn = document.createElement('button');
+        btn.className = 'filter-toggle-btn';
+        btn.innerHTML = '<span class="toggle-arrow">▼</span> Filter';
+        const tabs = filterInner.querySelector('.tab-buttons');
+        if (tabs) {
+            tabs.after(btn);
+        } else {
+            filterInner.prepend(btn);
+        }
+
+        btn.addEventListener('click', () => {
+            filterInner.classList.toggle('filters-open');
+            btn.classList.toggle('open');
+        });
+
+        // Desktop: clean up state
+        MQ.addEventListener('change', (e) => {
+            if (!e.matches) {
+                filterInner.classList.remove('filters-open');
+                btn.classList.remove('open');
+            }
+        });
+    }
+
     function init() {
         initTheme();
         injectThemePicker();
@@ -351,6 +389,7 @@ const Common = (() => {
         initGlobalSearch();
         initScrollFades();
         initMobileOverlay();
+        initMobileFilterToggle();
     }
 
     return { init, applyUiStrings };
