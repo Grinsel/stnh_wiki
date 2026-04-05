@@ -2679,6 +2679,7 @@ body.in-iframe #site-footer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1rem;
+    position: relative;
 }
 
 /* Single tree block */
@@ -2805,10 +2806,10 @@ body.in-iframe #site-footer {
     marker-end: url(#arrowhead);
 }
 
-/* Tradition detail overlay (reuses relic overlay pattern) */
+/* Tradition detail overlay (reuses relic overlay pattern, lives inside the grid) */
 .tradition-detail-overlay {
     position: absolute;
-    background: rgba(12, 12, 20, 0.78);
+    background: rgba(12, 12, 20, 0.88);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border: 1px solid var(--accent-border);
@@ -2824,7 +2825,7 @@ body.in-iframe #site-footer {
 .tradition-detail-overlay .detail-inner {
     opacity: 0;
     transition: opacity 0.2s ease 0.2s;
-    padding: 1rem 1.25rem;
+    padding: 1.25rem 1.5rem;
     overflow-y: auto;
     max-height: 100%;
     display: flex;

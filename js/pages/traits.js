@@ -60,8 +60,10 @@
                 node._deps = [];
                 if (node.possible) {
                     for (const cond of node.possible) {
-                        if (cond.has_tradition && nodeIds.has(cond.has_tradition)) {
-                            node._deps.push(cond.has_tradition);
+                        // Standard trees use has_tradition, Borg trees use has_active_tradition
+                        const depId = cond.has_tradition || cond.has_active_tradition;
+                        if (depId && nodeIds.has(depId)) {
+                            node._deps.push(depId);
                         }
                     }
                 }
@@ -214,14 +216,15 @@
         function expandTraditionOverlay(triggerEl, item) {
             removeOverlayImmediate();
 
-            const block = triggerEl.closest('.tradition-tree-block');
-            if (!block) return;
+            const grid = triggerEl.closest('.tradition-trees-grid');
+            if (!grid) return;
 
-            const blockRect = block.getBoundingClientRect();
+            const gridRect = grid.getBoundingClientRect();
             const triggerRect = triggerEl.getBoundingClientRect();
 
-            const startTop = triggerRect.top - blockRect.top;
-            const startLeft = triggerRect.left - blockRect.left;
+            // Start position relative to grid
+            const startTop = triggerRect.top - gridRect.top + grid.scrollTop;
+            const startLeft = triggerRect.left - gridRect.left;
             const startW = triggerRect.width;
             const startH = triggerRect.height;
 
@@ -234,20 +237,38 @@
 
             overlay.innerHTML = `<div class="detail-inner">${buildTraditionOverlayHtml(item)}</div>`;
 
-            block.appendChild(overlay);
+            grid.appendChild(overlay);
             activeOverlay = overlay;
             activeOverlayItemId = item.id;
 
-            // Expand to cover the block
-            const targetW = block.offsetWidth;
-            const targetH = Math.max(block.scrollHeight, 280);
+            // Measure natural content height at target width
+            const gridW = grid.offsetWidth;
+            const targetW = Math.min(560, gridW);
+            const targetLeft = (gridW - targetW) / 2;
+            const targetTop = Math.max(0, startTop - 20);
+
+            // Temporarily measure content at target width (off-transition)
+            overlay.style.transition = 'none';
+            overlay.style.left = targetLeft + 'px';
+            overlay.style.width = targetW + 'px';
+            overlay.style.height = 'auto';
+            overlay.style.visibility = 'hidden';
+            const contentH = Math.max(overlay.scrollHeight, 300);
+            // Reset to start position
+            overlay.style.left = startLeft + 'px';
+            overlay.style.width = startW + 'px';
+            overlay.style.height = startH + 'px';
+            overlay.style.visibility = '';
+            // Force reflow then re-enable transition
+            overlay.offsetHeight; // eslint-disable-line no-unused-expressions
+            overlay.style.transition = '';
 
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
-                    overlay.style.top = '0px';
-                    overlay.style.left = '0px';
+                    overlay.style.left = targetLeft + 'px';
+                    overlay.style.top = targetTop + 'px';
                     overlay.style.width = targetW + 'px';
-                    overlay.style.height = targetH + 'px';
+                    overlay.style.height = contentH + 'px';
 
                     let expanded = false;
                     const doExpand = () => {
@@ -255,6 +276,8 @@
                         expanded = true;
                         overlay.removeEventListener('transitionend', onExpand);
                         overlay.classList.add('expanded');
+                        // Switch to auto height after animation so content can reflow
+                        overlay.style.height = 'auto';
                         const inner = overlay.querySelector('.detail-inner');
                         if (inner) {
                             SharedRender.initToggles(inner);
@@ -277,17 +300,25 @@
             const overlay = activeOverlay;
             if (!overlay) return;
 
-            const block = triggerEl ? triggerEl.closest('.tradition-tree-block') : overlay.parentElement;
-            if (!block) { removeOverlayImmediate(); return; }
+            const grid = overlay.parentElement;
+            if (!grid) { removeOverlayImmediate(); return; }
 
             overlay.classList.remove('expanded');
 
+            // Lock current height to a pixel value so transition works from auto
+            const currentH = overlay.offsetHeight;
+            overlay.style.height = currentH + 'px';
+            overlay.offsetHeight; // force reflow // eslint-disable-line no-unused-expressions
+
             if (triggerEl && document.contains(triggerEl)) {
-                const blockRect = block.getBoundingClientRect();
+                const gridRect = grid.getBoundingClientRect();
                 const triggerRect = triggerEl.getBoundingClientRect();
 
-                overlay.style.top = (triggerRect.top - blockRect.top) + 'px';
-                overlay.style.left = (triggerRect.left - blockRect.left) + 'px';
+                const targetTop = triggerRect.top - gridRect.top + grid.scrollTop;
+                const targetLeft = triggerRect.left - gridRect.left;
+
+                overlay.style.top = targetTop + 'px';
+                overlay.style.left = targetLeft + 'px';
                 overlay.style.width = triggerRect.width + 'px';
                 overlay.style.height = triggerRect.height + 'px';
 
@@ -309,6 +340,14 @@
 
         // ── Compute tree levels (topological sort) ──
         function computeLevels(nodes) {
+            // Check if any node has intra-tree deps at all
+            const hasEdges = nodes.some(n => n._deps.length > 0);
+
+            if (!hasEdges && nodes.length === 5) {
+                // No dependency edges — use fixed 2-1-2 layout
+                return [nodes.slice(0, 2), [nodes[2]], nodes.slice(3, 5)];
+            }
+
             const levels = [];
             const placed = new Set();
 
