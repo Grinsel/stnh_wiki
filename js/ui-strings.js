@@ -262,6 +262,7 @@ const UI_STRINGS = {
     'ui.type.species':         { english: 'Species', german: 'Spezies' },
     'ui.type.job':             { english: 'Job', german: 'Beruf' },
     'ui.type.deposit':         { english: 'Deposit', german: 'Lagerst\u00e4tte' },
+    'ui.type.technology':      { english: 'Technology', german: 'Technologie' },
 
     // ==========================================
     // Loading / Empty / Error States
