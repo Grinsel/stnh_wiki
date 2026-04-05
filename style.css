@@ -2532,6 +2532,145 @@ body.in-iframe #site-footer {
 .item-card.q-border-alt   { border-left: 3px solid var(--q-alt-color);   }
 
 /* =============================================================================
+   Relic Grid + Detail Overlay
+   ============================================================================= */
+
+/* Relic grid container */
+.relic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+    position: relative;
+}
+
+/* Individual relic tile button */
+.relic-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem;
+    background: var(--bg-card);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    animation: fadeInUp 0.22s ease-out both;
+}
+.relic-tile:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-border);
+}
+.relic-tile img { width: 48px; height: 48px; object-fit: contain; }
+.relic-tile .relic-tile-name {
+    font-size: 0.7rem;
+    text-align: center;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+/* Detail overlay — positioned absolutely over the grid */
+.relic-detail-overlay {
+    position: absolute;
+    background: rgba(12, 12, 20, 0.78);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--accent-border);
+    border-radius: 6px;
+    overflow: hidden;
+    z-index: 10;
+    transition: top 0.35s cubic-bezier(0.4,0,0.2,1),
+                left 0.35s cubic-bezier(0.4,0,0.2,1),
+                width 0.35s cubic-bezier(0.4,0,0.2,1),
+                height 0.35s cubic-bezier(0.4,0,0.2,1),
+                opacity 0.25s ease;
+}
+.relic-detail-overlay .detail-inner {
+    opacity: 0;
+    transition: opacity 0.2s ease 0.2s;
+    padding: 1.25rem 1.5rem;
+    overflow-y: auto;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.relic-detail-overlay.expanded .detail-inner {
+    opacity: 1;
+}
+
+/* Overlay header: back button + icon + name */
+.relic-overlay-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--accent-border);
+}
+.relic-overlay-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.relic-overlay-title h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-bright);
+}
+.relic-overlay-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* Two-column layout */
+.relic-overlay-columns {
+    display: flex;
+    gap: 1.5rem;
+    flex: 1;
+    justify-content: center;
+}
+.relic-overlay-col {
+    flex: 1;
+    min-width: 0;
+    max-width: 420px;
+}
+.relic-overlay-col + .relic-overlay-col {
+    border-left: 1px solid var(--accent-border);
+    padding-left: 1.5rem;
+}
+
+/* Footer: ID + source file */
+.relic-overlay-footer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--card-border);
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    justify-content: center;
+}
+
+/* Back button inside overlay */
+.relic-detail-back {
+    background: none;
+    border: 1px solid var(--accent-border);
+    color: var(--text-muted);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+    transition: color 0.2s, border-color 0.2s;
+}
+.relic-detail-back:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-border-hover);
+}
+
+/* =============================================================================
    Event Chain Grouping + Chain Navigation Sidebar
    ============================================================================= */
 
@@ -2797,6 +2936,26 @@ body.in-iframe #site-footer {
         width: 100%;
         max-height: none;
         position: static;
+    }
+}
+
+/* Relic grid — smaller tiles + single column on mobile */
+@media (max-width: 921px) {
+    .relic-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    }
+    .relic-overlay-columns {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .relic-overlay-col + .relic-overlay-col {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--accent-border);
+        padding-top: 0.75rem;
+    }
+    .relic-detail-overlay .detail-inner {
+        padding: 1rem;
     }
 }
 

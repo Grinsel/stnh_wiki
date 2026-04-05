@@ -33,11 +33,12 @@
                 btn.classList.add('active');
                 activeTab = btn.dataset.tab;
                 currentPage = 1;
+                detailPanel.classList.add('hidden');
                 renderAll();
             });
         });
 
-        // Detail panel
+        // Detail panel (for megastructures only)
         const detailPanel = document.getElementById('detail-panel');
         const detailTitle = document.getElementById('detail-title');
         const detailContent = document.getElementById('detail-content');
@@ -45,9 +46,12 @@
             detailPanel.classList.add('hidden');
         });
 
-        function showDetail(item) {
-            detailTitle.textContent = item.name || item.id;
-            const iconHtml = activeTab === 'relics'
+        // --- Relic overlay state ---
+        let activeOverlay = null; // current overlay element
+        let activeOverlayTileId = null; // id of the tile that spawned it
+
+        function buildDetailHtml(item, isRelic) {
+            const iconHtml = isRelic
                 ? `<img class="detail-icon" src="icons/relics/${esc(item.icon || item.id)}.webp" alt="" onerror="this.style.display='none'">`
                 : '';
             let html = `<div class="detail-meta" style="align-items:center">${iconHtml}`;
@@ -56,7 +60,7 @@
             html += `</div>`;
 
             // Megastructure-specific
-            if (activeTab === 'megastructures') {
+            if (!isRelic) {
                 const stats = [];
                 if (item.build_time) stats.push([I18n.ui('ui.meta.build_time'), item.build_time]);
                 if (item.entity) stats.push([I18n.ui('ui.meta.entity'), item.entity]);
@@ -73,7 +77,7 @@
             }
 
             // Relic-specific
-            if (activeTab === 'relics') {
+            if (isRelic) {
                 const stats = [];
                 if (item.activation_duration) stats.push([I18n.ui('ui.meta.activation_duration'), item.activation_duration]);
                 if (item.score) stats.push([I18n.ui('ui.meta.score'), item.score]);
@@ -83,35 +87,203 @@
                 }
             }
 
-            // Resources
             if (item.resources) {
                 html += `<div class="detail-section">${SharedRender.dualView(item.resources, I18n.ui('ui.detail.resources'))}</div>`;
             }
-
-            // Modifier
             if (item.modifier) {
                 html += `<div class="detail-section">${SharedRender.dualView(item.modifier, I18n.ui('ui.detail.modifiers'))}</div>`;
             }
-
-            // Active effect (relics)
             if (item.active_effect) {
                 html += `<div class="detail-section">${SharedRender.dualView(item.active_effect, I18n.ui('ui.detail.active_effect'))}</div>`;
             }
-
-            // Possible
             if (item.possible) {
                 html += `<div class="detail-section">${SharedRender.dualView(item.possible, I18n.ui('ui.detail.possible'))}</div>`;
             }
-
-            // On build complete (megastructures)
             if (item.on_build_complete) {
                 html += `<div class="detail-section">${SharedRender.dualView(item.on_build_complete, I18n.ui('ui.detail.on_build_complete'))}</div>`;
             }
 
-            detailContent.innerHTML = html;
+            return html;
+        }
+
+        function buildRelicOverlayHtml(item) {
+            // Header: back button + icon + name
+            let html = `<div class="relic-overlay-header">`;
+            html += `<button class="relic-detail-back">&larr; ${I18n.ui('ui.search.back')}</button>`;
+            html += `<div class="relic-overlay-title">`;
+            html += `<img class="relic-overlay-icon" src="icons/relics/${esc(item.icon || item.id)}.webp" alt="" onerror="this.style.display='none'">`;
+            html += `<h3>${esc(item.name || item.id)}</h3>`;
+            html += `</div></div>`;
+
+            // Left column: Stats, Resources, Modifiers
+            let leftHtml = '';
+            const stats = [];
+            if (item.activation_duration) stats.push([I18n.ui('ui.meta.activation_duration'), item.activation_duration]);
+            if (item.score) stats.push([I18n.ui('ui.meta.score'), item.score]);
+            if (stats.length) {
+                leftHtml += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.stats')}</div>`;
+                leftHtml += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${esc(v)}</span>`).join('')}</div></div>`;
+            }
+            if (item.resources) {
+                leftHtml += `<div class="detail-section">${SharedRender.dualView(item.resources, I18n.ui('ui.detail.resources'))}</div>`;
+            }
+            if (item.modifier) {
+                leftHtml += `<div class="detail-section">${SharedRender.dualView(item.modifier, I18n.ui('ui.detail.modifiers'))}</div>`;
+            }
+
+            // Right column: Active Effect, Possible, On Build Complete, etc.
+            let rightHtml = '';
+            if (item.active_effect) {
+                rightHtml += `<div class="detail-section">${SharedRender.dualView(item.active_effect, I18n.ui('ui.detail.active_effect'))}</div>`;
+            }
+            if (item.possible) {
+                rightHtml += `<div class="detail-section">${SharedRender.dualView(item.possible, I18n.ui('ui.detail.possible'))}</div>`;
+            }
+            if (item.on_build_complete) {
+                rightHtml += `<div class="detail-section">${SharedRender.dualView(item.on_build_complete, I18n.ui('ui.detail.on_build_complete'))}</div>`;
+            }
+
+            // Two-column body
+            html += `<div class="relic-overlay-columns">`;
+            if (leftHtml) html += `<div class="relic-overlay-col">${leftHtml}</div>`;
+            if (rightHtml) html += `<div class="relic-overlay-col">${rightHtml}</div>`;
+            html += `</div>`;
+
+            // Footer: ID + source file
+            html += `<div class="relic-overlay-footer">`;
+            html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
+            if (item.source_file) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
+            html += `</div>`;
+
+            return html;
+        }
+
+        function showDetail(item) {
+            detailTitle.textContent = item.name || item.id;
+            detailContent.innerHTML = buildDetailHtml(item, false);
             SharedRender.initToggles(detailContent);
             SharedRender.initTechLinks(detailContent);
             detailPanel.classList.remove('hidden');
+        }
+
+        // --- Relic overlay expand/collapse ---
+        function removeOverlayImmediate() {
+            if (activeOverlay) {
+                activeOverlay.remove();
+                activeOverlay = null;
+                activeOverlayTileId = null;
+            }
+        }
+
+        function expandRelicOverlay(tileEl, item, items) {
+            // Remove any existing overlay
+            removeOverlayImmediate();
+
+            const grid = tileEl.closest('.relic-grid');
+            if (!grid) return;
+
+            const gridRect = grid.getBoundingClientRect();
+            const tileRect = tileEl.getBoundingClientRect();
+
+            // Tile position relative to grid
+            const startTop = tileRect.top - gridRect.top + grid.scrollTop;
+            const startLeft = tileRect.left - gridRect.left;
+            const startW = tileRect.width;
+            const startH = tileRect.height;
+
+            // Create overlay at tile position (no transition yet)
+            const overlay = document.createElement('div');
+            overlay.className = 'relic-detail-overlay';
+            overlay.style.top = startTop + 'px';
+            overlay.style.left = startLeft + 'px';
+            overlay.style.width = startW + 'px';
+            overlay.style.height = startH + 'px';
+
+            // Detail content inside — two-column layout
+            overlay.innerHTML = `<div class="detail-inner">${buildRelicOverlayHtml(item)}</div>`;
+
+            grid.appendChild(overlay);
+            activeOverlay = overlay;
+            activeOverlayTileId = item.id;
+
+            // Measure grid size for expand target
+            const gridW = grid.offsetWidth;
+            const gridH = Math.max(grid.scrollHeight, 300);
+
+            // Next frame: expand to full grid size
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    overlay.style.top = '0px';
+                    overlay.style.left = '0px';
+                    overlay.style.width = gridW + 'px';
+                    overlay.style.height = gridH + 'px';
+
+                    // After transition: show content
+                    let expanded = false;
+                    const doExpand = () => {
+                        if (expanded) return;
+                        expanded = true;
+                        overlay.removeEventListener('transitionend', onExpand);
+                        overlay.classList.add('expanded');
+                        // Init toggles/tech links in overlay
+                        const inner = overlay.querySelector('.detail-inner');
+                        if (inner) {
+                            SharedRender.initToggles(inner);
+                            SharedRender.initTechLinks(inner);
+                        }
+                    };
+                    const onExpand = () => doExpand();
+                    overlay.addEventListener('transitionend', onExpand);
+                    // Fallback in case transitionend doesn't fire
+                    setTimeout(doExpand, 400);
+                });
+            });
+
+            // Back button handler
+            overlay.querySelector('.relic-detail-back').addEventListener('click', (e) => {
+                e.stopPropagation();
+                collapseRelicOverlay(tileEl);
+            });
+        }
+
+        function collapseRelicOverlay(tileEl) {
+            const overlay = activeOverlay;
+            if (!overlay) return;
+
+            const grid = tileEl ? tileEl.closest('.relic-grid') : overlay.parentElement;
+            if (!grid) { removeOverlayImmediate(); return; }
+
+            // Hide content immediately
+            overlay.classList.remove('expanded');
+
+            // If tile is still in DOM, animate back to its position
+            if (tileEl && document.contains(tileEl)) {
+                const gridRect = grid.getBoundingClientRect();
+                const tileRect = tileEl.getBoundingClientRect();
+
+                const targetTop = tileRect.top - gridRect.top + grid.scrollTop;
+                const targetLeft = tileRect.left - gridRect.left;
+
+                overlay.style.top = targetTop + 'px';
+                overlay.style.left = targetLeft + 'px';
+                overlay.style.width = tileRect.width + 'px';
+                overlay.style.height = tileRect.height + 'px';
+
+                let collapsed = false;
+                const doCollapse = () => {
+                    if (collapsed) return;
+                    collapsed = true;
+                    overlay.removeEventListener('transitionend', onCollapse);
+                    removeOverlayImmediate();
+                };
+                const onCollapse = () => doCollapse();
+                overlay.addEventListener('transitionend', onCollapse);
+                setTimeout(doCollapse, 400);
+            } else {
+                // Tile gone (e.g. search changed), just fade out
+                overlay.style.opacity = '0';
+                setTimeout(() => removeOverlayImmediate(), 300);
+            }
         }
 
         // Search
@@ -121,6 +293,7 @@
             searchTimeout = setTimeout(() => {
                 AppState.set('search', e.target.value);
                 currentPage = 1;
+                removeOverlayImmediate();
                 renderAll();
             }, 200);
         });
@@ -129,6 +302,7 @@
         document.addEventListener('wiki-lang-changed', () => {
             for (const item of megastructures) item.name = I18n.t(item.name_key) || item.id;
             for (const item of relics) item.name = I18n.t(item.name_key) || item.id;
+            removeOverlayImmediate();
             renderAll();
         });
 
@@ -152,12 +326,21 @@
             const allItems = [...megastructures, ...relics];
             const item = allItems.find(i => i.id === selectId);
             if (item) {
-                showDetail(item);
+                if (activeTab === 'relics') {
+                    // Find the tile and expand it
+                    const tile = listEl.querySelector(`.relic-tile[data-id="${CSS.escape(selectId)}"]`);
+                    if (tile) expandRelicOverlay(tile, item);
+                } else {
+                    showDetail(item);
+                }
                 AppState.set('select', '');
             }
         }
 
         function renderAll() {
+            // Remove overlay on re-render
+            removeOverlayImmediate();
+
             const query = (AppState.get('search') || '').toLowerCase();
             let items = activeTab === 'megastructures' ? megastructures : relics;
 
@@ -174,34 +357,56 @@
             const totalPages = Math.ceil(items.length / PAGE_SIZE);
             const pageItems = items.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
-            let html = '';
-            for (const item of pageItems) {
-                const iconCol = activeTab === 'relics'
-                    ? `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/relics/${esc(item.icon || item.id)}.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`
-                    : '';
-                html += `<div class="item-card" data-id="${esc(item.id)}">
-                    ${iconCol}
-                    <div class="item-card-body">
-                        <div class="item-card-header">
-                            <span class="item-card-name">${esc(item.name || item.id)}</span>
-                            <span class="item-card-id">${esc(item.id)}</span>
-                        </div>
-                        <div class="item-card-meta">`;
-                if (item.build_time) html += `<span class="detail-meta-item">${I18n.ui('ui.card.build')}: ${esc(item.build_time)}</span>`;
-                if (item.upgrade_from) html += `<span class="detail-meta-item">${I18n.ui('ui.card.from')}: ${esc(item.upgrade_from)}</span>`;
-                if (item.activation_duration) html += `<span class="detail-meta-item">${I18n.ui('ui.card.duration')}: ${esc(item.activation_duration)}</span>`;
-                if (item.score) html += `<span class="detail-meta-item">${I18n.ui('ui.card.score')}: ${esc(item.score)}</span>`;
-                html += `</div></div></div>`;
-            }
-            listEl.innerHTML = html || '<div class="loading" style="animation:none">' + I18n.ui('ui.empty.no_items') + '</div>';
+            if (activeTab === 'relics') {
+                // --- Relic grid ---
+                if (pageItems.length === 0) {
+                    listEl.innerHTML = '<div class="loading" style="animation:none">' + I18n.ui('ui.empty.no_items') + '</div>';
+                } else {
+                    let html = '<div class="relic-grid">';
+                    for (const item of pageItems) {
+                        html += `<div class="relic-tile" data-id="${esc(item.id)}">
+                            <img src="icons/relics/${esc(item.icon || item.id)}.webp" alt=""
+                                 onerror="this.style.display='none'">
+                            <span class="relic-tile-name">${esc(item.name || item.id)}</span>
+                        </div>`;
+                    }
+                    html += '</div>';
+                    listEl.innerHTML = html;
+                }
 
-            listEl.querySelectorAll('.item-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const id = card.dataset.id;
-                    const item = items.find(i => i.id === id);
-                    if (item) showDetail(item);
+                // Tile click → expand overlay
+                listEl.querySelectorAll('.relic-tile').forEach(tile => {
+                    tile.addEventListener('click', () => {
+                        const id = tile.dataset.id;
+                        const item = items.find(i => i.id === id);
+                        if (item) expandRelicOverlay(tile, item, items);
+                    });
                 });
-            });
+            } else {
+                // --- Megastructure list (unchanged) ---
+                let html = '';
+                for (const item of pageItems) {
+                    html += `<div class="item-card" data-id="${esc(item.id)}">
+                        <div class="item-card-body">
+                            <div class="item-card-header">
+                                <span class="item-card-name">${esc(item.name || item.id)}</span>
+                                <span class="item-card-id">${esc(item.id)}</span>
+                            </div>
+                            <div class="item-card-meta">`;
+                    if (item.build_time) html += `<span class="detail-meta-item">${I18n.ui('ui.card.build')}: ${esc(item.build_time)}</span>`;
+                    if (item.upgrade_from) html += `<span class="detail-meta-item">${I18n.ui('ui.card.from')}: ${esc(item.upgrade_from)}</span>`;
+                    html += `</div></div></div>`;
+                }
+                listEl.innerHTML = html || '<div class="loading" style="animation:none">' + I18n.ui('ui.empty.no_items') + '</div>';
+
+                listEl.querySelectorAll('.item-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const id = card.dataset.id;
+                        const item = items.find(i => i.id === id);
+                        if (item) showDetail(item);
+                    });
+                });
+            }
 
             renderPagination(totalPages);
         }
