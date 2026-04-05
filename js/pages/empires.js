@@ -90,7 +90,7 @@
             DataManager.loadJSON('assets/empires.json'),
             DataManager.loadJSON('assets/species.json'),
         ]);
-        await I18n.setLanguage(AppState.get('lang'));
+        await I18n.setLanguageForModule(AppState.get('lang'), 'empires');
 
         for (const item of empires) item.name = I18n.t(item.name_key) || item.id;
         for (const item of species) item.name = I18n.t(item.name_key) || item.id;
@@ -293,6 +293,7 @@
         }
 
         renderAll();
+        I18n.loadFullLocalisation();
 
         // Auto-select item from URL (after renderAll)
         const selectId = AppState.get('select');

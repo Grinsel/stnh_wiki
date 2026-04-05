@@ -17,7 +17,7 @@
             DataManager.loadJSON('assets/jobs.json'),
             DataManager.loadJSON('assets/deposits.json'),
         ]);
-        await I18n.setLanguage(AppState.get('lang'));
+        await I18n.setLanguageForModule(AppState.get('lang'), 'economy');
 
         for (const item of jobs) item.name = I18n.t(item.name_key) || item.id;
         for (const item of deposits) item.name = I18n.t(item.name_key) || item.id;
@@ -167,6 +167,7 @@
         }
 
         renderAll();
+        I18n.loadFullLocalisation();
 
         // Auto-select item from URL (after renderAll)
         const selectId = AppState.get('select');

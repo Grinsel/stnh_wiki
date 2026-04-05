@@ -29,7 +29,7 @@
             DataManager.loadJSON('assets/buildings.json'),
             DataManager.loadJSON('assets/districts.json'),
         ]);
-        await I18n.setLanguage(AppState.get('lang'));
+        await I18n.setLanguageForModule(AppState.get('lang'), 'buildings');
 
         for (const item of buildings) item.name = I18n.t(item.name_key) || item.id;
         for (const item of districts) item.name = I18n.t(item.name_key) || item.id;
@@ -144,6 +144,7 @@
         }
 
         renderAll();
+        I18n.loadFullLocalisation();
 
         // Auto-select item from URL (after renderAll)
         const selectId = AppState.get('select');

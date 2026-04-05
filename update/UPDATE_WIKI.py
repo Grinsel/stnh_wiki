@@ -82,6 +82,16 @@ def phase_localisation():
     return stats
 
 
+def phase_split_localisation():
+    """Phase 2b: Split localisation into per-module files."""
+    print("\n" + "=" * 60)
+    print("PHASE 2b: LOCALISATION SPLITTING")
+    print("=" * 60)
+
+    from split_localisation import split_localisation
+    return split_localisation()
+
+
 def phase_gfx():
     """Phase 3: Parse GFX mappings."""
     print("\n" + "=" * 60)
@@ -368,25 +378,26 @@ def write_log_entry(module, results, elapsed):
 
 # Maps --only values to the phases they run
 ONLY_MODULES = {
-    'events':      ['localisation', 'gfx', 'events', 'images'],
-    'loc':         ['localisation'],
+    'events':      ['localisation', 'gfx', 'events', 'images', 'split_loc'],
+    'loc':         ['localisation', 'split_loc'],
     'gfx':         ['gfx'],
     'images':      ['images'],
     'icons':       ['all_icons'],
     'techtree':    ['techtree'],
-    'ships':       ['localisation', 'ships'],
-    'ship_models': ['localisation', 'ships', 'ship_models'],
-    'buildings':   ['localisation', 'buildings', 'all_icons'],
-    'traits':      ['localisation', 'traits'],
-    'governments': ['localisation', 'governments'],
-    'megastructures': ['localisation', 'megastructures'],
-    'anomalies':      ['localisation', 'anomalies'],
-    'empires':        ['localisation', 'empires'],
+    'ships':       ['localisation', 'ships', 'split_loc'],
+    'ship_models': ['localisation', 'ships', 'ship_models', 'split_loc'],
+    'buildings':   ['localisation', 'buildings', 'all_icons', 'split_loc'],
+    'traits':      ['localisation', 'traits', 'split_loc'],
+    'governments': ['localisation', 'governments', 'split_loc'],
+    'megastructures': ['localisation', 'megastructures', 'split_loc'],
+    'anomalies':      ['localisation', 'anomalies', 'split_loc'],
+    'empires':        ['localisation', 'empires', 'split_loc'],
     'galaxy_map':     ['galaxy_map'],
-    'economy':        ['localisation', 'economy'],
+    'economy':        ['localisation', 'economy', 'split_loc'],
     'search':         ['search'],
     'content':        ['localisation', 'ships', 'buildings', 'all_icons', 'traits', 'governments',
-                       'megastructures', 'anomalies', 'empires', 'galaxy_map', 'economy', 'search'],
+                       'megastructures', 'anomalies', 'empires', 'galaxy_map', 'economy', 'search',
+                       'split_loc'],
 }
 
 
@@ -450,6 +461,8 @@ def main():
             results['all_icons'] = phase_all_icons(skip=args.skip_images)
         if 'techtree' in phases:
             results['techtree'] = phase_techtree()
+        if 'split_loc' in phases:
+            results['split_loc'] = phase_split_localisation()
         module_name = args.only
     else:
         # Full mode: run all phases
@@ -470,6 +483,7 @@ def main():
         results['ship_models'] = phase_ship_models(skip=args.skip_images)
         results['images'] = phase_images(skip=args.skip_images)
         results['all_icons'] = phase_all_icons(skip=args.skip_images)
+        results['split_loc'] = phase_split_localisation()
         module_name = 'full'
 
     # Change tracking

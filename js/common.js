@@ -73,7 +73,13 @@ const Common = (() => {
         sel.value = AppState.get('lang');
         sel.addEventListener('change', async (e) => {
             AppState.set('lang', e.target.value);
-            await I18n.setLanguage(e.target.value);
+            const mod = I18n.getCurrentModule();
+            if (mod) {
+                await I18n.setLanguageForModule(e.target.value, mod);
+                I18n.loadFullLocalisation();
+            } else {
+                await I18n.setLanguage(e.target.value);
+            }
             applyUiStrings();
             document.dispatchEvent(new CustomEvent('wiki-lang-changed'));
         });

@@ -21,8 +21,8 @@
         // Load initial data
         const { eventsIndex } = await DataManager.loadInitial();
 
-        // Load localisation
-        await I18n.setLanguage(AppState.get('lang'));
+        // Load localisation (module-split for fast mobile loading)
+        await I18n.setLanguageForModule(AppState.get('lang'), 'events');
 
         // Resolve event names from localisation
         for (const ev of eventsIndex) {
@@ -74,6 +74,9 @@
 
         // Initial render
         renderAll();
+
+        // Lazy-load full localisation in background (for detail panel)
+        I18n.loadFullLocalisation();
 
         // If there's a selected event in URL, show it
         const selectedEvent = AppState.get('selectedEvent');

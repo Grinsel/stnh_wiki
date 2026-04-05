@@ -70,7 +70,7 @@
             DataManager.loadJSON('assets/tech/factions.json'),
             DataManager.loadJSON('assets/tech_item_map.json'),
         ]);
-        await I18n.setLanguage(AppState.get('lang'));
+        await I18n.setLanguageForModule(AppState.get('lang'), 'tech');
 
         const allTechs = [].concat(physics, engineering, society);
         const techIndex = new Map(allTechs.map(t => [t.id, t]));
@@ -468,6 +468,7 @@
 
         // --- Initial render ---
         renderAll();
+        I18n.loadFullLocalisation();
 
         // Focus on a specific tech if requested via URL
         if (focusId) {

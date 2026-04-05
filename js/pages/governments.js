@@ -20,7 +20,7 @@
             DataManager.loadJSON('assets/policies.json'),
             DataManager.loadJSON('assets/edicts.json'),
         ]);
-        await I18n.setLanguage(AppState.get('lang'));
+        await I18n.setLanguageForModule(AppState.get('lang'), 'governments');
 
         const allData = { governments, civics, authorities, policies, edicts };
         for (const key of Object.keys(allData)) {
@@ -170,6 +170,7 @@
         }
 
         renderAll();
+        I18n.loadFullLocalisation();
 
         // Auto-select item from URL (after renderAll)
         const selectId = AppState.get('select');
