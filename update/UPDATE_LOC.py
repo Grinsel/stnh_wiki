@@ -19,7 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from UPDATE_WIKI import (phase_validation, phase_localisation,
-                          write_log_entry)
+                          phase_split_localisation, write_log_entry)
 
 
 def main():
@@ -32,6 +32,7 @@ def main():
 
     results = {}
     results['localisation'] = phase_localisation()
+    results['split_loc'] = phase_split_localisation()
 
     elapsed = time.time() - start
     write_log_entry('loc', results, elapsed)

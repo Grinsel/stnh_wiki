@@ -18,7 +18,7 @@
             DataManager.loadJSON('assets/archaeology.json'),
         ]);
         await DataManager.loadPicturesMap();
-        await I18n.setLanguage(AppState.get('lang'));
+        await I18n.setLanguageForModule(AppState.get('lang'), 'anomalies');
 
         for (const item of anomalies) item.name = I18n.t(item.name_key) || I18n.t(item.desc) || item.id;
         for (const item of archaeology) item.name = I18n.t(item.name_key) || I18n.t(item.desc) || item.id;
@@ -151,6 +151,7 @@
         }
 
         renderAll();
+        I18n.loadFullLocalisation();
 
         // Auto-select item from URL (after renderAll)
         const selectId = AppState.get('select');

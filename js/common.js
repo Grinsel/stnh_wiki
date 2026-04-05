@@ -73,7 +73,13 @@ const Common = (() => {
         sel.value = AppState.get('lang');
         sel.addEventListener('change', async (e) => {
             AppState.set('lang', e.target.value);
-            await I18n.setLanguage(e.target.value);
+            const mod = I18n.getCurrentModule();
+            if (mod) {
+                await I18n.setLanguageForModule(e.target.value, mod);
+                I18n.loadFullLocalisation();
+            } else {
+                await I18n.setLanguage(e.target.value);
+            }
             applyUiStrings();
             document.dispatchEvent(new CustomEvent('wiki-lang-changed'));
         });
@@ -194,9 +200,66 @@ const Common = (() => {
             }
         });
 
+        // Inject global-search toggle (pill switch + label) next to the input
+        let globalMode = false;
+        const uiStr = (k) => typeof I18n !== 'undefined' && I18n.ui ? I18n.ui(k) : k;
+
+        const toggleWrap = document.createElement('div');
+        toggleWrap.id = 'search-mode-toggle';
+        toggleWrap.className = 'search-mode-toggle-wrap';
+        toggleWrap.setAttribute('role', 'button');
+        toggleWrap.setAttribute('tabindex', '0');
+        toggleWrap.innerHTML =
+            '<span class="toggle-track"></span>' +
+            '<span class="toggle-label" data-i18n="ui.search.global_label">Global Search</span>';
+        input.parentElement.appendChild(toggleWrap);
+
+        // Remember the original local placeholder to restore it
+        const localPlaceholderKey = input.getAttribute('data-i18n-placeholder');
+        const localPlaceholder = input.placeholder;
+
+        function updateToggle() {
+            toggleWrap.classList.toggle('active', globalMode);
+            toggleWrap.title = globalMode
+                ? uiStr('ui.search.global_on')
+                : uiStr('ui.search.global_off');
+            toggleWrap.setAttribute('aria-pressed', globalMode ? 'true' : 'false');
+            const lbl = toggleWrap.querySelector('.toggle-label');
+            if (lbl) lbl.textContent = uiStr('ui.search.global_label') || 'Global Search';
+            // Swap placeholder
+            if (globalMode) {
+                input.placeholder = uiStr('ui.search.global') || 'Search all wiki...';
+            } else {
+                input.placeholder = (localPlaceholderKey ? uiStr(localPlaceholderKey) : null) || localPlaceholder;
+            }
+        }
+        updateToggle();
+
+        function doToggle() {
+            globalMode = !globalMode;
+            updateToggle();
+            if (!globalMode) {
+                hideGlobalPreview();
+            } else {
+                const q = input.value.trim();
+                if (q.length >= 2 && ready) renderGlobalPreview(q);
+            }
+        }
+
+        toggleWrap.addEventListener('click', doToggle);
+        toggleWrap.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); doToggle(); }
+        });
+
         let timer;
 
-        input.addEventListener('input', () => {
+        input.addEventListener('input', (e) => {
+            if (!globalMode) {
+                hideGlobalPreview();
+                return;
+            }
+            // Global mode: prevent page-level local filtering
+            e.stopImmediatePropagation();
             if (!ready) return;
             clearTimeout(timer);
             timer = setTimeout(() => {
@@ -219,7 +282,7 @@ const Common = (() => {
         });
 
         document.addEventListener('click', (e) => {
-            if (!input.contains(e.target) && !container.contains(e.target)) {
+            if (!input.contains(e.target) && !container.contains(e.target) && !toggleWrap.contains(e.target)) {
                 hideGlobalPreview();
             }
         });

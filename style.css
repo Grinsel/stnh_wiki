@@ -336,10 +336,14 @@ h1, h2, h3, h4 {
 .header-search {
     flex: 1;
     max-width: 500px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 .header-search input {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     padding: 0.35rem 0.7rem;
     background: var(--select-bg);
     border: 1px solid var(--accent-border);
@@ -359,6 +363,67 @@ h1, h2, h3, h4 {
 .header-search input::placeholder {
     color: var(--text-muted);
     opacity: 0.6;
+}
+
+.search-mode-toggle-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.search-mode-toggle-wrap .toggle-label {
+    font-size: 0.7rem;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: color 0.2s;
+}
+
+.search-mode-toggle-wrap.active .toggle-label {
+    color: var(--accent);
+}
+
+/* The pill track */
+.toggle-track {
+    position: relative;
+    width: 30px;
+    height: 16px;
+    background: var(--select-bg);
+    border: 1px solid var(--accent-border);
+    border-radius: 9999px;
+    transition: background 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+}
+
+.search-mode-toggle-wrap.active .toggle-track {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+/* The thumb */
+.toggle-track::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.search-mode-toggle-wrap.active .toggle-track::after {
+    transform: translateX(14px);
+    background: var(--bg-main, #0d0d1a);
+}
+
+.search-mode-toggle-wrap:hover .toggle-track {
+    border-color: var(--accent-border-hover);
 }
 
 .header-controls {

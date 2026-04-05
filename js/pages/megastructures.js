@@ -17,7 +17,7 @@
             DataManager.loadJSON('assets/megastructures.json'),
             DataManager.loadJSON('assets/relics.json'),
         ]);
-        await I18n.setLanguage(AppState.get('lang'));
+        await I18n.setLanguageForModule(AppState.get('lang'), 'megastructures');
 
         for (const item of megastructures) item.name = I18n.t(item.name_key) || item.id;
         for (const item of relics) item.name = I18n.t(item.name_key) || item.id;
@@ -144,6 +144,7 @@
         }
 
         renderAll();
+        I18n.loadFullLocalisation();
 
         // Auto-select item from URL (after renderAll)
         const selectId = AppState.get('select');

@@ -52,7 +52,7 @@
         ]);
         const ships = shipsData.items;
         const globalStats = shipsData.stats;
-        await I18n.setLanguage(AppState.get('lang'));
+        await I18n.setLanguageForModule(AppState.get('lang'), 'ships');
 
         // Resolve names
         for (const item of ships) {
@@ -305,6 +305,7 @@
         }
 
         renderAll();
+        I18n.loadFullLocalisation();
 
         // Auto-select item from URL (after renderAll)
         const selectId = AppState.get('select');
