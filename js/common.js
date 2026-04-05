@@ -291,6 +291,54 @@ const Common = (() => {
         });
     }
 
+    function initMobileOverlay() {
+        const MQ = window.matchMedia('(max-width: 921px)');
+        const detailPanel = document.getElementById('event-detail-panel')
+                         || document.getElementById('detail-panel');
+        if (!detailPanel) return;
+
+        let savedScrollY = 0;
+
+        function lockScroll() {
+            savedScrollY = window.scrollY;
+            document.body.classList.add('overlay-open');
+            document.body.style.top = `-${savedScrollY}px`;
+        }
+
+        function unlockScroll() {
+            document.body.classList.remove('overlay-open');
+            document.body.style.top = '';
+            window.scrollTo(0, savedScrollY);
+        }
+
+        // MutationObserver: fängt jede .hidden-Änderung automatisch ab
+        const observer = new MutationObserver(() => {
+            if (detailPanel.classList.contains('hidden')) {
+                if (document.body.classList.contains('overlay-open')) unlockScroll();
+            } else if (MQ.matches) {
+                lockScroll();
+                detailPanel.scrollTop = 0;
+                history.pushState({ overlayOpen: true }, '');
+            }
+        });
+        observer.observe(detailPanel, { attributes: true, attributeFilter: ['class'] });
+
+        // Back-Button schließt Overlay (klickt Close-Button für page-spezifisches Cleanup)
+        window.addEventListener('popstate', () => {
+            if (MQ.matches && !detailPanel.classList.contains('hidden')) {
+                const closeBtn = detailPanel.querySelector('#detail-close');
+                if (closeBtn) closeBtn.click();
+            }
+        });
+
+        // Window-Resize: Scroll-Lock aufräumen falls von Mobile zu Desktop gewechselt
+        MQ.addEventListener('change', (e) => {
+            if (!e.matches && document.body.classList.contains('overlay-open')) {
+                unlockScroll();
+            }
+        });
+    }
+
     function init() {
         initTheme();
         injectThemePicker();
@@ -302,6 +350,7 @@ const Common = (() => {
         applyUiStrings();
         initGlobalSearch();
         initScrollFades();
+        initMobileOverlay();
     }
 
     return { init, applyUiStrings };
