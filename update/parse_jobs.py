@@ -25,7 +25,7 @@ def extract_job(job_id, block, source_file):
 
     return {
         'id': job_id,
-        'name_key': job_id,
+        'name_key': 'job_' + job_id,
         'icon': icon,
         'category': get_value(block, 'category') or '',
         'condition': get_value(block, 'condition') or '',
