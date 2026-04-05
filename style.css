@@ -465,6 +465,10 @@ select option:checked {
     accent-color: var(--accent-bright);
 }
 
+.filter-toggle-btn {
+    display: none;
+}
+
 .filter-stats {
     margin-left: auto;
     font-size: 0.7rem;
