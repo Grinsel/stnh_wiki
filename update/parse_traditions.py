@@ -8,7 +8,7 @@ multi-word trees like the_link, great_houses, section_31 etc.)
 import os
 from parse_pdx import parse_file, get_value, get_blocks
 from parse_helpers import serialize_block, to_bool, extract_prerequisites, extract_modifiers
-from config import MOD_TRADITIONS_DIR, OUTPUT_ICONS_DIR, STNH_MOD_ROOT, VANILLA_ROOT
+from config import MOD_TRADITIONS_DIR, OUTPUT_ICONS_DIR, OUTPUT_ASSETS_DIR, STNH_MOD_ROOT, VANILLA_ROOT
 
 
 # --- Tree name lookup from tradition_categories ---
@@ -74,20 +74,41 @@ def _build_tradition_icon_lookup():
     return set(f[:-5] for f in os.listdir(icon_dir) if f.endswith('.webp'))
 
 _TRAD_ICONS = None
+_GFX_TREE_ICONS = None
+
+def _build_gfx_tree_icon_map():
+    """Build tree -> icon_stem from GFX sprite definitions in pictures_map.json."""
+    import json
+    pmap_path = os.path.join(OUTPUT_ASSETS_DIR, 'pictures_map.json')
+    if not os.path.exists(pmap_path):
+        return {}
+    with open(pmap_path, 'r', encoding='utf-8') as f:
+        pmap = json.load(f)
+    result = {}
+    prefix = 'GFX_tradition_category_icon_tradition_'
+    for key, val in pmap.items():
+        if key.startswith(prefix):
+            tree = key[len(prefix):]
+            result[tree] = val.get('texture_name', '')
+    return result
 
 def resolve_tradition_icon(trad_id, tree):
     """Resolve best matching icon for a tradition.
 
-    4-tier resolution:
+    6-tier resolution:
     1. Exact match (tr_X)
     2. Vanilla naming remap (tr_X -> tradition_X)
-    3. Tree icon fallback (tradition_icon_{tree})
-    4. Base tree fallback (tradition_icon_{base}) for variant trees
+    3. GFX tree icon from pictures_map.json
+    4. Tree icon fallback (tradition_icon_{tree})
+    5. Base tree fallback (tradition_icon_{base}) for variant trees
        e.g. tree=adaptability_borg -> base=adaptability
+    6. First node icon for adopt/finish (tr_{tree}_1)
     """
-    global _TRAD_ICONS
+    global _TRAD_ICONS, _GFX_TREE_ICONS
     if _TRAD_ICONS is None:
         _TRAD_ICONS = _build_tradition_icon_lookup()
+    if _GFX_TREE_ICONS is None:
+        _GFX_TREE_ICONS = _build_gfx_tree_icon_map()
 
     # Tier 1: exact match (tr_X)
     if trad_id in _TRAD_ICONS:
@@ -96,16 +117,25 @@ def resolve_tradition_icon(trad_id, tree):
     vanilla_name = 'tradition_' + trad_id[3:] if trad_id.startswith('tr_') else ''
     if vanilla_name and vanilla_name in _TRAD_ICONS:
         return vanilla_name
-    # Tier 3: tree icon fallback (tradition_icon_{tree})
+    # Tier 3: GFX tree icon from pictures_map.json
+    gfx_icon = _GFX_TREE_ICONS.get(tree, '')
+    if gfx_icon and gfx_icon in _TRAD_ICONS:
+        return gfx_icon
+    # Tier 4: tree icon fallback (tradition_icon_{tree})
     tree_icon = f'tradition_icon_{tree}' if tree else ''
     if tree_icon and tree_icon in _TRAD_ICONS:
         return tree_icon
-    # Tier 4: base tree fallback for variant trees (adaptability_borg -> adaptability)
+    # Tier 5: base tree fallback for variant trees (adaptability_borg -> adaptability)
     if tree and '_' in tree:
         base_tree = tree.split('_')[0]
         base_icon = f'tradition_icon_{base_tree}'
         if base_icon in _TRAD_ICONS:
             return base_icon
+    # Tier 6: first node icon for adopt/finish
+    if trad_id.endswith('_adopt') or trad_id.endswith('_finish'):
+        first_node = f'tr_{tree}_1'
+        if first_node in _TRAD_ICONS:
+            return first_node
     # No match
     return trad_id
 

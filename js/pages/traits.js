@@ -410,8 +410,8 @@
 
             // SVG arrowhead marker definition (shared, inserted once)
             let html = `<svg style="position:absolute;width:0;height:0;overflow:hidden">
-                <defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
-                    <polygon points="0 0, 8 3, 0 6" fill="var(--accent-dim)"/>
+                <defs><marker id="arrowhead" markerWidth="7" markerHeight="5" refX="0" refY="2.5" orient="auto">
+                    <polygon points="0 0, 7 2.5, 0 5" fill="var(--accent-dim)"/>
                 </marker></defs></svg>`;
 
             html += '<div class="tradition-trees-grid">';
@@ -504,28 +504,69 @@
                 const nodeMap = new Map();
                 nodeEls.forEach(el => nodeMap.set(el.dataset.id, el));
 
-                let lines = '';
+                // Collect all edges first to detect shared endpoints
+                const edges = [];
                 nodeEls.forEach(el => {
                     const deps = el.dataset.deps;
                     if (!deps) return;
                     const depIds = deps.split(',').filter(Boolean);
-                    const childRect = el.getBoundingClientRect();
-                    const cx = childRect.left - bodyRect.left + childRect.width / 2;
-                    const cy = childRect.top - bodyRect.top;
-
                     for (const depId of depIds) {
-                        const parentEl = nodeMap.get(depId);
-                        if (!parentEl) continue;
-                        const parentRect = parentEl.getBoundingClientRect();
-                        const px = parentRect.left - bodyRect.left + parentRect.width / 2;
-                        const py = parentRect.top - bodyRect.top + parentRect.height;
-
-                        lines += `<line x1="${px}" y1="${py}" x2="${cx}" y2="${cy}"/>`;
+                        if (nodeMap.has(depId)) edges.push({ from: depId, to: el.dataset.id });
                     }
                 });
 
-                svg.innerHTML = lines;
-                // Size SVG to body
+                // Count edges sharing same parent or same child for offset spreading
+                const fromCount = new Map();
+                const toCount = new Map();
+                for (const e of edges) {
+                    fromCount.set(e.from, (fromCount.get(e.from) || 0) + 1);
+                    toCount.set(e.to, (toCount.get(e.to) || 0) + 1);
+                }
+                const fromIdx = new Map();
+                const toIdx = new Map();
+
+                const pad = 6; // vertical gap from node edge
+                const spread = 8; // horizontal offset between parallel arrows
+
+                let paths = '';
+                for (const e of edges) {
+                    const parentEl = nodeMap.get(e.from);
+                    const childEl = nodeMap.get(e.to);
+                    if (!parentEl || !childEl) continue;
+
+                    const parentRect = parentEl.getBoundingClientRect();
+                    const childRect = childEl.getBoundingClientRect();
+
+                    // Compute spread offsets for shared endpoints
+                    const fi = fromIdx.get(e.from) || 0;
+                    fromIdx.set(e.from, fi + 1);
+                    const fc = fromCount.get(e.from);
+                    const fOff = fc > 1 ? (fi - (fc - 1) / 2) * spread : 0;
+
+                    const ti = toIdx.get(e.to) || 0;
+                    toIdx.set(e.to, ti + 1);
+                    const tc = toCount.get(e.to);
+                    const tOff = tc > 1 ? (ti - (tc - 1) / 2) * spread : 0;
+
+                    // Start: parent bottom-center + spread + padding
+                    const px = parentRect.left - bodyRect.left + parentRect.width / 2 + fOff;
+                    const py = parentRect.top - bodyRect.top + parentRect.height + pad;
+                    // End: child top-center + spread + padding
+                    const cx = childRect.left - bodyRect.left + childRect.width / 2 + tOff;
+                    const cy = childRect.top - bodyRect.top - pad;
+
+                    // Vertical distance for control point tension
+                    const dy = Math.abs(cy - py);
+                    const tension = Math.min(dy * 0.45, 30);
+
+                    // Cubic bezier: gentle S-curve
+                    const cp1y = py + tension;
+                    const cp2y = cy - tension;
+
+                    paths += `<path d="M${px.toFixed(1)},${py.toFixed(1)} C${px.toFixed(1)},${cp1y.toFixed(1)} ${cx.toFixed(1)},${cp2y.toFixed(1)} ${cx.toFixed(1)},${cy.toFixed(1)}"/>`;
+                }
+
+                svg.innerHTML = paths;
                 svg.setAttribute('width', body.offsetWidth);
                 svg.setAttribute('height', body.offsetHeight);
             });

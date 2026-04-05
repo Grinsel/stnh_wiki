@@ -1,5 +1,536 @@
 [
   {
+    "timestamp": "2026-04-04T22:10:49.879609",
+    "summary": {
+      "total_added": 0,
+      "total_removed": 0,
+      "total_modified": 53,
+      "modules_changed": 1,
+      "modules_unchanged": 20
+    },
+    "modules": {
+      "events_index": {
+        "old_count": 8873,
+        "new_count": 8873,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "ships": {
+        "old_count": 423,
+        "new_count": 423,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "buildings": {
+        "old_count": 653,
+        "new_count": 653,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "districts": {
+        "old_count": 56,
+        "new_count": 56,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traits": {
+        "old_count": 461,
+        "new_count": 461,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traditions": {
+        "old_count": 448,
+        "new_count": 448,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "ascension_perks": {
+        "old_count": 58,
+        "new_count": 58,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "governments": {
+        "old_count": 185,
+        "new_count": 185,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "civics": {
+        "old_count": 332,
+        "new_count": 332,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "authorities": {
+        "old_count": 17,
+        "new_count": 17,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "policies": {
+        "old_count": 53,
+        "new_count": 53,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "anti_borg_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "anti_borg_policy"
+          },
+          {
+            "id": "appropriation",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "appropriation"
+          },
+          {
+            "id": "artificial_intelligence_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "artificial_intelligence_policy"
+          },
+          {
+            "id": "behemoth_egg_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "behemoth_egg_policy"
+          },
+          {
+            "id": "border_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "border_policy"
+          },
+          {
+            "id": "counter_espionage_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "counter_espionage_policy"
+          },
+          {
+            "id": "cross_breeding_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "cross_breeding_policy"
+          },
+          {
+            "id": "de_assimilation_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "de_assimilation_policy"
+          },
+          {
+            "id": "debris",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "debris"
+          },
+          {
+            "id": "diplomatic_stance",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "diplomatic_stance"
+          },
+          {
+            "id": "drone_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "drone_policy"
+          },
+          {
+            "id": "economic_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "economic_policy"
+          },
+          {
+            "id": "education_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "education_policy"
+          },
+          {
+            "id": "enlightenment",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "enlightenment"
+          },
+          {
+            "id": "espionage_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "espionage_policy"
+          },
+          {
+            "id": "espionage_policy_dominion",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "espionage_policy_dominion"
+          },
+          {
+            "id": "espionage_policy_obsidian",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "espionage_policy_obsidian"
+          },
+          {
+            "id": "espionage_policy_tal_shiar",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "espionage_policy_tal_shiar"
+          },
+          {
+            "id": "espionage_policy_ufp",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "espionage_policy_ufp"
+          },
+          {
+            "id": "eugenics_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "eugenics_policy"
+          },
+          {
+            "id": "external_leaders_use_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "external_leaders_use_policy"
+          },
+          {
+            "id": "first_contact_protocol",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "first_contact_protocol"
+          },
+          {
+            "id": "food_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "food_policy"
+          },
+          {
+            "id": "food_policy_gestalt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "food_policy_gestalt"
+          },
+          {
+            "id": "gender_rights_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "gender_rights_policy"
+          },
+          {
+            "id": "health_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "health_policy"
+          },
+          {
+            "id": "homogenous_class",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "homogenous_class"
+          },
+          {
+            "id": "interference",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "interference"
+          },
+          {
+            "id": "internal_security_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "internal_security_policy"
+          },
+          {
+            "id": "leader_enhancement",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "leader_enhancement"
+          },
+          {
+            "id": "logistics_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "logistics_policy"
+          },
+          {
+            "id": "mercenary_use_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "mercenary_use_policy"
+          },
+          {
+            "id": "orbital_bombardment",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "orbital_bombardment"
+          },
+          {
+            "id": "orbital_bombardment_accept_surrender",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "orbital_bombardment_accept_surrender"
+          },
+          {
+            "id": "population_controls",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "population_controls"
+          },
+          {
+            "id": "pre_sapients",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "pre_sapients"
+          },
+          {
+            "id": "purge",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "purge"
+          },
+          {
+            "id": "refugees",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "refugees"
+          },
+          {
+            "id": "relentless_industrialists_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "relentless_industrialists_policy"
+          },
+          {
+            "id": "replicatory_association_insurance",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "replicatory_association_insurance"
+          },
+          {
+            "id": "research_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "research_policy"
+          },
+          {
+            "id": "resettlement",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "resettlement"
+          },
+          {
+            "id": "robot_pop_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "robot_pop_policy"
+          },
+          {
+            "id": "slavery",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "slavery"
+          },
+          {
+            "id": "subjugation_war_terms",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "subjugation_war_terms"
+          },
+          {
+            "id": "trade_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "trade_policy"
+          },
+          {
+            "id": "traffic_control_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "traffic_control_policy"
+          },
+          {
+            "id": "twoyearlyevent_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "twoyearlyevent_policy"
+          },
+          {
+            "id": "ufp_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "ufp_policy"
+          },
+          {
+            "id": "war_doctrine",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "war_doctrine"
+          },
+          {
+            "id": "war_philosophy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "war_philosophy"
+          },
+          {
+            "id": "war_posture_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "war_posture_policy"
+          },
+          {
+            "id": "xeno_rights_policy",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "xeno_rights_policy"
+          }
+        ]
+      },
+      "edicts": {
+        "old_count": 86,
+        "new_count": 86,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "megastructures": {
+        "old_count": 116,
+        "new_count": 116,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "relics": {
+        "old_count": 68,
+        "new_count": 68,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "anomalies": {
+        "old_count": 132,
+        "new_count": 132,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "archaeology": {
+        "old_count": 29,
+        "new_count": 29,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "empires": {
+        "old_count": 110,
+        "new_count": 110,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "species": {
+        "old_count": 255,
+        "new_count": 255,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "jobs": {
+        "old_count": 306,
+        "new_count": 306,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "deposits": {
+        "old_count": 667,
+        "new_count": 667,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "components": {
+        "old_count": 6406,
+        "new_count": 6406,
+        "added": [],
+        "removed": [],
+        "modified": []
+      }
+    }
+  },
+  {
     "timestamp": "2026-04-04T22:02:16.870996",
     "summary": {
       "total_added": 0,

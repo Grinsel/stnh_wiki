@@ -2800,9 +2800,10 @@ body.in-iframe #site-footer {
     pointer-events: none;
     overflow: visible;
 }
-.tradition-arrows line {
+.tradition-arrows path {
+    fill: none;
     stroke: var(--accent-dim);
-    stroke-width: 2;
+    stroke-width: 1.5;
     marker-end: url(#arrowhead);
 }
 
