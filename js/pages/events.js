@@ -124,7 +124,14 @@
     });
 
     // Listen for state changes
+    let prevState = { ...AppState.getState() };
     AppState.onChange((state) => {
+        // Skip re-render if only selectedEvent changed (detail panel handles itself)
+        const keys = Object.keys(state);
+        const changed = keys.filter(k => state[k] !== prevState[k]);
+        prevState = { ...state };
+        if (changed.length === 1 && changed[0] === 'selectedEvent') return;
+
         renderAll();
         NamespaceNav.updateActive();
     });
