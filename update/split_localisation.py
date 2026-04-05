@@ -244,7 +244,8 @@ def get_module_keys():
     # Ships + Components
     ships = load_json(ASSETS_DIR / 'ships.json')
     components = load_json(ASSETS_DIR / 'components.json')
-    modules['ships'] = extract_name_keys(ships) | extract_name_keys(components)
+    ship_items = ships['items'] if isinstance(ships, dict) and 'items' in ships else ships
+    modules['ships'] = extract_name_keys(ship_items) | extract_name_keys(components)
     print(f"    ships: {len(modules['ships']):,} keys")
 
     # Tech

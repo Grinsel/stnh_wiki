@@ -56,10 +56,14 @@
 
         // Resolve names
         for (const item of ships) {
-            item.name = I18n.t(item.name_key) || item.id;
+            let resolved = I18n.t(item.name_key);
+            if (resolved === item.name_key) resolved = I18n.t(item.id);
+            item.name = (resolved !== item.id && resolved !== item.name_key) ? resolved : item.id;
         }
         for (const item of components) {
-            item.name = I18n.t(item.name_key) || item.id;
+            let resolved = I18n.t(item.name_key);
+            if (!resolved || resolved === item.name_key) resolved = I18n.t(item.id);
+            item.name = resolved || item.id;
         }
 
         // State
@@ -284,7 +288,7 @@
 
         // Language change
         document.addEventListener('wiki-lang-changed', () => {
-            for (const item of ships) item.name = I18n.t(item.name_key) || item.id;
+            for (const item of ships) { const r = I18n.t(item.name_key); item.name = (r !== item.name_key) ? r : item.id; }
             for (const item of components) item.name = I18n.t(item.name_key) || item.id;
             renderAll();
         });

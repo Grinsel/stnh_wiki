@@ -111,7 +111,11 @@ def generate_search_index():
             data = json.load(f)
 
         if not isinstance(data, list):
-            continue
+            # Handle dict wrappers like ships.json {'items': [...], 'stats': {...}}
+            if isinstance(data, dict) and 'items' in data:
+                data = data['items']
+            else:
+                continue
 
         count = 0
         for item in data:
