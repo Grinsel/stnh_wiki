@@ -34,6 +34,9 @@
         document.getElementById('pagination').classList.toggle('hidden', isMap);
         mapContainer.classList.toggle('hidden', !isMap);
         document.getElementById('item-list-panel').classList.toggle('map-view', isMap);
+        // map-active on the content layout switches the detail panel to an overlay
+        // so the map container never changes size when the detail panel opens/closes
+        document.getElementById('main-content').classList.toggle('map-active', isMap);
 
         // Hide quadrant note / show appropriate filter controls
         document.getElementById('filter-quadrant-group').classList.toggle('hidden', isMap || activeTab !== 'empires');
@@ -174,6 +177,8 @@
             if (activeView === 'map' && galaxyMapReady) {
                 GalaxyMap.deselect();
                 GalaxyMap.setLegendVisible(true);
+                // Start reset zoom simultaneously with the panel-closing CSS flex transition —
+                // one combined fluid motion instead of sequential animations.
                 GalaxyMap.resetView(true);
             }
         });

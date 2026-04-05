@@ -12,12 +12,12 @@ window.GalaxyMap = (function () {
     const ICON_R = 7;
 
     const QUADRANT_COLORS = {
-        'Alpha Quadrant':     '#5599ff',
-        'Beta Quadrant':      '#44cc88',
-        'Gamma Quadrant':     '#ff9933',
-        'Delta Quadrant':     '#cc66ff',
+        'Alpha Quadrant':     '#5599ff',  // blau
+        'Beta Quadrant':      '#ff4455',  // rot
+        'Gamma Quadrant':     '#cc66ff',  // lila
+        'Delta Quadrant':     '#44cc88',  // grün
         'Major Powers':       '#f0c040',
-        'Alternate Timeline': '#ff5555',
+        'Alternate Timeline': '#ff9933',
     };
     const DEFAULT_COLOR = '#aaaaaa';
 
@@ -29,6 +29,8 @@ window.GalaxyMap = (function () {
     let _mapData = [];
     let _onEmpireClick;
     let _resizeHandler = null;
+    let _animGen = 0;           // incremented on each new animation; stale frames self-cancel
+    let _pendingZoomTimeout = null; // delayed _zoomTo when detail panel is opening
 
     function _seededRng(seed) {
         let s = seed >>> 0;
@@ -193,9 +195,9 @@ window.GalaxyMap = (function () {
         // [label, startDeg, endDeg, labelAngleDeg, color, greekLetter]
         const quads = [
             ['Alpha',  90, 180, 135, '#5599ff', 'α'],
-            ['Beta',    0,  90,  45, '#44cc88', 'β'],
-            ['Gamma', 180, 270, 225, '#ff9933', 'γ'],
-            ['Delta', 270, 360, 315, '#cc66ff', 'δ'],
+            ['Beta',    0,  90,  45, '#ff4455', 'β'],
+            ['Gamma', 180, 270, 225, '#cc66ff', 'γ'],
+            ['Delta', 270, 360, 315, '#44cc88', 'δ'],
         ];
 
         // Dividing lines through galactic origin
@@ -313,9 +315,17 @@ window.GalaxyMap = (function () {
     function _selectEmpire(id) {
         _selectedId = id;
         _updateSelection();
+        clearTimeout(_pendingZoomTimeout);
+        _pendingZoomTimeout = null;
+        ++_animGen; // cancel any currently running animation
         const emp = _mapData.find(e => e.id === id);
-        if (emp) _zoomTo(emp);
+        // Open detail panel and start camera zoom simultaneously.
+        // Both the CSS flex transition and the SVG transform animation run in parallel,
+        // creating one combined fluid motion instead of two sequential ones.
+        // The zoom target is in SVG viewBox space (independent of container width)
+        // so the panel resizing and camera movement do not interfere.
         if (_onEmpireClick) _onEmpireClick(id);
+        if (emp) _zoomTo(emp);
     }
 
     function _updateSelection() {
@@ -511,6 +521,7 @@ window.GalaxyMap = (function () {
     }
 
     function _zoomTo(emp) {
+        const gen = ++_animGen;
         const [sx, sy] = _toSVG(emp.x, emp.y);
         const targetK = Math.max(_transform.k, 3);
         const targetX = SVG_W/2 - sx*targetK;
@@ -518,6 +529,7 @@ window.GalaxyMap = (function () {
         const startK = _transform.k, startX = _transform.x, startY = _transform.y;
         const dur = 500, t0 = performance.now();
         function step(now) {
+            if (_animGen !== gen) return; // cancelled by a newer animation
             const p = Math.min(1, (now - t0) / dur);
             const e = 1 - Math.pow(1 - p, 3); // ease-out cubic
             _transform.k = startK + (targetK - startK) * e;
@@ -543,13 +555,16 @@ window.GalaxyMap = (function () {
 
     function resetView(animated) {
         if (!animated) {
+            ++_animGen; // cancel any running animation
             _transform = { x: 0, y: 0, k: 1 };
             _applyTransform();
             return;
         }
+        const gen = ++_animGen;
         const startK = _transform.k, startX = _transform.x, startY = _transform.y;
         const dur = 700, t0 = performance.now();
         function step(now) {
+            if (_animGen !== gen) return; // cancelled by a newer animation
             const p = Math.min(1, (now - t0) / dur);
             const e = 1 - Math.pow(1 - p, 3); // ease-out cubic
             _transform.k = startK + (1 - startK) * e;
@@ -562,6 +577,8 @@ window.GalaxyMap = (function () {
     }
 
     function destroy() {
+        clearTimeout(_pendingZoomTimeout);
+        ++_animGen; // stop any running animation loop
         if (_container) _container.innerHTML = '';
         _svg = _defs = _bgLayer = _quadLayer = _starLayer = _empireLayer = _uiLayer = null;
         _tooltip = null; _legendEl = null; _container = null; _mapData = []; _drag = null;

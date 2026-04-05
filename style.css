@@ -2227,6 +2227,40 @@ body.in-iframe #site-footer {
     height: 100%;
 }
 
+/* In map-active mode the detail panel overlays the map as an absolute panel
+   so the map container never changes width during open/close transitions.
+   This prevents the SVG fit-scale from changing mid-animation. */
+.content-layout.map-active {
+    position: relative;
+}
+.content-layout.map-active #detail-panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: clamp(280px, 36%, 440px);
+    max-height: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-self: unset;
+    flex: none;
+    z-index: 20;
+    box-shadow: -6px 0 28px rgba(0,0,0,0.55);
+    border-radius: 0 6px 6px 0;
+    /* Keep same transition but only animate transform + opacity — no flex-grow needed */
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity   0.32s ease;
+}
+/* Override entering/leaving states for overlay variant (no flex-grow collapse) */
+.content-layout.map-active #detail-panel.detail-entering {
+    flex-grow: unset;
+    padding: 1rem;
+}
+.content-layout.map-active #detail-panel.detail-leaving {
+    flex-grow: unset;
+    padding: 1rem;
+}
+
 .content-layout #detail-panel {
     flex: 2 1 0%;
     min-width: 0;
@@ -2442,7 +2476,7 @@ body.in-iframe #site-footer {
    ============================================================================= */
 
 :root {
-    --q-alpha-color: #c89000;
+    --q-alpha-color: #1a55cc;
     --q-beta-color:  #b02020;
     --q-gamma-color: #8822cc;
     --q-delta-color: #0d7a50;
@@ -2465,7 +2499,7 @@ body.in-iframe #site-footer {
 .quadrant-btn.q-major { border-color: var(--q-major-color); }
 .quadrant-btn.q-alt   { border-color: var(--q-alt-color);   }
 
-.quadrant-btn.q-alpha.active, .quadrant-btn.q-alpha:hover { background: color-mix(in srgb, var(--q-alpha-color) 25%, transparent); color: #f0c840; border-color: var(--q-alpha-color); }
+.quadrant-btn.q-alpha.active, .quadrant-btn.q-alpha:hover { background: color-mix(in srgb, var(--q-alpha-color) 25%, transparent); color: #6699ff; border-color: var(--q-alpha-color); }
 .quadrant-btn.q-beta.active,  .quadrant-btn.q-beta:hover  { background: color-mix(in srgb, var(--q-beta-color)  25%, transparent); color: #e86060; border-color: var(--q-beta-color);  }
 .quadrant-btn.q-gamma.active, .quadrant-btn.q-gamma:hover { background: color-mix(in srgb, var(--q-gamma-color) 25%, transparent); color: #c070ff; border-color: var(--q-gamma-color); }
 .quadrant-btn.q-delta.active, .quadrant-btn.q-delta:hover { background: color-mix(in srgb, var(--q-delta-color) 25%, transparent); color: #40d090; border-color: var(--q-delta-color); }
@@ -2482,7 +2516,7 @@ body.in-iframe #site-footer {
     letter-spacing: 0.02em;
     flex-shrink: 0;
 }
-.quadrant-badge.q-alpha { background: color-mix(in srgb, var(--q-alpha-color) 20%, transparent); color: #f0c840; border: 1px solid var(--q-alpha-color); }
+.quadrant-badge.q-alpha { background: color-mix(in srgb, var(--q-alpha-color) 20%, transparent); color: #6699ff; border: 1px solid var(--q-alpha-color); }
 .quadrant-badge.q-beta  { background: color-mix(in srgb, var(--q-beta-color)  20%, transparent); color: #e86060; border: 1px solid var(--q-beta-color);  }
 .quadrant-badge.q-gamma { background: color-mix(in srgb, var(--q-gamma-color) 20%, transparent); color: #c070ff; border: 1px solid var(--q-gamma-color); }
 .quadrant-badge.q-delta { background: color-mix(in srgb, var(--q-delta-color) 20%, transparent); color: #40d090; border: 1px solid var(--q-delta-color); }
