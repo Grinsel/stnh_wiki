@@ -36,7 +36,7 @@
         document.getElementById('item-list-panel').classList.toggle('map-view', isMap);
 
         // Hide quadrant note / show appropriate filter controls
-        document.getElementById('filter-authority-group').classList.toggle('hidden', isMap || activeTab !== 'empires');
+        document.getElementById('filter-quadrant-group').classList.toggle('hidden', isMap || activeTab !== 'empires');
         document.getElementById('filter-archetype-group').classList.toggle('hidden', isMap || activeTab !== 'species');
 
         if (isMap) {
@@ -97,11 +97,19 @@
 
         _empires = empires;   // expose to loadGalaxyMap closure
 
-        // Populate authority dropdown
-        const authorities = [...new Set(empires.map(e => e.authority).filter(Boolean))].sort();
-        const authSel = document.getElementById('filter-authority');
-        for (const a of authorities) {
-            authSel.add(new Option(a, a));
+        // Quadrant filter state
+        let activeQuadrant = '';
+
+        // Helper: extract quadrant key from source_file
+        function getQuadrant(empire) {
+            const f = empire.source_file || '';
+            if (f.includes('alpha'))  return 'alpha';
+            if (f.includes('beta'))   return 'beta';
+            if (f.includes('gamma'))  return 'gamma';
+            if (f.includes('delta'))  return 'delta';
+            if (f.includes('major'))  return 'major';
+            if (f.includes('alt'))    return 'alt';
+            return '';
         }
 
         // Populate archetype dropdown
@@ -130,7 +138,7 @@
                 if (activeTab !== 'empires' && activeView === 'map') {
                     setView('list');
                 }
-                document.getElementById('filter-authority-group').classList.toggle('hidden', activeView === 'map' || activeTab !== 'empires');
+                document.getElementById('filter-quadrant-group').classList.toggle('hidden', activeView === 'map' || activeTab !== 'empires');
                 document.getElementById('filter-archetype-group').classList.toggle('hidden', activeView === 'map' || activeTab !== 'species');
                 renderAll();
             });
@@ -249,8 +257,18 @@
             }, 200);
         });
 
+        // Quadrant ribbon buttons
+        document.querySelectorAll('.quadrant-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.quadrant-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeQuadrant = btn.dataset.quadrant;
+                currentPage = 1;
+                renderAll();
+            });
+        });
+
         // Filter changes
-        authSel.addEventListener('change', () => { currentPage = 1; renderAll(); });
         archSel.addEventListener('change', () => { currentPage = 1; renderAll(); });
 
         // Language change
@@ -268,7 +286,7 @@
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
                 tabBtn.classList.add('active');
                 activeTab = urlTab;
-                document.getElementById('filter-authority-group').classList.toggle('hidden', activeTab !== 'empires');
+                document.getElementById('filter-quadrant-group').classList.toggle('hidden', activeTab !== 'empires');
                 document.getElementById('filter-archetype-group').classList.toggle('hidden', activeTab !== 'species');
                 if (viewToggleGroup) viewToggleGroup.style.visibility = activeTab === 'empires' ? '' : 'hidden';
             }
@@ -294,8 +312,7 @@
             items = items.filter(item => {
                 if (query && !(item.name || '').toLowerCase().includes(query) && !item.id.toLowerCase().includes(query)) return false;
                 if (activeTab === 'empires') {
-                    const auth = authSel.value;
-                    if (auth && item.authority !== auth) return false;
+                    if (activeQuadrant && getQuadrant(item) !== activeQuadrant) return false;
                 } else {
                     const arch = archSel.value;
                     if (arch && item.archetype !== arch) return false;
@@ -311,23 +328,26 @@
             const totalPages = Math.ceil(items.length / PAGE_SIZE);
             const pageItems = items.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
+            const QUADRANT_LABELS = { alpha: 'α Alpha', beta: 'β Beta', gamma: 'γ Gamma', delta: 'δ Delta', major: '★ Major', alt: '◈ Alt' };
             let html = '';
             for (const item of pageItems) {
                 const iconCol = (activeTab === 'empires' && item.icon)
                     ? `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/flags/${esc(item.icon)}.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`
                     : '';
-                html += `<div class="item-card" data-id="${esc(item.id)}">
+                const q = (activeTab === 'empires') ? getQuadrant(item) : '';
+                const qBadge = q ? `<span class="quadrant-badge q-${q}">${QUADRANT_LABELS[q] || q}</span>` : '';
+                html += `<div class="item-card q-border-${q || 'none'}" data-id="${esc(item.id)}">
                     ${iconCol}
                     <div class="item-card-body">
                         <div class="item-card-header">
                             <span class="item-card-name">${esc(item.name || item.id)}</span>
                             <span class="item-card-id">${esc(item.id)}</span>
                         </div>
-                        <div class="item-card-meta">`;
+                        <div class="item-card-meta">
+                            ${qBadge}`;
                 if (item.authority) html += `<span class="detail-meta-item">${esc(item.authority)}</span>`;
                 if (item.government) html += `<span class="detail-meta-item">${esc(item.government)}</span>`;
                 if (item.archetype) html += `<span class="detail-meta-item">${esc(item.archetype)}</span>`;
-                if (item.graphical_culture) html += `<span class="detail-meta-item">${esc(item.graphical_culture)}</span>`;
                 if (item.ethics && item.ethics.length) html += `<span class="detail-meta-item">${item.ethics.length} ${I18n.ui('ui.card.ethics')}</span>`;
                 html += `</div></div></div>`;
             }

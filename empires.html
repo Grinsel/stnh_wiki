@@ -72,11 +72,14 @@
                 <button class="tab-btn active" id="view-list-btn" data-i18n="ui.view.list">&#9776; List</button>
                 <button class="tab-btn" id="view-map-btn" data-i18n="ui.view.map">&#10022; Galaxy Map</button>
             </div>
-            <div class="filter-group" id="filter-authority-group">
-                <label data-i18n="ui.filter.authority">Authority</label>
-                <select id="filter-authority">
-                    <option value="" data-i18n="ui.filter.all_authorities">All Authorities</option>
-                </select>
+            <div class="filter-group quadrant-filter-group" id="filter-quadrant-group">
+                <button class="tab-btn quadrant-btn active" data-quadrant="">All</button>
+                <button class="tab-btn quadrant-btn q-alpha" data-quadrant="alpha">α Alpha</button>
+                <button class="tab-btn quadrant-btn q-beta"  data-quadrant="beta">β Beta</button>
+                <button class="tab-btn quadrant-btn q-gamma" data-quadrant="gamma">γ Gamma</button>
+                <button class="tab-btn quadrant-btn q-delta" data-quadrant="delta">δ Delta</button>
+                <button class="tab-btn quadrant-btn q-major" data-quadrant="major">★ Major</button>
+                <button class="tab-btn quadrant-btn q-alt"   data-quadrant="alt">◈ Alt</button>
             </div>
             <div class="filter-group hidden" id="filter-archetype-group">
                 <label data-i18n="ui.filter.archetype">Archetype</label>

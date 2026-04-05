@@ -2369,6 +2369,66 @@ body.in-iframe #site-footer {
 }
 
 /* =============================================================================
+   Quadrant Filter Ribbons + Badges
+   ============================================================================= */
+
+:root {
+    --q-alpha-color: #c89000;
+    --q-beta-color:  #b02020;
+    --q-gamma-color: #8822cc;
+    --q-delta-color: #0d7a50;
+    --q-major-color: #1255bb;
+    --q-alt-color:   #556678;
+}
+
+.quadrant-filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+/* Quadrant ribbon buttons — base colour via CSS var, active state uses it */
+.quadrant-btn.q-alpha { border-color: var(--q-alpha-color); }
+.quadrant-btn.q-beta  { border-color: var(--q-beta-color);  }
+.quadrant-btn.q-gamma { border-color: var(--q-gamma-color); }
+.quadrant-btn.q-delta { border-color: var(--q-delta-color); }
+.quadrant-btn.q-major { border-color: var(--q-major-color); }
+.quadrant-btn.q-alt   { border-color: var(--q-alt-color);   }
+
+.quadrant-btn.q-alpha.active, .quadrant-btn.q-alpha:hover { background: color-mix(in srgb, var(--q-alpha-color) 25%, transparent); color: #f0c840; border-color: var(--q-alpha-color); }
+.quadrant-btn.q-beta.active,  .quadrant-btn.q-beta:hover  { background: color-mix(in srgb, var(--q-beta-color)  25%, transparent); color: #e86060; border-color: var(--q-beta-color);  }
+.quadrant-btn.q-gamma.active, .quadrant-btn.q-gamma:hover { background: color-mix(in srgb, var(--q-gamma-color) 25%, transparent); color: #c070ff; border-color: var(--q-gamma-color); }
+.quadrant-btn.q-delta.active, .quadrant-btn.q-delta:hover { background: color-mix(in srgb, var(--q-delta-color) 25%, transparent); color: #40d090; border-color: var(--q-delta-color); }
+.quadrant-btn.q-major.active, .quadrant-btn.q-major:hover { background: color-mix(in srgb, var(--q-major-color) 25%, transparent); color: #6090ff; border-color: var(--q-major-color); }
+.quadrant-btn.q-alt.active,   .quadrant-btn.q-alt:hover   { background: color-mix(in srgb, var(--q-alt-color)   25%, transparent); color: #aabbcc; border-color: var(--q-alt-color);   }
+
+/* Quadrant badge pill inside cards */
+.quadrant-badge {
+    display: inline-block;
+    font-size: 0.58rem;
+    font-weight: 700;
+    padding: 0.05rem 0.35rem;
+    border-radius: 3px;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+}
+.quadrant-badge.q-alpha { background: color-mix(in srgb, var(--q-alpha-color) 20%, transparent); color: #f0c840; border: 1px solid var(--q-alpha-color); }
+.quadrant-badge.q-beta  { background: color-mix(in srgb, var(--q-beta-color)  20%, transparent); color: #e86060; border: 1px solid var(--q-beta-color);  }
+.quadrant-badge.q-gamma { background: color-mix(in srgb, var(--q-gamma-color) 20%, transparent); color: #c070ff; border: 1px solid var(--q-gamma-color); }
+.quadrant-badge.q-delta { background: color-mix(in srgb, var(--q-delta-color) 20%, transparent); color: #40d090; border: 1px solid var(--q-delta-color); }
+.quadrant-badge.q-major { background: color-mix(in srgb, var(--q-major-color) 20%, transparent); color: #6090ff; border: 1px solid var(--q-major-color); }
+.quadrant-badge.q-alt   { background: color-mix(in srgb, var(--q-alt-color)   20%, transparent); color: #aabbcc; border: 1px solid var(--q-alt-color);   }
+
+/* Colored left border on item cards by quadrant */
+.item-card.q-border-alpha { border-left: 3px solid var(--q-alpha-color); }
+.item-card.q-border-beta  { border-left: 3px solid var(--q-beta-color);  }
+.item-card.q-border-gamma { border-left: 3px solid var(--q-gamma-color); }
+.item-card.q-border-delta { border-left: 3px solid var(--q-delta-color); }
+.item-card.q-border-major { border-left: 3px solid var(--q-major-color); }
+.item-card.q-border-alt   { border-left: 3px solid var(--q-alt-color);   }
+
+/* =============================================================================
    Event Chain Grouping + Chain Navigation Sidebar
    ============================================================================= */
 
