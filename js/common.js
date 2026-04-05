@@ -4,7 +4,7 @@
  */
 const Common = (() => {
     const THEMES = {
-        lcars:      { label: 'LCARS',       dot: '#c9a227' },
+        lcars:      { label: 'ST:NH',        dot: '#1a1a30' },
         romulan:    { label: 'Romulan',      dot: '#2ea55a' },
         borg:       { label: 'Borg',         dot: '#00cc44' },
         cardassian: { label: 'Cardassian',   dot: '#c4956a' },
@@ -36,6 +36,7 @@ const Common = (() => {
             dot.className = 'theme-dot' + (key === current ? ' active' : '');
             dot.style.background = t.dot;
             if (key === 'light') dot.style.border = '2px solid #aaa';
+            if (key === 'lcars') dot.style.border = '2px solid #c9a227';
             dot.title = t.label;
             dot.setAttribute('aria-label', t.label + ' theme');
             dot.addEventListener('click', () => {
