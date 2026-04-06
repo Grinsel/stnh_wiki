@@ -20,7 +20,7 @@ TRACKED_FILES = {
                       ('ascension_perks.json', 'id', None)],
     'governments':   [('governments.json', 'id', None), ('civics.json', 'id', None),
                       ('authorities.json', 'id', None), ('policies.json', 'id', None),
-                      ('edicts.json', 'id', None)],
+                      ('edicts.json', 'id', None), ('councilors.json', 'id', None)],
     'megastructures':[('megastructures.json', 'id', None), ('relics.json', 'id', None)],
     'anomalies':     [('anomalies.json', 'id', None), ('archaeology.json', 'id', None)],
     'empires':       [('empires.json', 'id', None), ('species.json', 'id', None)],

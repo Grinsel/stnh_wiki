@@ -35,6 +35,7 @@ const UI_STRINGS = {
     'ui.tab.authorities':     { english: 'Authorities', german: 'Autoritäten' },
     'ui.tab.policies':        { english: 'Policies', german: 'Richtlinien' },
     'ui.tab.edicts':          { english: 'Edicts', german: 'Edikte' },
+    'ui.tab.councilors':      { english: 'Councilors', german: 'Ratspositionen' },
     'ui.tab.megastructures':  { english: 'Megastructures', german: 'Megastrukturen' },
     'ui.tab.relics':          { english: 'Relics', german: 'Relikte' },
     'ui.tab.anomalies':       { english: 'Anomalies', german: 'Anomalien' },
@@ -104,6 +105,7 @@ const UI_STRINGS = {
     'ui.detail.tradition_swaps':  { english: 'Tradition Swaps', german: 'Traditionstausch' },
     'ui.detail.upgrades_to':      { english: 'Upgrades To', german: 'Ausbau zu' },
     'ui.detail.potential':        { english: 'Potential', german: 'Potenzial' },
+    'ui.detail.leader_possible':  { english: 'Leader Requirements', german: 'Anf\u00fchreranforderungen' },
     'ui.detail.options':          { english: 'Options', german: 'Optionen' },
     'ui.detail.weight':           { english: 'Weight', german: 'Gewichtung' },
     'ui.detail.active_effect':    { english: 'Active Effect', german: 'Aktiver Effekt' },
@@ -176,6 +178,7 @@ const UI_STRINGS = {
     'ui.meta.null_deposit':    { english: 'Null Deposit', german: 'Leer-Lagerst\u00e4tte' },
     'ui.meta.for_colonizable': { english: 'For Colonizable', german: 'F\u00fcr Kolonisierbare' },
     'ui.meta.stages':          { english: 'Stages', german: 'Stufen' },
+    'ui.meta.civic':           { english: 'Civic', german: 'B\u00fcrgerrecht' },
 
     // ==========================================
     // Card Meta Prefixes
@@ -201,6 +204,7 @@ const UI_STRINGS = {
     'ui.badge.has_heir':       { english: 'Has Heir', german: 'Hat Erben' },
     'ui.badge.triggered_only': { english: 'triggered only', german: 'nur ausgel\u00f6st' },
     'ui.badge.hidden':         { english: 'hidden', german: 'versteckt' },
+    'ui.badge.required':       { english: 'Required', german: 'Pflicht' },
     'ui.badge.fire_once':      { english: 'fire once', german: 'einmalig' },
     'ui.badge.diplomatic':     { english: 'diplomatic', german: 'diplomatisch' },
 

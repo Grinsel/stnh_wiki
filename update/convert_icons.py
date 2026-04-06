@@ -114,6 +114,14 @@ ICON_CATEGORIES = [
         'json_file': 'policies.json',
         'icon_field': 'options[].icon',
     },
+    {
+        'name': 'councilors',
+        'output': 'councilors',
+        'size': '64x64',
+        'gfx_resolve': True,
+        'json_file': 'councilors.json',
+        'icon_field': 'icon',
+    },
 ]
 
 

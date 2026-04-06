@@ -43,6 +43,9 @@ MODULES = [
     ('authorities.json', 'governments', 'authority', lambda e: {}),
     ('policies.json', 'governments', 'policy', lambda e: {}),
     ('edicts.json', 'governments', 'edict', lambda e: {}),
+    ('councilors.json', 'governments', 'councilor', lambda e: {
+        'civic': e.get('civic', ''),
+    }),
     ('megastructures.json', 'megastructures', 'megastructure', lambda e: {
         'upgrade_from': e.get('upgrade_from', ''),
     }),

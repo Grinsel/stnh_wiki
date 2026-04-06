@@ -131,7 +131,7 @@ def extract_governments_keys():
     """Extract loc keys from government-related JSONs."""
     keys = set()
     for fname in ['governments.json', 'civics.json', 'authorities.json',
-                   'policies.json', 'edicts.json']:
+                   'policies.json', 'edicts.json', 'councilors.json']:
         items = load_json(ASSETS_DIR / fname)
         for item in items:
             if isinstance(item, dict):

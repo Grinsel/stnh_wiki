@@ -144,7 +144,7 @@ def phase_traits():
 
 
 def phase_governments():
-    """Phase: Governments, Civics, Authorities, Policies & Edicts."""
+    """Phase: Governments, Civics, Authorities, Policies, Edicts & Councilors."""
     print("\n" + "=" * 60)
     print("PHASE: GOVERNMENTS & POLICIES")
     print("=" * 60)

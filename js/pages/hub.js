@@ -65,6 +65,7 @@
                 { key: 'authority', label: 'ui.tab.authorities' },
                 { key: 'policy', label: 'ui.tab.policies' },
                 { key: 'edict', label: 'ui.tab.edicts' },
+                { key: 'councilor', label: 'ui.tab.councilors' },
             ],
             megastructures: [
                 { key: 'megastructure', label: 'ui.tab.megastructures' },
@@ -182,6 +183,7 @@
         authorities:     { label: 'Authorities',     page: 'governments.html',     tab: 'authorities' },
         policies:        { label: 'Policies',        page: 'governments.html',     tab: 'policies' },
         edicts:          { label: 'Edicts',          page: 'governments.html',     tab: 'edicts' },
+        councilors:      { label: 'Councilors',      page: 'governments.html',     tab: 'councilors' },
         megastructures:  { label: 'Megastructures',  page: 'megastructures.html',  tab: null },
         relics:          { label: 'Relics',          page: 'megastructures.html',  tab: 'relics' },
         anomalies:       { label: 'Anomalies',       page: 'anomalies.html',       tab: null },

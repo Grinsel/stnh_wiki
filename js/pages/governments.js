@@ -1,5 +1,5 @@
 /**
- * Governments, Civics, Authorities, Policies & Edicts page controller.
+ * Governments, Civics, Authorities, Policies, Edicts & Councilors page controller.
  */
 (async function initGovernments() {
     const listEl = document.getElementById('item-list');
@@ -13,23 +13,24 @@
     searchInput.value = AppState.get('search');
 
     try {
-        const [governments, civics, authorities, policies, edicts] = await Promise.all([
+        const [governments, civics, authorities, policies, edicts, councilors] = await Promise.all([
             DataManager.loadJSON('assets/governments.json'),
             DataManager.loadJSON('assets/civics.json'),
             DataManager.loadJSON('assets/authorities.json'),
             DataManager.loadJSON('assets/policies.json'),
             DataManager.loadJSON('assets/edicts.json'),
+            DataManager.loadJSON('assets/councilors.json'),
         ]);
         await I18n.setLanguageForModule(AppState.get('lang'), 'governments');
 
-        const allData = { governments, civics, authorities, policies, edicts };
+        const allData = { governments, civics, authorities, policies, edicts, councilors };
         for (const key of Object.keys(allData)) {
             for (const item of allData[key]) {
                 item.name = I18n.t(item.name_key) || item.id;
             }
         }
 
-        const ICON_DIRS = { civics: 'civics', authorities: 'authorities', edicts: 'edicts', policies: 'policies' };
+        const ICON_DIRS = { civics: 'civics', authorities: 'authorities', edicts: 'edicts', policies: 'policies', councilors: 'councilors' };
 
         let activeTab = 'governments';
         let currentPage = 1;
@@ -53,15 +54,21 @@
         const detailContent = document.getElementById('detail-content');
         document.getElementById('detail-close').addEventListener('click', () => detailPanel.classList.add('hidden'));
 
+        function getIconInfo(item) {
+            if (activeTab === 'policies') return { dir: 'edicts', stem: 'edict_type_policy' };
+            if (item.icon_dir && item.icon) return { dir: item.icon_dir, stem: item.icon };
+            const dir = ICON_DIRS[activeTab];
+            const stem = item.icon || '';
+            if (dir && stem) return { dir, stem };
+            return null;
+        }
+
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
-            const iconDir = ICON_DIRS[activeTab];
-            const iconStem = item.icon || '';
-            const iconHtml = activeTab === 'policies'
-                ? `<img class="detail-icon" src="icons/edicts/edict_type_policy.webp" alt="" onerror="this.style.display='none'">`
-                : iconDir && iconStem
-                    ? `<img class="detail-icon" src="icons/${iconDir}/${esc(iconStem)}.webp" alt="" onerror="this.style.display='none'">`
-                    : '';
+            const ic = getIconInfo(item);
+            const iconHtml = ic
+                ? `<img class="detail-icon" src="icons/${ic.dir}/${esc(ic.stem)}.webp" alt="" onerror="this.style.display='none'">`
+                : '';
             let html = `<div class="detail-meta" style="align-items:center">${iconHtml}`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
             if (item.ruler_title) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.ruler')}: ${esc(I18n.t(item.ruler_title) || item.ruler_title)}</span>`;
@@ -70,6 +77,9 @@
             if (item.is_origin) html += `<span class="detail-meta-item">${I18n.ui('ui.badge.origin')}</span>`;
             if (item.length) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.duration')}: ${item.length}</span>`;
             if (item.is_ambition) html += `<span class="detail-meta-item">${I18n.ui('ui.badge.ambition')}</span>`;
+            if (item.leader_class && item.leader_class.length) html += item.leader_class.map(c => `<span class="detail-meta-item">${esc(c)}</span>`).join('');
+            if (item.civic) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.civic')}: ${esc(I18n.t(item.civic) || item.civic)}</span>`;
+            if (item.required) html += `<span class="detail-meta-item">${I18n.ui('ui.badge.required')}</span>`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
             html += `</div>`;
 
@@ -100,6 +110,10 @@
 
             if (item.potential) {
                 html += `<div class="detail-section">${SharedRender.dualView(item.potential, I18n.ui('ui.detail.potential'))}</div>`;
+            }
+
+            if (item.is_leader_possible) {
+                html += `<div class="detail-section">${SharedRender.dualView(item.is_leader_possible, I18n.ui('ui.detail.leader_possible'))}</div>`;
             }
 
             // Policy options
@@ -175,7 +189,7 @@
         // Auto-select item from URL (after renderAll)
         const selectId = AppState.get('select');
         if (selectId) {
-            const allItems = [...governments, ...civics, ...authorities, ...policies, ...edicts];
+            const allItems = [...governments, ...civics, ...authorities, ...policies, ...edicts, ...councilors];
             const item = allItems.find(i => i.id === selectId);
             if (item) {
                 showDetail(item);
@@ -204,13 +218,10 @@
 
             let html = '';
             for (const item of pageItems) {
-                const iconDir = ICON_DIRS[activeTab];
-                const iconStem = item.icon || '';
-                const iconCol = activeTab === 'policies'
-                    ? `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/edicts/edict_type_policy.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`
-                    : iconDir && iconStem
-                        ? `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/${iconDir}/${esc(iconStem)}.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`
-                        : '';
+                const ic = getIconInfo(item);
+                const iconCol = ic
+                    ? `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/${ic.dir}/${esc(ic.stem)}.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`
+                    : '';
                 html += `<div class="item-card" data-id="${esc(item.id)}">
                     ${iconCol}
                     <div class="item-card-body">
@@ -224,6 +235,8 @@
                 if (item.is_origin) html += `<span class="detail-meta-item">${I18n.ui('ui.badge.origin')}</span>`;
                 if (item.is_ambition) html += `<span class="detail-meta-item">${I18n.ui('ui.badge.ambition')}</span>`;
                 if (item.options) html += `<span class="detail-meta-item">${item.options.length} ${I18n.ui('ui.card.options')}</span>`;
+                if (item.leader_class && item.leader_class.length) html += item.leader_class.map(c => `<span class="detail-meta-item">${esc(c)}</span>`).join('');
+                if (item.civic) html += `<span class="detail-meta-item">${esc(I18n.t(item.civic) || item.civic)}</span>`;
                 html += `</div></div></div>`;
             }
             listEl.innerHTML = html || '<div class="loading" style="animation:none">' + I18n.ui('ui.empty.no_items') + '</div>';
