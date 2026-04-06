@@ -164,6 +164,16 @@ def extract_tradition(trad_id, block, source_file):
             swaps.append(swap_entry)
         swap_data = swaps
 
+    # Extract required technologies from possible block
+    req_techs = []
+    possible_raw = get_value(block, 'possible')
+    if isinstance(possible_raw, list):
+        for item in possible_raw:
+            if isinstance(item, dict):
+                tech = item.get('has_technology')
+                if tech:
+                    req_techs.append(tech)
+
     return {
         'id': trad_id,
         'name_key': trad_id,
@@ -173,6 +183,7 @@ def extract_tradition(trad_id, block, source_file):
         'modifier': extract_modifiers(block, 'modifier'),
         'tradition_swap': swap_data,
         'possible': serialize_block(get_value(block, 'possible')) if isinstance(get_value(block, 'possible'), list) else None,
+        'required_technologies': req_techs if req_techs else None,
         'ai_weight': serialize_block(get_value(block, 'ai_weight')) if isinstance(get_value(block, 'ai_weight'), list) else None,
         'source_file': os.path.basename(source_file),
     }

@@ -1,5 +1,1173 @@
 [
   {
+    "timestamp": "2026-04-05T23:28:09.746929",
+    "summary": {
+      "total_added": 0,
+      "total_removed": 0,
+      "total_modified": 144,
+      "modules_changed": 1,
+      "modules_unchanged": 20
+    },
+    "modules": {
+      "events_index": {
+        "old_count": 8873,
+        "new_count": 8873,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "ships": {
+        "old_count": 423,
+        "new_count": 423,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "buildings": {
+        "old_count": 653,
+        "new_count": 653,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "districts": {
+        "old_count": 56,
+        "new_count": 56,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traits": {
+        "old_count": 461,
+        "new_count": 461,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traditions": {
+        "old_count": 448,
+        "new_count": 448,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "tr_adaptability_borg_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_adaptability_borg_adopt"
+          },
+          {
+            "id": "tr_adaptability_borg_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_adaptability_borg_finish"
+          },
+          {
+            "id": "tr_assimilation_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_assimilation_adopt"
+          },
+          {
+            "id": "tr_assimilation_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_assimilation_finish"
+          },
+          {
+            "id": "tr_automation_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_automation_adopt"
+          },
+          {
+            "id": "tr_automation_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_automation_finish"
+          },
+          {
+            "id": "tr_connectivity_borg_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_connectivity_borg_adopt"
+          },
+          {
+            "id": "tr_connectivity_borg_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_connectivity_borg_finish"
+          },
+          {
+            "id": "tr_cunning_1",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_cunning_1"
+          },
+          {
+            "id": "tr_cunning_2",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_cunning_2"
+          },
+          {
+            "id": "tr_cunning_3",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_cunning_3"
+          },
+          {
+            "id": "tr_cunning_4",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_cunning_4"
+          },
+          {
+            "id": "tr_cunning_5",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_cunning_5"
+          },
+          {
+            "id": "tr_cunning_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_cunning_adopt"
+          },
+          {
+            "id": "tr_cunning_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_cunning_finish"
+          },
+          {
+            "id": "tr_diversity_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_diversity_adopt"
+          },
+          {
+            "id": "tr_diversity_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_diversity_finish"
+          },
+          {
+            "id": "tr_dominance_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_dominance_adopt"
+          },
+          {
+            "id": "tr_dominance_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_dominance_finish"
+          },
+          {
+            "id": "tr_dominion_2_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_dominion_2_adopt"
+          },
+          {
+            "id": "tr_dominion_2_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_dominion_2_finish"
+          },
+          {
+            "id": "tr_eugenics_1",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_eugenics_1"
+          },
+          {
+            "id": "tr_eugenics_2",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_eugenics_2"
+          },
+          {
+            "id": "tr_eugenics_3",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_eugenics_3"
+          },
+          {
+            "id": "tr_eugenics_4",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_eugenics_4"
+          },
+          {
+            "id": "tr_eugenics_5",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_eugenics_5"
+          },
+          {
+            "id": "tr_eugenics_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_eugenics_adopt"
+          },
+          {
+            "id": "tr_eugenics_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_eugenics_finish"
+          },
+          {
+            "id": "tr_federation_1",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_federation_1"
+          },
+          {
+            "id": "tr_federation_2",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_federation_2"
+          },
+          {
+            "id": "tr_federation_2_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_federation_2_adopt"
+          },
+          {
+            "id": "tr_federation_2_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_federation_2_finish"
+          },
+          {
+            "id": "tr_federation_4",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_federation_4"
+          },
+          {
+            "id": "tr_federation_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_federation_adopt"
+          },
+          {
+            "id": "tr_federation_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_federation_finish"
+          },
+          {
+            "id": "tr_ferengi_2_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_ferengi_2_adopt"
+          },
+          {
+            "id": "tr_ferengi_2_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_ferengi_2_finish"
+          },
+          {
+            "id": "tr_futility_borg_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_futility_borg_adopt"
+          },
+          {
+            "id": "tr_futility_borg_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_futility_borg_finish"
+          },
+          {
+            "id": "tr_glory_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_glory_adopt"
+          },
+          {
+            "id": "tr_glory_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_glory_finish"
+          },
+          {
+            "id": "tr_great_houses_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_great_houses_adopt"
+          },
+          {
+            "id": "tr_great_houses_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_great_houses_finish"
+          },
+          {
+            "id": "tr_harvesting_borg_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_harvesting_borg_adopt"
+          },
+          {
+            "id": "tr_harvesting_borg_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_harvesting_borg_finish"
+          },
+          {
+            "id": "tr_holographic_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_holographic_adopt"
+          },
+          {
+            "id": "tr_holographic_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_holographic_finish"
+          },
+          {
+            "id": "tr_honour_1",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_honour_1"
+          },
+          {
+            "id": "tr_honour_2",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_honour_2"
+          },
+          {
+            "id": "tr_honour_3",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_honour_3"
+          },
+          {
+            "id": "tr_honour_4",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_honour_4"
+          },
+          {
+            "id": "tr_honour_5",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_honour_5"
+          },
+          {
+            "id": "tr_honour_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_honour_adopt"
+          },
+          {
+            "id": "tr_honour_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_honour_finish"
+          },
+          {
+            "id": "tr_imperious_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_imperious_adopt"
+          },
+          {
+            "id": "tr_imperious_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_imperious_finish"
+          },
+          {
+            "id": "tr_kessok_3",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_kessok_3"
+          },
+          {
+            "id": "tr_kessok_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_kessok_adopt"
+          },
+          {
+            "id": "tr_kessok_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_kessok_finish"
+          },
+          {
+            "id": "tr_klingon_2_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_klingon_2_adopt"
+          },
+          {
+            "id": "tr_klingon_2_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_klingon_2_finish"
+          },
+          {
+            "id": "tr_logic_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_logic_adopt"
+          },
+          {
+            "id": "tr_logic_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_logic_finish"
+          },
+          {
+            "id": "tr_logistics_1",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_logistics_1"
+          },
+          {
+            "id": "tr_logistics_2",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_logistics_2"
+          },
+          {
+            "id": "tr_logistics_3",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_logistics_3"
+          },
+          {
+            "id": "tr_logistics_4",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_logistics_4"
+          },
+          {
+            "id": "tr_logistics_5",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_logistics_5"
+          },
+          {
+            "id": "tr_logistics_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_logistics_adopt"
+          },
+          {
+            "id": "tr_logistics_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_logistics_finish"
+          },
+          {
+            "id": "tr_might_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_might_adopt"
+          },
+          {
+            "id": "tr_might_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_might_finish"
+          },
+          {
+            "id": "tr_obsidian_order_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_obsidian_order_adopt"
+          },
+          {
+            "id": "tr_obsidian_order_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_obsidian_order_finish"
+          },
+          {
+            "id": "tr_order_1",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_order_1"
+          },
+          {
+            "id": "tr_order_2",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_order_2"
+          },
+          {
+            "id": "tr_order_3",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_order_3"
+          },
+          {
+            "id": "tr_order_4",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_order_4"
+          },
+          {
+            "id": "tr_order_5",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_order_5"
+          },
+          {
+            "id": "tr_order_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_order_adopt"
+          },
+          {
+            "id": "tr_order_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_order_finish"
+          },
+          {
+            "id": "tr_perfection_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_perfection_adopt"
+          },
+          {
+            "id": "tr_perfection_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_perfection_finish"
+          },
+          {
+            "id": "tr_preservation_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_preservation_adopt"
+          },
+          {
+            "id": "tr_preservation_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_preservation_finish"
+          },
+          {
+            "id": "tr_productivity_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_productivity_adopt"
+          },
+          {
+            "id": "tr_productivity_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_productivity_finish"
+          },
+          {
+            "id": "tr_prophecy_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_prophecy_adopt"
+          },
+          {
+            "id": "tr_prophecy_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_prophecy_finish"
+          },
+          {
+            "id": "tr_resilience_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_resilience_adopt"
+          },
+          {
+            "id": "tr_resilience_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_resilience_finish"
+          },
+          {
+            "id": "tr_revelation_adopt_undine",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_revelation_adopt_undine"
+          },
+          {
+            "id": "tr_revelation_undine_1",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_revelation_undine_1"
+          },
+          {
+            "id": "tr_revelation_undine_2",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_revelation_undine_2"
+          },
+          {
+            "id": "tr_revelation_undine_3",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_revelation_undine_3"
+          },
+          {
+            "id": "tr_revelation_undine_4",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_revelation_undine_4"
+          },
+          {
+            "id": "tr_revelation_undine_5",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_revelation_undine_5"
+          },
+          {
+            "id": "tr_revelation_undine_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_revelation_undine_finish"
+          },
+          {
+            "id": "tr_romulan_2_2",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_romulan_2_2"
+          },
+          {
+            "id": "tr_romulan_2_3",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_romulan_2_3"
+          },
+          {
+            "id": "tr_romulan_2_4",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_romulan_2_4"
+          },
+          {
+            "id": "tr_romulan_2_5",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_romulan_2_5"
+          },
+          {
+            "id": "tr_romulan_2_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_romulan_2_adopt"
+          },
+          {
+            "id": "tr_romulan_2_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_romulan_2_finish"
+          },
+          {
+            "id": "tr_section_31_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_section_31_adopt"
+          },
+          {
+            "id": "tr_section_31_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_section_31_finish"
+          },
+          {
+            "id": "tr_strength_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_strength_adopt"
+          },
+          {
+            "id": "tr_strength_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_strength_finish"
+          },
+          {
+            "id": "tr_supremacy_finish_undine",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_supremacy_finish_undine"
+          },
+          {
+            "id": "tr_supremacy_undine_1",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_supremacy_undine_1"
+          },
+          {
+            "id": "tr_supremacy_undine_2",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_supremacy_undine_2"
+          },
+          {
+            "id": "tr_supremacy_undine_3",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_supremacy_undine_3"
+          },
+          {
+            "id": "tr_supremacy_undine_4",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_supremacy_undine_4"
+          },
+          {
+            "id": "tr_supremacy_undine_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_supremacy_undine_adopt"
+          },
+          {
+            "id": "tr_synchronicity_borg_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_synchronicity_borg_adopt"
+          },
+          {
+            "id": "tr_synchronicity_borg_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_synchronicity_borg_finish"
+          },
+          {
+            "id": "tr_tal_shiar_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_tal_shiar_adopt"
+          },
+          {
+            "id": "tr_tal_shiar_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_tal_shiar_finish"
+          },
+          {
+            "id": "tr_tal_shiar_operational_security",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_tal_shiar_operational_security"
+          },
+          {
+            "id": "tr_tanagra_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_tanagra_adopt"
+          },
+          {
+            "id": "tr_tanagra_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_tanagra_finish"
+          },
+          {
+            "id": "tr_the_link_1",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_the_link_1"
+          },
+          {
+            "id": "tr_the_link_2",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_the_link_2"
+          },
+          {
+            "id": "tr_the_link_3",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_the_link_3"
+          },
+          {
+            "id": "tr_the_link_4",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_the_link_4"
+          },
+          {
+            "id": "tr_the_link_5",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_the_link_5"
+          },
+          {
+            "id": "tr_the_link_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_the_link_adopt"
+          },
+          {
+            "id": "tr_the_link_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_the_link_finish"
+          },
+          {
+            "id": "tr_time_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_time_adopt"
+          },
+          {
+            "id": "tr_time_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_time_finish"
+          },
+          {
+            "id": "tr_versatility_borg_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_versatility_borg_adopt"
+          },
+          {
+            "id": "tr_versatility_borg_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_versatility_borg_finish"
+          },
+          {
+            "id": "tr_victory_1",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_victory_1"
+          },
+          {
+            "id": "tr_victory_2",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_victory_2"
+          },
+          {
+            "id": "tr_victory_3",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_victory_3"
+          },
+          {
+            "id": "tr_victory_4",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_victory_4"
+          },
+          {
+            "id": "tr_victory_5",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_victory_5"
+          },
+          {
+            "id": "tr_victory_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_victory_adopt"
+          },
+          {
+            "id": "tr_victory_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_victory_finish"
+          },
+          {
+            "id": "tr_voth_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_voth_adopt"
+          },
+          {
+            "id": "tr_voth_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_voth_finish"
+          },
+          {
+            "id": "tr_weak_shall_perish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_weak_shall_perish"
+          },
+          {
+            "id": "tr_xindi_adopt",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_xindi_adopt"
+          },
+          {
+            "id": "tr_xindi_finish",
+            "changed_fields": [
+              "icon"
+            ],
+            "name_key": "tr_xindi_finish"
+          }
+        ]
+      },
+      "ascension_perks": {
+        "old_count": 58,
+        "new_count": 58,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "governments": {
+        "old_count": 185,
+        "new_count": 185,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "civics": {
+        "old_count": 332,
+        "new_count": 332,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "authorities": {
+        "old_count": 17,
+        "new_count": 17,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "policies": {
+        "old_count": 53,
+        "new_count": 53,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "edicts": {
+        "old_count": 86,
+        "new_count": 86,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "megastructures": {
+        "old_count": 116,
+        "new_count": 116,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "relics": {
+        "old_count": 68,
+        "new_count": 68,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "anomalies": {
+        "old_count": 132,
+        "new_count": 132,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "archaeology": {
+        "old_count": 29,
+        "new_count": 29,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "empires": {
+        "old_count": 110,
+        "new_count": 110,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "species": {
+        "old_count": 255,
+        "new_count": 255,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "jobs": {
+        "old_count": 306,
+        "new_count": 306,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "deposits": {
+        "old_count": 667,
+        "new_count": 667,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "components": {
+        "old_count": 6406,
+        "new_count": 6406,
+        "added": [],
+        "removed": [],
+        "modified": []
+      }
+    }
+  },
+  {
     "timestamp": "2026-04-04T22:10:49.879609",
     "summary": {
       "total_added": 0,

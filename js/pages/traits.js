@@ -184,6 +184,11 @@
             }
 
             let rightHtml = '';
+            // Required technologies (shown as clickable tech links)
+            if (item.required_technologies && item.required_technologies.length) {
+                rightHtml += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.prerequisites')}</div>`;
+                rightHtml += `<div class="detail-meta">${SharedRender.techLinks(item.required_technologies)}</div></div>`;
+            }
             // Requirements
             if (item.possible) {
                 rightHtml += `<div class="detail-section">${SharedRender.dualView(item.possible, I18n.ui('ui.detail.requirements'))}</div>`;
