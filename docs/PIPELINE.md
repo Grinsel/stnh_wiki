@@ -29,13 +29,13 @@ Phase 8: Summary        -> Statistiken + last_update.json
 ### Aufruf-Beispiele
 
 ```bash
-python UPDATE_WIKI.py                        # Vollstaendig (~12s + Bilder)
-python UPDATE_WIKI.py --skip-images          # Ohne Bilder (~12s)
+python UPDATE_WIKI.py                        # Vollstaendig (~58s + Bilder)
+python UPDATE_WIKI.py --skip-images          # Ohne Bilder (~58s)
 python UPDATE_WIKI.py --only events          # Nur Events-Modul
 python UPDATE_WIKI.py --only ships           # Nur Ships & Components
 python UPDATE_WIKI.py --only buildings       # Nur Buildings & Districts
 python UPDATE_WIKI.py --only traits          # Nur Traits, Traditions, Perks
-python UPDATE_WIKI.py --only governments     # Nur Govs, Civics, Policies, Edicts
+python UPDATE_WIKI.py --only governments     # Nur Govs, Civics, Policies, Edicts, Councilors
 python UPDATE_WIKI.py --only megastructures  # Nur Megastructures & Relics
 python UPDATE_WIKI.py --only anomalies       # Nur Anomalies & Archaeology
 python UPDATE_WIKI.py --only empires         # Nur Empires & Species
@@ -100,13 +100,15 @@ LANGUAGES = ['english', 'german', 'french', 'spanish', 'russian', 'polish', 'bra
 | Ship Models | pdx_mesh_reader, convert_ship_models | (direkt) | models/{faction}/{ship}.glb |
 | Buildings | parse_buildings, parse_districts | generate_buildings_json | buildings.json, districts.json |
 | Traits | parse_traits, parse_traditions, parse_ascension_perks | generate_traits_json | traits.json, traditions.json, ascension_perks.json |
-| Governments | parse_governments, parse_policies, parse_edicts | generate_governments_json | governments.json, civics.json, authorities.json, policies.json, edicts.json |
+| Governments | parse_governments, parse_policies, parse_edicts, parse_councilors | generate_governments_json | governments.json, civics.json, authorities.json, policies.json, edicts.json, councilors.json |
 | Megastructures | parse_megastructures, parse_relics | generate_megastructures_json | megastructures.json, relics.json |
 | Anomalies | parse_anomalies, parse_archaeology | generate_anomalies_json | anomalies.json, archaeology.json |
 | Empires | parse_empires, parse_species | generate_empires_json | empires.json, species.json |
 | Economy | parse_jobs, parse_deposits | generate_economy_json | jobs.json, deposits.json |
 | Galaxy Map | (Empires-Daten) | generate_galaxy_map_json | galaxy_map.json |
 | Tech Item Map | (Tech + Content-Daten) | generate_tech_item_map | tech_item_map.json |
+| Loc-Splitting | split_localisation | (direkt) | localisation/{lang}/{module}.json |
+| Changes | generate_changes_json | (direkt) | changes.json, changes_history.json |
 | Search | (alle obigen) | generate_search_index, generate_cross_references | search_index.json, cross_references.json, module_pages.json |
 | Images | (GFX-Mapping) | convert_images | pictures/*.webp |
 

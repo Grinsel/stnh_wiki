@@ -1,5 +1,236 @@
 [
   {
+    "timestamp": "2026-04-06T09:40:46.732126",
+    "summary": {
+      "total_added": 0,
+      "total_removed": 0,
+      "total_modified": 8,
+      "modules_changed": 1,
+      "modules_unchanged": 21
+    },
+    "modules": {
+      "events_index": {
+        "old_count": 8873,
+        "new_count": 8873,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "ships": {
+        "old_count": 423,
+        "new_count": 423,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "buildings": {
+        "old_count": 653,
+        "new_count": 653,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "districts": {
+        "old_count": 56,
+        "new_count": 56,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traits": {
+        "old_count": 461,
+        "new_count": 461,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traditions": {
+        "old_count": 448,
+        "new_count": 448,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "ascension_perks": {
+        "old_count": 58,
+        "new_count": 58,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "governments": {
+        "old_count": 185,
+        "new_count": 185,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "civics": {
+        "old_count": 332,
+        "new_count": 332,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "authorities": {
+        "old_count": 17,
+        "new_count": 17,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "policies": {
+        "old_count": 53,
+        "new_count": 53,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "edicts": {
+        "old_count": 86,
+        "new_count": 86,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "councilors": {
+        "old_count": 146,
+        "new_count": 146,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "councilor_chief_ambassador",
+            "changed_fields": [
+              "civic"
+            ],
+            "name_key": "councilor_chief_ambassador"
+          },
+          {
+            "id": "councilor_high_priest",
+            "changed_fields": [
+              "civic"
+            ],
+            "name_key": "councilor_high_priest"
+          },
+          {
+            "id": "councilor_mining_guilds",
+            "changed_fields": [
+              "civic",
+              "icon",
+              "icon_dir"
+            ],
+            "name_key": "councilor_mining_guilds"
+          },
+          {
+            "id": "councilor_obsidian_order",
+            "changed_fields": [
+              "civic",
+              "icon",
+              "icon_dir"
+            ],
+            "name_key": "councilor_obsidian_order"
+          },
+          {
+            "id": "councilor_orion_syndicate",
+            "changed_fields": [
+              "civic"
+            ],
+            "name_key": "councilor_orion_syndicate"
+          },
+          {
+            "id": "councilor_slaver_guilds",
+            "changed_fields": [
+              "civic",
+              "icon",
+              "icon_dir"
+            ],
+            "name_key": "councilor_slaver_guilds"
+          },
+          {
+            "id": "councilor_starfleet_security",
+            "changed_fields": [
+              "civic"
+            ],
+            "name_key": "councilor_starfleet_security"
+          },
+          {
+            "id": "councilor_tal_shiar",
+            "changed_fields": [
+              "civic",
+              "icon",
+              "icon_dir"
+            ],
+            "name_key": "councilor_tal_shiar"
+          }
+        ]
+      },
+      "megastructures": {
+        "old_count": 116,
+        "new_count": 116,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "relics": {
+        "old_count": 68,
+        "new_count": 68,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "anomalies": {
+        "old_count": 132,
+        "new_count": 132,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "archaeology": {
+        "old_count": 29,
+        "new_count": 29,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "empires": {
+        "old_count": 110,
+        "new_count": 110,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "species": {
+        "old_count": 255,
+        "new_count": 255,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "jobs": {
+        "old_count": 306,
+        "new_count": 306,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "deposits": {
+        "old_count": 667,
+        "new_count": 667,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "components": {
+        "old_count": 6406,
+        "new_count": 6406,
+        "added": [],
+        "removed": [],
+        "modified": []
+      }
+    }
+  },
+  {
     "timestamp": "2026-04-06T07:56:08.332928",
     "summary": {
       "total_added": 0,

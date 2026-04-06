@@ -150,6 +150,12 @@
   - Policy- und Edikt-Übersicht
   - Verlinkung: Government ↔ Ethik, Civic ↔ Tech
 
+- [x] **5.4 Councilors Parser**
+  - `update/parse_councilors.py`
+  - Quellen: `common/governments/councilors/` (9 Dateien)
+  - Civic-Fallback: Icon aus `possible { has_valid_civic }` wenn kein eigenes Icon
+  - Output: `assets/councilors.json`
+
 ---
 
 ## Phase 6 – Megastrukturen & Relics

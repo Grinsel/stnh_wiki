@@ -25,6 +25,7 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 | `authorities.json` | 7,6 KB | Autoritaeten |
 | `policies.json` | 63 KB | Richtlinien |
 | `edicts.json` | 49 KB | Edikte |
+| `councilors.json` | 67 KB | Councilors: Civic-Zuordnung, Modifier, Leader-Klasse |
 | `megastructures.json` | 160 KB | Megastrukturen: Stufen, Kosten, Effekte, Tech |
 | `relics.json` | 61 KB | Relikte: Passive/Aktive Effekte, Cooldown |
 | `anomalies.json` | 68 KB | Anomalien: Kategorie, Ergebnisse, Trigger |
@@ -39,6 +40,8 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 | `search_index.json` | 2,6 MB | Cross-Module Suchindex (~19.740 Items) |
 | `cross_references.json` | 303 KB | Bidirektionale Cross-Refs |
 | `module_pages.json` | 248 B | Modul -> HTML-Seite Mapping |
+| `changes.json` | 4,9 KB | Aenderungs-Tracking (aktueller vs. vorheriger Lauf) |
+| `changes_history.json` | 908 KB | Aenderungs-Historie ueber alle Laeufe |
 | `last_update.json` | 2,5 MB | Timestamp + Statistiken |
 
 ## Lokalisierung (`assets/localisation/`)
@@ -50,7 +53,7 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 
 ### Event-Bilder (`pictures/`)
 
-- 986 WebP-Dateien
+- 991 WebP-Dateien
 - ~12 MB gesamt
 - Konvertiert aus DDS-Quellen via ImageMagick
 - 480px Breite, proportional, Qualitaet 80
@@ -73,6 +76,61 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 - 79 WebP-Dateien
 - Empire-Flaggen fuer die Empires-Seite und Galaxy Map
 - Konvertiert aus DDS-Quellen
+
+### Traits-Icons (`icons/traits/`)
+
+- 1.106 WebP-Dateien
+- Konvertiert aus DDS-Quellen (Mod + Vanilla, rekursiv)
+
+### Traditions-Icons (`icons/traditions/`)
+
+- 407 WebP-Dateien
+- Konvertiert aus DDS-Quellen (Mod + Vanilla, rekursiv)
+
+### Ascension-Perks-Icons (`icons/ascension_perks/`)
+
+- 66 WebP-Dateien
+- Konvertiert aus DDS-Quellen
+
+### Civics-Icons (`icons/civics/`)
+
+- 330 WebP-Dateien
+- Konvertiert aus DDS-Quellen (`governments/civics/`)
+
+### Authorities-Icons (`icons/authorities/`)
+
+- 154 WebP-Dateien
+- Konvertiert aus DDS-Quellen (`governments/authorities/`)
+
+### Jobs-Icons (`icons/jobs/`)
+
+- 267 WebP-Dateien
+- Konvertiert aus DDS-Quellen
+
+### Deposits-Icons (`icons/deposits/`)
+
+- 474 WebP-Dateien
+- Konvertiert aus DDS-Quellen
+
+### Relics-Icons (`icons/relics/`)
+
+- 138 WebP-Dateien
+- Konvertiert aus DDS-Quellen (152x152, exkl. `_shine` Overlays)
+
+### Edicts-Icons (`icons/edicts/`)
+
+- 4 WebP-Dateien
+- Nur wenige Edicts haben eigene DDS-Icons
+
+### Policies-Icons (`icons/policies/`)
+
+- 11 WebP-Dateien
+- Nur `diplomatic_stance`-Optionen haben eigene Icons
+
+### Councilors-Icons (`icons/councilors/`)
+
+- 20 WebP-Dateien
+- GFX-resolved via `pictures_map.json`, Civic-Fallback fuer Councilors ohne eigenes Icon
 
 ### Unlock-Type-Icons (`icons/unlock_types/`)
 
@@ -113,4 +171,4 @@ Format: `{ "tech_unlocks": {...}, "building_upgrades": {...}, ... }`
 - Jedes Item: `{ id, name, type, module, faction?, description? }`
 - Praefix-Suche: `ship:`, `event:`, `building:`, `trait:`, `civic:`, `mega:`, ...
 - Faction-Synonyme: `fed` -> federation, ufp, starfleet, ...
-- Geladen von `global-search.js` auf allen 11 Seiten
+- Geladen von `global-search.js` auf allen 12 Seiten

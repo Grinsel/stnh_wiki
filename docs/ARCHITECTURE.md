@@ -11,7 +11,7 @@ localisation/{lang}/  -->  parse_localisation.py -->  localisation/*.json     (a
 interface/*.gfx       -->  parse_gfx_mappings.py -->  pictures_map.json
 common/ship_sizes/    -->  parse_ships.py        -->  ships.json         -->  ships.html
 common/buildings/     -->  parse_buildings.py     -->  buildings.json     -->  buildings.html
-   ... (26 Parser)         ... (15 Generatoren)      ... (33 JSONs)         ... (11 Seiten)
+   ... (28 Parser)         ... (17 Generatoren)      ... (36 JSONs)         ... (12 Seiten)
 ```
 
 ## Datenfluss
@@ -33,7 +33,7 @@ common/buildings/     -->  parse_buildings.py     -->  buildings.json     -->  b
    |  - Cross-References berechnen
    |
    v
-4. JSON-Assets (assets/*.json, 33 Dateien + 272 Event-Details)
+4. JSON-Assets (assets/*.json, 36 Dateien + 272 Event-Details)
    |
    v
 5. Browser (Vanilla JS, kein Framework)
@@ -55,7 +55,7 @@ common/buildings/     -->  parse_buildings.py     -->  buildings.json     -->  b
 - Stats-Dashboard, Section-Cards mit Item-Counts
 - Kein Filter-Bar, kein Detail-Panel
 
-**8 Standard Content Pages (ships, buildings, traits, governments, megastructures, anomalies, empires, economy)**
+**9 Standard Content Pages (ships, buildings, traits, governments, megastructures, anomalies, empires, economy, tech-list)**
 - Alle folgen demselben Pattern (siehe FRONTEND.md "Content-Page-Skeleton")
 - Header + Nav + GlobalSearch-Overlay + Filter-Bar (Tabs + Filter) + Content (Liste + Detail)
 - IIFE Page-Controller mit async init
@@ -82,10 +82,10 @@ Shared (alle Seiten):
   ui-strings.js      310+ UI-String-Definitionen
   global-search.js   Cross-Module Prefix-Suche (~19.740 Items)
 
-Content-Pages (8 Seiten):
+Content-Pages (9 Seiten):
   shared-render.js   Gemeinsame Rendering-Funktionen
   humanize.js        PDX-Syntax -> lesbarer Text
-  pages/*.js         10 Page-Controller (IIFE Pattern)
+  pages/*.js         12 Page-Controller (IIFE Pattern)
 
 Events-Only:
   chain-index.js     BFS Connected Components

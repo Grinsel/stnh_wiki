@@ -9,7 +9,7 @@ stnh_wiki/
 |   +-- workflows/
 |       +-- deploy.yml                 # GitHub Pages Auto-Deployment
 |
-+-- assets/                            # [GENERIERT] JSON-Daten (33 Dateien)
++-- assets/                            # [GENERIERT] JSON-Daten (36 Dateien)
 |   +-- events_index.json              # Event-Index (2,6 MB)
 |   +-- namespaces.json                # Namespace-Metadaten (42 KB)
 |   +-- relationships.json             # Event-Trigger-Graph (637 KB)
@@ -28,6 +28,7 @@ stnh_wiki/
 |   +-- authorities.json               # Autoritaeten (7,6 KB)
 |   +-- policies.json                  # Richtlinien (63 KB)
 |   +-- edicts.json                    # Edikte (49 KB)
+|   +-- councilors.json                # Councilors (67 KB)
 |   +-- megastructures.json            # Megastrukturen (160 KB)
 |   +-- relics.json                    # Relikte (61 KB)
 |   +-- anomalies.json                 # Anomalien (68 KB)
@@ -42,17 +43,31 @@ stnh_wiki/
 |   +-- search_index.json              # Suchindex cross-module (2,6 MB, ~19.740 Items)
 |   +-- cross_references.json          # Bidirektionale Cross-Refs (303 KB)
 |   +-- module_pages.json              # Modul -> HTML-Seite Mapping
+|   +-- changes.json                   # Aenderungs-Tracking (4,9 KB)
+|   +-- changes_history.json           # Aenderungs-Historie (908 KB)
 |   +-- last_update.json               # Timestamp + Statistiken
 |   +-- events_detail/                 # Detail-JSONs pro Namespace (272 Dateien)
 |   +-- localisation/                  # Loc-Keys pro Sprache (7 Dateien)
 |   +-- tech/                          # Techtree-Assets (aus git09)
 |   +-- flags/trek/                   # Empire-Flaggen (79 WebP)
 |
-+-- pictures/                          # [GENERIERT] WebP Event-Bilder (986 Dateien)
++-- pictures/                          # [GENERIERT] WebP Event-Bilder (991 Dateien)
 |
-+-- icons/                             # Tech/Item-Icons
++-- icons/                             # Item-Icons (15 Kategorien, 5.901 WebP)
 |   +-- tech/                          # 1.659 Tech-Icons (WebP, aus git09)
-|   +-- buildings/                     # 754 Building-Icons (WebP, aus DDS konvertiert)
+|   +-- buildings/                     # 754 Building-Icons (WebP)
+|   +-- traits/                        # 1.106 Trait-Icons (WebP)
+|   +-- traditions/                    # 407 Traditions-Icons (WebP)
+|   +-- ascension_perks/               # 66 Ascension-Perk-Icons (WebP)
+|   +-- civics/                        # 330 Civic-Icons (WebP)
+|   +-- authorities/                   # 154 Authority-Icons (WebP)
+|   +-- jobs/                          # 267 Job-Icons (WebP)
+|   +-- deposits/                      # 474 Deposit-Icons (WebP)
+|   +-- relics/                        # 138 Relic-Icons (WebP)
+|   +-- edicts/                        # 4 Edict-Icons (WebP)
+|   +-- policies/                      # 11 Policy-Icons (WebP)
+|   +-- councilors/                    # 20 Councilor-Icons (WebP)
+|   +-- flags/                         # 486 Flag-Icons (WebP)
 |   +-- unlock_types/                  # 25 Unlock-Type-Icons (WebP)
 |   +-- tech_icon_mappings.json        # Icon-Name -> Datei-Mapping
 |
@@ -60,7 +75,7 @@ stnh_wiki/
 |   +-- federation-ds9-title.TTF
 |   +-- Tungsten-Light.ttf
 |
-+-- js/                                # Frontend JavaScript (53 Dateien)
++-- js/                                # Frontend JavaScript (54 Dateien)
 |   +-- common.js                      # Shared: Theme, Font, Lang, Nav, Hamburger, GlobalSearch
 |   +-- data.js                        # DataManager - Asynchrones JSON-Laden + Cache
 |   +-- state.js                       # AppState - URL-synchronisierter State
@@ -74,18 +89,19 @@ stnh_wiki/
 |   +-- humanize.js                    # PDX-Syntax -> lesbarer Text
 |   +-- shared-render.js               # Gemeinsames Rendering fuer Content-Module
 |   +-- ship-viewer.js                 # 3D Ship Viewer (Three.js, lazy-loaded)
-|   +-- pages/                         # 11 Seiten-Controller
+|   +-- pages/                         # 12 Seiten-Controller
 |   |   +-- hub.js                     # Hub: Stats, GlobalSearch Full-Results
 |   |   +-- events.js                  # Events: Filter, Sidebar, Detail, Chains
 |   |   +-- ships.js                   # Ships: Tabs (Ships/Components), Filter, Detail
 |   |   +-- buildings.js               # Buildings: Tabs (Buildings/Districts), Filter
 |   |   +-- traits.js                  # Traits: Tabs (Traits/Traditions/Perks), Filter
-|   |   +-- governments.js             # Govs: Tabs (Govs/Civics/Auth/Policies/Edicts)
+|   |   +-- governments.js             # Govs: Tabs (Govs/Civics/Auth/Policies/Edicts/Councilors)
 |   |   +-- megastructures.js          # Megas: Tabs (Megastructures/Relics)
 |   |   +-- anomalies.js              # Anomalies: Tabs (Anomalies/Archaeology)
 |   |   +-- empires.js                 # Empires: Tabs (Empires/Species)
 |   |   +-- economy.js                 # Economy: Tabs (Jobs/Deposits)
 |   |   +-- galaxy-map.js             # Galaxy Map: Empire-Startpositionen (Canvas)
+|   |   +-- tech-list.js             # Tech-List: Tabellarische Tech-Uebersicht
 |   +-- ui/                            # 5 UI-Komponenten
 |   |   +-- event-list.js              # Paginierte Event-Liste
 |   |   +-- event-detail.js            # Event-Detailansicht
@@ -99,7 +115,7 @@ stnh_wiki/
 |           +-- events.js, zoom.js, tabs.js, tiers.js, popup.js, ...
 |           +-- layouts/               # 5 Layout-Engines (force, grid, tier, arrows, disjoint)
 |
-+-- update/                            # Python Daten-Pipeline (77 Dateien: 50 core + 27 techtree)
++-- update/                            # Python Daten-Pipeline (81 Dateien: 54 core + 27 techtree)
 |   +-- UPDATE_WIKI.py                 # Master-Orchestrator (alle Phasen)
 |   +-- UPDATE_EVENTS.py               # Modul-Updater: Events
 |   +-- UPDATE_LOC.py                  # Modul-Updater: Localisation
@@ -123,6 +139,7 @@ stnh_wiki/
 |   +-- parse_governments.py           # Regierungen
 |   +-- parse_policies.py              # Richtlinien
 |   +-- parse_edicts.py                # Edikte
+|   +-- parse_councilors.py            # Councilors
 |   +-- parse_megastructures.py        # Megastrukturen
 |   +-- parse_relics.py                # Relikte
 |   +-- parse_anomalies.py             # Anomalien
@@ -136,7 +153,7 @@ stnh_wiki/
 |   +-- generate_ships_json.py         # Ships + Components JSON
 |   +-- generate_buildings_json.py     # Buildings + Districts JSON
 |   +-- generate_traits_json.py        # Traits + Traditions + Perks JSON
-|   +-- generate_governments_json.py   # Govs + Civics + Auth + Policies + Edicts JSON
+|   +-- generate_governments_json.py   # Govs + Civics + Auth + Policies + Edicts + Councilors JSON
 |   +-- generate_megastructures_json.py# Megastructures + Relics JSON
 |   +-- generate_anomalies_json.py     # Anomalies + Archaeology JSON
 |   +-- generate_empires_json.py       # Empires + Species JSON
@@ -145,6 +162,8 @@ stnh_wiki/
 |   +-- generate_cross_references.py   # Bidirektionale Cross-Refs
 |   +-- generate_galaxy_map_json.py   # Galaxy-Map Startpositionen
 |   +-- generate_tech_item_map.py     # Tech -> Item Cross-Reference Map
+|   +-- generate_changes_json.py      # Aenderungs-Tracking (changes.json, changes_history.json)
+|   +-- split_localisation.py          # Localisation-Splitting pro Modul
 |   +-- convert_images.py              # DDS -> WebP Konvertierung (Event-Bilder)
 |   +-- convert_building_icons.py     # DDS -> WebP Konvertierung (Building-Icons)
 |   +-- convert_ship_models.py        # PdxMesh -> GLB 3D-Modelle
@@ -163,6 +182,7 @@ stnh_wiki/
 +-- index.html                         # Hub / Landing Page
 +-- events.html                        # Event Browser
 +-- tech.html                          # Tech Tree (D3.js, eigenes Inline-CSS)
++-- tech-list.html                     # Tech-Liste (tabellarische Uebersicht)
 +-- ships.html                         # Schiffe & Komponenten
 +-- buildings.html                     # Gebaeude & Distrikte
 +-- traits.html                        # Traits & Traditionen

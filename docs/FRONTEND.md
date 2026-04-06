@@ -12,11 +12,12 @@ Vanilla HTML/CSS/JS, kein Build-System, kein Framework. Jede HTML-Seite laedt Sh
 | Ships | ships.html | search-input | Ships, Components | ships.js |
 | Buildings | buildings.html | search-input | Buildings, Districts | buildings.js |
 | Traits | traits.html | search-input | Traits, Traditions, Perks | traits.js |
-| Governments | governments.html | search-input | Govs, Civics, Auth, Policies, Edicts | governments.js |
+| Governments | governments.html | search-input | Govs, Civics, Auth, Policies, Edicts, Councilors | governments.js |
 | Megastructures | megastructures.html | search-input | Megastructures, Relics | megastructures.js |
 | Anomalies | anomalies.html | search-input | Anomalies, Archaeology | anomalies.js |
 | Empires | empires.html | search-input | Empires, Species | empires.js |
 | Economy | economy.html | search-input | Jobs, Deposits | economy.js |
+| Tech List | tech-list.html | search-input | - | tech-list.js |
 
 **Galaxy Map:** Kein eigenes HTML — eingebettet in empires.html als Canvas-Modul via `galaxy-map.js`. Zeigt Empire-Startpositionen auf einer stilisierten Galaxiekarte. Daten aus `assets/galaxy_map.json`.
 
@@ -199,7 +200,7 @@ Alle 8 Standard-Content-Pages (ships, buildings, traits, governments, megastruct
 })();
 ```
 
-Dieses Pattern gilt fuer: ships.js, buildings.js, traits.js, governments.js, megastructures.js, anomalies.js, empires.js, economy.js. Galaxy-map.js folgt einem eigenen Canvas-basierten Pattern.
+Dieses Pattern gilt fuer: ships.js, buildings.js, traits.js, governments.js, megastructures.js, anomalies.js, empires.js, economy.js, tech-list.js. Galaxy-map.js folgt einem eigenen Canvas-basierten Pattern.
 
 ### Dual-Search-Verhalten
 

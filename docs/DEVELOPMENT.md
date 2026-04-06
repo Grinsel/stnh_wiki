@@ -34,7 +34,7 @@ WIKI_ROOT = r"C:\Users\marcj\git10\stnh_wiki"                     # Pfad zum Wik
 
 ```bash
 cd update
-python UPDATE_WIKI.py --skip-images     # Vollstaendig ohne Bilder (~12s)
+python UPDATE_WIKI.py --skip-images     # Vollstaendig ohne Bilder (~58s)
 python UPDATE_WIKI.py --only events     # Nur Events
 python UPDATE_WIKI.py --only search     # Nur Suchindex
 ```
@@ -100,7 +100,7 @@ UPDATE_TECHTREE.bat  # Techtree-Pipeline
    - IIFE-Pattern (siehe FRONTEND.md "Content-Page-Skeleton")
    - Daten laden, Tabs/Filter initialisieren, Rendering
 
-3. **Navigation aktualisieren**: In allen 11 HTML-Dateien
+3. **Navigation aktualisieren**: In allen 12 HTML-Dateien
    - Neuen `<a class="nav-link">` in `#wiki-nav` hinzufuegen
    - OG-Tags aktualisieren falls noetig
 
@@ -151,7 +151,7 @@ UPDATE_TECHTREE.bat  # Techtree-Pipeline
 
 | Eigenschaft | Wert |
 |---|---|
-| HTML-Seiten | 11 |
+| HTML-Seiten | 12 |
 | Events | ~8.867 |
 | Techs | ~2.600 |
 | Content-Items (Non-Event) | ~10.873 |
@@ -159,10 +159,10 @@ UPDATE_TECHTREE.bat  # Techtree-Pipeline
 | Sprachen | 7 |
 | Loc-Keys | ~200.000+ pro Sprache |
 | GFX Sprites | 7.338 |
-| Event-Bilder | 986 (WebP) |
+| Event-Bilder | 991 (WebP) |
 | Building-Icons | 754 (WebP) |
 | Tech-Icons | 1.659 (WebP) |
-| JSON-Assets | 33 + 272 Event-Details |
-| JS-Dateien | 53 |
-| Python-Pipeline | 77 Dateien (50 core + 27 techtree) |
+| JSON-Assets | 36 + 272 Event-Details |
+| JS-Dateien | 54 |
+| Python-Pipeline | 81 Dateien (54 core + 27 techtree) |
 | Projektgroesse | ~1,4 GB (inkl. 3D-Modelle, ohne: ~294 MB) |
