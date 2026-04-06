@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-06T14:47:27.467281",
-  "elapsed_seconds": 47.2,
+  "timestamp": "2026-04-06T22:59:02.301097",
+  "elapsed_seconds": 86.8,
   "results": {
     "localisation": {
       "english": 240897,
@@ -57257,11 +57257,11 @@
     "ships": {
       "ships": 423,
       "components": 6406,
-      "ships_with_models": 306,
-      "model_variants": 1519,
+      "ships_with_models": 374,
+      "model_variants": 1624,
       "files": 142,
       "errors": 0,
-      "elapsed": 11.2
+      "elapsed": 15.1
     },
     "buildings": {
       "buildings": 653,
@@ -57293,10 +57293,10 @@
       "megastructures": 116,
       "relics": 68,
       "megas_with_models": 53,
-      "mega_model_variants": 102,
+      "mega_model_variants": 103,
       "files": 67,
       "errors": 0,
-      "elapsed": 4.7
+      "elapsed": 4.5
     },
     "anomalies": {
       "anomalies": 132,
@@ -57313,10 +57313,11 @@
       "elapsed": 0.0
     },
     "galaxy_map": {
-      "placed": 105,
-      "unplaced": 3,
+      "placed": 103,
+      "unplaced": 1,
+      "maps": 16,
       "flags_converted": 79,
-      "elapsed": 0.0
+      "elapsed": 0.4
     },
     "economy": {
       "jobs": 306,
@@ -57381,20 +57382,20 @@
       }
     },
     "ship_models": {
-      "converted": 46,
-      "skipped": 1473,
+      "converted": 1624,
+      "skipped": 0,
       "failed": 0,
-      "multi_mesh": 12,
-      "total": 1519,
-      "elapsed": 2.3
+      "multi_mesh": 240,
+      "total": 1624,
+      "elapsed": 32.0
     },
     "mega_models": {
-      "converted": 0,
-      "skipped": 102,
+      "converted": 103,
+      "skipped": 0,
       "failed": 0,
-      "multi_mesh": 0,
-      "total": 102,
-      "elapsed": 0.0
+      "multi_mesh": 32,
+      "total": 103,
+      "elapsed": 7.0
     },
     "images": {
       "total": 991,
@@ -57605,9 +57606,9 @@
     "changes": {
       "total_added": 0,
       "total_removed": 0,
-      "total_modified": 390,
-      "modules_changed": 6,
-      "modules_unchanged": 16
+      "total_modified": 1,
+      "modules_changed": 1,
+      "modules_unchanged": 21
     }
   }
 }
