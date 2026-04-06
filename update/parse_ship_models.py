@@ -9,6 +9,7 @@ Uses a 4-strategy matching algorithm for reliable entity-to-ship assignment.
 
 import os
 from parse_pdx import parse_file, get_value, get_all_values, get_blocks
+from pdx_mesh_reader import parse_mesh_file, extract_locators
 from config import MOD_SHIP_MODELS_DIR, STNH_MOD_ROOT, MOD_SHIP_SIZES_DIR, MOD_PRESCRIPTED_COUNTRIES_DIR, MOD_SECTION_TEMPLATES_DIR
 
 
@@ -173,7 +174,35 @@ def parse_all_assets(models_dir):
     return entities, file_count, error_count
 
 
-def resolve_attachment_tree(entity_name, entities, meshes, mod_root, depth=0, max_depth=3, visited=None):
+def _get_mesh_locators(ent, meshes, mod_root, cache):
+    """Get locators from the mesh binary file for an entity.
+
+    Uses cache to avoid re-parsing the same .mesh file.
+    Returns dict: locator_name -> { 'position': [x,y,z], ... }
+    """
+    pdxmesh_name = ent.get('pdxmesh')
+    if not pdxmesh_name:
+        return {}
+    mesh_info = meshes.get(pdxmesh_name)
+    if not mesh_info or not mesh_info.get('file'):
+        return {}
+    mesh_file = mesh_info['file']
+    if mesh_file in cache:
+        return cache[mesh_file]
+    full_path = os.path.join(mod_root, mesh_file.replace('/', os.sep))
+    if not os.path.isfile(full_path):
+        cache[mesh_file] = {}
+        return {}
+    try:
+        root = parse_mesh_file(full_path)
+        locators = extract_locators(root)
+    except Exception:
+        locators = {}
+    cache[mesh_file] = locators
+    return locators
+
+
+def resolve_attachment_tree(entity_name, entities, meshes, mod_root, depth=0, max_depth=3, visited=None, mesh_locator_cache=None):
     """Recursively resolve entity + all attachments into a flat list of meshes with transforms.
 
     Returns: [ { mesh_file, scale, position, rotation, textures } ]
@@ -181,6 +210,8 @@ def resolve_attachment_tree(entity_name, entities, meshes, mod_root, depth=0, ma
     """
     if visited is None:
         visited = set()
+    if mesh_locator_cache is None:
+        mesh_locator_cache = {}
     if depth > max_depth or entity_name in visited:
         return []
     visited.add(entity_name)
@@ -219,9 +250,17 @@ def resolve_attachment_tree(entity_name, entities, meshes, mod_root, depth=0, ma
         loc_rot = loc_data.get('rotation', [0, 0, 0])
         loc_scale = loc_data.get('scale', 1.0)
 
+        # Fallback: if position is [0,0,0], check mesh-binary locators
+        if loc_pos == [0, 0, 0]:
+            mesh_locs = _get_mesh_locators(ent, meshes, mod_root, mesh_locator_cache)
+            mesh_loc = mesh_locs.get(loc_name, {})
+            if mesh_loc.get('position'):
+                loc_pos = mesh_loc['position']
+
         child_meshes = resolve_attachment_tree(
             target_entity, entities, meshes, mod_root,
-            depth=depth + 1, max_depth=max_depth, visited=visited.copy()
+            depth=depth + 1, max_depth=max_depth, visited=visited.copy(),
+            mesh_locator_cache=mesh_locator_cache
         )
 
         for cm in child_meshes:
@@ -376,11 +415,15 @@ def _is_frame_mesh(entity_name, entities, meshes, mod_root):
 
 def _add_to_map(ship_models_map, ship_id, faction, entity_name, entities, meshes, mod_root):
     """Resolve entity attachment tree and add to the ship models map.
-    Returns True if added, False if already present or failed.
+    Returns True if added, False if already present, failed, or frame placeholder.
     """
     if ship_id not in ship_models_map:
         ship_models_map[ship_id] = {}
     if faction in ship_models_map[ship_id]:
+        return False
+
+    # Skip frame placeholder meshes (<4KB, 1 triangle)
+    if _is_frame_mesh(entity_name, entities, meshes, mod_root):
         return False
 
     mesh_list = resolve_attachment_tree(entity_name, entities, meshes, mod_root)
@@ -512,9 +555,14 @@ def build_ship_models_map(models_dir, ship_sizes_dir, mod_root, section_template
 
             if candidates:
                 candidates.sort(key=lambda x: -x[0])
-                best_entity = candidates[0][1]
-                if _add_to_map(ship_models_map, ship_id, faction, best_entity, entities, meshes, mod_root):
-                    matched_by_strategy[3] += 1
+                for _, cand_entity in candidates:
+                    if _add_to_map(ship_models_map, ship_id, faction, cand_entity, entities, meshes, mod_root):
+                        matched_by_strategy[3] += 1
+                        break
+                else:
+                    # No candidate accepted → fall through to Strategy 4
+                    pass
+                if faction in ship_models_map.get(ship_id, {}):
                     continue
 
             # Strategy 4: Path-based fallback — find entity whose mesh file is in

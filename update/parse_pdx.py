@@ -99,7 +99,18 @@ class PdxParser:
     def parse(self, text):
         """Parse a PDX script string. Returns list of dicts."""
         lexer = PdxLexer(text)
-        return self._parse_statements(lexer)
+        statements = self._parse_statements(lexer)
+        # Build variable table from top-level @var = value
+        var_table = {}
+        for stmt in statements:
+            if isinstance(stmt, dict):
+                for k, v in stmt.items():
+                    if isinstance(k, str) and k.startswith('@') and not isinstance(v, (list, dict)):
+                        var_table[k] = v
+        # Resolve @variable references in all statements
+        if var_table:
+            statements = _resolve_variables(statements, var_table)
+        return statements
 
     def _parse_statements(self, lexer):
         statements = []
@@ -231,6 +242,20 @@ class PdxParser:
                     items.append(stmt)
 
         return items
+
+
+def _resolve_variables(obj, var_table):
+    """Recursively resolve @variable references in parsed data."""
+    if isinstance(obj, list):
+        return [_resolve_variables(item, var_table) for item in obj]
+    if isinstance(obj, dict):
+        result = {}
+        for k, v in obj.items():
+            result[k] = _resolve_variables(v, var_table)
+        return result
+    if isinstance(obj, str) and obj.startswith('@') and obj in var_table:
+        return var_table[obj]
+    return obj
 
 
 def _coerce_number(val):

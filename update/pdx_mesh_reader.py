@@ -186,6 +186,36 @@ def extract_mesh_data(root):
     return results
 
 
+def extract_locators(root):
+    """Extract locator positions from a parsed PdxNode tree.
+
+    Mesh binary structure:
+        locator (depth=1)
+          spacedock_loc_01 (depth=2)
+            .p (fx3): [x, y, z]       <- position
+            .q (fx4): [qx, qy, qz, qw] <- quaternion rotation
+
+    Returns dict: locator_name -> { 'position': [x,y,z], 'rotation': [qx,qy,qz,qw] }
+    """
+    result = {}
+    loc_node = root.find('locator')
+    if not loc_node:
+        return result
+
+    for child in loc_node.children:
+        entry = {}
+        pos = child.prop('p')
+        if pos and len(pos) >= 3:
+            entry['position'] = [round(pos[0], 4), round(pos[1], 4), round(pos[2], 4)]
+        quat = child.prop('q')
+        if quat and len(quat) >= 4:
+            entry['rotation'] = [round(quat[0], 4), round(quat[1], 4), round(quat[2], 4), round(quat[3], 4)]
+        if entry:
+            result[child.name] = entry
+
+    return result
+
+
 if __name__ == '__main__':
     import sys
     import os

@@ -1,5 +1,1216 @@
 [
   {
+    "timestamp": "2026-04-06T12:32:07.751153",
+    "summary": {
+      "total_added": 0,
+      "total_removed": 0,
+      "total_modified": 116,
+      "modules_changed": 1,
+      "modules_unchanged": 21
+    },
+    "modules": {
+      "events_index": {
+        "old_count": 8873,
+        "new_count": 8873,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "ships": {
+        "old_count": 423,
+        "new_count": 423,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "buildings": {
+        "old_count": 653,
+        "new_count": 653,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "districts": {
+        "old_count": 56,
+        "new_count": 56,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traits": {
+        "old_count": 461,
+        "new_count": 461,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traditions": {
+        "old_count": 448,
+        "new_count": 448,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "ascension_perks": {
+        "old_count": 58,
+        "new_count": 58,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "governments": {
+        "old_count": 185,
+        "new_count": 185,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "civics": {
+        "old_count": 332,
+        "new_count": 332,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "authorities": {
+        "old_count": 17,
+        "new_count": 17,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "policies": {
+        "old_count": 53,
+        "new_count": 53,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "edicts": {
+        "old_count": 86,
+        "new_count": 86,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "councilors": {
+        "old_count": 146,
+        "new_count": 146,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "megastructures": {
+        "old_count": 116,
+        "new_count": 116,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "STH_bio_habitat_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_bio_habitat_0"
+          },
+          {
+            "id": "STH_borg_catapult_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_borg_catapult_0"
+          },
+          {
+            "id": "STH_borg_catapult_1",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_borg_catapult_1"
+          },
+          {
+            "id": "STH_borg_catapult_2",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_borg_catapult_2"
+          },
+          {
+            "id": "STH_borg_catapult_3",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_borg_catapult_3"
+          },
+          {
+            "id": "STH_borg_recycle_01",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_borg_recycle_01"
+          },
+          {
+            "id": "STH_borg_recycle_02",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_borg_recycle_02"
+          },
+          {
+            "id": "STH_cardassian_recycle_01",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_cardassian_recycle_01"
+          },
+          {
+            "id": "STH_cardassian_recycle_02",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_cardassian_recycle_02"
+          },
+          {
+            "id": "STH_darsay_array_restored",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_darsay_array_restored"
+          },
+          {
+            "id": "STH_darsay_array_ruined",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_darsay_array_ruined"
+          },
+          {
+            "id": "STH_dom_science_station",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_dom_science_station"
+          },
+          {
+            "id": "STH_dominion_recycle_01",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_dominion_recycle_01"
+          },
+          {
+            "id": "STH_dominion_recycle_02",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_dominion_recycle_02"
+          },
+          {
+            "id": "STH_fed_jupiter_station",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_fed_jupiter_station"
+          },
+          {
+            "id": "STH_federation_recycle_01",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_federation_recycle_01"
+          },
+          {
+            "id": "STH_federation_recycle_02",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_federation_recycle_02"
+          },
+          {
+            "id": "STH_generic_recycle_01",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_generic_recycle_01"
+          },
+          {
+            "id": "STH_generic_recycle_02",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_generic_recycle_02"
+          },
+          {
+            "id": "STH_generic_science_station",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_generic_science_station"
+          },
+          {
+            "id": "STH_grand_archive",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_grand_archive"
+          },
+          {
+            "id": "STH_great_link_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_great_link_0"
+          },
+          {
+            "id": "STH_helix_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_helix_0"
+          },
+          {
+            "id": "STH_hunters_lodge_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_hunters_lodge_0"
+          },
+          {
+            "id": "STH_kdf_great_house",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_kdf_great_house"
+          },
+          {
+            "id": "STH_kdf_imperial_shipyards",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_kdf_imperial_shipyards"
+          },
+          {
+            "id": "STH_kdf_science_station",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_kdf_science_station"
+          },
+          {
+            "id": "STH_klingon_recycle_01",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_klingon_recycle_01"
+          },
+          {
+            "id": "STH_klingon_recycle_02",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_klingon_recycle_02"
+          },
+          {
+            "id": "STH_klingon_war_museum_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_klingon_war_museum_0"
+          },
+          {
+            "id": "STH_mega_shipyard",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_mega_shipyard"
+          },
+          {
+            "id": "STH_orbital_battery_1",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_orbital_battery_1"
+          },
+          {
+            "id": "STH_orbital_battery_upgrade",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_orbital_battery_upgrade"
+          },
+          {
+            "id": "STH_praetorian_naval_museum_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_praetorian_naval_museum_0"
+          },
+          {
+            "id": "STH_relocate_ds9",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_relocate_ds9"
+          },
+          {
+            "id": "STH_research_starbase_1",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_research_starbase_1"
+          },
+          {
+            "id": "STH_research_starbase_upgrade",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_research_starbase_upgrade"
+          },
+          {
+            "id": "STH_rom_praetorian_shipyards",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_rom_praetorian_shipyards"
+          },
+          {
+            "id": "STH_rom_science_station",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_rom_science_station"
+          },
+          {
+            "id": "STH_romulan_recycle_01",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_romulan_recycle_01"
+          },
+          {
+            "id": "STH_romulan_recycle_02",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_romulan_recycle_02"
+          },
+          {
+            "id": "STH_starfleet_naval_museum_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_starfleet_naval_museum_0"
+          },
+          {
+            "id": "STH_starfleet_utopia_planitia",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_starfleet_utopia_planitia"
+          },
+          {
+            "id": "STH_subcomplex_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_subcomplex_0"
+          },
+          {
+            "id": "STH_subcomplex_base",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_subcomplex_base"
+          },
+          {
+            "id": "STH_terok_nor",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_terok_nor"
+          },
+          {
+            "id": "STH_undine_recycle_01",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_undine_recycle_01"
+          },
+          {
+            "id": "STH_undine_recycle_02",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_undine_recycle_02"
+          },
+          {
+            "id": "STH_unicomplex",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_unicomplex"
+          },
+          {
+            "id": "STH_unimatrix_finished",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_unimatrix_finished"
+          },
+          {
+            "id": "STH_unimatrix_unfinished",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_unimatrix_unfinished"
+          },
+          {
+            "id": "STH_voth_city_ship_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_voth_city_ship_0"
+          },
+          {
+            "id": "STH_watchtower_station",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "STH_watchtower_station"
+          },
+          {
+            "id": "argus_build_complete",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "argus_build_complete"
+          },
+          {
+            "id": "argus_build_stage",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "argus_build_stage"
+          },
+          {
+            "id": "behemoth_big_egg_ruined",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "behemoth_big_egg_ruined"
+          },
+          {
+            "id": "behemoth_chrysalis",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "behemoth_chrysalis"
+          },
+          {
+            "id": "behemoth_chrysalis_big",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "behemoth_chrysalis_big"
+          },
+          {
+            "id": "behemoth_chrysalis_big_hatch",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "behemoth_chrysalis_big_hatch"
+          },
+          {
+            "id": "behemoth_chrysalis_hatch",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "behemoth_chrysalis_hatch"
+          },
+          {
+            "id": "behemoth_egg",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "behemoth_egg"
+          },
+          {
+            "id": "behemoth_egg_hatch",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "behemoth_egg_hatch"
+          },
+          {
+            "id": "behemoth_egg_ruined",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "behemoth_egg_ruined"
+          },
+          {
+            "id": "behemoth_fast_egg_hatch",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "behemoth_fast_egg_hatch"
+          },
+          {
+            "id": "behemoth_fleet_egg",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "behemoth_fleet_egg"
+          },
+          {
+            "id": "behemoth_slow_egg_hatch",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "behemoth_slow_egg_hatch"
+          },
+          {
+            "id": "behemoth_strong_egg_hatch",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "behemoth_strong_egg_hatch"
+          },
+          {
+            "id": "borg_transwarp_conduit_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "borg_transwarp_conduit_0"
+          },
+          {
+            "id": "crisis_sphere_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "crisis_sphere_0"
+          },
+          {
+            "id": "crisis_sphere_1",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "crisis_sphere_1"
+          },
+          {
+            "id": "crisis_sphere_2",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "crisis_sphere_2"
+          },
+          {
+            "id": "crisis_sphere_3",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "crisis_sphere_3"
+          },
+          {
+            "id": "crisis_sphere_4",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "crisis_sphere_4"
+          },
+          {
+            "id": "daystrom_build_complete",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "daystrom_build_complete"
+          },
+          {
+            "id": "daystrom_build_stage",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "daystrom_build_stage"
+          },
+          {
+            "id": "deep_space_station_build_stage_1",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "deep_space_station_build_stage_1"
+          },
+          {
+            "id": "deep_space_station_upgrade_stage_1",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "deep_space_station_upgrade_stage_1"
+          },
+          {
+            "id": "deep_space_station_upgrade_stage_2",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "deep_space_station_upgrade_stage_2"
+          },
+          {
+            "id": "deep_space_station_upgrade_stage_3",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "deep_space_station_upgrade_stage_3"
+          },
+          {
+            "id": "dyson_sphere_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "dyson_sphere_0"
+          },
+          {
+            "id": "dyson_sphere_1",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "dyson_sphere_1"
+          },
+          {
+            "id": "dyson_sphere_2",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "dyson_sphere_2"
+          },
+          {
+            "id": "dyson_sphere_3",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "dyson_sphere_3"
+          },
+          {
+            "id": "dyson_sphere_4",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "dyson_sphere_4"
+          },
+          {
+            "id": "dyson_sphere_5",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "dyson_sphere_5"
+          },
+          {
+            "id": "dyson_sphere_restored",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "dyson_sphere_restored"
+          },
+          {
+            "id": "dyson_sphere_ruined",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "dyson_sphere_ruined"
+          },
+          {
+            "id": "fluidic_rift_gateway_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "fluidic_rift_gateway_0"
+          },
+          {
+            "id": "fluidic_rift_gateway_1",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "fluidic_rift_gateway_1"
+          },
+          {
+            "id": "fountain_build_complete",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "fountain_build_complete"
+          },
+          {
+            "id": "fountain_build_stage",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "fountain_build_stage"
+          },
+          {
+            "id": "galactic_forum_1",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "galactic_forum_1"
+          },
+          {
+            "id": "galactic_forum_2",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "galactic_forum_2"
+          },
+          {
+            "id": "gateway_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "gateway_0"
+          },
+          {
+            "id": "gateway_final",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "gateway_final"
+          },
+          {
+            "id": "gateway_restored",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "gateway_restored"
+          },
+          {
+            "id": "gateway_ruined",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "gateway_ruined"
+          },
+          {
+            "id": "grand_archive_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "grand_archive_0"
+          },
+          {
+            "id": "hyper_relay",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "hyper_relay"
+          },
+          {
+            "id": "hyper_relay_restored",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "hyper_relay_restored"
+          },
+          {
+            "id": "hyper_relay_ruined",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "hyper_relay_ruined"
+          },
+          {
+            "id": "iconian_gateway_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "iconian_gateway_0"
+          },
+          {
+            "id": "lgate_base",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "lgate_base"
+          },
+          {
+            "id": "mega_shipyard_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "mega_shipyard_0"
+          },
+          {
+            "id": "mega_shipyard_1",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "mega_shipyard_1"
+          },
+          {
+            "id": "mega_shipyard_2",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "mega_shipyard_2"
+          },
+          {
+            "id": "mega_shipyard_3",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "mega_shipyard_3"
+          },
+          {
+            "id": "mega_shipyard_restored",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "mega_shipyard_restored"
+          },
+          {
+            "id": "mega_shipyard_ruined",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "mega_shipyard_ruined"
+          },
+          {
+            "id": "midas_build_complete",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "midas_build_complete"
+          },
+          {
+            "id": "midas_build_stage",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "midas_build_stage"
+          },
+          {
+            "id": "nor_space_station_build_stage_1",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "nor_space_station_build_stage_1"
+          },
+          {
+            "id": "sth_closure_gateway_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "sth_closure_gateway_0"
+          },
+          {
+            "id": "sth_hyper_relay",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "sth_hyper_relay"
+          },
+          {
+            "id": "underspace_corridor_0",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "underspace_corridor_0"
+          },
+          {
+            "id": "watchtowner_build_stage",
+            "changed_fields": [
+              "construction_entity",
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "watchtowner_build_stage"
+          }
+        ]
+      },
+      "relics": {
+        "old_count": 68,
+        "new_count": 68,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "anomalies": {
+        "old_count": 132,
+        "new_count": 132,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "archaeology": {
+        "old_count": 29,
+        "new_count": 29,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "empires": {
+        "old_count": 110,
+        "new_count": 110,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "species": {
+        "old_count": 255,
+        "new_count": 255,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "jobs": {
+        "old_count": 306,
+        "new_count": 306,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "deposits": {
+        "old_count": 667,
+        "new_count": 667,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "components": {
+        "old_count": 6406,
+        "new_count": 6406,
+        "added": [],
+        "removed": [],
+        "modified": []
+      }
+    }
+  },
+  {
     "timestamp": "2026-04-06T11:34:06.577919",
     "summary": {
       "total_added": 0,
