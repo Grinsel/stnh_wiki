@@ -2245,6 +2245,10 @@ body.in-iframe #site-footer {
     align-self: unset;
     flex: none;
     z-index: 20;
+    background: rgba(12, 12, 20, 0.78);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--accent-border);
     box-shadow: -6px 0 28px rgba(0,0,0,0.55);
     border-radius: 0 6px 6px 0;
     /* Keep same transition but only animate transform + opacity — no flex-grow needed */

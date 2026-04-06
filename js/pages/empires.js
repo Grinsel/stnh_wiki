@@ -16,7 +16,8 @@
     // ── View toggle (List / Galaxy Map) ──────────────────────────────────────
     let activeView = 'list';
     let activeTab  = 'empires';  // hoisted so setView() can read it before try-block
-    let galaxyMapData = null;   // loaded lazily
+    let galaxyMapsData = null;   // all maps, loaded lazily: { maps: [...] }
+    let activeMapId  = 'default'; // currently displayed map id
     let galaxyMapReady = false;
 
     const viewListBtn = document.getElementById('view-list-btn');
@@ -34,8 +35,6 @@
         document.getElementById('pagination').classList.toggle('hidden', isMap);
         mapContainer.classList.toggle('hidden', !isMap);
         document.getElementById('item-list-panel').classList.toggle('map-view', isMap);
-        // map-active on the content layout switches the detail panel to an overlay
-        // so the map container never changes size when the detail panel opens/closes
         document.getElementById('main-content').classList.toggle('map-active', isMap);
 
         // Hide quadrant note / show appropriate filter controls
@@ -43,12 +42,11 @@
         document.getElementById('filter-archetype-group').classList.toggle('hidden', isMap || activeTab !== 'species');
 
         if (isMap) {
-            // Only available for empires tab
             if (activeTab !== 'empires') {
                 setView('list');
                 return;
             }
-            loadGalaxyMap();
+            loadGalaxyMap(activeMapId);
         } else if (galaxyMapReady) {
             GalaxyMap.destroy();
             galaxyMapReady = false;
@@ -63,24 +61,39 @@
     // Hoisted empire/species arrays so loadGalaxyMap callback can access them
     let _empires = [], _showDetail = null;
 
-    async function loadGalaxyMap() {
-        if (galaxyMapReady) return;
+    async function loadGalaxyMap(mapId) {
+        galaxyMapReady = false;
         mapContainer.innerHTML = '<div class="loading">Loading galaxy map\u2026</div>';
         try {
-            if (!galaxyMapData) {
-                galaxyMapData = await DataManager.loadJSON('assets/galaxy_map.json');
+            if (!galaxyMapsData) {
+                galaxyMapsData = await DataManager.loadJSON('assets/galaxy_maps.json');
             }
+
+            const mapDef = galaxyMapsData.maps.find(m => m.id === (mapId || 'default'))
+                        || galaxyMapsData.maps[0];
+            if (!mapDef) throw new Error('No map data found');
+
+            // Enrich empire names from the full empire list
+            const nameMap = {};
+            for (const e of _empires) nameMap[e.id] = e.name;
+            const richEmpires = (mapDef.empires || []).map(e => ({ ...e, name: nameMap[e.id] || e.id }));
+            const mapData = { empires: richEmpires, bounds: mapDef.bounds };
+
             mapContainer.innerHTML = '';
-            // Enrich galaxy map empire entries with localised names from the full empire list
-            if (_empires.length) {
-                const nameMap = {};
-                for (const e of _empires) nameMap[e.id] = e.name;
-                for (const e of galaxyMapData.empires || []) e.name = nameMap[e.id] || e.id;
-            }
-            GalaxyMap.init(mapContainer, galaxyMapData, (empireId) => {
-                // When empire clicked on map, show detail panel using full empire data
+            GalaxyMap.init(mapContainer, mapData, (empireId) => {
                 const emp = _empires.find(e => e.id === empireId);
                 if (emp && _showDetail) _showDetail(emp);
+            }, {
+                type: mapDef.type,
+                era: mapDef.era,
+                maps: galaxyMapsData.maps,
+                mapId: activeMapId,
+                onMapChange: (newId) => {
+                    if (newId === activeMapId) return;
+                    activeMapId = newId;
+                    galaxyMapReady = false;
+                    loadGalaxyMap(newId);
+                },
             });
             galaxyMapReady = true;
         } catch (err) {
@@ -151,6 +164,25 @@
         const detailPanel = document.getElementById('detail-panel');
         const detailTitle = document.getElementById('detail-title');
         const detailContent = document.getElementById('detail-content');
+        const viewOnMapBtn = document.getElementById('detail-view-on-map');
+        let _currentDetailItem = null;
+
+        viewOnMapBtn.addEventListener('click', () => {
+            if (!_currentDetailItem) return;
+            setView('map');
+            // _B variants share position with their base empire — highlight the base
+            const mapId = _currentDetailItem.id.replace(/_B$/, '');
+            const doHighlight = () => {
+                if (galaxyMapReady) {
+                    GalaxyMap.highlight(mapId);
+                    GalaxyMap.setLegendVisible(false);
+                    showDetail(_currentDetailItem);
+                } else {
+                    setTimeout(doHighlight, 50);
+                }
+            };
+            doHighlight();
+        });
 
         let _panelLeaveTimer = null;
         function openDetailPanel() {
@@ -246,6 +278,9 @@
 
             detailContent.innerHTML = html;
             SharedRender.initToggles(detailContent);
+            _currentDetailItem = item;
+            // Show "View on map" only for empires in list view
+            viewOnMapBtn.classList.toggle('hidden', activeView === 'map' || activeTab !== 'empires' || item.authority === undefined);
             openDetailPanel();
             if (activeView === 'map' && galaxyMapReady) GalaxyMap.setLegendVisible(false);
         }
@@ -254,6 +289,8 @@
         // Search
         let searchTimeout;
         searchInput.addEventListener('input', (e) => {
+            // Typing in search always switches to list view — map has no search
+            if (activeView === 'map') setView('list');
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
                 AppState.set('search', e.target.value);
