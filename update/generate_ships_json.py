@@ -35,7 +35,7 @@ def generate_all():
     model_map, m_stats = parse_all_models()
 
     # Enrich ships with model info
-    model_map_lookup = model_map  # ship_id -> { faction -> { entity, mesh_file, ... } }
+    model_map_lookup = model_map  # ship_id -> { faction -> { entity, mesh_file, source, ... } }
     for ship in ships:
         factions = model_map_lookup.get(ship['id'])
         if factions:
@@ -48,6 +48,10 @@ def generate_all():
             att_count = len(first_faction_info.get('attachments', []))
             if att_count > 0:
                 ship['attachment_count'] = att_count
+            # Track model source (mod vs vanilla)
+            source = first_faction_info.get('source', 'mod')
+            if source == 'vanilla':
+                ship['model_source'] = 'vanilla'
         else:
             ship['has_model'] = False
 

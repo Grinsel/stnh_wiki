@@ -194,7 +194,7 @@
 
                 function getModelPath() {
                     const faction = factionSelect ? factionSelect.value : item.model_factions[0];
-                    return `models/megastructures/${item.id}/${faction}.glb`;
+                    return `models/megastructures/${item.id}/${faction}.glb?v=${window.WIKI_BUILD_VERSION || '1'}`;
                 }
 
                 if (loadBtn) {

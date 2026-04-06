@@ -227,7 +227,11 @@
             // 3D Model Viewer
             if (item.has_model && item.model_factions && item.model_factions.length) {
                 html += `<div class="detail-section">`;
-                html += `<div class="detail-section-title">${I18n.ui('ui.detail.3d_model')}</div>`;
+                html += `<div class="detail-section-title">${I18n.ui('ui.detail.3d_model')}`;
+                if (item.model_source === 'vanilla') {
+                    html += ` <span class="badge badge-vanilla" title="This model comes from vanilla Stellaris, not the STNH mod">Vanilla</span>`;
+                }
+                html += `</div>`;
 
                 // Faction selector
                 if (item.model_factions.length > 1) {
@@ -256,7 +260,7 @@
 
                 function getModelPath() {
                     const faction = factionSelect ? factionSelect.value : item.model_factions[0];
-                    return `models/${faction}/${item.id}.glb`;
+                    return `models/${faction}/${item.id}.glb?v=${window.WIKI_BUILD_VERSION || '1'}`;
                 }
 
                 if (loadBtn) {

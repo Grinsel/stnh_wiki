@@ -90,6 +90,9 @@ MOD_JOBS_DIR = os.path.join(STNH_MOD_ROOT, "common", "pop_jobs")
 MOD_ARMIES_DIR = os.path.join(STNH_MOD_ROOT, "common", "armies")
 MOD_SHIP_MODELS_DIR = os.path.join(STNH_MOD_ROOT, "gfx", "models", "ships")
 MOD_SECTION_TEMPLATES_DIR = os.path.join(STNH_MOD_ROOT, "common", "section_templates")
+VANILLA_SHIP_MODELS_DIR = os.path.join(VANILLA_ROOT, "gfx", "models", "ships")
+VANILLA_SECTION_TEMPLATES_DIR = os.path.join(VANILLA_ROOT, "common", "section_templates")
+VANILLA_SHIP_SIZES_DIR = os.path.join(VANILLA_ROOT, "common", "ship_sizes")
 
 # ==========================================
 # OUTPUT PATHS (WRITE)

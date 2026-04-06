@@ -14,7 +14,7 @@ import math
 import time
 import struct
 
-from config import STNH_MOD_ROOT, OUTPUT_MODELS_DIR, OUTPUT_ASSETS_DIR
+from config import STNH_MOD_ROOT, OUTPUT_MODELS_DIR, OUTPUT_ASSETS_DIR, VANILLA_ROOT
 from pdx_mesh_reader import parse_mesh_file, extract_mesh_data
 
 _pygltflib = None
@@ -170,10 +170,15 @@ def _build_mesh_nodes(mesh_data_list, model_scale, gltf, buffer_data, accessors,
 
 
 def _load_mesh_data(mesh_file_path, root_dir=None):
-    """Load and filter mesh data from a .mesh file. Returns list or None."""
+    """Load and filter mesh data from a .mesh file. Returns list or None.
+    Checks mod root first, then falls back to vanilla Stellaris root.
+    """
     full_mesh_path = os.path.join(root_dir or STNH_MOD_ROOT, mesh_file_path.replace('/', os.sep))
     if not os.path.isfile(full_mesh_path):
-        return None
+        # Fallback: try vanilla Stellaris root
+        full_mesh_path = os.path.join(VANILLA_ROOT, mesh_file_path.replace('/', os.sep))
+        if not os.path.isfile(full_mesh_path):
+            return None
     try:
         root = parse_mesh_file(full_mesh_path)
         mesh_data_list = extract_mesh_data(root)

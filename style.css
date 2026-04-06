@@ -3009,6 +3009,16 @@ body.in-iframe #site-footer {
 }
 
 /* 3D Ship Model Viewer */
+.badge-vanilla {
+    font-size: 0.65rem;
+    background: #553300;
+    color: #ffcc66;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
 .ship-viewer-container {
     margin: 0.5rem 0;
 }
