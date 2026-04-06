@@ -120,6 +120,9 @@ const UI_STRINGS = {
     'ui.detail.portraits':        { english: 'Portraits', german: 'Portr\u00e4ts' },
     'ui.detail.drop_weight':      { english: 'Drop Weight', german: 'Fallgewichtung' },
     'ui.detail.3d_model':         { english: '3D Model', german: '3D-Modell' },
+    'ui.detail.required_traditions': { english: 'Required Traditions', german: 'Benötigte Traditionen' },
+    'ui.detail.min_perks':        { english: 'Required Ascension Perks', german: 'Benötigte Ascension Perks' },
+    'ui.detail.required_flags':   { english: 'Required Empire', german: 'Benötigtes Imperium' },
 
     // ==========================================
     // Meta Labels

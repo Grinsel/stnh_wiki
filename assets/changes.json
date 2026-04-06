@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-04-06T06:43:24.694931",
+  "timestamp": "2026-04-06T07:56:08.332928",
   "summary": {
     "total_added": 0,
     "total_removed": 0,
-    "total_modified": 448,
-    "modules_changed": 1,
-    "modules_unchanged": 20
+    "total_modified": 481,
+    "modules_changed": 2,
+    "modules_unchanged": 19
   },
   "modules": {
     "events_index": {
@@ -20,7 +20,2969 @@
       "new_count": 423,
       "added": [],
       "removed": [],
-      "modified": []
+      "modified": [
+        {
+          "id": "ENT_kumari",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "ENT_kumari"
+        },
+        {
+          "id": "ENT_seleya",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "ENT_seleya"
+        },
+        {
+          "id": "abandoned_ship",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "abandoned_ship"
+        },
+        {
+          "id": "adv_cruiser",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "adv_cruiser"
+        },
+        {
+          "id": "alien_racing_ship",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "alien_racing_ship"
+        },
+        {
+          "id": "amarie_cruiser",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "amarie_cruiser"
+        },
+        {
+          "id": "ancient_corvette",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "ancient_corvette"
+        },
+        {
+          "id": "ancient_destroyer",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "ancient_destroyer"
+        },
+        {
+          "id": "ancient_drone_station",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "ancient_drone_station"
+        },
+        {
+          "id": "ancient_mining_drone",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "ancient_mining_drone"
+        },
+        {
+          "id": "ark_ship",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "ark_ship"
+        },
+        {
+          "id": "assault_cruiser",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "assault_cruiser"
+        },
+        {
+          "id": "asteroid",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "asteroid"
+        },
+        {
+          "id": "attack_ship",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "attack_ship"
+        },
+        {
+          "id": "bajoran_lightship",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "bajoran_lightship"
+        },
+        {
+          "id": "battleship",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "battleship"
+        },
+        {
+          "id": "borg_colonizer",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "borg_colonizer"
+        },
+        {
+          "id": "borg_cube",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "borg_cube"
+        },
+        {
+          "id": "borg_diamond",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "borg_diamond"
+        },
+        {
+          "id": "borg_probe",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "borg_probe"
+        },
+        {
+          "id": "borg_pyramid",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "borg_pyramid"
+        },
+        {
+          "id": "borg_scout",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "borg_scout"
+        },
+        {
+          "id": "borg_sphere",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "borg_sphere"
+        },
+        {
+          "id": "borg_tactical",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "borg_tactical"
+        },
+        {
+          "id": "borg_unimatrix_defense_small",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "borg_unimatrix_defense_small"
+        },
+        {
+          "id": "cardassian_01_adv_cruiser_obsidian",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "cardassian_01_adv_cruiser_obsidian"
+        },
+        {
+          "id": "cardassian_01_cruiser_kimal",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "cardassian_01_cruiser_kimal"
+        },
+        {
+          "id": "cardassian_01_war_cruiser_ekoor",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "cardassian_01_war_cruiser_ekoor"
+        },
+        {
+          "id": "cardassian_01_war_cruiser_letau",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "cardassian_01_war_cruiser_letau"
+        },
+        {
+          "id": "cardassian_01_weapons_platform_chintoka",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "cardassian_01_weapons_platform_chintoka"
+        },
+        {
+          "id": "cardassian_cannon",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "cardassian_cannon"
+        },
+        {
+          "id": "civ_raven",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "civ_raven"
+        },
+        {
+          "id": "civilian_freighter",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "civilian_freighter"
+        },
+        {
+          "id": "civilian_tanker",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "civilian_tanker"
+        },
+        {
+          "id": "colonizer",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "colonizer"
+        },
+        {
+          "id": "colossus",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "colossus"
+        },
+        {
+          "id": "construction_ship_ed",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "construction_ship_ed"
+        },
+        {
+          "id": "constructor",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "constructor"
+        },
+        {
+          "id": "corvette",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "corvette"
+        },
+        {
+          "id": "cruiser",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "cruiser"
+        },
+        {
+          "id": "crystal_ship_large_blue",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_large_blue"
+        },
+        {
+          "id": "crystal_ship_large_blue_elite",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_large_blue_elite"
+        },
+        {
+          "id": "crystal_ship_large_green",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_large_green"
+        },
+        {
+          "id": "crystal_ship_large_green_elite",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_large_green_elite"
+        },
+        {
+          "id": "crystal_ship_large_red",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_large_red"
+        },
+        {
+          "id": "crystal_ship_large_red_elite",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_large_red_elite"
+        },
+        {
+          "id": "crystal_ship_large_yellow",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_large_yellow"
+        },
+        {
+          "id": "crystal_ship_large_yellow_elite",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_large_yellow_elite"
+        },
+        {
+          "id": "crystal_ship_medium_blue",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_medium_blue"
+        },
+        {
+          "id": "crystal_ship_medium_blue_elite",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_medium_blue_elite"
+        },
+        {
+          "id": "crystal_ship_medium_green",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_medium_green"
+        },
+        {
+          "id": "crystal_ship_medium_green_elite",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_medium_green_elite"
+        },
+        {
+          "id": "crystal_ship_medium_red",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_medium_red"
+        },
+        {
+          "id": "crystal_ship_medium_red_elite",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_medium_red_elite"
+        },
+        {
+          "id": "crystal_ship_medium_yellow",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_medium_yellow"
+        },
+        {
+          "id": "crystal_ship_medium_yellow_elite",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_medium_yellow_elite"
+        },
+        {
+          "id": "crystal_ship_small_blue",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_small_blue"
+        },
+        {
+          "id": "crystal_ship_small_blue_elite",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_small_blue_elite"
+        },
+        {
+          "id": "crystal_ship_small_green",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_small_green"
+        },
+        {
+          "id": "crystal_ship_small_green_elite",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_small_green_elite"
+        },
+        {
+          "id": "crystal_ship_small_red",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_small_red"
+        },
+        {
+          "id": "crystal_ship_small_red_elite",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_small_red_elite"
+        },
+        {
+          "id": "crystal_ship_small_yellow",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_small_yellow"
+        },
+        {
+          "id": "crystal_ship_small_yellow_elite",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_ship_small_yellow_elite"
+        },
+        {
+          "id": "crystal_station_large",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "crystal_station_large"
+        },
+        {
+          "id": "deep_space_starbase",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "deep_space_starbase"
+        },
+        {
+          "id": "destroyer",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "destroyer"
+        },
+        {
+          "id": "dimensional_horror",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "dimensional_horror"
+        },
+        {
+          "id": "dimensional_portal_ed",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "dimensional_portal_ed"
+        },
+        {
+          "id": "dom_sword_shrike",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "dom_sword_shrike"
+        },
+        {
+          "id": "doomsday",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "doomsday"
+        },
+        {
+          "id": "dy100",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "dy100"
+        },
+        {
+          "id": "edo_god",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edo_god"
+        },
+        {
+          "id": "enclave_mercenary_station",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "enclave_mercenary_station"
+        },
+        {
+          "id": "enclave_station",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "enclave_station"
+        },
+        {
+          "id": "eventship_01",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "eventship_01"
+        },
+        {
+          "id": "eventship_02",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "eventship_02"
+        },
+        {
+          "id": "eventship_03",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "eventship_03"
+        },
+        {
+          "id": "eventship_04",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "eventship_04"
+        },
+        {
+          "id": "eventship_05",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "eventship_05"
+        },
+        {
+          "id": "eventship_06",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "eventship_06"
+        },
+        {
+          "id": "eventship_07",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "eventship_07"
+        },
+        {
+          "id": "exploration_cruiser",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "exploration_cruiser"
+        },
+        {
+          "id": "fallen_assault",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fallen_assault"
+        },
+        {
+          "id": "fallen_attack",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fallen_attack"
+        },
+        {
+          "id": "fallen_flagship",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fallen_flagship"
+        },
+        {
+          "id": "fallen_interdictor",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fallen_interdictor"
+        },
+        {
+          "id": "fed_adv_heavy_cruiser_inquiry",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_adv_heavy_cruiser_inquiry"
+        },
+        {
+          "id": "fed_advanced_cruiser_crossfield",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_advanced_cruiser_crossfield"
+        },
+        {
+          "id": "fed_advanced_cruiser_duderstadt",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_advanced_cruiser_duderstadt"
+        },
+        {
+          "id": "fed_advanced_cruiser_excelsior",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_advanced_cruiser_excelsior"
+        },
+        {
+          "id": "fed_advanced_cruiser_obena",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_advanced_cruiser_obena"
+        },
+        {
+          "id": "fed_advanced_cruiser_vesta",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_advanced_cruiser_vesta"
+        },
+        {
+          "id": "fed_attack_wing_galileo",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_attack_wing_galileo"
+        },
+        {
+          "id": "fed_attack_wing_gryphon",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_attack_wing_gryphon"
+        },
+        {
+          "id": "fed_attack_wing_nx_beta",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_attack_wing_nx_beta"
+        },
+        {
+          "id": "fed_attack_wing_peregrine",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_attack_wing_peregrine"
+        },
+        {
+          "id": "fed_carrier_engle",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_carrier_engle"
+        },
+        {
+          "id": "fed_carrier_iwo_jima",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_carrier_iwo_jima"
+        },
+        {
+          "id": "fed_carrier_minuteman",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_carrier_minuteman"
+        },
+        {
+          "id": "fed_carrier_ptolomy",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_carrier_ptolomy"
+        },
+        {
+          "id": "fed_carrier_samson",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_carrier_samson"
+        },
+        {
+          "id": "fed_carrier_sarajevo",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_carrier_sarajevo"
+        },
+        {
+          "id": "fed_carrier_sydney",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_carrier_sydney"
+        },
+        {
+          "id": "fed_command_cruiser_excalibur",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_command_cruiser_excalibur"
+        },
+        {
+          "id": "fed_command_cruiser_odyssey",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_command_cruiser_odyssey"
+        },
+        {
+          "id": "fed_dreadnought_vengeance",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_dreadnought_vengeance"
+        },
+        {
+          "id": "fed_ent_fleet_museum",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_ent_fleet_museum"
+        },
+        {
+          "id": "fed_ent_naval_museum",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_ent_naval_museum"
+        },
+        {
+          "id": "fed_escort_ship_defiant",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_escort_ship_defiant"
+        },
+        {
+          "id": "fed_exploration_cruiser_ambassador",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_exploration_cruiser_ambassador"
+        },
+        {
+          "id": "fed_exploration_cruiser_federation",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_exploration_cruiser_federation"
+        },
+        {
+          "id": "fed_exploration_cruiser_galaxy",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_exploration_cruiser_galaxy"
+        },
+        {
+          "id": "fed_exploration_cruiser_luna",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_exploration_cruiser_luna"
+        },
+        {
+          "id": "fed_exploration_cruiser_neo_constitution",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_exploration_cruiser_neo_constitution"
+        },
+        {
+          "id": "fed_exploration_cruiser_ross",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_exploration_cruiser_ross"
+        },
+        {
+          "id": "fed_explorer_cardenas",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_explorer_cardenas"
+        },
+        {
+          "id": "fed_explorer_century",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_explorer_century"
+        },
+        {
+          "id": "fed_explorer_cheyenne",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_explorer_cheyenne"
+        },
+        {
+          "id": "fed_explorer_dauntless",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_explorer_dauntless"
+        },
+        {
+          "id": "fed_explorer_gagarin",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_explorer_gagarin"
+        },
+        {
+          "id": "fed_explorer_hoover",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_explorer_hoover"
+        },
+        {
+          "id": "fed_explorer_intrepid_class",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_explorer_intrepid_class"
+        },
+        {
+          "id": "fed_explorer_kiri_kin_tha",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_explorer_kiri_kin_tha"
+        },
+        {
+          "id": "fed_explorer_lamarr",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_explorer_lamarr"
+        },
+        {
+          "id": "fed_explorer_miranda",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_explorer_miranda"
+        },
+        {
+          "id": "fed_explorer_new_orleans",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_explorer_new_orleans"
+        },
+        {
+          "id": "fed_explorer_nx",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_explorer_nx"
+        },
+        {
+          "id": "fed_explorer_pathfinder",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_explorer_pathfinder"
+        },
+        {
+          "id": "fed_flagship_ambassador",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_flagship_ambassador"
+        },
+        {
+          "id": "fed_flagship_constitution",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_flagship_constitution"
+        },
+        {
+          "id": "fed_flagship_excalibur",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_flagship_excalibur"
+        },
+        {
+          "id": "fed_flagship_excelsior",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_flagship_excelsior"
+        },
+        {
+          "id": "fed_flagship_galaxy",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_flagship_galaxy"
+        },
+        {
+          "id": "fed_flagship_neo_constitution",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_flagship_neo_constitution"
+        },
+        {
+          "id": "fed_flagship_odyssey",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_flagship_odyssey"
+        },
+        {
+          "id": "fed_flagship_polaris",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_flagship_polaris"
+        },
+        {
+          "id": "fed_flagship_sovereign",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_flagship_sovereign"
+        },
+        {
+          "id": "fed_frigate_akula",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_frigate_akula"
+        },
+        {
+          "id": "fed_frigate_california",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_frigate_california"
+        },
+        {
+          "id": "fed_frigate_challenger",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_frigate_challenger"
+        },
+        {
+          "id": "fed_frigate_discovery",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_frigate_discovery"
+        },
+        {
+          "id": "fed_frigate_emette",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_frigate_emette"
+        },
+        {
+          "id": "fed_frigate_galen",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_frigate_galen"
+        },
+        {
+          "id": "fed_frigate_magee",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_frigate_magee"
+        },
+        {
+          "id": "fed_frigate_saladin",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_frigate_saladin"
+        },
+        {
+          "id": "fed_heavy_cruiser_achilles",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_cruiser_achilles"
+        },
+        {
+          "id": "fed_heavy_cruiser_ares",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_cruiser_ares"
+        },
+        {
+          "id": "fed_heavy_cruiser_constitution",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_cruiser_constitution"
+        },
+        {
+          "id": "fed_heavy_cruiser_kelvin_constitution",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_cruiser_kelvin_constitution"
+        },
+        {
+          "id": "fed_heavy_cruiser_nebula",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_cruiser_nebula"
+        },
+        {
+          "id": "fed_heavy_cruiser_nimitz",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_cruiser_nimitz"
+        },
+        {
+          "id": "fed_heavy_cruiser_polaris",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_cruiser_polaris"
+        },
+        {
+          "id": "fed_heavy_cruiser_proxima",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_cruiser_proxima"
+        },
+        {
+          "id": "fed_heavy_cruiser_shangri_la",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_cruiser_shangri_la"
+        },
+        {
+          "id": "fed_heavy_cruiser_sovereign",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_cruiser_sovereign"
+        },
+        {
+          "id": "fed_heavy_cruiser_sutherland",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_cruiser_sutherland"
+        },
+        {
+          "id": "fed_heavy_cruiser_yorktown",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_cruiser_yorktown"
+        },
+        {
+          "id": "fed_heavy_escort_defiant",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_escort_defiant"
+        },
+        {
+          "id": "fed_heavy_escort_prometheus",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_escort_prometheus"
+        },
+        {
+          "id": "fed_heavy_escort_texas",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_heavy_escort_texas"
+        },
+        {
+          "id": "fed_hero_ship_ambassador",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_hero_ship_ambassador"
+        },
+        {
+          "id": "fed_hero_ship_constitution",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_hero_ship_constitution"
+        },
+        {
+          "id": "fed_hero_ship_crossfield",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_hero_ship_crossfield"
+        },
+        {
+          "id": "fed_hero_ship_excelsior",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_hero_ship_excelsior"
+        },
+        {
+          "id": "fed_hero_ship_galaxy",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_hero_ship_galaxy"
+        },
+        {
+          "id": "fed_hero_ship_nx",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_hero_ship_nx"
+        },
+        {
+          "id": "fed_hero_ship_protostar",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_hero_ship_protostar"
+        },
+        {
+          "id": "fed_hero_ship_sovereign",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_hero_ship_sovereign"
+        },
+        {
+          "id": "fed_hero_ship_texas",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_hero_ship_texas"
+        },
+        {
+          "id": "fed_light_cruiser_bonaventure",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_bonaventure"
+        },
+        {
+          "id": "fed_light_cruiser_centaur",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_centaur"
+        },
+        {
+          "id": "fed_light_cruiser_curry_type",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_curry_type"
+        },
+        {
+          "id": "fed_light_cruiser_gral",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_gral"
+        },
+        {
+          "id": "fed_light_cruiser_intrepid_type",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_intrepid_type"
+        },
+        {
+          "id": "fed_light_cruiser_kelvin",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_kelvin"
+        },
+        {
+          "id": "fed_light_cruiser_niagara",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_niagara"
+        },
+        {
+          "id": "fed_light_cruiser_parliament",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_parliament"
+        },
+        {
+          "id": "fed_light_cruiser_reliant",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_reliant"
+        },
+        {
+          "id": "fed_light_cruiser_saber",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_saber"
+        },
+        {
+          "id": "fed_light_cruiser_shepard",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_shepard"
+        },
+        {
+          "id": "fed_light_cruiser_steamrunner",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_steamrunner"
+        },
+        {
+          "id": "fed_light_cruiser_t_pol",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_t_pol"
+        },
+        {
+          "id": "fed_light_cruiser_talas",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_light_cruiser_talas"
+        },
+        {
+          "id": "fed_mmv_akira",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_mmv_akira"
+        },
+        {
+          "id": "fed_mmv_constellation",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_mmv_constellation"
+        },
+        {
+          "id": "fed_mmv_farragut",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_mmv_farragut"
+        },
+        {
+          "id": "fed_mmv_loknar",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_mmv_loknar"
+        },
+        {
+          "id": "fed_mmv_norway",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_mmv_norway"
+        },
+        {
+          "id": "fed_mmv_poseidon",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_mmv_poseidon"
+        },
+        {
+          "id": "fed_mmv_radiant",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_mmv_radiant"
+        },
+        {
+          "id": "fed_mmv_sagan",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_mmv_sagan"
+        },
+        {
+          "id": "fed_mmv_springfield",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_mmv_springfield"
+        },
+        {
+          "id": "fed_mmv_walker",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_mmv_walker"
+        },
+        {
+          "id": "fed_mobile_carrier_typhon",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_mobile_carrier_typhon"
+        },
+        {
+          "id": "fed_mobile_throne_charon",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_mobile_throne_charon"
+        },
+        {
+          "id": "fed_runabout_danube",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_runabout_danube"
+        },
+        {
+          "id": "fed_runabout_venture",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_runabout_venture"
+        },
+        {
+          "id": "fed_scout_akyazi",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_scout_akyazi"
+        },
+        {
+          "id": "fed_scout_daedalus",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_scout_daedalus"
+        },
+        {
+          "id": "fed_scout_freedom",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_scout_freedom"
+        },
+        {
+          "id": "fed_scout_freedom_tng",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_scout_freedom_tng"
+        },
+        {
+          "id": "fed_scout_malachowski",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_scout_malachowski"
+        },
+        {
+          "id": "fed_scout_nova",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_scout_nova"
+        },
+        {
+          "id": "fed_scout_oberth",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_scout_oberth"
+        },
+        {
+          "id": "fed_scout_olympic",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_scout_olympic"
+        },
+        {
+          "id": "fed_scout_protostar",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_scout_protostar"
+        },
+        {
+          "id": "fed_shuttle_aquarius",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_shuttle_aquarius"
+        },
+        {
+          "id": "fed_shuttle_class_c_shuttle",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_shuttle_class_c_shuttle"
+        },
+        {
+          "id": "fed_shuttle_class_f_shuttle",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_shuttle_class_f_shuttle"
+        },
+        {
+          "id": "fed_shuttle_shuttlepod",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_shuttle_shuttlepod"
+        },
+        {
+          "id": "fed_shuttle_type_7_shuttle",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_shuttle_type_7_shuttle"
+        },
+        {
+          "id": "fed_stealth_escort_deimos",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_stealth_escort_deimos"
+        },
+        {
+          "id": "fed_stealth_escort_modin",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_stealth_escort_modin"
+        },
+        {
+          "id": "fed_stealth_escort_nimrod",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "fed_stealth_escort_nimrod"
+        },
+        {
+          "id": "federation_member_world_shipyard",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "federation_member_world_shipyard"
+        },
+        {
+          "id": "future_starbase",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "future_starbase"
+        },
+        {
+          "id": "galleon",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "galleon"
+        },
+        {
+          "id": "gen_science_station",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "gen_science_station"
+        },
+        {
+          "id": "gomtuu",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "gomtuu"
+        },
+        {
+          "id": "hive_asteroid",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "hive_asteroid"
+        },
+        {
+          "id": "homebase",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "homebase"
+        },
+        {
+          "id": "ion_cannon",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "ion_cannon"
+        },
+        {
+          "id": "juggernaut",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "juggernaut"
+        },
+        {
+          "id": "jupiter_station",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "jupiter_station"
+        },
+        {
+          "id": "kdf_attack_wing_bop_wing",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_attack_wing_bop_wing"
+        },
+        {
+          "id": "kdf_attack_wing_daqtagh",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_attack_wing_daqtagh"
+        },
+        {
+          "id": "kdf_battlecruiser_d7",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_battlecruiser_d7"
+        },
+        {
+          "id": "kdf_battlecruiser_jach",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_battlecruiser_jach"
+        },
+        {
+          "id": "kdf_battlecruiser_ktinga",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_battlecruiser_ktinga"
+        },
+        {
+          "id": "kdf_battlecruiser_norgh",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_battlecruiser_norgh"
+        },
+        {
+          "id": "kdf_battlecruiser_vorcha",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_battlecruiser_vorcha"
+        },
+        {
+          "id": "kdf_bop_blasrika",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_bop_blasrika"
+        },
+        {
+          "id": "kdf_bop_borghel",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_bop_borghel"
+        },
+        {
+          "id": "kdf_bop_brel",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_bop_brel"
+        },
+        {
+          "id": "kdf_bop_homcha",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_bop_homcha"
+        },
+        {
+          "id": "kdf_bop_pagh",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_bop_pagh"
+        },
+        {
+          "id": "kdf_flagship_jehjhong",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_flagship_jehjhong"
+        },
+        {
+          "id": "kdf_gunboat_borghel_a",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_gunboat_borghel_a"
+        },
+        {
+          "id": "kdf_gunboat_brel_a",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_gunboat_brel_a"
+        },
+        {
+          "id": "kdf_hero_ship_chtang",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_hero_ship_chtang"
+        },
+        {
+          "id": "kdf_hero_ship_d5",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_hero_ship_d5"
+        },
+        {
+          "id": "kdf_hero_ship_d7",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_hero_ship_d7"
+        },
+        {
+          "id": "kdf_raider_d6",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_raider_d6"
+        },
+        {
+          "id": "kdf_raider_klalath",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_raider_klalath"
+        },
+        {
+          "id": "kdf_raider_kvort",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_raider_kvort"
+        },
+        {
+          "id": "kdf_raider_sech",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_raider_sech"
+        },
+        {
+          "id": "kdf_raptor_d5",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_raptor_d5"
+        },
+        {
+          "id": "kdf_raptor_hegh",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_raptor_hegh"
+        },
+        {
+          "id": "kdf_raptor_jev",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_raptor_jev"
+        },
+        {
+          "id": "kdf_raptor_mehadraw",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_raptor_mehadraw"
+        },
+        {
+          "id": "kdf_raptor_qoj",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_raptor_qoj"
+        },
+        {
+          "id": "kdf_raptor_somraw",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_raptor_somraw"
+        },
+        {
+          "id": "kdf_ship_of_the_dead_duj_heg",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_ship_of_the_dead_duj_heg"
+        },
+        {
+          "id": "kdf_shuttle_kivra",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_shuttle_kivra"
+        },
+        {
+          "id": "kdf_strike_ship_feklhr",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_strike_ship_feklhr"
+        },
+        {
+          "id": "kdf_strike_ship_grethor",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_strike_ship_grethor"
+        },
+        {
+          "id": "kdf_warship_jejha",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_warship_jejha"
+        },
+        {
+          "id": "kdf_warship_kvek",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_warship_kvek"
+        },
+        {
+          "id": "kdf_warship_neghvar",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_warship_neghvar"
+        },
+        {
+          "id": "kdf_warship_roj",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "kdf_warship_roj"
+        },
+        {
+          "id": "klingon_houses_battlecruiser_d7",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "klingon_houses_battlecruiser_d7"
+        },
+        {
+          "id": "klingon_houses_battlecruiser_jach",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "klingon_houses_battlecruiser_jach"
+        },
+        {
+          "id": "klingon_houses_battlecruiser_vorcha",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "klingon_houses_battlecruiser_vorcha"
+        },
+        {
+          "id": "klingon_houses_raider_klalath",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "klingon_houses_raider_klalath"
+        },
+        {
+          "id": "klingon_houses_raider_sech",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "klingon_houses_raider_sech"
+        },
+        {
+          "id": "klingon_houses_raptor_qoj",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "klingon_houses_raptor_qoj"
+        },
+        {
+          "id": "klingon_houses_raptor_somraw",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "klingon_houses_raptor_somraw"
+        },
+        {
+          "id": "klingon_houses_warship_jejha",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "klingon_houses_warship_jejha"
+        },
+        {
+          "id": "klingon_houses_warship_neghvar",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "klingon_houses_warship_neghvar"
+        },
+        {
+          "id": "klingon_juggernaut",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "klingon_juggernaut"
+        },
+        {
+          "id": "la_sirena",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "la_sirena"
+        },
+        {
+          "id": "large_ship_ed",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "large_ship_ed"
+        },
+        {
+          "id": "large_ship_fallen_empire",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "large_ship_fallen_empire"
+        },
+        {
+          "id": "lesser_space_cloud",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "lesser_space_cloud"
+        },
+        {
+          "id": "man_war",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "man_war"
+        },
+        {
+          "id": "massive_ship_fallen_empire",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "massive_ship_fallen_empire"
+        },
+        {
+          "id": "mckinley_station",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "mckinley_station"
+        },
+        {
+          "id": "medium_ship_ed",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "medium_ship_ed"
+        },
+        {
+          "id": "military_defense_car_1",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_defense_car_1"
+        },
+        {
+          "id": "military_defense_dom_1",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_defense_dom_1"
+        },
+        {
+          "id": "military_defense_fed_1",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_defense_fed_1"
+        },
+        {
+          "id": "military_defense_fed_2",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_defense_fed_2"
+        },
+        {
+          "id": "military_defense_fed_3",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_defense_fed_3"
+        },
+        {
+          "id": "military_defense_fed_4",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_defense_fed_4"
+        },
+        {
+          "id": "military_defense_generic_1",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_defense_generic_1"
+        },
+        {
+          "id": "military_defense_kdf_1",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_defense_kdf_1"
+        },
+        {
+          "id": "military_defense_kdf_2",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_defense_kdf_2"
+        },
+        {
+          "id": "military_defense_rom_1",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_defense_rom_1"
+        },
+        {
+          "id": "military_station_large",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_station_large"
+        },
+        {
+          "id": "military_station_large_ed",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_station_large_ed"
+        },
+        {
+          "id": "military_station_large_fallen_empire",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_station_large_fallen_empire"
+        },
+        {
+          "id": "military_station_medium",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_station_medium"
+        },
+        {
+          "id": "military_station_small",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_station_small"
+        },
+        {
+          "id": "military_station_small_ed",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_station_small_ed"
+        },
+        {
+          "id": "military_station_small_fallen_empire",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "military_station_small_fallen_empire"
+        },
+        {
+          "id": "mining_station",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "mining_station"
+        },
+        {
+          "id": "miradorn_raider",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "miradorn_raider"
+        },
+        {
+          "id": "nomad_destroyer",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "nomad_destroyer"
+        },
+        {
+          "id": "nor_starbase_nor",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "nor_starbase_nor"
+        },
+        {
+          "id": "npc_warship_01",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "npc_warship_01"
+        },
+        {
+          "id": "observation_station",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "observation_station"
+        },
+        {
+          "id": "orbital_cannon",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "orbital_cannon"
+        },
+        {
+          "id": "passenger_liner",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "passenger_liner"
+        },
+        {
+          "id": "pirate_corvette",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "pirate_corvette"
+        },
+        {
+          "id": "pirate_cruiser",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "pirate_cruiser"
+        },
+        {
+          "id": "pirate_destroyer",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "pirate_destroyer"
+        },
+        {
+          "id": "pirate_station",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "pirate_station"
+        },
+        {
+          "id": "primitive_space_station",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "primitive_space_station"
+        },
+        {
+          "id": "probe",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "probe"
+        },
+        {
+          "id": "promellian_battlecruiser",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "promellian_battlecruiser"
+        },
+        {
+          "id": "research_starbase",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "research_starbase"
+        },
+        {
+          "id": "research_station",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "research_station"
+        },
+        {
+          "id": "rihan_science_station",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rihan_science_station"
+        },
+        {
+          "id": "rom_attack_wing_scorpion",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_attack_wing_scorpion"
+        },
+        {
+          "id": "rom_attack_wing_shalimar",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_attack_wing_shalimar"
+        },
+        {
+          "id": "rom_battleship_dderidex",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_battleship_dderidex"
+        },
+        {
+          "id": "rom_battleship_dkazanak",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_battleship_dkazanak"
+        },
+        {
+          "id": "rom_battleship_gallant",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_battleship_gallant"
+        },
+        {
+          "id": "rom_battleship_pontilus",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_battleship_pontilus"
+        },
+        {
+          "id": "rom_battleship_praetor",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_battleship_praetor"
+        },
+        {
+          "id": "rom_bop_arhael",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_bop_arhael"
+        },
+        {
+          "id": "rom_bop_jorek",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_bop_jorek"
+        },
+        {
+          "id": "rom_bop_rea",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_bop_rea"
+        },
+        {
+          "id": "rom_bop_stanet",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_bop_stanet"
+        },
+        {
+          "id": "rom_hero_ship_falchion",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_hero_ship_falchion"
+        },
+        {
+          "id": "rom_hero_ship_mimicus",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_hero_ship_mimicus"
+        },
+        {
+          "id": "rom_hero_ship_tulwas",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_hero_ship_tulwas"
+        },
+        {
+          "id": "rom_interceptor_arrenhe",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_interceptor_arrenhe"
+        },
+        {
+          "id": "rom_interceptor_tdair",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_interceptor_tdair"
+        },
+        {
+          "id": "rom_interceptor_tliss",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_interceptor_tliss"
+        },
+        {
+          "id": "rom_interceptor_tmara",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_interceptor_tmara"
+        },
+        {
+          "id": "rom_interceptor_tvaro",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_interceptor_tvaro"
+        },
+        {
+          "id": "rom_shrike_cruiser_decius",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_shrike_cruiser_decius"
+        },
+        {
+          "id": "rom_shrike_cruiser_khanakh",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_shrike_cruiser_khanakh"
+        },
+        {
+          "id": "rom_shrike_cruiser_vasteme",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_shrike_cruiser_vasteme"
+        },
+        {
+          "id": "rom_shuttle_snakehead",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_shuttle_snakehead"
+        },
+        {
+          "id": "rom_shuttle_tajen",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_shuttle_tajen"
+        },
+        {
+          "id": "rom_starbird_debrune",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_starbird_debrune"
+        },
+        {
+          "id": "rom_starbird_kaskara",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_starbird_kaskara"
+        },
+        {
+          "id": "rom_starbird_tshen",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_starbird_tshen"
+        },
+        {
+          "id": "rom_starbird_valkis",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_starbird_valkis"
+        },
+        {
+          "id": "rom_sword_scimitar",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_sword_scimitar"
+        },
+        {
+          "id": "rom_warbird_kanassarum",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_warbird_kanassarum"
+        },
+        {
+          "id": "rom_warbird_sharien",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_warbird_sharien"
+        },
+        {
+          "id": "rom_warbird_stasek",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_warbird_stasek"
+        },
+        {
+          "id": "rom_warbird_tellus",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_warbird_tellus"
+        },
+        {
+          "id": "rom_warbird_valdore",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_warbird_valdore"
+        },
+        {
+          "id": "rom_warbird_vreedex",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "rom_warbird_vreedex"
+        },
+        {
+          "id": "saber",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "saber"
+        },
+        {
+          "id": "science",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "science"
+        },
+        {
+          "id": "sensor_station_01",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "sensor_station_01"
+        },
+        {
+          "id": "shuttle",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "shuttle"
+        },
+        {
+          "id": "small_ship_ed",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "small_ship_ed"
+        },
+        {
+          "id": "small_ship_fallen_empire",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "small_ship_fallen_empire"
+        },
+        {
+          "id": "sona_collector_ahdar",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "sona_collector_ahdar"
+        },
+        {
+          "id": "sovereign",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "sovereign"
+        },
+        {
+          "id": "space_amoeba",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "space_amoeba"
+        },
+        {
+          "id": "space_amoeba_mother",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "space_amoeba_mother"
+        },
+        {
+          "id": "space_cloud",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "space_cloud"
+        },
+        {
+          "id": "space_dragon_baby",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "space_dragon_baby"
+        },
+        {
+          "id": "space_dragon_blue",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "space_dragon_blue"
+        },
+        {
+          "id": "space_dragon_origin",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "space_dragon_origin"
+        },
+        {
+          "id": "space_dragon_origin_baby",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "space_dragon_origin_baby"
+        },
+        {
+          "id": "space_dragon_red",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "space_dragon_red"
+        },
+        {
+          "id": "space_whale_1",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "space_whale_1"
+        },
+        {
+          "id": "space_whale_2",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "space_whale_2"
+        },
+        {
+          "id": "space_whale_3",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "space_whale_3"
+        },
+        {
+          "id": "space_whale_4",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "space_whale_4"
+        },
+        {
+          "id": "sphere",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "sphere"
+        },
+        {
+          "id": "sponsored_colonizer",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "sponsored_colonizer"
+        },
+        {
+          "id": "starbase_ai",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_ai"
+        },
+        {
+          "id": "starbase_castle",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_castle"
+        },
+        {
+          "id": "starbase_citadel",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_citadel"
+        },
+        {
+          "id": "starbase_exd",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_exd"
+        },
+        {
+          "id": "starbase_exd_0",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_exd_0"
+        },
+        {
+          "id": "starbase_fe_outpost",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_fe_outpost"
+        },
+        {
+          "id": "starbase_gatebuilders",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_gatebuilders"
+        },
+        {
+          "id": "starbase_marauder",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_marauder"
+        },
+        {
+          "id": "starbase_one",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_one"
+        },
+        {
+          "id": "starbase_outpost",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_outpost"
+        },
+        {
+          "id": "starbase_starfortress",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_starfortress"
+        },
+        {
+          "id": "starbase_starhold",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_starhold"
+        },
+        {
+          "id": "starbase_starport",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_starport"
+        },
+        {
+          "id": "starbase_swarm",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_swarm"
+        },
+        {
+          "id": "starbase_terran_vanguard_01",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "starbase_terran_vanguard_01"
+        },
+        {
+          "id": "station_generic_01",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "station_generic_01"
+        },
+        {
+          "id": "station_l",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "station_l"
+        },
+        {
+          "id": "station_m",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "station_m"
+        },
+        {
+          "id": "station_s",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "station_s"
+        },
+        {
+          "id": "station_xl",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "station_xl"
+        },
+        {
+          "id": "station_xs",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "station_xs"
+        },
+        {
+          "id": "steamrunner",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "steamrunner"
+        },
+        {
+          "id": "stellarite",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "stellarite"
+        },
+        {
+          "id": "strike",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "strike"
+        },
+        {
+          "id": "super_battleship",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "super_battleship"
+        },
+        {
+          "id": "super_cube",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "super_cube"
+        },
+        {
+          "id": "swarmship",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "swarmship"
+        },
+        {
+          "id": "tej_science_station",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "tej_science_station"
+        },
+        {
+          "id": "time_ship_annorax",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "time_ship_annorax"
+        },
+        {
+          "id": "titan",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "titan"
+        },
+        {
+          "id": "transport",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "transport"
+        },
+        {
+          "id": "undine_01_bio_battleship",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "undine_01_bio_battleship"
+        },
+        {
+          "id": "undine_01_bio_behemoth",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "undine_01_bio_behemoth"
+        },
+        {
+          "id": "undine_01_bio_cruiser",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "undine_01_bio_cruiser"
+        },
+        {
+          "id": "undine_01_bio_destroyer",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "undine_01_bio_destroyer"
+        },
+        {
+          "id": "undine_01_bio_frigate",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "undine_01_bio_frigate"
+        },
+        {
+          "id": "undine_01_bio_infester",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "undine_01_bio_infester"
+        },
+        {
+          "id": "undine_01_bio_raider",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "undine_01_bio_raider"
+        },
+        {
+          "id": "undine_01_bio_scout",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "undine_01_bio_scout"
+        },
+        {
+          "id": "undine_01_bio_ship",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "undine_01_bio_ship"
+        },
+        {
+          "id": "undine_01_bio_vanquisher",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "undine_01_bio_vanquisher"
+        },
+        {
+          "id": "undine_01_bio_warship",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "undine_01_bio_warship"
+        },
+        {
+          "id": "vger_probe",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "vger_probe"
+        },
+        {
+          "id": "whale_probe",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "whale_probe"
+        },
+        {
+          "id": "wraith_01_blue",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "wraith_01_blue"
+        },
+        {
+          "id": "wraith_01_red",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "wraith_01_red"
+        },
+        {
+          "id": "wraith_01_yellow",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "wraith_01_yellow"
+        },
+        {
+          "id": "xcv330",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "xcv330"
+        },
+        {
+          "id": "xindi_planet_killer_degra",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "xindi_planet_killer_degra"
+        },
+        {
+          "id": "xindi_probe",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "xindi_probe"
+        },
+        {
+          "id": "xindi_weapon",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "xindi_weapon"
+        },
+        {
+          "id": "yridian_destroyer",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "yridian_destroyer"
+        }
+      ]
     },
     "buildings": {
       "old_count": 653,
@@ -48,2275 +3010,357 @@
       "new_count": 448,
       "added": [],
       "removed": [],
-      "modified": [
-        {
-          "id": "tr_adaptability_adaptive_ecology",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_adaptive_ecology"
-        },
-        {
-          "id": "tr_adaptability_appropriation",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_appropriation"
-        },
-        {
-          "id": "tr_adaptability_borg_1",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_borg_1"
-        },
-        {
-          "id": "tr_adaptability_borg_2",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_borg_2"
-        },
-        {
-          "id": "tr_adaptability_borg_3",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_borg_3"
-        },
-        {
-          "id": "tr_adaptability_borg_4",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_borg_4"
-        },
-        {
-          "id": "tr_adaptability_borg_5",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_borg_5"
-        },
-        {
-          "id": "tr_adaptability_borg_adopt",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_borg_adopt"
-        },
-        {
-          "id": "tr_adaptability_borg_finish",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_borg_finish"
-        },
-        {
-          "id": "tr_adaptability_dietary_enrichment",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_dietary_enrichment"
-        },
-        {
-          "id": "tr_adaptability_environmental_diversification",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_environmental_diversification"
-        },
-        {
-          "id": "tr_adaptability_og_adopt",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_og_adopt"
-        },
-        {
-          "id": "tr_adaptability_og_finish",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_og_finish"
-        },
-        {
-          "id": "tr_adaptability_survival_fittest",
-          "changed_fields": [],
-          "name_key": "tr_adaptability_survival_fittest"
-        },
-        {
-          "id": "tr_aptitude_adopt",
-          "changed_fields": [],
-          "name_key": "tr_aptitude_adopt"
-        },
-        {
-          "id": "tr_aptitude_champions_of_the_empire",
-          "changed_fields": [],
-          "name_key": "tr_aptitude_champions_of_the_empire"
-        },
-        {
-          "id": "tr_aptitude_finish",
-          "changed_fields": [],
-          "name_key": "tr_aptitude_finish"
-        },
-        {
-          "id": "tr_aptitude_healthcare_program",
-          "changed_fields": [],
-          "name_key": "tr_aptitude_healthcare_program"
-        },
-        {
-          "id": "tr_aptitude_psychological_profiling",
-          "changed_fields": [],
-          "name_key": "tr_aptitude_psychological_profiling"
-        },
-        {
-          "id": "tr_aptitude_specialist_training",
-          "changed_fields": [],
-          "name_key": "tr_aptitude_specialist_training"
-        },
-        {
-          "id": "tr_aptitude_the_empire_needs_you",
-          "changed_fields": [],
-          "name_key": "tr_aptitude_the_empire_needs_you"
-        },
-        {
-          "id": "tr_archivism_adopt",
-          "changed_fields": [
-            "required_technologies"
-          ],
-          "name_key": "tr_archivism_adopt"
-        },
-        {
-          "id": "tr_archivism_exhibition_specialization",
-          "changed_fields": [],
-          "name_key": "tr_archivism_exhibition_specialization"
-        },
-        {
-          "id": "tr_archivism_expert_negociation",
-          "changed_fields": [],
-          "name_key": "tr_archivism_expert_negociation"
-        },
-        {
-          "id": "tr_archivism_finish",
-          "changed_fields": [],
-          "name_key": "tr_archivism_finish"
-        },
-        {
-          "id": "tr_archivism_flawless_display",
-          "changed_fields": [],
-          "name_key": "tr_archivism_flawless_display"
-        },
-        {
-          "id": "tr_archivism_frontier_archaeology",
-          "changed_fields": [],
-          "name_key": "tr_archivism_frontier_archaeology"
-        },
-        {
-          "id": "tr_archivism_xeno_paleontology",
-          "changed_fields": [],
-          "name_key": "tr_archivism_xeno_paleontology"
-        },
-        {
-          "id": "tr_assimilation_1",
-          "changed_fields": [],
-          "name_key": "tr_assimilation_1"
-        },
-        {
-          "id": "tr_assimilation_2",
-          "changed_fields": [],
-          "name_key": "tr_assimilation_2"
-        },
-        {
-          "id": "tr_assimilation_3",
-          "changed_fields": [],
-          "name_key": "tr_assimilation_3"
-        },
-        {
-          "id": "tr_assimilation_4",
-          "changed_fields": [],
-          "name_key": "tr_assimilation_4"
-        },
-        {
-          "id": "tr_assimilation_5",
-          "changed_fields": [],
-          "name_key": "tr_assimilation_5"
-        },
-        {
-          "id": "tr_assimilation_adopt",
-          "changed_fields": [],
-          "name_key": "tr_assimilation_adopt"
-        },
-        {
-          "id": "tr_assimilation_finish",
-          "changed_fields": [],
-          "name_key": "tr_assimilation_finish"
-        },
-        {
-          "id": "tr_automation_1",
-          "changed_fields": [],
-          "name_key": "tr_automation_1"
-        },
-        {
-          "id": "tr_automation_2",
-          "changed_fields": [],
-          "name_key": "tr_automation_2"
-        },
-        {
-          "id": "tr_automation_3",
-          "changed_fields": [],
-          "name_key": "tr_automation_3"
-        },
-        {
-          "id": "tr_automation_4",
-          "changed_fields": [],
-          "name_key": "tr_automation_4"
-        },
-        {
-          "id": "tr_automation_5",
-          "changed_fields": [],
-          "name_key": "tr_automation_5"
-        },
-        {
-          "id": "tr_automation_adopt",
-          "changed_fields": [],
-          "name_key": "tr_automation_adopt"
-        },
-        {
-          "id": "tr_automation_finish",
-          "changed_fields": [],
-          "name_key": "tr_automation_finish"
-        },
-        {
-          "id": "tr_cardassian_2_1",
-          "changed_fields": [],
-          "name_key": "tr_cardassian_2_1"
-        },
-        {
-          "id": "tr_cardassian_2_2",
-          "changed_fields": [],
-          "name_key": "tr_cardassian_2_2"
-        },
-        {
-          "id": "tr_cardassian_2_3",
-          "changed_fields": [],
-          "name_key": "tr_cardassian_2_3"
-        },
-        {
-          "id": "tr_cardassian_2_4",
-          "changed_fields": [],
-          "name_key": "tr_cardassian_2_4"
-        },
-        {
-          "id": "tr_cardassian_2_5",
-          "changed_fields": [],
-          "name_key": "tr_cardassian_2_5"
-        },
-        {
-          "id": "tr_cardassian_2_adopt",
-          "changed_fields": [],
-          "name_key": "tr_cardassian_2_adopt"
-        },
-        {
-          "id": "tr_cardassian_2_finish",
-          "changed_fields": [],
-          "name_key": "tr_cardassian_2_finish"
-        },
-        {
-          "id": "tr_connectivity_borg_1",
-          "changed_fields": [],
-          "name_key": "tr_connectivity_borg_1"
-        },
-        {
-          "id": "tr_connectivity_borg_2",
-          "changed_fields": [],
-          "name_key": "tr_connectivity_borg_2"
-        },
-        {
-          "id": "tr_connectivity_borg_3",
-          "changed_fields": [],
-          "name_key": "tr_connectivity_borg_3"
-        },
-        {
-          "id": "tr_connectivity_borg_4",
-          "changed_fields": [],
-          "name_key": "tr_connectivity_borg_4"
-        },
-        {
-          "id": "tr_connectivity_borg_5",
-          "changed_fields": [],
-          "name_key": "tr_connectivity_borg_5"
-        },
-        {
-          "id": "tr_connectivity_borg_adopt",
-          "changed_fields": [],
-          "name_key": "tr_connectivity_borg_adopt"
-        },
-        {
-          "id": "tr_connectivity_borg_finish",
-          "changed_fields": [],
-          "name_key": "tr_connectivity_borg_finish"
-        },
-        {
-          "id": "tr_cunning_1",
-          "changed_fields": [],
-          "name_key": "tr_cunning_1"
-        },
-        {
-          "id": "tr_cunning_2",
-          "changed_fields": [],
-          "name_key": "tr_cunning_2"
-        },
-        {
-          "id": "tr_cunning_3",
-          "changed_fields": [],
-          "name_key": "tr_cunning_3"
-        },
-        {
-          "id": "tr_cunning_4",
-          "changed_fields": [],
-          "name_key": "tr_cunning_4"
-        },
-        {
-          "id": "tr_cunning_5",
-          "changed_fields": [],
-          "name_key": "tr_cunning_5"
-        },
-        {
-          "id": "tr_cunning_adopt",
-          "changed_fields": [],
-          "name_key": "tr_cunning_adopt"
-        },
-        {
-          "id": "tr_cunning_finish",
-          "changed_fields": [],
-          "name_key": "tr_cunning_finish"
-        },
-        {
-          "id": "tr_diplomacy_adopt",
-          "changed_fields": [],
-          "name_key": "tr_diplomacy_adopt"
-        },
-        {
-          "id": "tr_diplomacy_entente_coordination",
-          "changed_fields": [],
-          "name_key": "tr_diplomacy_entente_coordination"
-        },
-        {
-          "id": "tr_diplomacy_finish",
-          "changed_fields": [],
-          "name_key": "tr_diplomacy_finish"
-        },
-        {
-          "id": "tr_diplomacy_insider_trading",
-          "changed_fields": [],
-          "name_key": "tr_diplomacy_insider_trading"
-        },
-        {
-          "id": "tr_diplomacy_open_markets",
-          "changed_fields": [],
-          "name_key": "tr_diplomacy_open_markets"
-        },
-        {
-          "id": "tr_diplomacy_secure_shipping",
-          "changed_fields": [],
-          "name_key": "tr_diplomacy_secure_shipping"
-        },
-        {
-          "id": "tr_diplomacy_the_federation",
-          "changed_fields": [],
-          "name_key": "tr_diplomacy_the_federation"
-        },
-        {
-          "id": "tr_discovery_adopt",
-          "changed_fields": [],
-          "name_key": "tr_discovery_adopt"
-        },
-        {
-          "id": "tr_discovery_databank_uplinks",
-          "changed_fields": [],
-          "name_key": "tr_discovery_databank_uplinks"
-        },
-        {
-          "id": "tr_discovery_faith_in_science",
-          "changed_fields": [],
-          "name_key": "tr_discovery_faith_in_science"
-        },
-        {
-          "id": "tr_discovery_finish",
-          "changed_fields": [],
-          "name_key": "tr_discovery_finish"
-        },
-        {
-          "id": "tr_discovery_polytechnic_education",
-          "changed_fields": [],
-          "name_key": "tr_discovery_polytechnic_education"
-        },
-        {
-          "id": "tr_discovery_science_division",
-          "changed_fields": [],
-          "name_key": "tr_discovery_science_division"
-        },
-        {
-          "id": "tr_discovery_to_boldly_go",
-          "changed_fields": [],
-          "name_key": "tr_discovery_to_boldly_go"
-        },
-        {
-          "id": "tr_diversity_1",
-          "changed_fields": [],
-          "name_key": "tr_diversity_1"
-        },
-        {
-          "id": "tr_diversity_2",
-          "changed_fields": [],
-          "name_key": "tr_diversity_2"
-        },
-        {
-          "id": "tr_diversity_3",
-          "changed_fields": [],
-          "name_key": "tr_diversity_3"
-        },
-        {
-          "id": "tr_diversity_4",
-          "changed_fields": [],
-          "name_key": "tr_diversity_4"
-        },
-        {
-          "id": "tr_diversity_5",
-          "changed_fields": [],
-          "name_key": "tr_diversity_5"
-        },
-        {
-          "id": "tr_diversity_adopt",
-          "changed_fields": [],
-          "name_key": "tr_diversity_adopt"
-        },
-        {
-          "id": "tr_diversity_finish",
-          "changed_fields": [],
-          "name_key": "tr_diversity_finish"
-        },
-        {
-          "id": "tr_dominance_1",
-          "changed_fields": [],
-          "name_key": "tr_dominance_1"
-        },
-        {
-          "id": "tr_dominance_2",
-          "changed_fields": [],
-          "name_key": "tr_dominance_2"
-        },
-        {
-          "id": "tr_dominance_3",
-          "changed_fields": [],
-          "name_key": "tr_dominance_3"
-        },
-        {
-          "id": "tr_dominance_4",
-          "changed_fields": [],
-          "name_key": "tr_dominance_4"
-        },
-        {
-          "id": "tr_dominance_5",
-          "changed_fields": [],
-          "name_key": "tr_dominance_5"
-        },
-        {
-          "id": "tr_dominance_adopt",
-          "changed_fields": [],
-          "name_key": "tr_dominance_adopt"
-        },
-        {
-          "id": "tr_dominance_finish",
-          "changed_fields": [],
-          "name_key": "tr_dominance_finish"
-        },
-        {
-          "id": "tr_domination_adopt",
-          "changed_fields": [],
-          "name_key": "tr_domination_adopt"
-        },
-        {
-          "id": "tr_domination_colonial_viceroys",
-          "changed_fields": [],
-          "name_key": "tr_domination_colonial_viceroys"
-        },
-        {
-          "id": "tr_domination_finish",
-          "changed_fields": [],
-          "name_key": "tr_domination_finish"
-        },
-        {
-          "id": "tr_domination_grand_council",
-          "changed_fields": [],
-          "name_key": "tr_domination_grand_council"
-        },
-        {
-          "id": "tr_domination_imperious_architecture",
-          "changed_fields": [],
-          "name_key": "tr_domination_imperious_architecture"
-        },
-        {
-          "id": "tr_domination_judgment_corps",
-          "changed_fields": [],
-          "name_key": "tr_domination_judgment_corps"
-        },
-        {
-          "id": "tr_domination_workplace_motivators",
-          "changed_fields": [],
-          "name_key": "tr_domination_workplace_motivators"
-        },
-        {
-          "id": "tr_dominion_2_1",
-          "changed_fields": [],
-          "name_key": "tr_dominion_2_1"
-        },
-        {
-          "id": "tr_dominion_2_2",
-          "changed_fields": [],
-          "name_key": "tr_dominion_2_2"
-        },
-        {
-          "id": "tr_dominion_2_3",
-          "changed_fields": [],
-          "name_key": "tr_dominion_2_3"
-        },
-        {
-          "id": "tr_dominion_2_4",
-          "changed_fields": [],
-          "name_key": "tr_dominion_2_4"
-        },
-        {
-          "id": "tr_dominion_2_5",
-          "changed_fields": [],
-          "name_key": "tr_dominion_2_5"
-        },
-        {
-          "id": "tr_dominion_2_adopt",
-          "changed_fields": [],
-          "name_key": "tr_dominion_2_adopt"
-        },
-        {
-          "id": "tr_dominion_2_finish",
-          "changed_fields": [],
-          "name_key": "tr_dominion_2_finish"
-        },
-        {
-          "id": "tr_enmity_adopt",
-          "changed_fields": [],
-          "name_key": "tr_enmity_adopt"
-        },
-        {
-          "id": "tr_enmity_consumate_contrarian",
-          "changed_fields": [],
-          "name_key": "tr_enmity_consumate_contrarian"
-        },
-        {
-          "id": "tr_enmity_eclipse",
-          "changed_fields": [],
-          "name_key": "tr_enmity_eclipse"
-        },
-        {
-          "id": "tr_enmity_finish",
-          "changed_fields": [],
-          "name_key": "tr_enmity_finish"
-        },
-        {
-          "id": "tr_enmity_match",
-          "changed_fields": [],
-          "name_key": "tr_enmity_match"
-        },
-        {
-          "id": "tr_enmity_outpace",
-          "changed_fields": [],
-          "name_key": "tr_enmity_outpace"
-        },
-        {
-          "id": "tr_enmity_rise_to_the_occasion",
-          "changed_fields": [],
-          "name_key": "tr_enmity_rise_to_the_occasion"
-        },
-        {
-          "id": "tr_eugenics_1",
-          "changed_fields": [],
-          "name_key": "tr_eugenics_1"
-        },
-        {
-          "id": "tr_eugenics_2",
-          "changed_fields": [],
-          "name_key": "tr_eugenics_2"
-        },
-        {
-          "id": "tr_eugenics_3",
-          "changed_fields": [],
-          "name_key": "tr_eugenics_3"
-        },
-        {
-          "id": "tr_eugenics_4",
-          "changed_fields": [],
-          "name_key": "tr_eugenics_4"
-        },
-        {
-          "id": "tr_eugenics_5",
-          "changed_fields": [],
-          "name_key": "tr_eugenics_5"
-        },
-        {
-          "id": "tr_eugenics_adopt",
-          "changed_fields": [],
-          "name_key": "tr_eugenics_adopt"
-        },
-        {
-          "id": "tr_eugenics_finish",
-          "changed_fields": [],
-          "name_key": "tr_eugenics_finish"
-        },
-        {
-          "id": "tr_expansion_a_new_life",
-          "changed_fields": [],
-          "name_key": "tr_expansion_a_new_life"
-        },
-        {
-          "id": "tr_expansion_adopt",
-          "changed_fields": [],
-          "name_key": "tr_expansion_adopt"
-        },
-        {
-          "id": "tr_expansion_colonization_fever",
-          "changed_fields": [],
-          "name_key": "tr_expansion_colonization_fever"
-        },
-        {
-          "id": "tr_expansion_courier_network",
-          "changed_fields": [],
-          "name_key": "tr_expansion_courier_network"
-        },
-        {
-          "id": "tr_expansion_finish",
-          "changed_fields": [],
-          "name_key": "tr_expansion_finish"
-        },
-        {
-          "id": "tr_expansion_galactic_ambition",
-          "changed_fields": [],
-          "name_key": "tr_expansion_galactic_ambition"
-        },
-        {
-          "id": "tr_expansion_reach_for_the_stars",
-          "changed_fields": [],
-          "name_key": "tr_expansion_reach_for_the_stars"
-        },
-        {
-          "id": "tr_federation_1",
-          "changed_fields": [],
-          "name_key": "tr_federation_1"
-        },
-        {
-          "id": "tr_federation_2",
-          "changed_fields": [],
-          "name_key": "tr_federation_2"
-        },
-        {
-          "id": "tr_federation_2_1",
-          "changed_fields": [],
-          "name_key": "tr_federation_2_1"
-        },
-        {
-          "id": "tr_federation_2_2",
-          "changed_fields": [],
-          "name_key": "tr_federation_2_2"
-        },
-        {
-          "id": "tr_federation_2_3",
-          "changed_fields": [],
-          "name_key": "tr_federation_2_3"
-        },
-        {
-          "id": "tr_federation_2_4",
-          "changed_fields": [],
-          "name_key": "tr_federation_2_4"
-        },
-        {
-          "id": "tr_federation_2_5",
-          "changed_fields": [],
-          "name_key": "tr_federation_2_5"
-        },
-        {
-          "id": "tr_federation_2_adopt",
-          "changed_fields": [],
-          "name_key": "tr_federation_2_adopt"
-        },
-        {
-          "id": "tr_federation_2_finish",
-          "changed_fields": [],
-          "name_key": "tr_federation_2_finish"
-        },
-        {
-          "id": "tr_federation_3",
-          "changed_fields": [],
-          "name_key": "tr_federation_3"
-        },
-        {
-          "id": "tr_federation_4",
-          "changed_fields": [],
-          "name_key": "tr_federation_4"
-        },
-        {
-          "id": "tr_federation_5",
-          "changed_fields": [],
-          "name_key": "tr_federation_5"
-        },
-        {
-          "id": "tr_federation_adopt",
-          "changed_fields": [],
-          "name_key": "tr_federation_adopt"
-        },
-        {
-          "id": "tr_federation_finish",
-          "changed_fields": [],
-          "name_key": "tr_federation_finish"
-        },
-        {
-          "id": "tr_ferengi_2_1",
-          "changed_fields": [],
-          "name_key": "tr_ferengi_2_1"
-        },
-        {
-          "id": "tr_ferengi_2_2",
-          "changed_fields": [],
-          "name_key": "tr_ferengi_2_2"
-        },
-        {
-          "id": "tr_ferengi_2_3",
-          "changed_fields": [],
-          "name_key": "tr_ferengi_2_3"
-        },
-        {
-          "id": "tr_ferengi_2_4",
-          "changed_fields": [],
-          "name_key": "tr_ferengi_2_4"
-        },
-        {
-          "id": "tr_ferengi_2_5",
-          "changed_fields": [],
-          "name_key": "tr_ferengi_2_5"
-        },
-        {
-          "id": "tr_ferengi_2_adopt",
-          "changed_fields": [],
-          "name_key": "tr_ferengi_2_adopt"
-        },
-        {
-          "id": "tr_ferengi_2_finish",
-          "changed_fields": [],
-          "name_key": "tr_ferengi_2_finish"
-        },
-        {
-          "id": "tr_futility_borg_1",
-          "changed_fields": [],
-          "name_key": "tr_futility_borg_1"
-        },
-        {
-          "id": "tr_futility_borg_2",
-          "changed_fields": [],
-          "name_key": "tr_futility_borg_2"
-        },
-        {
-          "id": "tr_futility_borg_3",
-          "changed_fields": [],
-          "name_key": "tr_futility_borg_3"
-        },
-        {
-          "id": "tr_futility_borg_4",
-          "changed_fields": [],
-          "name_key": "tr_futility_borg_4"
-        },
-        {
-          "id": "tr_futility_borg_5",
-          "changed_fields": [],
-          "name_key": "tr_futility_borg_5"
-        },
-        {
-          "id": "tr_futility_borg_adopt",
-          "changed_fields": [],
-          "name_key": "tr_futility_borg_adopt"
-        },
-        {
-          "id": "tr_futility_borg_finish",
-          "changed_fields": [],
-          "name_key": "tr_futility_borg_finish"
-        },
-        {
-          "id": "tr_glory_1",
-          "changed_fields": [],
-          "name_key": "tr_glory_1"
-        },
-        {
-          "id": "tr_glory_2",
-          "changed_fields": [],
-          "name_key": "tr_glory_2"
-        },
-        {
-          "id": "tr_glory_3",
-          "changed_fields": [],
-          "name_key": "tr_glory_3"
-        },
-        {
-          "id": "tr_glory_4",
-          "changed_fields": [],
-          "name_key": "tr_glory_4"
-        },
-        {
-          "id": "tr_glory_5",
-          "changed_fields": [],
-          "name_key": "tr_glory_5"
-        },
-        {
-          "id": "tr_glory_adopt",
-          "changed_fields": [],
-          "name_key": "tr_glory_adopt"
-        },
-        {
-          "id": "tr_glory_finish",
-          "changed_fields": [],
-          "name_key": "tr_glory_finish"
-        },
-        {
-          "id": "tr_great_houses_1",
-          "changed_fields": [],
-          "name_key": "tr_great_houses_1"
-        },
-        {
-          "id": "tr_great_houses_2",
-          "changed_fields": [],
-          "name_key": "tr_great_houses_2"
-        },
-        {
-          "id": "tr_great_houses_3",
-          "changed_fields": [],
-          "name_key": "tr_great_houses_3"
-        },
-        {
-          "id": "tr_great_houses_4",
-          "changed_fields": [],
-          "name_key": "tr_great_houses_4"
-        },
-        {
-          "id": "tr_great_houses_5",
-          "changed_fields": [],
-          "name_key": "tr_great_houses_5"
-        },
-        {
-          "id": "tr_great_houses_adopt",
-          "changed_fields": [],
-          "name_key": "tr_great_houses_adopt"
-        },
-        {
-          "id": "tr_great_houses_finish",
-          "changed_fields": [],
-          "name_key": "tr_great_houses_finish"
-        },
-        {
-          "id": "tr_harmony_adopt",
-          "changed_fields": [],
-          "name_key": "tr_harmony_adopt"
-        },
-        {
-          "id": "tr_harmony_bulwark_of_harmony",
-          "changed_fields": [],
-          "name_key": "tr_harmony_bulwark_of_harmony"
-        },
-        {
-          "id": "tr_harmony_finish",
-          "changed_fields": [],
-          "name_key": "tr_harmony_finish"
-        },
-        {
-          "id": "tr_harmony_kinship",
-          "changed_fields": [],
-          "name_key": "tr_harmony_kinship"
-        },
-        {
-          "id": "tr_harmony_mind_and_body",
-          "changed_fields": [],
-          "name_key": "tr_harmony_mind_and_body"
-        },
-        {
-          "id": "tr_harmony_the_greater_good",
-          "changed_fields": [],
-          "name_key": "tr_harmony_the_greater_good"
-        },
-        {
-          "id": "tr_harmony_utopian_dream",
-          "changed_fields": [],
-          "name_key": "tr_harmony_utopian_dream"
-        },
-        {
-          "id": "tr_harvesting_borg_1",
-          "changed_fields": [],
-          "name_key": "tr_harvesting_borg_1"
-        },
-        {
-          "id": "tr_harvesting_borg_2",
-          "changed_fields": [],
-          "name_key": "tr_harvesting_borg_2"
-        },
-        {
-          "id": "tr_harvesting_borg_3",
-          "changed_fields": [],
-          "name_key": "tr_harvesting_borg_3"
-        },
-        {
-          "id": "tr_harvesting_borg_4",
-          "changed_fields": [],
-          "name_key": "tr_harvesting_borg_4"
-        },
-        {
-          "id": "tr_harvesting_borg_5",
-          "changed_fields": [],
-          "name_key": "tr_harvesting_borg_5"
-        },
-        {
-          "id": "tr_harvesting_borg_adopt",
-          "changed_fields": [],
-          "name_key": "tr_harvesting_borg_adopt"
-        },
-        {
-          "id": "tr_harvesting_borg_finish",
-          "changed_fields": [],
-          "name_key": "tr_harvesting_borg_finish"
-        },
-        {
-          "id": "tr_holographic_1",
-          "changed_fields": [
-            "required_technologies"
-          ],
-          "name_key": "tr_holographic_1"
-        },
-        {
-          "id": "tr_holographic_2",
-          "changed_fields": [
-            "required_technologies"
-          ],
-          "name_key": "tr_holographic_2"
-        },
-        {
-          "id": "tr_holographic_3",
-          "changed_fields": [
-            "required_technologies"
-          ],
-          "name_key": "tr_holographic_3"
-        },
-        {
-          "id": "tr_holographic_4",
-          "changed_fields": [
-            "required_technologies"
-          ],
-          "name_key": "tr_holographic_4"
-        },
-        {
-          "id": "tr_holographic_5",
-          "changed_fields": [
-            "required_technologies"
-          ],
-          "name_key": "tr_holographic_5"
-        },
-        {
-          "id": "tr_holographic_adopt",
-          "changed_fields": [],
-          "name_key": "tr_holographic_adopt"
-        },
-        {
-          "id": "tr_holographic_finish",
-          "changed_fields": [],
-          "name_key": "tr_holographic_finish"
-        },
-        {
-          "id": "tr_honour_1",
-          "changed_fields": [],
-          "name_key": "tr_honour_1"
-        },
-        {
-          "id": "tr_honour_2",
-          "changed_fields": [],
-          "name_key": "tr_honour_2"
-        },
-        {
-          "id": "tr_honour_3",
-          "changed_fields": [],
-          "name_key": "tr_honour_3"
-        },
-        {
-          "id": "tr_honour_4",
-          "changed_fields": [],
-          "name_key": "tr_honour_4"
-        },
-        {
-          "id": "tr_honour_5",
-          "changed_fields": [],
-          "name_key": "tr_honour_5"
-        },
-        {
-          "id": "tr_honour_adopt",
-          "changed_fields": [],
-          "name_key": "tr_honour_adopt"
-        },
-        {
-          "id": "tr_honour_finish",
-          "changed_fields": [],
-          "name_key": "tr_honour_finish"
-        },
-        {
-          "id": "tr_imperious_1",
-          "changed_fields": [],
-          "name_key": "tr_imperious_1"
-        },
-        {
-          "id": "tr_imperious_2",
-          "changed_fields": [],
-          "name_key": "tr_imperious_2"
-        },
-        {
-          "id": "tr_imperious_3",
-          "changed_fields": [],
-          "name_key": "tr_imperious_3"
-        },
-        {
-          "id": "tr_imperious_4",
-          "changed_fields": [],
-          "name_key": "tr_imperious_4"
-        },
-        {
-          "id": "tr_imperious_5",
-          "changed_fields": [],
-          "name_key": "tr_imperious_5"
-        },
-        {
-          "id": "tr_imperious_adopt",
-          "changed_fields": [],
-          "name_key": "tr_imperious_adopt"
-        },
-        {
-          "id": "tr_imperious_finish",
-          "changed_fields": [],
-          "name_key": "tr_imperious_finish"
-        },
-        {
-          "id": "tr_kessok_1",
-          "changed_fields": [],
-          "name_key": "tr_kessok_1"
-        },
-        {
-          "id": "tr_kessok_2",
-          "changed_fields": [],
-          "name_key": "tr_kessok_2"
-        },
-        {
-          "id": "tr_kessok_3",
-          "changed_fields": [],
-          "name_key": "tr_kessok_3"
-        },
-        {
-          "id": "tr_kessok_4",
-          "changed_fields": [],
-          "name_key": "tr_kessok_4"
-        },
-        {
-          "id": "tr_kessok_5",
-          "changed_fields": [],
-          "name_key": "tr_kessok_5"
-        },
-        {
-          "id": "tr_kessok_adopt",
-          "changed_fields": [],
-          "name_key": "tr_kessok_adopt"
-        },
-        {
-          "id": "tr_kessok_finish",
-          "changed_fields": [],
-          "name_key": "tr_kessok_finish"
-        },
-        {
-          "id": "tr_klingon_2_1",
-          "changed_fields": [],
-          "name_key": "tr_klingon_2_1"
-        },
-        {
-          "id": "tr_klingon_2_2",
-          "changed_fields": [],
-          "name_key": "tr_klingon_2_2"
-        },
-        {
-          "id": "tr_klingon_2_3",
-          "changed_fields": [],
-          "name_key": "tr_klingon_2_3"
-        },
-        {
-          "id": "tr_klingon_2_4",
-          "changed_fields": [],
-          "name_key": "tr_klingon_2_4"
-        },
-        {
-          "id": "tr_klingon_2_5",
-          "changed_fields": [],
-          "name_key": "tr_klingon_2_5"
-        },
-        {
-          "id": "tr_klingon_2_adopt",
-          "changed_fields": [],
-          "name_key": "tr_klingon_2_adopt"
-        },
-        {
-          "id": "tr_klingon_2_finish",
-          "changed_fields": [],
-          "name_key": "tr_klingon_2_finish"
-        },
-        {
-          "id": "tr_logic_1",
-          "changed_fields": [],
-          "name_key": "tr_logic_1"
-        },
-        {
-          "id": "tr_logic_2",
-          "changed_fields": [],
-          "name_key": "tr_logic_2"
-        },
-        {
-          "id": "tr_logic_3",
-          "changed_fields": [],
-          "name_key": "tr_logic_3"
-        },
-        {
-          "id": "tr_logic_4",
-          "changed_fields": [],
-          "name_key": "tr_logic_4"
-        },
-        {
-          "id": "tr_logic_5",
-          "changed_fields": [],
-          "name_key": "tr_logic_5"
-        },
-        {
-          "id": "tr_logic_adopt",
-          "changed_fields": [],
-          "name_key": "tr_logic_adopt"
-        },
-        {
-          "id": "tr_logic_finish",
-          "changed_fields": [],
-          "name_key": "tr_logic_finish"
-        },
-        {
-          "id": "tr_logistics_1",
-          "changed_fields": [],
-          "name_key": "tr_logistics_1"
-        },
-        {
-          "id": "tr_logistics_2",
-          "changed_fields": [],
-          "name_key": "tr_logistics_2"
-        },
-        {
-          "id": "tr_logistics_3",
-          "changed_fields": [],
-          "name_key": "tr_logistics_3"
-        },
-        {
-          "id": "tr_logistics_4",
-          "changed_fields": [],
-          "name_key": "tr_logistics_4"
-        },
-        {
-          "id": "tr_logistics_5",
-          "changed_fields": [],
-          "name_key": "tr_logistics_5"
-        },
-        {
-          "id": "tr_logistics_adopt",
-          "changed_fields": [],
-          "name_key": "tr_logistics_adopt"
-        },
-        {
-          "id": "tr_logistics_finish",
-          "changed_fields": [],
-          "name_key": "tr_logistics_finish"
-        },
-        {
-          "id": "tr_might_1",
-          "changed_fields": [],
-          "name_key": "tr_might_1"
-        },
-        {
-          "id": "tr_might_2",
-          "changed_fields": [],
-          "name_key": "tr_might_2"
-        },
-        {
-          "id": "tr_might_3",
-          "changed_fields": [],
-          "name_key": "tr_might_3"
-        },
-        {
-          "id": "tr_might_4",
-          "changed_fields": [],
-          "name_key": "tr_might_4"
-        },
-        {
-          "id": "tr_might_5",
-          "changed_fields": [],
-          "name_key": "tr_might_5"
-        },
-        {
-          "id": "tr_might_adopt",
-          "changed_fields": [],
-          "name_key": "tr_might_adopt"
-        },
-        {
-          "id": "tr_might_finish",
-          "changed_fields": [],
-          "name_key": "tr_might_finish"
-        },
-        {
-          "id": "tr_obsidian_order_1",
-          "changed_fields": [],
-          "name_key": "tr_obsidian_order_1"
-        },
-        {
-          "id": "tr_obsidian_order_2",
-          "changed_fields": [],
-          "name_key": "tr_obsidian_order_2"
-        },
-        {
-          "id": "tr_obsidian_order_3",
-          "changed_fields": [],
-          "name_key": "tr_obsidian_order_3"
-        },
-        {
-          "id": "tr_obsidian_order_4",
-          "changed_fields": [],
-          "name_key": "tr_obsidian_order_4"
-        },
-        {
-          "id": "tr_obsidian_order_5",
-          "changed_fields": [],
-          "name_key": "tr_obsidian_order_5"
-        },
-        {
-          "id": "tr_obsidian_order_adopt",
-          "changed_fields": [],
-          "name_key": "tr_obsidian_order_adopt"
-        },
-        {
-          "id": "tr_obsidian_order_finish",
-          "changed_fields": [],
-          "name_key": "tr_obsidian_order_finish"
-        },
-        {
-          "id": "tr_order_1",
-          "changed_fields": [],
-          "name_key": "tr_order_1"
-        },
-        {
-          "id": "tr_order_2",
-          "changed_fields": [],
-          "name_key": "tr_order_2"
-        },
-        {
-          "id": "tr_order_3",
-          "changed_fields": [],
-          "name_key": "tr_order_3"
-        },
-        {
-          "id": "tr_order_4",
-          "changed_fields": [],
-          "name_key": "tr_order_4"
-        },
-        {
-          "id": "tr_order_5",
-          "changed_fields": [],
-          "name_key": "tr_order_5"
-        },
-        {
-          "id": "tr_order_adopt",
-          "changed_fields": [],
-          "name_key": "tr_order_adopt"
-        },
-        {
-          "id": "tr_order_finish",
-          "changed_fields": [],
-          "name_key": "tr_order_finish"
-        },
-        {
-          "id": "tr_perfection_1",
-          "changed_fields": [],
-          "name_key": "tr_perfection_1"
-        },
-        {
-          "id": "tr_perfection_2",
-          "changed_fields": [],
-          "name_key": "tr_perfection_2"
-        },
-        {
-          "id": "tr_perfection_3",
-          "changed_fields": [],
-          "name_key": "tr_perfection_3"
-        },
-        {
-          "id": "tr_perfection_4",
-          "changed_fields": [],
-          "name_key": "tr_perfection_4"
-        },
-        {
-          "id": "tr_perfection_5",
-          "changed_fields": [],
-          "name_key": "tr_perfection_5"
-        },
-        {
-          "id": "tr_perfection_adopt",
-          "changed_fields": [],
-          "name_key": "tr_perfection_adopt"
-        },
-        {
-          "id": "tr_perfection_finish",
-          "changed_fields": [],
-          "name_key": "tr_perfection_finish"
-        },
-        {
-          "id": "tr_politics_adopt",
-          "changed_fields": [],
-          "name_key": "tr_politics_adopt"
-        },
-        {
-          "id": "tr_politics_bureaucracy_state",
-          "changed_fields": [],
-          "name_key": "tr_politics_bureaucracy_state"
-        },
-        {
-          "id": "tr_politics_diplomancy_first",
-          "changed_fields": [],
-          "name_key": "tr_politics_diplomancy_first"
-        },
-        {
-          "id": "tr_politics_expanded_policies",
-          "changed_fields": [],
-          "name_key": "tr_politics_expanded_policies"
-        },
-        {
-          "id": "tr_politics_finish",
-          "changed_fields": [],
-          "name_key": "tr_politics_finish"
-        },
-        {
-          "id": "tr_politics_political_parties",
-          "changed_fields": [],
-          "name_key": "tr_politics_political_parties"
-        },
-        {
-          "id": "tr_politics_politicking",
-          "changed_fields": [],
-          "name_key": "tr_politics_politicking"
-        },
-        {
-          "id": "tr_preservation_1",
-          "changed_fields": [],
-          "name_key": "tr_preservation_1"
-        },
-        {
-          "id": "tr_preservation_2",
-          "changed_fields": [],
-          "name_key": "tr_preservation_2"
-        },
-        {
-          "id": "tr_preservation_3",
-          "changed_fields": [],
-          "name_key": "tr_preservation_3"
-        },
-        {
-          "id": "tr_preservation_4",
-          "changed_fields": [],
-          "name_key": "tr_preservation_4"
-        },
-        {
-          "id": "tr_preservation_5",
-          "changed_fields": [],
-          "name_key": "tr_preservation_5"
-        },
-        {
-          "id": "tr_preservation_adopt",
-          "changed_fields": [],
-          "name_key": "tr_preservation_adopt"
-        },
-        {
-          "id": "tr_preservation_finish",
-          "changed_fields": [],
-          "name_key": "tr_preservation_finish"
-        },
-        {
-          "id": "tr_productivity_1",
-          "changed_fields": [],
-          "name_key": "tr_productivity_1"
-        },
-        {
-          "id": "tr_productivity_2",
-          "changed_fields": [],
-          "name_key": "tr_productivity_2"
-        },
-        {
-          "id": "tr_productivity_3",
-          "changed_fields": [],
-          "name_key": "tr_productivity_3"
-        },
-        {
-          "id": "tr_productivity_4",
-          "changed_fields": [],
-          "name_key": "tr_productivity_4"
-        },
-        {
-          "id": "tr_productivity_5",
-          "changed_fields": [],
-          "name_key": "tr_productivity_5"
-        },
-        {
-          "id": "tr_productivity_adopt",
-          "changed_fields": [],
-          "name_key": "tr_productivity_adopt"
-        },
-        {
-          "id": "tr_productivity_finish",
-          "changed_fields": [],
-          "name_key": "tr_productivity_finish"
-        },
-        {
-          "id": "tr_prophecy_1",
-          "changed_fields": [],
-          "name_key": "tr_prophecy_1"
-        },
-        {
-          "id": "tr_prophecy_2",
-          "changed_fields": [],
-          "name_key": "tr_prophecy_2"
-        },
-        {
-          "id": "tr_prophecy_3",
-          "changed_fields": [],
-          "name_key": "tr_prophecy_3"
-        },
-        {
-          "id": "tr_prophecy_4",
-          "changed_fields": [],
-          "name_key": "tr_prophecy_4"
-        },
-        {
-          "id": "tr_prophecy_5",
-          "changed_fields": [],
-          "name_key": "tr_prophecy_5"
-        },
-        {
-          "id": "tr_prophecy_adopt",
-          "changed_fields": [],
-          "name_key": "tr_prophecy_adopt"
-        },
-        {
-          "id": "tr_prophecy_finish",
-          "changed_fields": [],
-          "name_key": "tr_prophecy_finish"
-        },
-        {
-          "id": "tr_prosperity_administrative_operations",
-          "changed_fields": [],
-          "name_key": "tr_prosperity_administrative_operations"
-        },
-        {
-          "id": "tr_prosperity_adopt",
-          "changed_fields": [],
-          "name_key": "tr_prosperity_adopt"
-        },
-        {
-          "id": "tr_prosperity_finish",
-          "changed_fields": [],
-          "name_key": "tr_prosperity_finish"
-        },
-        {
-          "id": "tr_prosperity_interstellar_franchising",
-          "changed_fields": [],
-          "name_key": "tr_prosperity_interstellar_franchising"
-        },
-        {
-          "id": "tr_prosperity_public_works",
-          "changed_fields": [],
-          "name_key": "tr_prosperity_public_works"
-        },
-        {
-          "id": "tr_prosperity_pursuit_of_profit",
-          "changed_fields": [],
-          "name_key": "tr_prosperity_pursuit_of_profit"
-        },
-        {
-          "id": "tr_prosperity_sct",
-          "changed_fields": [],
-          "name_key": "tr_prosperity_sct"
-        },
-        {
-          "id": "tr_resilience_1",
-          "changed_fields": [],
-          "name_key": "tr_resilience_1"
-        },
-        {
-          "id": "tr_resilience_2",
-          "changed_fields": [],
-          "name_key": "tr_resilience_2"
-        },
-        {
-          "id": "tr_resilience_3",
-          "changed_fields": [],
-          "name_key": "tr_resilience_3"
-        },
-        {
-          "id": "tr_resilience_4",
-          "changed_fields": [],
-          "name_key": "tr_resilience_4"
-        },
-        {
-          "id": "tr_resilience_5",
-          "changed_fields": [],
-          "name_key": "tr_resilience_5"
-        },
-        {
-          "id": "tr_resilience_adopt",
-          "changed_fields": [],
-          "name_key": "tr_resilience_adopt"
-        },
-        {
-          "id": "tr_resilience_finish",
-          "changed_fields": [],
-          "name_key": "tr_resilience_finish"
-        },
-        {
-          "id": "tr_revelation_adopt_undine",
-          "changed_fields": [],
-          "name_key": "tr_revelation_adopt_undine"
-        },
-        {
-          "id": "tr_revelation_undine_1",
-          "changed_fields": [],
-          "name_key": "tr_revelation_undine_1"
-        },
-        {
-          "id": "tr_revelation_undine_2",
-          "changed_fields": [],
-          "name_key": "tr_revelation_undine_2"
-        },
-        {
-          "id": "tr_revelation_undine_3",
-          "changed_fields": [],
-          "name_key": "tr_revelation_undine_3"
-        },
-        {
-          "id": "tr_revelation_undine_4",
-          "changed_fields": [],
-          "name_key": "tr_revelation_undine_4"
-        },
-        {
-          "id": "tr_revelation_undine_5",
-          "changed_fields": [],
-          "name_key": "tr_revelation_undine_5"
-        },
-        {
-          "id": "tr_revelation_undine_finish",
-          "changed_fields": [],
-          "name_key": "tr_revelation_undine_finish"
-        },
-        {
-          "id": "tr_romulan_2_1",
-          "changed_fields": [],
-          "name_key": "tr_romulan_2_1"
-        },
-        {
-          "id": "tr_romulan_2_2",
-          "changed_fields": [],
-          "name_key": "tr_romulan_2_2"
-        },
-        {
-          "id": "tr_romulan_2_3",
-          "changed_fields": [],
-          "name_key": "tr_romulan_2_3"
-        },
-        {
-          "id": "tr_romulan_2_4",
-          "changed_fields": [],
-          "name_key": "tr_romulan_2_4"
-        },
-        {
-          "id": "tr_romulan_2_5",
-          "changed_fields": [],
-          "name_key": "tr_romulan_2_5"
-        },
-        {
-          "id": "tr_romulan_2_adopt",
-          "changed_fields": [],
-          "name_key": "tr_romulan_2_adopt"
-        },
-        {
-          "id": "tr_romulan_2_finish",
-          "changed_fields": [],
-          "name_key": "tr_romulan_2_finish"
-        },
-        {
-          "id": "tr_section_31_adopt",
-          "changed_fields": [],
-          "name_key": "tr_section_31_adopt"
-        },
-        {
-          "id": "tr_section_31_finish",
-          "changed_fields": [],
-          "name_key": "tr_section_31_finish"
-        },
-        {
-          "id": "tr_section_31_hq",
-          "changed_fields": [],
-          "name_key": "tr_section_31_hq"
-        },
-        {
-          "id": "tr_section_31_infiltration_agents",
-          "changed_fields": [],
-          "name_key": "tr_section_31_infiltration_agents"
-        },
-        {
-          "id": "tr_section_31_nda",
-          "changed_fields": [],
-          "name_key": "tr_section_31_nda"
-        },
-        {
-          "id": "tr_section_31_operational_security",
-          "changed_fields": [],
-          "name_key": "tr_section_31_operational_security"
-        },
-        {
-          "id": "tr_section_31_shadow_recruits",
-          "changed_fields": [],
-          "name_key": "tr_section_31_shadow_recruits"
-        },
-        {
-          "id": "tr_statecraft_adopt",
-          "changed_fields": [],
-          "name_key": "tr_statecraft_adopt"
-        },
-        {
-          "id": "tr_statecraft_amongst_peers",
-          "changed_fields": [],
-          "name_key": "tr_statecraft_amongst_peers"
-        },
-        {
-          "id": "tr_statecraft_constitutional_focus",
-          "changed_fields": [],
-          "name_key": "tr_statecraft_constitutional_focus"
-        },
-        {
-          "id": "tr_statecraft_finish",
-          "changed_fields": [],
-          "name_key": "tr_statecraft_finish"
-        },
-        {
-          "id": "tr_statecraft_immutable_directives",
-          "changed_fields": [],
-          "name_key": "tr_statecraft_immutable_directives"
-        },
-        {
-          "id": "tr_statecraft_inspiring_agendas",
-          "changed_fields": [],
-          "name_key": "tr_statecraft_inspiring_agendas"
-        },
-        {
-          "id": "tr_statecraft_shared_benefits",
-          "changed_fields": [],
-          "name_key": "tr_statecraft_shared_benefits"
-        },
-        {
-          "id": "tr_strength_1",
-          "changed_fields": [],
-          "name_key": "tr_strength_1"
-        },
-        {
-          "id": "tr_strength_2",
-          "changed_fields": [],
-          "name_key": "tr_strength_2"
-        },
-        {
-          "id": "tr_strength_3",
-          "changed_fields": [],
-          "name_key": "tr_strength_3"
-        },
-        {
-          "id": "tr_strength_4",
-          "changed_fields": [],
-          "name_key": "tr_strength_4"
-        },
-        {
-          "id": "tr_strength_5",
-          "changed_fields": [],
-          "name_key": "tr_strength_5"
-        },
-        {
-          "id": "tr_strength_adopt",
-          "changed_fields": [],
-          "name_key": "tr_strength_adopt"
-        },
-        {
-          "id": "tr_strength_finish",
-          "changed_fields": [],
-          "name_key": "tr_strength_finish"
-        },
-        {
-          "id": "tr_subterfuge_adopt",
-          "changed_fields": [],
-          "name_key": "tr_subterfuge_adopt"
-        },
-        {
-          "id": "tr_subterfuge_double_agents",
-          "changed_fields": [],
-          "name_key": "tr_subterfuge_double_agents"
-        },
-        {
-          "id": "tr_subterfuge_finish",
-          "changed_fields": [],
-          "name_key": "tr_subterfuge_finish"
-        },
-        {
-          "id": "tr_subterfuge_information_security",
-          "changed_fields": [],
-          "name_key": "tr_subterfuge_information_security"
-        },
-        {
-          "id": "tr_subterfuge_nda",
-          "changed_fields": [],
-          "name_key": "tr_subterfuge_nda"
-        },
-        {
-          "id": "tr_subterfuge_operational_security",
-          "changed_fields": [],
-          "name_key": "tr_subterfuge_operational_security"
-        },
-        {
-          "id": "tr_subterfuge_shadow_recruits",
-          "changed_fields": [],
-          "name_key": "tr_subterfuge_shadow_recruits"
-        },
-        {
-          "id": "tr_supremacy_adopt",
-          "changed_fields": [],
-          "name_key": "tr_supremacy_adopt"
-        },
-        {
-          "id": "tr_supremacy_finish",
-          "changed_fields": [],
-          "name_key": "tr_supremacy_finish"
-        },
-        {
-          "id": "tr_supremacy_finish_undine",
-          "changed_fields": [],
-          "name_key": "tr_supremacy_finish_undine"
-        },
-        {
-          "id": "tr_supremacy_fleet_logistical_corps",
-          "changed_fields": [],
-          "name_key": "tr_supremacy_fleet_logistical_corps"
-        },
-        {
-          "id": "tr_supremacy_great_game",
-          "changed_fields": [],
-          "name_key": "tr_supremacy_great_game"
-        },
-        {
-          "id": "tr_supremacy_master_shipwrights",
-          "changed_fields": [],
-          "name_key": "tr_supremacy_master_shipwrights"
-        },
-        {
-          "id": "tr_supremacy_overwhelming_force",
-          "changed_fields": [],
-          "name_key": "tr_supremacy_overwhelming_force"
-        },
-        {
-          "id": "tr_supremacy_undine_1",
-          "changed_fields": [],
-          "name_key": "tr_supremacy_undine_1"
-        },
-        {
-          "id": "tr_supremacy_undine_2",
-          "changed_fields": [],
-          "name_key": "tr_supremacy_undine_2"
-        },
-        {
-          "id": "tr_supremacy_undine_3",
-          "changed_fields": [],
-          "name_key": "tr_supremacy_undine_3"
-        },
-        {
-          "id": "tr_supremacy_undine_4",
-          "changed_fields": [],
-          "name_key": "tr_supremacy_undine_4"
-        },
-        {
-          "id": "tr_supremacy_undine_adopt",
-          "changed_fields": [],
-          "name_key": "tr_supremacy_undine_adopt"
-        },
-        {
-          "id": "tr_supremacy_war_games",
-          "changed_fields": [],
-          "name_key": "tr_supremacy_war_games"
-        },
-        {
-          "id": "tr_synchronicity_borg_1",
-          "changed_fields": [],
-          "name_key": "tr_synchronicity_borg_1"
-        },
-        {
-          "id": "tr_synchronicity_borg_2",
-          "changed_fields": [],
-          "name_key": "tr_synchronicity_borg_2"
-        },
-        {
-          "id": "tr_synchronicity_borg_3",
-          "changed_fields": [],
-          "name_key": "tr_synchronicity_borg_3"
-        },
-        {
-          "id": "tr_synchronicity_borg_4",
-          "changed_fields": [],
-          "name_key": "tr_synchronicity_borg_4"
-        },
-        {
-          "id": "tr_synchronicity_borg_5",
-          "changed_fields": [],
-          "name_key": "tr_synchronicity_borg_5"
-        },
-        {
-          "id": "tr_synchronicity_borg_adopt",
-          "changed_fields": [],
-          "name_key": "tr_synchronicity_borg_adopt"
-        },
-        {
-          "id": "tr_synchronicity_borg_finish",
-          "changed_fields": [],
-          "name_key": "tr_synchronicity_borg_finish"
-        },
-        {
-          "id": "tr_tal_shiar_adopt",
-          "changed_fields": [],
-          "name_key": "tr_tal_shiar_adopt"
-        },
-        {
-          "id": "tr_tal_shiar_finish",
-          "changed_fields": [],
-          "name_key": "tr_tal_shiar_finish"
-        },
-        {
-          "id": "tr_tal_shiar_infiltration",
-          "changed_fields": [],
-          "name_key": "tr_tal_shiar_infiltration"
-        },
-        {
-          "id": "tr_tal_shiar_operational_security",
-          "changed_fields": [],
-          "name_key": "tr_tal_shiar_operational_security"
-        },
-        {
-          "id": "tr_tal_shiar_operations",
-          "changed_fields": [],
-          "name_key": "tr_tal_shiar_operations"
-        },
-        {
-          "id": "tr_tal_shiar_ruthlessness",
-          "changed_fields": [],
-          "name_key": "tr_tal_shiar_ruthlessness"
-        },
-        {
-          "id": "tr_tal_shiar_shadow_agents",
-          "changed_fields": [],
-          "name_key": "tr_tal_shiar_shadow_agents"
-        },
-        {
-          "id": "tr_tanagra_1",
-          "changed_fields": [],
-          "name_key": "tr_tanagra_1"
-        },
-        {
-          "id": "tr_tanagra_2",
-          "changed_fields": [],
-          "name_key": "tr_tanagra_2"
-        },
-        {
-          "id": "tr_tanagra_3",
-          "changed_fields": [],
-          "name_key": "tr_tanagra_3"
-        },
-        {
-          "id": "tr_tanagra_4",
-          "changed_fields": [],
-          "name_key": "tr_tanagra_4"
-        },
-        {
-          "id": "tr_tanagra_5",
-          "changed_fields": [],
-          "name_key": "tr_tanagra_5"
-        },
-        {
-          "id": "tr_tanagra_adopt",
-          "changed_fields": [],
-          "name_key": "tr_tanagra_adopt"
-        },
-        {
-          "id": "tr_tanagra_finish",
-          "changed_fields": [],
-          "name_key": "tr_tanagra_finish"
-        },
-        {
-          "id": "tr_terran_1",
-          "changed_fields": [],
-          "name_key": "tr_terran_1"
-        },
-        {
-          "id": "tr_terran_2",
-          "changed_fields": [],
-          "name_key": "tr_terran_2"
-        },
-        {
-          "id": "tr_terran_3",
-          "changed_fields": [],
-          "name_key": "tr_terran_3"
-        },
-        {
-          "id": "tr_terran_4",
-          "changed_fields": [],
-          "name_key": "tr_terran_4"
-        },
-        {
-          "id": "tr_terran_5",
-          "changed_fields": [],
-          "name_key": "tr_terran_5"
-        },
-        {
-          "id": "tr_terran_adopt",
-          "changed_fields": [],
-          "name_key": "tr_terran_adopt"
-        },
-        {
-          "id": "tr_terran_finish",
-          "changed_fields": [],
-          "name_key": "tr_terran_finish"
-        },
-        {
-          "id": "tr_the_link_1",
-          "changed_fields": [],
-          "name_key": "tr_the_link_1"
-        },
-        {
-          "id": "tr_the_link_2",
-          "changed_fields": [],
-          "name_key": "tr_the_link_2"
-        },
-        {
-          "id": "tr_the_link_3",
-          "changed_fields": [],
-          "name_key": "tr_the_link_3"
-        },
-        {
-          "id": "tr_the_link_4",
-          "changed_fields": [],
-          "name_key": "tr_the_link_4"
-        },
-        {
-          "id": "tr_the_link_5",
-          "changed_fields": [],
-          "name_key": "tr_the_link_5"
-        },
-        {
-          "id": "tr_the_link_adopt",
-          "changed_fields": [],
-          "name_key": "tr_the_link_adopt"
-        },
-        {
-          "id": "tr_the_link_finish",
-          "changed_fields": [],
-          "name_key": "tr_the_link_finish"
-        },
-        {
-          "id": "tr_time_1",
-          "changed_fields": [],
-          "name_key": "tr_time_1"
-        },
-        {
-          "id": "tr_time_2",
-          "changed_fields": [],
-          "name_key": "tr_time_2"
-        },
-        {
-          "id": "tr_time_3",
-          "changed_fields": [],
-          "name_key": "tr_time_3"
-        },
-        {
-          "id": "tr_time_4",
-          "changed_fields": [],
-          "name_key": "tr_time_4"
-        },
-        {
-          "id": "tr_time_5",
-          "changed_fields": [],
-          "name_key": "tr_time_5"
-        },
-        {
-          "id": "tr_time_adopt",
-          "changed_fields": [],
-          "name_key": "tr_time_adopt"
-        },
-        {
-          "id": "tr_time_finish",
-          "changed_fields": [],
-          "name_key": "tr_time_finish"
-        },
-        {
-          "id": "tr_ufp_ships_1",
-          "changed_fields": [],
-          "name_key": "tr_ufp_ships_1"
-        },
-        {
-          "id": "tr_ufp_ships_2",
-          "changed_fields": [
-            "required_technologies"
-          ],
-          "name_key": "tr_ufp_ships_2"
-        },
-        {
-          "id": "tr_ufp_ships_3",
-          "changed_fields": [
-            "required_technologies"
-          ],
-          "name_key": "tr_ufp_ships_3"
-        },
-        {
-          "id": "tr_ufp_ships_4",
-          "changed_fields": [
-            "required_technologies"
-          ],
-          "name_key": "tr_ufp_ships_4"
-        },
-        {
-          "id": "tr_ufp_ships_5",
-          "changed_fields": [
-            "required_technologies"
-          ],
-          "name_key": "tr_ufp_ships_5"
-        },
-        {
-          "id": "tr_ufp_ships_adopt",
-          "changed_fields": [],
-          "name_key": "tr_ufp_ships_adopt"
-        },
-        {
-          "id": "tr_ufp_ships_finish",
-          "changed_fields": [],
-          "name_key": "tr_ufp_ships_finish"
-        },
-        {
-          "id": "tr_unyielding_adopt",
-          "changed_fields": [],
-          "name_key": "tr_unyielding_adopt"
-        },
-        {
-          "id": "tr_unyielding_bulwark_of_harmony",
-          "changed_fields": [],
-          "name_key": "tr_unyielding_bulwark_of_harmony"
-        },
-        {
-          "id": "tr_unyielding_defensive_zeal",
-          "changed_fields": [],
-          "name_key": "tr_unyielding_defensive_zeal"
-        },
-        {
-          "id": "tr_unyielding_finish",
-          "changed_fields": [],
-          "name_key": "tr_unyielding_finish"
-        },
-        {
-          "id": "tr_unyielding_fortress_doctrine",
-          "changed_fields": [],
-          "name_key": "tr_unyielding_fortress_doctrine"
-        },
-        {
-          "id": "tr_unyielding_never_surrender",
-          "changed_fields": [],
-          "name_key": "tr_unyielding_never_surrender"
-        },
-        {
-          "id": "tr_unyielding_resistance_is_frugal",
-          "changed_fields": [],
-          "name_key": "tr_unyielding_resistance_is_frugal"
-        },
-        {
-          "id": "tr_versatility_adaptive_programming",
-          "changed_fields": [],
-          "name_key": "tr_versatility_adaptive_programming"
-        },
-        {
-          "id": "tr_versatility_adopt",
-          "changed_fields": [],
-          "name_key": "tr_versatility_adopt"
-        },
-        {
-          "id": "tr_versatility_borg_1",
-          "changed_fields": [],
-          "name_key": "tr_versatility_borg_1"
-        },
-        {
-          "id": "tr_versatility_borg_2",
-          "changed_fields": [],
-          "name_key": "tr_versatility_borg_2"
-        },
-        {
-          "id": "tr_versatility_borg_3",
-          "changed_fields": [],
-          "name_key": "tr_versatility_borg_3"
-        },
-        {
-          "id": "tr_versatility_borg_4",
-          "changed_fields": [],
-          "name_key": "tr_versatility_borg_4"
-        },
-        {
-          "id": "tr_versatility_borg_5",
-          "changed_fields": [],
-          "name_key": "tr_versatility_borg_5"
-        },
-        {
-          "id": "tr_versatility_borg_adopt",
-          "changed_fields": [],
-          "name_key": "tr_versatility_borg_adopt"
-        },
-        {
-          "id": "tr_versatility_borg_finish",
-          "changed_fields": [],
-          "name_key": "tr_versatility_borg_finish"
-        },
-        {
-          "id": "tr_versatility_finish",
-          "changed_fields": [],
-          "name_key": "tr_versatility_finish"
-        },
-        {
-          "id": "tr_versatility_material_analysis",
-          "changed_fields": [],
-          "name_key": "tr_versatility_material_analysis"
-        },
-        {
-          "id": "tr_versatility_operational_proxies",
-          "changed_fields": [],
-          "name_key": "tr_versatility_operational_proxies"
-        },
-        {
-          "id": "tr_versatility_spatial_optimization",
-          "changed_fields": [],
-          "name_key": "tr_versatility_spatial_optimization"
-        },
-        {
-          "id": "tr_versatility_universal_compatibility",
-          "changed_fields": [],
-          "name_key": "tr_versatility_universal_compatibility"
-        },
-        {
-          "id": "tr_victory_1",
-          "changed_fields": [],
-          "name_key": "tr_victory_1"
-        },
-        {
-          "id": "tr_victory_2",
-          "changed_fields": [],
-          "name_key": "tr_victory_2"
-        },
-        {
-          "id": "tr_victory_3",
-          "changed_fields": [],
-          "name_key": "tr_victory_3"
-        },
-        {
-          "id": "tr_victory_4",
-          "changed_fields": [],
-          "name_key": "tr_victory_4"
-        },
-        {
-          "id": "tr_victory_5",
-          "changed_fields": [],
-          "name_key": "tr_victory_5"
-        },
-        {
-          "id": "tr_victory_adopt",
-          "changed_fields": [],
-          "name_key": "tr_victory_adopt"
-        },
-        {
-          "id": "tr_victory_finish",
-          "changed_fields": [],
-          "name_key": "tr_victory_finish"
-        },
-        {
-          "id": "tr_voth_1",
-          "changed_fields": [],
-          "name_key": "tr_voth_1"
-        },
-        {
-          "id": "tr_voth_2",
-          "changed_fields": [],
-          "name_key": "tr_voth_2"
-        },
-        {
-          "id": "tr_voth_3",
-          "changed_fields": [],
-          "name_key": "tr_voth_3"
-        },
-        {
-          "id": "tr_voth_4",
-          "changed_fields": [],
-          "name_key": "tr_voth_4"
-        },
-        {
-          "id": "tr_voth_5",
-          "changed_fields": [],
-          "name_key": "tr_voth_5"
-        },
-        {
-          "id": "tr_voth_adopt",
-          "changed_fields": [],
-          "name_key": "tr_voth_adopt"
-        },
-        {
-          "id": "tr_voth_finish",
-          "changed_fields": [],
-          "name_key": "tr_voth_finish"
-        },
-        {
-          "id": "tr_weak_shall_perish",
-          "changed_fields": [],
-          "name_key": "tr_weak_shall_perish"
-        },
-        {
-          "id": "tr_xindi_1",
-          "changed_fields": [],
-          "name_key": "tr_xindi_1"
-        },
-        {
-          "id": "tr_xindi_2",
-          "changed_fields": [],
-          "name_key": "tr_xindi_2"
-        },
-        {
-          "id": "tr_xindi_3",
-          "changed_fields": [],
-          "name_key": "tr_xindi_3"
-        },
-        {
-          "id": "tr_xindi_4",
-          "changed_fields": [],
-          "name_key": "tr_xindi_4"
-        },
-        {
-          "id": "tr_xindi_5",
-          "changed_fields": [],
-          "name_key": "tr_xindi_5"
-        },
-        {
-          "id": "tr_xindi_adopt",
-          "changed_fields": [],
-          "name_key": "tr_xindi_adopt"
-        },
-        {
-          "id": "tr_xindi_finish",
-          "changed_fields": [],
-          "name_key": "tr_xindi_finish"
-        }
-      ]
+      "modified": []
     },
     "ascension_perks": {
       "old_count": 58,
       "new_count": 58,
       "added": [],
       "removed": [],
-      "modified": []
+      "modified": [
+        {
+          "id": "ap_archaeoengineers",
+          "changed_fields": [],
+          "name_key": "ap_archaeoengineers"
+        },
+        {
+          "id": "ap_arcology_project",
+          "changed_fields": [
+            "min_perks",
+            "required_technologies"
+          ],
+          "name_key": "ap_arcology_project"
+        },
+        {
+          "id": "ap_become_the_crisis",
+          "changed_fields": [],
+          "name_key": "ap_become_the_crisis"
+        },
+        {
+          "id": "ap_behemoths",
+          "changed_fields": [],
+          "name_key": "ap_behemoths"
+        },
+        {
+          "id": "ap_biovirus_purge",
+          "changed_fields": [
+            "min_perks"
+          ],
+          "name_key": "ap_biovirus_purge"
+        },
+        {
+          "id": "ap_borg_assimilation_drive",
+          "changed_fields": [
+            "min_perks",
+            "required_flags",
+            "required_traditions"
+          ],
+          "name_key": "ap_borg_assimilation_drive"
+        },
+        {
+          "id": "ap_cardassian_ships_of_the_line",
+          "changed_fields": [
+            "required_flags"
+          ],
+          "name_key": "ap_cardassian_ships_of_the_line"
+        },
+        {
+          "id": "ap_close_the_portals",
+          "changed_fields": [],
+          "name_key": "ap_close_the_portals"
+        },
+        {
+          "id": "ap_colossus",
+          "changed_fields": [],
+          "name_key": "ap_colossus"
+        },
+        {
+          "id": "ap_consecrated_worlds",
+          "changed_fields": [],
+          "name_key": "ap_consecrated_worlds"
+        },
+        {
+          "id": "ap_cosmogenesis",
+          "changed_fields": [],
+          "name_key": "ap_cosmogenesis"
+        },
+        {
+          "id": "ap_defender_of_the_galaxy",
+          "changed_fields": [],
+          "name_key": "ap_defender_of_the_galaxy"
+        },
+        {
+          "id": "ap_detox",
+          "changed_fields": [
+            "required_technologies"
+          ],
+          "name_key": "ap_detox"
+        },
+        {
+          "id": "ap_dominion_ships_of_the_line",
+          "changed_fields": [
+            "required_flags"
+          ],
+          "name_key": "ap_dominion_ships_of_the_line"
+        },
+        {
+          "id": "ap_engineered_evolution",
+          "changed_fields": [],
+          "name_key": "ap_engineered_evolution"
+        },
+        {
+          "id": "ap_enigmatic_engineering",
+          "changed_fields": [],
+          "name_key": "ap_enigmatic_engineering"
+        },
+        {
+          "id": "ap_eternal_vigilance",
+          "changed_fields": [],
+          "name_key": "ap_eternal_vigilance"
+        },
+        {
+          "id": "ap_evolutionary_mastery",
+          "changed_fields": [],
+          "name_key": "ap_evolutionary_mastery"
+        },
+        {
+          "id": "ap_executive_vigor",
+          "changed_fields": [],
+          "name_key": "ap_executive_vigor"
+        },
+        {
+          "id": "ap_galactic_contender",
+          "changed_fields": [
+            "min_perks"
+          ],
+          "name_key": "ap_galactic_contender"
+        },
+        {
+          "id": "ap_galactic_force_projection",
+          "changed_fields": [
+            "min_perks"
+          ],
+          "name_key": "ap_galactic_force_projection"
+        },
+        {
+          "id": "ap_galactic_hyperthermia",
+          "changed_fields": [],
+          "name_key": "ap_galactic_hyperthermia"
+        },
+        {
+          "id": "ap_galactic_wonders",
+          "changed_fields": [],
+          "name_key": "ap_galactic_wonders"
+        },
+        {
+          "id": "ap_grasp_the_void",
+          "changed_fields": [
+            "min_perks"
+          ],
+          "name_key": "ap_grasp_the_void"
+        },
+        {
+          "id": "ap_holographical_freedom",
+          "changed_fields": [
+            "required_traditions"
+          ],
+          "name_key": "ap_holographical_freedom"
+        },
+        {
+          "id": "ap_hydrocentric",
+          "changed_fields": [],
+          "name_key": "ap_hydrocentric"
+        },
+        {
+          "id": "ap_imperial_prerogative",
+          "changed_fields": [],
+          "name_key": "ap_imperial_prerogative"
+        },
+        {
+          "id": "ap_interstellar_dominion",
+          "changed_fields": [],
+          "name_key": "ap_interstellar_dominion"
+        },
+        {
+          "id": "ap_lord_of_war",
+          "changed_fields": [],
+          "name_key": "ap_lord_of_war"
+        },
+        {
+          "id": "ap_machine_worlds",
+          "changed_fields": [
+            "min_perks"
+          ],
+          "name_key": "ap_machine_worlds"
+        },
+        {
+          "id": "ap_master_builders",
+          "changed_fields": [],
+          "name_key": "ap_master_builders"
+        },
+        {
+          "id": "ap_mastery_of_nature",
+          "changed_fields": [],
+          "name_key": "ap_mastery_of_nature"
+        },
+        {
+          "id": "ap_mechromancy",
+          "changed_fields": [],
+          "name_key": "ap_mechromancy"
+        },
+        {
+          "id": "ap_mind_over_matter",
+          "changed_fields": [],
+          "name_key": "ap_mind_over_matter"
+        },
+        {
+          "id": "ap_nihilistic_acquisition",
+          "changed_fields": [],
+          "name_key": "ap_nihilistic_acquisition"
+        },
+        {
+          "id": "ap_one_vision",
+          "changed_fields": [],
+          "name_key": "ap_one_vision"
+        },
+        {
+          "id": "ap_organo_machine_interfacing",
+          "changed_fields": [],
+          "name_key": "ap_organo_machine_interfacing"
+        },
+        {
+          "id": "ap_romulan_cloak_dagger",
+          "changed_fields": [
+            "min_perks",
+            "required_flags"
+          ],
+          "name_key": "ap_romulan_cloak_dagger"
+        },
+        {
+          "id": "ap_romulan_ships_of_the_line",
+          "changed_fields": [
+            "required_flags"
+          ],
+          "name_key": "ap_romulan_ships_of_the_line"
+        },
+        {
+          "id": "ap_shared_destiny",
+          "changed_fields": [],
+          "name_key": "ap_shared_destiny"
+        },
+        {
+          "id": "ap_starfleet_ships_of_the_line",
+          "changed_fields": [
+            "required_traditions"
+          ],
+          "name_key": "ap_starfleet_ships_of_the_line"
+        },
+        {
+          "id": "ap_starfleet_texas_class",
+          "changed_fields": [
+            "required_technologies",
+            "required_traditions"
+          ],
+          "name_key": "ap_starfleet_texas_class"
+        },
+        {
+          "id": "ap_suliban_expansion",
+          "changed_fields": [
+            "min_perks",
+            "required_flags"
+          ],
+          "name_key": "ap_suliban_expansion"
+        },
+        {
+          "id": "ap_synthetic_age",
+          "changed_fields": [
+            "min_perks"
+          ],
+          "name_key": "ap_synthetic_age"
+        },
+        {
+          "id": "ap_synthetic_evolution",
+          "changed_fields": [],
+          "name_key": "ap_synthetic_evolution"
+        },
+        {
+          "id": "ap_technological_ascendancy",
+          "changed_fields": [],
+          "name_key": "ap_technological_ascendancy"
+        },
+        {
+          "id": "ap_the_flesh_is_average",
+          "changed_fields": [],
+          "name_key": "ap_the_flesh_is_average"
+        },
+        {
+          "id": "ap_the_flesh_is_strong",
+          "changed_fields": [],
+          "name_key": "ap_the_flesh_is_strong"
+        },
+        {
+          "id": "ap_the_flesh_is_weak",
+          "changed_fields": [],
+          "name_key": "ap_the_flesh_is_weak"
+        },
+        {
+          "id": "ap_transcendence",
+          "changed_fields": [],
+          "name_key": "ap_transcendence"
+        },
+        {
+          "id": "ap_transcendent_learning",
+          "changed_fields": [],
+          "name_key": "ap_transcendent_learning"
+        },
+        {
+          "id": "ap_transwarp_protocol",
+          "changed_fields": [
+            "min_perks",
+            "required_flags"
+          ],
+          "name_key": "ap_transwarp_protocol"
+        },
+        {
+          "id": "ap_typhon_option_rom",
+          "changed_fields": [
+            "min_perks",
+            "required_flags"
+          ],
+          "name_key": "ap_typhon_option_rom"
+        },
+        {
+          "id": "ap_typhon_option_tho",
+          "changed_fields": [
+            "min_perks",
+            "required_flags"
+          ],
+          "name_key": "ap_typhon_option_tho"
+        },
+        {
+          "id": "ap_universal_transactions",
+          "changed_fields": [],
+          "name_key": "ap_universal_transactions"
+        },
+        {
+          "id": "ap_voidborn",
+          "changed_fields": [],
+          "name_key": "ap_voidborn"
+        },
+        {
+          "id": "ap_wheat_from_the_chaff",
+          "changed_fields": [
+            "min_perks",
+            "required_flags"
+          ],
+          "name_key": "ap_wheat_from_the_chaff"
+        },
+        {
+          "id": "ap_world_shaper",
+          "changed_fields": [],
+          "name_key": "ap_world_shaper"
+        }
+      ]
     },
     "governments": {
       "old_count": 185,

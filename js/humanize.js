@@ -409,7 +409,31 @@ const Humanize = (() => {
         'has_valid_civic':      (v) => `Has valid civic: <strong>${esc(locOrClean(v))}</strong>`,
         'check_variable':       (v) => parseVariable(v),
         'text':                 (v) => `${locOrClean(v)}`,
-        'custom_tooltip':       (v) => `<em>${esc(locOrClean(v))}</em>`,
+        'custom_tooltip':       (v, d) => {
+            if (typeof v === 'string') return `<em>${esc(locOrClean(v))}</em>`;
+            if (Array.isArray(v)) {
+                const conditions = [];
+                for (const item of v) {
+                    if (typeof item === 'object' && item !== null) {
+                        if (item.fail_text) continue;
+                        for (const [k, val] of Object.entries(item)) {
+                            const html = humanizeEntry(k, val, d);
+                            if (html) conditions.push(html);
+                        }
+                    }
+                }
+                return conditions.join('');
+            }
+            return `<em>${esc(String(v))}</em>`;
+        },
+        'num_ascension_perks':  (v) => {
+            if (typeof v === 'object' && v !== null && !Array.isArray(v)) {
+                const [op, val] = Object.entries(v)[0];
+                const sym = {'>': 'more than', '<': 'fewer than', '>=': 'at least', '<=': 'at most'};
+                return `Requires ${sym[op] || op} <strong>${val}</strong> Ascension Perks`;
+            }
+            return `Requires <strong>${v}</strong> Ascension Perks`;
+        },
         'custom_tooltip_fail':  (v) => `<em>(On fail) ${esc(locOrClean(v))}</em>`,
         'has_paragon_dlc':      (v) => yn(v, 'Requires Paragon DLC', 'Paragon DLC not installed'),
         'has_overlord_dlc':     (v) => yn(v, 'Requires Overlord DLC', 'Overlord DLC not installed'),
@@ -569,7 +593,23 @@ const Humanize = (() => {
         'set_leader_flag':      (v) => `Set leader flag <em>"${esc(v)}"</em>`,
 
         // --- Misc effects ---
-        'custom_tooltip':       (v) => `<em>${esc(locOrClean(v))}</em>`,
+        'custom_tooltip':       (v, d) => {
+            if (typeof v === 'string') return `<em>${esc(locOrClean(v))}</em>`;
+            if (Array.isArray(v)) {
+                const conditions = [];
+                for (const item of v) {
+                    if (typeof item === 'object' && item !== null) {
+                        if (item.fail_text) continue;
+                        for (const [k, val] of Object.entries(item)) {
+                            const html = humanizeEntry(k, val, d);
+                            if (html) conditions.push(html);
+                        }
+                    }
+                }
+                return conditions.join('');
+            }
+            return `<em>${esc(String(v))}</em>`;
+        },
         'response_text':        (v) => {
             const text = locOrClean(v);
             return `<div class="response-text-block"><span class="h-label">Response text:</span> ${esc(text)}</div>`;

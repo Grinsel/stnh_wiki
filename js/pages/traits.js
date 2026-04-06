@@ -34,7 +34,7 @@
         const treeSel = document.getElementById('filter-tree');
         for (const t of trees) treeSel.add(new Option(t, t));
 
-        const ICON_DIRS = { traits: 'traits', traditions: 'traditions', ascension_perks: 'ascension_perks' };
+        const ICON_DIRS = { traits: 'traits', traditions: 'traditions', perks: 'ascension_perks' };
 
         let activeTab = 'traits';
         let currentPage = 1;
@@ -131,6 +131,27 @@
             if (item.prerequisites && item.prerequisites.length) {
                 html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.prerequisites')}</div>`;
                 html += `<div class="detail-meta">${SharedRender.techLinks(item.prerequisites)}</div></div>`;
+            }
+
+            // Ascension perk structured fields
+            if (item.required_technologies && item.required_technologies.length) {
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.prerequisites')}</div>`;
+                html += `<div class="detail-meta">${SharedRender.techLinks(item.required_technologies)}</div></div>`;
+            }
+
+            if (item.required_traditions && item.required_traditions.length) {
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.required_traditions')}</div>`;
+                html += `<div class="detail-meta">${item.required_traditions.map(t => `<span class="detail-meta-item">${esc(I18n.t(t) || t)}</span>`).join('')}</div></div>`;
+            }
+
+            if (item.min_perks) {
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.min_perks')}</div>`;
+                html += `<div class="detail-meta"><span class="detail-meta-item">${item.min_perks}+ already activated</span></div></div>`;
+            }
+
+            if (item.required_flags && item.required_flags.length) {
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.required_flags')}</div>`;
+                html += `<div class="detail-meta">${item.required_flags.map(f => `<span class="detail-meta-item">${esc(f)}</span>`).join('')}</div></div>`;
             }
 
             if (item.opposites && item.opposites.length) {
