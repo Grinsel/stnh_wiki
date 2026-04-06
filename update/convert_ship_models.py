@@ -229,7 +229,7 @@ def convert_ship_to_glb(mesh_file_path, model_scale, output_path, attachments=No
         buffer_views, meshes_gltf, 0
     )
     for mi in primary_mesh_indices:
-        nodes.append(gltf.Node(mesh=mi, name=f"primary_{mi}"))
+        nodes.append(gltf.Node(mesh=mi, name=meshes_gltf[mi].name or f"primary_{mi}"))
 
     # Build attachment mesh nodes
     if attachments:

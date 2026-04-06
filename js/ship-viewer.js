@@ -137,6 +137,13 @@ const ShipViewer = (() => {
 
             _scene.add(gltf.scene);
 
+            // Hide collision meshes (invisible in-game click hitboxes)
+            gltf.scene.traverse(obj => {
+                if (obj.isMesh && obj.name && obj.name.toLowerCase().includes('collis')) {
+                    obj.visible = false;
+                }
+            });
+
             // Auto-center and auto-scale to fit view
             const box = new THREE.Box3().setFromObject(gltf.scene);
             const center = box.getCenter(new THREE.Vector3());
