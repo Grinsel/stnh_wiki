@@ -4,11 +4,37 @@ Parses common/governments/councilors/*.txt -> structured councilor data.
 """
 
 import os
-from parse_pdx import parse_file, get_value
+from parse_pdx import parse_file, get_value, get_all_values
 from parse_helpers import serialize_block, to_bool, extract_modifiers, _extract_icon_stem
 from config import MOD_COUNCILORS_DIR
 
 SKIP_FILES = {'000_councilor_documentation.txt'}
+
+
+def _extract_civic_from_possible(possible_block, councilor_id=None):
+    """Extract has_valid_civic from a possible block (may be nested in OR).
+    When multiple civics exist, prefer one whose name matches the councilor ID."""
+    # Direct top-level
+    civic = get_value(possible_block, 'has_valid_civic')
+    if isinstance(civic, str):
+        return civic
+    # Check inside OR block
+    or_block = get_value(possible_block, 'OR')
+    if isinstance(or_block, list):
+        all_civics = get_all_values(or_block, 'has_valid_civic')
+        civics = [c for c in all_civics if isinstance(c, str)]
+        if not civics:
+            return None
+        if len(civics) == 1:
+            return civics[0]
+        # Prefer civic whose suffix matches councilor suffix
+        if councilor_id:
+            suffix = councilor_id.replace('councilor_', '', 1)
+            for c in civics:
+                if c.replace('civic_', '', 1) == suffix:
+                    return c
+        return civics[0]
+    return None
 
 
 def extract_councilor(cid, block, source_file):
@@ -22,18 +48,22 @@ def extract_councilor(cid, block, source_file):
     else:
         leader_class = []
 
-    # civic
+    # civic: explicit field, or fallback from possible → has_valid_civic
     civic = get_value(block, 'civic')
     if isinstance(civic, list):
         civic = None
 
-    # icon: strip GFX_ prefix for icon stem; None if absent
-    icon_raw = get_value(block, 'icon')
-    icon = _extract_icon_stem(icon_raw) if icon_raw else None
-
     # possible, is_leader_possible
     possible_raw = get_value(block, 'possible')
     is_leader_possible_raw = get_value(block, 'is_leader_possible')
+
+    # Fallback: extract civic from possible { has_valid_civic = ... }
+    if not civic and isinstance(possible_raw, list):
+        civic = _extract_civic_from_possible(possible_raw, councilor_id=cid)
+
+    # icon: strip GFX_ prefix for icon stem; None if absent
+    icon_raw = get_value(block, 'icon')
+    icon = _extract_icon_stem(icon_raw) if icon_raw else None
 
     # required
     required = to_bool(get_value(block, 'required'))
