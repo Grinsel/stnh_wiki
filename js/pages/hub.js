@@ -143,7 +143,7 @@
         // Dynamic search placeholder with real total
         const searchEl = document.getElementById('global-search-input');
         if (searchEl && total) {
-            searchEl.placeholder = `Search all ${total.toLocaleString()} items... (ship:, event:, building:, ...)`;
+            searchEl.placeholder = `Search all ${total.toLocaleString()} items...`;
         }
 
         // Hub meta line (total + last update)

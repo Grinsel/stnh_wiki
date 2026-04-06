@@ -77,7 +77,7 @@ const UI_STRINGS = {
     // ==========================================
     // Search Placeholders
     // ==========================================
-    'ui.search.hub':          { english: 'Search all items... (ship:, event:, building:, ...)', german: 'Alle Eintr\u00e4ge durchsuchen... (ship:, event:, building:, ...)' },
+    'ui.search.hub':          { english: 'Search all items...', german: 'Alle Eintr\u00e4ge durchsuchen...' },
     'ui.search.ships':        { english: 'Search ships & components...', german: 'Schiffe & Komponenten durchsuchen...' },
     'ui.search.buildings':    { english: 'Search buildings & districts...', german: 'Geb\u00e4ude & Bezirke durchsuchen...' },
     'ui.search.traits':       { english: 'Search traits, traditions & perks...', german: 'Eigenschaften, Traditionen & Vorteile durchsuchen...' },
