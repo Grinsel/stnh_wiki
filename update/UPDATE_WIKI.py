@@ -326,6 +326,21 @@ def phase_ship_models(skip=False):
     return stats
 
 
+def phase_mega_models(skip=False):
+    """Phase: Convert megastructure models to GLB."""
+    print("\n" + "=" * 60)
+    print("PHASE: MEGASTRUCTURE MODELS (GLB)")
+    print("=" * 60)
+
+    if skip:
+        print("  [SKIPPED] --skip-images flag set")
+        return {'skipped': True}
+
+    from convert_mega_models import convert_all
+    stats = convert_all()
+    return stats
+
+
 def phase_all_icons(skip=False):
     """Phase: Convert DDS icons to WebP for all categories."""
     print("\n" + "=" * 60)
@@ -389,7 +404,8 @@ ONLY_MODULES = {
     'buildings':   ['localisation', 'buildings', 'all_icons', 'split_loc'],
     'traits':      ['localisation', 'traits', 'split_loc'],
     'governments': ['localisation', 'governments', 'split_loc'],
-    'megastructures': ['localisation', 'megastructures', 'split_loc'],
+    'megastructures': ['localisation', 'megastructures', 'mega_models', 'split_loc'],
+    'mega_models':    ['localisation', 'megastructures', 'mega_models', 'split_loc'],
     'anomalies':      ['localisation', 'anomalies', 'split_loc'],
     'empires':        ['localisation', 'empires', 'split_loc'],
     'galaxy_map':     ['galaxy_map'],
@@ -397,7 +413,7 @@ ONLY_MODULES = {
     'search':         ['search'],
     'content':        ['localisation', 'ships', 'buildings', 'all_icons', 'traits', 'governments',
                        'megastructures', 'anomalies', 'empires', 'galaxy_map', 'economy', 'search',
-                       'split_loc'],
+                       'mega_models', 'split_loc'],
 }
 
 
@@ -455,6 +471,8 @@ def main():
             results['search'] = phase_search()
         if 'ship_models' in phases:
             results['ship_models'] = phase_ship_models(skip=args.skip_images)
+        if 'mega_models' in phases:
+            results['mega_models'] = phase_mega_models(skip=args.skip_images)
         if 'images' in phases:
             results['images'] = phase_images(skip=args.skip_images)
         if 'all_icons' in phases:
@@ -481,6 +499,7 @@ def main():
         results['techtree'] = phase_techtree()
         results['search'] = phase_search()
         results['ship_models'] = phase_ship_models(skip=args.skip_images)
+        results['mega_models'] = phase_mega_models(skip=args.skip_images)
         results['images'] = phase_images(skip=args.skip_images)
         results['all_icons'] = phase_all_icons(skip=args.skip_images)
         results['split_loc'] = phase_split_localisation()

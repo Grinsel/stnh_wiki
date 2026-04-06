@@ -101,6 +101,7 @@ OUTPUT_LOCALISATION_DIR = os.path.join(OUTPUT_ASSETS_DIR, "localisation")
 OUTPUT_PICTURES_DIR = os.path.join(WIKI_ROOT, "pictures")
 OUTPUT_ICONS_DIR = os.path.join(WIKI_ROOT, "icons")
 OUTPUT_MODELS_DIR = os.path.join(WIKI_ROOT, "models")
+OUTPUT_MEGA_MODELS_DIR = os.path.join(WIKI_ROOT, "models", "megastructures")
 
 # ==========================================
 # LANGUAGES
@@ -155,7 +156,7 @@ def validate_paths():
 
     # Create output dirs
     for d in [OUTPUT_ASSETS_DIR, OUTPUT_EVENTS_DETAIL_DIR, OUTPUT_LOCALISATION_DIR,
-              OUTPUT_PICTURES_DIR, OUTPUT_ICONS_DIR, OUTPUT_MODELS_DIR]:
+              OUTPUT_PICTURES_DIR, OUTPUT_ICONS_DIR, OUTPUT_MODELS_DIR, OUTPUT_MEGA_MODELS_DIR]:
         os.makedirs(d, exist_ok=True)
 
     if errors:

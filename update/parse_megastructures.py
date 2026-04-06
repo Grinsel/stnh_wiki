@@ -25,6 +25,7 @@ def extract_megastructure(mega_id, block, source_file):
         'id': mega_id,
         'name_key': mega_id,
         'entity': get_value(block, 'entity') or '',
+        'construction_entity': get_value(block, 'construction_entity') or '',
         'portrait': get_value(block, 'portrait') or '',
         'build_time': get_value(block, 'build_time'),
         'resources': extract_resources(block),

@@ -169,9 +169,9 @@ def _build_mesh_nodes(mesh_data_list, model_scale, gltf, buffer_data, accessors,
     return node_indices
 
 
-def _load_mesh_data(mesh_file_path):
+def _load_mesh_data(mesh_file_path, root_dir=None):
     """Load and filter mesh data from a .mesh file. Returns list or None."""
-    full_mesh_path = os.path.join(STNH_MOD_ROOT, mesh_file_path.replace('/', os.sep))
+    full_mesh_path = os.path.join(root_dir or STNH_MOD_ROOT, mesh_file_path.replace('/', os.sep))
     if not os.path.isfile(full_mesh_path):
         return None
     try:
@@ -183,7 +183,7 @@ def _load_mesh_data(mesh_file_path):
     return mesh_data_list if mesh_data_list else None
 
 
-def convert_ship_to_glb(mesh_file_path, model_scale, output_path, attachments=None):
+def convert_ship_to_glb(mesh_file_path, model_scale, output_path, attachments=None, root_dir=None):
     """Convert a ship (primary mesh + optional attachments) to .glb.
 
     Args:
@@ -191,6 +191,7 @@ def convert_ship_to_glb(mesh_file_path, model_scale, output_path, attachments=No
         model_scale: Combined entity+mesh scale factor for primary mesh
         output_path: Where to write the .glb file
         attachments: Optional list of { mesh_file, scale, position, rotation }
+        root_dir: Optional mod root override (default: STNH_MOD_ROOT)
 
     Returns:
         True on success, False on failure
@@ -198,7 +199,7 @@ def convert_ship_to_glb(mesh_file_path, model_scale, output_path, attachments=No
     _ensure_deps()
     gltf = _pygltflib
 
-    primary_data = _load_mesh_data(mesh_file_path)
+    primary_data = _load_mesh_data(mesh_file_path, root_dir=root_dir)
     if not primary_data:
         return False
 
@@ -233,7 +234,7 @@ def convert_ship_to_glb(mesh_file_path, model_scale, output_path, attachments=No
             att_position = att.get('position', [0, 0, 0])
             att_rotation = att.get('rotation', [0, 0, 0])
 
-            att_data = _load_mesh_data(att_mesh_file)
+            att_data = _load_mesh_data(att_mesh_file, root_dir=root_dir)
             if not att_data:
                 continue
 

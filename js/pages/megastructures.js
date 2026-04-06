@@ -43,6 +43,7 @@
         const detailTitle = document.getElementById('detail-title');
         const detailContent = document.getElementById('detail-content');
         document.getElementById('detail-close').addEventListener('click', () => {
+            if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
             detailPanel.classList.add('hidden');
         });
 
@@ -103,6 +104,25 @@
                 html += `<div class="detail-section">${SharedRender.dualView(item.on_build_complete, I18n.ui('ui.detail.on_build_complete'))}</div>`;
             }
 
+            // 3D Model Viewer
+            if (!isRelic && item.has_model && item.model_factions && item.model_factions.length) {
+                html += `<div class="detail-section">`;
+                html += `<div class="detail-section-title">${I18n.ui('ui.detail.3d_model')}</div>`;
+
+                if (item.model_factions.length > 1) {
+                    html += `<select class="ship-faction-select" id="model-faction-select">`;
+                    for (const f of item.model_factions) {
+                        html += `<option value="${esc(f)}">${esc(f)}</option>`;
+                    }
+                    html += `</select>`;
+                }
+
+                html += `<div class="ship-viewer-container">`;
+                html += `<div class="ship-viewer-placeholder" id="ship-viewer-area">`;
+                html += `<button class="ship-viewer-load-btn" id="load-3d-btn">${I18n.ui('ui.action.view_3d')}</button>`;
+                html += `</div></div></div>`;
+            }
+
             return html;
         }
 
@@ -159,11 +179,36 @@
         }
 
         function showDetail(item) {
+            if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
             detailTitle.textContent = item.name || item.id;
             detailContent.innerHTML = buildDetailHtml(item, false);
             SharedRender.initToggles(detailContent);
             SharedRender.initTechLinks(detailContent);
             detailPanel.classList.remove('hidden');
+
+            // Wire up 3D model button
+            if (item.has_model && item.model_factions && item.model_factions.length) {
+                const loadBtn = detailContent.querySelector('#load-3d-btn');
+                const viewerArea = detailContent.querySelector('#ship-viewer-area');
+                const factionSelect = detailContent.querySelector('#model-faction-select');
+
+                function getModelPath() {
+                    const faction = factionSelect ? factionSelect.value : item.model_factions[0];
+                    return `models/megastructures/${item.id}/${faction}.glb`;
+                }
+
+                if (loadBtn) {
+                    loadBtn.addEventListener('click', () => {
+                        ShipViewer.createViewer(viewerArea, getModelPath());
+                    });
+                }
+
+                if (factionSelect) {
+                    factionSelect.addEventListener('change', () => {
+                        ShipViewer.createViewer(viewerArea, getModelPath());
+                    });
+                }
+            }
         }
 
         // --- Relic overlay expand/collapse ---
@@ -388,8 +433,12 @@
                 for (const item of pageItems) {
                     html += `<div class="item-card" data-id="${esc(item.id)}">
                         <div class="item-card-body">
-                            <div class="item-card-header">
-                                <span class="item-card-name">${esc(item.name || item.id)}</span>
+                            <div class="item-card-header">`;
+                    if (item.has_model) {
+                        const factionCount = item.model_factions ? item.model_factions.length : 0;
+                        html += `<span class="model-badge">&#9670; 3D${factionCount > 1 ? ' · ' + factionCount + ' Factions' : ''}</span>`;
+                    }
+                    html += `                <span class="item-card-name">${esc(item.name || item.id)}</span>
                                 <span class="item-card-id">${esc(item.id)}</span>
                             </div>
                             <div class="item-card-meta">`;
