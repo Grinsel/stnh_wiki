@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-04-06T10:37:43.679435",
+  "timestamp": "2026-04-06T11:34:06.577919",
   "summary": {
     "total_added": 0,
     "total_removed": 0,
-    "total_modified": 0,
-    "modules_changed": 0,
-    "modules_unchanged": 22
+    "total_modified": 79,
+    "modules_changed": 1,
+    "modules_unchanged": 21
   },
   "modules": {
     "events_index": {
@@ -90,7 +90,561 @@
       "new_count": 86,
       "added": [],
       "removed": [],
-      "modified": []
+      "modified": [
+        {
+          "id": "edict_advanced_spy_network",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_advanced_spy_network"
+        },
+        {
+          "id": "edict_anti_borg_adaptation",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_anti_borg_adaptation"
+        },
+        {
+          "id": "edict_anti_borg_analysis",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_anti_borg_analysis"
+        },
+        {
+          "id": "edict_anti_borg_assimilation",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_anti_borg_assimilation"
+        },
+        {
+          "id": "edict_architectural_renaissance",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_architectural_renaissance"
+        },
+        {
+          "id": "edict_borg_defensive_ship_building",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_borg_defensive_ship_building"
+        },
+        {
+          "id": "edict_borg_mass_assimilation",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_borg_mass_assimilation"
+        },
+        {
+          "id": "edict_capacity_overload",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_capacity_overload"
+        },
+        {
+          "id": "edict_capacity_overload_borg",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_capacity_overload_borg"
+        },
+        {
+          "id": "edict_capacity_overload_machine",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_capacity_overload_machine"
+        },
+        {
+          "id": "edict_conscription_campaign",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_conscription_campaign"
+        },
+        {
+          "id": "edict_counter_esp_1",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_counter_esp_1"
+        },
+        {
+          "id": "edict_counter_esp_2",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_counter_esp_2"
+        },
+        {
+          "id": "edict_counter_esp_3",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_counter_esp_3"
+        },
+        {
+          "id": "edict_counter_esp_4",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_counter_esp_4"
+        },
+        {
+          "id": "edict_declare_saint",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_declare_saint"
+        },
+        {
+          "id": "edict_defensive_ship_building",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_defensive_ship_building"
+        },
+        {
+          "id": "edict_desperate_measures",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_desperate_measures"
+        },
+        {
+          "id": "edict_diplomatic_grants",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_diplomatic_grants"
+        },
+        {
+          "id": "edict_dominion_shipbuilding",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_dominion_shipbuilding"
+        },
+        {
+          "id": "edict_early_warning",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_early_warning"
+        },
+        {
+          "id": "edict_early_warning_machine",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_early_warning_machine"
+        },
+        {
+          "id": "edict_education_campaign",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_education_campaign"
+        },
+        {
+          "id": "edict_education_campaign_machine",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_education_campaign_machine"
+        },
+        {
+          "id": "edict_encourage_free_thought",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_encourage_free_thought"
+        },
+        {
+          "id": "edict_farming_subsidies",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_farming_subsidies"
+        },
+        {
+          "id": "edict_farming_subsidies_nomad",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_farming_subsidies_nomad"
+        },
+        {
+          "id": "edict_fc_union",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_fc_union"
+        },
+        {
+          "id": "edict_feed_the_fire",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_feed_the_fire"
+        },
+        {
+          "id": "edict_fleet_focus",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_fleet_focus"
+        },
+        {
+          "id": "edict_fortress_proclamation",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_fortress_proclamation"
+        },
+        {
+          "id": "edict_fortress_proclamation_machine",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_fortress_proclamation_machine"
+        },
+        {
+          "id": "edict_grand_fleet",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_grand_fleet"
+        },
+        {
+          "id": "edict_healthcare_campaign",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_healthcare_campaign"
+        },
+        {
+          "id": "edict_information_quarantine",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_information_quarantine"
+        },
+        {
+          "id": "edict_land_of_opportunity",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_land_of_opportunity"
+        },
+        {
+          "id": "edict_local_festival_1",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_local_festival_1"
+        },
+        {
+          "id": "edict_local_festival_2",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_local_festival_2"
+        },
+        {
+          "id": "edict_local_festival_3",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_local_festival_3"
+        },
+        {
+          "id": "edict_local_festival_4",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_local_festival_4"
+        },
+        {
+          "id": "edict_local_festival_5",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_local_festival_5"
+        },
+        {
+          "id": "edict_local_festival_6",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_local_festival_6"
+        },
+        {
+          "id": "edict_local_festival_7",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_local_festival_7"
+        },
+        {
+          "id": "edict_local_festival_8",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_local_festival_8"
+        },
+        {
+          "id": "edict_local_festival_9",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_local_festival_9"
+        },
+        {
+          "id": "edict_map_the_stars",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_map_the_stars"
+        },
+        {
+          "id": "edict_officer_subsidies",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_officer_subsidies"
+        },
+        {
+          "id": "edict_officer_subsidies_borg",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_officer_subsidies_borg"
+        },
+        {
+          "id": "edict_officer_subsidies_machine",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_officer_subsidies_machine"
+        },
+        {
+          "id": "edict_officer_subsidies_undine",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_officer_subsidies_undine"
+        },
+        {
+          "id": "edict_peace_festivals",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_peace_festivals"
+        },
+        {
+          "id": "edict_production_targets",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_production_targets"
+        },
+        {
+          "id": "edict_production_targets_atypical",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_production_targets_atypical"
+        },
+        {
+          "id": "edict_production_targets_borg",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_production_targets_borg"
+        },
+        {
+          "id": "edict_production_targets_machine",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_production_targets_machine"
+        },
+        {
+          "id": "edict_production_targets_und",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_production_targets_und"
+        },
+        {
+          "id": "edict_push_ufp_formation",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_push_ufp_formation"
+        },
+        {
+          "id": "edict_recovery_protocols_borg",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_recovery_protocols_borg"
+        },
+        {
+          "id": "edict_recovery_protocols_borg_2",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_recovery_protocols_borg_2"
+        },
+        {
+          "id": "edict_recycling_campaign",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_recycling_campaign"
+        },
+        {
+          "id": "edict_recycling_campaign_machine",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_recycling_campaign_machine"
+        },
+        {
+          "id": "edict_research_focus",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_research_focus"
+        },
+        {
+          "id": "edict_research_focus_2",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_research_focus_2"
+        },
+        {
+          "id": "edict_research_footing",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_research_footing"
+        },
+        {
+          "id": "edict_share_burden_campaign",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_share_burden_campaign"
+        },
+        {
+          "id": "edict_spy_counter_borg",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_spy_counter_borg"
+        },
+        {
+          "id": "edict_spy_counter_undine",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_spy_counter_undine"
+        },
+        {
+          "id": "edict_spy_network",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_spy_network"
+        },
+        {
+          "id": "edict_spy_network_borg",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_spy_network_borg"
+        },
+        {
+          "id": "edict_the_weak_shall_perish",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_the_weak_shall_perish"
+        },
+        {
+          "id": "edict_ufp_union",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_ufp_union"
+        },
+        {
+          "id": "edict_undine_conscription_campaign",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_undine_conscription_campaign"
+        },
+        {
+          "id": "edict_undine_research_focus",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_undine_research_focus"
+        },
+        {
+          "id": "edict_undine_vanguard",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_undine_vanguard"
+        },
+        {
+          "id": "edict_war_drone_campaign",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_war_drone_campaign"
+        },
+        {
+          "id": "edict_war_drone_campaign_machine",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_war_drone_campaign_machine"
+        },
+        {
+          "id": "edict_war_undine_campaign",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_war_undine_campaign"
+        },
+        {
+          "id": "edict_will_to_power",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_will_to_power"
+        },
+        {
+          "id": "edict_zhat_vash",
+          "changed_fields": [
+            "name_key"
+          ],
+          "name_key": "edict_edict_zhat_vash"
+        }
+      ]
     },
     "councilors": {
       "old_count": 146,

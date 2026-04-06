@@ -26,7 +26,7 @@ def extract_policy(policy_id, block, source_file):
 
     return {
         'id': policy_id,
-        'name_key': policy_id,
+        'name_key': f'policy_{policy_id}',
         'icon': options[0]['icon'] if options and options[0].get('icon') else '',
         'potential': serialize_block(get_value(block, 'potential')) if isinstance(get_value(block, 'potential'), list) else None,
         'allow': serialize_block(get_value(block, 'allow')) if isinstance(get_value(block, 'allow'), list) else None,

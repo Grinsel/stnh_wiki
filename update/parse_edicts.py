@@ -13,7 +13,7 @@ def extract_edict(edict_id, block, source_file):
     """Extract structured data from an edict block."""
     return {
         'id': edict_id,
-        'name_key': edict_id,
+        'name_key': f'edict_{edict_id}',
         'icon': _extract_icon_stem(get_value(block, 'icon')),
         'length': get_value(block, 'length'),
         'is_ambition': to_bool(get_value(block, 'is_ambition')),
