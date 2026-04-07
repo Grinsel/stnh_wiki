@@ -24,11 +24,9 @@ Desktop.ini
 
 # Techtree pipeline
 update/techtree/__pycache__/
-update/techtree/logs/
 
 
-# Logs
-logs/
+
 
 # Claude
 .claude/
