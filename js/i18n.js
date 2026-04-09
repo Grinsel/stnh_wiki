@@ -70,6 +70,15 @@ const I18n = (() => {
         return raw.replace(/£/g, '').replace(/\s+/g, ' ').trim();
     }
 
+    /** Like t() but preserves line breaks — returns sanitised text with \n intact. */
+    function tMultiline(key) {
+        if (!key) return '';
+        const raw = locData[key] || fallbackData[key] || '';
+        if (!raw || raw === key) return '';
+        const s = typeof raw !== 'string' ? String(raw) : raw;
+        return s.replace(/£/g, '').replace(/[^\S\n]+/g, ' ').trim();
+    }
+
     function ui(key) {
         if (!key) return '';
         const entry = typeof UI_STRINGS !== 'undefined' ? UI_STRINGS[key] : null;
@@ -84,6 +93,6 @@ const I18n = (() => {
 
     return {
         setLanguage, setLanguageForModule, loadFullLocalisation,
-        t, ui, getLang, getData, isFullLoaded, getCurrentModule
+        t, tMultiline, ui, getLang, getData, isFullLoaded, getCurrentModule
     };
 })();

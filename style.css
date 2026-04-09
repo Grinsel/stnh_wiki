@@ -862,6 +862,12 @@ select option:checked {
     color: var(--text-muted);
 }
 
+.detail-bio {
+    font-size: 0.7rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
 .detail-section {
     margin-bottom: 0.75rem;
 }

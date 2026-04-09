@@ -227,8 +227,18 @@
             if (item.source_file) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
             html += `</div>`;
 
-            // Empire-specific (also shown when called from map view)
+            // Empire bio / description
             const isEmpire = activeTab === 'empires' || activeView === 'map';
+            if (isEmpire && item.name_key) {
+                const bio = I18n.tMultiline(item.name_key + '_desc');
+                if (bio) {
+                    const bioHtml = esc(bio).replace(/\n/g, '<br>');
+                    html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.description')}</div>`;
+                    html += `<div class="detail-bio">${bioHtml}</div></div>`;
+                }
+            }
+
+            // Empire-specific (also shown when called from map view)
             if (isEmpire && item.authority !== undefined) {
                 const stats = [];
                 if (item.authority) stats.push([I18n.ui('ui.meta.authority'), item.authority]);
