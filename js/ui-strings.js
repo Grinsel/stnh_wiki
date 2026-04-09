@@ -143,6 +143,16 @@ const UI_STRINGS = {
     'ui.quadrant.major': { english: '\u2605 Major', german: '\u2605 Major', french: '\u2605 Majeur', russian: '\u2605 Основные' },
     'ui.quadrant.alt':   { english: '\u25c8 Alt', german: '\u25c8 Alt', french: '\u25c8 Alt', russian: '\u25c8 Альт' },
 
+    // Galaxy map legend & era labels
+    'ui.galaxy.legend.alpha': { english: 'Alpha Quadrant', german: 'Alpha-Quadrant', french: 'Quadrant Alpha', russian: 'Альфа-квадрант' },
+    'ui.galaxy.legend.beta':  { english: 'Beta Quadrant',  german: 'Beta-Quadrant',  french: 'Quadrant B\u00eata', russian: 'Бета-квадрант' },
+    'ui.galaxy.legend.gamma': { english: 'Gamma Quadrant', german: 'Gamma-Quadrant', french: 'Quadrant Gamma', russian: 'Гамма-квадрант' },
+    'ui.galaxy.legend.delta': { english: 'Delta Quadrant', german: 'Delta-Quadrant', french: 'Quadrant Delta', russian: 'Дельта-квадрант' },
+    'ui.galaxy.legend.major': { english: 'Major Powers',   german: 'Gro\u00dfm\u00e4chte', french: 'Grandes puissances', russian: 'Крупные державы' },
+    'ui.galaxy.legend.alt':   { english: 'Alternate Timeline', german: 'Alternative Zeitlinie', french: 'Frise chronologique alternative', russian: 'Альтернативная временная линия' },
+    'ui.galaxy.era.classic':  { english: 'Classic Era', german: 'Klassische \u00c4ra', french: '\u00c8re classique', russian: 'Классическая эпоха' },
+    'ui.galaxy.era.tng':      { english: 'TNG Era', german: 'TNG-\u00c4ra', french: '\u00c8re TNG', russian: 'Эпоха ТНГ' },
+
     // Filter by empire placeholder
     'ui.filter.empire_placeholder': { english: 'Filter by empire...', german: 'Nach Reich filtern...', french: 'Filtrer par empire...', russian: 'Фильтр по империи...' },
 

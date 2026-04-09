@@ -174,6 +174,22 @@ QUADRANT_LABELS = {
 }
 
 
+# ─── Scenario name reader ─────────────────────────────────────────────────────
+
+def _parse_scenario_name(filepath):
+    """Read the internal name = "..." from the first matching line of a
+    setup_scenario file.  This is also the galaxy_size / localisation key."""
+    try:
+        with open(filepath, 'r', encoding='utf-8', errors='replace') as f:
+            for line in f:
+                m = re.match(r'\s*name\s*=\s*"([^"]+)"', line)
+                if m:
+                    return m.group(1)
+    except OSError:
+        pass
+    return ''
+
+
 # ─── Galaxy Map Parser ────────────────────────────────────────────────────────
 
 def _midpoint(lo, hi):
@@ -512,9 +528,11 @@ def generate_galaxy_map(force_flags=False):
         if stub_removed:
             print(f"      stub filter: removed {len(stub_removed)} ({', '.join(stub_removed[:6])}{'...' if len(stub_removed)>6 else ''})")
         total_unplaced.update(unplaced)
+        loc_key = _parse_scenario_name(map_file)
         all_maps.append({
             'id': map_def['id'],
             'label': map_def['label'],
+            'loc_key': loc_key,
             'type': map_def['type'],
             'era': map_def['era'],
             'empires': placed,

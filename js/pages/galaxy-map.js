@@ -22,6 +22,15 @@ window.GalaxyMap = (function () {
     };
     const DEFAULT_COLOR = '#aaaaaa';
 
+    const QUADRANT_LEGEND_KEYS = {
+        'Alpha Quadrant':     'ui.galaxy.legend.alpha',
+        'Beta Quadrant':      'ui.galaxy.legend.beta',
+        'Gamma Quadrant':     'ui.galaxy.legend.gamma',
+        'Delta Quadrant':     'ui.galaxy.legend.delta',
+        'Major Powers':       'ui.galaxy.legend.major',
+        'Alternate Timeline': 'ui.galaxy.legend.alt',
+    };
+
     // Home-quadrant overrides for major empires.
     // Empires listed here are filtered by these quadrants on partial maps
     // instead of the generic 'Major Powers' tag they carry in the data.
@@ -253,6 +262,16 @@ window.GalaxyMap = (function () {
         _overlayEl = document.createElement('div');
         _overlayEl.style.cssText = 'position:absolute;left:10px;top:10px;z-index:6;display:flex;flex-direction:column;align-items:flex-start;gap:8px';
 
+        // Strip Stellaris color codes (§X...§!) and take only the first line.
+        // Uses raw loc data (pre-collapse) so the \n line break is still intact.
+        // Remaining bare £ symbols (leftover from icon tokens like £system£) are stripped.
+        function _locMapLabel(m) {
+            if (!m.loc_key) return m.label;
+            const raw = I18n.getData()[m.loc_key];
+            if (!raw) return m.label;
+            return raw.split('\n')[0].replace(/£/g, '').replace(/§.\s*/g, '').replace(/§!/g, '').trim() || m.label;
+        }
+
         // Map selector dropdown (only when multiple maps are available)
         if (maps && maps.length > 1 && onMapChange) {
             _selectorEl = document.createElement('select');
@@ -262,11 +281,11 @@ window.GalaxyMap = (function () {
                 const eraMaps = maps.filter(m => m.era === era);
                 if (!eraMaps.length) return;
                 const group = document.createElement('optgroup');
-                group.label = era === 'tng' ? 'TNG Era' : 'Classic Era';
+                group.label = I18n.ui(era === 'tng' ? 'ui.galaxy.era.tng' : 'ui.galaxy.era.classic');
                 eraMaps.forEach(m => {
                     const opt = document.createElement('option');
                     opt.value = m.id;
-                    opt.textContent = m.label;
+                    opt.textContent = _locMapLabel(m);
                     if (m.id === mapId) opt.selected = true;
                     group.appendChild(opt);
                 });
@@ -286,7 +305,7 @@ window.GalaxyMap = (function () {
             dot.style.cssText = 'display:inline-block;width:10px;height:10px;border-radius:50%;background:' + color + ';flex-shrink:0';
             const txt = document.createElement('span');
             txt.style.color = '#bbb';
-            txt.textContent = label;
+            txt.textContent = I18n.ui(QUADRANT_LEGEND_KEYS[label] || label);
             row.appendChild(dot);
             row.appendChild(txt);
             _legendEl.appendChild(row);

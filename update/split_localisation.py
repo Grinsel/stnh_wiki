@@ -288,6 +288,12 @@ def get_module_keys():
 
     # Empires + Species
     modules['empires'] = extract_empires_keys()
+
+    # Galaxy map names (shown in the map selector dropdown on the empires page)
+    galaxy_maps = load_json(ASSETS_DIR / 'galaxy_maps.json')
+    galaxy_maps_list = galaxy_maps.get('maps', []) if isinstance(galaxy_maps, dict) else []
+    galaxy_loc_keys = {m['loc_key'] for m in galaxy_maps_list if m.get('loc_key')}
+    modules['empires'] |= galaxy_loc_keys
     print(f"    empires: {len(modules['empires']):,} keys")
 
     return modules
