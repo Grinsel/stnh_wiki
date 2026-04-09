@@ -94,14 +94,14 @@
 
         // --- Area Chips ---
         const areaCategories = [
-            { value: 'physics', label: 'Physics', count: physics.length },
-            { value: 'engineering', label: 'Engineering', count: engineering.length },
-            { value: 'society', label: 'Society', count: society.length },
+            { value: 'physics', label: I18n.ui('ui.filter.physics'), count: physics.length },
+            { value: 'engineering', label: I18n.ui('ui.filter.engineering'), count: engineering.length },
+            { value: 'society', label: I18n.ui('ui.filter.society'), count: society.length },
         ];
         const areaChips = CategoryChips.create({
             container: document.getElementById('filter-area-chips'),
             categories: areaCategories,
-            allLabel: 'All Areas',
+            allLabel: I18n.ui('ui.filter.all_areas'),
             onChange: () => { currentPage = 1; renderAll(); },
         });
 
@@ -119,8 +119,8 @@
         const tierStart = document.getElementById('filter-tier-start');
         const tierEnd = document.getElementById('filter-tier-end');
         for (let i = 0; i <= 11; i++) {
-            const o1 = document.createElement('option'); o1.value = i; o1.textContent = 'Tier ' + i;
-            const o2 = document.createElement('option'); o2.value = i; o2.textContent = 'Tier ' + i;
+            const o1 = document.createElement('option'); o1.value = i; o1.textContent = I18n.ui('ui.filter.tier_x').replace('%n', i);
+            const o2 = document.createElement('option'); o2.value = i; o2.textContent = I18n.ui('ui.filter.tier_x').replace('%n', i);
             tierStart.appendChild(o1);
             tierEnd.appendChild(o2);
         }
@@ -209,6 +209,25 @@
         // --- Language change ---
         document.addEventListener('wiki-lang-changed', () => {
             for (const t of allTechs) t._name = I18n.t(t.id) || t.name || t.id;
+            areaChips.rebuildAll([
+                { value: 'physics', label: I18n.ui('ui.filter.physics'), count: physics.length },
+                { value: 'engineering', label: I18n.ui('ui.filter.engineering'), count: engineering.length },
+                { value: 'society', label: I18n.ui('ui.filter.society'), count: society.length },
+            ], I18n.ui('ui.filter.all_areas'));
+            // Rebuild tier option labels
+            const tierStartVal = tierStart.value;
+            const tierEndVal = tierEnd.value;
+            while (tierStart.options.length > 1) tierStart.remove(1);
+            while (tierEnd.options.length > 1) tierEnd.remove(1);
+            for (let i = 0; i <= 11; i++) {
+                const label = I18n.ui('ui.filter.tier_x').replace('%n', i);
+                const o1 = document.createElement('option'); o1.value = i; o1.textContent = label;
+                const o2 = document.createElement('option'); o2.value = i; o2.textContent = label;
+                tierStart.appendChild(o1);
+                tierEnd.appendChild(o2);
+            }
+            tierStart.value = tierStartVal;
+            tierEnd.value = tierEndVal;
             renderAll();
         });
 

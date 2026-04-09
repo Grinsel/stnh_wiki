@@ -90,9 +90,10 @@ const I18n = (() => {
     function getData() { return locData; }
     function isFullLoaded() { return fullLocLoaded; }
     function getCurrentModule() { return _currentModule; }
+    function setLangSync(lang) { if (lang) currentLang = lang; }
 
     return {
         setLanguage, setLanguageForModule, loadFullLocalisation,
-        t, tMultiline, ui, getLang, getData, isFullLoaded, getCurrentModule
+        t, tMultiline, ui, getLang, getData, isFullLoaded, getCurrentModule, setLangSync
     };
 })();

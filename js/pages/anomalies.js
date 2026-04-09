@@ -27,7 +27,7 @@
         const levels = [...new Set(anomalies.map(a => a.level).filter(v => v != null))].sort((a,b) => a - b);
         const levelSel = document.getElementById('filter-level');
         for (const l of levels) {
-            levelSel.add(new Option(`Level ${l}`, l));
+            levelSel.add(new Option(`${I18n.ui('ui.filter.level')} ${l}`, l));
         }
 
         let activeTab = 'anomalies';
@@ -135,6 +135,11 @@
         document.addEventListener('wiki-lang-changed', () => {
             for (const item of anomalies) item.name = I18n.t(item.name_key) || I18n.t(item.desc) || item.id;
             for (const item of archaeology) item.name = I18n.t(item.name_key) || I18n.t(item.desc) || item.id;
+            // Rebuild level dropdown labels
+            const levelVal = levelSel.value;
+            while (levelSel.options.length > 1) levelSel.remove(1);
+            for (const l of levels) levelSel.add(new Option(`${I18n.ui('ui.filter.level')} ${l}`, l));
+            levelSel.value = levelVal;
             renderAll();
         });
 

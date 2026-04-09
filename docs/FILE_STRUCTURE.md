@@ -33,7 +33,7 @@ stnh_wiki/
 |   +-- relics.json                    # Relikte (61 KB)
 |   +-- anomalies.json                 # Anomalien (68 KB)
 |   +-- archaeology.json               # Archaeologie (25 KB)
-|   +-- empires.json                   # Imperien (115 KB)
+|   +-- empires.json                   # Reiche (115 KB)
 |   +-- species.json                   # Spezies (74 KB)
 |   +-- jobs.json                      # Berufe (219 KB)
 |   +-- deposits.json                  # Lagerstetten (237 KB)
@@ -144,7 +144,7 @@ stnh_wiki/
 |   +-- parse_relics.py                # Relikte
 |   +-- parse_anomalies.py             # Anomalien
 |   +-- parse_archaeology.py           # Archaeologie
-|   +-- parse_empires.py               # Imperien
+|   +-- parse_empires.py               # Reiche
 |   +-- parse_species.py               # Spezies
 |   +-- parse_jobs.py                  # Berufe
 |   +-- parse_deposits.py              # Lagerstetten

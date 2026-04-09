@@ -448,6 +448,7 @@ const Common = (() => {
         initNavHighlight();
         initHamburger();
         initStickyNav();
+        I18n.setLangSync(AppState.get('lang'));
         applyUiStrings();
         initGlobalSearch();
         initScrollFades();

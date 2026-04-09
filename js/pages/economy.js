@@ -151,6 +151,7 @@
         document.addEventListener('wiki-lang-changed', () => {
             for (const item of jobs) item.name = I18n.t(item.name_key) || item.id;
             for (const item of deposits) item.name = I18n.t(item.name_key) || item.id;
+            populateCategories();
             renderAll();
         });
 

@@ -12,17 +12,20 @@
     const searchInput = document.getElementById('search-input');
     searchInput.value = AppState.get('search');
 
-    const CATEGORY_LABELS = {
-        amenity:       'Amenity',
-        army:          'Army',
-        government:    'Government',
-        manufacturing: 'Manufacturing',
-        pop_assembly:  'Pop Assembly',
-        research:      'Research',
-        resource:      'Resource',
-        trade:         'Trade',
-        unity:         'Unity',
-    };
+    function getCategoryLabel(key) {
+        const map = {
+            amenity:       'ui.bld_cat.amenity',
+            army:          'ui.bld_cat.army',
+            government:    'ui.bld_cat.government',
+            manufacturing: 'ui.bld_cat.manufacturing',
+            pop_assembly:  'ui.bld_cat.pop_assembly',
+            research:      'ui.bld_cat.research',
+            resource:      'ui.bld_cat.resource',
+            trade:         'ui.bld_cat.trade',
+            unity:         'ui.bld_cat.unity',
+        };
+        return map[key] ? I18n.ui(map[key]) : key;
+    }
 
     try {
         const [buildings, districts] = await Promise.all([
@@ -40,14 +43,14 @@
 
         const categoryCategories = Object.keys(catCounts).sort().map(v => ({
             value: v,
-            label: CATEGORY_LABELS[v] || v,
+            label: getCategoryLabel(v),
             count: catCounts[v],
         }));
 
         const categoryChips = CategoryChips.create({
             container: document.getElementById('filter-category-chips'),
             categories: categoryCategories,
-            allLabel: 'All Categories',
+            allLabel: I18n.ui('ui.filter.all_categories'),
             onChange: () => { currentPage = 1; renderAll(); },
         });
 
@@ -80,7 +83,7 @@
                 : '';
             let html = `<div class="detail-meta" style="align-items:center">${iconHtml}`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id') + ': '}${esc(item.id)}</span>`;
-            if (item.category) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.category') + ': '}${esc(CATEGORY_LABELS[item.category] || item.category)}</span>`;
+            if (item.category) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.category') + ': '}${esc(getCategoryLabel(item.category))}</span>`;
             if (item.base_buildtime) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.build_time') + ': '}${item.base_buildtime}</span>`;
             if (item.capital) html += `<span class="detail-meta-item">${I18n.ui('ui.badge.capital')}</span>`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file') + ': '}${esc(item.source_file)}</span>`;
@@ -128,6 +131,8 @@
         document.addEventListener('wiki-lang-changed', () => {
             for (const item of buildings) item.name = I18n.t(item.name_key) || item.id;
             for (const item of districts) item.name = I18n.t(item.name_key) || item.id;
+            for (const cat of categoryCategories) cat.label = getCategoryLabel(cat.value);
+            categoryChips.rebuildAll(categoryCategories, I18n.ui('ui.filter.all_categories'));
             renderAll();
         });
 
@@ -191,7 +196,7 @@
                             <span class="item-card-id">${esc(item.id)}</span>
                         </div>
                         <div class="item-card-meta">`;
-                if (item.category) html += `<span class="detail-meta-item">${esc(CATEGORY_LABELS[item.category] || item.category)}</span>`;
+                if (item.category) html += `<span class="detail-meta-item">${esc(getCategoryLabel(item.category))}</span>`;
                 if (item.base_buildtime) html += `<span class="detail-meta-item">${I18n.ui('ui.card.build') + ':'} ${item.base_buildtime}</span>`;
                 if (item.prerequisites && item.prerequisites.length) html += `<span class="detail-meta-item">${I18n.ui('ui.card.tech') + ':'} ${item.prerequisites.length}</span>`;
                 html += `</div></div></div>`;

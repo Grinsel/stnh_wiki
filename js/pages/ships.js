@@ -14,36 +14,45 @@
     const showNoModelCheckbox = document.getElementById('show-no-model');
 
     // Human-readable labels for ship class keys
-    const CLASS_LABELS = {
-        shipclass_military:           'Military',
-        shipclass_starbase:           'Starbase',
-        shipclass_science_ship:       'Science',
-        shipclass_colonizer:          'Colonizer',
-        shipclass_constructor:        'Constructor',
-        shipclass_transport:          'Transport',
-        shipclass_mining_station:     'Mining Station',
-        shipclass_research_station:   'Research Station',
-        shipclass_observation_station:'Observation Station',
-        shipclass_military_station:   'Military Station',
-    };
+    function getClassLabel(key) {
+        const map = {
+            shipclass_military:           'ui.ship_class.military',
+            shipclass_starbase:           'ui.ship_class.starbase',
+            shipclass_science_ship:       'ui.ship_class.science',
+            shipclass_colonizer:          'ui.ship_class.colonizer',
+            shipclass_constructor:        'ui.ship_class.constructor',
+            shipclass_transport:          'ui.ship_class.transport',
+            shipclass_mining_station:     'ui.ship_class.mining_station',
+            shipclass_research_station:   'ui.ship_class.research_station',
+            shipclass_observation_station:'ui.ship_class.observation_station',
+            shipclass_military_station:   'ui.ship_class.military_station',
+        };
+        return map[key] ? I18n.ui(map[key]) : key;
+    }
 
-    const COMPTYPE_LABELS = {
-        weapon:       'Weapon',
-        utility:      'Utility',
-        strike_craft: 'Strike Craft',
-    };
+    function getComptypeLabel(key) {
+        const map = {
+            weapon:       'ui.comp_type.weapon',
+            utility:      'ui.comp_type.utility',
+            strike_craft: 'ui.comp_type.strike_craft',
+        };
+        return map[key] ? I18n.ui(map[key]) : key;
+    }
 
-    const SIZE_LABELS = {
-        small:          'Small',
-        medium:         'Medium',
-        large:          'Large',
-        extra_large:    'Extra Large',
-        titanic:        'Titanic',
-        torpedo:        'Torpedo',
-        point_defence:  'Point Defence',
-        aux:            'Aux',
-        planet_killer:  'Planet Killer',
-    };
+    function getSizeLabel(key) {
+        const map = {
+            small:         'ui.comp_size.small',
+            medium:        'ui.comp_size.medium',
+            large:         'ui.comp_size.large',
+            extra_large:   'ui.comp_size.extra_large',
+            titanic:       'ui.comp_size.titanic',
+            torpedo:       'ui.comp_size.torpedo',
+            point_defence: 'ui.comp_size.point_defence',
+            aux:           'ui.comp_size.aux',
+            planet_killer: 'ui.comp_size.planet_killer',
+        };
+        return map[key] ? I18n.ui(map[key]) : key;
+    }
 
     try {
         const [shipsData, components] = await Promise.all([
@@ -98,7 +107,7 @@
         function sizeCategoriesFromCounts(counts) {
             return Object.keys(counts).sort().map(v => ({
                 value: v,
-                label: SIZE_LABELS[v] || v,
+                label: getSizeLabel(v),
                 count: counts[v],
             }));
         }
@@ -108,18 +117,18 @@
 
         const classCategories = Object.keys(classCounts).sort().map(v => ({
             value: v,
-            label: CLASS_LABELS[v] || v,
+            label: getClassLabel(v),
             count: classCounts[v],
         }));
         const comptypeCategories = ['weapon', 'utility', 'strike_craft']
             .filter(v => comptypeCounts[v])
-            .map(v => ({ value: v, label: COMPTYPE_LABELS[v] || v, count: comptypeCounts[v] }));
+            .map(v => ({ value: v, label: getComptypeLabel(v), count: comptypeCounts[v] }));
 
         // --- Init chip bars ---
         const classChips = CategoryChips.create({
             container: document.getElementById('filter-class-chips'),
             categories: classCategories,
-            allLabel: 'All Classes',
+            allLabel: I18n.ui('ui.filter.all_classes'),
             onChange: () => { currentPage = 1; renderAll(); },
         });
 
@@ -128,14 +137,14 @@
         const sizeChips = CategoryChips.create({
             container: document.getElementById('filter-size-chips'),
             categories: sizeCategoriesFromCounts(sizeCountMap(null)),
-            allLabel: 'All Sizes',
+            allLabel: I18n.ui('ui.filter.all_sizes'),
             onChange: () => { currentPage = 1; renderAll(); },
         });
 
         const comptypeChips = CategoryChips.create({
             container: document.getElementById('filter-comptype-chips'),
             categories: comptypeCategories,
-            allLabel: 'All Types',
+            allLabel: I18n.ui('ui.filter.all_types'),
             onChange: (typeValue) => {
                 // Rebuild size chips filtered to the selected type
                 const newSizeCounts = sizeCountMap(typeValue || null);
@@ -294,6 +303,12 @@
         document.addEventListener('wiki-lang-changed', () => {
             for (const item of ships) { const r = I18n.t(item.name_key); item.name = (r !== item.name_key) ? r : item.id; }
             for (const item of components) item.name = I18n.t(item.name_key) || item.id;
+            // Refresh labels in category arrays before rebuilding chips
+            for (const cat of classCategories) cat.label = getClassLabel(cat.value);
+            for (const cat of comptypeCategories) cat.label = getComptypeLabel(cat.value);
+            classChips.rebuildAll(classCategories, I18n.ui('ui.filter.all_classes'));
+            sizeChips.rebuildAll(sizeCategoriesFromCounts(sizeCountMap(null)), I18n.ui('ui.filter.all_sizes'));
+            comptypeChips.rebuildAll(comptypeCategories, I18n.ui('ui.filter.all_types'));
             renderAll();
         });
 
@@ -381,9 +396,9 @@
                             <span class="item-card-id">${esc(item.id)}</span>
                         </div>
                         <div class="item-card-meta">`;
-                if (item.class) html += `<span class="detail-meta-item">${esc(CLASS_LABELS[item.class] || item.class)}</span>`;
-                if (item.type) html += `<span class="detail-meta-item">${esc(COMPTYPE_LABELS[item.type] || item.type)}</span>`;
-                if (item.size) html += `<span class="detail-meta-item">${esc(SIZE_LABELS[(item.size || '').toLowerCase()] || item.size)}</span>`;
+                if (item.class) html += `<span class="detail-meta-item">${esc(getClassLabel(item.class))}</span>`;
+                if (item.type) html += `<span class="detail-meta-item">${esc(getComptypeLabel(item.type))}</span>`;
+                if (item.size) html += `<span class="detail-meta-item">${esc(getSizeLabel((item.size || '').toLowerCase()))}</span>`;
                 if (item.prerequisites && item.prerequisites.length) html += `<span class="detail-meta-item">${I18n.ui('ui.card.tech')}: ${item.prerequisites.length}</span>`;
                 html += `</div></div></div>`;
             }

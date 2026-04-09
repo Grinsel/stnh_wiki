@@ -30,7 +30,7 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 | `relics.json` | 61 KB | Relikte: Passive/Aktive Effekte, Cooldown |
 | `anomalies.json` | 68 KB | Anomalien: Kategorie, Ergebnisse, Trigger |
 | `archaeology.json` | 25 KB | Archaeologie: Kapitel, Belohnungen |
-| `empires.json` | 115 KB | Imperien: Species, Ethik, Government, Origin |
+| `empires.json` | 115 KB | Reiche: Species, Ethik, Government, Origin |
 | `species.json` | 74 KB | Spezies: Archetyp, Portraits |
 | `jobs.json` | 219 KB | Berufe: Produktion, Konsum |
 | `deposits.json` | 237 KB | Lagerstetten |

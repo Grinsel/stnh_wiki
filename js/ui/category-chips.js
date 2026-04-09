@@ -31,7 +31,7 @@ var CategoryChips = (function () {
     function create(opts) {
         const container = opts.container;
         const onChange = opts.onChange || function () {};
-        const allLabel = opts.allLabel || 'All';
+        let _allLabel = opts.allLabel || 'All';
         const showCounts = opts.showCounts !== false;
         let activeValue = '';
 
@@ -40,7 +40,7 @@ var CategoryChips = (function () {
             container.classList.add('cat-chip-bar');
 
             // "All" chip always first
-            const allChip = _makeChip('', allLabel, null, null, showCounts);
+            const allChip = _makeChip('', _allLabel, null, null, showCounts);
             allChip.classList.add('active');
             allChip.addEventListener('click', () => _select('', categories));
             container.appendChild(allChip);
@@ -100,6 +100,18 @@ var CategoryChips = (function () {
             buildChips(categories);
         }
 
+        /**
+         * Replace all chips with new categories and a new "All" label.
+         * Does NOT fire onChange.
+         * @param {Array<{value:string, label:string, count?:number, icon?:string}>} categories
+         * @param {string} newAllLabel
+         */
+        function rebuildAll(newCategories, newAllLabel) {
+            _allLabel = newAllLabel;
+            activeValue = '';
+            buildChips(newCategories);
+        }
+
         function setActive(value) {
             const prev = activeValue;
             activeValue = value;
@@ -125,7 +137,7 @@ var CategoryChips = (function () {
 
         buildChips(opts.categories || []);
 
-        return { setActive, getActive, updateCounts, rebuild };
+        return { setActive, getActive, updateCounts, rebuild, rebuildAll };
     }
 
     return { create };

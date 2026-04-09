@@ -46,8 +46,8 @@ Die vollstaendige Pipeline (`UPDATE_WIKI.py`) durchlaeuft folgende Phasen:
 | 5d | **Governments & Policies** | Regierungen, Civics, Autoritaeten, Policies, Edikte | 185 / 332 / 17 / 53 / 86 |
 | 5e | **Megastructures & Relics** | Megastrukturen + Relikte | 116 / 68 |
 | 5f | **Anomalies & Archaeology** | Anomalien + Archaeologische Staetten | 132 / 29 |
-| 5g | **Empires & Species** | Vorgefertigte Imperien + Spezies | 110 / 255 |
-| 5h | **Galaxy Map** | Galaxiekarte mit Positionen + Flaggen | 105 platzierte Imperien |
+| 5g | **Empires & Species** | Vorgefertigte Reiche + Spezies | 110 / 255 |
+| 5h | **Galaxy Map** | Galaxiekarte mit Positionen + Flaggen | 105 platzierte Reiche |
 | 5i | **Economy** | Jobs + Deposits | 309 / 667 |
 | 6 | **Image Conversion** | DDS → WebP (Event-Bilder, Gebaeude-Icons, Schiffsmodelle) | nur bei Aenderungen |
 | 7 | **Techtree** | Technologien (3 Bereiche), Fraktionen, Icons | 1.991 Technologien (739 Physik, 634 Engineering, 618 Gesellschaft) |

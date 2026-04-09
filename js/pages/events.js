@@ -123,6 +123,7 @@
         for (const ev of eventsIndex) {
             ev.name = I18n.t(ev.id + '.name') || ev.name || ev.id;
         }
+        Filters.populateDropdowns(eventsIndex);
         renderAll();
     });
 

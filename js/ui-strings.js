@@ -16,7 +16,7 @@ const UI_STRINGS = {
     'ui.nav.governments':     { english: 'Governments', german: 'Regierungen', french: 'Gouvernements', russian: 'Правительства' },
     'ui.nav.megastructures':  { english: 'Megastructures', german: 'Megastrukturen', french: 'M\u00e9gastructures', russian: 'Мегаструктуры' },
     'ui.nav.anomalies':       { english: 'Anomalies', german: 'Anomalien', french: 'Anomalies', russian: 'Аномалии' },
-    'ui.nav.empires':         { english: 'Empires', german: 'Imperien', french: 'Empires', russian: 'Империи' },
+    'ui.nav.empires':         { english: 'Empires', german: 'Reiche', french: 'Empires', russian: 'Империи' },
     'ui.nav.economy':         { english: 'Economy', german: 'Wirtschaft', french: '\u00c9conomie', russian: 'Экономика' },
 
     // ==========================================
@@ -40,12 +40,14 @@ const UI_STRINGS = {
     'ui.tab.relics':          { english: 'Relics', german: 'Relikte', french: 'Reliques', russian: 'Реликвии' },
     'ui.tab.anomalies':       { english: 'Anomalies', german: 'Anomalien', french: 'Anomalies', russian: 'Аномалии' },
     'ui.tab.archaeology':     { english: 'Archaeology', german: 'Archäologie', french: 'Archéologie', russian: 'Археология' },
-    'ui.tab.empires':         { english: 'Empires', german: 'Imperien', french: 'Empires', russian: 'Империи' },
+    'ui.tab.empires':         { english: 'Empires', german: 'Reiche', french: 'Empires', russian: 'Империи' },
     'ui.tab.species':         { english: 'Species', german: 'Spezies', french: 'Espèces', russian: 'Виды' },
     'ui.tab.jobs':            { english: 'Jobs', german: 'Berufe', french: 'Emplois', russian: 'Профессии' },
     'ui.tab.deposits':        { english: 'Deposits', german: 'Lagerstätten', french: 'Dépôts', russian: 'Месторождения' },
     'ui.view.list':           { english: '☰ List', german: '☰ Liste', french: '☰ Liste', russian: '☰ Список' },
     'ui.view.map':            { english: '✦ Galaxy Map', german: '✦ Galaxie-Karte', french: '✦ Carte galactique', russian: '✦ Карта галактики' },
+    'ui.view.list_view':      { english: 'List View', german: 'Listenansicht', french: 'Vue liste', russian: 'Список' },
+    'ui.view.tree_view':      { english: 'Tree View', german: 'Baumansicht', french: 'Vue arbre', russian: 'Дерево' },
 
     // ==========================================
     // Filter Labels & Default Options
@@ -73,6 +75,76 @@ const UI_STRINGS = {
     'ui.filter.show_hidden':     { english: 'Show Hidden', german: 'Versteckte anzeigen', french: 'Afficher les cach\u00e9s', russian: 'Показать скрытые' },
     'ui.filter.triggered_only':  { english: 'Triggered Only', german: 'Nur ausgel\u00f6ste', french: 'D\u00e9clench\u00e9s uniquement', russian: 'Только триггерные' },
     'ui.filter.origins_only':    { english: 'Origins only', german: 'Nur Urspr\u00fcnge', french: 'Origines uniquement', russian: 'Только происхождения' },
+    'ui.filter.area':            { english: 'Area', german: 'Bereich', french: 'Domaine', russian: 'Область' },
+    'ui.filter.all_areas':       { english: 'All Areas', german: 'Alle Bereiche', french: 'Tous les domaines', russian: 'Все области' },
+    'ui.filter.physics':         { english: 'Physics', german: 'Physik', french: 'Physique', russian: 'Физика' },
+    'ui.filter.engineering':     { english: 'Engineering', german: 'Ingenieurwesen', french: 'Ingénierie', russian: 'Инженерия' },
+    'ui.filter.society':         { english: 'Society', german: 'Gesellschaft', french: 'Société', russian: 'Общество' },
+    'ui.filter.tier':            { english: 'Tier', german: 'Stufe', french: 'Niveau', russian: 'Уровень' },
+    'ui.filter.tier_x':          { english: 'Tier %n', german: 'Stufe %n', french: 'Niveau %n', russian: 'Уровень %n' },
+    'ui.filter.min_tier':        { english: 'Min Tier', german: 'Mindeststufe', french: 'Niveau min', russian: 'Мин. уровень' },
+    'ui.filter.max_tier':        { english: 'Max Tier', german: 'Maximalstuf', french: 'Niveau max', russian: 'Макс. уровень' },
+    'ui.filter.show_no_model':   { english: 'Show ships without 3D model', german: 'Schiffe ohne 3D-Modell anzeigen', french: 'Afficher les vaisseaux sans mod\u00e8le 3D', russian: 'Показать корабли без 3D-модели' },
+
+    // Event types
+    'ui.event_type.country_event':   { english: 'Country', german: 'Land', french: 'Pays', russian: 'Страна' },
+    'ui.event_type.ship_event':      { english: 'Ship', german: 'Schiff', french: 'Vaisseau', russian: 'Корабль' },
+    'ui.event_type.planet_event':    { english: 'Planet', german: 'Planet', french: 'Plan\u00e8te', russian: 'Планета' },
+    'ui.event_type.fleet_event':     { english: 'Fleet', german: 'Flotte', french: 'Flotte', russian: 'Флот' },
+    'ui.event_type.situation_event': { english: 'Situation', german: 'Situation', french: 'Situation', russian: 'Ситуация' },
+    'ui.event_type.observer_event':  { english: 'Observer', german: 'Beobachter', french: 'Observateur', russian: 'Наблюдатель' },
+    'ui.event_type.pop_event':       { english: 'Pop', german: 'Bevölkerung', french: 'Population', russian: 'Пласт' },
+
+    // Ship class labels
+    'ui.ship_class.military':            { english: 'Military', german: 'Milit\u00e4r', french: 'Militaire', russian: 'Военный' },
+    'ui.ship_class.starbase':            { english: 'Starbase', german: 'Sternenbasis', french: 'Base stellaire', russian: 'Звёздная база' },
+    'ui.ship_class.science':             { english: 'Science', german: 'Wissenschaft', french: 'Science', russian: 'Научный' },
+    'ui.ship_class.colonizer':           { english: 'Colonizer', german: 'Kolonisator', french: 'Colonisateur', russian: 'Колонизатор' },
+    'ui.ship_class.constructor':         { english: 'Constructor', german: 'Konstruktor', french: 'Constructeur', russian: 'Конструктор' },
+    'ui.ship_class.transport':           { english: 'Transport', german: 'Transport', french: 'Transport', russian: 'Транспорт' },
+    'ui.ship_class.mining_station':      { english: 'Mining Station', german: 'Minenstation', french: 'Station mini\u00e8re', russian: 'Горнодобывающая станция' },
+    'ui.ship_class.research_station':    { english: 'Research Station', german: 'Forschungsstation', french: 'Station de recherche', russian: 'Исследовательская станция' },
+    'ui.ship_class.observation_station': { english: 'Observation Station', german: 'Beobachtungsstation', french: 'Station d\'observation', russian: 'Наблюдательная станция' },
+    'ui.ship_class.military_station':    { english: 'Military Station', german: 'Milit\u00e4rstation', french: 'Station militaire', russian: 'Военная станция' },
+
+    // Component type labels
+    'ui.comp_type.weapon':      { english: 'Weapon', german: 'Waffe', french: 'Arme', russian: 'Оружие' },
+    'ui.comp_type.utility':     { english: 'Utility', german: 'Hilfssystem', french: 'Utilitaire', russian: 'Утилита' },
+    'ui.comp_type.strike_craft':{ english: 'Strike Craft', german: 'Jagdfl\u00fcgler', french: 'Chasseur', russian: 'Штурмовик' },
+
+    // Component size labels
+    'ui.comp_size.small':          { english: 'Small', german: 'Klein', french: 'Petit', russian: 'Малый' },
+    'ui.comp_size.medium':         { english: 'Medium', german: 'Mittel', french: 'Moyen', russian: 'Средний' },
+    'ui.comp_size.large':          { english: 'Large', german: 'Gro\u00df', french: 'Grand', russian: 'Большой' },
+    'ui.comp_size.extra_large':    { english: 'Extra Large', german: 'Sehr gro\u00df', french: 'Tr\u00e8s grand', russian: 'Очень большой' },
+    'ui.comp_size.titanic':        { english: 'Titanic', german: 'Titanisch', french: 'Titanesque', russian: 'Титанический' },
+    'ui.comp_size.torpedo':        { english: 'Torpedo', german: 'Torpedo', french: 'Torpedo', russian: 'Торпеда' },
+    'ui.comp_size.point_defence':  { english: 'Point Defence', german: 'Punktverteidigung', french: 'D\u00e9fense ponctuelle', russian: 'Точечная оборона' },
+    'ui.comp_size.aux':            { english: 'Aux', german: 'Zusatz', french: 'Auxiliaire', russian: 'Вспомогательный' },
+    'ui.comp_size.planet_killer':  { english: 'Planet Killer', german: 'Planetenvernichter', french: 'D\u00e9vastateur de plan\u00e8te', russian: 'Уничтожитель планет' },
+
+    // Building category labels
+    'ui.bld_cat.amenity':       { english: 'Amenity', german: 'Einrichtung', french: 'Commodit\u00e9', russian: 'Удобство' },
+    'ui.bld_cat.army':          { english: 'Army', german: 'Armee', french: 'Arm\u00e9e', russian: 'Армия' },
+    'ui.bld_cat.government':    { english: 'Government', german: 'Regierung', french: 'Gouvernement', russian: 'Правительство' },
+    'ui.bld_cat.manufacturing': { english: 'Manufacturing', german: 'Fertigung', french: 'Fabrication', russian: 'Производство' },
+    'ui.bld_cat.pop_assembly':  { english: 'Pop Assembly', german: 'Bevölkerungsmontageanl.', french: 'Assemblage de pop.', russian: 'Сборка пласта' },
+    'ui.bld_cat.research':      { english: 'Research', german: 'Forschung', french: 'Recherche', russian: 'Исследование' },
+    'ui.bld_cat.resource':      { english: 'Resource', german: 'Ressource', french: 'Ressource', russian: 'Ресурс' },
+    'ui.bld_cat.trade':         { english: 'Trade', german: 'Handel', french: 'Commerce', russian: 'Торговля' },
+    'ui.bld_cat.unity':         { english: 'Unity', german: 'Einheit', french: 'Unit\u00e9', russian: 'Единство' },
+
+    // Quadrant labels (empires page)
+    'ui.quadrant.all':   { english: 'All', german: 'Alle', french: 'Tous', russian: 'Все' },
+    'ui.quadrant.alpha': { english: '\u03b1 Alpha', german: '\u03b1 Alpha', french: '\u03b1 Alpha', russian: '\u03b1 Альфа' },
+    'ui.quadrant.beta':  { english: '\u03b2 Beta', german: '\u03b2 Beta', french: '\u03b2 Beta', russian: '\u03b2 Бета' },
+    'ui.quadrant.gamma': { english: '\u03b3 Gamma', german: '\u03b3 Gamma', french: '\u03b3 Gamma', russian: '\u03b3 Гамма' },
+    'ui.quadrant.delta': { english: '\u03b4 Delta', german: '\u03b4 Delta', french: '\u03b4 Delta', russian: '\u03b4 Дельта' },
+    'ui.quadrant.major': { english: '\u2605 Major', german: '\u2605 Major', french: '\u2605 Majeur', russian: '\u2605 Основные' },
+    'ui.quadrant.alt':   { english: '\u25c8 Alt', german: '\u25c8 Alt', french: '\u25c8 Alt', russian: '\u25c8 Альт' },
+
+    // Filter by empire placeholder
+    'ui.filter.empire_placeholder': { english: 'Filter by empire...', german: 'Nach Reich filtern...', french: 'Filtrer par empire...', russian: 'Фильтр по империи...' },
 
     // ==========================================
     // Search Placeholders
@@ -84,7 +156,7 @@ const UI_STRINGS = {
     'ui.search.governments':  { english: 'Search governments, civics, policies...', german: 'Regierungen, B\u00fcrgerrechte, Richtlinien durchsuchen...', french: 'Rechercher gouvernements, civiques, politiques...', russian: 'Поиск правительств, общества, политик...' },
     'ui.search.megastructures': { english: 'Search megastructures & relics...', german: 'Megastrukturen & Relikte durchsuchen...', french: 'Rechercher m\u00e9gastructures & reliques...', russian: 'Поиск мегаструктур и реликвий...' },
     'ui.search.anomalies':    { english: 'Search anomalies & archaeology...', german: 'Anomalien & Arch\u00e4ologie durchsuchen...', french: 'Rechercher anomalies & arch\u00e9ologie...', russian: 'Поиск аномалий и археологии...' },
-    'ui.search.empires':      { english: 'Search empires & species...', german: 'Imperien & Spezies durchsuchen...', french: 'Rechercher empires & esp\u00e8ces...', russian: 'Поиск империй и видов...' },
+    'ui.search.empires':      { english: 'Search empires & species...', german: 'Reiche & Spezies durchsuchen...', french: 'Rechercher empires & esp\u00e8ces...', russian: 'Поиск империй и видов...' },
     'ui.search.economy':      { english: 'Search jobs & deposits...', german: 'Berufe & Lagerst\u00e4tten durchsuchen...', french: 'Rechercher emplois & d\u00e9p\u00f4ts...', russian: 'Поиск профессий и месторождений...' },
     'ui.search.events':       { english: 'Search events... (id:, ns:, faction:)', german: 'Ereignisse durchsuchen... (id:, ns:, faction:)', french: 'Rechercher \u00e9v\u00e9nements... (id:, ns:, faction:)', russian: 'Поиск событий... (id:, ns:, faction:)' },
 
@@ -124,7 +196,7 @@ const UI_STRINGS = {
     'ui.detail.3d_model':         { english: '3D Model', german: '3D-Modell', french: 'Modèle 3D', russian: '3D-модель' },
     'ui.detail.required_traditions': { english: 'Required Traditions', german: 'Benötigte Traditionen', french: 'Traditions requises', russian: 'Нужные традиции' },
     'ui.detail.min_perks':        { english: 'Required Ascension Perks', german: 'Benötigte Ascension Perks', french: 'Atouts d’ascension requis', russian: 'Нужные навыки возвышения' },
-    'ui.detail.required_flags':   { english: 'Required Empire', german: 'Benötigtes Imperium', french: 'Empire requis', russian: 'Нужная империя' },
+    'ui.detail.required_flags':   { english: 'Required Empire', german: 'Benötigtes Reich', french: 'Empire requis', russian: 'Нужная империя' },
 
     // ==========================================
     // Meta Labels
@@ -222,7 +294,7 @@ const UI_STRINGS = {
     'ui.hub.desc_governments': { english: 'Government types, civics, authorities, policies, and edicts.', german: 'Regierungsformen, B\u00fcrgerrechte, Autorit\u00e4ten, Richtlinien und Edikte.', french: 'Types de gouvernements, civiques, autorités, politiques et édits.', russian: 'Типы правительств, общественное устройство, системы власти, политики и указы.' },
     'ui.hub.desc_megastructures': { english: 'Megastructure types, relics, build stages, and requirements.', german: 'Megastrukturtypen, Relikte, Baustufen und Anforderungen.', french: 'Types de mégastructures, reliques, étapes de construction et exigences.', russian: 'Типы мегаструктур, реликвии, стадии строительства и требования.' },
     'ui.hub.desc_anomalies':   { english: 'Anomaly categories, archaeological sites, outcomes, and events.', german: 'Anomaliekategorien, arch\u00e4ologische St\u00e4tten, Ergebnisse und Ereignisse.', french: 'Catégories d’anomalies, sites archéologiques, résultats et événements.', russian: 'Категории аномалий, археологические памятники, результаты и события.' },
-    'ui.hub.desc_empires':     { english: 'Prescripted empires, species classes, factions, and portraits.', german: 'Vordefinierte Imperien, Speziesklassen, Fraktionen und Portr\u00e4ts.', french: 'Empires prédéfinis, classes d’espèces, factions et portraits.', russian: 'Преднастроенные империи, классы видов, фракции и портреты.' },
+    'ui.hub.desc_empires':     { english: 'Prescripted empires, species classes, factions, and portraits.', german: 'Vordefinierte Reiche, Speziesklassen, Fraktionen und Portr\u00e4ts.', french: 'Empires prédéfinis, classes d’espèces, factions et portraits.', russian: 'Преднастроенные империи, классы видов, фракции и портреты.' },
     'ui.hub.desc_economy':     { english: 'Pop jobs, deposits, resource production, and economic chains.', german: 'Pop-Berufe, Lagerst\u00e4tten, Ressourcenproduktion und Wirtschaftsketten.', french: 'Emplois de population, dépôts, production de ressources et chaînes économiques.', russian: 'Профессии популяции, месторождения, производство ресурсов и экономические цепочки.' },
 
     // ==========================================
@@ -265,7 +337,7 @@ const UI_STRINGS = {
     'ui.type.relic':           { english: 'Relic', german: 'Relikt', french: 'Relique', russian: 'Реликвия' },
     'ui.type.anomaly':         { english: 'Anomaly', german: 'Anomalie', french: 'Anomalie', russian: 'Аномалия' },
     'ui.type.archaeology':     { english: 'Archaeology', german: 'Arch\u00e4ologie', french: 'Archéologie', russian: 'Археология' },
-    'ui.type.empire':          { english: 'Empire', german: 'Imperium', french: 'Empire', russian: 'Империя' },
+    'ui.type.empire':          { english: 'Empire', german: 'Reich', french: 'Empire', russian: 'Империя' },
     'ui.type.species':         { english: 'Species', german: 'Spezies', french: 'Espèces', russian: 'Вид' },
     'ui.type.job':             { english: 'Job', german: 'Beruf', french: 'Emploi', russian: 'Профессия' },
     'ui.type.deposit':         { english: 'Deposit', german: 'Lagerst\u00e4tte', french: 'Dépôt', russian: 'Месторождение' },
@@ -280,7 +352,7 @@ const UI_STRINGS = {
     'ui.loading.governments':  { english: 'Loading government data', german: 'Lade Regierungsdaten', french: 'Chargement des données de gouvernements', russian: 'Загрузка данных правительств' },
     'ui.loading.megastructures': { english: 'Loading megastructure data', german: 'Lade Megastrukturdaten', french: 'Chargement des données de mégastructures', russian: 'Загрузка данных мегаструктур' },
     'ui.loading.anomalies':    { english: 'Loading anomaly data', german: 'Lade Anomaliedaten', french: 'Chargement des données d’anomalies', russian: 'Загрузка данных аномалий' },
-    'ui.loading.empires':      { english: 'Loading empire data', german: 'Lade Imperiumsdaten', french: 'Chargement des données d’empires', russian: 'Загрузка данных империй' },
+    'ui.loading.empires':      { english: 'Loading empire data', german: 'Lade Reichsdaten', french: 'Chargement des données d’empires', russian: 'Загрузка данных империй' },
     'ui.loading.economy':      { english: 'Loading economy data', german: 'Lade Wirtschaftsdaten', french: 'Économie en chargement', russian: 'Загрузка экономических данных' },
     'ui.loading.events':       { english: 'Loading event data', german: 'Lade Ereignisdaten', french: 'Chargement des données d’événements', russian: 'Загрузка данных событий' },
     'ui.loading.generic':      { english: 'Loading...', german: 'Laden...', french: 'Chargement…', russian: 'Загрузка…' },

@@ -70,9 +70,9 @@ const Filters = (() => {
             namespaces.add(nsMeta.name);
         }
 
-        fillSelect('filter-faction', sorted(factions), 'All Factions');
-        fillSelect('filter-category', sorted(categories), 'All Categories');
-        fillSelect('filter-namespace', sorted(namespaces), 'All Namespaces');
+        fillSelect('filter-faction', sorted(factions), I18n.ui('ui.filter.all_factions'));
+        fillSelect('filter-category', sorted(categories), I18n.ui('ui.filter.all_categories'));
+        fillSelect('filter-namespace', sorted(namespaces), I18n.ui('ui.filter.all_namespaces'));
     }
 
     function fillSelect(id, values, defaultLabel) {
