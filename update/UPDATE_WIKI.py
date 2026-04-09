@@ -82,6 +82,16 @@ def phase_localisation():
     return stats
 
 
+def phase_inject_missing_loc():
+    """Phase 2c: Inject missing loc keys from loc_audit."""
+    print("\n" + "=" * 60)
+    print("PHASE 2c: INJECT MISSING LOC KEYS")
+    print("=" * 60)
+
+    from inject_missing_loc import inject_into_localisation
+    return inject_into_localisation()
+
+
 def phase_split_localisation():
     """Phase 2b: Split localisation into per-module files."""
     print("\n" + "=" * 60)
@@ -393,27 +403,27 @@ def write_log_entry(module, results, elapsed):
 
 # Maps --only values to the phases they run
 ONLY_MODULES = {
-    'events':      ['localisation', 'gfx', 'events', 'images', 'split_loc'],
-    'loc':         ['localisation', 'split_loc'],
+    'events':      ['localisation', 'inject_missing_loc', 'gfx', 'events', 'images', 'split_loc'],
+    'loc':         ['localisation', 'inject_missing_loc', 'split_loc'],
     'gfx':         ['gfx'],
     'images':      ['images'],
     'icons':       ['all_icons'],
     'techtree':    ['techtree'],
-    'ships':       ['localisation', 'ships', 'split_loc'],
-    'ship_models': ['localisation', 'ships', 'ship_models', 'split_loc'],
-    'buildings':   ['localisation', 'buildings', 'all_icons', 'split_loc'],
-    'traits':      ['localisation', 'traits', 'split_loc'],
-    'governments': ['localisation', 'governments', 'split_loc'],
-    'megastructures': ['localisation', 'megastructures', 'mega_models', 'split_loc'],
-    'mega_models':    ['localisation', 'megastructures', 'mega_models', 'split_loc'],
-    'anomalies':      ['localisation', 'anomalies', 'split_loc'],
-    'empires':        ['localisation', 'empires', 'split_loc'],
+    'ships':       ['localisation', 'inject_missing_loc', 'ships', 'split_loc'],
+    'ship_models': ['localisation', 'inject_missing_loc', 'ships', 'ship_models', 'split_loc'],
+    'buildings':   ['localisation', 'inject_missing_loc', 'buildings', 'all_icons', 'split_loc'],
+    'traits':      ['localisation', 'inject_missing_loc', 'traits', 'split_loc'],
+    'governments': ['localisation', 'inject_missing_loc', 'governments', 'split_loc'],
+    'megastructures': ['localisation', 'inject_missing_loc', 'megastructures', 'mega_models', 'split_loc'],
+    'mega_models':    ['localisation', 'inject_missing_loc', 'megastructures', 'mega_models', 'split_loc'],
+    'anomalies':      ['localisation', 'inject_missing_loc', 'anomalies', 'split_loc'],
+    'empires':        ['localisation', 'inject_missing_loc', 'empires', 'split_loc'],
     'galaxy_map':     ['galaxy_map'],
-    'economy':        ['localisation', 'economy', 'split_loc'],
+    'economy':        ['localisation', 'inject_missing_loc', 'economy', 'split_loc'],
     'search':         ['search'],
-    'content':        ['localisation', 'ships', 'buildings', 'all_icons', 'traits', 'governments',
-                       'megastructures', 'anomalies', 'empires', 'galaxy_map', 'economy', 'search',
-                       'mega_models', 'split_loc'],
+    'content':        ['localisation', 'inject_missing_loc', 'ships', 'buildings', 'all_icons', 'traits',
+                       'governments', 'megastructures', 'anomalies', 'empires', 'galaxy_map', 'economy',
+                       'search', 'mega_models', 'split_loc'],
 }
 
 
@@ -445,6 +455,8 @@ def main():
         phases = ONLY_MODULES[args.only]
         if 'localisation' in phases:
             results['localisation'] = phase_localisation()
+        if 'inject_missing_loc' in phases:
+            results['inject_missing_loc'] = phase_inject_missing_loc()
         if 'gfx' in phases:
             results['gfx'] = phase_gfx()
         if 'events' in phases:
@@ -485,6 +497,7 @@ def main():
     else:
         # Full mode: run all phases
         results['localisation'] = phase_localisation()
+        results['inject_missing_loc'] = phase_inject_missing_loc()
         results['gfx'] = phase_gfx()
         results['events'] = phase_events()
         results['ships'] = phase_ships()

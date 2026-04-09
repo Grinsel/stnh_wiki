@@ -1,0 +1,1077 @@
+{
+  "generated": "2026-04-09 04:33",
+  "master_loc_keys": 240897,
+  "keys_checked": 16653,
+  "total_missing": 192,
+  "modifiers_modifier_map": [
+    {
+      "key": "all_technology_research_speed",
+      "resolved": "Research Speed",
+      "method": "MODIFIER_MAP",
+      "sources": [
+        "ascension_perks.json",
+        "buildings.json",
+        "civics.json",
+        "councilors.json",
+        "edicts.json",
+        "relics.json",
+        "traditions.json",
+        "traits.json"
+      ]
+    },
+    {
+      "key": "ascension_perks_add",
+      "resolved": "Ascension Perks",
+      "method": "MODIFIER_MAP",
+      "sources": [
+        "traditions.json"
+      ]
+    },
+    {
+      "key": "country_subject_power_penalty_mult",
+      "resolved": "Subject Power Penalty",
+      "method": "MODIFIER_MAP",
+      "sources": [
+        "civics.json",
+        "traditions.json"
+      ]
+    },
+    {
+      "key": "envoys_add",
+      "resolved": "Envoys",
+      "method": "MODIFIER_MAP",
+      "sources": [
+        "ascension_perks.json",
+        "authorities.json",
+        "buildings.json",
+        "civics.json",
+        "edicts.json",
+        "traditions.json"
+      ]
+    },
+    {
+      "key": "num_tech_alternatives_add",
+      "resolved": "Research Alternatives",
+      "method": "MODIFIER_MAP",
+      "sources": [
+        "ascension_perks.json",
+        "civics.json",
+        "edicts.json",
+        "traditions.json"
+      ]
+    },
+    {
+      "key": "science_ship_survey_speed",
+      "resolved": "Survey Speed",
+      "method": "MODIFIER_MAP",
+      "sources": [
+        "civics.json",
+        "components.json",
+        "edicts.json",
+        "relics.json",
+        "traditions.json",
+        "traits.json"
+      ]
+    },
+    {
+      "key": "ship_anomaly_research_speed_mult",
+      "resolved": "Anomaly Research Speed",
+      "method": "MODIFIER_MAP",
+      "sources": [
+        "components.json",
+        "councilors.json",
+        "traditions.json",
+        "traits.json"
+      ]
+    },
+    {
+      "key": "species_leader_exp_gain",
+      "resolved": "Leader Experience Gain",
+      "method": "MODIFIER_MAP",
+      "sources": [
+        "ascension_perks.json",
+        "civics.json",
+        "councilors.json",
+        "edicts.json",
+        "traditions.json",
+        "traits.json"
+      ]
+    },
+    {
+      "key": "terraform_speed_mult",
+      "resolved": "Terraform Speed",
+      "method": "MODIFIER_MAP",
+      "sources": [
+        "ascension_perks.json",
+        "civics.json",
+        "traditions.json",
+        "traits.json"
+      ]
+    }
+  ],
+  "modifiers_pattern": [
+    {
+      "key": "country_election_cost_mult",
+      "resolved": "Country Election Cost",
+      "method": "pattern: ^(.+?)_cost_(?:mult|add)$",
+      "sources": [
+        "civics.json"
+      ]
+    },
+    {
+      "key": "defensive_war_influence_gain_add",
+      "resolved": "Defensive War Influence Gain Add",
+      "method": "fallback",
+      "sources": [
+        "traditions.json"
+      ]
+    },
+    {
+      "key": "external_leader_pool_add",
+      "resolved": "External Leader Pool Add",
+      "method": "fallback",
+      "sources": [
+        "authorities.json"
+      ]
+    },
+    {
+      "key": "jemhadar_species_trait_points_add",
+      "resolved": "Jemhadar Species Trait Points Add",
+      "method": "fallback",
+      "sources": [
+        "traditions.json"
+      ]
+    },
+    {
+      "key": "job_healthcare_gene_add",
+      "resolved": "Healthcare Gene Jobs",
+      "method": "pattern: ^job_(.+?)_add$",
+      "sources": [
+        "buildings.json"
+      ]
+    },
+    {
+      "key": "job_vaharai_add",
+      "resolved": "Vaharai Jobs",
+      "method": "pattern: ^job_(.+?)_add$",
+      "sources": [
+        "buildings.json"
+      ]
+    },
+    {
+      "key": "modify_species_cost_mult",
+      "resolved": "Modify Species Cost",
+      "method": "pattern: ^(.+?)_cost_(?:mult|add)$",
+      "sources": [
+        "ascension_perks.json",
+        "civics.json",
+        "councilors.json",
+        "traditions.json"
+      ]
+    },
+    {
+      "key": "pop_ethics_shift_speed_mult",
+      "resolved": "Pop Ethics Shift Speed",
+      "method": "pattern: ^(.+?)_speed_(?:mult|add)$",
+      "sources": [
+        "edicts.json"
+      ]
+    },
+    {
+      "key": "scavenge_debris_mult",
+      "resolved": "Scavenge Debris Mult",
+      "method": "fallback",
+      "sources": [
+        "councilors.json"
+      ]
+    },
+    {
+      "key": "slave_market_cost_mult",
+      "resolved": "Slave Market Cost",
+      "method": "pattern: ^(.+?)_cost_(?:mult|add)$",
+      "sources": [
+        "councilors.json"
+      ]
+    },
+    {
+      "key": "subject_integration_influence_cost_mult",
+      "resolved": "Subject Integration Influence Cost",
+      "method": "pattern: ^(.+?)_cost_(?:mult|add)$",
+      "sources": [
+        "ascension_perks.json",
+        "traditions.json"
+      ]
+    },
+    {
+      "key": "subject_tribute_mult",
+      "resolved": "Subject Tribute Mult",
+      "method": "fallback",
+      "sources": [
+        "traditions.json"
+      ]
+    },
+    {
+      "key": "vorta_species_trait_points_add",
+      "resolved": "Vorta Species Trait Points Add",
+      "method": "fallback",
+      "sources": [
+        "traditions.json"
+      ]
+    }
+  ],
+  "content_names": [
+    {
+      "key": "EXTRA_LARGE_WAVE_DISRUPTOR_PHASER_3",
+      "resolved": "Extra Large Wave Disruptor Phaser 3",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "LARGE_MODULAR_PHASER_5",
+      "resolved": "Large Modular Phaser 5",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "LARGE_PLASMA_BEAM_DISRUPTOR_5",
+      "resolved": "Large Plasma Beam Disruptor 5",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "LARGE_TUNNELING_SPECIAL_1",
+      "resolved": "Large Tunneling Special 1",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "LARGE_WAVE_DISRUPTOR_PHASER_3",
+      "resolved": "Large Wave Disruptor Phaser 3",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "LARGE_WAVE_DISRUPTOR_PHASER_5",
+      "resolved": "Large Wave Disruptor Phaser 5",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "MEDIUM_MODULAR_PHASER_5",
+      "resolved": "Medium Modular Phaser 5",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "MEDIUM_PLASMA_BEAM_DISRUPTOR_5",
+      "resolved": "Medium Plasma Beam Disruptor 5",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "SMALL_MODULAR_PHASER_5",
+      "resolved": "Small Modular Phaser 5",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "SMALL_PLASMA_BEAM_DISRUPTOR_5",
+      "resolved": "Small Plasma Beam Disruptor 5",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "TORPEDO_E_TRICOBALT_TORPEDO_5",
+      "resolved": "Torpedo E Tricobalt Torpedo 5",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "UTILITY_REACTOR_8_LARGE",
+      "resolved": "Utility Reactor 8 Large",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "UTILITY_REACTOR_8_MEDIUM",
+      "resolved": "Utility Reactor 8 Medium",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "UTILITY_REACTOR_8_SMALL",
+      "resolved": "Utility Reactor 8 Small",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "UTILITY_REACTOR_9_LARGE",
+      "resolved": "Utility Reactor 9 Large",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "UTILITY_REACTOR_9_MEDIUM",
+      "resolved": "Utility Reactor 9 Medium",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "UTILITY_REACTOR_9_SMALL",
+      "resolved": "Utility Reactor 9 Small",
+      "method": "fallback",
+      "source": "components.json",
+      "type": "name"
+    },
+    {
+      "key": "ap_evolutionary_mastery",
+      "resolved": "Evolutionary Mastery",
+      "method": "fallback",
+      "source": "ascension_perks.json",
+      "type": "name"
+    },
+    {
+      "key": "d_null_deposit",
+      "resolved": "D Null Deposit",
+      "method": "fallback",
+      "source": "deposits.json",
+      "type": "name"
+    },
+    {
+      "key": "edict_advanced_spy_network_undine",
+      "resolved": "Edict Advanced Spy Network Undine",
+      "method": "fallback",
+      "source": "edicts.json",
+      "type": "name"
+    },
+    {
+      "key": "edict_dominion_reinforcement",
+      "resolved": "Edict Dominion Reinforcement",
+      "method": "fallback",
+      "source": "edicts.json",
+      "type": "name"
+    },
+    {
+      "key": "space_dragon_origin_baby",
+      "resolved": "Space Dragon Origin Baby",
+      "method": "fallback",
+      "source": "ships.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_automation_finish",
+      "resolved": "Tr Automation Finish",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_cardassian_2_adopt",
+      "resolved": "Tr Cardassian 2 Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_federation_2_adopt",
+      "resolved": "Tr Federation 2 Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_federation_adopt",
+      "resolved": "Tr Federation Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_ferengi_2_adopt",
+      "resolved": "Tr Ferengi 2 Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_harvesting_borg_adopt",
+      "resolved": "Tr Harvesting Borg Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_holographic_adopt",
+      "resolved": "Tr Holographic Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_imperious_adopt",
+      "resolved": "Tr Imperious Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_klingon_2_adopt",
+      "resolved": "Tr Klingon 2 Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_obsidian_order_adopt",
+      "resolved": "Tr Obsidian Order Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_preservation_adopt",
+      "resolved": "Tr Preservation Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_romulan_2_adopt",
+      "resolved": "Tr Romulan 2 Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_section_31_adopt",
+      "resolved": "Tr Section 31 Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_the_link_adopt",
+      "resolved": "Tr The Link Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "tr_ufp_ships_adopt",
+      "resolved": "Tr Ufp Ships Adopt",
+      "method": "fallback",
+      "source": "traditions.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_auto_y_class_preference",
+      "resolved": "Auto Y Class Preference",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_cyborg_climate_adjustment_frozen",
+      "resolved": "Cyborg Climate Adjustment Frozen",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_pop_jem'hadar_1",
+      "resolved": "Pop Jem'Hadar 1",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_architectural_sense_3",
+      "resolved": "Ruler Architectural Sense 3",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_champion_of_the_people_2",
+      "resolved": "Ruler Champion Of The People 2",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_charismatic_2",
+      "resolved": "Ruler Charismatic 2",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_deep_connections_3",
+      "resolved": "Ruler Deep Connections 3",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_expansionist_2",
+      "resolved": "Ruler Expansionist 2",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_expansionist_3",
+      "resolved": "Ruler Expansionist 3",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_explorer_3",
+      "resolved": "Ruler Explorer 3",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_feedback_loop_2",
+      "resolved": "Ruler Feedback Loop 2",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_fortifier_3",
+      "resolved": "Ruler Fortifier 3",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_from_the_ranks_2",
+      "resolved": "Ruler From The Ranks 2",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_from_the_ranks_3",
+      "resolved": "Ruler From The Ranks 3",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_industrialist_2",
+      "resolved": "Ruler Industrialist 2",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_military_pioneer_3",
+      "resolved": "Ruler Military Pioneer 3",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_recruiter_3",
+      "resolved": "Ruler Recruiter 3",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_world_shaper_2",
+      "resolved": "Ruler World Shaper 2",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_ruler_world_shaper_3",
+      "resolved": "Ruler World Shaper 3",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    },
+    {
+      "key": "trait_volcanic_planet_preference",
+      "resolved": "Volcanic Planet Preference",
+      "method": "fallback",
+      "source": "traits.json",
+      "type": "name"
+    }
+  ],
+  "content_descs": [
+    {
+      "key": "PLASMA_BEAM_DISRUPTOR_5_DESC",
+      "source": "components.json"
+    },
+    {
+      "key": "ap_evolutionary_mastery_desc",
+      "source": "ascension_perks.json"
+    },
+    {
+      "key": "d_food_6_desc",
+      "source": "deposits.json"
+    },
+    {
+      "key": "d_null_deposit_desc",
+      "source": "deposits.json"
+    },
+    {
+      "key": "edict_advanced_spy_network_undine_desc",
+      "source": "edicts.json"
+    },
+    {
+      "key": "edict_dominion_reinforcement_desc",
+      "source": "edicts.json"
+    },
+    {
+      "key": "tr_adaptability_borg_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_adaptability_borg_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_adaptability_og_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_adaptability_og_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_aptitude_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_archivism_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_archivism_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_assimilation_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_automation_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_automation_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_cardassian_2_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_connectivity_borg_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_connectivity_borg_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_cunning_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_cunning_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_diplomacy_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_diversity_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_diversity_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_dominance_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_dominance_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_domination_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_dominion_2_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_eugenics_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_eugenics_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_expansion_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_expansion_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_federation_2_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_federation_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_futility_borg_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_futility_borg_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_glory_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_glory_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_great_houses_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_harmony_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_harmony_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_harvesting_borg_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_holographic_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_honour_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_honour_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_imperious_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_kessok_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_logic_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_logic_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_logistics_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_logistics_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_might_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_might_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_obsidian_order_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_order_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_order_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_perfection_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_perfection_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_preservation_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_productivity_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_productivity_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_prophecy_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_prophecy_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_prosperity_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_resilience_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_resilience_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_revelation_adopt_undine_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_revelation_undine_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_section_31_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_statecraft_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_statecraft_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_strength_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_strength_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_supremacy_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_supremacy_undine_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_synchronicity_borg_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_synchronicity_borg_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_tal_shiar_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_tal_shiar_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_tanagra_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_tanagra_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_terran_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_terran_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_time_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_unyielding_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_unyielding_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_versatility_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_versatility_borg_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_versatility_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_victory_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_voth_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_voth_finish_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "tr_xindi_adopt_desc",
+      "source": "traditions.json"
+    },
+    {
+      "key": "trait_auto_y_class_preference_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_cyborg_climate_adjustment_frozen_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_pop_jem'hadar_1_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_architectural_sense_3_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_champion_of_the_people_2_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_charismatic_2_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_deep_connections_3_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_expansionist_2_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_expansionist_3_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_explorer_3_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_feedback_loop_2_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_fortifier_3_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_from_the_ranks_2_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_from_the_ranks_3_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_industrialist_2_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_military_pioneer_3_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_recruiter_3_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_world_shaper_2_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_ruler_world_shaper_3_desc",
+      "source": "traits.json"
+    },
+    {
+      "key": "trait_volcanic_planet_preference_desc",
+      "source": "traits.json"
+    }
+  ]
+}

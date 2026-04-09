@@ -57610,5 +57610,136 @@
       "modules_changed": 1,
       "modules_unchanged": 21
     }
+  },
+  "modules": {
+    "loc": {
+      "timestamp": "2026-04-09T07:20:16.186857",
+      "elapsed_seconds": 17.1,
+      "results": {
+        "localisation": {
+          "english": 240897,
+          "german": 241133,
+          "french": 252148,
+          "spanish": 240884,
+          "russian": 241417,
+          "polish": 241392,
+          "braz_por": 235461
+        },
+        "inject_missing_loc": {
+          "english": 101,
+          "german": 101,
+          "french": 100,
+          "spanish": 101,
+          "russian": 101,
+          "polish": 101,
+          "braz_por": 101
+        },
+        "split_loc": {
+          "modules": {},
+          "languages": {
+            "english": {
+              "common": 17469,
+              "events": 10708,
+              "buildings": 1412,
+              "ships": 6785,
+              "tech": 3986,
+              "traits": 2043,
+              "governments": 2279,
+              "megastructures": 252,
+              "anomalies": 322,
+              "economy": 1976,
+              "empires": 935
+            },
+            "german": {
+              "common": 17470,
+              "events": 10702,
+              "buildings": 1412,
+              "ships": 6785,
+              "tech": 3986,
+              "traits": 2043,
+              "governments": 2279,
+              "megastructures": 252,
+              "anomalies": 319,
+              "economy": 1976,
+              "empires": 935
+            },
+            "french": {
+              "common": 17568,
+              "events": 10739,
+              "buildings": 1412,
+              "ships": 6785,
+              "tech": 3986,
+              "traits": 2039,
+              "governments": 2279,
+              "megastructures": 252,
+              "anomalies": 319,
+              "economy": 1976,
+              "empires": 935
+            },
+            "spanish": {
+              "common": 17467,
+              "events": 10708,
+              "buildings": 1412,
+              "ships": 6716,
+              "tech": 3986,
+              "traits": 2038,
+              "governments": 2279,
+              "megastructures": 252,
+              "anomalies": 319,
+              "economy": 1976,
+              "empires": 935
+            },
+            "russian": {
+              "common": 17470,
+              "events": 10708,
+              "buildings": 1412,
+              "ships": 6784,
+              "tech": 3986,
+              "traits": 2043,
+              "governments": 2279,
+              "megastructures": 252,
+              "anomalies": 319,
+              "economy": 1976,
+              "empires": 936
+            },
+            "polish": {
+              "common": 17460,
+              "events": 10702,
+              "buildings": 1412,
+              "ships": 6785,
+              "tech": 3986,
+              "traits": 2034,
+              "governments": 2279,
+              "megastructures": 252,
+              "anomalies": 319,
+              "economy": 1976,
+              "empires": 935
+            },
+            "braz_por": {
+              "common": 15973,
+              "events": 10708,
+              "buildings": 1412,
+              "ships": 6785,
+              "tech": 3986,
+              "traits": 2013,
+              "governments": 2279,
+              "megastructures": 252,
+              "anomalies": 319,
+              "economy": 1976,
+              "empires": 935
+            }
+          },
+          "total_files": 77,
+          "modules_count": 10
+        },
+        "changes": {
+          "total_added": 0,
+          "total_removed": 0,
+          "total_modified": 0,
+          "modules_changed": 0,
+          "modules_unchanged": 22
+        }
+      }
+    }
   }
 }
