@@ -530,13 +530,55 @@ select option:checked {
 .filter-toggles label {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.4rem;
     cursor: pointer;
     color: var(--text-muted);
+    transition: color 0.2s;
+    user-select: none;
+}
+
+.filter-toggles label:has(input:checked) {
+    color: var(--accent);
 }
 
 .filter-toggles input[type="checkbox"] {
-    accent-color: var(--accent-bright);
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    flex-shrink: 0;
+    width: 30px;
+    height: 16px;
+    background: var(--select-bg);
+    border: 1px solid var(--accent-border);
+    border-radius: 9999px;
+    transition: background 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+
+.filter-toggles input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.filter-toggles input[type="checkbox"]:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.filter-toggles input[type="checkbox"]:checked::before {
+    transform: translateX(14px);
+    background: var(--bg-main, #0d0d1a);
+}
+
+.filter-toggles label:hover input[type="checkbox"] {
+    border-color: var(--accent-border-hover);
 }
 
 .filter-toggle-btn {
