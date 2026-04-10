@@ -117,35 +117,6 @@
             }
         });
 
-        // Dynamic description texts with real counts
-        const fmt = (n) => (n || 0).toLocaleString();
-        const DESC_TEMPLATES = {
-            events:         (c) => `Browse ${fmt(c.event)} events with full localisation in 7 languages.`,
-            tech:           (c) => `Interactive technology tree with prerequisites and unlocks.`,
-            ships:          (c) => `${fmt(c.model)} 3D models and ${fmt(c.component)} components with faction-specific designs.`,
-            buildings:      (c) => `${fmt(c.building)} buildings and ${fmt(c.district)} districts with production chains.`,
-            traits:         (c) => `${fmt(c.trait)} traits, ${fmt(c.tradition)} traditions, and ${fmt(c.ascension_perk)} ascension perks.`,
-            governments:    (c) => `${fmt(c.government)} governments, ${fmt(c.civic)} civics, ${fmt(c.policy)} policies, and ${fmt(c.edict)} edicts.`,
-            megastructures: (c) => `${fmt(c.megastructure)} megastructures and ${fmt(c.relic)} relics with build stages.`,
-            anomalies:      (c) => `${fmt(c.anomaly)} anomalies and ${fmt(c.archaeology)} archaeological sites with outcomes.`,
-            empires:        (c) => `${fmt(c.empire)} prescripted empires and ${fmt(c.species)} species with portraits.`,
-            economy:        (c) => `${fmt(c.job)} pop jobs and ${fmt(c.deposit)} deposits with economic chains.`,
-        };
-
-        document.querySelectorAll('.section-card[data-module]').forEach(card => {
-            const mod = card.dataset.module;
-            const tmpl = DESC_TEMPLATES[mod];
-            if (!tmpl) return;
-            const p = card.querySelector('p');
-            if (p) p.textContent = tmpl(counts);
-        });
-
-        // Dynamic search placeholder with real total
-        const searchEl = document.getElementById('global-search-input');
-        if (searchEl && total) {
-            searchEl.placeholder = `Search all ${total.toLocaleString()} items...`;
-        }
-
         // Hub meta line (total + last update)
         const metaEl = document.getElementById('hub-meta');
         if (metaEl) {
@@ -580,6 +551,7 @@
     // Language change
     // ========================================
     document.addEventListener('wiki-lang-changed', () => {
+        Common.applyUiStrings();
         if (searchReady) GlobalSearch.setLocReady(true);
     });
 

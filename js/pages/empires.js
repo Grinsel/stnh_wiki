@@ -328,6 +328,7 @@
             for (const item of empires) item.name = I18n.t(item.name_key) || item.id;
             for (const item of species) item.name = I18n.t(item.name_key) || item.id;
             renderAll();
+            if (galaxyMapReady) GalaxyMap.refreshOverlay();
         });
 
         // Tab from URL (before renderAll)

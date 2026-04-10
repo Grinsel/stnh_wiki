@@ -150,8 +150,9 @@ const UI_STRINGS = {
     'ui.galaxy.legend.delta': { english: 'Delta Quadrant', german: 'Delta-Quadrant', french: 'Quadrant Delta', russian: 'Дельта-квадрант' },
     'ui.galaxy.legend.major': { english: 'Major Powers',   german: 'Gro\u00dfm\u00e4chte', french: 'Grandes puissances', russian: 'Крупные державы' },
     'ui.galaxy.legend.alt':   { english: 'Alternate Timeline', german: 'Alternative Zeitlinie', french: 'Frise chronologique alternative', russian: 'Альтернативная временная линия' },
-    'ui.galaxy.era.classic':  { english: 'Classic Era', german: 'Klassische \u00c4ra', french: '\u00c8re classique', russian: 'Классическая эпоха' },
-    'ui.galaxy.era.tng':      { english: 'TNG Era', german: 'TNG-\u00c4ra', french: '\u00c8re TNG', russian: 'Эпоха ТНГ' },
+    'ui.galaxy.era.classic':  { english: 'Classic Era', german: 'Klassische Ära', french: 'Ère classique', russian: 'Классическая эпоха' },
+    'ui.galaxy.era.tng':      { english: 'TNG Era', german: 'TNG-Ära', french: 'Ère TNG', russian: 'Эпоха ТНГ' },
+    'ui.galaxy.reset':        { english: '⌖ Reset View', german: '⌖ Ansicht zurücksetzen', french: '⌖ Réinitialiser la vue', russian: '⌖ Сбросить вид' },
 
     // Filter by empire placeholder
     'ui.filter.empire_placeholder': { english: 'Filter by empire...', german: 'Nach Reich filtern...', french: 'Filtrer par empire...', russian: 'Фильтр по империи...' },

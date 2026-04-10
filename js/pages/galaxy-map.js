@@ -51,6 +51,18 @@ window.GalaxyMap = (function () {
         'UndineVanguard':                 'Delta Quadrant',
     };
 
+    // Stored maps metadata for refreshOverlay (set during _renderOverlay)
+    let _mapsMeta = null;
+    let _resetBtn = null;
+
+    // Strip Stellaris color codes (§X...§!) and take only the first line.
+    function _locMapLabel(m) {
+        if (!m.loc_key) return m.label;
+        const raw = I18n.getData()[m.loc_key];
+        if (!raw) return m.label;
+        return raw.split('\n')[0].replace(/£/g, '').replace(/§.\s*/g, '').replace(/§!/g, '').trim() || m.label;
+    }
+
     // Whether this map type receives the quadrant sector overlay
     function _hasQuadrantOverlay(mapType) {
         return mapType === 'full_galaxy' || mapType === 'mirror_galaxy';
@@ -259,18 +271,9 @@ window.GalaxyMap = (function () {
     }
 
     function _renderOverlay(maps, mapId, onMapChange) {
+        _mapsMeta = maps || null;
         _overlayEl = document.createElement('div');
         _overlayEl.style.cssText = 'position:absolute;left:10px;top:10px;z-index:6;display:flex;flex-direction:column;align-items:flex-start;gap:8px';
-
-        // Strip Stellaris color codes (§X...§!) and take only the first line.
-        // Uses raw loc data (pre-collapse) so the \n line break is still intact.
-        // Remaining bare £ symbols (leftover from icon tokens like £system£) are stripped.
-        function _locMapLabel(m) {
-            if (!m.loc_key) return m.label;
-            const raw = I18n.getData()[m.loc_key];
-            if (!raw) return m.label;
-            return raw.split('\n')[0].replace(/£/g, '').replace(/§.\s*/g, '').replace(/§!/g, '').trim() || m.label;
-        }
 
         // Map selector dropdown (only when multiple maps are available)
         if (maps && maps.length > 1 && onMapChange) {
@@ -317,6 +320,36 @@ window.GalaxyMap = (function () {
 
     function setLegendVisible(visible) {
         if (_overlayEl) _overlayEl.style.display = visible ? '' : 'none';
+    }
+
+    // Re-translate the overlay after a language change (without full re-init).
+    function refreshOverlay() {
+        // Dropdown: update optgroup labels and option text
+        if (_selectorEl && _mapsMeta) {
+            Array.from(_selectorEl.children).forEach(group => {
+                const firstOpt = group.querySelector('option');
+                if (!firstOpt) return;
+                Array.from(group.children).forEach(opt => {
+                    const m = _mapsMeta.find(x => x.id === opt.value);
+                    if (m) opt.textContent = _locMapLabel(m);
+                });
+                const firstMap = _mapsMeta.find(x => x.id === firstOpt.value);
+                if (firstMap) group.label = I18n.ui(firstMap.era === 'tng' ? 'ui.galaxy.era.tng' : 'ui.galaxy.era.classic');
+            });
+        }
+        // Legend: update text spans in-place
+        if (_legendEl) {
+            const entries = _getLegendEntries();
+            const rows = _legendEl.querySelectorAll('div');
+            entries.forEach(([label], i) => {
+                const row = rows[i];
+                if (!row) return;
+                const txt = row.querySelector('span:last-child');
+                if (txt) txt.textContent = I18n.ui(QUADRANT_LEGEND_KEYS[label] || label);
+            });
+        }
+        // Reset view button
+        if (_resetBtn) _resetBtn.textContent = I18n.ui('ui.galaxy.reset');
     }
 
     // ── Empire nodes ──────────────────────────────────────────────────────────
@@ -595,12 +628,12 @@ window.GalaxyMap = (function () {
         // Reset view button
         const ctrlBar = document.createElement('div');
         ctrlBar.style.cssText = 'position:absolute;top:8px;right:10px;z-index:5';
-        const resetBtn = document.createElement('button');
-        resetBtn.textContent = '⌖ Reset View';
-        resetBtn.className   = 'tab-btn';
-        resetBtn.style.cssText = 'font-size:0.75rem;padding:3px 8px';
-        resetBtn.addEventListener('click', () => resetView(true));
-        ctrlBar.appendChild(resetBtn);
+        _resetBtn = document.createElement('button');
+        _resetBtn.textContent = I18n.ui('ui.galaxy.reset');
+        _resetBtn.className   = 'tab-btn';
+        _resetBtn.style.cssText = 'font-size:0.75rem;padding:3px 8px';
+        _resetBtn.addEventListener('click', () => resetView(true));
+        ctrlBar.appendChild(_resetBtn);
         container.appendChild(ctrlBar);
 
         _setupZoom();
@@ -651,5 +684,5 @@ window.GalaxyMap = (function () {
         return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
-    return { init, highlight, deselect, setLegendVisible, resetView, destroy };
+    return { init, highlight, deselect, setLegendVisible, refreshOverlay, resetView, destroy };
 })();
