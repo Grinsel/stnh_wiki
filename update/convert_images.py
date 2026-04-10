@@ -1,5 +1,6 @@
 """
-Convert DDS event pictures to WebP format using ImageMagick.
+Convert DDS event pictures to WebP format.
+Uses ImageMagick (magick) if available, falls back to Pillow.
 Only converts pictures that are actually referenced by events.
 """
 
@@ -75,6 +76,10 @@ def get_referenced_pictures(events_index_path, pictures_map_path,
 
 def convert_images(force=False, anomalies_path=None, archaeology_path=None):
     """Convert DDS files to WebP. Returns stats dict."""
+    global _HAS_IMAGEMAGICK
+    _HAS_IMAGEMAGICK = _has_imagemagick()
+    converter_name = 'ImageMagick' if _HAS_IMAGEMAGICK else 'Pillow'
+    print(f"  Converter: {converter_name}")
     stats = {'total': 0, 'converted': 0, 'skipped': 0, 'failed': 0, 'errors': []}
 
     events_index_path = os.path.join(OUTPUT_ASSETS_DIR, 'events_index.json')
@@ -99,8 +104,7 @@ def convert_images(force=False, anomalies_path=None, archaeology_path=None):
     print(f"  Animated (multi-frame): {animated_count}")
 
     if not os.path.isdir(MOD_GFX_EVENT_PICTURES):
-        print(f"  [ERROR] Event pictures directory not found: {MOD_GFX_EVENT_PICTURES}")
-        return stats
+        print(f"  [WARN] Event pictures directory not found: {MOD_GFX_EVENT_PICTURES}")
 
     os.makedirs(OUTPUT_PICTURES_DIR, exist_ok=True)
 
@@ -113,10 +117,11 @@ def convert_images(force=False, anomalies_path=None, archaeology_path=None):
                 if fn.endswith('.dds'):
                     dds_lookup[fn[:-4]] = os.path.join(root, fn)
     # Mod event_pictures recursive (overrides vanilla)
-    for root, dirs, files in os.walk(MOD_GFX_EVENT_PICTURES):
-        for fn in files:
-            if fn.endswith('.dds'):
-                dds_lookup[fn[:-4]] = os.path.join(root, fn)
+    if os.path.isdir(MOD_GFX_EVENT_PICTURES):
+        for root, dirs, files in os.walk(MOD_GFX_EVENT_PICTURES):
+            for fn in files:
+                if fn.endswith('.dds'):
+                    dds_lookup[fn[:-4]] = os.path.join(root, fn)
 
     # For any referenced texture not yet found, try resolving via texture_path
     for base_name, info in referenced.items():
@@ -147,77 +152,120 @@ def convert_images(force=False, anomalies_path=None, archaeology_path=None):
         input_path = dds_lookup[base_name]
         num_frames = referenced[base_name]['frames']
 
-        try:
-            if num_frames > 1:
-                # Sprite sheet: get dimensions, crop first frame, then resize
-                # First get the image dimensions
-                id_result = subprocess.run(
-                    ['magick', 'identify', '-format', '%w %h', input_path],
-                    capture_output=True, text=True, timeout=30
-                )
-                if id_result.returncode != 0:
-                    stats['failed'] += 1
-                    stats['errors'].append(f"{fn}: identify failed: {id_result.stderr[:200]}")
-                    continue
-
-                dims = id_result.stdout.strip().split()
-                total_width = int(dims[0])
-                height = int(dims[1])
-                frame_width = total_width // num_frames
-
-                # Sanity check: frame aspect ratio should be ~2.35:1 (620:264)
-                # If not, the frame count is wrong — treat as single image
-                frame_ratio = frame_width / height if height > 0 else 0
-                if frame_ratio < 1.5 or frame_ratio > 3.5:
-                    result = subprocess.run(
-                        ['magick', input_path, '-resize', '480x', '-quality', '80', output_path],
-                        capture_output=True, text=True, timeout=30
-                    )
-                else:
-                    # Crop first frame then resize (width 480, keep aspect ratio)
-                    result = subprocess.run(
-                        ['magick', input_path,
-                         '-crop', f'{frame_width}x{height}+0+0', '+repage',
-                         '-resize', '480x', '-quality', '80', output_path],
-                        capture_output=True, text=True, timeout=30
-                    )
-            else:
-                # Single frame: if aspect ratio is too wide, it's likely a
-                # sprite sheet with wrong frame count — auto-detect frame width
-                id_result = subprocess.run(
-                    ['magick', 'identify', '-format', '%w %h', input_path],
-                    capture_output=True, text=True, timeout=30
-                )
-                crop_cmd = []
-                if id_result.returncode == 0:
-                    dims = id_result.stdout.strip().split()
-                    w, h = int(dims[0]), int(dims[1])
-                    ratio = w / h if h > 0 else 0
-                    if ratio > 3.5:
-                        # Likely a sprite sheet — guess frame width ≈ height * 2.35
-                        frame_w = round(h * 2.348)
-                        crop_cmd = ['-crop', f'{frame_w}x{h}+0+0', '+repage']
-
-                result = subprocess.run(
-                    ['magick', input_path] + crop_cmd +
-                    ['-resize', '480x', '-quality', '80', output_path],
-                    capture_output=True, text=True, timeout=30
-                )
-
-            if result.returncode == 0:
-                stats['converted'] += 1
-            else:
-                stats['failed'] += 1
-                stats['errors'].append(f"{fn}: {result.stderr[:200]}")
-        except FileNotFoundError:
-            print("  [ERROR] ImageMagick not found. Install it to convert images.")
-            stats['failed'] += 1
-            break
-        except Exception as e:
-            stats['failed'] += 1
-            stats['errors'].append(f"{fn}: {e}")
+        ok = _convert_one(input_path, output_path, num_frames, stats)
+        if ok:
+            stats['converted'] += 1
 
     return stats
+
+
+def _has_imagemagick():
+    """Return True if ImageMagick's magick command is available."""
+    try:
+        r = subprocess.run(['magick', '-version'], capture_output=True, timeout=5)
+        return r.returncode == 0
+    except (FileNotFoundError, OSError):
+        return False
+
+
+def _convert_one(input_path, output_path, num_frames, stats):
+    """Convert a single DDS file to WebP. Returns True on success."""
+    if _HAS_IMAGEMAGICK:
+        return _convert_imagemagick(input_path, output_path, num_frames, stats)
+    else:
+        return _convert_pillow(input_path, output_path, num_frames, stats)
+
+
+def _convert_imagemagick(input_path, output_path, num_frames, stats):
+    try:
+        if num_frames > 1:
+            id_result = subprocess.run(
+                ['magick', 'identify', '-format', '%w %h', input_path],
+                capture_output=True, text=True, timeout=30
+            )
+            if id_result.returncode != 0:
+                stats['failed'] += 1
+                stats['errors'].append(f"{os.path.basename(input_path)}: identify failed")
+                return False
+            dims = id_result.stdout.strip().split()
+            total_width, height = int(dims[0]), int(dims[1])
+            frame_width = total_width // num_frames
+            frame_ratio = frame_width / height if height > 0 else 0
+            if frame_ratio < 1.5 or frame_ratio > 3.5:
+                result = subprocess.run(
+                    ['magick', input_path, '-resize', '480x', '-quality', '80', output_path],
+                    capture_output=True, text=True, timeout=30
+                )
+            else:
+                result = subprocess.run(
+                    ['magick', input_path, '-crop', f'{frame_width}x{height}+0+0',
+                     '+repage', '-resize', '480x', '-quality', '80', output_path],
+                    capture_output=True, text=True, timeout=30
+                )
+        else:
+            id_result = subprocess.run(
+                ['magick', 'identify', '-format', '%w %h', input_path],
+                capture_output=True, text=True, timeout=30
+            )
+            crop_cmd = []
+            if id_result.returncode == 0:
+                dims = id_result.stdout.strip().split()
+                w, h = int(dims[0]), int(dims[1])
+                if w / h > 3.5:
+                    frame_w = round(h * 2.348)
+                    crop_cmd = ['-crop', f'{frame_w}x{h}+0+0', '+repage']
+            result = subprocess.run(
+                ['magick', input_path] + crop_cmd +
+                ['-resize', '480x', '-quality', '80', output_path],
+                capture_output=True, text=True, timeout=30
+            )
+        if result.returncode == 0:
+            return True
+        stats['failed'] += 1
+        stats['errors'].append(f"{os.path.basename(input_path)}: {result.stderr[:200]}")
+        return False
+    except FileNotFoundError:
+        stats['failed'] += 1
+        stats['errors'].append(f"{os.path.basename(input_path)}: ImageMagick not found")
+        return False
+    except Exception as e:
+        stats['failed'] += 1
+        stats['errors'].append(f"{os.path.basename(input_path)}: {e}")
+        return False
+
+
+def _convert_pillow(input_path, output_path, num_frames, stats):
+    try:
+        from PIL import Image
+        img = Image.open(input_path)
+        w, h = img.size
+        if num_frames > 1:
+            frame_width = w // num_frames
+            frame_ratio = frame_width / h if h > 0 else 0
+            if 1.5 <= frame_ratio <= 3.5:
+                img = img.crop((0, 0, frame_width, h))
+                w = frame_width
+        elif w / h > 3.5:
+            frame_w = round(h * 2.348)
+            img = img.crop((0, 0, frame_w, h))
+            w = frame_w
+        # Resize to max 480px wide
+        if w > 480:
+            new_h = round(h * 480 / w)
+            img = img.resize((480, new_h), Image.LANCZOS)
+        if img.mode in ('RGBA', 'LA'):
+            img.save(output_path, 'WEBP', quality=80, method=4)
+        else:
+            img.convert('RGB').save(output_path, 'WEBP', quality=80, method=4)
+        return True
+    except ImportError:
+        stats['failed'] += 1
+        stats['errors'].append(f"{os.path.basename(input_path)}: no converter (install ImageMagick or Pillow)")
+        return False
+    except Exception as e:
+        stats['failed'] += 1
+        stats['errors'].append(f"{os.path.basename(input_path)}: {e}")
+        return False
 
 
 def main():

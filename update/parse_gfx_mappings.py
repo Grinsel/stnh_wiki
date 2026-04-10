@@ -6,7 +6,8 @@ Maps GFX sprite names to DDS texture file paths.
 import os
 import re
 import json
-from config import MOD_INTERFACE_DIR, VANILLA_INTERFACE_DIR, OUTPUT_ASSETS_DIR
+from config import MOD_INTERFACE_DIR, VANILLA_INTERFACE_DIR, OUTPUT_ASSETS_DIR, \
+    MOD_GFX_ROOM_TEXTURES, VANILLA_GFX_ROOM_TEXTURES
 
 
 # Regex to extract sprite definitions from .gfx files
@@ -76,6 +77,23 @@ def parse_gfx_mappings():
         return mappings
     mod_count = _parse_gfx_dir(MOD_INTERFACE_DIR, mappings)
     print(f"  Mod sprites: {mod_count}")
+
+    # Add room textures from city_sets directories (vanilla first, mod overrides)
+    room_count = 0
+    for city_sets_dir in [VANILLA_GFX_ROOM_TEXTURES, MOD_GFX_ROOM_TEXTURES]:
+        if not os.path.isdir(city_sets_dir):
+            continue
+        for fn in sorted(os.listdir(city_sets_dir)):
+            if fn.endswith('.dds'):
+                stem = fn[:-4]
+                mappings[stem] = {
+                    'texture_path': f'gfx/portraits/city_sets/{fn}',
+                    'texture_name': stem,
+                    'frames': 1,
+                }
+                room_count += 1
+    if room_count:
+        print(f"  Room textures: {room_count}")
 
     return mappings
 

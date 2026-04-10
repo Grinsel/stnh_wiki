@@ -23,10 +23,10 @@ from build_relationships import build_relationships, get_stats
 # Faction detection from namespace/filename
 FACTION_PATTERNS = {
     'federation': ['federation', 'fed_', 'starfleet', 'earth_', 'human_'],
-    'klingon': ['klingon', 'klg_'],
-    'romulan': ['romulan', 'rom_', 'reman'],
+    'klingon': ['klingon', 'klg_', 'redemption', 'klingon_house'],
+    'romulan': ['romulan', 'rom_', 'reman', 'tomed'],
     'cardassian': ['cardassian', 'card_'],
-    'dominion': ['dominion'],
+    'dominion': ['dominion', 'occupation_situation'],
     'borg': ['borg'],
     'ferengi': ['ferengi'],
     'bajoran': ['bajor'],
@@ -40,9 +40,34 @@ FACTION_PATTERNS = {
     'species_8472': ['species_8472', 'undine', 'fluidic'],
     'xindi': ['xindi'],
     'temporal': ['temporal', 'time_'],
-    'mirror': ['mirror'],
-    'qpedia': ['qpedia'],
+    'mirror': ['mirror', 'terran'],
+    'q': ['q_event', 'qpedia', 'sth_q', '_q_guide'],
     'generic': [],
+}
+
+# Default picture (room texture) per faction, used when an event has no picture
+FACTION_DEFAULT_PICTURE = {
+    'federation': 'earth_room',
+    'klingon': 'klingon_room',
+    'romulan': 'romulan_room',
+    'cardassian': 'cardassian_room',
+    'dominion': 'dominion_room',
+    'borg': 'borg_room',
+    'ferengi': 'ferengi_room',
+    'bajoran': 'bajoran_room',
+    'vulcan': 'vulcan_room',
+    'andorian': 'andorian_room',
+    'tholian': 'earth_room',
+    'breen': 'earth_room',
+    'kazon': 'earth_room',
+    'vidiian': 'earth_room',
+    'hirogen': 'earth_room',
+    'species_8472': 'undine_room',
+    'xindi': 'xindi_room',
+    'temporal': 'earth_room',
+    'mirror': 'terran_room',
+    'q': 'q_room',
+    'generic': 'earth_room',
 }
 
 
@@ -80,6 +105,14 @@ def detect_category(namespace, source_file):
     return 'misc'
 
 
+def _picture_fallback(picture, namespace):
+    """Return picture if set, else the default room for the detected faction."""
+    if picture:
+        return picture
+    faction = detect_faction(namespace)
+    return FACTION_DEFAULT_PICTURE.get(faction, 'earth_room')
+
+
 def build_index_entry(event, loc_english):
     """Create lightweight index entry for an event."""
     title = ''
@@ -95,12 +128,16 @@ def build_index_entry(event, loc_english):
             if len(desc_snippet) > 200:
                 desc_snippet = desc_snippet[:200] + '...'
 
+    pic = event['picture']
+    if not pic and not event.get('hide_window'):
+        pic = _picture_fallback(pic, event['namespace'])
+
     return {
         'id': event['id'],
         'name': title,
         'type': event['type'],
         'ns': event['namespace'] or '',
-        'pic': event['picture'] or '',
+        'pic': pic or '',
         'snip': desc_snippet,
         'trig': event['is_triggered_only'],
         'hide': event['hide_window'],
@@ -212,6 +249,9 @@ def generate_all():
             rel = relationships.get(ev['id'], {})
             ev['triggered_by'] = rel.get('triggered_by', [])
             ev['triggers_events'] = rel.get('triggers', [])
+            # Apply picture fallback for visible events without a picture
+            if not ev.get('picture') and not ev.get('hide_window'):
+                ev['picture'] = _picture_fallback(ev.get('picture'), ev.get('namespace'))
 
         _write_json(detail_path, ns_events)
 

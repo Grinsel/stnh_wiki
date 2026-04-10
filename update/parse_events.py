@@ -48,6 +48,15 @@ def extract_event(event_type, block, source_file, namespace):
     else:
         picture = None
 
+    # Fallback: picture_event_data.room (diplomatic events)
+    if picture is None:
+        ped = get_value(block, 'picture_event_data')
+        if isinstance(ped, list):
+            room = get_value(ped, 'room')
+            # Only use static room names (skip dynamic scopes like event_target:..., root.owner, etc.)
+            if isinstance(room, str) and ':' not in room and '.' not in room and room not in ('root', 'from', 'this', 'owner', 'prev'):
+                picture = room
+
     # Options
     options = []
     for opt_block in get_blocks(block, 'option'):
