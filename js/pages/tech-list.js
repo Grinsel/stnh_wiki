@@ -127,7 +127,7 @@
                 else { tierEnd.value = s; e = s; }
             }
             const display = document.getElementById('tier-filter-display');
-            if (display) display.textContent = s === e ? `${s}` : `${s}\u2013${e}`;
+            if (display) display.textContent = `${s}\u2013${e}`;
             const fill = document.getElementById('tier-filter-fill');
             if (fill) {
                 const pct = v => (v / 11) * 100;

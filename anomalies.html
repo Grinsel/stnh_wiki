@@ -64,11 +64,13 @@
                 <button class="tab-btn active" data-tab="anomalies" data-i18n="ui.tab.anomalies">Anomalies</button>
                 <button class="tab-btn" data-tab="archaeology" data-i18n="ui.tab.archaeology">Archaeology</button>
             </div>
-            <div class="filter-group" id="filter-level-group">
-                <label data-i18n="ui.filter.level">Level</label>
-                <select id="filter-level">
-                    <option value="" data-i18n="ui.filter.all_levels">All Levels</option>
-                </select>
+            <div class="tier-filter-wrap" id="filter-level-group">
+                <span class="tier-filter-label">Level: <strong id="level-filter-display">1–8</strong></span>
+                <div class="tier-range-wrap inline">
+                    <div class="tier-range-track"><div class="tier-range-fill" id="level-filter-fill"></div></div>
+                    <input type="range" id="filter-level-start" min="1" max="8" value="1" step="1">
+                    <input type="range" id="filter-level-end" min="1" max="8" value="8" step="1">
+                </div>
             </div>
             <div class="filter-stats" id="filter-stats">Loading...</div>
         </div>

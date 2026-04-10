@@ -23,16 +23,30 @@
         for (const item of anomalies) item.name = I18n.t(item.name_key) || I18n.t(item.desc) || item.id;
         for (const item of archaeology) item.name = I18n.t(item.name_key) || I18n.t(item.desc) || item.id;
 
-        // Populate level dropdown
-        const levels = [...new Set(anomalies.map(a => a.level).filter(v => v != null))].sort((a,b) => a - b);
-        const levelSel = document.getElementById('filter-level');
-        for (const l of levels) {
-            levelSel.add(new Option(`${I18n.ui('ui.filter.level')} ${l}`, l));
-        }
+        const levelStart = document.getElementById('filter-level-start');
+        const levelEnd = document.getElementById('filter-level-end');
+        const LEVEL_MIN = parseInt(levelStart.min, 10);
+        const LEVEL_MAX = parseInt(levelStart.max, 10);
 
         let activeTab = 'anomalies';
         let currentPage = 1;
         const PAGE_SIZE = 100;
+
+        function syncLevelFilter(trigger = true) {
+            let s = parseInt(levelStart.value, 10);
+            let e = parseInt(levelEnd.value, 10);
+            if (s > e) { levelStart.value = e; s = e; }
+            if (e < s) { levelEnd.value = s; e = s; }
+            const range = LEVEL_MAX - LEVEL_MIN;
+            const display = document.getElementById('level-filter-display');
+            if (display) display.textContent = `${s}–${e}`;
+            const fill = document.getElementById('level-filter-fill');
+            if (fill && range > 0) {
+                fill.style.marginLeft = ((s - LEVEL_MIN) / range * 100) + '%';
+                fill.style.width = ((e - s) / range * 100) + '%';
+            }
+            if (trigger) { currentPage = 1; renderAll(); }
+        }
 
         // Tab switching
         document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -129,17 +143,13 @@
         });
 
         // Filter changes
-        levelSel.addEventListener('change', () => { currentPage = 1; renderAll(); });
+        levelStart.addEventListener('input', () => syncLevelFilter(true));
+        levelEnd.addEventListener('input', () => syncLevelFilter(true));
 
         // Language change
         document.addEventListener('wiki-lang-changed', () => {
             for (const item of anomalies) item.name = I18n.t(item.name_key) || I18n.t(item.desc) || item.id;
             for (const item of archaeology) item.name = I18n.t(item.name_key) || I18n.t(item.desc) || item.id;
-            // Rebuild level dropdown labels
-            const levelVal = levelSel.value;
-            while (levelSel.options.length > 1) levelSel.remove(1);
-            for (const l of levels) levelSel.add(new Option(`${I18n.ui('ui.filter.level')} ${l}`, l));
-            levelSel.value = levelVal;
             renderAll();
         });
 
@@ -155,6 +165,7 @@
             }
         }
 
+        syncLevelFilter(false);
         renderAll();
         I18n.loadFullLocalisation();
 
@@ -176,8 +187,9 @@
             items = items.filter(item => {
                 if (query && !(item.name || '').toLowerCase().includes(query) && !item.id.toLowerCase().includes(query)) return false;
                 if (activeTab === 'anomalies') {
-                    const level = levelSel.value;
-                    if (level && String(item.level) !== level) return false;
+                    const lStart = parseInt(levelStart.value, 10);
+                    const lEnd = parseInt(levelEnd.value, 10);
+                    if (item.level != null && (item.level < lStart || item.level > lEnd)) return false;
                 }
                 return true;
             });
