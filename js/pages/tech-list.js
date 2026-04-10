@@ -118,52 +118,85 @@
         // --- Tier selects ---
         const tierStart = document.getElementById('filter-tier-start');
         const tierEnd = document.getElementById('filter-tier-end');
-        for (let i = 0; i <= 11; i++) {
-            const o1 = document.createElement('option'); o1.value = i; o1.textContent = I18n.ui('ui.filter.tier_x').replace('%n', i);
-            const o2 = document.createElement('option'); o2.value = i; o2.textContent = I18n.ui('ui.filter.tier_x').replace('%n', i);
-            tierStart.appendChild(o1);
-            tierEnd.appendChild(o2);
-        }
-        tierStart.addEventListener('change', () => { currentPage = 1; renderAll(); });
-        tierEnd.addEventListener('change', () => { currentPage = 1; renderAll(); });
 
-        // --- Empire Autocomplete (simplified) ---
+        function syncTierFilter() {
+            let s = parseInt(tierStart.value, 10);
+            let e = parseInt(tierEnd.value, 10);
+            if (s > e) {
+                if (document.activeElement === tierStart) { tierStart.value = e; s = e; }
+                else { tierEnd.value = s; e = s; }
+            }
+            const display = document.getElementById('tier-filter-display');
+            if (display) display.textContent = s === e ? `${s}` : `${s}\u2013${e}`;
+            const fill = document.getElementById('tier-filter-fill');
+            if (fill) {
+                const pct = v => (v / 11) * 100;
+                fill.style.marginLeft = pct(s) + '%';
+                fill.style.width = (pct(e) - pct(s)) + '%';
+            }
+            currentPage = 1;
+            renderAll();
+        }
+        tierStart.addEventListener('input', syncTierFilter);
+        tierEnd.addEventListener('input', syncTierFilter);
+        // Init fill
+        (() => {
+            const fill = document.getElementById('tier-filter-fill');
+            if (fill) { fill.style.marginLeft = '0%'; fill.style.width = '100%'; }
+        })();
+
+        // --- Empire Autocomplete (combobox) ---
         let selectedEmpire = null;
         let selectedFaction = null;
+        let highlightedIndex = -1;
         const empireInput = document.getElementById('empire-search');
         const empireDropdown = document.getElementById('empire-dropdown');
 
-        empireInput.addEventListener('input', () => {
-            const q = empireInput.value.toLowerCase().trim();
-            if (!q) { empireDropdown.classList.add('hidden'); return; }
-            const matches = empires.filter(e => e.name.toLowerCase().includes(q) || e.id.toLowerCase().includes(q)).slice(0, 20);
+        function getEmpireMatches(q) {
+            if (!q) return empires;
+            const lq = q.toLowerCase();
+            return empires.filter(e => e.name.toLowerCase().includes(lq) || e.id.toLowerCase().includes(lq));
+        }
+
+        function renderEmpireDropdown(matches) {
+            highlightedIndex = -1;
             if (!matches.length) {
-                empireDropdown.innerHTML = '<div style="padding:8px;color:#a0b0c0;font-style:italic">No matches</div>';
+                empireDropdown.innerHTML = `<div class="autocomplete-item" style="font-style:italic;opacity:0.6">No matches</div>`;
             } else {
-                empireDropdown.innerHTML = matches.map(e =>
-                    `<div class="autocomplete-item" data-id="${esc(e.id)}"><span class="empire-name">${esc(e.name)}</span>${e.has_unique_ships ? '<span class="ships-icon" title="Unique ships">&#9733;</span>' : ''}</div>`
+                empireDropdown.innerHTML = matches.map((e, i) =>
+                    `<div class="autocomplete-item${selectedEmpire && selectedEmpire.id === e.id ? ' autocomplete-selected' : ''}" data-id="${esc(e.id)}" role="option"><span class="empire-name">${esc(e.name)}</span>${e.has_unique_ships ? '<span class="ships-icon" title="Unique ships">&#9733;</span>' : ''}</div>`
                 ).join('');
-                empireDropdown.querySelectorAll('.autocomplete-item').forEach(el => {
-                    el.addEventListener('click', () => {
+                empireDropdown.querySelectorAll('.autocomplete-item[data-id]').forEach(el => {
+                    el.addEventListener('mousedown', (ev) => {
+                        ev.preventDefault();
                         const emp = empires.find(e => e.id === el.dataset.id);
                         if (emp) selectEmpire(emp);
                     });
                 });
             }
             empireDropdown.classList.remove('hidden');
-        });
+            empireInput.setAttribute('aria-expanded', 'true');
+        }
 
-        empireInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') { empireDropdown.classList.add('hidden'); }
-            if (e.key === 'Enter') {
-                const first = empireDropdown.querySelector('.autocomplete-item');
-                if (first) first.click();
+        function closeEmpireDropdown() {
+            empireDropdown.classList.add('hidden');
+            empireInput.setAttribute('aria-expanded', 'false');
+            highlightedIndex = -1;
+            // If text doesn't match current selection, clear
+            if (selectedEmpire && empireInput.value.trim() !== selectedEmpire.name) {
+                clearEmpire();
+            } else if (!empireInput.value.trim() && selectedEmpire) {
+                clearEmpire();
             }
-        });
+        }
 
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.empire-autocomplete')) empireDropdown.classList.add('hidden');
-        });
+        function clearEmpire() {
+            selectedEmpire = null;
+            selectedFaction = null;
+            empireInput.value = '';
+            currentPage = 1;
+            renderAll();
+        }
 
         function selectEmpire(emp) {
             selectedEmpire = emp;
@@ -171,17 +204,60 @@
             selectedFaction = graphicalCultureToFaction[gc] || gc || null;
             empireInput.value = emp.name;
             empireDropdown.classList.add('hidden');
+            empireInput.setAttribute('aria-expanded', 'false');
+            highlightedIndex = -1;
             currentPage = 1;
             renderAll();
         }
 
-        // Clear empire on empty input
-        empireInput.addEventListener('change', () => {
-            if (!empireInput.value.trim()) {
+        empireInput.addEventListener('focus', () => {
+            renderEmpireDropdown(getEmpireMatches(empireInput.value.trim()));
+        });
+
+        empireInput.addEventListener('input', () => {
+            renderEmpireDropdown(getEmpireMatches(empireInput.value.trim()));
+            // If user clears input, clear selection live
+            if (!empireInput.value.trim() && selectedEmpire) {
                 selectedEmpire = null;
                 selectedFaction = null;
                 currentPage = 1;
                 renderAll();
+            }
+        });
+
+        empireInput.addEventListener('keydown', (e) => {
+            const items = empireDropdown.querySelectorAll('.autocomplete-item[data-id]');
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                highlightedIndex = Math.min(highlightedIndex + 1, items.length - 1);
+                items.forEach((el, i) => el.classList.toggle('highlighted', i === highlightedIndex));
+                items[highlightedIndex]?.scrollIntoView({ block: 'nearest' });
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                highlightedIndex = Math.max(highlightedIndex - 1, 0);
+                items.forEach((el, i) => el.classList.toggle('highlighted', i === highlightedIndex));
+                items[highlightedIndex]?.scrollIntoView({ block: 'nearest' });
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                const target = highlightedIndex >= 0 ? items[highlightedIndex] : items[0];
+                if (target) {
+                    const emp = empires.find(em => em.id === target.dataset.id);
+                    if (emp) selectEmpire(emp);
+                }
+            } else if (e.key === 'Escape') {
+                empireInput.blur();
+            }
+        });
+
+        empireInput.addEventListener('blur', () => {
+            // Small delay so mousedown on item fires first
+            setTimeout(closeEmpireDropdown, 150);
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.empire-autocomplete')) {
+                empireDropdown.classList.add('hidden');
+                empireInput.setAttribute('aria-expanded', 'false');
             }
         });
 
@@ -214,20 +290,6 @@
                 { value: 'engineering', label: I18n.ui('ui.filter.engineering'), count: engineering.length },
                 { value: 'society', label: I18n.ui('ui.filter.society'), count: society.length },
             ], I18n.ui('ui.filter.all_areas'));
-            // Rebuild tier option labels
-            const tierStartVal = tierStart.value;
-            const tierEndVal = tierEnd.value;
-            while (tierStart.options.length > 1) tierStart.remove(1);
-            while (tierEnd.options.length > 1) tierEnd.remove(1);
-            for (let i = 0; i <= 11; i++) {
-                const label = I18n.ui('ui.filter.tier_x').replace('%n', i);
-                const o1 = document.createElement('option'); o1.value = i; o1.textContent = label;
-                const o2 = document.createElement('option'); o2.value = i; o2.textContent = label;
-                tierStart.appendChild(o1);
-                tierEnd.appendChild(o2);
-            }
-            tierStart.value = tierStartVal;
-            tierEnd.value = tierEndVal;
             renderAll();
         });
 
@@ -509,10 +571,10 @@
             if (catVal) items = items.filter(t => t.category && t.category.includes(catVal));
 
             // Tier range
-            const tStart = tierStart.value !== '' ? parseInt(tierStart.value) : null;
-            const tEnd = tierEnd.value !== '' ? parseInt(tierEnd.value) : null;
-            if (tStart !== null) items = items.filter(t => (parseInt(t.tier) || 0) >= tStart);
-            if (tEnd !== null) items = items.filter(t => (parseInt(t.tier) || 0) <= tEnd);
+            const tStart = parseInt(tierStart.value, 10);
+            const tEnd = parseInt(tierEnd.value, 10);
+            if (tStart > 0) items = items.filter(t => (parseInt(t.tier) || 0) >= tStart);
+            if (tEnd < 11) items = items.filter(t => (parseInt(t.tier) || 0) <= tEnd);
 
             // Empire / faction filter
             if (selectedFaction) items = filterTechsByFaction(items, selectedFaction);

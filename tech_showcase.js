@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const categorySelect = document.getElementById('category-select');
     const unlockSelect = document.getElementById('unlock-select');
     const resetButton = document.getElementById('reset-button');
-    const showTierButton = document.getElementById('show-tier-button');
     const techCounter = document.getElementById('tech-counter');
     const layoutSelect = document.getElementById('layout-select');
     const copyBtn = document.getElementById("share-button");
@@ -174,7 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let preSearchState = null;
     let simulation;
     let activeTechId = null;
-    let tierFilterActive = false;
     let lastLayout = 'force-directed';
     let isTierBasedLayout = true;
     // Selection handler bound to current state (created after state vars exist)
@@ -242,7 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 areaSelect,
                 categorySelect,
                 resetButton,
-                showTierButton,
                 techCounter,
                 layoutSelect,
                 copyBtn,
@@ -264,7 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             state: {
                 getActiveTechId: () => activeTechId,
-                setTierFilterActive: (v) => { tierFilterActive = !!v; },
             },
             actions: {
                 navigateBack,
@@ -368,7 +364,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentState.species = 'Federation';
             }
             applyState(currentState);
-            tierFilterActive = false; // Do not activate tier filter by default
             
             // Validate initial focus exists in dataset
             const initialFocusValid = currentState.focus && data.some(t => t.id === currentState.focus);
@@ -473,14 +468,11 @@ document.addEventListener('DOMContentLoaded', () => {
             filteredTechs = baseTechs;
         }
 
-        // Preserve pre-tier-filter set for fallback if tier filter eliminates all nodes
-        const preTierFiltered = filteredTechs;
-        if (tierFilterActive) {
+        {
             const { startTier, endTier } = getSelectedTierRange();
-            filteredTechs = filterTechsByTierData(filteredTechs, { startTier, endTier });
-            if (filteredTechs.length === 0) {
-                // Fallback: render without tier filter to avoid empty view
-                filteredTechs = preTierFiltered;
+            if (startTier > 0 || endTier < 11) {
+                const tierFiltered = filterTechsByTierData(filteredTechs, { startTier, endTier });
+                if (tierFiltered.length > 0) filteredTechs = tierFiltered;
             }
         }
         return { filteredTechs, clearedFocus };
@@ -1040,7 +1032,8 @@ document.addEventListener('DOMContentLoaded', () => {
         areaSelect.addEventListener('mousedown', prepareUI, initOnce);
         searchInput.addEventListener('focus', prepareUI, initOnce);
         layoutSelect.addEventListener('mousedown', prepareUI, initOnce);
-        showTierButton.addEventListener('click', prepareUI, initOnce);
+        document.getElementById('start-tier-select')?.addEventListener('input', prepareUI, initOnce);
+        document.getElementById('end-tier-select')?.addEventListener('input', prepareUI, initOnce);
         
         // Special handler for the first search click
         const initialSearchHandler = () => {

@@ -69,15 +69,18 @@
                 <select id="filter-category" title="Category">
                     <option value="" data-i18n="ui.filter.all_categories">All Categories</option>
                 </select>
-                <select id="filter-tier-start" title="Min Tier">
-                    <option value="" data-i18n="ui.filter.min_tier">Min Tier</option>
-                </select>
-                <select id="filter-tier-end" title="Max Tier">
-                    <option value="" data-i18n="ui.filter.max_tier">Max Tier</option>
-                </select>
+<div class="tier-filter-wrap">
+                    <span class="tier-filter-label">Tier: <strong id="tier-filter-display">0–11</strong></span>
+                    <div class="tier-range-wrap inline">
+                        <div class="tier-range-track"><div class="tier-range-fill" id="tier-filter-fill"></div></div>
+                        <input type="range" id="filter-tier-start" min="0" max="11" value="0" step="1">
+                        <input type="range" id="filter-tier-end" min="0" max="11" value="11" step="1">
+                    </div>
+                </div>
                 <div class="empire-autocomplete" style="position:relative">
-                    <input type="text" id="empire-search" placeholder="Filter by empire..." data-i18n-placeholder="ui.filter.empire_placeholder" autocomplete="off" style="width:180px">
-                    <div id="empire-dropdown" class="autocomplete-dropdown hidden"></div>
+                    <input type="text" id="empire-search" placeholder="All Empires" data-i18n-placeholder="ui.filter.empire_placeholder" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list">
+                    <span class="empire-autocomplete-arrow" aria-hidden="true"></span>
+                    <div id="empire-dropdown" class="autocomplete-dropdown hidden" role="listbox"></div>
                 </div>
             </div>
             <div class="filter-stats" id="filter-stats">Loading...</div>

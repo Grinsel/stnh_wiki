@@ -327,6 +327,62 @@
         input:checked + .slider:before {
             transform: translateX(26px);
         }
+        /* Dual-range tier slider */
+        .tier-range-wrap {
+            position: relative;
+            height: 30px;
+            margin-bottom: 4px;
+        }
+        .tier-range-track {
+            position: absolute;
+            left: 0; right: 0;
+            top: 50%; transform: translateY(-50%);
+            height: 4px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 2px;
+            pointer-events: none;
+        }
+        .tier-range-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 2px;
+            opacity: 0.75;
+        }
+        .tier-range-wrap input[type="range"] {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            left: 0; top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            pointer-events: none;
+            appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+            margin: 0;
+        }
+        .tier-range-wrap input[type="range"]::-webkit-slider-thumb {
+            pointer-events: all;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            border: 2px solid rgba(255,255,255,0.15);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+        .tier-range-wrap input[type="range"]::-moz-range-thumb {
+            pointer-events: all;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.15);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+        .tier-range-wrap input[type="range"]::-webkit-slider-runnable-track { background: transparent; }
+        .tier-range-wrap input[type="range"]::-moz-range-track { background: transparent; }
         #tree-panel {
             position: relative;
             flex: 1;
@@ -875,39 +931,15 @@
                                 <span class="slider"></span>
                             </label>
                         </div>
-                        <label for="start-tier-select" class="filters-divider">Select Tier Range:</label>
-                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                            <select id="start-tier-select" style="width: 100%; margin: 0;">
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                            </select>
-                            <span style="font-size: 1rem; color: #a0b0c0;">to</span>
-                            <select id="end-tier-select" style="width: 100%; margin: 0;">
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                            </select>
+                        <label class="filters-divider">Tier Range: <span id="tier-range-display">0 – 11</span></label>
+                        <div class="tier-range-wrap">
+                            <div class="tier-range-track"><div class="tier-range-fill" id="tier-range-fill"></div></div>
+                            <input type="range" id="start-tier-select" min="0" max="11" value="0" step="1">
+                            <input type="range" id="end-tier-select" min="0" max="11" value="11" step="1">
                         </div>
-                        <button id="show-tier-button" style="width: 100%;">Show Tier Range</button>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #607080; margin-bottom: 10px; padding: 0 2px;">
+                            <span>Tier 0</span><span>Tier 11</span>
+                        </div>
                         <label for="tech-filter-input" class="filters-divider">Search: (any word or number)</label>
                         <input type="text" id="tech-filter-input" placeholder="Enter tech name...">
                         <div class="search-options">

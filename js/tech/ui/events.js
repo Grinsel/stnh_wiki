@@ -17,7 +17,6 @@ export function attachEventHandlers({ elements, state, actions }) {
     tooltip,
     areaSelect,
     resetButton,
-    showTierButton,
     techCounter,
     layoutSelect,
     copyBtn,
@@ -40,7 +39,6 @@ export function attachEventHandlers({ elements, state, actions }) {
 
   const {
     getActiveTechId,
-    setTierFilterActive,
     getPreSearchState,
     setPreSearchState,
   } = state;
@@ -108,16 +106,40 @@ export function attachEventHandlers({ elements, state, actions }) {
   searchButton?.addEventListener('click', actions.handleSearch);
   searchBackButton?.addEventListener('click', () => actions.onSearchBack?.());
 
-  // Tier filter
-  showTierButton?.addEventListener('click', () => {
-    const { startTier, endTier } = getSelectedTierRange();
-    if (startTier > endTier) {
-      alert('Start Tier cannot be higher than End Tier');
-      return;
+  // Tier range sliders — apply live on drag
+  const startTierEl = document.getElementById('start-tier-select');
+  const endTierEl = document.getElementById('end-tier-select');
+
+  function syncTierSliders(triggerUpdate = true) {
+    let s = parseInt(startTierEl?.value ?? 0, 10);
+    let e = parseInt(endTierEl?.value ?? 11, 10);
+    // Enforce min <= max
+    if (s > e) {
+      if (document.activeElement === startTierEl) {
+        startTierEl.value = e;
+        s = e;
+      } else {
+        endTierEl.value = s;
+        e = s;
+      }
     }
-    setTierFilterActive(true);
-    updateVisualization(speciesSelect?.value, getActiveTechId());
-  });
+    // Update label
+    const display = document.getElementById('tier-range-display');
+    if (display) display.textContent = `${s} – ${e}`;
+    // Update fill track
+    const fill = document.getElementById('tier-range-fill');
+    if (fill) {
+      const pct = (v) => (v / 11) * 100;
+      fill.style.marginLeft = pct(s) + '%';
+      fill.style.width = (pct(e) - pct(s)) + '%';
+    }
+    if (triggerUpdate) updateVisualization(speciesSelect?.value, getActiveTechId());
+  }
+
+  startTierEl?.addEventListener('input', () => syncTierSliders(true));
+  endTierEl?.addEventListener('input', () => syncTierSliders(true));
+  // Init fill only (no re-render)
+  syncTierSliders(false);
 
   // Save state on change
   ;['species-select','area-select','layout-select','tech-filter-input','start-tier-select','end-tier-select','performance-toggle']
