@@ -1649,6 +1649,19 @@ body.in-iframe #site-footer {
     font-size: 0.6rem;
     color: var(--text-muted);
     white-space: nowrap;
+    text-decoration: none;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+    cursor: pointer;
+}
+
+.card-breakdown-tag:hover {
+    color: var(--accent-bright);
+    border-color: var(--accent-bright);
+    background: rgba(255,255,255,0.06);
 }
 
 .card-breakdown-tag b {

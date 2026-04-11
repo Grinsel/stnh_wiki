@@ -42,46 +42,40 @@
         const counts = GlobalSearch.getStats();
         const total = GlobalSearch.getTotalCount();
 
-        // Module → sub-type breakdown mapping
+        // Module → sub-type breakdown mapping (url: destination when clicking the tag)
         const moduleBreakdown = {
-            events:         [{ key: 'event', label: 'ui.nav.events' }],
-            tech:           [{ key: 'technology', label: 'ui.nav.tech' }],
-            ships:          [
-                { key: 'model', label: 'ui.tab.models' },
-                { key: 'component', label: 'ui.tab.components' },
+            events:      [{ key: 'event',        label: 'ui.nav.events',          url: 'events.html' }],
+            tech:        [{ key: 'technology',   label: 'ui.nav.tech',            url: 'tech-list.html' }],
+            exploration: [
+                { key: 'anomaly',       label: 'ui.tab.anomalies',   url: 'exploration.html' },
+                { key: 'archaeology',   label: 'ui.tab.archaeology',  url: 'exploration.html?tab=archaeology' },
             ],
-            buildings:      [
-                { key: 'building', label: 'ui.tab.buildings' },
-                { key: 'district', label: 'ui.tab.districts' },
+            empire:      [
+                { key: 'empire',        label: 'ui.tab.empires',     url: 'empires.html' },
+                { key: 'species',       label: 'ui.tab.species',     url: 'empires.html?tab=species' },
             ],
-            traits:         [
-                { key: 'trait', label: 'ui.tab.traits' },
-                { key: 'tradition', label: 'ui.tab.traditions' },
-                { key: 'ascension_perk', label: 'ui.tab.perks' },
+            governance:  [
+                { key: 'government',     label: 'ui.tab.governments',  url: 'governments.html' },
+                { key: 'civic',          label: 'ui.tab.civics',        url: 'governments.html?tab=civics' },
+                { key: 'authority',      label: 'ui.tab.authorities',   url: 'governments.html?tab=authorities' },
+                { key: 'policy',         label: 'ui.tab.policies',      url: 'governments.html?tab=policies' },
+                { key: 'edict',          label: 'ui.tab.edicts',        url: 'governments.html?tab=edicts' },
+                { key: 'councilor',      label: 'ui.tab.councilors',    url: 'governments.html?tab=councilors' },
+                { key: 'trait',          label: 'ui.tab.traits',        url: 'traits.html' },
+                { key: 'tradition',      label: 'ui.tab.traditions',    url: 'traits.html?tab=traditions' },
+                { key: 'ascension_perk', label: 'ui.tab.perks',         url: 'traits.html?tab=perks' },
             ],
-            governments:    [
-                { key: 'government', label: 'ui.tab.governments' },
-                { key: 'civic', label: 'ui.tab.civics' },
-                { key: 'authority', label: 'ui.tab.authorities' },
-                { key: 'policy', label: 'ui.tab.policies' },
-                { key: 'edict', label: 'ui.tab.edicts' },
-                { key: 'councilor', label: 'ui.tab.councilors' },
+            economy:     [
+                { key: 'building',      label: 'ui.tab.buildings',     url: 'economy.html' },
+                { key: 'district',      label: 'ui.tab.districts',     url: 'economy.html?tab=districts' },
+                { key: 'megastructure', label: 'ui.tab.megastructures', url: 'economy.html?tab=megastructures' },
+                { key: 'relic',         label: 'ui.tab.relics',        url: 'economy.html?tab=relics' },
+                { key: 'job',           label: 'ui.tab.jobs',          url: 'economy.html?tab=jobs' },
+                { key: 'deposit',       label: 'ui.tab.deposits',      url: 'economy.html?tab=deposits' },
             ],
-            megastructures: [
-                { key: 'megastructure', label: 'ui.tab.megastructures' },
-                { key: 'relic', label: 'ui.tab.relics' },
-            ],
-            anomalies:      [
-                { key: 'anomaly', label: 'ui.tab.anomalies' },
-                { key: 'archaeology', label: 'ui.tab.archaeology' },
-            ],
-            empires:        [
-                { key: 'empire', label: 'ui.tab.empires' },
-                { key: 'species', label: 'ui.tab.species' },
-            ],
-            economy:        [
-                { key: 'job', label: 'ui.tab.jobs' },
-                { key: 'deposit', label: 'ui.tab.deposits' },
+            military:    [
+                { key: 'model',         label: 'ui.tab.models',        url: 'ships.html' },
+                { key: 'component',     label: 'ui.tab.components',    url: 'ships.html?tab=components' },
             ],
         };
 
@@ -111,8 +105,10 @@
                 breakdown.className = 'card-breakdown';
                 breakdown.innerHTML = parts
                     .filter(p => (counts[p.key] || 0) > 0)
-                    .map(p => `<span class="card-breakdown-tag">${I18n.ui(p.label)} <b>${(counts[p.key] || 0).toLocaleString()}</b></span>`)
+                    .map(p => `<a class="card-breakdown-tag" href="${p.url}">${I18n.ui(p.label)} <b>${(counts[p.key] || 0).toLocaleString()}</b></a>`)
                     .join('');
+                // Prevent tag clicks from also triggering the parent card navigation
+                breakdown.addEventListener('click', e => e.stopPropagation());
                 card.appendChild(breakdown);
             }
         });
