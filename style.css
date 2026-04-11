@@ -1472,6 +1472,7 @@ body.in-iframe #site-footer {
     gap: 0.2rem;
     padding: 0.4rem 1rem;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .nav-link {
@@ -1495,6 +1496,16 @@ body.in-iframe #site-footer {
 .nav-link.disabled {
     opacity: 0.35;
     pointer-events: none;
+}
+
+.nav-sep {
+    display: inline-block;
+    width: 1px;
+    height: 1rem;
+    background: var(--accent-border);
+    margin: 0 0.2rem;
+    align-self: center;
+    opacity: 0.5;
 }
 
 /* =============================================================================

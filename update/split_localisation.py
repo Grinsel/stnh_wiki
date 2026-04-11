@@ -257,8 +257,9 @@ def get_module_keys():
     modules['traits'] = extract_traits_keys()
     print(f"    traits: {len(modules['traits']):,} keys")
 
-    # Governments + Civics + Authorities + Policies + Edicts
-    modules['governments'] = extract_governments_keys()
+    # Governments + Civics + Authorities + Policies + Edicts + Traditions + Ascension Perks
+    # (governments.html also shows traditions and ascension perks, so their keys must be present)
+    modules['governments'] = extract_governments_keys() | extract_traits_keys()
     print(f"    governments: {len(modules['governments']):,} keys")
 
     # Megastructures + Relics

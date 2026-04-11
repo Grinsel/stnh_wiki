@@ -69,15 +69,43 @@ const Common = (() => {
         });
     }
 
+    function initNav() {
+        const navInner = document.querySelector('#wiki-nav .nav-inner');
+        if (!navInner) return;
+        navInner.innerHTML =
+            '<a href="index.html" class="nav-link" data-i18n="ui.nav.hub">Hub</a>' +
+            '<a href="events.html" class="nav-link" data-i18n="ui.nav.events">Events</a>' +
+            '<a href="exploration.html" class="nav-link" data-i18n="ui.nav.exploration">Exploration</a>' +
+            '<a href="tech-list.html" class="nav-link" data-i18n="ui.nav.tech">Technology</a>' +
+            '<a href="empires.html" class="nav-link" data-i18n="ui.nav.empire">Empire</a>' +
+            '<a href="governments.html" class="nav-link" data-i18n="ui.nav.governments">Governance</a>' +
+            '<a href="economy.html" class="nav-link" data-i18n="ui.nav.economy">Economy</a>' +
+            '<a href="ships.html" class="nav-link" data-i18n="ui.nav.military">Military</a>';
+    }
+
     function initNavHighlight() {
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        // Pages that should highlight their hub nav link
+        const HUB_MAP = {
+            'anomalies.html': 'exploration.html',
+            'tech-list.html': 'tech-list.html',
+            'tech.html':      'tech-list.html',
+            'empires.html':   'empires.html',
+            'buildings.html': 'economy.html',
+            'megastructures.html': 'economy.html',
+            'traits.html':    'governments.html',
+        };
+
+        let hubTarget;
+        if (currentPage === 'exploration.html') {
+            hubTarget = 'exploration.html';
+        } else {
+            hubTarget = HUB_MAP[currentPage] || currentPage;
+        }
+
         document.querySelectorAll('#wiki-nav .nav-link').forEach(link => {
             const href = link.getAttribute('href');
-            if (href === currentPage || (currentPage === 'index.html' && href === 'index.html')) {
-                link.classList.add('active');
-            }
-            // tech.html should highlight the tech-list.html nav link
-            if (currentPage === 'tech.html' && href === 'tech-list.html') {
+            if (href === hubTarget) {
                 link.classList.add('active');
             }
         });
@@ -428,6 +456,7 @@ const Common = (() => {
         initTheme();
         injectThemePicker();
         initLangSelect();
+        initNav();
         initNavHighlight();
         initHamburger();
         initStickyNav();

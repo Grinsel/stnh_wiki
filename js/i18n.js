@@ -51,6 +51,17 @@ const I18n = (() => {
         }
     }
 
+    /** Merge additional module keys into the current locData without replacing it. */
+    async function mergeModule(lang, module) {
+        const ls = LANG_SHORT[lang] || 'en';
+        const modLoc = await DataManager.loadJSON(`assets/localisation/${ls}/${module}.json`);
+        Object.assign(locData, modLoc);
+        if (lang !== 'english') {
+            const enMod = await DataManager.loadJSON(`assets/localisation/en/${module}.json`);
+            Object.assign(fallbackData, enMod);
+        }
+    }
+
     async function loadFullLocalisation() {
         if (fullLocLoaded) return;
         const full = await DataManager.loadLocalisation(currentLang);
@@ -93,7 +104,7 @@ const I18n = (() => {
     function setLangSync(lang) { if (lang) currentLang = lang; }
 
     return {
-        setLanguage, setLanguageForModule, loadFullLocalisation,
+        setLanguage, setLanguageForModule, mergeModule, loadFullLocalisation,
         t, tMultiline, ui, getLang, getData, isFullLoaded, getCurrentModule, setLangSync
     };
 })();

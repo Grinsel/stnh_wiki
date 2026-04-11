@@ -13,24 +13,65 @@
     searchInput.value = AppState.get('search');
 
     try {
-        const [governments, civics, authorities, policies, edicts, councilors] = await Promise.all([
+        const [governments, civics, authorities, policies, edicts, councilors, traditions, perks] = await Promise.all([
             DataManager.loadJSON('assets/governments.json'),
             DataManager.loadJSON('assets/civics.json'),
             DataManager.loadJSON('assets/authorities.json'),
             DataManager.loadJSON('assets/policies.json'),
             DataManager.loadJSON('assets/edicts.json'),
             DataManager.loadJSON('assets/councilors.json'),
+            DataManager.loadJSON('assets/traditions.json'),
+            DataManager.loadJSON('assets/ascension_perks.json'),
         ]);
         await I18n.setLanguageForModule(AppState.get('lang'), 'governments');
 
-        const allData = { governments, civics, authorities, policies, edicts, councilors };
+        const allData = { governments, civics, authorities, policies, edicts, councilors, traditions, perks };
         for (const key of Object.keys(allData)) {
             for (const item of allData[key]) {
                 item.name = I18n.t(item.name_key) || item.id;
             }
         }
 
-        const ICON_DIRS = { civics: 'civics', authorities: 'authorities', edicts: 'edicts', policies: 'policies', councilors: 'councilors' };
+        const ICON_DIRS = { civics: 'civics', authorities: 'authorities', edicts: 'edicts', policies: 'policies', councilors: 'councilors', perks: 'ascension_perks' };
+
+        // ── Tradition tree data structure ──
+        const traditionTreeMap = new Map();
+        for (const t of traditions) {
+            if (!traditionTreeMap.has(t.tree)) {
+                traditionTreeMap.set(t.tree, { adopt: null, finish: null, nodes: [] });
+            }
+            const entry = traditionTreeMap.get(t.tree);
+            if (t.role === 'adopt') entry.adopt = t;
+            else if (t.role === 'finish') entry.finish = t;
+            else entry.nodes.push(t);
+        }
+        for (const [, tree] of traditionTreeMap) {
+            const nodeIds = new Set(tree.nodes.map(n => n.id));
+            for (const node of tree.nodes) {
+                node._deps = [];
+                if (node.possible) {
+                    for (const cond of node.possible) {
+                        const depId = cond.has_tradition || cond.has_active_tradition;
+                        if (depId && nodeIds.has(depId)) node._deps.push(depId);
+                    }
+                }
+            }
+        }
+
+        // ── Overlay state ──
+        let activeOverlay = null;
+        let activeOverlayItemId = null;
+        function removeOverlayImmediate() {
+            if (activeOverlay) { activeOverlay.remove(); activeOverlay = null; activeOverlayItemId = null; }
+        }
+
+        // Populate tree dropdown
+        const treeSel = document.getElementById('filter-tree');
+        if (treeSel) {
+            const trees = [...new Set(traditions.map(t => t.tree).filter(Boolean))].sort();
+            for (const t of trees) treeSel.add(new Option(t, t));
+            treeSel.addEventListener('change', () => { currentPage = 1; removeOverlayImmediate(); renderAll(); });
+        }
 
         let activeTab = 'governments';
         let currentPage = 1;
@@ -44,6 +85,9 @@
                 activeTab = btn.dataset.tab;
                 currentPage = 1;
                 document.getElementById('filter-origins-group').classList.toggle('hidden', activeTab !== 'civics');
+                const treeGroup = document.getElementById('filter-tree-group');
+                if (treeGroup) treeGroup.classList.toggle('hidden', activeTab !== 'traditions');
+                if (activeTab !== 'traditions') removeOverlayImmediate();
                 renderAll();
             });
         });
@@ -141,6 +185,34 @@
                 html += `<div class="detail-section">${SharedRender.dualView(item.weight, I18n.ui('ui.detail.weight'))}</div>`;
             }
 
+            // Ascension Perk specific fields
+            if (item.required_technologies && item.required_technologies.length) {
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.prerequisites')}</div>`;
+                html += `<div class="detail-meta">${SharedRender.techLinks(item.required_technologies)}</div></div>`;
+            }
+            if (item.required_traditions && item.required_traditions.length) {
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.required_traditions')}</div>`;
+                html += `<div class="detail-meta">${item.required_traditions.map(t => `<span class="detail-meta-item">${esc(I18n.t(t) || t)}</span>`).join('')}</div></div>`;
+            }
+            if (item.min_perks) {
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.min_perks')}</div>`;
+                html += `<div class="detail-meta"><span class="detail-meta-item">${item.min_perks}+ already activated</span></div></div>`;
+            }
+            if (item.required_flags && item.required_flags.length) {
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.required_flags')}</div>`;
+                html += `<div class="detail-meta">${item.required_flags.map(f => `<span class="detail-meta-item">${esc(f)}</span>`).join('')}</div></div>`;
+            }
+            if (item.opposites && item.opposites.length) {
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.opposites')}</div>`;
+                html += `<div class="detail-meta">${item.opposites.map(o => `<span class="detail-meta-item">${esc(I18n.t(o) || o)}</span>`).join('')}</div></div>`;
+            }
+            if (item.on_enabled) {
+                html += `<div class="detail-section">${SharedRender.dualView(item.on_enabled, I18n.ui('ui.detail.on_enabled'))}</div>`;
+            }
+            if (item.tradition_swap) {
+                html += `<div class="detail-section">${SharedRender.dualView(item.tradition_swap, I18n.ui('ui.detail.tradition_swaps'))}</div>`;
+            }
+
             detailContent.innerHTML = html;
             SharedRender.initToggles(detailContent);
             SharedRender.initTechLinks(detailContent);
@@ -168,6 +240,7 @@
             for (const key of Object.keys(allData)) {
                 for (const item of allData[key]) item.name = I18n.t(item.name_key) || item.id;
             }
+            removeOverlayImmediate();
             renderAll();
         });
 
@@ -180,6 +253,8 @@
                 tabBtn.classList.add('active');
                 activeTab = urlTab;
                 document.getElementById('filter-origins-group').classList.toggle('hidden', activeTab !== 'civics');
+                const treeGroup2 = document.getElementById('filter-tree-group');
+                if (treeGroup2) treeGroup2.classList.toggle('hidden', activeTab !== 'traditions');
             }
         }
 
@@ -189,7 +264,7 @@
         // Auto-select item from URL (after renderAll)
         const selectId = AppState.get('select');
         if (selectId) {
-            const allItems = [...governments, ...civics, ...authorities, ...policies, ...edicts, ...councilors];
+            const allItems = [...governments, ...civics, ...authorities, ...policies, ...edicts, ...councilors, ...traditions, ...perks];
             const item = allItems.find(i => i.id === selectId);
             if (item) {
                 showDetail(item);
@@ -198,6 +273,7 @@
         }
 
         function renderAll() {
+            if (activeTab === 'traditions') { detailPanel.classList.add('hidden'); renderTraditionTrees(); return; }
             const query = (AppState.get('search') || '').toLowerCase();
             let items = allData[activeTab] || [];
             const total = items.length;
@@ -269,6 +345,294 @@
                 });
             });
         }
+
+        // ── Tradition overlay functions ──
+        function buildTraditionOverlayHtml(item) {
+            let html = `<div class="relic-overlay-header">`;
+            html += `<button class="relic-detail-back">&larr; ${I18n.ui('ui.search.back')}</button>`;
+            html += `<div class="relic-overlay-title">`;
+            html += `<img class="relic-overlay-icon" src="icons/traditions/${esc(item.icon || item.id)}.webp" alt="" onerror="this.style.display='none'">`;
+            html += `<h3>${esc(item.name || item.id)}</h3>`;
+            html += `</div></div>`;
+            let leftHtml = '';
+            const descKey = item.id + '_desc';
+            const desc = I18n.t(descKey);
+            if (desc && desc !== descKey) {
+                leftHtml += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.description')}</div>`;
+                leftHtml += `<div class="detail-desc">${esc(desc)}</div></div>`;
+            }
+            if (item.modifier) leftHtml += `<div class="detail-section">${SharedRender.dualView(item.modifier, I18n.ui('ui.detail.modifiers'))}</div>`;
+            let rightHtml = '';
+            if (item.required_technologies && item.required_technologies.length) {
+                rightHtml += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.prerequisites')}</div>`;
+                rightHtml += `<div class="detail-meta">${SharedRender.techLinks(item.required_technologies)}</div></div>`;
+            }
+            if (item.possible) rightHtml += `<div class="detail-section">${SharedRender.dualView(item.possible, I18n.ui('ui.detail.requirements'))}</div>`;
+            if (item.on_enabled) rightHtml += `<div class="detail-section">${SharedRender.dualView(item.on_enabled, I18n.ui('ui.detail.on_enabled'))}</div>`;
+            if (item.tradition_swap) rightHtml += `<div class="detail-section">${SharedRender.dualView(item.tradition_swap, I18n.ui('ui.detail.tradition_swaps'))}</div>`;
+            html += `<div class="relic-overlay-columns">`;
+            if (leftHtml) html += `<div class="relic-overlay-col">${leftHtml}</div>`;
+            if (rightHtml) html += `<div class="relic-overlay-col">${rightHtml}</div>`;
+            html += `</div>`;
+            html += `<div class="relic-overlay-footer">`;
+            html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
+            if (item.tree) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.tree')}: ${esc(item.tree)}</span>`;
+            if (item.role) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.role')}: ${esc(item.role)}</span>`;
+            if (item.source_file) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
+            html += `</div>`;
+            return html;
+        }
+
+        function expandTraditionOverlay(triggerEl, item) {
+            removeOverlayImmediate();
+            const grid = triggerEl.closest('.tradition-trees-grid');
+            if (!grid) return;
+            const gridRect = grid.getBoundingClientRect();
+            const triggerRect = triggerEl.getBoundingClientRect();
+            const startTop = triggerRect.top - gridRect.top + grid.scrollTop;
+            const startLeft = triggerRect.left - gridRect.left;
+            const startW = triggerRect.width;
+            const startH = triggerRect.height;
+            const overlay = document.createElement('div');
+            overlay.className = 'tradition-detail-overlay';
+            overlay.style.top = startTop + 'px';
+            overlay.style.left = startLeft + 'px';
+            overlay.style.width = startW + 'px';
+            overlay.style.height = startH + 'px';
+            overlay.innerHTML = `<div class="detail-inner">${buildTraditionOverlayHtml(item)}</div>`;
+            grid.appendChild(overlay);
+            activeOverlay = overlay;
+            activeOverlayItemId = item.id;
+            const gridW = grid.offsetWidth;
+            const targetW = Math.min(560, gridW);
+            const targetLeft = (gridW - targetW) / 2;
+            const targetTop = Math.max(0, startTop - 20);
+            overlay.style.transition = 'none';
+            overlay.style.left = targetLeft + 'px';
+            overlay.style.width = targetW + 'px';
+            overlay.style.height = 'auto';
+            overlay.style.visibility = 'hidden';
+            const contentH = Math.max(overlay.scrollHeight, 300);
+            overlay.style.left = startLeft + 'px';
+            overlay.style.width = startW + 'px';
+            overlay.style.height = startH + 'px';
+            overlay.style.visibility = '';
+            overlay.offsetHeight; // eslint-disable-line no-unused-expressions
+            overlay.style.transition = '';
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    overlay.style.left = targetLeft + 'px';
+                    overlay.style.top = targetTop + 'px';
+                    overlay.style.width = targetW + 'px';
+                    overlay.style.height = contentH + 'px';
+                    let expanded = false;
+                    const doExpand = () => {
+                        if (expanded) return;
+                        expanded = true;
+                        overlay.removeEventListener('transitionend', onExpand);
+                        overlay.classList.add('expanded');
+                        overlay.style.height = 'auto';
+                        const inner = overlay.querySelector('.detail-inner');
+                        if (inner) { SharedRender.initToggles(inner); SharedRender.initTechLinks(inner); }
+                    };
+                    const onExpand = () => doExpand();
+                    overlay.addEventListener('transitionend', onExpand);
+                    setTimeout(doExpand, 400);
+                });
+            });
+            overlay.querySelector('.relic-detail-back').addEventListener('click', (e) => {
+                e.stopPropagation();
+                collapseTraditionOverlay(triggerEl);
+            });
+        }
+
+        function collapseTraditionOverlay(triggerEl) {
+            const overlay = activeOverlay;
+            if (!overlay) return;
+            const grid = overlay.parentElement;
+            if (!grid) { removeOverlayImmediate(); return; }
+            overlay.classList.remove('expanded');
+            const currentH = overlay.offsetHeight;
+            overlay.style.height = currentH + 'px';
+            overlay.offsetHeight; // force reflow // eslint-disable-line no-unused-expressions
+            if (triggerEl && document.contains(triggerEl)) {
+                const gridRect = grid.getBoundingClientRect();
+                const triggerRect = triggerEl.getBoundingClientRect();
+                const targetTop = triggerRect.top - gridRect.top + grid.scrollTop;
+                const targetLeft = triggerRect.left - gridRect.left;
+                overlay.style.top = targetTop + 'px';
+                overlay.style.left = targetLeft + 'px';
+                overlay.style.width = triggerRect.width + 'px';
+                overlay.style.height = triggerRect.height + 'px';
+                let collapsed = false;
+                const doCollapse = () => {
+                    if (collapsed) return;
+                    collapsed = true;
+                    overlay.removeEventListener('transitionend', onCollapse);
+                    removeOverlayImmediate();
+                };
+                const onCollapse = () => doCollapse();
+                overlay.addEventListener('transitionend', onCollapse);
+                setTimeout(doCollapse, 400);
+            } else {
+                overlay.style.opacity = '0';
+                setTimeout(() => removeOverlayImmediate(), 300);
+            }
+        }
+
+        function computeLevels(nodes) {
+            const hasEdges = nodes.some(n => n._deps.length > 0);
+            if (!hasEdges && nodes.length === 5) {
+                return [nodes.slice(0, 2), [nodes[2]], nodes.slice(3, 5)];
+            }
+            const levels = [];
+            const placed = new Set();
+            let remaining = [...nodes];
+            while (remaining.length > 0) {
+                const level = [];
+                const nextRemaining = [];
+                for (const node of remaining) {
+                    if (node._deps.every(d => placed.has(d))) level.push(node);
+                    else nextRemaining.push(node);
+                }
+                if (level.length === 0) { levels.push(remaining); break; }
+                levels.push(level);
+                for (const n of level) placed.add(n.id);
+                remaining = nextRemaining;
+            }
+            return levels;
+        }
+
+        function renderTraditionTrees() {
+            const query = (AppState.get('search') || '').toLowerCase();
+            const filterTree = treeSel ? treeSel.value : '';
+            const visibleTrees = [];
+            for (const [treeName, tree] of traditionTreeMap) {
+                if (filterTree && treeName !== filterTree) continue;
+                if (query) {
+                    const allItems = [tree.adopt, ...tree.nodes, tree.finish].filter(Boolean);
+                    if (!allItems.some(item => (item.name || '').toLowerCase().includes(query) || item.id.toLowerCase().includes(query))) continue;
+                }
+                visibleTrees.push([treeName, tree]);
+            }
+            visibleTrees.sort((a, b) => a[0].localeCompare(b[0]));
+            const matchingItems = visibleTrees.reduce((sum, [, t]) => sum + 1 + t.nodes.length + 1, 0);
+            document.getElementById('filter-stats').textContent = `${visibleTrees.length} / ${traditionTreeMap.size} Trees (${matchingItems} ${I18n.ui('ui.tab.traditions')})`;
+            if (visibleTrees.length === 0) {
+                listEl.innerHTML = '<div class="loading" style="animation:none">' + I18n.ui('ui.empty.no_items') + '</div>';
+                document.getElementById('pagination').innerHTML = '';
+                return;
+            }
+            let html = `<svg style="position:absolute;width:0;height:0;overflow:hidden">
+                <defs><marker id="arrowhead" markerWidth="7" markerHeight="5" refX="0" refY="2.5" orient="auto">
+                    <polygon points="0 0, 7 2.5, 0 5" fill="var(--accent-dim)"/>
+                </marker></defs></svg>`;
+            html += '<div class="tradition-trees-grid">';
+            for (const [treeName, tree] of visibleTrees) {
+                const levels = computeLevels(tree.nodes);
+                const treeLabelKey = tree.adopt ? tree.adopt.name_key : treeName;
+                let treeLabel = I18n.t(treeLabelKey) || treeName;
+                if (treeLabel === treeLabelKey) treeLabel = treeName.replace(/_/g, ' ');
+                html += `<div class="tradition-tree-block" data-tree="${esc(treeName)}"><div class="tradition-tree-header">`;
+                html += `<span class="tradition-tree-name">${esc(treeLabel)}</span>`;
+                if (tree.adopt) {
+                    html += `<button class="tradition-bonus-btn" data-id="${esc(tree.adopt.id)}" title="${esc(tree.adopt.name || tree.adopt.id)}"><img src="icons/traditions/${esc(tree.adopt.icon || tree.adopt.id)}.webp" alt="" onerror="this.style.display='none'"><span>Adopt</span></button>`;
+                }
+                html += `</div><div class="tradition-tree-body">`;
+                for (const level of levels) {
+                    html += `<div class="tradition-level">`;
+                    for (const node of level) {
+                        html += `<div class="tradition-node" data-id="${esc(node.id)}" data-deps="${esc((node._deps || []).join(','))}"><img src="icons/traditions/${esc(node.icon || node.id)}.webp" alt="" onerror="this.style.display='none'"><span class="tradition-node-name">${esc(node.name || node.id)}</span></div>`;
+                    }
+                    html += `</div>`;
+                }
+                html += `<svg class="tradition-arrows"></svg></div>`;
+                html += `<div class="tradition-tree-footer">`;
+                if (tree.finish) {
+                    html += `<button class="tradition-bonus-btn tradition-finish-btn" data-id="${esc(tree.finish.id)}" title="${esc(tree.finish.name || tree.finish.id)}"><img src="icons/traditions/${esc(tree.finish.icon || tree.finish.id)}.webp" alt="" onerror="this.style.display='none'"><span>Finish</span></button>`;
+                }
+                html += `</div></div>`;
+            }
+            html += '</div>';
+            listEl.innerHTML = html;
+            document.getElementById('pagination').innerHTML = '';
+            requestAnimationFrame(() => drawAllArrows());
+            listEl.querySelectorAll('.tradition-node').forEach(nodeEl => {
+                nodeEl.addEventListener('click', () => {
+                    const item = traditions.find(t => t.id === nodeEl.dataset.id);
+                    if (item) expandTraditionOverlay(nodeEl, item);
+                });
+            });
+            listEl.querySelectorAll('.tradition-bonus-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const item = traditions.find(t => t.id === btn.dataset.id);
+                    if (item) expandTraditionOverlay(btn, item);
+                });
+            });
+        }
+
+        function drawAllArrows() {
+            listEl.querySelectorAll('.tradition-tree-block').forEach(block => {
+                const svg = block.querySelector('.tradition-arrows');
+                if (!svg) return;
+                const body = block.querySelector('.tradition-tree-body');
+                const bodyRect = body.getBoundingClientRect();
+                const nodeEls = block.querySelectorAll('.tradition-node');
+                const nodeMap = new Map();
+                nodeEls.forEach(el => nodeMap.set(el.dataset.id, el));
+                const edges = [];
+                nodeEls.forEach(el => {
+                    const deps = el.dataset.deps;
+                    if (!deps) return;
+                    for (const depId of deps.split(',').filter(Boolean)) {
+                        if (nodeMap.has(depId)) edges.push({ from: depId, to: el.dataset.id });
+                    }
+                });
+                const fromCount = new Map();
+                const toCount = new Map();
+                for (const e of edges) {
+                    fromCount.set(e.from, (fromCount.get(e.from) || 0) + 1);
+                    toCount.set(e.to, (toCount.get(e.to) || 0) + 1);
+                }
+                const fromIdx = new Map();
+                const toIdx = new Map();
+                const pad = 6;
+                const spread = 8;
+                let paths = '';
+                for (const e of edges) {
+                    const parentEl = nodeMap.get(e.from);
+                    const childEl = nodeMap.get(e.to);
+                    if (!parentEl || !childEl) continue;
+                    const parentRect = parentEl.getBoundingClientRect();
+                    const childRect = childEl.getBoundingClientRect();
+                    const fi = fromIdx.get(e.from) || 0; fromIdx.set(e.from, fi + 1);
+                    const fc = fromCount.get(e.from);
+                    const fOff = fc > 1 ? (fi - (fc - 1) / 2) * spread : 0;
+                    const ti = toIdx.get(e.to) || 0; toIdx.set(e.to, ti + 1);
+                    const tc = toCount.get(e.to);
+                    const tOff = tc > 1 ? (ti - (tc - 1) / 2) * spread : 0;
+                    const px = parentRect.left - bodyRect.left + parentRect.width / 2 + fOff;
+                    const py = parentRect.top - bodyRect.top + parentRect.height + pad;
+                    const cx = childRect.left - bodyRect.left + childRect.width / 2 + tOff;
+                    const cy = childRect.top - bodyRect.top - pad;
+                    const dy = Math.abs(cy - py);
+                    const tension = Math.min(dy * 0.45, 30);
+                    paths += `<path d="M${px.toFixed(1)},${py.toFixed(1)} C${px.toFixed(1)},${(py+tension).toFixed(1)} ${cx.toFixed(1)},${(cy-tension).toFixed(1)} ${cx.toFixed(1)},${cy.toFixed(1)}"/>`;
+                }
+                svg.innerHTML = paths;
+                svg.setAttribute('width', body.offsetWidth);
+                svg.setAttribute('height', body.offsetHeight);
+            });
+        }
+
+        // Redraw arrows on resize (debounced)
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (activeTab === 'traditions') drawAllArrows();
+            }, 150);
+        });
 
     } catch (err) {
         listEl.innerHTML = `<div class="loading" style="animation:none">${I18n.ui('ui.error.load_failed')}: ${err.message}</div>`;

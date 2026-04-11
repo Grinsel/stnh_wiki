@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anomalies - ST:NH Wiki</title>
-    <meta name="description" content="Anomaly categories, archaeological sites, outcomes, and linked events.">
-    <meta property="og:title" content="Anomalies - ST:NH Wiki">
-    <meta property="og:description" content="Anomaly categories, archaeological sites, outcomes, and linked events.">
+    <title>Exploration - ST:NH Wiki</title>
+    <meta name="description" content="Anomaly categories, archaeological sites, outcomes, and events.">
+    <meta property="og:title" content="Exploration - ST:NH Wiki">
+    <meta property="og:description" content="Anomaly categories, archaeological sites, outcomes, and events.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ST:NH Wiki">
     <script>document.documentElement.setAttribute("data-theme", localStorage.getItem("stnh-theme") || "lcars");</script>
@@ -20,7 +20,7 @@
                 <a href="index.html" class="site-logo-link"><h1>ST:NH <span class="accent">Wiki</span></h1></a>
             </div>
             <div class="header-search">
-                <input type="text" id="search-input" placeholder="Search anomalies &amp; archaeology..." data-i18n-placeholder="ui.search.anomalies" autocomplete="off">
+                <input type="text" id="search-input" placeholder="Search anomalies, archaeology..." data-i18n-placeholder="ui.search.exploration" autocomplete="off">
             </div>
             <div class="header-controls">
                 <select id="lang-select" title="Language">
@@ -32,7 +32,6 @@
                     <option value="polish">Polski</option>
                     <option value="braz_por">Portugu&ecirc;s</option>
                 </select>
-
             </div>
         </div>
     </header>
@@ -48,18 +47,24 @@
     <!-- Filter Bar -->
     <div id="filter-bar">
         <div class="filter-inner">
+            <!-- Main tab buttons -->
             <div class="filter-group tab-buttons">
-                <button class="tab-btn active" data-tab="anomalies" data-i18n="ui.tab.anomalies">Anomalies</button>
-                <button class="tab-btn" data-tab="archaeology" data-i18n="ui.tab.archaeology">Archaeology</button>
+                <button class="tab-btn active" data-tab="anomalies"   data-i18n="ui.tab.anomalies">Anomalies</button>
+                <button class="tab-btn"        data-tab="archaeology"  data-i18n="ui.tab.archaeology">Archaeology</button>
             </div>
+
+            <!-- Anomalies: level range filter -->
             <div class="tier-filter-wrap" id="filter-level-group">
-                <span class="tier-filter-label">Level: <strong id="level-filter-display">1–8</strong></span>
+                <span class="tier-filter-label">Level: <strong id="level-filter-display">1&#8211;8</strong></span>
                 <div class="tier-range-wrap inline">
                     <div class="tier-range-track"><div class="tier-range-fill" id="level-filter-fill"></div></div>
                     <input type="range" id="filter-level-start" min="1" max="8" value="1" step="1">
-                    <input type="range" id="filter-level-end" min="1" max="8" value="8" step="1">
+                    <input type="range" id="filter-level-end"   min="1" max="8" value="8" step="1">
                 </div>
             </div>
+
+
+
             <div class="filter-stats" id="filter-stats">Loading...</div>
         </div>
     </div>
@@ -90,7 +95,8 @@
     <script src="js/global-search.js"></script>
     <script src="js/common.js"></script>
     <script src="js/humanize.js"></script>
+    <script src="js/ui/category-chips.js"></script>
     <script src="js/shared-render.js"></script>
-    <script src="js/pages/anomalies.js"></script>
+    <script src="js/pages/exploration.js"></script>
 </body>
 </html>

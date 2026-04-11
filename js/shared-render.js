@@ -134,7 +134,7 @@ const SharedRender = (() => {
             el.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const techId = el.dataset.techId;
-                if (techId) window.location.href = 'tech-list.html?focus=' + encodeURIComponent(techId);
+                if (techId) window.location.href = 'exploration.html?tab=technology&focus=' + encodeURIComponent(techId);
             });
         });
     }

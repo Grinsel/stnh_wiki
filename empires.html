@@ -39,19 +39,7 @@
 
     <!-- Wiki Navigation -->
     <nav id="wiki-nav">
-        <div class="nav-inner">
-            <a href="index.html" class="nav-link" data-i18n="ui.nav.hub">Hub</a>
-            <a href="events.html" class="nav-link" data-i18n="ui.nav.events">Events</a>
-            <a href="tech-list.html" class="nav-link" data-i18n="ui.nav.tech">Tech Tree</a>
-            <a href="ships.html" class="nav-link" data-i18n="ui.nav.ships">Ships</a>
-            <a href="buildings.html" class="nav-link" data-i18n="ui.nav.buildings">Buildings</a>
-            <a href="traits.html" class="nav-link" data-i18n="ui.nav.traits">Traits</a>
-            <a href="governments.html" class="nav-link" data-i18n="ui.nav.governments">Governments</a>
-            <a href="megastructures.html" class="nav-link" data-i18n="ui.nav.megastructures">Megastructures</a>
-            <a href="anomalies.html" class="nav-link" data-i18n="ui.nav.anomalies">Anomalies</a>
-            <a href="empires.html" class="nav-link" data-i18n="ui.nav.empires">Empires</a>
-            <a href="economy.html" class="nav-link" data-i18n="ui.nav.economy">Economy</a>
-        </div>
+        <div class="nav-inner"></div>
     </nav>
 
     <!-- Global Search Results -->
@@ -63,6 +51,7 @@
             <div class="filter-group tab-buttons">
                 <button class="tab-btn active" data-tab="empires" data-i18n="ui.tab.empires">Empires</button>
                 <button class="tab-btn" data-tab="species" data-i18n="ui.tab.species">Species</button>
+                <button class="tab-btn" data-tab="traits" data-i18n="ui.tab.traits">Leader Traits</button>
             </div>
             <div class="filter-group" id="view-toggle-group">
                 <button class="tab-btn active" id="view-list-btn" data-i18n="ui.view.list">&#9776; List</button>
@@ -81,6 +70,12 @@
                 <label data-i18n="ui.filter.archetype">Archetype</label>
                 <select id="filter-archetype">
                     <option value="" data-i18n="ui.filter.all_archetypes">All Archetypes</option>
+                </select>
+            </div>
+            <div class="filter-group hidden" id="filter-class-group">
+                <label data-i18n="ui.filter.class">Class</label>
+                <select id="filter-class">
+                    <option value="" data-i18n="ui.filter.all_classes">All Classes</option>
                 </select>
             </div>
             <div class="filter-stats" id="filter-stats">Loading...</div>

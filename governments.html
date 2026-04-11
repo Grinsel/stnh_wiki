@@ -39,19 +39,7 @@
 
     <!-- Wiki Navigation -->
     <nav id="wiki-nav">
-        <div class="nav-inner">
-            <a href="index.html" class="nav-link" data-i18n="ui.nav.hub">Hub</a>
-            <a href="events.html" class="nav-link" data-i18n="ui.nav.events">Events</a>
-            <a href="tech-list.html" class="nav-link" data-i18n="ui.nav.tech">Tech Tree</a>
-            <a href="ships.html" class="nav-link" data-i18n="ui.nav.ships">Ships</a>
-            <a href="buildings.html" class="nav-link" data-i18n="ui.nav.buildings">Buildings</a>
-            <a href="traits.html" class="nav-link" data-i18n="ui.nav.traits">Traits</a>
-            <a href="governments.html" class="nav-link" data-i18n="ui.nav.governments">Governments</a>
-            <a href="megastructures.html" class="nav-link" data-i18n="ui.nav.megastructures">Megastructures</a>
-            <a href="anomalies.html" class="nav-link" data-i18n="ui.nav.anomalies">Anomalies</a>
-            <a href="empires.html" class="nav-link" data-i18n="ui.nav.empires">Empires</a>
-            <a href="economy.html" class="nav-link" data-i18n="ui.nav.economy">Economy</a>
-        </div>
+        <div class="nav-inner"></div>
     </nav>
 
     <!-- Global Search Results -->
@@ -66,10 +54,18 @@
                 <button class="tab-btn" data-tab="authorities" data-i18n="ui.tab.authorities">Authorities</button>
                 <button class="tab-btn" data-tab="policies" data-i18n="ui.tab.policies">Policies</button>
                 <button class="tab-btn" data-tab="edicts" data-i18n="ui.tab.edicts">Edicts</button>
-                <button class="tab-btn" data-tab="councilors" data-i18n="ui.tab.councilors">Councilors</button>
+                <button class="tab-btn" data-tab="councilors" data-i18n="ui.tab.councilors">Council</button>
+                <button class="tab-btn" data-tab="traditions" data-i18n="ui.tab.traditions">Traditions</button>
+                <button class="tab-btn" data-tab="perks" data-i18n="ui.tab.perks">Ascension Perks</button>
             </div>
             <div class="filter-toggles hidden" id="filter-origins-group">
                 <label><input type="checkbox" id="filter-origins"> <span data-i18n="ui.filter.origins_only">Origins only</span></label>
+            </div>
+            <div class="filter-group hidden" id="filter-tree-group">
+                <label data-i18n="ui.filter.tree">Tree</label>
+                <select id="filter-tree">
+                    <option value="" data-i18n="ui.filter.all_trees">All Trees</option>
+                </select>
             </div>
             <div class="filter-stats" id="filter-stats">Loading...</div>
         </div>

@@ -102,14 +102,16 @@
     }
 
     try {
-        const [empires, species] = await Promise.all([
+        const [empires, species, traits] = await Promise.all([
             DataManager.loadJSON('assets/empires.json'),
             DataManager.loadJSON('assets/species.json'),
+            DataManager.loadJSON('assets/traits.json'),
         ]);
         await I18n.setLanguageForModule(AppState.get('lang'), 'empires');
 
         for (const item of empires) item.name = I18n.t(item.name_key) || item.id;
         for (const item of species) item.name = I18n.t(item.name_key) || item.id;
+        for (const item of traits) item.name = I18n.t(item.name_key) || item.id;
 
         _empires = empires;   // expose to loadGalaxyMap closure
 
@@ -135,6 +137,12 @@
             archSel.add(new Option(a, a));
         }
 
+        // Populate leader class dropdown (traits tab)
+        const classes = [...new Set(traits.map(t => t.leader_class).filter(Boolean))].sort();
+        const classSel = document.getElementById('filter-class');
+        if (classSel) { for (const c of classes) classSel.add(new Option(c, c)); }
+        if (classSel) classSel.addEventListener('change', () => { currentPage = 1; renderAll(); });
+
         // activeTab already declared in outer scope; just reset for safety
         activeTab = 'empires';
         let currentPage = 1;
@@ -149,13 +157,15 @@
                 currentPage = 1;
                 // Map view only makes sense for empires tab
                 if (viewToggleGroup) {
-                    viewToggleGroup.style.visibility = activeTab === 'empires' ? '' : 'hidden';
+                    viewToggleGroup.classList.toggle('hidden', activeTab !== 'empires');
                 }
                 if (activeTab !== 'empires' && activeView === 'map') {
                     setView('list');
                 }
                 document.getElementById('filter-quadrant-group').classList.toggle('hidden', activeView === 'map' || activeTab !== 'empires');
                 document.getElementById('filter-archetype-group').classList.toggle('hidden', activeView === 'map' || activeTab !== 'species');
+                const classGroup = document.getElementById('filter-class-group');
+                if (classGroup) classGroup.classList.toggle('hidden', activeTab !== 'traits');
                 renderAll();
             });
         });
@@ -217,7 +227,7 @@
 
         function showDetail(item) {
             detailTitle.textContent = item.name || item.id;
-            const iconDir = item.authority !== undefined ? 'flags' : '';
+            const iconDir = activeTab === 'traits' ? 'traits' : (item.authority !== undefined ? 'flags' : '');
             const iconStem = item.icon || item.id;
             const iconHtml = iconDir
                 ? `<img class="detail-icon" src="icons/${iconDir}/${esc(iconStem)}.webp" alt="" onerror="this.style.display='none'">`
@@ -286,6 +296,28 @@
                 }
             }
 
+            // Leader Traits-specific
+            if (activeTab === 'traits') {
+                if (item.name_key) {
+                    const desc = I18n.tMultiline(item.name_key + '_desc');
+                    if (desc) {
+                        html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.description')}</div>`;
+                        html += `<div class="detail-bio">${esc(desc).replace(/\n/g, '<br>')}</div></div>`;
+                    }
+                }
+                const tStats = [];
+                if (item.leader_class) tStats.push(['Class', item.leader_class]);
+                if (item.rarity) tStats.push(['Rarity', item.rarity]);
+                if (item.tier != null) tStats.push(['Tier', item.tier]);
+                if (item.cost != null) tStats.push(['Cost', item.cost]);
+                if (tStats.length) {
+                    html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.info')}</div>`;
+                    html += `<div class="detail-meta">${tStats.map(([k,v]) => `<span class="detail-meta-item">${esc(k)}: ${esc(v)}</span>`).join('')}</div></div>`;
+                }
+                if (item.modifier) html += `<div class="detail-section">${SharedRender.dualView(item.modifier, I18n.ui('ui.detail.modifier'))}</div>`;
+                if (item.possible) html += `<div class="detail-section">${SharedRender.dualView(item.possible, I18n.ui('ui.detail.conditions'))}</div>`;
+            }
+
             detailContent.innerHTML = html;
             SharedRender.initToggles(detailContent);
             _currentDetailItem = item;
@@ -327,6 +359,7 @@
         document.addEventListener('wiki-lang-changed', () => {
             for (const item of empires) item.name = I18n.t(item.name_key) || item.id;
             for (const item of species) item.name = I18n.t(item.name_key) || item.id;
+            for (const item of traits) item.name = I18n.t(item.name_key) || item.id;
             renderAll();
             if (galaxyMapReady) GalaxyMap.refreshOverlay();
         });
@@ -341,6 +374,8 @@
                 activeTab = urlTab;
                 document.getElementById('filter-quadrant-group').classList.toggle('hidden', activeTab !== 'empires');
                 document.getElementById('filter-archetype-group').classList.toggle('hidden', activeTab !== 'species');
+                const classGroup2 = document.getElementById('filter-class-group');
+                if (classGroup2) classGroup2.classList.toggle('hidden', activeTab !== 'traits');
                 if (viewToggleGroup) viewToggleGroup.style.visibility = activeTab === 'empires' ? '' : 'hidden';
             }
         }
@@ -351,7 +386,7 @@
         // Auto-select item from URL (after renderAll)
         const selectId = AppState.get('select');
         if (selectId) {
-            const allItems = [...empires, ...species];
+            const allItems = [...empires, ...species, ...traits];
             const item = allItems.find(i => i.id === selectId);
             if (item) {
                 showDetail(item);
@@ -360,6 +395,7 @@
         }
 
         function renderAll() {
+            if (activeTab === 'traits') { renderTraitsList(); return; }
             const query = (AppState.get('search') || '').toLowerCase();
             let items = activeTab === 'empires' ? empires : species;
 
@@ -435,6 +471,41 @@
                     listEl.scrollIntoView({ behavior: 'smooth' });
                 });
             });
+        }
+
+        function renderTraitsList() {
+            const query = (AppState.get('search') || '').toLowerCase();
+            const cls = (document.getElementById('filter-class') || {}).value || '';
+            let items = traits.filter(item => {
+                if (query && !(item.name || '').toLowerCase().includes(query) && !item.id.toLowerCase().includes(query)) return false;
+                if (cls && item.leader_class !== cls) return false;
+                return true;
+            });
+            items.sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
+            document.getElementById('filter-stats').textContent = `${items.length} / ${traits.length}`;
+            const totalPages = Math.ceil(items.length / PAGE_SIZE) || 1;
+            if (currentPage > totalPages) currentPage = 1;
+            const pageItems = items.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+            let html = '';
+            for (const item of pageItems) {
+                html += `<div class="item-card" data-id="${esc(item.id)}">` +
+                    `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/traits/${esc(item.icon || item.id)}.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>` +
+                    `<div class="item-card-body"><div class="item-card-header">` +
+                    `<span class="item-card-name">${esc(item.name || item.id)}</span>` +
+                    `<span class="item-card-id">${esc(item.id)}</span>` +
+                    `</div><div class="item-card-meta">` +
+                    (item.leader_class ? `<span class="detail-meta-item">${esc(item.leader_class)}</span>` : '') +
+                    (item.rarity ? `<span class="detail-meta-item">${esc(item.rarity)}</span>` : '') +
+                    `</div></div></div>`;
+            }
+            listEl.innerHTML = html || `<div class="loading" style="animation:none">${I18n.ui('ui.empty.no_items')}</div>`;
+            listEl.querySelectorAll('.item-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const found = traits.find(t => t.id === card.dataset.id);
+                    if (found) showDetail(found);
+                });
+            });
+            renderPagination(totalPages);
         }
 
     } catch (err) {
