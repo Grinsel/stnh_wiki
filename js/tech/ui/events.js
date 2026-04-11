@@ -64,6 +64,15 @@ export function attachEventHandlers({ elements, state, actions }) {
   detailsTab?.addEventListener('click', () => switchTab('details'));
 
   // Share URL
+  function showShareToast(msg) {
+    const toast = document.getElementById('share-toast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('visible');
+    clearTimeout(toast._tid);
+    toast._tid = setTimeout(() => toast.classList.remove('visible'), 2200);
+  }
+
   copyBtn?.addEventListener('click', () => {
     const focus = window.currentFocusId;
     const params = new URLSearchParams({
@@ -81,8 +90,8 @@ export function attachEventHandlers({ elements, state, actions }) {
     }
     const shareURL = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     navigator.clipboard.writeText(shareURL).then(() => {
-      alert(`Link ${focus ? 'to this Branch' : ''} copied to clipboard!\n\n${shareURL}`);
-    }, (err) => alert('Copy URL failed: ' + err));
+      showShareToast(focus ? 'Branch link copied!' : 'View link copied!');
+    }, () => showShareToast('Could not copy link'));
   });
 
   // Filters/layouts
@@ -178,7 +187,7 @@ export function attachEventHandlers({ elements, state, actions }) {
     }
     if (!params) return;
     const shareURL = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
-    navigator.clipboard.writeText(shareURL).then(() => { alert(`URL copied to clipboard!\n\n${shareURL}`); }, (err) => alert('Failed to copy URL: ' + err));
+    navigator.clipboard.writeText(shareURL).then(() => { showShareToast('Path link copied!'); }, () => showShareToast('Could not copy link'));
   });
 
   // Help overlay
@@ -218,11 +227,9 @@ export function attachEventHandlers({ elements, state, actions }) {
     if (detailsTab?.classList.contains('active')) {
       switchTab('general');
     }
-    // Toggle buttons visibility: hide center button, show toolbar button
-    const tb = document.getElementById('load-tree-button');
+    // Hide the centered load button
     const cb = document.getElementById('load-tree-center-button');
     if (cb) cb.style.display = 'none';
-    if (tb) tb.style.display = '';
     actions.loadAndRenderTree?.();
   };
 

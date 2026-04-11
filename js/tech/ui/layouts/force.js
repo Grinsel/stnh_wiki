@@ -181,13 +181,16 @@ export function renderForceDirectedGraph(nodes, links, selectedSpecies, containe
     });
 
     node.attr('transform', (d) => `translate(${d.x},${d.y})`);
-    overlay.remove();
-    applyLOD();
-    if (typeof onEnd === 'function') onEnd();
+    // Run zoomToFit (300ms transition) under the overlay, then reveal
     requestAnimationFrame(() => {
       const fitW = _svg.node().clientWidth || width;
       const fitH = _svg.node().clientHeight || height;
       zoomToFit(_svg, _g, zoom, nodes, fitW, fitH);
+      setTimeout(() => {
+        overlay.remove();
+        applyLOD();
+        if (typeof onEnd === 'function') onEnd();
+      }, 350);
     });
   });
 

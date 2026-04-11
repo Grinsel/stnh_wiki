@@ -339,6 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 resetViewToFullTree: () => {
                     isTierBasedLayout = false;
                     layoutSelect.value = 'force-directed';
+                    window._syncLayoutBtnGroup?.();
                     saveState();
                     updateVisualization(speciesSelect.value, null, false);
                 },
@@ -365,6 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentState.species = 'Federation';
             }
             applyState(currentState);
+            window._syncLayoutBtnGroup?.();
             
             // Validate initial focus exists in dataset
             const initialFocusValid = currentState.focus && data.some(t => t.id === currentState.focus);
@@ -753,11 +755,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide centered button only if nodes are visible
         const centerBtn = document.getElementById('load-tree-center-button');
         if (centerBtn && filteredTechs.length > 0) centerBtn.style.display = 'none';
-        // Ensure toolbar reload button is visible after first render
+        // Show "Full Tree" button only when a branch is focused (not on the full tree)
         const toolbarBtn = document.getElementById('load-tree-button');
-        if (toolbarBtn) toolbarBtn.style.display = '';
+        if (toolbarBtn) toolbarBtn.style.display = (activeTechId || isTierBasedLayout) ? '' : 'none';
         // Preserve glossary inside #tech-tree; only remove previous SVGs and canvas layers
-        techTreeContainer.querySelectorAll('svg').forEach(el => el.remove());
+        techTreeContainer.querySelectorAll(':scope > svg').forEach(el => el.remove());
         techTreeContainer.querySelectorAll('canvas.tech-canvas-layer').forEach(el => el.remove());
         nodes = filteredTechs.map(tech => ({ ...tech }));
         // Build links via data helper
@@ -970,6 +972,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             onLoaded: () => {
                                 const initialState = loadState();
                                 applyState(initialState);
+                                window._syncLayoutBtnGroup?.();
 
                                 // Helper: update adaptive filter options
                                 function refreshAdaptiveFilters() {
@@ -1088,6 +1091,7 @@ document.addEventListener('DOMContentLoaded', () => {
         areaSelect.addEventListener('mousedown', prepareUI, initOnce);
         searchInput.addEventListener('focus', prepareUI, initOnce);
         layoutSelect.addEventListener('mousedown', prepareUI, initOnce);
+        document.getElementById('layout-btn-group')?.addEventListener('mousedown', prepareUI, initOnce);
         document.getElementById('start-tier-select')?.addEventListener('input', prepareUI, initOnce);
         document.getElementById('end-tier-select')?.addEventListener('input', prepareUI, initOnce);
         
@@ -1104,12 +1108,33 @@ document.addEventListener('DOMContentLoaded', () => {
         isTierBasedLayout = !isTierBasedLayout;
         const layoutToRender = isTierBasedLayout ? 'tier-based' : lastLayout;
         document.getElementById('layout-select').value = lastLayout;
+        window._syncLayoutBtnGroup?.();
         updateVisualization(speciesSelect.value, activeTechId, false);
         saveState();
     });
 
     // Initially hide the toggle button
     document.getElementById('toggle-layout-button').style.display = 'none';
+
+    // Layout segmented button group
+    const layoutBtnGroup = document.getElementById('layout-btn-group');
+    if (layoutBtnGroup) {
+        layoutBtnGroup.addEventListener('click', (e) => {
+            const btn = e.target.closest('.layout-btn');
+            if (!btn) return;
+            const newLayout = btn.dataset.layout;
+            layoutSelect.value = newLayout;
+            // Sync active state
+            layoutBtnGroup.querySelectorAll('.layout-btn').forEach(b => b.classList.toggle('active', b === btn));
+            // Trigger the same change listener as before
+            layoutSelect.dispatchEvent(new Event('change'));
+        });
+        // Helper to sync active state from layoutSelect value
+        window._syncLayoutBtnGroup = () => {
+            const val = layoutSelect.value;
+            layoutBtnGroup.querySelectorAll('.layout-btn').forEach(b => b.classList.toggle('active', b.dataset.layout === val));
+        };
+    }
 
     // Path direction toggle button
     const pathDirectionBtn = document.getElementById('path-direction-btn');

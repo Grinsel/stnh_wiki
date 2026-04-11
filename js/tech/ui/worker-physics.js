@@ -68,12 +68,12 @@ export function createLayoutOverlay(container) {
         'display:flex',
         'align-items:center',
         'justify-content:center',
-        'background:rgba(0,0,0,0.45)',
+        'background:var(--bg-primary,#0c0c14)',
         'z-index:50',
         'color:var(--text-muted,#aaa)',
         'font-size:0.85rem',
         'border-radius:inherit',
-        'pointer-events:none',
+        'pointer-events:all',
         'letter-spacing:0.5px',
     ].join(';');
     el.textContent = 'Computing layout\u2026';

@@ -400,11 +400,11 @@
             min-height: 0;
             min-width: 0;
             box-sizing: border-box;
-            overflow: hidden;
+            overflow: visible;
         }
         #tree-toolbar {
             margin-bottom: 0.75rem;
-            display: flex;
+            display: none;
             flex-wrap: wrap;
             gap: 0.4rem;
             align-items: center;
@@ -588,8 +588,131 @@
             background: #7a4b3a;
             border-color: #ff803c;
         }
+        /* Full Tree home button */
+        #load-tree-button.home-btn {
+            align-items: center;
+            gap: 0.35rem;
+            background: var(--accent-glow);
+            color: var(--accent);
+            border-color: var(--accent-dim);
+            font-weight: 600;
+        }
+        #load-tree-button.home-btn[style*="display: none"] {
+            display: none !important;
+        }
+        #load-tree-button.home-btn:not([style*="display: none"]) {
+            display: inline-flex;
+        }
+        #load-tree-button.home-btn:hover {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+        }
+        /* Reset icon-only button — pushed to end of toolbar */
+        #reset-button.reset-icon-btn {
+            padding: 0.3rem 0.5rem;
+            color: var(--text-muted);
+            border-color: transparent;
+            background: transparent;
+        }
+        #reset-button.reset-icon-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-border);
+            background: var(--select-bg-hover);
+        }
+        #reset-button.reset-icon-btn svg {
+            display: block;
+        }
+        /* Share button */
+        #share-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-left: auto;
+        }
+        /* Layout segmented control */
+        .layout-btn-group {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 5px;
+            overflow: visible;
+            border: 1px solid var(--accent-border);
+        }
+        /* Clip only inner borders, not the group boundary */
+        .layout-btn-group > :first-child { border-radius: 4px 0 0 4px; }
+        .layout-btn-group > :last-child  { border-radius: 0 4px 4px 0; }
+        #tree-toolbar .layout-btn {
+            background: var(--select-bg);
+            color: var(--text-muted);
+            border: none;
+            border-right: 1px solid var(--accent-border);
+            border-radius: 0;
+            padding: 0.3rem 0.65rem;
+            font-size: 0.72rem;
+            font-family: inherit;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+            margin: 0;
+            white-space: nowrap;
+        }
+        #tree-toolbar .layout-btn:last-child {
+            border-right: none;
+        }
+        #tree-toolbar .layout-btn:hover {
+            background: var(--select-bg-hover);
+            color: var(--text-primary);
+            border-color: transparent;
+        }
+        #tree-toolbar .layout-btn.active {
+            background: var(--accent-glow);
+            color: var(--accent);
+        }
+        /* Custom tooltips for all toolbar buttons */
+        #toolbar-tooltip {
+            position: fixed;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--accent-border);
+            border-top: 2px solid var(--accent);
+            border-radius: 5px;
+            padding: 0.4rem 0.65rem;
+            font-size: 0.7rem;
+            font-weight: 400;
+            white-space: normal;
+            width: 210px;
+            line-height: 1.5;
+            box-shadow: 0 4px 14px #000b;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.12s;
+            z-index: 9999;
+        }
+        #toolbar-tooltip.visible { opacity: 1; }
+        /* Share toast */
+        #share-toast {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(0.5rem);
+            background: var(--bg-card);
+            color: var(--text-bright);
+            border: 1px solid var(--accent-border);
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            box-shadow: 0 4px 16px #000a;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s, transform 0.2s;
+            z-index: 9999;
+        }
+        #share-toast.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
         /* Nav history buttons */
         .nav-icon-btn {
+            display: inline-flex !important;
             display: inline-flex !important;
             align-items: center;
             gap: 0.35rem;
@@ -1061,25 +1184,29 @@
         
         <main id="tree-panel">
             <div id="tree-toolbar">
-                <button id="reset-button">Reload Page</button>
-                <button id="load-tree-button" style="display: none;">Main Tree</button>
-                <button id="share-button">Share View</button>
+                <button id="load-tree-button" class="home-btn" style="display: none;" data-tooltip="Return to the full tech tree, clearing the current branch focus."><svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M8 2L4 6L8 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Full Tree</button>
                 <button id="render-path-button" style="display: none;">Show Tech Path</button>
-                <label for="layout-select">Layout:</label>
-                <select id="layout-select">
+                <select id="layout-select" style="display: none;" aria-hidden="true">
                     <option value="force-directed">Force-directed</option>
                     <option value="force-directed-arrows">Force-directed Arrows</option>
                     <option value="disjoint-force-directed">Disjoint force-directed</option>
                 </select>
-                <button id="toggle-layout-button">Toggle Tiers</button>
-                <button id="path-direction-btn" title="Toggle: Prerequisites ↔ Dependents"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M8 2L4 6L8 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Prereqs</button>
+                <div class="layout-btn-group" id="layout-btn-group">
+                    <button class="layout-btn active" data-layout="force-directed" data-tooltip="Force — physics simulation where nodes push apart and edges pull together. Best for browsing the full tree.">Force</button>
+                    <button class="layout-btn" data-layout="force-directed-arrows" data-tooltip="Arrows — like Force, but edges show which tech requires which, making dependency direction explicit.">Arrows</button>
+                    <button class="layout-btn" data-layout="disjoint-force-directed" data-tooltip="Disjoint — splits the tree into separate clusters per connected component. Useful for isolated tech groups.">Disjoint</button>
+                </div>
+                <button id="toggle-layout-button" data-tooltip="Switch between tier-based rows and free force-directed layout within this branch.">Toggle Tiers</button>
+                <button id="path-direction-btn" data-tooltip="Toggle whether clicking a node highlights its prerequisites (what it needs) or its dependents (what it unlocks)."><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M8 2L4 6L8 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Prereqs</button>
                 <label for="performance-toggle" style="margin: 0;">Performance mode</label>
                 <label class="switch">
                     <input type="checkbox" id="performance-toggle" checked>
                     <span class="slider"></span>
                 </label>
-                <button id="back-button" class="nav-icon-btn" style="display: none;" title="Navigate back"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M8 2L4 6L8 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
-                <button id="forward-button" class="nav-icon-btn" style="display: none;" title="Navigate forward">Forward <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4 2L8 6L4 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>                
+                <button id="back-button" class="nav-icon-btn" style="display: none;" data-tooltip="Go back to the previously viewed tech branch."><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M8 2L4 6L8 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+                <button id="forward-button" class="nav-icon-btn" style="display: none;" data-tooltip="Go forward in your branch navigation history.">Forward <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4 2L8 6L4 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <button id="share-button" data-tooltip="Copy a link to the current view — includes your active tech, layout, and filters."><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="11" cy="2.5" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="11.5" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="3" cy="7" r="1.8" stroke="currentColor" stroke-width="1.5"/><line x1="4.7" y1="6.1" x2="9.3" y2="3.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="4.7" y1="7.9" x2="9.3" y2="10.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Share</button>
+                <button id="reset-button" class="reset-icon-btn" data-tooltip="Clear all saved state (layout, filters, history) and reload the page fresh."><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M12 7A5 5 0 1 1 9.5 2.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M9 1l1 2-2 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>                
             </div>
             <div id="landing-card">
                 <div class="landing-content">
@@ -1141,6 +1268,7 @@
         </main>
     </div>
     <div id="tooltip"></div>
+    <div id="share-toast">Link copied!</div>
     <div id="popup-viewport" class="hidden">
         <div id="popup-content">
             <div id="popup-toolbar">
@@ -1213,5 +1341,33 @@
     </footer>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script type="module" src="js/tech/main.js"></script>
+    <div id="toolbar-tooltip"></div>
+    <script>
+    (function() {
+        const TIP_W = 210, TIP_GAP = 7, MARGIN = 8;
+        const tip = document.getElementById('toolbar-tooltip');
+        const toolbar = document.getElementById('tree-toolbar');
+        if (!tip || !toolbar) return;
+        toolbar.addEventListener('mouseover', function(e) {
+            const btn = e.target.closest('[data-tooltip]');
+            if (!btn) return;
+            tip.textContent = btn.dataset.tooltip;
+            const r = btn.getBoundingClientRect();
+            let left = r.left;
+            if (left + TIP_W > window.innerWidth - MARGIN) {
+                left = r.right - TIP_W;
+            }
+            left = Math.max(MARGIN, left);
+            tip.style.left = left + 'px';
+            tip.style.top  = (r.bottom + TIP_GAP) + 'px';
+            tip.classList.add('visible');
+        });
+        toolbar.addEventListener('mouseout', function(e) {
+            if (!e.relatedTarget || !e.relatedTarget.closest('[data-tooltip]')) {
+                tip.classList.remove('visible');
+            }
+        });
+    })();
+    </script>
   </body>
   </html>
