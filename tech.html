@@ -34,6 +34,10 @@
             --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             --shadow: 0 0 32px #000a, 0 1px 6px #0005;
         }
+        html, body {
+            height: 100vh;
+            overflow: hidden;
+        }
         #main-container {
             display: flex;
             margin: 0;
@@ -41,6 +45,7 @@
             min-height: 0;
             gap: 1rem;
             padding: 1rem;
+            overflow: hidden;
         }
         #sidebar {
             width: 300px;
@@ -51,7 +56,8 @@
             padding: 1rem;
             overflow-y: auto;
             overflow-x: hidden;
-            height: 100%;
+            max-height: 100%;
+            align-self: flex-start;
             box-sizing: border-box;
         }
         #sidebar::-webkit-scrollbar {
@@ -70,17 +76,17 @@
         }
         .tab-container {
             display: flex;
-            margin-bottom: 18px;
+            margin-bottom: 0.75rem;
         }
         .tab {
-            padding: 10px 20px;
+            padding: 0.3rem 0.75rem;
             cursor: pointer;
             background: var(--select-bg);
-            border-radius: 10px 10px 0 0;
+            border-radius: 6px 6px 0 0;
             border: 1px solid var(--border);
             border-bottom: none;
-            margin-right: 5px;
-            font-size: 1rem;
+            margin-right: 4px;
+            font-size: 0.75rem;
             color: var(--text-muted);
             transition: background 0.3s, color 0.3s;
         }
@@ -91,6 +97,7 @@
         }
         .tab-content {
             position: relative;
+            overflow: hidden;
         }
         #general-panel {
             opacity: 1;
@@ -106,8 +113,8 @@
             transform: translateY(100%);
             opacity: 0;
             transition: transform 0.3s, opacity 0.3s;
-            padding: 20px;
-            border-radius: 0 0 18px 18px;
+            padding: 1rem;
+            border-radius: 0 0 6px 6px;
         }
         #details-panel.active {
             transform: translateY(0);
@@ -119,48 +126,49 @@
         }
         #sidebar h2, .landing-content h2 {
             margin-top: 0;
-            margin-bottom: 18px;
-            font-size: 1.3rem;
+            margin-bottom: 0.6rem;
+            font-size: 1rem;
             color: var(--accent);
         }
         #tech-counter {
-            font-size: 1.05rem;
-            margin-bottom: 26px;
-            padding: 6px 0 12px 0;
+            font-size: 0.75rem;
+            margin-bottom: 0.75rem;
+            padding: 4px 0 8px 0;
             border-bottom: 1px solid var(--accent-border);
             color: var(--text-muted);
         }
         .legend {
-            margin-bottom: 32px;
-            margin-top: 10px;
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
         }
         .legend-row {
-            margin-bottom: 9px;
+            margin-bottom: 6px;
             display: flex; align-items: center;
-            font-size: 1rem;
+            font-size: 0.75rem;
         }
         .legend-bullet {
             display: inline-block;
-            width: 20px; height: 20px;
-            border-radius: 6px;
-            margin-right: 10px;
+            width: 14px; height: 14px;
+            border-radius: 3px;
+            margin-right: 8px;
+            flex-shrink: 0;
         }
         .physics { background: var(--primary); }
         .engineering { background: var(--secondary); }
         .society { background: var(--society); }
         #filters label {
             display: block;
-            margin-top: 18px;
+            margin-top: 0.75rem;
             margin-bottom: 4px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1.5px;
         }
         .filters-divider {
             border-top: 1px solid var(--accent-border);
-            margin-top: 24px;
-            padding-top: 18px;
+            margin-top: 1rem;
+            padding-top: 0.75rem;
         }
         #filters select, #filters input[type="text"] {
             width: 100%;
@@ -245,7 +253,7 @@
             font-size: 0.9rem;
         }
         .autocomplete-empty {
-            padding: 12px;
+            padding: 0.6rem;
             text-align: center;
             color: var(--text-muted);
             font-style: italic;
@@ -278,14 +286,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 12px;
-            margin-bottom: 8px;
+            margin-top: 8px;
+            margin-bottom: 4px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
         }
         .switch {
             position: relative;
             display: inline-block;
-            width: 50px;
-            height: 24px;
+            width: 30px;
+            height: 16px;
         }
         .switch input {
             opacity: 0;
@@ -301,51 +311,53 @@
             bottom: 0;
             background-color: var(--select-bg);
             transition: .4s;
-            border-radius: 24px;
+            border-radius: 9999px;
             border: 1px solid var(--accent-border);
         }
         .slider:before {
             position: absolute;
             content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 3px;
-            background-color: white;
+            height: 10px;
+            width: 10px;
+            left: 2px;
+            top: 2px;
+            background-color: var(--text-muted);
             transition: .4s;
             border-radius: 50%;
         }
         input:checked + .slider {
             background-color: var(--accent);
+            border-color: var(--accent);
         }
         input:checked + .slider:before {
-            transform: translateX(26px);
+            transform: translateX(14px);
+            background-color: var(--bg-deep);
         }
         /* Dual-range tier slider */
         .tier-range-wrap {
             position: relative;
-            height: 30px;
+            height: 24px;
             margin-bottom: 4px;
         }
         .tier-range-track {
             position: absolute;
             left: 0; right: 0;
             top: 50%; transform: translateY(-50%);
-            height: 4px;
-            background: rgba(255,255,255,0.08);
+            height: 3px;
+            background: var(--accent-border);
             border-radius: 2px;
             pointer-events: none;
         }
         .tier-range-fill {
             height: 100%;
-            background: var(--primary);
+            background: var(--accent);
             border-radius: 2px;
-            opacity: 0.75;
+            opacity: 0.7;
         }
         .tier-range-wrap input[type="range"] {
             position: absolute;
             width: 100%;
-            height: 4px;
+            height: 3px;
             left: 0; top: 50%;
             transform: translateY(-50%);
             background: transparent;
@@ -357,23 +369,23 @@
         }
         .tier-range-wrap input[type="range"]::-webkit-slider-thumb {
             pointer-events: all;
-            width: 16px; height: 16px;
+            width: 13px; height: 13px;
             border-radius: 50%;
-            background: var(--primary);
+            background: var(--accent);
             cursor: pointer;
             appearance: none;
             -webkit-appearance: none;
-            border: 2px solid rgba(255,255,255,0.15);
-            box-shadow: 0 0 0 1px var(--primary);
+            border: 2px solid var(--bg-primary);
+            box-shadow: 0 0 0 1px var(--accent);
         }
         .tier-range-wrap input[type="range"]::-moz-range-thumb {
             pointer-events: all;
-            width: 16px; height: 16px;
+            width: 13px; height: 13px;
             border-radius: 50%;
-            background: var(--primary);
+            background: var(--accent);
             cursor: pointer;
-            border: 2px solid rgba(255,255,255,0.15);
-            box-shadow: 0 0 0 1px var(--primary);
+            border: 2px solid var(--bg-primary);
+            box-shadow: 0 0 0 1px var(--accent);
         }
         .tier-range-wrap input[type="range"]::-webkit-slider-runnable-track { background: transparent; }
         .tier-range-wrap input[type="range"]::-moz-range-track { background: transparent; }
@@ -386,21 +398,23 @@
             padding: 1rem;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            min-height: 0;
             min-width: 0;
             box-sizing: border-box;
+            overflow: hidden;
         }
         #tree-toolbar {
-            margin-bottom: 18px;
+            margin-bottom: 0.75rem;
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 0.4rem;
             align-items: center;
         }
         #tree-toolbar label {
             display: flex;
             align-items: center;
-            font-size: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
             margin-right: 2px;
         }
         #tree-toolbar select, #tree-toolbar input[type="text"], #tree-toolbar button {
@@ -408,10 +422,10 @@
             color: var(--text-primary);
             border: 1px solid var(--accent-border);
             border-radius: 4px;
-            padding: 7px 14px;
-            font-size: 0.85rem;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.75rem;
             font-family: inherit;
-            margin-right: 6px;
+            margin-right: 4px;
             transition: background 0.15s, border 0.15s;
         }
         #tree-toolbar button {
@@ -424,13 +438,15 @@
         }
         #tech-tree {
             width: 100%;
-            height: 800px;
+            flex: 1;
+            min-height: 0;
             position: relative;
             border-radius: 14px;
             border: 1.5px solid var(--accent-border);
             background: var(--bg-primary);
             box-shadow: 0 0 16px #0009;
             margin-top: 8px;
+            overflow: hidden;
         }
         /* Centered initial load button inside tech-tree */
         #load-tree-center-button {
@@ -441,8 +457,8 @@
             background: var(--accent);
             color: var(--bg-deep);
             border: none;
-            padding: 14px 28px;
-            font-size: 1rem;
+            padding: 0.5rem 1.4rem;
+            font-size: 0.85rem;
             border-radius: 6px;
             cursor: pointer;
             font-family: 'federation-ds9-title', inherit;
@@ -452,40 +468,42 @@
         }
         #load-tree-center-button:hover { background: var(--accent-bright); }
         #landing-card {
-            flex-grow: 1;
+            flex: 1;
+            min-height: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 6px;
             z-index: 10;
             margin-top: 8px;
+            overflow-y: auto;
         }
         .landing-content {
             color: var(--text-primary);
             text-align: center;
-            padding: 40px;
-            max-width: 600px;
+            padding: 1.5rem;
+            max-width: 560px;
             background: var(--bg-card);
             border-radius: 8px;
             box-shadow: 0 4px 20px #000a;
             border: 1px solid var(--accent-border);
         }
         .landing-content h2 {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             margin-top: 0;
             color: var(--accent);
         }
         .landing-content p {
-            font-size: 1.1rem;
+            font-size: 0.82rem;
             line-height: 1.6;
-            margin-bottom: 24px;
+            margin-bottom: 1rem;
         }
         #show-tree-button {
             background: var(--accent);
             color: var(--bg-deep);
             border: none;
-            padding: 12px 28px;
-            font-size: 1.1rem;
+            padding: 0.5rem 1.4rem;
+            font-size: 0.82rem;
             border-radius: 6px;
             cursor: pointer;
             font-family: 'federation-ds9-title', inherit;
@@ -548,10 +566,10 @@
             background: var(--select-bg);
             color: var(--primary);
             border: 1px solid var(--accent-border);
-            padding: 7px 12px;
+            padding: 0.3rem 0.7rem;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-family: inherit;
             transition: background 0.15s, border 0.15s;
         }
@@ -594,25 +612,27 @@
         }
         #view-legend {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 8px;
+            left: 8px;
             background: var(--bg-card);
             border: 1px solid var(--accent-border);
             border-radius: 6px;
-            padding: 10px;
+            padding: 0.5rem 0.6rem;
             box-shadow: 0 2px 10px #000a;
             z-index: 100;
         }
         .view-legend-row {
             display: flex;
             align-items: center;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+            font-size: 0.7rem;
         }
         .view-legend-bullet {
-            width: 15px;
-            height: 15px;
-            border-radius: 4px;
-            margin-right: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            margin-right: 6px;
+            flex-shrink: 0;
         }
         /* Help button in tech-tree (top-right) */
         #help-button {
@@ -656,10 +676,10 @@
             box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
-            padding: 20px;
+            padding: 1rem;
         }
         #popup-toolbar {
-            margin-bottom: 15px;
+            margin-bottom: 0.75rem;
             text-align: center;
         }
         #popup-tech-tree {
@@ -675,7 +695,7 @@
             left: 50%;
             transform: translateX(-50%);
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 0.8rem;
             text-align: center;
             padding: 0 20px;
             width: calc(100% - 40px);
@@ -686,10 +706,10 @@
             display: none;
             background-color: var(--bg-primary);
             border: 1.5px solid var(--accent-border);
-            padding: 14px 18px;
+            padding: 0.75rem 1rem;
             border-radius: 6px;
             color: var(--text-primary);
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             z-index: 50;
             pointer-events: none;
             max-width: 380px;
@@ -730,7 +750,7 @@
         .unlock-category-label {
             font-weight: bold;
             color: #ffd700;
-            font-size: 0.95rem;
+            font-size: 0.75rem;
             display: block;
             margin-bottom: 4px;
         }
@@ -762,11 +782,11 @@
             align-items: center;
         }
         #help-content {
-            width: min(720px, 92%);
+            width: min(700px, 92%);
             background: var(--bg-primary);
             border-radius: 8px;
             box-shadow: var(--shadow);
-            padding: 18px 18px 6px 18px;
+            padding: 1rem 1rem 0.5rem 1rem;
             border: 1px solid var(--accent-border);
         }
         #help-toolbar {
@@ -787,23 +807,68 @@
         #help-toolbar button:hover { background: var(--select-bg-hover); border-color: var(--primary); }
         @media (max-width: 1300px) {
             #main-container { 
-                flex-direction: column; 
-                height: auto;
+                flex-direction: column;
             }
             #sidebar { 
                 width: 100%;
                 height: auto;
-                max-height: 50vh; /* Limit height on smaller screens */
-                margin-bottom: 20px;
+                max-height: 35vh;
+                margin-bottom: 0.5rem;
             }
             #tree-panel { 
-                min-width: unset; 
+                min-width: unset;
+                flex: 1;
+                min-height: 0;
+            }
+            #tech-tree {
+                flex: 1;
+                min-height: 0;
             }
         }
         @media (max-width: 800px) {
             #main-container { padding: 0 2vw; }
             #sidebar, #tree-panel { padding: 10px 2vw; }
             #tree-panel { min-width: unset; }
+        }
+        /* Mobile disclaimer */
+        #mobile-disclaimer {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            html, body { overflow: auto; }
+            #filter-bar, #main-container { display: none !important; }
+            #mobile-disclaimer {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem 1.5rem;
+                text-align: center;
+                gap: 1rem;
+            }
+            #mobile-disclaimer .disclaimer-card {
+                background: var(--bg-card);
+                border: 1px solid var(--accent-border);
+                border-radius: 10px;
+                padding: 1.5rem 1.75rem;
+                max-width: 420px;
+                box-shadow: 0 4px 20px #000a;
+            }
+            #mobile-disclaimer .disclaimer-icon {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+            #mobile-disclaimer h2 {
+                margin: 0 0 0.6rem;
+                font-size: 1rem;
+                color: var(--accent);
+            }
+            #mobile-disclaimer p {
+                font-size: 0.8rem;
+                color: var(--text-muted);
+                line-height: 1.6;
+                margin: 0;
+            }
         }
     </style>
 </head>
@@ -846,6 +911,15 @@
                 <a href="tech-list.html" class="tab-btn" style="text-decoration:none" data-i18n="ui.view.list_view">☰ List</a>
                 <span class="tab-btn active" data-i18n="ui.view.tree_view">⌥ Tree</span>
             </div>
+        </div>
+    </div>
+
+    <!-- Mobile disclaimer (shown instead of tech tree on small screens) -->
+    <div id="mobile-disclaimer">
+        <div class="disclaimer-card">
+            <div class="disclaimer-icon">🖥️</div>
+            <h2>Desktop Only</h2>
+            <p>The interactive tech tree requires a larger screen and is not available on mobile devices. Please visit this page on a desktop or tablet for the full experience.</p>
         </div>
     </div>
 
@@ -918,7 +992,7 @@
                             <input type="range" id="start-tier-select" min="0" max="11" value="0" step="1">
                             <input type="range" id="end-tier-select" min="0" max="11" value="11" step="1">
                         </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #607080; margin-bottom: 10px; padding: 0 2px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text-muted); margin-bottom: 10px; padding: 0 2px;">
                             <span>Tier 0</span><span>Tier 11</span>
                         </div>
                         <label for="tech-filter-input" class="filters-divider">Search: (any word or number)</label>
@@ -976,7 +1050,7 @@
                 <div class="landing-content">
                     <h2>Welcome to the Star Trek: New Horizons Tech Tree!</h2>
                     <p>An interactive tool to explore the technologies of the ST:NH mod.</p>
-                    <ul style="text-align: left; max-width: 500px; margin: 18px auto 0 auto; font-size: 1.07rem; padding-left: 20px;">
+                    <ul style="text-align: left; max-width: 500px; margin: 0.75rem auto 0 auto; font-size: 0.8rem; padding-left: 1.25rem;">
                         <li>
                             <b>Explore the Tree:</b> Use filters, search, or simply pan and zoom to navigate the entire tech tree.
                         </li>
@@ -993,15 +1067,15 @@
                             <b>Customizable UI:</b> Choose from multiple layouts (including one with dependency arrows) and drag the control panel anywhere on the screen.
                         </li>
                     </ul>
-                    <div style="background: #c8373722; border: 1px solid #c8373788; border-radius: 8px; padding: 13px 16px 11px 16px; margin-top: 22px; color: #ffc4c4; font-size: 1rem;">
+                    <div style="background: #c8373722; border: 1px solid #c8373788; border-radius: 6px; padding: 0.6rem 0.85rem; margin-top: 1rem; color: #ffc4c4; font-size: 0.75rem;">
                         <b>Beta / WIP:</b><br>
                         This tool is still in development. Some features may not be fully functional.
                     </div>
-                    <div style="background: #222d38dd; border-radius: 8px; padding: 13px 16px 11px 16px; margin-top: 22px; color: #ffe38c; font-size: 1rem;">
+                    <div style="background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 6px; padding: 0.6rem 0.85rem; margin-top: 0.75rem; color: var(--accent-bright); font-size: 0.75rem;">
                         <b>Tip:</b><br>
                         The more general your search or filters, the bigger (and slower) the tech tree becomes. Try to be specific for best results!
                     </div>
-                    <button id="show-tree-button" style="margin-top: 28px;">Show Tech Tree</button>
+                    <button id="show-tree-button" style="margin-top: 1rem;">Show Tech Tree</button>
                 </div>
             </div>
             <div id="tech-tree">
@@ -1014,14 +1088,14 @@
                         <span class="view-legend-bullet" style="background: repeating-linear-gradient(45deg, #000 0 2px, transparent 4px 6px), #fff; border: 1px solid #000;"></span>
                         Tier
                     </div>
-                    <div class="view-legend-row" style="margin-top: 10px;">
-                        <span style="margin-right: 8px;">Zoom</span>
-                        <button id="zoom-in-button" style="width: 25px; height: 25px; margin-right: 5px;">+</button>
-                        <button id="zoom-out-button" style="width: 25px; height: 25px;">-</button>
-                    </div>
                     <div class="view-legend-row" style="margin-top: 8px;">
+                        <span style="margin-right: 8px;">Zoom</span>
+                        <button id="zoom-in-button" style="width: 20px; height: 20px; margin-right: 4px; padding: 0; font-size: 0.75rem;">+</button>
+                        <button id="zoom-out-button" style="width: 20px; height: 20px; padding: 0; font-size: 0.75rem;">-</button>
+                    </div>
+                    <div class="view-legend-row" style="margin-top: 6px;">
                         <span style="margin-right: 8px;">Tooltip</span>
-                        <label class="switch" style="transform: scale(0.8);">
+                        <label class="switch">
                             <input type="checkbox" id="tooltip-toggle" checked>
                             <span class="slider"></span>
                         </label>
@@ -1049,7 +1123,7 @@
             <div id="help-toolbar">
                 <button id="help-close-button">Close</button>
             </div>
-            <ul style="text-align: left; max-width: 720px; margin: 8px auto 0 auto; font-size: 1.07rem; padding-left: 20px;">
+            <ul style="text-align: left; max-width: 720px; margin: 0.5rem auto 0 auto; font-size: 0.8rem; padding-left: 1.25rem;">
                 <li>
                     <b>Explore the Tree:</b> Use filters, search, or simply pan and zoom to navigate the entire tech tree.
                 </li>
@@ -1069,11 +1143,11 @@
                     <b>Tier Indicators:</b> Each technology shows a small white wedge on the left with diagonal black stripes. The number of stripes equals the tech's tier (up to T11).
                 </li>
             </ul>
-            <div style="background: #c8373722; border: 1px solid #c8373788; border-radius: 8px; padding: 13px 16px 11px 16px; margin: 16px auto 0 auto; color: #ffc4c4; font-size: 1rem; max-width: 720px;">
+            <div style="background: #c8373722; border: 1px solid #c8373788; border-radius: 6px; padding: 0.6rem 0.85rem; margin: 0.75rem auto 0 auto; color: #ffc4c4; font-size: 0.75rem; max-width: 720px;">
                 <b>Beta / WIP:</b><br>
                 This tool is still in development. Some features may not be fully functional.
             </div>
-            <div style="background: #222d38dd; border-radius: 8px; padding: 13px 16px 11px 16px; margin: 16px auto; color: #ffe38c; font-size: 1rem; max-width: 720px;">
+            <div style="background: var(--bg-card); border: 1px solid var(--accent-border); border-radius: 6px; padding: 0.6rem 0.85rem; margin: 0.75rem auto; color: var(--accent-bright); font-size: 0.75rem; max-width: 720px;">
                 <b>Tip:</b><br>
                 The more general your search or filters, the bigger (and slower) the tech tree becomes. Try to be specific for best results!
             </div>
