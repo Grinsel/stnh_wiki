@@ -51,8 +51,8 @@ const UI_STRINGS = {
     'ui.view.list':           { english: '☰ List', german: '☰ Liste', french: '☰ Liste', russian: '☰ Список' },
     'ui.view.map':            { english: '✦ Galaxy Map', german: '✦ Galaxie-Karte', french: '✦ Carte galactique', russian: '✦ Карта галактики' },
     'ui.view.techtree':       { english: '⌥ Tech Tree', german: '⌥ Technikbaum', french: '⌥ Arbre techno', russian: '⌥ Дерево технологий' },
-    'ui.view.list_view':      { english: 'List View', german: 'Listenansicht', french: 'Vue liste', russian: 'Список' },
-    'ui.view.tree_view':      { english: 'Tree View', german: 'Baumansicht', french: 'Vue arbre', russian: 'Дерево' },
+    'ui.view.list_view':      { english: '☰ List', german: '☰ Liste', french: '☰ Liste', russian: '☰ Список' },
+    'ui.view.tree_view':      { english: '⌥ Tree', german: '⌥ Baum', french: '⌥ Arbre', russian: '⌥ Дерево' },
 
     // ==========================================
     // Filter Labels & Default Options
