@@ -437,21 +437,19 @@ export function wrapText(textSelection, width, lineHeight = 12, maxLines = 2) {
           line.push(word);
           const lineStr = line.join(' ');
           tspan.text(lineStr);
-          const fitsByEstimate = _estWidth(lineStr) <= width * 0.95;
-          if (!fitsByEstimate && tspan.node().getComputedTextLength() > width) {
+          if (_estWidth(lineStr) > width * 0.95) {
               line.pop();
               tspan.text(line.join(' '));
               line = [word];
               lineNumber += 1;
               if (lineNumber >= maxLines) {
                   const last = text.select('tspan:last-child');
-                  const current = last.text();
-                  let trimmed = current;
-                  last.text(trimmed + '…');
-                  while (last.node().getComputedTextLength() > width && trimmed.length > 0) {
+                  let trimmed = last.text();
+                  // Trim using width estimate to avoid layout reflows
+                  while (_estWidth(trimmed + '…') > width && trimmed.length > 0) {
                       trimmed = trimmed.slice(0, -1);
-                      last.text(trimmed + '…');
                   }
+                  last.text(trimmed + '…');
                   d._nameLineCount = maxLines;
                   return;
               }
@@ -538,8 +536,10 @@ export function formatTooltip(d, currentFactionId = 'all') {
     let unlocksHtml = '';
 
     if (d.unlock_details && d.unlock_details.unlocks_by_type) {
-        // Clone unlocks_by_type to avoid modifying original data
-        const unlocksByType = JSON.parse(JSON.stringify(d.unlock_details.unlocks_by_type));
+        // Shallow-clone unlocks_by_type (arrays copied) to avoid modifying original data
+        const unlocksByType = Object.fromEntries(
+            Object.entries(d.unlock_details.unlocks_by_type).map(([k, v]) => [k, [...v]])
+        );
 
         // Add faction-specific ships if faction is selected AND faction has unique ships
         // Factions without unique ships (like Breen) should only see generic ship names
@@ -770,7 +770,11 @@ export function updateLOD(svg, g) {
           .join('line')
           .attr('class', 'link')
           .attr('stroke', layout === 'force-directed' ? '#e0e0e0ff' : '#999')
-          .attr('stroke-opacity', layout === 'force-directed' ? 0.5 : 0.6);
+          .attr('stroke-opacity', layout === 'force-directed' ? 0.5 : 0.6)
+          .attr('x1', d => (d.source && typeof d.source === 'object') ? d.source.x : 0)
+          .attr('y1', d => (d.source && typeof d.source === 'object') ? d.source.y : 0)
+          .attr('x2', d => (d.target && typeof d.target === 'object') ? d.target.x : 0)
+          .attr('y2', d => (d.target && typeof d.target === 'object') ? d.target.y : 0);
       } else if (layout === 'force-directed-arrows') {
         linksLayer.selectAll('.link')
           .data(data.links)
@@ -899,7 +903,11 @@ export function updateLOD(svg, g) {
         .join('line')
         .attr('class', 'link')
         .attr('stroke', layout === 'force-directed' ? '#e0e0e0ff' : '#999')
-        .attr('stroke-opacity', layout === 'force-directed' ? 0.5 : 0.6);
+        .attr('stroke-opacity', layout === 'force-directed' ? 0.5 : 0.6)
+        .attr('x1', d => (d.source && typeof d.source === 'object') ? d.source.x : 0)
+        .attr('y1', d => (d.source && typeof d.source === 'object') ? d.source.y : 0)
+        .attr('x2', d => (d.target && typeof d.target === 'object') ? d.target.x : 0)
+        .attr('y2', d => (d.target && typeof d.target === 'object') ? d.target.y : 0);
     } else if (layout === 'force-directed-arrows') {
       linksLayer.selectAll('.link')
         .data(data.links)
@@ -919,10 +927,14 @@ export function updateLOD(svg, g) {
     (data.nodes || []).filter(n => isVisible(n)).map(n => n.id)
   );
 
+  // Cull off-screen node groups entirely — browser skips painting their whole subtree
+  g.select('.nodes-layer').selectAll('.tech-node')
+    .style('display', d => visibleNodeIds.has(d?.id) ? null : 'none');
+
   const nodeCircles = g.selectAll('.node-circle');
   const nodeRects = g.selectAll('.node-rect, .tier-indicator, .node-label');
   nodeCircles.style('display', d => (isCircleView && visibleNodeIds.has(d?.id)) ? null : 'none');
-  nodeRects.style('display', d => (isCircleView) ? 'none' : null);
+  nodeRects.style('display', d => (!isCircleView && visibleNodeIds.has(d?.id)) ? null : 'none');
 
   if (!isCircleView) {
     g.selectAll('.node-label').style('display', d => (k >= showLabelsAt && visibleNodeIds.has(d?.id)) ? null : 'none');

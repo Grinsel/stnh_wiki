@@ -9,7 +9,7 @@
     <meta property="og:description" content="Interactive technology tree with ~2,600 techs. Explore prerequisites, unlocks, and faction-specific research paths.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ST:NH Wiki">
-    <link rel="icon" type="image/png" href="assets/tech/PDGIco.png">
+
     <script>
         (function() {
             try {
@@ -113,7 +113,6 @@
             transform: translateY(100%);
             opacity: 0;
             transition: transform 0.3s, opacity 0.3s;
-            padding: 1rem;
             border-radius: 0 0 6px 6px;
         }
         #details-panel.active {
@@ -572,6 +571,9 @@
             font-size: 0.75rem;
             font-family: inherit;
             transition: background 0.15s, border 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
         }
         #path-direction-btn:hover {
             background: var(--select-bg-hover);
@@ -586,6 +588,19 @@
             background: #7a4b3a;
             border-color: #ff803c;
         }
+        /* Nav history buttons */
+        .nav-icon-btn {
+            display: inline-flex !important;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        #back-button svg,
+        #forward-button svg,
+        #path-direction-btn svg {
+            flex-shrink: 0;
+        }
+        #back-button:hover svg   { transform: translateX(-2px); transition: transform 0.15s; }
+        #forward-button:hover svg { transform: translateX(2px);  transition: transform 0.15s; }
         /* Category highlighting - dim non-matching techs */
         .tech-node.category-dimmed {
             opacity: 0.2;
@@ -655,6 +670,26 @@
             font-size: 18px;
         }
         #help-button:hover { background: var(--select-bg-hover); border-color: var(--primary); }
+        /* Zoom buttons in view-legend */
+        #zoom-in-button, #zoom-out-button {
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            border-radius: 4px;
+            background: var(--select-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--accent-border);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        #zoom-in-button:hover, #zoom-out-button:hover {
+            background: var(--select-bg-hover);
+            border-color: var(--primary);
+        }
         #popup-viewport {
             position: fixed;
             top: 0;
@@ -1037,14 +1072,14 @@
                     <option value="disjoint-force-directed">Disjoint force-directed</option>
                 </select>
                 <button id="toggle-layout-button">Toggle Tiers</button>
-                <button id="path-direction-btn" title="Toggle: Prerequisites ↔ Dependents">← Prereqs</button>
+                <button id="path-direction-btn" title="Toggle: Prerequisites ↔ Dependents"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M8 2L4 6L8 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Prereqs</button>
                 <label for="performance-toggle" style="margin: 0;">Performance mode</label>
                 <label class="switch">
                     <input type="checkbox" id="performance-toggle" checked>
                     <span class="slider"></span>
                 </label>
-                <button id="back-button" style="display: none;">< Back</button>
-                <button id="forward-button" style="display: none;">Forward ></button>                
+                <button id="back-button" class="nav-icon-btn" style="display: none;" title="Navigate back"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M8 2L4 6L8 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+                <button id="forward-button" class="nav-icon-btn" style="display: none;" title="Navigate forward">Forward <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4 2L8 6L4 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>                
             </div>
             <div id="landing-card">
                 <div class="landing-content">
@@ -1090,8 +1125,8 @@
                     </div>
                     <div class="view-legend-row" style="margin-top: 8px;">
                         <span style="margin-right: 8px;">Zoom</span>
-                        <button id="zoom-in-button" style="width: 20px; height: 20px; margin-right: 4px; padding: 0; font-size: 0.75rem;">+</button>
-                        <button id="zoom-out-button" style="width: 20px; height: 20px; padding: 0; font-size: 0.75rem;">-</button>
+                        <button id="zoom-in-button" title="Zoom in"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+                        <button id="zoom-out-button" title="Zoom out"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M1 5h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
                     </div>
                     <div class="view-legend-row" style="margin-top: 6px;">
                         <span style="margin-right: 8px;">Tooltip</span>

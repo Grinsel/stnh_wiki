@@ -3,6 +3,7 @@
 
 import { createSvgFor, getAreaColor, formatTooltip, updateLOD } from '../../render.js';
 import { zoomToFit } from '../zoom.js';
+import { runForceInWorker, createLayoutOverlay } from '../worker-physics.js';
 
 export function renderDisjointForceDirectedGraph(nodes, links, selectedSpecies, container, deps) {
   const {
@@ -14,6 +15,7 @@ export function renderDisjointForceDirectedGraph(nodes, links, selectedSpecies, 
     activeTechId,
     selectionStartNode,
     selectionEndNode,
+    onEnd,
   } = deps || {};
 
   if (!drag || !tooltipEl || !techTreeContainerEl || !handleNodeSelection || !updateVisualization) {
@@ -64,114 +66,122 @@ export function renderDisjointForceDirectedGraph(nodes, links, selectedSpecies, 
     .force('charge', d3.forceManyBody().strength(-300))
     .force('x', d3.forceX(width / 2).strength(0.1))
     .force('y', d3.forceY(height / 2).strength(0.1))
-    .force('collision', d3.forceCollide().radius(60));
+    .force('collision', d3.forceCollide().radius(60))
+    .stop(); // Held — positions computed off-thread
 
-  // Avoid blocking the UI at startup: reduce pre-ticks when performance mode is on
   const perfToggle = document.getElementById('performance-toggle');
-  const perfOn = !!perfToggle?.checked;
-  const preTicks = perfOn ? 50 : 200;
-  for (let i = 0; i < preTicks; ++i) simulation.tick();
+  const perfOn     = !!perfToggle?.checked;
+  const numTicks   = perfOn ? 50 : 200;
 
-  // After initial settle, frame all nodes within the viewport
-  zoomToFit(_svg, _g, zoom, nodes, width, height, 300, 0.02, 2);
-
-  const node = _g
-    .select('.nodes-layer')
-    .selectAll('g')
-    .data(nodes)
-    .join('g')
-    .attr('class', 'tech-node')
-    .call(drag(simulation))
-    .on('mouseover', (event, d) => {
-      const tooltipToggle = document.getElementById('tooltip-toggle');
-      if (!tooltipToggle || tooltipToggle.checked) {
-        tooltipEl.style.display = 'block';
-        tooltipEl.innerHTML = formatTooltip(d);
-      }
-    })
-    .on('mousemove', (event) => {
-      const treeRect = techTreeContainerEl.getBoundingClientRect();
-      const tooltipRect = tooltipEl.getBoundingClientRect();
-      let x = event.clientX + 15;
-      let y = event.clientY + 15;
-      if (x + tooltipRect.width > treeRect.right) x = event.clientX - tooltipRect.width - 15;
-      if (y + tooltipRect.height > treeRect.bottom) y = event.clientY - tooltipRect.height - 15;
-      tooltipEl.style.left = `${Math.max(treeRect.left, x)}px`;
-      tooltipEl.style.top = `${Math.max(treeRect.top, y)}px`;
-    })
-    .on('mouseout', () => (tooltipEl.style.display = 'none'))
-    .on('click', (event, d) => {
-      window.currentFocusId = d.id;
-      updateVisualization(selectedSpecies, d.id, true);
-    })
-    .on('contextmenu', (event, d) => {
-      event.preventDefault();
-      handleNodeSelection(d);
-    });
-
-  const nodeWidth = 120,
-    nodeHeight = 70;
-
-  node
-    .append('circle')
-    .attr('class', 'node-circle')
-    .attr('r', 30)
-    .attr('fill', (d) => getAreaColor(d.area))
-    .style('display', 'none');
-
-  node
-    .append('rect')
-    .attr('class', 'node-rect')
-    .attr('width', nodeWidth)
-    .attr('height', nodeHeight)
-    .attr('x', -nodeWidth / 2)
-    .attr('y', -nodeHeight / 2)
-    .attr('rx', 8)
-    .attr('ry', 8)
-    .attr('fill', (d) => (d.area ? `url(#gradient-${d.area})` : getAreaColor(d.area)))
-    .attr('stroke', (d) => {
-      if (d.id === activeTechId) return 'yellow';
-      if (d.id === selectionStartNode) return 'lime';
-      if (d.id === selectionEndNode) return 'red';
-      return 'none';
-    })
-    .attr('stroke-width', (d) =>
-      d.id === activeTechId || d.id === selectionStartNode || d.id === selectionEndNode ? 3 : 1
-    );
-
-  // Tier indicators and labels are created by updateLOD()
+  const nodeWidth = 120, nodeHeight = 70;
 
   const maxDistanceDJ = Math.min(width, height) * 1.5;
   const centerDJ = { x: width / 2, y: height / 2 };
   function boundingForceDJ() {
-    for (const node of nodes) {
-      const dist = Math.hypot(node.x - centerDJ.x, node.y - centerDJ.y);
+    for (const n of nodes) {
+      const dist = Math.hypot(n.x - centerDJ.x, n.y - centerDJ.y);
       if (dist > maxDistanceDJ) {
-        node.vx += (centerDJ.x - node.x) * 0.01 * simulation.alpha();
-        node.vy += (centerDJ.y - node.y) * 0.01 * simulation.alpha();
+        n.vx += (centerDJ.x - n.x) * 0.01 * simulation.alpha();
+        n.vy += (centerDJ.y - n.y) * 0.01 * simulation.alpha();
       }
     }
   }
 
-  let tickCountDisjoint = 0;
-  simulation.on('tick', () => {
-    boundingForceDJ();
-    _g
-      .select('.links-layer')
-      .selectAll('.link')
-      .attr('x1', (d) => d.source.x)
-      .attr('y1', (d) => d.source.y)
-      .attr('x2', (d) => d.target.x)
-      .attr('y2', (d) => d.target.y);
-    node.attr('transform', (d) => `translate(${d.x},${d.y})`);
-    if (++tickCountDisjoint % 15 === 0) applyLOD();
-    if (tickCountDisjoint > 80 && simulation.alpha() < 0.03) {
-      simulation.stop();
-      applyLOD();
-    }
-  });
+  const overlay = createLayoutOverlay(container);
 
-  applyLOD();
+  const nodeSnaps = nodes.map(n => ({ id: n.id, x: n.x, y: n.y }));
+  const linkSnaps = links.map(l => ({
+    source: typeof l.source === 'object' ? l.source.id : l.source,
+    target: typeof l.target === 'object' ? l.target.id : l.target,
+  }));
+
+  runForceInWorker(nodeSnaps, linkSnaps, width, height, {
+    numTicks, linkDistance: 100, linkStrength: 0.5,
+    chargeStrength: -300, collideRadius: 60, forceXStrength: 0.1, forceYStrength: 0.1,
+  }).then(positions => {
+    if (positions) {
+      const posMap = new Map(positions.map(p => [p.id, p]));
+      nodes.forEach(n => { const p = posMap.get(n.id); if (p) { n.x = p.x; n.y = p.y; } });
+    } else {
+      for (let i = 0; i < numTicks; i++) simulation.tick();
+    }
+
+    const node = _g
+      .select('.nodes-layer')
+      .selectAll('g')
+      .data(nodes)
+      .join('g')
+      .attr('class', 'tech-node')
+      .call(drag(simulation))
+      .on('mouseover', (event, d) => {
+        const tooltipToggle = document.getElementById('tooltip-toggle');
+        if (!tooltipToggle || tooltipToggle.checked) {
+          tooltipEl.style.display = 'block';
+          tooltipEl.innerHTML = formatTooltip(d);
+        }
+      })
+      .on('mousemove', (event) => {
+        const treeRect = techTreeContainerEl.getBoundingClientRect();
+        const tooltipRect = tooltipEl.getBoundingClientRect();
+        let x = event.clientX + 15;
+        let y = event.clientY + 15;
+        if (x + tooltipRect.width > treeRect.right) x = event.clientX - tooltipRect.width - 15;
+        if (y + tooltipRect.height > treeRect.bottom) y = event.clientY - tooltipRect.height - 15;
+        tooltipEl.style.left = `${Math.max(treeRect.left, x)}px`;
+        tooltipEl.style.top = `${Math.max(treeRect.top, y)}px`;
+      })
+      .on('mouseout', () => (tooltipEl.style.display = 'none'))
+      .on('click', (event, d) => {
+        window.currentFocusId = d.id;
+        updateVisualization(selectedSpecies, d.id, true);
+      })
+      .on('contextmenu', (event, d) => {
+        event.preventDefault();
+        handleNodeSelection(d);
+      });
+
+    node.append('circle').attr('class', 'node-circle').attr('r', 30)
+      .attr('fill', (d) => getAreaColor(d.area)).style('display', 'none');
+
+    node.append('rect').attr('class', 'node-rect')
+      .attr('width', nodeWidth).attr('height', nodeHeight)
+      .attr('x', -nodeWidth / 2).attr('y', -nodeHeight / 2)
+      .attr('rx', 8).attr('ry', 8)
+      .attr('fill', (d) => (d.area ? `url(#gradient-${d.area})` : getAreaColor(d.area)))
+      .attr('stroke', (d) => {
+        if (d.id === activeTechId) return 'yellow';
+        if (d.id === selectionStartNode) return 'lime';
+        if (d.id === selectionEndNode) return 'red';
+        return 'none';
+      })
+      .attr('stroke-width', (d) =>
+        d.id === activeTechId || d.id === selectionStartNode || d.id === selectionEndNode ? 3 : 1
+      );
+
+    let tickCountDisjoint = 0;
+    simulation.on('tick', () => {
+      boundingForceDJ();
+      _g.select('.links-layer').selectAll('.link')
+        .attr('x1', (d) => d.source.x).attr('y1', (d) => d.source.y)
+        .attr('x2', (d) => d.target.x).attr('y2', (d) => d.target.y);
+      node.attr('transform', (d) => `translate(${d.x},${d.y})`);
+      if (++tickCountDisjoint % 15 === 0) applyLOD();
+      if (tickCountDisjoint > 80 && simulation.alpha() < 0.03) {
+        simulation.stop();
+        applyLOD();
+      }
+    });
+
+    node.attr('transform', (d) => `translate(${d.x},${d.y})`);
+    overlay.remove();
+    applyLOD();
+    if (typeof onEnd === 'function') onEnd();
+    requestAnimationFrame(() => {
+      const fitW = _svg.node().clientWidth || width;
+      const fitH = _svg.node().clientHeight || height;
+      zoomToFit(_svg, _g, zoom, nodes, fitW, fitH);
+    });
+  });
 
   return { svg: _svg, g: _g, zoom: zoom };
 }

@@ -1,4 +1,5 @@
-import { updateLOD, calculateAndRenderPath as calculateAndRenderPathController, formatTooltip, createSvgFor, getAreaColor } from './js/tech/render.js';
+import { updateLOD, calculateAndRenderPath as calculateAndRenderPathController, formatTooltip, createSvgFor, getAreaColor, renderNodeLabels } from './js/tech/render.js';
+import { CanvasTechRenderer } from './js/tech/canvas-renderer.js';
 import { buildLinksFromPrereqs, getConnectedTechIds, getPrerequisites as getPrerequisitesData, calculateAllPaths, loadTechnologyData, getAllTechsCached, isTechDataLoaded, filterTechsByFaction, isFactionExclusive, loadTechItemMap } from './js/tech/data.js';  // NEW Phase 2: added filterTechsByFaction, isFactionExclusive
 import { filterTechsByTier as filterTechsByTierData, filterTechs, loadSpeciesFilter, loadCategoryFilter, loadUnlockFilter, updateAdaptiveFilters } from './js/tech/filters.js';
 import { handleSearch as executeSearch } from './js/tech/search.js';
@@ -490,8 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
             onEnd,
         } = deps || {};
 
-        const { svg: _svg, g: _g, zoom, width, height } = createSvgFor(container, () => applyLOD());
-        let applyLOD = () => updateLOD(_svg, _g);
+        const { svg: _svg, g: _g, zoom, width, height } = createSvgFor(container);
 
         const defs = _svg.append('defs');
         const gradients = {
@@ -537,18 +537,16 @@ document.addEventListener('DOMContentLoaded', () => {
             link.target = nodeMap.get(link.target) || link.target;
         });
 
-        _g
-            .select('.links-layer')
-            .selectAll('.link')
-            .data(links)
-            .join('line')
-            .attr('class', 'link')
-            .attr('x1', d => d.source.x)
-            .attr('y1', d => d.source.y)
-            .attr('x2', d => d.target.x)
-            .attr('y2', d => d.target.y)
-            .attr('stroke', '#555')
-            .attr('stroke-width', 1.5);
+        // Canvas renderer draws all links — eliminates thousands of SVG <line> elements.
+        // (renderTree already removed the old canvas before calling this function.)
+        const canvasRenderer = new CanvasTechRenderer(container, nodes, links, width, height);
+
+        // Pre-set LOD flags: buildEnter creates full nodes on entry, no lazy init needed.
+        _g.property('labelsInitialized', true);
+        _g.property('tiersInitialized', true);
+        _g.property('linksInitialized', true);
+        _g.property('layout', 'tier');
+        _g.datum({ nodes, links });
 
         const tierLayer = _g.insert('g', '.nodes-layer').attr('class', 'tier-layer');
 
@@ -582,106 +580,163 @@ document.addEventListener('DOMContentLoaded', () => {
         let tierRafId = null;
         zoom.on('zoom', (event) => {
             _g.attr('transform', event.transform);
+            canvasRenderer.scheduleRender(event.transform);
             if (tierRafId == null) {
                 tierRafId = requestAnimationFrame(() => {
                     drawTierLines();
-                    applyLOD();
+                    updateViewport(event.transform);
                     tierRafId = null;
                 });
             }
         });
 
-        const node = _g
-            .select('.nodes-layer')
-            .selectAll('g')
-            .data(nodes)
-            .join('g')
-            .attr('class', 'tech-node')
-            .attr('transform', d => `translate(${d.x},${d.y})`)
-            .on('mouseover', (event, d) => {
-                // Tooltip nur anzeigen wenn Toggle aktiv
-                const tooltipToggle = document.getElementById('tooltip-toggle');
-                if (!tooltipToggle || tooltipToggle.checked) {
-                    tooltipEl.style.display = 'block';
-                    tooltipEl.innerHTML = formatTooltip(d, getCurrentFaction());
-                }
+        const nodesLayer = _g.select('.nodes-layer');
+        const MIN_SVG_ZOOM = 0.20;   // below this scale: canvas-only overview, no SVG nodes
+        const VP_MARGIN   = 250;     // world-space margin beyond viewport edges
+        const MAX_VISIBLE = 400;     // maximum SVG tech-node elements at any one time
 
-                // DECOUPLED path highlighting - shows ALL prerequisites or dependents
-                // Works independently of activeTechId
-                setRenderedNodes(nodes);
-                handleTechHoverDecoupled(d.id, _g, {
-                    nodeWidth,
-                    nodeHeight,
-                    getAreaColor
+        // Build a complete tech node <g> for all entering nodes.
+        // Creates rect + labels + tier indicator immediately — no deferred LOD init needed
+        // because the virtualizer caps the DOM to MAX_VISIBLE nodes at all times.
+        function buildEnter(enter) {
+            const nodeGSel = enter.append('g')
+                .attr('class', 'tech-node')
+                .attr('transform', d => `translate(${d.x},${d.y})`);
+
+            nodeGSel
+                .on('mouseover', (event, nd) => {
+                    const tooltipToggle = document.getElementById('tooltip-toggle');
+                    if (!tooltipToggle || tooltipToggle.checked) {
+                        tooltipEl.style.display = 'block';
+                        tooltipEl.innerHTML = formatTooltip(nd, getCurrentFaction());
+                    }
+                    setRenderedNodes(nodes);
+                    handleTechHoverDecoupled(nd.id, _g, { nodeWidth, nodeHeight, getAreaColor });
+                })
+                .on('mousemove', (event) => {
+                    const treeRect = techTreeContainerEl.getBoundingClientRect();
+                    const tooltipRect = tooltipEl.getBoundingClientRect();
+                    let x = event.clientX + 15;
+                    let y = event.clientY + 15;
+                    if (x + tooltipRect.width > treeRect.right) x = event.clientX - tooltipRect.width - 15;
+                    if (y + tooltipRect.height > treeRect.bottom) y = event.clientY - tooltipRect.height - 15;
+                    tooltipEl.style.left = `${Math.max(treeRect.left, x)}px`;
+                    tooltipEl.style.top = `${Math.max(treeRect.top, y)}px`;
+                })
+                .on('mouseout', () => {
+                    tooltipEl.style.display = 'none';
+                    handleTechMouseOut();
+                })
+                .on('click', (event, nd) => {
+                    window.currentFocusId = nd.id;
+                    updateVisualization(selectedSpecies, nd.id, true);
+                })
+                .on('contextmenu', (event, nd) => {
+                    event.preventDefault();
+                    handleNodeSelection(nd);
                 });
-            })
-            .on('mousemove', (event) => {
-                const treeRect = techTreeContainerEl.getBoundingClientRect();
-                const tooltipRect = tooltipEl.getBoundingClientRect();
-                let x = event.clientX + 15;
-                let y = event.clientY + 15;
-                if (x + tooltipRect.width > treeRect.right) x = event.clientX - tooltipRect.width - 15;
-                if (y + tooltipRect.height > treeRect.bottom) y = event.clientY - tooltipRect.height - 15;
-                tooltipEl.style.left = `${Math.max(treeRect.left, x)}px`;
-                tooltipEl.style.top = `${Math.max(treeRect.top, y)}px`;
-            })
-            .on('mouseout', () => {
-                tooltipEl.style.display = 'none';
-                // Clear path highlighting and remove ghost nodes
-                handleTechMouseOut();
-            })
-            .on('click', (event, d) => {
-                window.currentFocusId = d.id;
-                updateVisualization(selectedSpecies, d.id, true);
-            })
-            .on('contextmenu', (event, d) => {
-                event.preventDefault();
-                handleNodeSelection(d);
+
+            const currentFaction = getCurrentFaction();
+            nodeGSel.append('rect')
+                .attr('class', 'node-rect')
+                .attr('width', nodeWidth)
+                .attr('height', nodeHeight)
+                .attr('x', -nodeWidth / 2)
+                .attr('y', -nodeHeight / 2)
+                .attr('rx', 10)
+                .attr('ry', 10)
+                .attr('fill', d => (d.area ? `url(#gradient-${d.area})` : getAreaColor(d.area)))
+                .style('filter', 'url(#drop-shadow)')
+                .attr('stroke', d => {
+                    if (d.id === activeTechId) return 'yellow';
+                    if (d.id === selectionStartNode) return 'lime';
+                    if (d.id === selectionEndNode) return 'red';
+                    if (d.id === lastSearchedTechId) return 'magenta';
+                    if (isFactionExclusive(d, currentFaction)) return '#ffd700';
+                    return 'none';
+                })
+                .attr('stroke-width', d => {
+                    if (d.id === activeTechId || d.id === selectionStartNode || d.id === selectionEndNode || d.id === lastSearchedTechId) return 4;
+                    if (isFactionExclusive(d, currentFaction)) return 3;
+                    return 1;
+                });
+
+            // Name text, category text, tech icon, unlock-type icons
+            renderNodeLabels(nodeGSel, { nodeWidth, nodeHeight });
+
+            // Tier indicator: left-side wedge with horizontal stripes (one per tier level)
+            const tiW = 8, tiR = 10;
+            const tix0 = -nodeWidth / 2, tiy0 = -nodeHeight / 2;
+            const tix1 = tix0 + tiW, tiy1 = nodeHeight / 2;
+            const tierPath = `M ${tix0},${tiy0 + tiR} A ${tiR},${tiR} 0 0 1 ${tix0 + tiR},${tiy0} L ${tix1},${tiy0} L ${tix1},${tiy1} L ${tix0 + tiR},${tiy1} A ${tiR},${tiR} 0 0 1 ${tix0},${tiy1 - tiR} Z`;
+            const tierGSel = nodeGSel.append('g').attr('class', 'tier-indicator');
+            tierGSel.append('path').attr('d', tierPath).attr('fill', 'white');
+            tierGSel.each(function(d) {
+                const tier = parseInt(d.tier) || 0;
+                if (tier > 0) {
+                    const clipId = `clip-${d.id.replace(/[^a-zA-Z0-9-_]/g, '_')}`;
+                    const tg = d3.select(this);
+                    tg.append('defs').append('clipPath').attr('id', clipId).append('path').attr('d', tierPath);
+                    const stripes = tg.append('g').attr('clip-path', `url(#${clipId})`);
+                    for (let i = 0; i < Math.min(tier, 11); i++) {
+                        const yy = tiy0 + 3 + i * 6;
+                        stripes.append('line')
+                            .attr('stroke', 'black').attr('stroke-width', 2)
+                            .attr('x1', tix0 - 5).attr('y1', yy)
+                            .attr('x2', tix1 + 5).attr('y2', yy + (tix1 - tix0) + 6);
+                    }
+                }
             });
 
-        node
-            .append('rect')
-            .attr('class', 'node-rect')
-            .attr('width', nodeWidth)
-            .attr('height', nodeHeight)
-            .attr('x', -nodeWidth / 2)
-            .attr('y', -nodeHeight / 2)
-            .attr('rx', 10)
-            .attr('ry', 10)
-            .attr('fill', (d) => (d.area ? `url(#gradient-${d.area})` : getAreaColor(d.area)))
-            .style('filter', 'url(#drop-shadow)')
-            .attr('stroke', (d) => {
-                // Priority: selection states > faction-exclusive > none
-                if (d.id === activeTechId) return 'yellow';
-                if (d.id === selectionStartNode) return 'lime';
-                if (d.id === selectionEndNode) return 'red';
+            return nodeGSel;
+        }
 
-                // NEW Phase 2: Faction-exclusive highlighting (Gold border)
-                const currentFaction = getCurrentFaction();
-                if (isFactionExclusive(d, currentFaction)) {
-                    return '#ffd700';  // Gold
+        // LOD for tier-canvas mode: show/hide labels and tier indicators by zoom level.
+        // Skips the circle-glyph path from updateLOD — canvas handles the overview.
+        function applyTierLOD() {
+            if (!_svg) return;
+            const k = d3.zoomTransform(_svg.node()).k;
+            _g.selectAll('.node-rect').style('display', null);
+            _g.selectAll('.node-label').style('display', k >= 0.45 ? null : 'none');
+            _g.selectAll('.tier-indicator').style('display', k >= 0.60 ? null : 'none');
+        }
+
+        // Viewport virtualization: use a keyed D3 data-join to maintain only the
+        // currently visible nodes in the SVG DOM. Entering nodes get full content;
+        // exiting nodes are removed. Runs in a RAF to avoid jank during fast panning.
+        let vpRafId = null;
+        function updateViewport(transform) {
+            if (vpRafId != null) cancelAnimationFrame(vpRafId);
+            vpRafId = requestAnimationFrame(() => {
+                vpRafId = null;
+                const svgW = _svg.node().clientWidth;
+                const svgH = _svg.node().clientHeight;
+                const { k, x, y } = transform;
+                let visibleNodes;
+                if (k < MIN_SVG_ZOOM) {
+                    visibleNodes = [];   // canvas handles this zoom range entirely
+                } else {
+                    const bx0 = (-x / k) - VP_MARGIN, by0 = (-y / k) - VP_MARGIN;
+                    const bx1 = ((svgW - x) / k) + VP_MARGIN, by1 = ((svgH - y) / k) + VP_MARGIN;
+                    visibleNodes = nodes.filter(n => n.x >= bx0 && n.x <= bx1 && n.y >= by0 && n.y <= by1);
+                    if (visibleNodes.length > MAX_VISIBLE) visibleNodes = visibleNodes.slice(0, MAX_VISIBLE);
                 }
+                nodesLayer.selectAll('.tech-node')
+                    .data(visibleNodes, d => d.id)
+                    .join(
+                        enter  => buildEnter(enter),
+                        update => update.attr('transform', d => `translate(${d.x},${d.y})`),
+                        exit   => exit.remove()
+                    );
+                applyTierLOD();
+                // Re-apply category dimming to freshly entered nodes
+                if (isFilterHighlightActive()) applyFilterHighlight();
+            });
+        }
 
-                return 'none';
-            })
-            .attr('stroke-width', (d) => {
-                // NEW Phase 2: Thicker stroke for faction-exclusive
-                if (d.id === activeTechId || d.id === selectionStartNode || d.id === selectionEndNode) {
-                    return 4;
-                }
-
-                const currentFaction = getCurrentFaction();
-                if (isFactionExclusive(d, currentFaction)) {
-                    return 3;  // Thicker for faction-exclusive
-                }
-
-                return 1;
-            })
-            .attr('stroke-width', (d) =>
-                d.id === activeTechId || d.id === selectionStartNode || d.id === selectionEndNode ? 3 : 1
-            );
-
-        applyLOD();
+        // Initial canvas draw and viewport population
+        canvasRenderer.scheduleRender(d3.zoomIdentity);
+        updateViewport(d3.zoomIdentity);
         if (typeof onEnd === 'function') onEnd();
 
         return { svg: _svg, g: _g, zoom: zoom };
@@ -701,8 +756,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Ensure toolbar reload button is visible after first render
         const toolbarBtn = document.getElementById('load-tree-button');
         if (toolbarBtn) toolbarBtn.style.display = '';
-        // Preserve glossary inside #tech-tree; only remove previous SVGs
+        // Preserve glossary inside #tech-tree; only remove previous SVGs and canvas layers
         techTreeContainer.querySelectorAll('svg').forEach(el => el.remove());
+        techTreeContainer.querySelectorAll('canvas.tech-canvas-layer').forEach(el => el.remove());
         nodes = filteredTechs.map(tech => ({ ...tech }));
         // Build links via data helper
         links = buildLinksFromPrereqs(nodes);
@@ -1064,11 +1120,13 @@ document.addEventListener('DOMContentLoaded', () => {
             setHighlightDirection(newDir);
 
             // Update button text and styling
+            const svgLeft  = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M8 2L4 6L8 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+            const svgRight = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4 2L8 6L4 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
             if (newDir === 'prerequisites') {
-                pathDirectionBtn.textContent = '← Prereqs';
+                pathDirectionBtn.innerHTML = `${svgLeft} Prereqs`;
                 pathDirectionBtn.classList.remove('active-dependents');
             } else {
-                pathDirectionBtn.textContent = 'Dependents →';
+                pathDirectionBtn.innerHTML = `Dependents ${svgRight}`;
                 pathDirectionBtn.classList.add('active-dependents');
             }
         });
