@@ -77,9 +77,12 @@
                     html += `<div class="detail-picture"><img src="${picUrl}" alt="" onerror="this.parentElement.style.display='none'"></div>`;
                 }
             }
+            if (item.desc) {
+                const descText = I18n.t(item.desc) || item.desc;
+                if (descText) html += `<div class="detail-description">${esc(descText)}</div>`;
+            }
             html += `<div class="detail-meta">`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
-            if (item.desc) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.desc')}: ${esc(I18n.t(item.desc) || item.desc)}</span>`;
             if (item.source_file) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
             html += `</div>`;
 
@@ -204,13 +207,15 @@
 
             let html = '';
             for (const item of pageItems) {
+                const descText = item.desc ? (I18n.t(item.desc) || '') : '';
                 html += `<div class="item-card" data-id="${esc(item.id)}">
                     <div class="item-card-body">
                         <div class="item-card-header">
                             <span class="item-card-name">${esc(item.name || item.id)}</span>
                             <span class="item-card-id">${esc(item.id)}</span>
-                        </div>
-                        <div class="item-card-meta">`;
+                        </div>`;
+                if (descText) html += `<div class="item-card-description">${esc(descText)}</div>`;
+                html += `<div class="item-card-meta">`;
                 if (item.level != null) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.level')} ${esc(item.level)}</span>`;
                 if (item.stages_count != null) html += `<span class="detail-meta-item">${esc(item.stages_count)} ${I18n.ui('ui.card.stages')}</span>`;
                 if (item.max_once) html += `<span class="detail-meta-item">${I18n.ui('ui.badge.unique')}</span>`;
