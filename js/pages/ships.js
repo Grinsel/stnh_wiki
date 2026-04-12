@@ -190,6 +190,15 @@
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
             html += `</div>`;
 
+            // Description (components: try component_set + _DESC first, then id + _DESC)
+            const descBase = item.component_set || item.id;
+            const descKey = descBase + '_DESC';
+            const desc = I18n.t(descKey);
+            if (desc && desc !== descKey) {
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.description')}</div>`;
+                html += `<div class="detail-desc">${esc(desc)}</div></div>`;
+            }
+
             // Stats
             const stats = [];
             if (item.max_hitpoints) stats.push([I18n.ui('ui.meta.hp'), item.max_hitpoints]);

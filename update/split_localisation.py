@@ -74,11 +74,12 @@ def load_loc(lang):
 
 
 def expand_key_variants(base_key):
-    """Given a base key, return related keys (_desc, _effect, _tooltip, etc.)."""
+    """Given a base key, return related keys (_desc/_DESC, _effect, _tooltip, etc.)."""
     variants = [base_key]
-    # Standard suffixes used in Stellaris loc
+    # Standard suffixes used in Stellaris loc (both lowercase and UPPERCASE)
     for suffix in ['_desc', '_effect', '_tooltip', '_delayed', '_modifier']:
         variants.append(base_key + suffix)
+        variants.append(base_key + suffix.upper())
     return variants
 
 
@@ -95,6 +96,11 @@ def extract_name_keys(items):
             item_id = item.get('id')
             if item_id:
                 for k in expand_key_variants(item_id):
+                    keys.add(k)
+            # component_set for components (DESC keys use base name, not size-prefixed id)
+            cs = item.get('component_set')
+            if cs:
+                for k in expand_key_variants(cs):
                     keys.add(k)
     return keys
 
