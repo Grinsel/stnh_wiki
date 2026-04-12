@@ -710,6 +710,8 @@
 
             listEl.querySelectorAll('.item-card').forEach(card => {
                 card.addEventListener('click', () => {
+                    listEl.querySelectorAll('.item-card').forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
                     const allItems = activeTab === 'traits' ? traits : perks;
                     const item = allItems.find(i => i.id === card.dataset.id);
                     if (item) showDetail(item);

@@ -443,6 +443,8 @@
 
             listEl.querySelectorAll('.item-card').forEach(card => {
                 card.addEventListener('click', () => {
+                    listEl.querySelectorAll('.item-card').forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
                     const id = card.dataset.id;
                     const item = items.find(i => i.id === id);
                     if (item) showDetail(item);
@@ -499,6 +501,8 @@
             listEl.innerHTML = html || `<div class="loading" style="animation:none">${I18n.ui('ui.empty.no_items')}</div>`;
             listEl.querySelectorAll('.item-card').forEach(card => {
                 card.addEventListener('click', () => {
+                    listEl.querySelectorAll('.item-card').forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
                     const found = traits.find(t => t.id === card.dataset.id);
                     if (found) showDetail(found);
                 });

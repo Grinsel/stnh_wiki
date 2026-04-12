@@ -625,6 +625,8 @@
             // Click handlers
             listEl.querySelectorAll('.item-card').forEach(card => {
                 card.addEventListener('click', () => {
+                    listEl.querySelectorAll('.item-card').forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
                     const tech = techIndex.get(card.dataset.id);
                     if (tech) showDetail(tech);
                 });

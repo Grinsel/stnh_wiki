@@ -416,6 +416,8 @@
             // Click handler
             listEl.querySelectorAll('.item-card').forEach(card => {
                 card.addEventListener('click', () => {
+                    listEl.querySelectorAll('.item-card').forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
                     const id = card.dataset.id;
                     const item = items.find(i => i.id === id);
                     if (item) showDetail(item);
