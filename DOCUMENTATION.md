@@ -10,7 +10,7 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 > | `docs/PIPELINE.md` | Python-Pipeline: Master-Script, Parser, Generatoren, Konfiguration |
 > | `docs/FRONTEND.md` | JS-Module, Page-Controller-Skeleton, Events/Tech-Module, Design-System |
 > | `docs/FILE_STRUCTURE.md` | Vollstaendiger annotierter Verzeichnisbaum |
-> | `docs/ASSETS.md` | Alle 33 JSON-Dateien, Bilder, Icons, Cross-References, Suchindex |
+> | `docs/ASSETS.md` | Alle 38 JSON-Dateien, Bilder, Icons, Cross-References, Suchindex |
 > | `docs/DEVELOPMENT.md` | Lokale Einrichtung, Deployment, Module hinzufuegen, Wartung |
 
 ---
@@ -33,7 +33,7 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 
 | Eigenschaft | Wert |
 |---|---|
-| HTML-Seiten | 11 (Hub + 9 Content + Tech Tree) |
+| HTML-Seiten | 13 (Hub + 10 Content + Tech Tree + Tech List) |
 | Events | ~8.867 (430 Dateien, 287 Namespaces) |
 | Techs | ~2.600 (D3.js Graph, aus git09 kopiert) |
 | Content-Items (Non-Event) | ~10.873 (Ships, Buildings, Traits, Govs, Megas, Anomalies, Empires, Economy) |
@@ -42,12 +42,13 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 | Loc-Keys | ~200.000+ pro Sprache |
 | GFX Sprites | 7.338 gesamt, ~986 konvertierte Event-Bilder, 754 Building-Icons |
 | Tech-Icons | 1.659 (WebP, aus git09) |
-| JSON-Assets | 33 Dateien + 272 Event-Detail-JSONs |
-| JS-Dateien | 53 (12 shared + 11 pages + 5 UI + 24 tech + 1 ship-viewer) |
-| Python-Pipeline | 77 Dateien (50 core + 27 techtree) |
+| JSON-Assets | 38 Dateien + 272 Event-Detail-JSONs |
+| JS-Dateien | 59 (14 shared + 14 pages + 5 UI + 27 tech) |
+| Python-Pipeline | 84 Dateien (57 core + 27 techtree) |
 | Pipeline-Laufzeit | ~12 Sekunden (ohne Bilder) |
 | Projektgroesse | ~1,4 GB (inkl. 3D-Modelle, ohne: ~294 MB) |
 | Frontend | Vanilla HTML/CSS/JS (kein Framework, kein Build-Tool) |
+| Hub-Navigation | Dynamisch generierte 8-Link Nav-Bar (common.js initNav) |
 | Deployment | GitHub Pages (automatisch bei push auf master) |
 | Abhaengigkeiten | Python 3.8+ (stdlib), ImageMagick (nur fuer Bilder), D3.js v7 (CDN, nur tech.html) |
 
@@ -89,12 +90,13 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
                     v
 +----------------------------------------------------------------+
 |  STNH Wiki (git10/stnh_wiki/)                                   |
-|  +-- 11 HTML-Seiten              (Hub, Events, Tech, 8 Content)|
-|  +-- assets/                     (33 JSON + 272 Event-Details) |
-|  +-- pictures/                   (986 WebP-Bilder)             |
+|  +-- 13 HTML-Seiten              (Hub, Events, Exploration,    |
+|  |                                Tech, Tech-List, 8 Content)  |
+|  +-- assets/                     (38 JSON + 272 Event-Details) |
+|  +-- pictures/                   (991 WebP-Bilder)             |
 |  +-- icons/tech/                 (1.659 Tech-Icons)            |
 |  +-- icons/buildings/            (754 Building-Icons)          |
-|  +-- js/                         (53 JS-Module)                |
+|  +-- js/                         (59 JS-Module)                |
 |  +-- style.css                   (44 KB, Dark Theme)           |
 +----------------------------------------------------------------+
                     | git push -> GitHub Pages
@@ -123,12 +125,12 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 
 | Feature | Beschreibung |
 |---|---|
-| GlobalSearch | Cross-module Suche auf allen 11 Seiten (initGlobalSearch in common.js) |
+| GlobalSearch | Cross-module Suche auf allen 13 Seiten (initGlobalSearch in common.js) |
+| Hub-Navigation | Dynamisch generierte 8-Link Nav-Bar (common.js initNav) |
 | Hamburger-Menue | Responsive Navigation ab 768px (initHamburger in common.js) |
 | OG-Tags | Open Graph Meta-Tags fuer Social-Media-Preview auf allen Seiten |
 | Faction-Themes | 9 waehlbare Farbschemata (Cardassian, Federation, Klingon, ...) |
 | 7-Sprachen-UI | UI-Strings in ui-strings.js, Mod-Content via i18n.js |
-| Font-Size-Control | Dynamische Schriftgroesse (90%-160%) |
 
 ---
 
@@ -141,7 +143,7 @@ stnh_wiki/
 |   +-- workflows/
 |       +-- deploy.yml                 # GitHub Pages Auto-Deployment
 |
-+-- assets/                            # [GENERIERT] JSON-Daten (33 Dateien)
++-- assets/                            # [GENERIERT] JSON-Daten (38 Dateien)
 |   +-- events_index.json              # Event-Index (2,6 MB)
 |   +-- namespaces.json                # Namespace-Metadaten (42 KB)
 |   +-- relationships.json             # Event-Trigger-Graph (637 KB)
@@ -192,8 +194,8 @@ stnh_wiki/
 |   +-- federation-ds9-title.TTF
 |   +-- Tungsten-Light.ttf
 |
-+-- js/                                # Frontend JavaScript (53 Dateien)
-|   +-- common.js                      # Shared: Theme, Font, Lang, Nav, Hamburger, GlobalSearch
++-- js/                                # Frontend JavaScript (59 Dateien)
+|   +-- common.js                      # Shared: Theme, Nav, Lang, Hamburger, GlobalSearch
 |   +-- data.js                        # DataManager - Asynchrones JSON-Laden + Cache
 |   +-- state.js                       # AppState - URL-synchronisierter State
 |   +-- i18n.js                        # Internationalisierung (7 Sprachen)
@@ -206,32 +208,37 @@ stnh_wiki/
 |   +-- humanize.js                    # PDX-Syntax -> lesbarer Text
 |   +-- shared-render.js               # Gemeinsames Rendering fuer Content-Module
 |   +-- ship-viewer.js                 # 3D Ship Viewer (Three.js, lazy-loaded)
-|   +-- pages/                         # 11 Seiten-Controller
+|   +-- pages/                         # 14 Seiten-Controller
 |   |   +-- hub.js                     # Hub: Stats, GlobalSearch Full-Results
 |   |   +-- events.js                  # Events: Filter, Sidebar, Detail, Chains
+|   |   +-- exploration.js             # Exploration: Tabs (Anomalies/Archaeology)
 |   |   +-- ships.js                   # Ships: Tabs (Ships/Components), Filter, Detail
 |   |   +-- buildings.js               # Buildings: Tabs (Buildings/Districts), Filter
 |   |   +-- traits.js                  # Traits: Tabs (Traits/Traditions/Perks), Filter
-|   |   +-- governments.js             # Govs: Tabs (Govs/Civics/Auth/Policies/Edicts)
+|   |   +-- governments.js             # Govs: Tabs (Govs/Civics/Auth/Policies/Edicts/Traits)
 |   |   +-- megastructures.js          # Megas: Tabs (Megastructures/Relics)
-|   |   +-- anomalies.js              # Anomalies: Tabs (Anomalies/Archaeology)
-|   |   +-- empires.js                 # Empires: Tabs (Empires/Species)
-|   |   +-- economy.js                 # Economy: Tabs (Jobs/Deposits)
+|   |   +-- empires.js                 # Empires: Tabs (Empires/Species/Traits)
+|   |   +-- economy.js                 # Economy: Tabs (Buildings/Districts/Jobs/Resources/Megas/Relics)
+|   |   +-- economy-hub.js            # Economy Hub Controller
 |   |   +-- galaxy-map.js             # Galaxy Map: Empire-Startpositionen (Canvas)
+|   |   +-- tech-list.js              # Tech List: Tabellarische Tech-Uebersicht
 |   +-- ui/                            # 5 UI-Komponenten
 |   |   +-- event-list.js              # Paginierte Event-Liste
 |   |   +-- event-detail.js            # Event-Detailansicht
 |   |   +-- namespace-nav.js           # Sidebar-Navigation
 |   |   +-- chain-viewer.js            # Event-Chain-Visualisierung
 |   |   +-- category-chips.js          # Chip-Bar Filter (Ships, Buildings)
-|   +-- tech/                          # 24 Tech-Module (aus git09)
+|   +-- tech/                          # 27 Tech-Module (aus git09)
 |       +-- main.js                    # Einstiegspunkt (ES Module)
+|       +-- canvas-renderer.js         # Canvas-basierter Tech-Renderer
+|       +-- force-worker.js            # Web Worker fuer Force-Layout
 |       +-- data.js, render.js, filters.js, search.js, state.js, factions.js
 |       +-- ui/                        # Tech UI-Komponenten
 |           +-- events.js, zoom.js, tabs.js, tiers.js, popup.js, ...
+|           +-- worker-physics.js      # Web Worker Physics-Engine
 |           +-- layouts/               # 5 Layout-Engines (force, grid, tier, arrows, disjoint)
 |
-+-- update/                            # Python Daten-Pipeline (77 Dateien: 50 core + 27 techtree)
++-- update/                            # Python Daten-Pipeline (84 Dateien: 57 core + 27 techtree)
 |   +-- UPDATE_WIKI.py                 # Master-Orchestrator (alle Phasen)
 |   +-- UPDATE_EVENTS.py               # Modul-Updater: Events
 |   +-- UPDATE_LOC.py                  # Modul-Updater: Localisation
@@ -277,15 +284,23 @@ stnh_wiki/
 |   +-- generate_cross_references.py   # Bidirektionale Cross-Refs
 |   +-- generate_galaxy_map_json.py   # Galaxy-Map Startpositionen
 |   +-- generate_tech_item_map.py     # Tech -> Item Cross-Reference Map
+|   +-- inject_missing_loc.py           # Fehlende Loc-Keys aus loc_audit injizieren
+|   +-- split_localisation.py          # Loc-Keys pro Modul aufteilen
+|   +-- diff_tracker.py                # Aenderungs-Tracking zwischen Pipeline-Laeufen
 |   +-- convert_images.py              # DDS -> WebP Konvertierung (Event-Bilder)
+|   +-- convert_icons.py               # DDS -> WebP Konvertierung (allgemein)
 |   +-- convert_building_icons.py     # DDS -> WebP Konvertierung (Building-Icons)
 |   +-- convert_ship_models.py        # PdxMesh -> GLB 3D-Modelle
 |   +-- pdx_mesh_reader.py            # Binaer-Parser fuer PdxMesh (.mesh)
+|   +-- data/                          # Statische Daten fuer Pipeline
+|   |   +-- missing_loc.json           # 101 fehlende Loc-Keys pro Sprache
 |   +-- techtree/                      # Techtree-Pipeline (27 Scripts, aus git09, NOCH NICHT LAUFFAEHIG)
 |
 +-- index.html                         # Hub / Landing Page
 +-- events.html                        # Event Browser
++-- exploration.html                   # Anomalien & Archaeologie (Exploration)
 +-- tech.html                          # Tech Tree (D3.js, eigenes Inline-CSS)
++-- tech-list.html                     # Tech-Liste (tabellarische Uebersicht)
 +-- ships.html                         # Schiffe & Komponenten
 +-- buildings.html                     # Gebaeude & Distrikte
 +-- traits.html                        # Traits & Traditionen
@@ -323,6 +338,8 @@ Orchestriert alle Phasen der Datenverarbeitung:
 ```
 Phase 1: Validation     -> config.validate_paths()
 Phase 2: Localisation   -> parse_localisation.main()
+Phase 2b: Split Loc     -> split_localisation.split_localisation()
+Phase 2c: Inject Loc    -> inject_missing_loc.inject_into_localisation()
 Phase 3: GFX Mapping    -> parse_gfx_mappings.main()
 Phase 4: Events         -> generate_events_json.generate_all()
 Phase 5: Content
@@ -354,7 +371,7 @@ python UPDATE_WIKI.py --only empires         # Nur Empires & Species
 python UPDATE_WIKI.py --only economy         # Nur Jobs & Deposits
 python UPDATE_WIKI.py --only search          # Nur Search Index & Cross-References
 python UPDATE_WIKI.py --only content         # Alle 8 Content-Module + Search
-python UPDATE_WIKI.py --only loc             # Nur Localisation
+python UPDATE_WIKI.py --only loc             # Nur Localisation → Inject Loc → Split Loc
 python UPDATE_WIKI.py --only gfx             # Nur GFX-Mappings
 python UPDATE_WIKI.py --only images          # Nur Bildkonvertierung
 ```
@@ -402,7 +419,7 @@ LANGUAGES = ['english', 'german', 'french', 'spanish', 'russian', 'polish', 'bra
 | Modul | Parser | Generator | Output-JSONs |
 |---|---|---|---|
 | Events | parse_events, parse_on_actions, parse_event_chains, build_relationships | generate_events_json | events_index, events_detail/*, namespaces, relationships, on_actions, event_chains |
-| Localisation | parse_localisation | (direkt) | localisation/{lang}.json |
+| Localisation | parse_localisation | (direkt) + inject_missing_loc + split_localisation | localisation/{lang}.json |
 | GFX | parse_gfx_mappings | (direkt) | pictures_map.json |
 | Ships | parse_ships, parse_components | generate_ships_json | ships.json, components.json |
 | Buildings | parse_buildings, parse_districts | generate_buildings_json | buildings.json, districts.json |
@@ -449,19 +466,20 @@ LANGUAGES = ['english', 'german', 'french', 'spanish', 'russian', 'polish', 'bra
 |---|---|---|---|---|
 | Hub | index.html | global-search-input | - | hub.js |
 | Events | events.html | search-input | - | events.js + 7 Event-Module |
+| Exploration | exploration.html | search-input | Anomalies, Archaeology | exploration.js |
 | Tech Tree | tech.html | search-input (Header) + tech-filter-input (Sidebar) | - | tech/main.js (ES Module, D3.js) |
+| Tech List | tech-list.html | search-input | - | tech-list.js |
 | Ships | ships.html | search-input | Ships, Components | ships.js |
 | Buildings | buildings.html | search-input | Buildings, Districts | buildings.js |
 | Traits | traits.html | search-input | Traits, Traditions, Perks | traits.js |
-| Governments | governments.html | search-input | Govs, Civics, Auth, Policies, Edicts | governments.js |
+| Governments | governments.html | search-input | Govs, Civics, Auth, Policies, Edicts, Traits | governments.js |
 | Megastructures | megastructures.html | search-input | Megastructures, Relics | megastructures.js |
-| Anomalies | anomalies.html | search-input | Anomalies, Archaeology | anomalies.js |
-| Empires | empires.html | search-input | Empires, Species | empires.js |
-| Economy | economy.html | search-input | Jobs, Deposits | economy.js |
+| Empires | empires.html | search-input | Empires, Species, Traits | empires.js |
+| Economy | economy.html | search-input | Buildings, Districts, Jobs, Resources, Megastructures, Relics | economy.js, economy-hub.js |
 
 Alle Seiten (ausser index.html) teilen dieselbe Grundstruktur:
-- Header (Logo, Suche, Sprach-Dropdown, Theme-Picker, Font-Size)
-- Wiki-Navigation (11 Links, Hamburger auf Mobile)
+- Header (Logo, Suche, Sprach-Dropdown, Theme-Picker)
+- Wiki-Navigation (8 Hub-Links, dynamisch generiert, Hamburger auf Mobile)
 - GlobalSearch-Results-Container (Overlay-Dropdown)
 - Filter-Bar (Tabs + modulspezifische Filter)
 - Content (Liste + Detail-Panel)
@@ -477,7 +495,7 @@ Alle Seiten (ausser index.html) teilen dieselbe Grundstruktur:
 const Common = (() => {
     initTheme()          // Faction-Theme laden (9 Themes)
     injectThemePicker()  // Theme-Dots in Header injizieren
-    initFontSize()       // Font-Size-Buttons (90%-160%)
+    initNav()            // Dynamisch generierte 8-Link Nav-Bar
     initLangSelect()     // Sprach-Dropdown -> I18n.setLanguage()
     initNavHighlight()   // Aktive Nav-Page markieren
     initHamburger()      // Mobile Hamburger-Menue injizieren (< 768px)
@@ -537,7 +555,10 @@ const AppState = (() => {
 ```javascript
 const I18n = (() => {
     setLanguage(lang)   // Sprachdatei laden
+    setLangSync(lang)   // Sprache setzen ohne Datei laden
+    mergeModule(lang, module) // Modul-Loc-Datei nachladen + mergen
     t(key)              // Mod-Content uebersetzen (Fallback: Key selbst)
+    tMultiline(key)     // Multiline-Key (\n-getrennt)
     ui(key)             // UI-String aus UI_STRINGS
 })();
 ```
@@ -665,13 +686,15 @@ Responsive Breakpoints:
 | `jobs.json` | 219 KB | Berufe: Produktion, Konsum |
 | `deposits.json` | 237 KB | Lagerstetten |
 | `galaxy_map.json` | 22 KB | Galaxy-Map Empire-Startpositionen |
+| `galaxy_maps.json` | 282 KB | Erweiterte Galaxiekarten mit loc_key |
+| `mega_models_map.json` | 56 KB | Megastruktur-3D-Modell-Mapping |
 | `tech_item_map.json` | 1,05 MB | Tech -> Item Cross-Reference (Ships, Buildings, Components) |
 | `search_index.json` | 2,6 MB | Cross-Module Suchindex (~19.740 Items) |
 | `cross_references.json` | 303 KB | Bidirektionale Cross-Refs |
 | `module_pages.json` | 248 B | Modul -> HTML-Seite Mapping |
 | `last_update.json` | 2,5 MB | Timestamp + Statistiken |
 | `localisation/{lang}.json` | ~100 KB | Loc-Keys pro Sprache (~200k Keys) |
-| `pictures/*.webp` | ~12 MB | WebP-Bilder (480x204, Q80, 986 Dateien) |
+| `pictures/*.webp` | ~12 MB | WebP-Bilder (480x204, Q80, 991 Dateien) |
 
 ---
 
@@ -759,7 +782,7 @@ WIKI_ROOT = r"D:\Projects\stnh_wiki"
 1. HTML: Kopie einer bestehenden Content-Seite (z.B. ships.html)
 2. Page-Controller: `js/pages/neues_ding.js` (IIFE-Pattern wie oben)
 3. Tab-Definitionen, Filter, Rendering
-4. Navigation: Links in allen 11 HTML-Dateien + Hub-Cards in index.html
+4. Navigation: Hub-Links dynamisch via common.js initNav + Hub-Cards in index.html
 5. OG-Tags in neuem HTML hinzufuegen
 
 ### Haeufige Wartungsaufgaben

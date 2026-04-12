@@ -75,7 +75,7 @@ stnh_wiki/
 |   +-- federation-ds9-title.TTF
 |   +-- Tungsten-Light.ttf
 |
-+-- js/                                # Frontend JavaScript (54 Dateien)
++-- js/                                # Frontend JavaScript (59 Dateien)
 |   +-- common.js                      # Shared: Theme, Font, Lang, Nav, Hamburger, GlobalSearch
 |   +-- data.js                        # DataManager - Asynchrones JSON-Laden + Cache
 |   +-- state.js                       # AppState - URL-synchronisierter State
@@ -89,33 +89,37 @@ stnh_wiki/
 |   +-- humanize.js                    # PDX-Syntax -> lesbarer Text
 |   +-- shared-render.js               # Gemeinsames Rendering fuer Content-Module
 |   +-- ship-viewer.js                 # 3D Ship Viewer (Three.js, lazy-loaded)
-|   +-- pages/                         # 12 Seiten-Controller
+|   +-- pages/                         # 14 Seiten-Controller
 |   |   +-- hub.js                     # Hub: Stats, GlobalSearch Full-Results
 |   |   +-- events.js                  # Events: Filter, Sidebar, Detail, Chains
+|   |   +-- exploration.js             # Exploration: Tabs (Anomalies/Archaeology)
 |   |   +-- ships.js                   # Ships: Tabs (Ships/Components), Filter, Detail
 |   |   +-- buildings.js               # Buildings: Tabs (Buildings/Districts), Filter
 |   |   +-- traits.js                  # Traits: Tabs (Traits/Traditions/Perks), Filter
-|   |   +-- governments.js             # Govs: Tabs (Govs/Civics/Auth/Policies/Edicts/Councilors)
+|   |   +-- governments.js             # Govs: Tabs (Govs/Civics/Auth/Policies/Edicts/Traits)
 |   |   +-- megastructures.js          # Megas: Tabs (Megastructures/Relics)
-|   |   +-- anomalies.js              # Anomalies: Tabs (Anomalies/Archaeology)
-|   |   +-- empires.js                 # Empires: Tabs (Empires/Species)
-|   |   +-- economy.js                 # Economy: Tabs (Jobs/Deposits)
+|   |   +-- empires.js                 # Empires: Tabs (Empires/Species/Traits)
+|   |   +-- economy.js                 # Economy: Tabs (Buildings/Districts/Jobs/Resources/Megas/Relics)
+|   |   +-- economy-hub.js            # Economy Hub Controller
 |   |   +-- galaxy-map.js             # Galaxy Map: Empire-Startpositionen (Canvas)
-|   |   +-- tech-list.js             # Tech-List: Tabellarische Tech-Uebersicht
+|   |   +-- tech-list.js              # Tech-List: Tabellarische Tech-Uebersicht
 |   +-- ui/                            # 5 UI-Komponenten
 |   |   +-- event-list.js              # Paginierte Event-Liste
 |   |   +-- event-detail.js            # Event-Detailansicht
 |   |   +-- namespace-nav.js           # Sidebar-Navigation
 |   |   +-- chain-viewer.js            # Event-Chain-Visualisierung
 |   |   +-- category-chips.js          # Chip-Bar Filter (Ships, Buildings)
-|   +-- tech/                          # 24 Tech-Module (aus git09)
+|   +-- tech/                          # 27 Tech-Module (aus git09)
 |       +-- main.js                    # Einstiegspunkt (ES Module)
+|       +-- canvas-renderer.js         # Canvas-basierter Tech-Renderer
+|       +-- force-worker.js            # Web Worker fuer Force-Layout
 |       +-- data.js, render.js, filters.js, search.js, state.js, factions.js
 |       +-- ui/                        # Tech UI-Komponenten
 |           +-- events.js, zoom.js, tabs.js, tiers.js, popup.js, ...
+|           +-- worker-physics.js      # Web Worker Physics-Engine
 |           +-- layouts/               # 5 Layout-Engines (force, grid, tier, arrows, disjoint)
 |
-+-- update/                            # Python Daten-Pipeline (81 Dateien: 54 core + 27 techtree)
++-- update/                            # Python Daten-Pipeline (84 Dateien: 57 core + 27 techtree)
 |   +-- UPDATE_WIKI.py                 # Master-Orchestrator (alle Phasen)
 |   +-- UPDATE_EVENTS.py               # Modul-Updater: Events
 |   +-- UPDATE_LOC.py                  # Modul-Updater: Localisation
@@ -163,11 +167,16 @@ stnh_wiki/
 |   +-- generate_galaxy_map_json.py   # Galaxy-Map Startpositionen
 |   +-- generate_tech_item_map.py     # Tech -> Item Cross-Reference Map
 |   +-- generate_changes_json.py      # Aenderungs-Tracking (changes.json, changes_history.json)
+|   +-- inject_missing_loc.py           # Fehlende Loc-Keys aus loc_audit injizieren
 |   +-- split_localisation.py          # Localisation-Splitting pro Modul
+|   +-- diff_tracker.py                # Aenderungs-Tracking zwischen Pipeline-Laeufen
 |   +-- convert_images.py              # DDS -> WebP Konvertierung (Event-Bilder)
+|   +-- convert_icons.py               # DDS -> WebP Konvertierung (allgemein)
 |   +-- convert_building_icons.py     # DDS -> WebP Konvertierung (Building-Icons)
 |   +-- convert_ship_models.py        # PdxMesh -> GLB 3D-Modelle
 |   +-- pdx_mesh_reader.py            # Binaer-Parser fuer PdxMesh (.mesh)
+|   +-- data/                          # Statische Daten fuer Pipeline
+|   |   +-- missing_loc.json           # 101 fehlende Loc-Keys pro Sprache
 |   +-- techtree/                      # Techtree-Pipeline (27 Scripts, aus git09, NOCH NICHT LAUFFAEHIG)
 |
 +-- docs/                              # Projekt-Dokumentation
@@ -191,6 +200,7 @@ stnh_wiki/
 +-- anomalies.html                     # Anomalien & Archaeologie
 +-- empires.html                       # Fraktionen & Empires
 +-- economy.html                       # Wirtschaft
++-- exploration.html                   # Anomalien & Archaeologie (Exploration)
 +-- style.css                          # Gemeinsames Dark Theme (44 KB)
 +-- tech_showcase.js                   # Techtree Legacy-Einstiegspunkt
 +-- tech_localisation_map.json         # Techtree Lokalisierung (21 MB)

@@ -38,6 +38,8 @@ Die vollstaendige Pipeline (`UPDATE_WIKI.py`) durchlaeuft folgende Phasen:
 |---|-------|--------------------|-----------------------|
 | 1 | **Validation** | Pfade + Dependencies pruefen | — |
 | 2 | **Localisation** | 7 Sprachen aus `localisation/*.yml` | ~240.000 Keys/Sprache |
+| 2c | **Inject Missing Loc** | Fehlende Loc-Keys aus loc_audit injizieren | 101 Keys/Sprache |
+| 2b | **Split Localisation** | Loc-Keys pro Modul aufteilen | 11 Dateien/Sprache |
 | 3 | **GFX Mappings** | Sprite-Definitionen aus `interface/*.gfx` | ~7.300 Sprites, ~1.500 Event-Bilder |
 | 4 | **Events** | Alle Events aus `events/*.txt` | 8.867 Events, 430 Dateien, 287 Namespaces, 7.057 Beziehungen |
 | 5a | **Ships & Components** | Schiffe, Komponenten, 3D-Modelle | 423 Schiffe, 6.406 Komponenten, 1.387 Fraktionsvarianten |
@@ -63,22 +65,22 @@ python UPDATE_WIKI.py --only <modul>
 
 | Modul | Fuehrt aus |
 |-------|-----------|
-| `events` | Localisation → GFX → Events → Bilder |
-| `loc` | Nur Localisation |
+| `events` | Localisation → Inject Loc → GFX → Events → Bilder → Split Loc |
+| `loc` | Localisation → Inject Loc → Split Loc |
 | `gfx` | Nur GFX Mappings |
 | `images` | Nur Bildkonvertierung |
 | `building_icons` | Nur Gebaeude-Icon-Konvertierung |
 | `techtree` | Nur Techtree |
-| `ships` | Localisation → Ships |
-| `ship_models` | Localisation → Ships → 3D-Modell-Konvertierung |
-| `buildings` | Localisation → Buildings → Building-Icons |
-| `traits` | Localisation → Traits |
-| `governments` | Localisation → Governments |
-| `megastructures` | Localisation → Megastructures |
-| `anomalies` | Localisation → Anomalies |
-| `empires` | Localisation → Empires |
+| `ships` | Localisation → Inject Loc → Ships → Split Loc |
+| `ship_models` | Localisation → Inject Loc → Ships → 3D-Modell-Konvertierung → Split Loc |
+| `buildings` | Localisation → Inject Loc → Buildings → Building-Icons → Split Loc |
+| `traits` | Localisation → Inject Loc → Traits → Split Loc |
+| `governments` | Localisation → Inject Loc → Governments → Split Loc |
+| `megastructures` | Localisation → Inject Loc → Megastructures → Split Loc |
+| `anomalies` | Localisation → Inject Loc → Anomalies → Split Loc |
+| `empires` | Localisation → Inject Loc → Empires → Split Loc |
 | `galaxy_map` | Nur Galaxy Map |
-| `economy` | Localisation → Economy |
+| `economy` | Localisation → Inject Loc → Economy → Split Loc |
 | `search` | Nur Search Index + Cross-References |
 | `content` | Alle Content-Module + Search (ohne Events, Techtree, Bilder) |
 
@@ -138,6 +140,8 @@ The full pipeline (`UPDATE_WIKI.py`) runs through the following phases:
 |---|-------|-------------------|--------------------|
 | 1 | **Validation** | Check paths + dependencies | — |
 | 2 | **Localisation** | 7 languages from `localisation/*.yml` | ~240,000 keys/language |
+| 2c | **Inject Missing Loc** | Inject missing loc keys from loc_audit | 101 keys/language |
+| 2b | **Split Localisation** | Split loc keys per module | 11 files/language |
 | 3 | **GFX Mappings** | Sprite definitions from `interface/*.gfx` | ~7,300 sprites, ~1,500 event pictures |
 | 4 | **Events** | All events from `events/*.txt` | 8,867 events, 430 files, 287 namespaces, 7,057 relationships |
 | 5a | **Ships & Components** | Ships, components, 3D models | 423 ships, 6,406 components, 1,387 faction variants |
@@ -163,22 +167,22 @@ python UPDATE_WIKI.py --only <module>
 
 | Module | Executes |
 |--------|----------|
-| `events` | Localisation → GFX → Events → Images |
-| `loc` | Localisation only |
+| `events` | Localisation → Inject Loc → GFX → Events → Images → Split Loc |
+| `loc` | Localisation → Inject Loc → Split Loc |
 | `gfx` | GFX Mappings only |
 | `images` | Image conversion only |
 | `building_icons` | Building icon conversion only |
 | `techtree` | Techtree only |
-| `ships` | Localisation → Ships |
-| `ship_models` | Localisation → Ships → 3D model conversion |
-| `buildings` | Localisation → Buildings → Building Icons |
-| `traits` | Localisation → Traits |
-| `governments` | Localisation → Governments |
-| `megastructures` | Localisation → Megastructures |
-| `anomalies` | Localisation → Anomalies |
-| `empires` | Localisation → Empires |
+| `ships` | Localisation → Inject Loc → Ships → Split Loc |
+| `ship_models` | Localisation → Inject Loc → Ships → 3D model conversion → Split Loc |
+| `buildings` | Localisation → Inject Loc → Buildings → Building Icons → Split Loc |
+| `traits` | Localisation → Inject Loc → Traits → Split Loc |
+| `governments` | Localisation → Inject Loc → Governments → Split Loc |
+| `megastructures` | Localisation → Inject Loc → Megastructures → Split Loc |
+| `anomalies` | Localisation → Inject Loc → Anomalies → Split Loc |
+| `empires` | Localisation → Inject Loc → Empires → Split Loc |
 | `galaxy_map` | Galaxy Map only |
-| `economy` | Localisation → Economy |
+| `economy` | Localisation → Inject Loc → Economy → Split Loc |
 | `search` | Search Index + Cross-References only |
 | `content` | All content modules + search (without events, techtree, images) |
 

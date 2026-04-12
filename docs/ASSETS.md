@@ -36,6 +36,8 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 | `deposits.json` | 237 KB | Lagerstetten |
 | `ship_models_map.json` | 443 KB | Ship-ID -> Fraktions-Modell Mapping |
 | `galaxy_map.json` | 22 KB | Galaxy-Map Empire-Startpositionen |
+| `galaxy_maps.json` | 282 KB | Erweiterte Galaxiekarten mit loc_key |
+| `mega_models_map.json` | 56 KB | Megastruktur-3D-Modell-Mapping |
 | `tech_item_map.json` | 1,05 MB | Tech -> Item Cross-Reference (Ships, Buildings, Components) |
 | `search_index.json` | 2,6 MB | Cross-Module Suchindex (~19.740 Items) |
 | `cross_references.json` | 303 KB | Bidirektionale Cross-Refs |
@@ -48,6 +50,7 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 
 7 Sprach-Dateien, je ~100 KB mit ~200.000 Loc-Keys:
 - `english.json`, `german.json`, `french.json`, `spanish.json`, `russian.json`, `polish.json`, `braz_por.json`
+- `inject_missing_loc.py` injiziert 101 fehlende Keys pro Sprache vor der Ausgabe
 
 ## Bilder
 
