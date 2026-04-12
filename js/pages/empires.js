@@ -155,10 +155,8 @@
                 btn.classList.add('active');
                 activeTab = btn.dataset.tab;
                 currentPage = 1;
-                // Map view only makes sense for empires tab
-                if (viewToggleGroup) {
-                    viewToggleGroup.classList.toggle('hidden', activeTab !== 'empires');
-                }
+                // Map view only makes sense for empires tab — hide toggle on other tabs
+                if (viewToggleGroup) viewToggleGroup.classList.toggle('hidden', activeTab !== 'empires');
                 if (activeTab !== 'empires' && activeView === 'map') {
                     setView('list');
                 }
@@ -376,7 +374,7 @@
                 document.getElementById('filter-archetype-group').classList.toggle('hidden', activeTab !== 'species');
                 const classGroup2 = document.getElementById('filter-class-group');
                 if (classGroup2) classGroup2.classList.toggle('hidden', activeTab !== 'traits');
-                if (viewToggleGroup) viewToggleGroup.style.visibility = activeTab === 'empires' ? '' : 'hidden';
+                if (viewToggleGroup) viewToggleGroup.classList.toggle('hidden', activeTab !== 'empires');
             }
         }
 

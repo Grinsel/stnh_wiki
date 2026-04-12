@@ -422,16 +422,17 @@ const Common = (() => {
         // Mark all children that are NOT tabs/stats as collapsible
         for (const child of filterInner.children) {
             if (!child.classList.contains('tab-buttons') &&
+                !child.classList.contains('view-mode-group') &&
                 !child.classList.contains('filter-stats')) {
                 child.classList.add('filter-collapsible');
             }
         }
 
-        // Create toggle button, insert after tab-buttons or at the start
+        // Create toggle button, insert after tab-buttons or view-mode-group (whichever is first), or at the start
         const btn = document.createElement('button');
         btn.className = 'filter-toggle-btn';
         btn.innerHTML = '<span class="toggle-arrow">▼</span> Filter';
-        const tabs = filterInner.querySelector('.tab-buttons');
+        const tabs = filterInner.querySelector('.tab-buttons, .view-mode-group');
         if (tabs) {
             tabs.after(btn);
         } else {

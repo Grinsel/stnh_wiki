@@ -160,6 +160,7 @@ const UI_STRINGS = {
     'ui.galaxy.reset':        { english: '⌖ Reset View', german: '⌖ Ansicht zurücksetzen', french: '⌖ Réinitialiser la vue', russian: '⌖ Сбросить вид' },
 
     // Filter by empire placeholder
+    'ui.filter.empire':             { english: 'Empire', german: 'Reich', french: 'Empire', russian: 'Империя', spanish: 'Imperio', polish: 'Imperium', braz_por: 'Império' },
     'ui.filter.empire_placeholder': { english: 'Filter by empire...', german: 'Nach Reich filtern...', french: 'Filtrer par empire...', russian: 'Фильтр по империи...' },
 
     // ==========================================
