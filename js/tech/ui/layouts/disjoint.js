@@ -103,7 +103,7 @@ export function renderDisjointForceDirectedGraph(nodes, links, selectedSpecies, 
       const posMap = new Map(positions.map(p => [p.id, p]));
       nodes.forEach(n => { const p = posMap.get(n.id); if (p) { n.x = p.x; n.y = p.y; } });
     } else {
-      for (let i = 0; i < numTicks; i++) simulation.tick();
+      let fi = 0; while (simulation.alpha() > simulation.alphaMin() && fi++ < 600) simulation.tick();
     }
 
     const node = _g
@@ -158,22 +158,19 @@ export function renderDisjointForceDirectedGraph(nodes, links, selectedSpecies, 
         d.id === activeTechId || d.id === selectionStartNode || d.id === selectionEndNode ? 3 : 1
       );
 
-    let tickCountDisjoint = 0;
     simulation.on('tick', () => {
       boundingForceDJ();
       _g.select('.links-layer').selectAll('.link')
         .attr('x1', (d) => d.source.x).attr('y1', (d) => d.source.y)
         .attr('x2', (d) => d.target.x).attr('y2', (d) => d.target.y);
       node.attr('transform', (d) => `translate(${d.x},${d.y})`);
-      if (++tickCountDisjoint % 15 === 0) applyLOD();
-      if (tickCountDisjoint > 80 && simulation.alpha() < 0.03) {
-        simulation.stop();
-        applyLOD();
-      }
+    });
+    simulation.on('end', () => {
+      applyLOD();
     });
 
     node.attr('transform', (d) => `translate(${d.x},${d.y})`);
-    // Run zoomToFit (300ms transition) under the overlay, then reveal
+    // Run zoomToFit (300ms transition) under the overlay, then reveal and let simulation settle
     requestAnimationFrame(() => {
       const fitW = _svg.node().clientWidth || width;
       const fitH = _svg.node().clientHeight || height;

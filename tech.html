@@ -53,12 +53,12 @@
             background: var(--panel-bg);
             border: 1px solid var(--accent-border);
             border-radius: 6px;
-            padding: 1rem;
-            overflow-y: auto;
-            overflow-x: hidden;
+            overflow: hidden;
             max-height: 100%;
-            align-self: flex-start;
+            align-self: stretch;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
         #sidebar::-webkit-scrollbar {
             width: 8px;
@@ -76,32 +76,47 @@
         }
         .tab-container {
             display: flex;
-            margin-bottom: 0.75rem;
+            flex-shrink: 0;
+            padding: 0.6rem 0.75rem 0;
+            background: var(--panel-bg);
+            border-bottom: 1px solid var(--border);
+            gap: 3px;
         }
         .tab {
             padding: 0.3rem 0.75rem;
             cursor: pointer;
-            background: var(--select-bg);
+            background: transparent;
             border-radius: 6px 6px 0 0;
-            border: 1px solid var(--border);
+            border: 1px solid transparent;
             border-bottom: none;
-            margin-right: 4px;
             font-size: 0.75rem;
             color: var(--text-muted);
-            transition: background 0.3s, color 0.3s;
+            transition: background 0.2s, color 0.2s;
+        }
+        .tab:hover {
+            color: var(--text-bright);
         }
         .tab.active {
-            background: var(--panel-bg);
+            background: var(--select-bg);
             color: var(--text-bright);
-            border-bottom: 1px solid var(--panel-bg);
+            border-color: var(--border);
+            border-bottom-color: var(--select-bg);
+            margin-bottom: -1px;
         }
         .tab-content {
             position: relative;
             overflow: hidden;
+            flex: 1;
+            min-height: 0;
         }
         #general-panel {
             opacity: 1;
             transition: opacity 0.3s;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 1rem;
+            box-sizing: border-box;
         }
         #details-panel {
             position: absolute;
@@ -113,7 +128,10 @@
             transform: translateY(100%);
             opacity: 0;
             transition: transform 0.3s, opacity 0.3s;
-            border-radius: 0 0 6px 6px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 1rem;
+            box-sizing: border-box;
         }
         #details-panel.active {
             transform: translateY(0);
@@ -985,12 +1003,184 @@
         }
         @media (max-width: 800px) {
             #main-container { padding: 0 2vw; }
-            #sidebar, #tree-panel { padding: 10px 2vw; }
+            #sidebar { padding: 0; }
+            #tree-panel { padding: 10px 2vw; }
             #tree-panel { min-width: unset; }
         }
         /* Mobile disclaimer */
         #mobile-disclaimer {
             display: none;
+        }
+        /* ===== Immersive Floating Panels ===== */
+        .imm-float {
+            position: absolute;
+            width: 290px;
+            max-height: calc(100% - 16px);
+            background: rgba(10, 14, 24, 0.88);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-border);
+            border-radius: 8px;
+            box-shadow: 0 4px 28px #000d;
+            z-index: 500;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-6px);
+            transition: opacity 0.22s ease, transform 0.22s ease;
+        }
+        .imm-float.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        .imm-float-header {
+            display: flex;
+            align-items: center;
+            padding: 0.45rem 0.5rem 0.45rem 0.8rem;
+            border-bottom: 1px solid var(--accent-border);
+            flex-shrink: 0;
+        }
+        .imm-float-title {
+            flex: 1;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .imm-float-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1rem;
+            line-height: 1;
+            padding: 0.25rem 0.45rem;
+            border-radius: 4px;
+            transition: color 0.15s, background 0.15s;
+        }
+        .imm-float-close:hover {
+            color: var(--text-primary);
+            background: var(--select-bg-hover);
+        }
+        .imm-float-body {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 0.75rem 0.9rem;
+            font-size: 0.82rem;
+        }
+        .imm-float-body::-webkit-scrollbar { width: 5px; }
+        .imm-float-body::-webkit-scrollbar-track { background: transparent; }
+        .imm-float-body::-webkit-scrollbar-thumb { background: var(--accent-border); border-radius: 3px; }
+        #imm-filters-float { top: 8px; left: 8px; }
+        #imm-details-float { top: 8px; right: 8px; }
+        /* ===== Immersive Mode ===== */
+        #main-container {
+            transition: opacity 0.22s ease, transform 0.22s ease;
+            transform-origin: center top;
+        }
+        body.immersive-mode #masthead,
+        body.immersive-mode #wiki-nav,
+        body.immersive-mode #filter-bar,
+        body.immersive-mode #sidebar,
+        body.immersive-mode #site-footer,
+        body.immersive-mode #global-search-results {
+            display: none !important;
+        }
+        body.immersive-mode #main-container {
+            height: 100vh;
+            padding: 0;
+            gap: 0;
+        }
+        body.immersive-mode #tree-panel {
+            border-radius: 0;
+            padding: 0.5rem;
+        }
+        body.immersive-mode #tech-tree {
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+        kbd.shortcut-key {
+            display: inline-block;
+            padding: 0 4px;
+            margin-left: 4px;
+            background: var(--bg-deep);
+            border: 1px solid var(--accent-border);
+            border-bottom-width: 2px;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            font-family: inherit;
+            color: var(--text-muted);
+            line-height: 1.6;
+            vertical-align: middle;
+            pointer-events: none;
+        }
+        /* Immersive shortcuts bar — always visible at viewport bottom center */
+        #immersive-hint {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(8, 12, 22, 0.82);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: rgba(180, 190, 210, 0.7);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 0.35rem 1rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.03em;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+            pointer-events: none;
+            z-index: 10;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        #immersive-hint .hint-sep {
+            opacity: 0.25;
+            font-size: 0.65rem;
+        }
+        .hint-immersive-only {
+            display: none;
+        }
+        body.immersive-mode .hint-immersive-only {
+            display: contents;
+        }
+        #immersive-hint kbd {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-bottom-width: 2px;
+            border-radius: 4px;
+            padding: 0.1em 0.45em;
+            font-family: inherit;
+            font-size: 0.7rem;
+            color: rgba(210,220,240,0.9);
+            line-height: 1.4;
+        }
+        /* ===== Starfield Canvas ===== */
+        #starfield-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            border-radius: 14px;
+        }
+        body.immersive-mode #starfield-canvas {
+            border-radius: 4px;
+        }
+        /* When general-panel is inside the immersive float, keep it visible even when tabs.js marks it hidden */
+        #imm-filters-body #general-panel.hidden {
+            opacity: 1;
         }
         @media (max-width: 768px) {
             html, body { overflow: auto; }
@@ -1264,6 +1454,22 @@
                     </div>
                 </div>
                 <button id="help-button">?</button>
+                <!-- Immersive floating panels (Filters left, Tech Details right) -->
+                <div id="imm-filters-float" class="imm-float" role="complementary" aria-label="Filters">
+                    <div class="imm-float-header">
+                        <span class="imm-float-title">Filters <kbd class="shortcut-key">G</kbd></span>
+                        <button class="imm-float-close" title="Close">&#x2715;</button>
+                    </div>
+                    <div id="imm-filters-body" class="imm-float-body"></div>
+                </div>
+                <div id="imm-details-float" class="imm-float" role="complementary" aria-label="Tech Details">
+                    <div class="imm-float-header">
+                        <span class="imm-float-title">Tech Details</span>
+                        <button class="imm-float-close" title="Close">&#x2715;</button>
+                    </div>
+                    <div id="imm-details-body" class="imm-float-body"></div>
+                </div>
+                <div id="immersive-hint"><kbd>F</kbd> immersive<span class="hint-immersive-only"><span class="hint-sep">&#9475;</span><kbd>G</kbd> filters</span><span class="hint-sep">&#9475;</span>click a tech for details</div>
             </div>
         </main>
     </div>
@@ -1305,6 +1511,9 @@
                 <li>
                     <b>Tier Indicators:</b> Each technology shows a small white wedge on the left with diagonal black stripes. The number of stripes equals the tech's tier (up to T11).
                 </li>
+                <li>
+                    <b>Immersive Mode:</b> Press <kbd class="shortcut-key" style="background:#111;border-color:#555;color:#ccc">F</kbd> (or click the <i>Immersive</i> button in the toolbar) to hide the sidebar and wiki chrome for a full-screen view of the tree.
+                </li>
             </ul>
             <div style="background: #c8373722; border: 1px solid #c8373788; border-radius: 6px; padding: 0.6rem 0.85rem; margin: 0.75rem auto 0 auto; color: #ffc4c4; font-size: 0.75rem; max-width: 720px;">
                 <b>Beta / WIP:</b><br>
@@ -1341,6 +1550,206 @@
     </footer>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script type="module" src="js/tech/main.js"></script>
+    <script>
+    /* ===== Starfield ===== */
+    (function() {
+        var container = document.getElementById('tech-tree');
+        if (!container) return;
+        var canvas = document.createElement('canvas');
+        canvas.id = 'starfield-canvas';
+        container.insertBefore(canvas, container.firstChild);
+        var ctx = canvas.getContext('2d');
+        var COUNT = 200;
+        var stars = [];
+
+        function resize() {
+            var w = container.clientWidth;
+            var h = container.clientHeight;
+            if (!w || !h) return;
+            canvas.width  = w;
+            canvas.height = h;
+            stars = [];
+            for (var i = 0; i < COUNT; i++) {
+                var rnd = Math.random();
+                stars.push({
+                    x:     Math.random() * w,
+                    y:     Math.random() * h,
+                    r:     Math.random() * 1.4 + 0.3,
+                    base:  Math.random() * 0.5 + 0.15,
+                    amp:   Math.random() * 0.45,
+                    speed: Math.random() * 0.0009 + 0.0003,
+                    phase: Math.random() * 6.2832,
+                    color: rnd < 0.12 ? '#b0d0ff' : rnd < 0.2 ? '#ffe8a0' : '#ffffff',
+                });
+            }
+        }
+
+        function draw(ts) {
+            requestAnimationFrame(draw);
+            var w = canvas.width, h = canvas.height;
+            if (!w || !h) return;
+            ctx.clearRect(0, 0, w, h);
+            for (var i = 0; i < stars.length; i++) {
+                var s = stars[i];
+                var a = s.base + s.amp * Math.sin(ts * s.speed + s.phase);
+                ctx.globalAlpha = a < 0 ? 0 : a > 1 ? 1 : a;
+                ctx.fillStyle = s.color;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, 6.2832);
+                ctx.fill();
+            }
+            ctx.globalAlpha = 1;
+        }
+
+        var ro = new ResizeObserver(resize);
+        ro.observe(container);
+        resize();
+        requestAnimationFrame(draw);
+    })();
+
+    /* ===== Immersive Floating Panels ===== */
+    (function() {
+        var filtersFloat  = document.getElementById('imm-filters-float');
+        var detailsFloat  = document.getElementById('imm-details-float');
+        var filtersBody   = document.getElementById('imm-filters-body');
+        var detailsBody   = document.getElementById('imm-details-body');
+        var detailsSource = document.getElementById('tech-details-content');
+        var generalPanel  = document.getElementById('general-panel');
+        if (!filtersFloat || !detailsFloat || !detailsSource || !generalPanel) return;
+
+        // Remember original DOM position for restore on immersive-off
+        var gpParent      = generalPanel.parentNode;
+        var gpNextSibling = generalPanel.nextSibling;
+
+        function showFilters() { filtersFloat.classList.add('visible'); }
+        function hideFilters() { filtersFloat.classList.remove('visible'); }
+        function toggleFilters() {
+            if (filtersFloat.classList.contains('visible')) hideFilters(); else showFilters();
+        }
+        function showDetails() { detailsFloat.classList.add('visible'); }
+        function hideDetails() { detailsFloat.classList.remove('visible'); }
+
+        function reparentFilters(toFloat) {
+            if (toFloat) {
+                filtersBody.appendChild(generalPanel);
+            } else {
+                if (gpNextSibling && gpNextSibling.parentNode === gpParent) {
+                    gpParent.insertBefore(generalPanel, gpNextSibling);
+                } else {
+                    gpParent.appendChild(generalPanel);
+                }
+            }
+        }
+
+        // Close buttons
+        filtersFloat.querySelector('.imm-float-close').addEventListener('click', hideFilters);
+        detailsFloat.querySelector('.imm-float-close').addEventListener('click', hideDetails);
+
+        // Keyboard shortcuts (only in immersive mode)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey || e.altKey) return;
+            var tag = document.activeElement ? document.activeElement.tagName : '';
+            if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+            if (!document.body.classList.contains('immersive-mode')) return;
+            if (e.key === 'g' || e.key === 'G') {
+                e.preventDefault();
+                toggleFilters();
+            }
+        });
+
+        // Mirror tech-details updates → auto-show details panel
+        var PLACEHOLDER = 'Click on a technology to see its details here.';
+        var observer = new MutationObserver(function() {
+            if (!document.body.classList.contains('immersive-mode')) return;
+            detailsBody.innerHTML = detailsSource.innerHTML;
+            var p = detailsSource.querySelector('p');
+            if (p && detailsSource.children.length === 1 && p.textContent.trim() === PLACEHOLDER) return;
+            showDetails();
+        });
+        observer.observe(detailsSource, { childList: true, subtree: true });
+
+        // Enter immersive: move #general-panel into filters float body
+        document.body.addEventListener('immersive-on', function() {
+            reparentFilters(true);
+        });
+
+        // Exit immersive: restore #general-panel, hide both panels
+        document.body.addEventListener('immersive-off', function() {
+            hideFilters();
+            hideDetails();
+            reparentFilters(false);
+        });
+    })();
+
+    /* ===== Immersive Mode ===== */
+    (function() {
+        var active = false;
+
+        function toggle() {
+            active = !active;
+            var mc = document.getElementById('main-container');
+
+            // Phase 1: fade + scale out
+            if (mc) { mc.style.opacity = '0'; mc.style.transform = 'scale(0.97)'; }
+
+            setTimeout(function() {
+                // Phase 2: swap classes while invisible
+                document.body.classList.toggle('immersive-mode', active);
+                document.body.dispatchEvent(new Event(active ? 'immersive-on' : 'immersive-off'));
+
+                // Wait two frames so the CSS layout (sidebar hide/show) has fully reflowed
+                requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    var container = document.getElementById('tech-tree');
+                    if (!container) return;
+                    var w = container.clientWidth;
+                    var h = container.clientHeight;
+
+                    // Capture transform and OLD viewport center BEFORE resizing the SVG
+                    var oldW = 0, oldH = 0, savedT = null;
+                    if (window.svg && window.zoom && typeof d3 !== 'undefined') {
+                        oldW = parseInt(window.svg.attr('width'))  || w;
+                        oldH = parseInt(window.svg.attr('height')) || h;
+                        savedT = d3.zoomTransform(window.svg.node());
+                    }
+
+                    // Resize SVG attributes
+                    if (window.svg) {
+                        window.svg.attr('width', w).attr('height', h);
+                    }
+                    // Resize every canvas inside #tech-tree (starfield + tech canvas layer)
+                    container.querySelectorAll('canvas').forEach(function(c) {
+                        c.width  = w;
+                        c.height = h;
+                        c.style.width  = w + 'px';
+                        c.style.height = h + 'px';
+                    });
+                    // Re-center: find the world point at the OLD viewport center,
+                    // then build a new transform that places it at the NEW viewport center.
+                    if (savedT && window.svg && window.zoom) {
+                        var wx = (oldW / 2 - savedT.x) / savedT.k;
+                        var wy = (oldH / 2 - savedT.y) / savedT.k;
+                        var newT = d3.zoomIdentity
+                            .translate(w / 2 - wx * savedT.k, h / 2 - wy * savedT.k)
+                            .scale(savedT.k);
+                        window.svg.call(window.zoom.transform, newT);
+                    }
+                    // Phase 3: fade + scale back in
+                    if (mc) { mc.style.opacity = '1'; mc.style.transform = 'scale(1)'; }
+                });
+                });
+            }, 220);
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key !== 'f' && e.key !== 'F') return;
+            if (e.ctrlKey || e.metaKey || e.altKey) return;
+            var tag = document.activeElement ? document.activeElement.tagName : '';
+            if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+            toggle();
+        });
+    })();
+    </script>
     <div id="toolbar-tooltip"></div>
     <script>
     (function() {
@@ -1366,6 +1775,26 @@
             if (!e.relatedTarget || !e.relatedTarget.closest('[data-tooltip]')) {
                 tip.classList.remove('visible');
             }
+        });
+    })();
+    </script>
+    <script>
+    /* ===== Sidebar scroll fades ===== */
+    (function() {
+        function initFade(el) {
+            if (!el) return;
+            el.classList.add('scroll-fade');
+            function update() {
+                el.classList.toggle('scroll-at-top',    el.scrollTop <= 1);
+                el.classList.toggle('scroll-at-bottom', el.scrollTop + el.clientHeight >= el.scrollHeight - 1);
+            }
+            el.addEventListener('scroll', update, { passive: true });
+            if (window.ResizeObserver) new ResizeObserver(update).observe(el);
+            update();
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            initFade(document.getElementById('general-panel'));
+            initFade(document.getElementById('details-panel'));
         });
     })();
     </script>

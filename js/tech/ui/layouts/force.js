@@ -105,7 +105,7 @@ export function renderForceDirectedGraph(nodes, links, selectedSpecies, containe
       const posMap = new Map(positions.map(p => [p.id, p]));
       nodes.forEach(n => { const p = posMap.get(n.id); if (p) { n.x = p.x; n.y = p.y; } });
     } else {
-      for (let i = 0; i < numTicks; i++) simulation.tick();
+      let fi = 0; while (simulation.alpha() > simulation.alphaMin() && fi++ < 600) simulation.tick();
     }
 
     // Create node DOM elements at converged positions
@@ -165,23 +165,20 @@ export function renderForceDirectedGraph(nodes, links, selectedSpecies, containe
       );
 
     // Wire up tick handler (runs when drag restarts the simulation)
-    let tickCount = 0;
     simulation.on('tick', () => {
       boundingForceFD();
       _g.select('.links-layer').selectAll('.link')
         .attr('x1', (d) => d.source.x).attr('y1', (d) => d.source.y)
         .attr('x2', (d) => d.target.x).attr('y2', (d) => d.target.y);
       node.attr('transform', (d) => `translate(${d.x},${d.y})`);
-      if (++tickCount % 15 === 0) applyLOD();
-      if (tickCount > 60 && simulation.alpha() < 0.03) {
-        simulation.stop();
-        applyLOD();
-        if (typeof onEnd === 'function') onEnd();
-      }
+    });
+    simulation.on('end', () => {
+      applyLOD();
+      if (typeof onEnd === 'function') onEnd();
     });
 
     node.attr('transform', (d) => `translate(${d.x},${d.y})`);
-    // Run zoomToFit (300ms transition) under the overlay, then reveal
+    // Run zoomToFit (300ms transition) under the overlay, then reveal and let simulation settle
     requestAnimationFrame(() => {
       const fitW = _svg.node().clientWidth || width;
       const fitH = _svg.node().clientHeight || height;

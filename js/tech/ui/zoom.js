@@ -1,7 +1,7 @@
 // Zoom utilities
 // Provides zoomToFit used by showcase and search
 
-export function zoomToFit(svg, g, zoom, nodes, width, height, padding = 60, minScale = 0.02, maxScale = 2) {
+export function zoomToFit(svg, g, zoom, nodes, width, height, padding = 60, minScale = 0.02, maxScale = 2, nodeW = 0, nodeH = 0) {
   if (!nodes || nodes.length === 0) return;
   let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
   for (const n of nodes) {
@@ -10,6 +10,9 @@ export function zoomToFit(svg, g, zoom, nodes, width, height, padding = 60, minS
     if (n.y < y0) y0 = n.y; if (n.y > y1) y1 = n.y;
   }
   if (!isFinite(x0) || !isFinite(y0) || !isFinite(x1) || !isFinite(y1)) return;
+  // Expand bounds to include node extents beyond their center coordinates
+  x0 -= nodeW / 2; x1 += nodeW / 2;
+  y0 -= nodeH / 2; y1 += nodeH / 2;
   const w = Math.max(1, x1 - x0);
   const h = Math.max(1, y1 - y0);
   const scale = Math.max(minScale, Math.min(maxScale, Math.min(

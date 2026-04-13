@@ -44,7 +44,7 @@ export class CanvasTechRenderer {
             left:          '0',
             width:         width  + 'px',
             height:        height + 'px',
-            zIndex:        '0',
+            zIndex:        '1',
             pointerEvents: 'none',
         });
 
@@ -55,7 +55,7 @@ export class CanvasTechRenderer {
         const svgEl = container.querySelector('svg');
         if (svgEl) {
             if (getComputedStyle(svgEl).position === 'static') svgEl.style.position = 'relative';
-            svgEl.style.zIndex = '1';
+            svgEl.style.zIndex = '2';
         }
 
         this._ctx = this._canvas.getContext('2d');
@@ -86,7 +86,7 @@ export class CanvasTechRenderer {
         const t   = this._lastT;
         if (!t) return;
 
-        ctx.clearRect(0, 0, this._width, this._height);
+        ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
 
         const { k, x, y } = t;
         ctx.save();

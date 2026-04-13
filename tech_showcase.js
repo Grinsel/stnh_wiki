@@ -6,6 +6,7 @@ import { handleSearch as executeSearch } from './js/tech/search.js';
 import { renderForceDirectedArrowsGraph as arrowsLayout } from './js/tech/ui/layouts/arrows.js';
 import { renderForceDirectedGraph as forceLayout } from './js/tech/ui/layouts/force.js';
 import { renderDisjointForceDirectedGraph as disjointLayout } from './js/tech/ui/layouts/disjoint.js';
+import { zoomToFit } from './js/tech/ui/zoom.js';
 import { layoutByTier } from './js/tech/ui/layouts/tier.js';
 import { loadState, saveState, applyState, resetState, setCookie, getCookie } from './js/tech/state.js';
 import { drag } from './js/tech/ui/drag.js';
@@ -556,6 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tierLayer.selectAll('*').remove();
             const transform = d3.zoomTransform(_svg.node());
             const topY = -transform.y / transform.k;
+            const liveHeight = _svg.node().clientHeight || height;
 
             for (const tier in tierPositions) {
                 const tierX = tierPositions[tier];
@@ -563,7 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .attr('x1', tierX)
                     .attr('y1', topY)
                     .attr('x2', tierX)
-                    .attr('y2', topY + height / transform.k)
+                    .attr('y2', topY + liveHeight / transform.k)
                     .attr('stroke', '#444')
                     .attr('stroke-width', 1 / transform.k)
                     .attr('stroke-dasharray', '5,5');
@@ -809,6 +811,17 @@ document.addEventListener('DOMContentLoaded', () => {
             // Expose to window for zoom controls
             window.svg = svg;
             window.zoom = zoom;
+            window.triggerZoomToFit = function() {
+                if (!svg || !g || !zoom || !nodes || !nodes.length) return;
+                var container = document.getElementById('tech-tree');
+                var w = container ? container.clientWidth : (svg.node().clientWidth || 800);
+                var h = container ? container.clientHeight : (svg.node().clientHeight || 600);
+                // Tier layout positions nodes by center; pass node dimensions so the
+                // bounding box is expanded to include their full extents at the edges.
+                var nw = isTierBasedLayout ? 140 : 0;
+                var nh = isTierBasedLayout ? 80 : 0;
+                zoomToFit(svg, g, zoom, nodes, w, h, 60, 0.02, 2, nw, nh);
+            };
         }
     }
 

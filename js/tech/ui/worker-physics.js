@@ -60,23 +60,49 @@ export function runForceInWorker(nodes, links, width, height, config) {
  * Returns the element so the caller can remove it when layout is ready.
  */
 export function createLayoutOverlay(container) {
+    // Hide any frozen tooltip immediately
+    const tip = document.getElementById('toolbar-tooltip');
+    if (tip) tip.classList.remove('visible');
+
+    // Inject keyframes once
+    if (!document.getElementById('_layout-overlay-style')) {
+        const s = document.createElement('style');
+        s.id = '_layout-overlay-style';
+        s.textContent = `
+@keyframes _lo_spin {
+    to { transform: rotate(360deg); }
+}
+.layout-computing-overlay { pointer-events: all; }
+._lo_spinner {
+    width: 28px; height: 28px; flex-shrink: 0;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top-color: var(--accent, #57a6ff);
+    border-radius: 50%;
+    animation: _lo_spin 0.75s linear infinite;
+}
+`;
+        document.head.appendChild(s);
+    }
+
     const el = document.createElement('div');
     el.className = 'layout-computing-overlay';
     el.style.cssText = [
-        'position:absolute',
-        'inset:0',
-        'display:flex',
-        'align-items:center',
-        'justify-content:center',
+        'position:absolute', 'inset:0', 'z-index:50',
+        'display:flex', 'flex-direction:column', 'gap:18px',
+        'align-items:center', 'justify-content:center',
         'background:var(--bg-primary,#0c0c14)',
-        'z-index:50',
-        'color:var(--text-muted,#aaa)',
-        'font-size:0.85rem',
         'border-radius:inherit',
-        'pointer-events:all',
-        'letter-spacing:0.5px',
     ].join(';');
-    el.textContent = 'Computing layout\u2026';
+
+    const spinner = document.createElement('div');
+    spinner.className = '_lo_spinner';
+
+    const label = document.createElement('div');
+    label.style.cssText = 'color:var(--text-muted,#aaa);font-size:0.82rem;letter-spacing:0.5px';
+    label.textContent = 'Computing layout\u2026';
+
+    el.appendChild(spinner);
+    el.appendChild(label);
     container.style.position = container.style.position || 'relative';
     container.appendChild(el);
     return el;

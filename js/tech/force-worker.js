@@ -32,7 +32,10 @@ self.onmessage = function ({ data }) {
     if (forceXStrength) sim.force('x', d3.forceX(width / 2).strength(forceXStrength));
     if (forceYStrength) sim.force('y', d3.forceY(height / 2).strength(forceYStrength));
 
-    for (let i = 0; i < numTicks; i++) sim.tick();
+    // Run until fully settled (alpha < alphaMin), capped for safety
+    const MAX_TICKS = 600;
+    let i = 0;
+    while (sim.alpha() > sim.alphaMin() && i++ < MAX_TICKS) sim.tick();
 
     self.postMessage({
         positions: nodes.map(n => ({ id: n.id, x: n.x, y: n.y })),

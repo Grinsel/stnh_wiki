@@ -135,7 +135,7 @@ export function renderForceDirectedArrowsGraph(
       const posMap = new Map(positions.map(p => [p.id, p]));
       nodes.forEach(n => { const p = posMap.get(n.id); if (p) { n.x = p.x; n.y = p.y; } });
     } else {
-      for (let i = 0; i < numTicks; i++) simulation.tick();
+      let fi = 0; while (simulation.alpha() > simulation.alphaMin() && fi++ < 600) simulation.tick();
     }
 
     // Create polygon links at converged positions
@@ -200,20 +200,17 @@ export function renderForceDirectedArrowsGraph(
         d.id === activeTechId || d.id === selectionStartNode || d.id === selectionEndNode ? 3 : 1
       );
 
-    let tickCountArrows = 0;
     simulation.on('tick', () => {
       boundingForce();
       _g.select('.links-layer').selectAll('.link').attr('points', arrowPoints);
       node.attr('transform', (d) => `translate(${d.x},${d.y})`);
-      if (++tickCountArrows % 15 === 0) applyLOD();
-      if (tickCountArrows > 60 && simulation.alpha() < 0.03) {
-        simulation.stop();
-        applyLOD();
-      }
+    });
+    simulation.on('end', () => {
+      applyLOD();
     });
 
     node.attr('transform', (d) => `translate(${d.x},${d.y})`);
-    // Run zoomToFit (300ms transition) under the overlay, then reveal
+    // Run zoomToFit (300ms transition) under the overlay, then reveal and let simulation settle
     requestAnimationFrame(() => {
       const fitW = _svg.node().clientWidth || width;
       const fitH = _svg.node().clientHeight || height;
