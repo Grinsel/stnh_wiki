@@ -24,6 +24,8 @@ Desktop.ini
 
 # Techtree pipeline
 update/techtree/__pycache__/
+localisation_map.json
+trigger_map.json
 
 
 
