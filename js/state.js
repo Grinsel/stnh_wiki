@@ -12,7 +12,7 @@ const AppState = (() => {
         faction: '',
         category: '',
         namespace: '',
-        showHidden: false,
+        showHidden: true,
         triggeredOnly: false,
         selectedEvent: '',
         sort: '',
