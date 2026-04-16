@@ -83,15 +83,19 @@ MODULES = [
     }),
 ]
 
-# Module -> page mapping for URLs
+# Module -> page mapping for URLs. Matches the consolidated page layout:
+# economy.html hosts buildings/districts/megastructures/jobs/deposits/relics,
+# governments.html hosts governments/civics/authorities/policies/edicts/councilors/traditions/perks,
+# exploration.html hosts anomalies/archaeology, and ships/traits/empires/tech
+# keep their own pages. Kept in sync with WIKI_LINK_MAP in js/shared-render.js.
 MODULE_PAGES = {
     'events': 'events.html',
     'ships': 'ships.html',
-    'buildings': 'buildings.html',
+    'buildings': 'economy.html',
     'traits': 'traits.html',
     'governments': 'governments.html',
-    'megastructures': 'megastructures.html',
-    'anomalies': 'anomalies.html',
+    'megastructures': 'economy.html',
+    'anomalies': 'exploration.html',
     'empires': 'empires.html',
     'economy': 'economy.html',
     'tech': 'tech.html',
