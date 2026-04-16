@@ -576,6 +576,8 @@ Konvertiert PDX-Trigger/Effekt-Bloecke in menschenlesbare Saetze.
 Rendering-Funktionen die von allen 8 Content-Seiten (nicht Events, nicht Hub) geteilt werden:
 - Item-Cards, Detail-Panels, Pagination, Tab-Umschaltung
 - Humanisierte Modifier/Trigger/Effekte
+- `wikiLink(itemId, type, displayName)` + `initWikiLinks(container)`: Universelle Cross-Links zwischen Wiki-Items (18 Typen). Klick navigiert zur richtigen Seite+Tab via `WIKI_LINK_MAP`
+- `techLink(id)` + `initTechLinks(container)`: Klickbare Gold-Badges fuer Tech-Prerequisites
 
 ### 4.3 Page-Controller-Muster (Content-Seiten)
 

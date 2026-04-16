@@ -97,7 +97,7 @@
                 }
                 if (item.on_success && item.on_success.length) {
                     html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.success_outcomes')}</div>`;
-                    html += `<div class="detail-meta">${item.on_success.map(o => `<span class="detail-meta-item">${esc(o.event)} (weight: ${esc(o.weight)})</span>`).join('')}</div></div>`;
+                    html += `<div class="detail-meta">${item.on_success.map(o => `<span class="detail-meta-item">${SharedRender.wikiLink(o.event, 'event')} (weight: ${esc(o.weight)})</span>`).join('')}</div></div>`;
                 }
                 if (item.spawn_chance) {
                     html += `<div class="detail-section">${SharedRender.dualView(item.spawn_chance, I18n.ui('ui.detail.spawn_chance'))}</div>`;
@@ -118,7 +118,7 @@
                     for (let i = 0; i < item.stages.length; i++) {
                         const s = item.stages[i];
                         html += `<div class="detail-meta"><span class="detail-meta-item">${I18n.ui('ui.misc.stage')} ${i+1}: ${I18n.ui('ui.misc.difficulty')} ${esc(s.difficulty)}</span>`;
-                        if (s.event) html += `<span class="detail-meta-item">${I18n.ui('ui.misc.event')}: ${esc(s.event)}</span>`;
+                        if (s.event) html += `<span class="detail-meta-item">${I18n.ui('ui.misc.event')}: ${SharedRender.wikiLink(s.event, 'event')}</span>`;
                         if (s.icon) html += `<span class="detail-meta-item">${I18n.ui('ui.misc.icon')}: ${esc(s.icon)}</span>`;
                         html += `</div>`;
                     }
@@ -131,6 +131,7 @@
 
             detailContent.innerHTML = html;
             SharedRender.initToggles(detailContent);
+            SharedRender.initWikiLinks(detailContent);
             detailPanel.classList.remove('hidden');
         }
 

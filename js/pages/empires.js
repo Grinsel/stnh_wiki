@@ -249,17 +249,17 @@
             // Empire-specific (also shown when called from map view)
             if (isEmpire && item.authority !== undefined) {
                 const stats = [];
-                if (item.authority) stats.push([I18n.ui('ui.meta.authority'), item.authority]);
-                if (item.government) stats.push([I18n.ui('ui.meta.government'), item.government]);
-                if (item.origin) stats.push([I18n.ui('ui.meta.origin'), item.origin]);
-                if (item.ship_prefix) stats.push([I18n.ui('ui.meta.ship_prefix'), item.ship_prefix]);
-                if (item.graphical_culture) stats.push([I18n.ui('ui.meta.culture'), item.graphical_culture]);
-                if (item.planet_name) stats.push([I18n.ui('ui.meta.homeworld'), item.planet_name]);
-                if (item.planet_class) stats.push([I18n.ui('ui.meta.planet_class'), item.planet_class]);
-                if (item.system_name) stats.push([I18n.ui('ui.meta.system'), item.system_name]);
+                if (item.authority) stats.push([I18n.ui('ui.meta.authority'), SharedRender.wikiLink(item.authority, 'authority', I18n.t(item.authority) || item.authority)]);
+                if (item.government) stats.push([I18n.ui('ui.meta.government'), SharedRender.wikiLink(item.government, 'government', I18n.t(item.government) || item.government)]);
+                if (item.origin) stats.push([I18n.ui('ui.meta.origin'), SharedRender.wikiLink(item.origin, 'civic', I18n.t(item.origin) || item.origin)]);
+                if (item.ship_prefix) stats.push([I18n.ui('ui.meta.ship_prefix'), esc(item.ship_prefix)]);
+                if (item.graphical_culture) stats.push([I18n.ui('ui.meta.culture'), esc(item.graphical_culture)]);
+                if (item.planet_name) stats.push([I18n.ui('ui.meta.homeworld'), esc(item.planet_name)]);
+                if (item.planet_class) stats.push([I18n.ui('ui.meta.planet_class'), esc(item.planet_class)]);
+                if (item.system_name) stats.push([I18n.ui('ui.meta.system'), esc(item.system_name)]);
                 if (stats.length) {
                     html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.info')}</div>`;
-                    html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${esc(v)}</span>`).join('')}</div></div>`;
+                    html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${v}</span>`).join('')}</div></div>`;
                 }
                 if (item.ethics && item.ethics.length) {
                     html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.ethics')}</div>`;
@@ -267,7 +267,7 @@
                 }
                 if (item.civics && item.civics.length) {
                     html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.civics')}</div>`;
-                    html += `<div class="detail-meta">${item.civics.map(c => `<span class="detail-meta-item">${esc(I18n.t(c) || c)}</span>`).join('')}</div></div>`;
+                    html += `<div class="detail-meta">${item.civics.map(c => SharedRender.wikiLink(c, 'civic', I18n.t(c) || c)).join('')}</div></div>`;
                 }
                 if (item.species) {
                     html += `<div class="detail-section">${SharedRender.dualView(item.species, I18n.ui('ui.detail.species'))}</div>`;
@@ -318,6 +318,7 @@
 
             detailContent.innerHTML = html;
             SharedRender.initToggles(detailContent);
+            SharedRender.initWikiLinks(detailContent);
             _currentDetailItem = item;
             // Show "View on map" only for empires in list view
             viewOnMapBtn.classList.toggle('hidden', activeView === 'map' || activeTab !== 'empires' || item.authority === undefined);

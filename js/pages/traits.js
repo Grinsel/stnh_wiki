@@ -141,7 +141,7 @@
 
             if (item.required_traditions && item.required_traditions.length) {
                 html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.required_traditions')}</div>`;
-                html += `<div class="detail-meta">${item.required_traditions.map(t => `<span class="detail-meta-item">${esc(I18n.t(t) || t)}</span>`).join('')}</div></div>`;
+                html += `<div class="detail-meta">${item.required_traditions.map(t => SharedRender.wikiLink(t, 'tradition', I18n.t(t) || t)).join('')}</div></div>`;
             }
 
             if (item.min_perks) {
@@ -156,7 +156,7 @@
 
             if (item.opposites && item.opposites.length) {
                 html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.opposites')}</div>`;
-                html += `<div class="detail-meta">${item.opposites.map(o => `<span class="detail-meta-item">${esc(I18n.t(o) || o)}</span>`).join('')}</div></div>`;
+                html += `<div class="detail-meta">${item.opposites.map(o => SharedRender.wikiLink(o, activeTab === 'perks' ? 'perk' : 'trait', I18n.t(o) || o)).join('')}</div></div>`;
             }
 
             if (item.modifier) {
@@ -178,6 +178,7 @@
             detailContent.innerHTML = html;
             SharedRender.initToggles(detailContent);
             SharedRender.initTechLinks(detailContent);
+            SharedRender.initWikiLinks(detailContent);
             detailPanel.classList.remove('hidden');
         }
 
@@ -308,6 +309,7 @@
                         if (inner) {
                             SharedRender.initToggles(inner);
                             SharedRender.initTechLinks(inner);
+                            SharedRender.initWikiLinks(inner);
                         }
                     };
                     const onExpand = () => doExpand();

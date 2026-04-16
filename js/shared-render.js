@@ -139,5 +139,58 @@ const SharedRender = (() => {
         });
     }
 
-    return { formatBlock, dualView, initToggles, escapeHtml, techLink, techLinks, initTechLinks };
+    /**
+     * URL mapping: item type → page + query param + optional tab.
+     */
+    const WIKI_LINK_MAP = {
+        event:         { page: 'events.html',      param: 'search' },
+        building:      { page: 'economy.html',     param: 'search', tab: 'buildings' },
+        district:      { page: 'economy.html',     param: 'search', tab: 'districts' },
+        megastructure: { page: 'economy.html',     param: 'search', tab: 'megastructures' },
+        civic:         { page: 'governments.html', param: 'search', tab: 'civics' },
+        authority:     { page: 'governments.html', param: 'search', tab: 'authorities' },
+        government:    { page: 'governments.html', param: 'search', tab: 'governments' },
+        tradition:     { page: 'governments.html', param: 'search', tab: 'traditions' },
+        policy:        { page: 'governments.html', param: 'search', tab: 'policies' },
+        edict:         { page: 'governments.html', param: 'search', tab: 'edicts' },
+        trait:         { page: 'traits.html',      param: 'search', tab: 'traits' },
+        perk:          { page: 'traits.html',      param: 'search', tab: 'perks' },
+        anomaly:       { page: 'exploration.html', param: 'search', tab: 'anomalies' },
+        archaeology:   { page: 'exploration.html', param: 'search', tab: 'archaeology' },
+        technology:    { page: 'tech.html',        param: 'focus' },
+        ship:          { page: 'ships.html',       param: 'search', tab: 'ships' },
+        component:     { page: 'ships.html',       param: 'search', tab: 'components' },
+        empire:        { page: 'empires.html',     param: 'search', tab: 'empires' },
+    };
+
+    /**
+     * Create a clickable cross-link span to any wiki item.
+     */
+    function wikiLink(itemId, type, displayName) {
+        const label = displayName || itemId;
+        return `<span class="wiki-link" data-item-id="${escapeHtml(itemId)}" data-item-type="${escapeHtml(type)}">${escapeHtml(label)}</span>`;
+    }
+
+    /**
+     * Attach click handlers to all .wiki-link elements within a container.
+     */
+    function initWikiLinks(container) {
+        if (!container) return;
+        container.querySelectorAll('.wiki-link').forEach(el => {
+            if (el._wikiLinkBound) return;
+            el._wikiLinkBound = true;
+            el.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const id = el.dataset.itemId;
+                const type = el.dataset.itemType;
+                const target = WIKI_LINK_MAP[type];
+                if (!id || !target) return;
+                let url = target.page + '?' + target.param + '=' + encodeURIComponent(id);
+                if (target.tab) url += '&tab=' + encodeURIComponent(target.tab);
+                window.location.href = url;
+            });
+        });
+    }
+
+    return { formatBlock, dualView, initToggles, escapeHtml, techLink, techLinks, initTechLinks, wikiLink, initWikiLinks };
 })();

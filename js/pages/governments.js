@@ -122,7 +122,7 @@
             if (item.length) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.duration')}: ${item.length}</span>`;
             if (item.is_ambition) html += `<span class="detail-meta-item">${I18n.ui('ui.badge.ambition')}</span>`;
             if (item.leader_class && item.leader_class.length) html += item.leader_class.map(c => `<span class="detail-meta-item">${esc(c)}</span>`).join('');
-            if (item.civic) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.civic')}: ${esc(I18n.t(item.civic) || item.civic)}</span>`;
+            if (item.civic) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.civic')}: ${SharedRender.wikiLink(item.civic, 'civic', I18n.t(item.civic) || item.civic)}</span>`;
             if (item.required) html += `<span class="detail-meta-item">${I18n.ui('ui.badge.required')}</span>`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.file')}: ${esc(item.source_file)}</span>`;
             html += `</div>`;
@@ -192,7 +192,7 @@
             }
             if (item.required_traditions && item.required_traditions.length) {
                 html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.required_traditions')}</div>`;
-                html += `<div class="detail-meta">${item.required_traditions.map(t => `<span class="detail-meta-item">${esc(I18n.t(t) || t)}</span>`).join('')}</div></div>`;
+                html += `<div class="detail-meta">${item.required_traditions.map(t => SharedRender.wikiLink(t, 'tradition', I18n.t(t) || t)).join('')}</div></div>`;
             }
             if (item.min_perks) {
                 html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.min_perks')}</div>`;
@@ -201,10 +201,6 @@
             if (item.required_flags && item.required_flags.length) {
                 html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.required_flags')}</div>`;
                 html += `<div class="detail-meta">${item.required_flags.map(f => `<span class="detail-meta-item">${esc(f)}</span>`).join('')}</div></div>`;
-            }
-            if (item.opposites && item.opposites.length) {
-                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.opposites')}</div>`;
-                html += `<div class="detail-meta">${item.opposites.map(o => `<span class="detail-meta-item">${esc(I18n.t(o) || o)}</span>`).join('')}</div></div>`;
             }
             if (item.on_enabled) {
                 html += `<div class="detail-section">${SharedRender.dualView(item.on_enabled, I18n.ui('ui.detail.on_enabled'))}</div>`;
@@ -216,6 +212,7 @@
             detailContent.innerHTML = html;
             SharedRender.initToggles(detailContent);
             SharedRender.initTechLinks(detailContent);
+            SharedRender.initWikiLinks(detailContent);
             detailPanel.classList.remove('hidden');
         }
 
@@ -267,7 +264,25 @@
             const allItems = [...governments, ...civics, ...authorities, ...policies, ...edicts, ...councilors, ...traditions, ...perks];
             const item = allItems.find(i => i.id === selectId);
             if (item) {
-                showDetail(item);
+                if (traditions.includes(item)) {
+                    // Switch to traditions tab and open overlay on the matching node
+                    const tabBtn = document.querySelector('.tab-btn[data-tab="traditions"]');
+                    if (tabBtn && activeTab !== 'traditions') {
+                        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                        tabBtn.classList.add('active');
+                        activeTab = 'traditions';
+                        const treeGroup = document.getElementById('filter-tree-group');
+                        if (treeGroup) treeGroup.classList.toggle('hidden', false);
+                        renderAll();
+                    }
+                    const nodeEl = listEl.querySelector(`[data-id="${CSS.escape(selectId)}"]`);
+                    if (nodeEl) {
+                        nodeEl.scrollIntoView({ block: 'center' });
+                        nodeEl.click();
+                    }
+                } else {
+                    showDetail(item);
+                }
                 AppState.set('select', '');
             }
         }
@@ -435,7 +450,7 @@
                         overlay.classList.add('expanded');
                         overlay.style.height = 'auto';
                         const inner = overlay.querySelector('.detail-inner');
-                        if (inner) { SharedRender.initToggles(inner); SharedRender.initTechLinks(inner); }
+                        if (inner) { SharedRender.initToggles(inner); SharedRender.initTechLinks(inner); SharedRender.initWikiLinks(inner); }
                     };
                     const onExpand = () => doExpand();
                     overlay.addEventListener('transitionend', onExpand);

@@ -96,7 +96,7 @@
 
             if (item.upgrades && item.upgrades.length) {
                 html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.upgrades_to')}</div>`;
-                html += `<div class="detail-meta">${item.upgrades.map(u => `<span class="detail-meta-item">${esc(I18n.t(u) || u)}</span>`).join('')}</div></div>`;
+                html += `<div class="detail-meta">${item.upgrades.map(u => SharedRender.wikiLink(u, 'building', I18n.t(u) || u)).join('')}</div></div>`;
             }
 
             if (item.resources) {
@@ -114,6 +114,7 @@
             detailContent.innerHTML = html;
             SharedRender.initToggles(detailContent);
             SharedRender.initTechLinks(detailContent);
+            SharedRender.initWikiLinks(detailContent);
             detailPanel.classList.remove('hidden');
         }
 

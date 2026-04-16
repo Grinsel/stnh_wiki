@@ -213,6 +213,7 @@
                         if (inner) {
                             SharedRender.initToggles(inner);
                             SharedRender.initTechLinks(inner);
+                            SharedRender.initWikiLinks(inner);
                         }
                     };
                     const onExpand = () => doExpand();
@@ -293,20 +294,20 @@
                 }
                 if (item.upgrades && item.upgrades.length) {
                     html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.upgrades_to')}</div>`;
-                    html += `<div class="detail-meta">${item.upgrades.map(u => `<span class="detail-meta-item">${esc(I18n.t(u) || u)}</span>`).join('')}</div></div>`;
+                    html += `<div class="detail-meta">${item.upgrades.map(u => SharedRender.wikiLink(u, 'building', I18n.t(u) || u)).join('')}</div></div>`;
                 }
             }
 
             // ── Megastructures ──
             if (isMega) {
                 const stats = [];
-                if (item.build_time)    stats.push([I18n.ui('ui.meta.build_time'),    item.build_time]);
-                if (item.entity)        stats.push([I18n.ui('ui.meta.entity'),         item.entity]);
-                if (item.upgrade_from)  stats.push([I18n.ui('ui.meta.upgrade_from'),  item.upgrade_from]);
-                if (item.sensor_range)  stats.push([I18n.ui('ui.meta.sensor_range'),  item.sensor_range]);
+                if (item.build_time)    stats.push([I18n.ui('ui.meta.build_time'),    esc(item.build_time)]);
+                if (item.entity)        stats.push([I18n.ui('ui.meta.entity'),         esc(item.entity)]);
+                if (item.upgrade_from)  stats.push([I18n.ui('ui.meta.upgrade_from'),  SharedRender.wikiLink(item.upgrade_from, 'megastructure', I18n.t(item.upgrade_from) || item.upgrade_from)]);
+                if (item.sensor_range)  stats.push([I18n.ui('ui.meta.sensor_range'),  esc(item.sensor_range)]);
                 if (stats.length) {
                     html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.stats')}</div>`;
-                    html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${esc(v)}</span>`).join('')}</div></div>`;
+                    html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${v}</span>`).join('')}</div></div>`;
                 }
                 if (item.prerequisites && item.prerequisites.length) {
                     html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.prerequisites')}</div>`;
@@ -384,6 +385,7 @@
             detailContent.innerHTML      = buildItemDetailHtml(item);
             SharedRender.initToggles(detailContent);
             SharedRender.initTechLinks(detailContent);
+            SharedRender.initWikiLinks(detailContent);
             detailPanel.classList.remove('hidden');
 
             // Wire up 3D model button for megastructures

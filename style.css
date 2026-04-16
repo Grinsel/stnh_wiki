@@ -1282,16 +1282,15 @@ select option:checked {
     text-decoration: underline;
 }
 
-/* Wiki cross-links in techtree tooltips */
+/* Wiki cross-links (universal) */
 .wiki-link {
-    color: #4a9eff;
-    text-decoration: none;
-    border-bottom: 1px dotted #4a9eff;
+    color: var(--accent);
     cursor: pointer;
+    font-size: inherit;
 }
 .wiki-link:hover {
-    color: #7ab8ff;
-    border-bottom-style: solid;
+    text-decoration: underline;
+    color: var(--accent-bright);
 }
 
 /* Chain Viewer Modal */

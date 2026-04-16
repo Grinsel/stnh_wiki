@@ -83,7 +83,7 @@ Shared (alle Seiten):
   global-search.js   Cross-Module Prefix-Suche (~19.740 Items)
 
 Content-Pages (9 Seiten):
-  shared-render.js   Gemeinsame Rendering-Funktionen
+  shared-render.js   Gemeinsame Rendering-Funktionen + Wiki Cross-Links (18 Typen)
   humanize.js        PDX-Syntax -> lesbarer Text
   pages/*.js         12 Page-Controller (IIFE Pattern)
 

@@ -309,6 +309,17 @@
 
 ---
 
+## Cross-Module Wiki-Links (erledigt)
+
+- [x] **Universelle Cross-Links zwischen Wiki-Items**
+  - `SharedRender.wikiLink(itemId, type, displayName)` + `initWikiLinks(container)`
+  - 18 Typen: event, building, district, megastructure, civic, authority, government, tradition, policy, edict, trait, perk, anomaly, archaeology, technology, ship, component, empire
+  - `WIKI_LINK_MAP` steuert Ziel-Seite + Tab + Query-Parameter
+  - Implementiert in: anomalies.js, exploration.js, buildings.js, governments.js, traits.js, megastructures.js, empires.js, economy-hub.js
+  - CSS: `.wiki-link` mit Theme-Farben (`--accent` / `--accent-bright`)
+
+---
+
 ## Zukünftige Ideen (Backlog)
 
 - [ ] Name Lists Browser (168 Dateien – Namens-Generatoren)

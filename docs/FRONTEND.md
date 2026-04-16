@@ -109,6 +109,10 @@ Rendering-Funktionen die von allen 8 Content-Seiten geteilt werden:
 - Item-Cards, Detail-Panels, Pagination, Tab-Umschaltung
 - `dualView(data, label)`: Code/Human-Toggle, reicht `label` an `Humanize.humanizeBlock(data, label)` weiter
 - `initToggles(container)`: Click-Handler fuer den Toggle-Button
+- `techLink(id)` / `techLinks(arr)` / `initTechLinks(container)`: Klickbare Gold-Badges fuer Tech-Prerequisites
+- `wikiLink(itemId, type, displayName)`: Universeller Cross-Link zu jedem Wiki-Item (18 Typen: event, building, civic, tradition, megastructure, authority, government, trait, perk, anomaly, archaeology, technology, ship, component, empire, district, policy, edict)
+- `initWikiLinks(container)`: Click-Handler fuer `.wiki-link` Elemente, navigiert anhand `WIKI_LINK_MAP` zur richtigen Seite+Tab
+- `WIKI_LINK_MAP`: Typ → {page, param, tab} Mapping fuer URL-Generierung
 
 ### `js/ship-viewer.js` — 3D Ship Viewer (nur ships.html)
 
