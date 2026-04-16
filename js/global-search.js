@@ -189,6 +189,7 @@ const GlobalSearch = (() => {
             type: item.t,
             module: item.m,
             meta: item.x || {},
+            icon: item.i || '',
             label: (typeof I18n !== 'undefined' && I18n.ui) ? (I18n.ui('ui.type.' + item.t) || TYPE_LABELS[item.t] || item.t) : (TYPE_LABELS[item.t] || item.t),
             page: modulePages ? modulePages[item.m] : null,
             tab: TYPE_TABS[item.t] || null,
@@ -275,6 +276,21 @@ const GlobalSearch = (() => {
         return url;
     }
 
+    // Map item types to their icon subdirectory under /icons/. Only types whose
+    // search index entries carry an `icon` stem (field `i`) are listed.
+    const TYPE_ICON_DIR = {
+        component: 'components',
+    };
+
+    function getIconHtml(result, cssClass) {
+        if (!result || !result.icon) return '';
+        const dir = TYPE_ICON_DIR[result.type];
+        if (!dir) return '';
+        const cls = cssClass || 'search-result-icon';
+        const safe = String(result.icon).replace(/[<>"'&]/g, '');
+        return `<img class="${cls}" src="icons/${dir}/${safe}.webp" alt="" onerror="this.style.display='none'">`;
+    }
+
     function setLocReady(ready) {
         locReady = ready;
     }
@@ -310,7 +326,7 @@ const GlobalSearch = (() => {
     }
 
     return {
-        init, searchPreview, searchFull, getItemUrl,
+        init, searchPreview, searchFull, getItemUrl, getIconHtml,
         setLocReady, getStats, getTotalCount, getExpandedInfo,
         TYPE_LABELS, TYPE_ORDER,
     };

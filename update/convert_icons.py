@@ -19,6 +19,7 @@ from config import (
     MOD_GFX_JOBS_ICONS, VANILLA_GFX_JOBS_ICONS,
     MOD_GFX_DEPOSITS_ICONS, VANILLA_GFX_DEPOSITS_ICONS,
     MOD_GFX_RELICS_ICONS, VANILLA_GFX_RELICS_ICONS,
+    MOD_GFX_SHIP_PARTS_ICONS, VANILLA_GFX_SHIP_PARTS_ICONS,
     MOD_FLAGS_DIR, VANILLA_FLAGS_DIR,
 )
 
@@ -122,6 +123,19 @@ ICON_CATEGORIES = [
         'json_file': 'councilors.json',
         'icon_field': 'icon',
     },
+    {
+        # Ship components: GFX-resolve first (robust against naming quirks),
+        # then fill remaining from a recursive scan of ship_parts/ (mod overrides vanilla).
+        'name': 'components',
+        'mod': [MOD_GFX_SHIP_PARTS_ICONS],
+        'vanilla': [VANILLA_GFX_SHIP_PARTS_ICONS],
+        'output': 'components',
+        'size': '64x64',
+        'recursive': True,
+        'hybrid_resolve': True,
+        'json_file': 'components.json',
+        'icon_field': 'icon',
+    },
 ]
 
 
@@ -202,6 +216,58 @@ def _build_gfx_resolve_lookup(config):
     return lookup
 
 
+def _build_hybrid_lookup(config):
+    """Hybrid resolver: GFX-resolve first, then fill remaining from a recursive
+    directory scan. Used for components, where JSON stores `icon = "GFX_xxx"` and
+    icons live in subdirectories under ship_parts/.
+
+    GFX-resolved entries take precedence (explicit references in the JSON).
+    Direct-scan fills the rest so icons are still available even if a GFX key
+    is missing from pictures_map.json. Mod dirs come after vanilla dirs so mod
+    files naturally override vanilla ones (see _build_dds_lookup).
+    """
+    # --- Phase 1: GFX-resolve from pictures_map.json ---
+    gfx_lookup = {}
+    pmap_path = os.path.join(OUTPUT_ASSETS_DIR, 'pictures_map.json')
+    json_path = os.path.join(OUTPUT_ASSETS_DIR, config['json_file'])
+
+    if os.path.exists(pmap_path) and os.path.exists(json_path):
+        with open(pmap_path, 'r', encoding='utf-8') as f:
+            pictures_map = json.load(f)
+        with open(json_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        field = config['icon_field']
+        raw_values = set()
+        for item in data:
+            v = item.get(field)
+            if v:
+                raw_values.add(v)
+
+        for raw in raw_values:
+            # Component JSON has values like "GFX_ship_part_mandible_1".
+            gfx_name = raw if raw.startswith('GFX_') else f"GFX_{raw}"
+            stem = gfx_name[4:]  # strip "GFX_" -> output filename stem
+            entry = pictures_map.get(gfx_name)
+            if not entry:
+                continue
+            tex_path = entry.get('texture_path', '')
+            for root in [STNH_MOD_ROOT, VANILLA_ROOT]:
+                full_path = os.path.join(root, tex_path.replace('/', os.sep))
+                if os.path.exists(full_path):
+                    gfx_lookup[stem] = full_path
+                    break
+
+    # --- Phase 2: recursive direct scan (fallback + catch-all) ---
+    src_dirs = config.get('vanilla', []) + config.get('mod', [])
+    scan_lookup = _build_dds_lookup(src_dirs, recursive=True)
+
+    # GFX-resolve wins: only add scan entries for stems not already resolved.
+    merged = dict(scan_lookup)
+    merged.update(gfx_lookup)
+    return merged
+
+
 def _build_flags_dds_lookup(src_dirs):
     """Build category__stem -> full_path lookup for flag directories.
     Flag dirs contain category subfolders (trek/, human/, etc.).
@@ -231,7 +297,9 @@ def convert_category(config, force=False):
     recursive = config.get('recursive', False)
     exclude = config.get('exclude', None)
 
-    if config.get('gfx_resolve'):
+    if config.get('hybrid_resolve'):
+        dds_lookup = _build_hybrid_lookup(config)
+    elif config.get('gfx_resolve'):
         dds_lookup = _build_gfx_resolve_lookup(config)
     elif config.get('flags_lookup'):
         dds_lookup = _build_flags_dds_lookup(src_dirs)

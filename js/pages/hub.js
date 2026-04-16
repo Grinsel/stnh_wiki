@@ -442,8 +442,9 @@
                         .map(([k, v]) => `${v}`)
                         .filter(Boolean)
                         .join(' | ');
+                    const iconHtml = GlobalSearch.getIconHtml(item, 'search-result-icon');
                     html += `<a href="${esc(url)}" class="search-result-item">
-                        <span class="search-result-name">${esc(name)}</span>
+                        ${iconHtml}<span class="search-result-name">${esc(name)}</span>
                         <span class="search-result-id">${esc(item.id)}</span>
                         ${metaStr ? `<span class="search-result-meta">${esc(metaStr)}</span>` : ''}
                     </a>`;
@@ -513,8 +514,9 @@
                         const metaParts = Object.entries(item.meta)
                             .filter(([k, v]) => v)
                             .map(([k, v]) => `<span class="meta-tag">${esc(k)}: ${esc(v)}</span>`);
+                        const iconHtml = GlobalSearch.getIconHtml(item, 'full-result-icon');
                         html += `<a href="${esc(url)}" class="full-result-item">
-                            <span class="full-result-name">${esc(name)}</span>
+                            ${iconHtml}<span class="full-result-name">${esc(name)}</span>
                             <span class="full-result-id">${esc(item.id)}</span>
                             ${metaParts.length ? `<span class="full-result-meta">${metaParts.join('')}</span>` : ''}
                         </a>`;

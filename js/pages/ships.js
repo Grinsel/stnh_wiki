@@ -182,7 +182,11 @@
         function showDetail(item) {
             if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
             detailTitle.textContent = item.name || item.id;
-            let html = `<div class="detail-meta">`;
+            const iconStem = item.icon ? item.icon.replace(/^GFX_/, '') : '';
+            const iconHtml = iconStem
+                ? `<img class="detail-icon" src="icons/components/${esc(iconStem)}.webp" alt="" onerror="this.style.display='none'">`
+                : '';
+            let html = `<div class="detail-meta" style="align-items:center">${iconHtml}`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
             if (item.class) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.class')}: ${esc(item.class)}</span>`;
             if (item.type) html += `<span class="detail-meta-item">${I18n.ui('ui.meta.type')}: ${esc(item.type)}</span>`;
@@ -395,13 +399,19 @@
             let html = '';
             for (const item of pageItems) {
                 const factionCount = item.model_factions ? item.model_factions.length : 0;
+                const compIconStem = (activeTab === 'components' && item.icon)
+                    ? item.icon.replace(/^GFX_/, '')
+                    : '';
+                const compIconHtml = compIconStem
+                    ? `<img class="item-card-icon-inline" src="icons/components/${esc(compIconStem)}.webp" alt="" onerror="this.style.display='none'">`
+                    : '';
                 html += `<div class="item-card" data-id="${esc(item.id)}">
                     <div class="item-card-body">
                         <div class="item-card-header">`;
                 if (item.has_model) {
                     html += `<span class="model-badge">&#9670; 3D · ${factionCount} Factions</span>`;
                 }
-                html += `    <span class="item-card-name">${esc(item.name || item.id)}</span>
+                html += `    ${compIconHtml}<span class="item-card-name">${esc(item.name || item.id)}</span>
                             <span class="item-card-id">${esc(item.id)}</span>
                         </div>
                         <div class="item-card-meta">`;

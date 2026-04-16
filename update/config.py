@@ -35,6 +35,7 @@ MOD_GFX_AUTHORITIES_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "ico
 MOD_GFX_JOBS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "jobs")
 MOD_GFX_DEPOSITS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "deposits")
 MOD_GFX_RELICS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "relics")
+MOD_GFX_SHIP_PARTS_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "ship_parts")
 MOD_GFX_ROOM_TEXTURES = os.path.join(STNH_MOD_ROOT, "gfx", "portraits", "city_sets")
 
 # Flag source directories (contain category subfolders: trek/, human/, etc.)
@@ -56,6 +57,7 @@ VANILLA_GFX_AUTHORITIES_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "
 VANILLA_GFX_JOBS_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "jobs")
 VANILLA_GFX_DEPOSITS_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "deposits")
 VANILLA_GFX_RELICS_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "relics")
+VANILLA_GFX_SHIP_PARTS_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "ship_parts")
 VANILLA_GFX_ROOM_TEXTURES = os.path.join(VANILLA_ROOT, "gfx", "portraits", "city_sets")
 VANILLA_LOCALISATION_DIR = os.path.join(VANILLA_ROOT, "localisation")
 VANILLA_BUILDINGS_DIR = os.path.join(VANILLA_ROOT, "common", "buildings")

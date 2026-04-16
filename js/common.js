@@ -333,6 +333,7 @@ const Common = (() => {
                     const url = GlobalSearch.getItemUrl(item);
                     const name = item.name || item.id;
                     html += '<a href="' + esc(url) + '" class="search-result-item">';
+                    html += GlobalSearch.getIconHtml(item, 'search-result-icon');
                     html += '<span class="search-result-name">' + esc(name) + '</span>';
                     html += '<span class="search-result-id">' + esc(item.id) + '</span>';
                     html += '</a>';

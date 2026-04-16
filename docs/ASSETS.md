@@ -135,6 +135,14 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 - 20 WebP-Dateien
 - GFX-resolved via `pictures_map.json`, Civic-Fallback fuer Councilors ohne eigenes Icon
 
+### Components-Icons (`icons/components/`)
+
+- 3.913 WebP-Dateien (gestemmt auf `ship_part_<key>`)
+- Hybrid-Resolver: zuerst GFX-resolve via `pictures_map.json`, dann rekursiver
+  Direct-Scan von `gfx/interface/icons/ship_parts/**/` als Fallback
+- Mod-Icons ueberschreiben Vanilla-Fallbacks automatisch (Scan-Reihenfolge)
+- ~79 Components (1,2 %) haben keine Datei — `onerror`-Fallback blendet sie aus
+
 ### Unlock-Type-Icons (`icons/unlock_types/`)
 
 - 25 WebP-Dateien

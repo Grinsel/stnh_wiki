@@ -2590,6 +2590,34 @@ body.in-iframe #site-footer {
     display: block;
 }
 
+/* Inline variant for item-card-header (e.g. ship components): small icon
+   next to the name, no dedicated column. */
+.item-card-icon-inline {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    image-rendering: auto;
+    flex-shrink: 0;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.04);
+}
+
+/* Icons inside global search results (preview dropdown + full results page). */
+.search-result-icon,
+.full-result-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    image-rendering: auto;
+    flex-shrink: 0;
+    border-radius: 2px;
+    vertical-align: middle;
+}
+.full-result-icon {
+    width: 24px;
+    height: 24px;
+}
+
 .item-card-body {
     min-width: 0;
     flex: 1;

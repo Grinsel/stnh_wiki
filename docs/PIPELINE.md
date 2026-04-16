@@ -134,6 +134,31 @@ convert_images.py
 - Voraussetzung: ImageMagick im PATH
 ```
 
+## Icon-Konvertierung (`convert_icons.py`)
+
+Zentrales Tool fuer alle Modul-Icons (Buildings, Traits, Traditions, Perks,
+Civics, Authorities, Jobs, Deposits, Relics, Edicts, Policies, Councilors,
+Components, Flags). Konfiguriert ueber die Liste `ICON_CATEGORIES` — jede
+Kategorie waehlt eine von vier Resolve-Strategien:
+
+- **Direct-Scan** (Default): iteriert ueber Vanilla- und Mod-Dirs, nimmt jede
+  `.dds` mit. Mod-Dateien ueberschreiben Vanilla automatisch (Reihenfolge
+  vanilla + mod). Optional `recursive: True` fuer Unterordner.
+- **GFX-Resolve** (`gfx_resolve: True`): liest Icon-Keys aus dem zugehoerigen
+  JSON (`json_file` + `icon_field`), loest sie via `pictures_map.json` auf
+  `texturefile` auf und konvertiert die gefundene DDS. Robust gegen Mod-
+  spezifische Naming-Quirks (Edicts, Policies, Councilors).
+- **Hybrid** (`hybrid_resolve: True`): kombiniert beide — zuerst GFX-Resolve
+  (hat Vorrang), dann Direct-Scan als Catch-all. Fuer Module, in denen der
+  JSON-Key explizit `GFX_xxx` ist und die Icons in tief verschachtelten
+  Unterordnern liegen (z.B. `gfx/interface/icons/ship_parts/<cat>/`).
+- **Flags-Lookup** (`flags_lookup: True`): Spezialfall fuer Empire-Flags mit
+  Kategorie-Unterordnern (`trek/`, `human/`).
+
+Output: WebP in `icons/<output>/` (ImageMagick, `-resize 64x64 -quality 80`).
+Inkrementell per `os.path.exists(output_path)` — zweiter Lauf ueberspringt
+alles.
+
 ## Ship Model Pipeline
 
 ```

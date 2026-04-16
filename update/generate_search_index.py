@@ -140,6 +140,15 @@ def generate_search_index():
             if prereqs:
                 entry['p'] = prereqs
 
+            # Icon stem (used by frontend to resolve icons/<category>/<stem>.webp).
+            # Currently only components carry a GFX_-prefixed icon reference in
+            # their JSON; other types store icons differently and aren't wired
+            # up here yet.
+            if item_type == 'component':
+                ico = item.get('icon')
+                if ico:
+                    entry['i'] = ico[4:] if ico.startswith('GFX_') else ico
+
             index.append(entry)
             count += 1
 

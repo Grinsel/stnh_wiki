@@ -320,6 +320,22 @@
 
 ---
 
+## Component-Icons (erledigt)
+
+- [x] **Ship-Component-Icons in Liste, Detail und Global Search**
+  - Pipeline: neue Icon-Kategorie `components` in `convert_icons.py`
+  - Neuer Hybrid-Resolver: GFX-Resolve via `pictures_map.json` zuerst, dann
+    rekursiver Direct-Scan ueber `gfx/interface/icons/ship_parts/**/` als Fallback
+  - Mod ueberschreibt Vanilla automatisch; Vanilla-Components bekommen Vanilla-Icons
+  - Output: `icons/components/*.webp` (3.913 Dateien)
+  - Search-Index: neues Top-Level-Feld `i` fuer Components (`GFX_`-Prefix
+    entfernt), `GlobalSearch.getIconHtml(item, cls)` rendert Icons in Preview,
+    Full-Results und Content-Page-Overlay-Dropdown
+  - Frontend: `item-card-icon-inline` in Liste (24px), `detail-icon` in
+    Detail-Panel (48px), beide mit `onerror`-Fallback
+
+---
+
 ## Zukünftige Ideen (Backlog)
 
 - [ ] Name Lists Browser (168 Dateien – Namens-Generatoren)
