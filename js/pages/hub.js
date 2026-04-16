@@ -84,8 +84,14 @@
             counts.model = shipsStats.model_variants;
         }
 
-        // Inject badges into each section card
-        document.querySelectorAll('.section-card[data-module]').forEach(card => {
+        // Inject badges into each section card.
+        // If the per-card fadeInUp animation has already finished by the time
+        // counts arrive (first load, uncached search index), mark the appended
+        // nodes as deferred so they run their own staggered second-wave fade.
+        const cards = document.querySelectorAll('.section-card[data-module]');
+        const firstCardAnimEndMs = 300 + (cards.length * 60) + 400; // last delay + anim duration
+        const animationAlreadyDone = (performance.now() >= firstCardAnimEndMs);
+        cards.forEach((card, idx) => {
             const mod = card.dataset.module;
             const parts = moduleBreakdown[mod];
             if (!parts) return;
@@ -96,6 +102,10 @@
             // Counter badge (top-right)
             const badge = document.createElement('span');
             badge.className = 'card-count';
+            if (animationAlreadyDone) {
+                badge.classList.add('card-deferred');
+                badge.style.setProperty('--stagger', idx);
+            }
             badge.textContent = totalCount.toLocaleString();
             card.appendChild(badge);
 
@@ -103,6 +113,10 @@
             if (parts.length > 1) {
                 const breakdown = document.createElement('div');
                 breakdown.className = 'card-breakdown';
+                if (animationAlreadyDone) {
+                    breakdown.classList.add('card-deferred');
+                    breakdown.style.setProperty('--stagger', idx);
+                }
                 breakdown.innerHTML = parts
                     .filter(p => (counts[p.key] || 0) > 0)
                     .map(p => `<a class="card-breakdown-tag" href="${p.url}">${I18n.ui(p.label)} <b>${(counts[p.key] || 0).toLocaleString()}</b></a>`)

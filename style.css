@@ -3593,6 +3593,14 @@ body.in-iframe #site-footer {
 .section-card:nth-child(9)  { animation-delay: 0.78s; }
 .section-card:nth-child(10) { animation-delay: 0.84s; }
 
+/* Deferred content (counts + breakdown tags) — injected after data load.
+   Staggered second wave via --stagger (set per card in hub.js). */
+.card-count.card-deferred,
+.card-breakdown.card-deferred {
+    animation: fadeInUp 0.35s ease-out both;
+    animation-delay: calc(var(--stagger, 0) * 60ms);
+}
+
 .stat-card           { animation: fadeInUp 0.35s ease-out both; }
 .stat-card:nth-child(1)  { animation-delay: 0.22s; }
 .stat-card:nth-child(2)  { animation-delay: 0.26s; }
