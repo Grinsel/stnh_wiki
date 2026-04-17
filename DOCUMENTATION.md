@@ -37,7 +37,7 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 | Events | ~8.867 (430 Dateien, 287 Namespaces) |
 | Techs | ~2.600 (D3.js Graph, aus git09 kopiert) |
 | Content-Items (Non-Event) | ~10.873 (Ships, Buildings, Traits, Govs, Megas, Anomalies, Empires, Economy) |
-| Suchindex | ~19.740 Items (2,6 MB, cross-module) |
+| Suchindex | ~21.630 Items (2,6 MB, cross-module) |
 | Sprachen | 7 (EN, DE, FR, ES, RU, PL, BR-PT) |
 | Loc-Keys | ~200.000+ pro Sprache |
 | GFX Sprites | 7.338 gesamt, ~986 konvertierte Event-Bilder, 754 Building-Icons |
@@ -173,7 +173,7 @@ stnh_wiki/
 |   +-- ship_models_map.json            # Ship-ID -> Fraktions-Modell Mapping (443 KB)
 |   +-- galaxy_map.json                # Galaxy-Map Startpositionen (22 KB)
 |   +-- tech_item_map.json             # Tech -> Item Cross-Reference (1,05 MB)
-|   +-- search_index.json              # Suchindex cross-module (2,6 MB, ~19.740 Items)
+|   +-- search_index.json              # Suchindex cross-module (2,6 MB, ~21.630 Items)
 |   +-- cross_references.json          # Bidirektionale Cross-Refs (303 KB)
 |   +-- module_pages.json              # Modul -> HTML-Seite Mapping
 |   +-- last_update.json               # Timestamp + Statistiken
@@ -213,8 +213,7 @@ stnh_wiki/
 |   |   +-- events.js                  # Events: Filter, Sidebar, Detail, Chains
 |   |   +-- exploration.js             # Exploration: Tabs (Anomalies/Archaeology)
 |   |   +-- ships.js                   # Ships: Tabs (Ships/Components), Filter, Detail
-|   |   +-- buildings.js               # Buildings: Tabs (Buildings/Districts), Filter
-|   |   +-- traits.js                  # Traits: Tabs (Traits/Traditions/Perks), Filter
+|   |   +-- economy-hub.js             # Economy: Tabs (Buildings, Districts, Megastructures, Relics, Jobs, Deposits)
 |   |   +-- governments.js             # Govs: Tabs (Govs/Civics/Auth/Policies/Edicts/Traits)
 |   |   +-- megastructures.js          # Megas: Tabs (Megastructures/Relics)
 |   |   +-- empires.js                 # Empires: Tabs (Empires/Species/Traits)
@@ -302,13 +301,10 @@ stnh_wiki/
 +-- tech.html                          # Tech Tree (D3.js, eigenes Inline-CSS)
 +-- tech-list.html                     # Tech-Liste (tabellarische Uebersicht)
 +-- ships.html                         # Schiffe & Komponenten
-+-- buildings.html                     # Gebaeude & Distrikte
-+-- traits.html                        # Traits & Traditionen
-+-- governments.html                   # Regierung & Diplomatie
-+-- megastructures.html                # Megastrukturen & Relics
-+-- anomalies.html                     # Anomalien & Archaeologie
-+-- empires.html                       # Fraktionen & Empires
-+-- economy.html                       # Wirtschaft
++-- economy.html                       # Buildings, Districts, Megastructures, Relics, Jobs, Deposits
++-- governments.html                   # Regierung & Diplomatie (inkl. Traditions, Perks, Councilors)
++-- exploration.html                   # Anomalien & Archaeologie
++-- empires.html                       # Fraktionen, Species, Leader Traits
 +-- style.css                          # Gemeinsames Dark Theme (44 KB)
 +-- tech_showcase.js                   # Techtree Legacy-Einstiegspunkt
 +-- tech_localisation_map.json         # Techtree Lokalisierung (21 MB)
@@ -470,12 +466,10 @@ LANGUAGES = ['english', 'german', 'french', 'spanish', 'russian', 'polish', 'bra
 | Tech Tree | tech.html | search-input (Header) + tech-filter-input (Sidebar) | - | tech/main.js (ES Module, D3.js) |
 | Tech List | tech-list.html | search-input | - | tech-list.js |
 | Ships | ships.html | search-input | Ships, Components | ships.js |
-| Buildings | buildings.html | search-input | Buildings, Districts | buildings.js |
-| Traits | traits.html | search-input | Traits, Traditions, Perks | traits.js |
-| Governments | governments.html | search-input | Govs, Civics, Auth, Policies, Edicts, Traits | governments.js |
-| Megastructures | megastructures.html | search-input | Megastructures, Relics | megastructures.js |
-| Empires | empires.html | search-input | Empires, Species, Traits | empires.js |
-| Economy | economy.html | search-input | Buildings, Districts, Jobs, Resources, Megastructures, Relics | economy.js, economy-hub.js |
+| Governments | governments.html | search-input | Govs, Civics, Auth, Policies, Edicts, Councilors, Traditions, Perks | governments.js |
+| Exploration | exploration.html | search-input | Anomalies, Archaeology | exploration.js |
+| Empires | empires.html | search-input | Empires, Leader Traits (Species tab hidden) | empires.js |
+| Economy | economy.html | search-input | Buildings, Districts, Jobs, Deposits, Megastructures, Relics | economy-hub.js |
 
 Alle Seiten (ausser index.html) teilen dieselbe Grundstruktur:
 - Header (Logo, Suche, Sprach-Dropdown, Theme-Picker)
@@ -691,7 +685,7 @@ Responsive Breakpoints:
 | `galaxy_maps.json` | 282 KB | Erweiterte Galaxiekarten mit loc_key |
 | `mega_models_map.json` | 56 KB | Megastruktur-3D-Modell-Mapping |
 | `tech_item_map.json` | 1,05 MB | Tech -> Item Cross-Reference (Ships, Buildings, Components) |
-| `search_index.json` | 2,6 MB | Cross-Module Suchindex (~19.740 Items) |
+| `search_index.json` | 2,6 MB | Cross-Module Suchindex (~21.630 Items) |
 | `cross_references.json` | 303 KB | Bidirektionale Cross-Refs |
 | `module_pages.json` | 248 B | Modul -> HTML-Seite Mapping |
 | `last_update.json` | 2,5 MB | Timestamp + Statistiken |

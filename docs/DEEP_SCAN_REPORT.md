@@ -3,6 +3,14 @@
 Stand: nach Commit `e2d188d`. Ziel: strukturiertes Backlog offener Issues,
 die wir der Reihe nach abarbeiten können.
 
+**Aktueller Fortschritt** (Stand nach dem Refactor-Sprint):
+- ✅ Schritt 1 — Navi-Quickfixes (Commit `5c8a367`)
+- ✅ Schritt 2 — Legacy-Pages gelöscht (Commit `fa14787`)
+- ✅ Schritt 3 — traits.html aufgelöst (Commit `76d229d`)
+- ✅ Schritt 4 — Toter Code (empires species marked cold storage, Commit `28e9586`)
+- ✅ Schritt 5 — Dokumentations-Drift (dieser Commit)
+- ⏳ Schritt 6 — Low-Prio Kosmetik offen
+
 ## Zusammenfassung
 
 | Prio | Kategorie | Anzahl |

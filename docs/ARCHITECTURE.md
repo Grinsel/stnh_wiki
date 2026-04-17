@@ -10,8 +10,8 @@ events/*.txt          -->  parse_events.py      -->  events_index.json  -->  eve
 localisation/{lang}/  -->  parse_localisation.py -->  localisation/*.json     (alle Seiten)
 interface/*.gfx       -->  parse_gfx_mappings.py -->  pictures_map.json
 common/ship_sizes/    -->  parse_ships.py        -->  ships.json         -->  ships.html
-common/buildings/     -->  parse_buildings.py     -->  buildings.json     -->  buildings.html
-   ... (28 Parser)         ... (17 Generatoren)      ... (36 JSONs)         ... (12 Seiten)
+common/buildings/     -->  parse_buildings.py     -->  buildings.json     -->  economy.html
+   ... (28 Parser)         ... (17 Generatoren)      ... (38 JSONs)         ... (9 Seiten)
 ```
 
 ## Datenfluss
@@ -80,7 +80,7 @@ Shared (alle Seiten):
   state.js           AppState (URL + localStorage)
   i18n.js            Internationalisierung (7 Sprachen)
   ui-strings.js      310+ UI-String-Definitionen
-  global-search.js   Cross-Module Prefix-Suche (~19.740 Items)
+  global-search.js   Cross-Module Prefix-Suche (~21.630 Items)
 
 Content-Pages (9 Seiten):
   shared-render.js   Gemeinsame Rendering-Funktionen + Wiki Cross-Links (18 Typen)
@@ -112,7 +112,7 @@ Tech-Only (ES Modules):
 ### GlobalSearch-Architektur
 
 ```
-search_index.json (~19.740 Items, 2.6 MB)
+search_index.json (~21.630 Items, 2.6 MB)
   |
   v
 GlobalSearch.init() -- laedt Index + module_pages.json

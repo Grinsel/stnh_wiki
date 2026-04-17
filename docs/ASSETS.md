@@ -117,8 +117,12 @@ Alle JSON-Dateien in `assets/` werden von der Python-Pipeline erzeugt und vom Fr
 
 ### Relics-Icons (`icons/relics/`)
 
-- 138 WebP-Dateien
-- Konvertiert aus DDS-Quellen (152x152, exkl. `_shine` Overlays)
+- ~162 WebP-Dateien
+- Hybrid-Resolver: GFX-Resolve via `pictures_map.json` (`portrait`-Feld aus
+  `common/relics/*.txt` zeigt auf `GFX_relic_<name>`), dann Direct-Scan
+- 152x152 Output, exkl. `_shine` Overlays
+- Alle 68 Relic-Items haben ein Icon (inkl. abweichende Naming-Faelle wie
+  `r_hologram_bottle` → `r_moriarty.dds` via GFX-Resolve)
 
 ### Edicts-Icons (`icons/edicts/`)
 

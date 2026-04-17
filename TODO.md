@@ -336,6 +336,49 @@
 
 ---
 
+## Pagination + Deposits (erledigt)
+
+- [x] **Pagination: First/Last-Buttons + sticky Slide-In**
+  - Neue Buttons `«« / »»` fuer erste/letzte Seite
+  - Sticky am unteren Panel-Rand; Page 1 slided rein beim ersten Scroll, Page 2+ immer sichtbar
+  - Via `.pagination-sticky` + `.hide-at-top` in Kombination mit `initScrollFades()`
+
+- [x] **Deposits: Fallback-Icon `d_asteroid_cavern` + sortierung**
+  - Items ohne eigenes webp nutzen `d_asteroid_cavern.webp`
+  - Fallback-Items werden ans Listen-Ende sortiert
+  - `icons/deposits/_index.json` listet real vorhandene Icons; `convert_icons.py` schreibt diese Index-Datei pro Kategorie
+
+## Relic-Icons (erledigt)
+
+- [x] **Relic-Icons korrekt ueber `portrait` aufloesen**
+  - `parse_relics.py`: `icon` wird jetzt aus dem `portrait`-Feld (GFX-Key) abgeleitet statt ueber Substring-Heuristik geraten
+  - `parse_gfx_mappings.py`: Parser ist jetzt case-insensitive und brace-balanced, erfasst alle 114 `GFX_relic_*` Sprites (vorher: 0)
+  - `convert_icons.py` Hybrid-Resolver: neue Knobs `gfx_key_prefix` + `stem_strip_prefix` machen Relic-Kategorie nutzbar
+  - Alle 68 Relics haben jetzt ein Icon
+
+## Hub + Navigation Refactor (erledigt)
+
+- [x] **Hub-Boxen neu sortiert**
+  - 3 oben (Events, Technology, Empire), 4 unten (Governance, Economy, Military, Exploration)
+  - `.section-cards` als 12-col Grid mit `span 4/3`
+
+- [x] **Leader Traits verlinkt auf `empires.html?tab=traits`**, `traits.html` aufgeloest
+  - traits.html + `js/pages/traits.js` geloescht
+  - WIKI_LINK_MAP, MODULE_PAGES, tech_item_map, hub-Maps auf empires.html umgestellt
+
+- [x] **Species Tab versteckt** in empires.html (Code bleibt als Cold Storage)
+  - Search-Index + Hub Update-Notes filtern Species aus
+
+- [x] **Legacy-Pages entfernt:** `buildings.html`, `megastructures.html`, `anomalies.html` (+ zugehoerige JS)
+  - `js/pages/economy.js` ebenfalls (unreferenziert)
+  - Content ist vollstaendig in `economy.html` + `exploration.html` konsolidiert
+
+- [x] **Placeholder-Screenshots in Content-Pages** (50:50 Layout bis User ein Item waehlt)
+
+- [x] **Cross-Links konsistent:** `CHANGE_MODULE_MAP`, `WIKI_LINK_MAP`, `MODULE_PAGES` auf gleichen Ziel-Pages
+
+---
+
 ## Zukünftige Ideen (Backlog)
 
 - [ ] Name Lists Browser (168 Dateien – Namens-Generatoren)
@@ -355,15 +398,13 @@
 stnh_wiki/
 ├── index.html                    # Hub / Landing Page
 ├── events.html                   # Event Browser
-├── tech.html                     # Techtree
+├── tech.html                     # Techtree (D3.js interactive)
+├── tech-list.html                # Tech-Liste (flach)
 ├── ships.html                    # Schiffe & Komponenten
-├── buildings.html                # Gebäude & Distrikte
-├── traits.html                   # Traits & Traditionen
-├── governments.html              # Regierung & Diplomatie
-├── megastructures.html           # Megastrukturen & Relics
-├── anomalies.html                # Anomalien & Archäologie
-├── empires.html                  # Fraktionen & Empires
-├── economy.html                  # Wirtschaft
+├── governments.html              # Regierung, Civics, Auth, Policies, Edicts, Councilors, Traditions, Perks
+├── exploration.html              # Anomalien & Archäologie
+├── empires.html                  # Fraktionen, Leader Traits (Species Tab versteckt)
+├── economy.html                  # Buildings, Districts, Jobs, Deposits, Megastructures, Relics
 ├── style.css                     # Gemeinsames Theme
 ├── js/                           # Shared JS-Module
 │   ├── data.js

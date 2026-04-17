@@ -6,7 +6,7 @@ Welcome to the Star Trek: New Horizons Wiki project. This file is your entry poi
 
 **What is this?** A modular off-game wiki for the STNH Stellaris mod. Vanilla HTML/CSS/JS, no build tools, no frameworks. Python pipeline generates JSON data, browser renders it.
 
-**Key numbers:** 11 HTML pages, ~19,740 searchable items, 53 JS files, 77 Python pipeline files (50 core + 27 techtree).
+**Key numbers:** 9 HTML pages, ~21,630 searchable items, 54 JS files, 84 Python pipeline files (57 core + 27 techtree).
 
 ## Documentation
 
@@ -19,7 +19,7 @@ Welcome to the Star Trek: New Horizons Wiki project. This file is your entry poi
 | `docs/PIPELINE.md` | Python data pipeline: master script, parsers, generators, config |
 | `docs/FRONTEND.md` | JS modules, page controller skeleton, events/tech modules, design system |
 | `docs/FILE_STRUCTURE.md` | Complete annotated directory tree (wiki + mod source) |
-| `docs/ASSETS.md` | All 33 JSON files, images, icons, cross-references, search index |
+| `docs/ASSETS.md` | All 38 JSON files, images, icons, cross-references, search index |
 | `docs/HUMANIZE.md` | Humanize engine: Architektur, Maps, Modifier, Scopes, Erweiterung |
 | `docs/DEVELOPMENT.md` | Local setup, deployment, adding modules, maintenance, conventions |
 
@@ -29,19 +29,19 @@ Welcome to the Star Trek: New Horizons Wiki project. This file is your entry poi
 
 ```
 stnh_wiki/
-  index.html, events.html, tech.html    11 HTML pages
-  ships.html, buildings.html, ...
-  style.css                              Shared dark theme (44 KB)
-  js/                                    53 JS files
+  index.html, events.html, tech.html    9 HTML pages
+  ships.html, economy.html, ...
+  style.css                              Shared dark theme (45 KB)
+  js/                                    54 JS files
     common.js                            Shared init (theme, hamburger, global search)
     global-search.js                     Cross-module search (on all pages)
     data.js, state.js, i18n.js           Core shared modules
     ui-strings.js                        UI translations (310+ keys, 7 languages)
-    pages/{hub,events,ships,...}.js       11 page controllers (incl. galaxy-map)
+    pages/{hub,events,ships,...}.js       8 page controllers (incl. galaxy-map)
     tech/                                Techtree modules (ES Modules, D3.js)
-  assets/                                Generated JSON data (33 files + 272 event details)
+  assets/                                Generated JSON data (38 files + 272 event details)
     flags/trek/                          79 WebP empire flags
-  update/                                Python data pipeline (50 core + 27 techtree)
+  update/                                Python data pipeline (57 core + 27 techtree)
     UPDATE_WIKI.py                       Master orchestrator
     config.py                            Paths (STNH_MOD_ROOT, WIKI_ROOT)
     parse_pdx.py                         Shared PDX parser (recursive descent)
@@ -98,7 +98,7 @@ python -m http.server 8000
 
 ## Content Pages Pattern
 
-All 8 standard content pages (ships, buildings, traits, governments, megastructures, anomalies, empires, economy) follow the same pattern:
+All 6 standard content pages (ships, governments, exploration, empires, economy, tech-list) follow the same pattern:
 - **HTML:** Header + Nav + GlobalSearch container + Filter bar (tabs + filters) + Content (list + detail panel) + Footer
 - **JS:** IIFE async init → load JSON → init tabs/filters → render list → handle URL params (?search=, ?tab=)
 - **Search:** `#search-input` handles both local filtering (page-specific) AND GlobalSearch overlay (cross-module) simultaneously

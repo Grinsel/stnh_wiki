@@ -193,14 +193,10 @@ stnh_wiki/
 +-- tech.html                          # Tech Tree (D3.js, eigenes Inline-CSS)
 +-- tech-list.html                     # Tech-Liste (tabellarische Uebersicht)
 +-- ships.html                         # Schiffe & Komponenten
-+-- buildings.html                     # Gebaeude & Distrikte
-+-- traits.html                        # Traits & Traditionen
-+-- governments.html                   # Regierung & Diplomatie
-+-- megastructures.html                # Megastrukturen & Relics
-+-- anomalies.html                     # Anomalien & Archaeologie
-+-- empires.html                       # Fraktionen & Empires
-+-- economy.html                       # Wirtschaft
-+-- exploration.html                   # Anomalien & Archaeologie (Exploration)
++-- governments.html                   # Regierung, Civics, Auth, Policies, Edicts, Councilors, Traditions, Perks
++-- exploration.html                   # Anomalien & Archaeologie
++-- empires.html                       # Fraktionen, Leader Traits (Species versteckt)
++-- economy.html                       # Buildings, Districts, Jobs, Deposits, Megastructures, Relics
 +-- style.css                          # Gemeinsames Dark Theme (44 KB)
 +-- tech_showcase.js                   # Techtree Legacy-Einstiegspunkt
 +-- tech_localisation_map.json         # Techtree Lokalisierung (21 MB)

@@ -159,6 +159,21 @@ Output: WebP in `icons/<output>/` (ImageMagick, `-resize 64x64 -quality 80`).
 Inkrementell per `os.path.exists(output_path)` — zweiter Lauf ueberspringt
 alles.
 
+Pro Kategorie wird nach dem Konvertieren zusaetzlich eine
+`icons/<output>/_index.json` geschrieben: eine flache Liste aller
+konvertierten Stems. Das Frontend kann damit pruefen welche Icons real
+vorhanden sind, ohne 667 HEAD-Requests pro Seitenaufruf zu machen —
+aktuell nutzt das der Deposits-Tab, um Items mit Generic-Fallback ans
+Listen-Ende zu sortieren.
+
+### Relic-spezifischer Pfad (`portrait` → `icon`)
+
+`parse_relics.py` leitet das JSON-Feld `icon` nicht mehr aus dem Relic-id
+ab, sondern aus dem `portrait = "GFX_relic_xxx"` Feld der Mod-Definition.
+Der Hybrid-Resolver (konfiguriert mit `gfx_key_prefix='GFX_relic_'` und
+`stem_strip_prefix='r_'`) loest dann auf die tatsaechliche DDS-Datei auf
+(z.B. `r_hologram_bottle` → `GFX_relic_moriarty` → `r_moriarty.dds`).
+
 ## Ship Model Pipeline
 
 ```

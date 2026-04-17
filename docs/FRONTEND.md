@@ -9,15 +9,12 @@ Vanilla HTML/CSS/JS, kein Build-System, kein Framework. Jede HTML-Seite laedt Sh
 | Hub | index.html | global-search-input | - | hub.js |
 | Events | events.html | search-input | - | events.js + 7 Event-Module |
 | Tech Tree | tech.html | search-input (Header) + tech-filter-input (Sidebar) | - | tech/main.js (ES Module, D3.js) |
-| Ships | ships.html | search-input | Ships, Components | ships.js |
-| Buildings | buildings.html | search-input | Buildings, Districts | buildings.js |
-| Traits | traits.html | search-input | Traits, Traditions, Perks | traits.js |
-| Governments | governments.html | search-input | Govs, Civics, Auth, Policies, Edicts, Councilors | governments.js |
-| Megastructures | megastructures.html | search-input | Megastructures, Relics | megastructures.js |
-| Anomalies | anomalies.html | search-input | Anomalies, Archaeology | anomalies.js |
-| Empires | empires.html | search-input | Empires, Species | empires.js |
-| Economy | economy.html | search-input | Jobs, Deposits | economy.js |
 | Tech List | tech-list.html | search-input | - | tech-list.js |
+| Ships | ships.html | search-input | Ships, Components | ships.js |
+| Governments | governments.html | search-input | Govs, Civics, Auth, Policies, Edicts, Councilors, Traditions, Perks | governments.js |
+| Exploration | exploration.html | search-input | Anomalies, Archaeology | exploration.js |
+| Empires | empires.html | search-input | Empires, Leader Traits (species hidden) | empires.js |
+| Economy | economy.html | search-input | Buildings, Districts, Jobs, Deposits, Megastructures, Relics | economy-hub.js |
 
 **Galaxy Map:** Kein eigenes HTML — eingebettet in empires.html als Canvas-Modul via `galaxy-map.js`. Zeigt Empire-Startpositionen auf einer stilisierten Galaxiekarte. Daten aus `assets/galaxy_map.json`.
 
@@ -29,7 +26,6 @@ Vanilla HTML/CSS/JS, kein Build-System, kein Framework. Jede HTML-Seite laedt Sh
 const Common = (() => {
     initTheme()          // Faction-Theme laden (9 Themes)
     injectThemePicker()  // Theme-Dots in Header injizieren
-    initFontSize()       // Font-Size-Buttons (90%-160%)
     initLangSelect()     // Sprach-Dropdown -> I18n.setLanguage()
     initNavHighlight()   // Aktive Nav-Page markieren
     initHamburger()      // Mobile Hamburger-Menue injizieren (< 768px)
@@ -48,7 +44,7 @@ const GlobalSearch = (() => {
     searchFull(query)             // Alle Treffer (Enter auf Hub)
     getItemUrl(result)            // URL mit ?search= und ?tab= Parameter
     getStats()                    // Item-Counts pro Typ
-    getTotalCount()               // Gesamt-Anzahl (~19.740)
+    getTotalCount()               // Gesamt-Anzahl (~21.630)
     getExpandedInfo(query)        // Faction-Synonym-Info fuer UI-Hint
 
     // Prefix-basiert: ship:, event:, building:, trait:, civic:, mega:, ...
@@ -118,7 +114,7 @@ Rendering-Funktionen die von allen 8 Content-Seiten geteilt werden:
 
 Three.js-basierter 3D-Modell-Viewer fuer Schiffe mit `has_model: true`. Lazy-loaded per Button-Click.
 
-### `js/ui/category-chips.js` — Chip-Bar Filter (ships.html, buildings.html)
+### `js/ui/category-chips.js` — Chip-Bar Filter (ships.html, economy.html)
 
 Wiederverwendbare UI-Komponente fuer Kategorie-Filter als Chip-Leiste. Wird von ships.js und buildings.js genutzt.
 
@@ -263,7 +259,7 @@ Eigenes modulares System (ES Modules), komplett getrennt von den Wiki-Shared-Mod
 ## GlobalSearch-Architektur
 
 ```
-search_index.json (~19.740 Items, 2.6 MB)
+search_index.json (~21.630 Items, 2.6 MB)
   |
   v
 GlobalSearch.init() -- laedt Index + module_pages.json
