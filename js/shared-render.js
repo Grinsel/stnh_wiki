@@ -192,5 +192,75 @@ const SharedRender = (() => {
         });
     }
 
-    return { formatBlock, dualView, initToggles, escapeHtml, techLink, techLinks, initTechLinks, wikiLink, initWikiLinks };
+    /**
+     * Placeholder screenshots shown in the detail panel before the user
+     * picks an item, keyed by page basename -> active tab -> image path.
+     * Tabs missing here fall back to the panel being hidden (the list keeps
+     * the full width, same as before this feature).
+     */
+    const PLACEHOLDER_MAP = {
+        'economy.html': {
+            buildings:      'screenshots/planetview.png',
+            districts:      'screenshots/planetview.png',
+            jobs:           'screenshots/jobs.png',
+            megastructures: 'screenshots/megastruct.png',
+            deposits:       'screenshots/ressources.png',
+        },
+        'governments.html': {
+            governments: 'screenshots/civics.png',
+            civics:      'screenshots/civics.png',
+            authorities: 'screenshots/civics.png',
+            councilors:  'screenshots/council.png',
+            policies:    'screenshots/policies_edicts.png',
+            edicts:      'screenshots/policies_edicts.png',
+            perks:       'screenshots/ascension.png',
+        },
+        'ships.html': {
+            ships:      'screenshots/ships.png',
+            components: 'screenshots/components.png',
+        },
+        'traits.html': {
+            traits: 'screenshots/traits.png',
+            perks:  'screenshots/ascension.png',
+        },
+    };
+
+    function _pageBasename() {
+        const path = (typeof window !== 'undefined' && window.location)
+            ? window.location.pathname : '';
+        const last = path.split('/').filter(Boolean).pop() || 'index.html';
+        return last.toLowerCase();
+    }
+
+    function getPlaceholder(tab) {
+        const page = PLACEHOLDER_MAP[_pageBasename()];
+        if (!page || !tab) return null;
+        return page[tab] || null;
+    }
+
+    function renderPlaceholder(detailPanel, detailContent, tab) {
+        if (!detailPanel || !detailContent) return;
+        const img = getPlaceholder(tab);
+        if (!img) {
+            detailPanel.classList.remove('detail-placeholder');
+            detailPanel.classList.add('hidden');
+            return;
+        }
+        detailPanel.classList.remove('hidden');
+        detailPanel.classList.add('detail-placeholder');
+        detailContent.innerHTML =
+            `<div class="detail-placeholder-img" style="background-image:url('${img}')"></div>`;
+    }
+
+    function hidePlaceholder(detailPanel) {
+        if (!detailPanel) return;
+        detailPanel.classList.remove('detail-placeholder');
+    }
+
+    return {
+        formatBlock, dualView, initToggles, escapeHtml,
+        techLink, techLinks, initTechLinks,
+        wikiLink, initWikiLinks,
+        getPlaceholder, renderPlaceholder, hidePlaceholder,
+    };
 })();

@@ -69,6 +69,7 @@
                 activeTab = btn.dataset.tab;
                 currentPage = 1;
                 updateFilterVis();
+                SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
                 renderAll();
             });
         });
@@ -95,8 +96,8 @@
             clearTimeout(_panelLeaveTimer);
             detailPanel.classList.add('detail-leaving');
             _panelLeaveTimer = setTimeout(() => {
-                detailPanel.classList.add('hidden');
                 detailPanel.classList.remove('detail-leaving');
+                SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
             }, 340);
         }
 
@@ -104,6 +105,7 @@
 
         // ── showDetail ───────────────────────────────────────────────────────
         function showDetail(item) {
+            SharedRender.hidePlaceholder(detailPanel);
             detailTitle.textContent = item.name || item.id;
             detailContent.innerHTML = activeTab === 'archaeology' ? buildArchaeologyDetailHtml(item) : buildAnomalyDetailHtml(item);
             SharedRender.initToggles(detailContent);
@@ -208,6 +210,7 @@
         }
         updateFilterVis();
         renderAll();
+        SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
         I18n.loadFullLocalisation();
         const selectId = AppState.get('select');
         if (selectId) {

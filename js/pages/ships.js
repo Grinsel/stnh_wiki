@@ -166,6 +166,8 @@
                 document.getElementById('filter-model-toggle').classList.toggle('hidden', activeTab !== 'ships');
                 document.getElementById('filter-comptype-chips').classList.toggle('hidden', activeTab !== 'components');
                 document.getElementById('filter-size-chips').classList.toggle('hidden', activeTab !== 'components');
+                if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
+                SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
                 renderAll();
             });
         });
@@ -176,11 +178,12 @@
         const detailContent = document.getElementById('detail-content');
         document.getElementById('detail-close').addEventListener('click', () => {
             if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
-            detailPanel.classList.add('hidden');
+            SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
         });
 
         function showDetail(item) {
             if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
+            SharedRender.hidePlaceholder(detailPanel);
             detailTitle.textContent = item.name || item.id;
             const iconStem = item.icon ? item.icon.replace(/^GFX_/, '') : '';
             const iconHtml = iconStem
@@ -341,6 +344,7 @@
         }
 
         renderAll();
+        SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
         I18n.loadFullLocalisation();
 
         // Auto-select item from URL (after renderAll)

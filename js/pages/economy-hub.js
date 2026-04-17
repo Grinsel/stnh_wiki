@@ -103,7 +103,7 @@
                 currentPage = 1;
                 if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
                 removeOverlayImmediate();
-                detailPanel.classList.add('hidden');
+                SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
                 updateFilterVis();
                 populateCategories();
                 renderAll();
@@ -116,7 +116,7 @@
         const detailContent = document.getElementById('detail-content');
         document.getElementById('detail-close').addEventListener('click', () => {
             if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
-            detailPanel.classList.add('hidden');
+            SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
         });
 
         // ── Relic overlay state ──────────────────────────────────────────────
@@ -381,6 +381,7 @@
         // ── showDetail ───────────────────────────────────────────────────────
         function showDetail(item) {
             if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
+            SharedRender.hidePlaceholder(detailPanel);
             detailTitle.textContent      = item.name || item.id;
             detailContent.innerHTML      = buildItemDetailHtml(item);
             SharedRender.initToggles(detailContent);
@@ -445,6 +446,7 @@
         }
 
         renderAll();
+        SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
         I18n.loadFullLocalisation();
 
         // ── Auto-select item from URL ────────────────────────────────────────

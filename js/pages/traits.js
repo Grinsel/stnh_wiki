@@ -92,6 +92,7 @@
                 removeOverlayImmediate();
                 document.getElementById('filter-class-group').classList.toggle('hidden', activeTab !== 'traits');
                 document.getElementById('filter-tree-group').classList.toggle('hidden', activeTab !== 'traditions');
+                SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
                 renderAll();
             });
         });
@@ -100,9 +101,12 @@
         const detailPanel = document.getElementById('detail-panel');
         const detailTitle = document.getElementById('detail-title');
         const detailContent = document.getElementById('detail-content');
-        document.getElementById('detail-close').addEventListener('click', () => detailPanel.classList.add('hidden'));
+        document.getElementById('detail-close').addEventListener('click', () => {
+            SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
+        });
 
         function showDetail(item) {
+            SharedRender.hidePlaceholder(detailPanel);
             detailTitle.textContent = item.name || item.id;
             const iconDir = ICON_DIRS[activeTab];
             const iconStem = item.icon || item.id;
@@ -637,6 +641,7 @@
         }
 
         renderAll();
+        SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
         I18n.loadFullLocalisation();
 
         // Auto-select item from URL (after renderAll)
@@ -658,7 +663,7 @@
 
         function renderAll() {
             if (activeTab === 'traditions') {
-                detailPanel.classList.add('hidden');
+                SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
                 renderTraditionTrees();
                 return;
             }

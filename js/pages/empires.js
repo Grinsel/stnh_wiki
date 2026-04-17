@@ -164,6 +164,7 @@
                 document.getElementById('filter-archetype-group').classList.toggle('hidden', activeView === 'map' || activeTab !== 'species');
                 const classGroup = document.getElementById('filter-class-group');
                 if (classGroup) classGroup.classList.toggle('hidden', activeTab !== 'traits');
+                SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
                 renderAll();
             });
         });
@@ -207,8 +208,8 @@
             clearTimeout(_panelLeaveTimer);
             detailPanel.classList.add('detail-leaving');
             _panelLeaveTimer = setTimeout(() => {
-                detailPanel.classList.add('hidden');
                 detailPanel.classList.remove('detail-leaving');
+                SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
             }, 340);
         }
 
@@ -224,6 +225,7 @@
         });
 
         function showDetail(item) {
+            SharedRender.hidePlaceholder(detailPanel);
             detailTitle.textContent = item.name || item.id;
             const iconDir = activeTab === 'traits' ? 'traits' : (item.authority !== undefined ? 'flags' : '');
             const iconStem = item.icon || item.id;
@@ -380,6 +382,7 @@
         }
 
         renderAll();
+        SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
         I18n.loadFullLocalisation();
 
         // Auto-select item from URL (after renderAll)
