@@ -83,12 +83,21 @@ ICON_CATEGORIES = [
         'size': '64x64',
     },
     {
+        # Relics: the JSON field `icon` is the relic id like "r_ktarian_game",
+        # but the DDS filename can diverge (e.g. r_rubricator.dds). Resolve via
+        # GFX sprites first (GFX_relic_<id_without_r_>), then direct-scan as
+        # fallback for relics whose dds filename does match the id.
         'name': 'relics',
         'mod': [MOD_GFX_RELICS_ICONS],
         'vanilla': [VANILLA_GFX_RELICS_ICONS],
         'output': 'relics',
         'size': '152x152',
         'exclude': '_shine',
+        'hybrid_resolve': True,
+        'json_file': 'relics.json',
+        'icon_field': 'icon',
+        'gfx_key_prefix': 'GFX_relic_',
+        'stem_strip_prefix': 'r_',
     },
     {
         'name': 'flags',
@@ -218,18 +227,31 @@ def _build_gfx_resolve_lookup(config):
 
 def _build_hybrid_lookup(config):
     """Hybrid resolver: GFX-resolve first, then fill remaining from a recursive
-    directory scan. Used for components, where JSON stores `icon = "GFX_xxx"` and
-    icons live in subdirectories under ship_parts/.
+    directory scan. Used when a category's JSON references icons via GFX keys
+    that don't match the raw DDS filename (e.g. relics where icon='r_ktarian_game'
+    maps to texturefile='r_rubricator.dds' via pictures_map.json).
 
     GFX-resolved entries take precedence (explicit references in the JSON).
     Direct-scan fills the rest so icons are still available even if a GFX key
     is missing from pictures_map.json. Mod dirs come after vanilla dirs so mod
     files naturally override vanilla ones (see _build_dds_lookup).
+
+    Config knobs:
+    - icon_field: JSON field holding the raw icon reference per item.
+    - gfx_key_prefix: optional string prepended to the raw value (after
+        stripping the configured stem_strip_prefix) to form the GFX key. Also
+        used as the key prefix to lookup pictures_map.json. Defaults to "GFX_".
+    - stem_strip_prefix: optional string stripped off the raw value before
+        building the GFX key (e.g. "r_" for relics where ids are "r_foo" but
+        the GFX key is "GFX_relic_foo"). The raw value itself is kept as the
+        output stem so the frontend keeps looking up <id>.webp.
     """
     # --- Phase 1: GFX-resolve from pictures_map.json ---
     gfx_lookup = {}
     pmap_path = os.path.join(OUTPUT_ASSETS_DIR, 'pictures_map.json')
     json_path = os.path.join(OUTPUT_ASSETS_DIR, config['json_file'])
+    gfx_key_prefix = config.get('gfx_key_prefix', 'GFX_')
+    stem_strip_prefix = config.get('stem_strip_prefix', '')
 
     if os.path.exists(pmap_path) and os.path.exists(json_path):
         with open(pmap_path, 'r', encoding='utf-8') as f:
@@ -245,9 +267,14 @@ def _build_hybrid_lookup(config):
                 raw_values.add(v)
 
         for raw in raw_values:
-            # Component JSON has values like "GFX_ship_part_mandible_1".
-            gfx_name = raw if raw.startswith('GFX_') else f"GFX_{raw}"
-            stem = gfx_name[4:]  # strip "GFX_" -> output filename stem
+            if raw.startswith('GFX_'):
+                # Components store icon values like "GFX_ship_part_mandible_1".
+                gfx_name = raw
+                stem = gfx_name[4:]
+            else:
+                core = raw[len(stem_strip_prefix):] if stem_strip_prefix and raw.startswith(stem_strip_prefix) else raw
+                gfx_name = f"{gfx_key_prefix}{core}"
+                stem = raw  # keep the raw id as output filename
             entry = pictures_map.get(gfx_name)
             if not entry:
                 continue

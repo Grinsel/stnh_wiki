@@ -4,6 +4,16 @@
     "texture_name": "transp_white",
     "frames": 1
   },
+  "GFX_advisor_event_background": {
+    "texture_path": "gfx/interface/tiles/main_menu_tile.dds",
+    "texture_name": "main_menu_tile",
+    "frames": 1
+  },
+  "GFX_advisor_frame": {
+    "texture_path": "gfx/interface/tiles/green_frame_tile.dds",
+    "texture_name": "green_frame_tile",
+    "frames": 1
+  },
   "GFX_advisor_default_option_background": {
     "texture_path": "gfx/interface/buttons/button_268_animated.dds",
     "texture_name": "button_268_animated",
@@ -29,6 +39,11 @@
     "texture_name": "loyalty_icon_large",
     "frames": 1
   },
+  "GFX_na_scroll_snap_point": {
+    "texture_path": "gfx/interface/subjugation/scroll_snappoint.dds",
+    "texture_name": "scroll_snappoint",
+    "frames": 1
+  },
   "GFX_na_scroll_snap_point_center": {
     "texture_path": "gfx/interface/subjugation/scroll_snappoint_center.dds",
     "texture_name": "scroll_snappoint_center",
@@ -44,9 +59,19 @@
     "texture_name": "horizontal_right_button",
     "frames": 1
   },
+  "GFX_na_scrollbar_track": {
+    "texture_path": "gfx/interface/subjugation/horizontal_scroll_track.dds",
+    "texture_name": "horizontal_scroll_track",
+    "frames": 1
+  },
   "GFX_na_settings_scroll_dragger": {
     "texture_path": "gfx/interface/subjugation/scroll_dragger.dds",
     "texture_name": "scroll_dragger",
+    "frames": 1
+  },
+  "GFX_resource_contribution_bg": {
+    "texture_path": "gfx/interface/subjugation/resource_slider_background.dds",
+    "texture_name": "resource_slider_background",
     "frames": 1
   },
   "GFX_specialist_subject_tier_box": {
@@ -68,6 +93,16 @@
     "texture_path": "gfx/interface/subjugation/terms_dropdown_arrow.dds",
     "texture_name": "terms_dropdown_arrow",
     "frames": 2
+  },
+  "GFX_subjugation_btn_selection_off": {
+    "texture_path": "gfx/interface/tiles/subjugation_selection_off.dds",
+    "texture_name": "subjugation_selection_off",
+    "frames": 1
+  },
+  "GFX_subjugation_btn_selection_on": {
+    "texture_path": "gfx/interface/tiles/subjugation_selection_on.dds",
+    "texture_name": "subjugation_selection_on",
+    "frames": 1
   },
   "GFX_transition_arrows": {
     "texture_path": "gfx/interface/subjugation/subjugation_transition_arrows.dds",
@@ -297,6 +332,21 @@
   "GFX_discovery_view_bottom": {
     "texture_path": "gfx/interface/anomaly/discovery_view_bottom.dds",
     "texture_name": "discovery_view_bottom",
+    "frames": 1
+  },
+  "GFX_empty_green_frame": {
+    "texture_path": "gfx/interface/tiles/green_frame_tile.dds",
+    "texture_name": "green_frame_tile",
+    "frames": 1
+  },
+  "GFX_expedition_title_bg": {
+    "texture_path": "gfx/interface/archaeology/expedition_title_bg.dds",
+    "texture_name": "expedition_title_bg",
+    "frames": 1
+  },
+  "GFX_archeology_data_bg": {
+    "texture_path": "gfx/interface/diplomacy/info_background_125.dds",
+    "texture_name": "info_background_125",
     "frames": 1
   },
   "GFX_difficulty_range": {
@@ -597,6 +647,11 @@
   "GFX_evt_archaeological_site_in_progress": {
     "texture_path": "gfx/interface/archaeology/event_chaper_in_progress.dds",
     "texture_name": "event_chaper_in_progress",
+    "frames": 1
+  },
+  "GFX_rune_background_bar": {
+    "texture_path": "gfx/interface/archaeology/rune_background_bar.dds",
+    "texture_name": "rune_background_bar",
     "frames": 1
   },
   "GFX_expedition_file_bg": {
@@ -914,6 +969,11 @@
     "texture_name": "trait_rarity_paragon",
     "frames": 1
   },
+  "GFX_astral_actions_view_background": {
+    "texture_path": "gfx/interface/astral_actions/astral_actions_background.dds",
+    "texture_name": "astral_actions_background",
+    "frames": 1
+  },
   "GFX_astral_actions_frame": {
     "texture_path": "gfx/interface/relics/relics_frame.dds",
     "texture_name": "relics_frame",
@@ -1084,6 +1144,11 @@
     "texture_name": "astral_rift_difficulty_hell",
     "frames": 1
   },
+  "GFX_progress_background_bar": {
+    "texture_path": "gfx/interface/astral_rifts/rift_sphere_cable_icon.dds",
+    "texture_name": "rift_sphere_cable_icon",
+    "frames": 1
+  },
   "GFX_astral_rift_expedition_file_blocked_door_left": {
     "texture_path": "gfx/interface/astral_rifts/expedition_file_blocked_door_left.dds",
     "texture_name": "expedition_file_blocked_door_left",
@@ -1149,6 +1214,16 @@
     "texture_name": "ship_life_bar_filled",
     "frames": 1
   },
+  "GFX_tile_combat_stats_won_bg": {
+    "texture_path": "gfx/interface/tiles/tile_header_win_bg.dds",
+    "texture_name": "tile_header_win_bg",
+    "frames": 1
+  },
+  "GFX_tile_combat_stats_lost_bg": {
+    "texture_path": "gfx/interface/tiles/tile_header_lose_bg.dds",
+    "texture_name": "tile_header_lose_bg",
+    "frames": 1
+  },
   "GFX_replace_leader": {
     "texture_path": "gfx/interface/leaders/leader_replace_icon.dds",
     "texture_name": "leader_replace_icon",
@@ -1194,10 +1269,70 @@
     "texture_name": "invisible",
     "frames": 1
   },
+  "gfx_transparency_button": {
+    "texture_path": "gfx/interface/tiles/invisible.tga",
+    "texture_name": "invisible.tga",
+    "frames": 1
+  },
+  "gfx_transparency_button_2": {
+    "texture_path": "gfx/interface/tiles/invisible_button.dds",
+    "texture_name": "invisible_button",
+    "frames": 3
+  },
+  "GFX_button_light": {
+    "texture_path": "gfx/interface/tiles/button_light_tile.dds",
+    "texture_name": "button_light_tile",
+    "frames": 3
+  },
+  "GFX_button_dark": {
+    "texture_path": "gfx/interface/tiles/button_dark_tile.dds",
+    "texture_name": "button_dark_tile",
+    "frames": 3
+  },
+  "GFX_button_dark_job": {
+    "texture_path": "gfx/interface/tiles/button_dark_job_tile.dds",
+    "texture_name": "button_dark_job_tile",
+    "frames": 3
+  },
+  "GFX_tooltip_bg": {
+    "texture_path": "gfx/interface/tiles/tooltip.dds",
+    "texture_name": "tooltip",
+    "frames": 1
+  },
   "GFX_standard_button_626_24": {
     "texture_path": "gfx/interface/buttons/standard_button_626_24.dds",
     "texture_name": "standard_button_626_24",
     "frames": 3
+  },
+  "GFX_header_line_mirrored": {
+    "texture_path": "gfx/interface/subjugation/subjugation_title_line_mirrored.dds",
+    "texture_name": "subjugation_title_line_mirrored",
+    "frames": 1
+  },
+  "GFX_bg_area_light": {
+    "texture_path": "gfx/interface/tiles/black_bg_green_frame_light_tile.dds",
+    "texture_name": "black_bg_green_frame_light_tile",
+    "frames": 1
+  },
+  "gfx_message_bg": {
+    "texture_path": "gfx/interface/tiles/tech_view_tile.dds",
+    "texture_name": "tech_view_tile",
+    "frames": 1
+  },
+  "gfx_planet_frame_tile": {
+    "texture_path": "gfx/interface/tiles/planet_frame.dds",
+    "texture_name": "planet_frame",
+    "frames": 1
+  },
+  "gfx_transparency_white": {
+    "texture_path": "gfx/interface/transp_white.dds",
+    "texture_name": "transp_white",
+    "frames": 1
+  },
+  "gfx_default_ime_composition_background": {
+    "texture_path": "gfx/interface/default_ime_background.dds",
+    "texture_name": "default_ime_background",
+    "frames": 1
   },
   "GFX_ncp_scroll_slider": {
     "texture_path": "gfx/interface/sliders/ncp_scroll_slider.dds",
@@ -1212,6 +1347,21 @@
   "GFX_ncp_scroll_slider_horizontal": {
     "texture_path": "gfx/interface/sliders/ncp_scroll_slider_horizontal.dds",
     "texture_name": "ncp_scroll_slider_horizontal",
+    "frames": 1
+  },
+  "GFX_ncp_scroll_bg": {
+    "texture_path": "gfx/interface/sliders/ncp_scroll_bg.tga",
+    "texture_name": "ncp_scroll_bg.tga",
+    "frames": 1
+  },
+  "GFX_ncp_scroll_bg_horizontal": {
+    "texture_path": "gfx/interface/sliders/ncp_scroll_bg_horizontal.dds",
+    "texture_name": "ncp_scroll_bg_horizontal",
+    "frames": 1
+  },
+  "GFX_ncp_scroll_track": {
+    "texture_path": "gfx/interface/sliders/scroll_track.dds",
+    "texture_name": "scroll_track",
     "frames": 1
   },
   "GFX_ncp_scroll_up": {
@@ -1327,6 +1477,11 @@
   "GFX_government_locked_overlay": {
     "texture_path": "gfx/interface/main/GovernmentFade_DLC.dds",
     "texture_name": "GovernmentFade_DLC",
+    "frames": 1
+  },
+  "GFX_cvaa_speak_message_bg": {
+    "texture_path": "gfx/interface/tiles/text_highlight_bg_tile.dds",
+    "texture_name": "text_highlight_bg_tile",
     "frames": 1
   },
   "GFX_cvaa_mic_icon": {
@@ -2669,9 +2824,34 @@
     "texture_name": "hyperthermia_crisis_title2",
     "frames": 1
   },
+  "GFX_nemesis_path_bg": {
+    "texture_path": "gfx/interface/crisis/CrisisBG.dds",
+    "texture_name": "CrisisBG",
+    "frames": 1
+  },
+  "GFX_cosmogenesis_path_bg": {
+    "texture_path": "gfx/interface/crisis/CrisisBG.dds",
+    "texture_name": "CrisisBG",
+    "frames": 1
+  },
+  "GFX_behemoth_path_bg": {
+    "texture_path": "gfx/interface/crisis/behemoth_crisisBG.dds",
+    "texture_name": "behemoth_crisisBG",
+    "frames": 1
+  },
+  "GFX_hyperthermia_path_bg": {
+    "texture_path": "gfx/interface/crisis/CrisisBG_Infernal.dds",
+    "texture_name": "CrisisBG_Infernal",
+    "frames": 1
+  },
   "GFX_dummy_3d_graphical_culture_preview": {
     "texture_path": "gfx/interface/ship_designer/ship_design_entry_bg.dds",
     "texture_name": "ship_design_entry_bg",
+    "frames": 1
+  },
+  "GFX_orange_frame_tile": {
+    "texture_path": "gfx/interface/tiles/orange_frame_tile.dds",
+    "texture_name": "orange_frame_tile",
     "frames": 1
   },
   "GFX_dummy_3d_species_customization_planet_class_entry": {
@@ -2779,6 +2959,11 @@
     "texture_name": "placeholder",
     "frames": 1
   },
+  "GFX_diplomacy_frame": {
+    "texture_path": "gfx/interface/tiles/green_frame_tile.dds",
+    "texture_name": "green_frame_tile",
+    "frames": 1
+  },
   "GFX_diplomacy_long_button": {
     "texture_path": "gfx/interface/buttons/button_211_animated.dds",
     "texture_name": "button_211_animated",
@@ -2829,9 +3014,34 @@
     "texture_name": "tech_age_level_bars",
     "frames": 10
   },
+  "GFX_diplomacy_empire_chat_box": {
+    "texture_path": "gfx/interface/diplomacy/diplomacy_chat_box.dds",
+    "texture_name": "diplomacy_chat_box",
+    "frames": 1
+  },
   "GFX_diplomacy_icon_bg_ring": {
     "texture_path": "gfx/interface/diplomacy/diplomacy_popup_diplomatic_icon_ring.dds",
     "texture_name": "diplomacy_popup_diplomatic_icon_ring",
+    "frames": 1
+  },
+  "GFX_diplomacy_textbox_neutral": {
+    "texture_path": "gfx/interface/tiles/diplomacy_textbox_neutral.dds",
+    "texture_name": "diplomacy_textbox_neutral",
+    "frames": 1
+  },
+  "GFX_diplomacy_textbox_aggressive": {
+    "texture_path": "gfx/interface/tiles/diplomacy_textbox_aggressive.dds",
+    "texture_name": "diplomacy_textbox_aggressive",
+    "frames": 1
+  },
+  "GFX_diplomacy_textbox_positive": {
+    "texture_path": "gfx/interface/tiles/diplomacy_textbox_positive.dds",
+    "texture_name": "diplomacy_textbox_positive",
+    "frames": 1
+  },
+  "GFX_diplomacy_textbox_negative": {
+    "texture_path": "gfx/interface/tiles/diplomacy_textbox_negative.dds",
+    "texture_name": "diplomacy_textbox_negative",
     "frames": 1
   },
   "GFX_diplomacy_icons_shadow": {
@@ -3719,10 +3929,40 @@
     "texture_name": "silver_underlay_horizontal_HL",
     "frames": 1
   },
+  "GFX_black_bg_tile": {
+    "texture_path": "gfx/interface/icons/black_bg_tile.dds",
+    "texture_name": "black_bg_tile",
+    "frames": 1
+  },
+  "GFX_election_frame": {
+    "texture_path": "gfx/interface/tiles/green_frame_tile.dds",
+    "texture_name": "green_frame_tile",
+    "frames": 1
+  },
+  "GFX_black_box_bg": {
+    "texture_path": "gfx/interface/tiles/black_bg_tile.dds",
+    "texture_name": "black_bg_tile",
+    "frames": 1
+  },
+  "GFX_election_view_candidate_background": {
+    "texture_path": "gfx/interface/tiles/interface_list_light_bordered.dds",
+    "texture_name": "interface_list_light_bordered",
+    "frames": 1
+  },
   "GFX_selected_winner": {
     "texture_path": "gfx/interface/old/stolen_from_eu4/ai_accept_decline_icon.dds",
     "texture_name": "ai_accept_decline_icon",
     "frames": 2
+  },
+  "GFX_black_box": {
+    "texture_path": "gfx/interface/tiles/black_bg_colored_frame_tile.dds",
+    "texture_name": "black_bg_colored_frame_tile",
+    "frames": 3
+  },
+  "GFX_black_box_orange": {
+    "texture_path": "gfx/interface/tiles/black_bg_orange_frame_tile.dds",
+    "texture_name": "black_bg_orange_frame_tile",
+    "frames": 1
   },
   "GFX_planet_list_plus": {
     "texture_path": "gfx/interface/icons/plus.dds",
@@ -3908,6 +4148,11 @@
     "texture_path": "gfx/interface/buttons/button_kick.dds",
     "texture_name": "button_kick",
     "frames": 3
+  },
+  "SandboxFloaterBackground": {
+    "texture_path": "gfx/interface/removed.dds",
+    "texture_name": "removed",
+    "frames": 1
   },
   "GFX_button_ban": {
     "texture_path": "gfx/interface/buttons/button_ban.dds",
@@ -8394,6 +8639,21 @@
     "texture_name": "fleet_task_survey_system_action",
     "frames": 3
   },
+  "GFX_tiles_green_frame_top": {
+    "texture_path": "gfx/interface/tiles/black_bg_top_green_frame_tile.dds",
+    "texture_name": "black_bg_top_green_frame_tile",
+    "frames": 1
+  },
+  "GFX_tiles_green_side_frame_top": {
+    "texture_path": "gfx/interface/tiles/black_bg_green_side_frame_tile.dds",
+    "texture_name": "black_bg_green_side_frame_tile",
+    "frames": 1
+  },
+  "GFX_tiles_green_top_left_corner_frame": {
+    "texture_path": "gfx/interface/tiles/black_bg_top_left_corner_green_frame_tile.dds",
+    "texture_name": "black_bg_top_left_corner_green_frame_tile",
+    "frames": 1
+  },
   "GFX_federation_ship_entry_bg": {
     "texture_path": "gfx/interface/fleet_view/federation_ship_entry_bg.dds",
     "texture_name": "federation_ship_entry_bg",
@@ -8410,6 +8670,11 @@
     "frames": 1
   },
   "GFX_ship_entry_bg": {
+    "texture_path": "gfx/interface/fleet_view/ship_entry_bg.dds",
+    "texture_name": "ship_entry_bg",
+    "frames": 1
+  },
+  "GFX_shipyard_entry_bg": {
     "texture_path": "gfx/interface/fleet_view/ship_entry_bg.dds",
     "texture_name": "ship_entry_bg",
     "frames": 1
@@ -8472,6 +8737,21 @@
   "GFX_fleet_view_behemoth_stage_4": {
     "texture_path": "gfx/interface/fleet_view/fleet_view_behemoth_stage_4.dds",
     "texture_name": "fleet_view_behemoth_stage_4",
+    "frames": 1
+  },
+  "GFX_fleet_view_main_shipyard_padding_bg": {
+    "texture_path": "gfx/interface/fleet_view/fleet_view_main_shipyard_padding_bg.dds",
+    "texture_name": "fleet_view_main_shipyard_padding_bg",
+    "frames": 1
+  },
+  "GFX_tiles_dark_area_cut_8": {
+    "texture_path": "gfx/interface/tiles/dark_area_cut_8.dds",
+    "texture_name": "dark_area_cut_8",
+    "frames": 1
+  },
+  "GFX_tiles_dark_area_cut_8_hover": {
+    "texture_path": "gfx/interface/tiles/dark_area_cut_8.dds",
+    "texture_name": "dark_area_cut_8",
     "frames": 1
   },
   "GFX_fleet_mission_button_passive_observation_selected": {
@@ -8979,6 +9259,11 @@
     "texture_name": "root_completed",
     "frames": 1
   },
+  "GFX_focus_progression_progress_tile": {
+    "texture_path": "gfx/interface/focus/progression/progress_tile.dds",
+    "texture_name": "progress_tile",
+    "frames": 1
+  },
   "GFX_focus_reward_background": {
     "texture_path": "gfx/interface/focus/focus_reward_background_tile.dds",
     "texture_name": "focus_reward_background_tile",
@@ -9069,6 +9354,11 @@
     "texture_name": "button_main_menu",
     "frames": 3
   },
+  "GFX_faded_gradient_tile": {
+    "texture_path": "gfx/interface/tiles/faded_gradient_tile.dds",
+    "texture_name": "faded_gradient_tile",
+    "frames": 1
+  },
   "GFX_galactic_community_button": {
     "texture_path": "gfx/interface/galacticCommunity/galacticCommunity_mainButton.dds",
     "texture_name": "galacticCommunity_mainButton",
@@ -9078,6 +9368,11 @@
     "texture_path": "gfx/interface/galacticCommunity/galacticEmpire_mainButton.dds",
     "texture_name": "galacticEmpire_mainButton",
     "frames": 2
+  },
+  "GFX_galactic_community_button_pulse": {
+    "texture_path": "gfx/interface/galacticCommunity/galacticCommunity_mainButton_single.dds",
+    "texture_name": "galacticCommunity_mainButton_single",
+    "frames": 1
   },
   "GFX_galactic_community_button_end_session": {
     "texture_path": "gfx/interface/galacticCommunity/button_galacticCommunity_end_session.dds",
@@ -9233,6 +9528,11 @@
     "texture_path": "gfx/interface/galacticCommunity/galacticCommunity_stripes.dds",
     "texture_name": "galacticCommunity_stripes",
     "frames": 3
+  },
+  "GFX_dark_area_cut_light": {
+    "texture_path": "gfx/interface/galacticCommunity/dark_area_cut_light.dds",
+    "texture_name": "dark_area_cut_light",
+    "frames": 1
   },
   "GFX_abstain": {
     "texture_path": "gfx/interface/galacticCommunity/vote_abstain.dds",
@@ -9472,6 +9772,16 @@
   "GFX_population": {
     "texture_path": "gfx/interface/icons/pop.dds",
     "texture_name": "pop",
+    "frames": 1
+  },
+  "GFX_tiled_window_transparent": {
+    "texture_path": "gfx/interface/tiles/tiled_window_transparent.dds",
+    "texture_name": "tiled_window_transparent",
+    "frames": 1
+  },
+  "GFX_timelines_progress_background": {
+    "texture_path": "gfx/interface/timelines/timelines_progress_background.dds",
+    "texture_name": "timelines_progress_background",
     "frames": 1
   },
   "GFX_diplomacy_status_rivalry": {
@@ -9769,6 +10079,16 @@
     "texture_name": "diplomacy_trust",
     "frames": 1
   },
+  "GFX_galaxy_view_bg": {
+    "texture_path": "gfx/interface/tiles/green_bg_tile.dds",
+    "texture_name": "green_bg_tile",
+    "frames": 1
+  },
+  "GFX_galaxy_view_frame": {
+    "texture_path": "gfx/interface/tiles/green_frame_tile.dds",
+    "texture_name": "green_frame_tile",
+    "frames": 1
+  },
   "GFX_galaxy_tab": {
     "texture_path": "gfx/interface/buttons/button_110_animated.dds",
     "texture_name": "button_110_animated",
@@ -9827,6 +10147,16 @@
   "GFX_darkcut_intel": {
     "texture_path": "gfx/interface/contacts/darkcut_intel.dds",
     "texture_name": "darkcut_intel",
+    "frames": 1
+  },
+  "GFX_darkcut_intel_cornered": {
+    "texture_path": "gfx/interface/contacts/dark_intel_cut_topright.dds",
+    "texture_name": "dark_intel_cut_topright",
+    "frames": 1
+  },
+  "GFX_no_highlight_tile": {
+    "texture_path": "gfx/interface/tiles/black_bg_green_frame_no_highlights.dds",
+    "texture_name": "black_bg_green_frame_no_highlights",
     "frames": 1
   },
   "GFX_overlord_portrait_frame": {
@@ -9924,6 +10254,16 @@
     "texture_name": "dropdown_item_104",
     "frames": 1
   },
+  "GFX_general_interface_button": {
+    "texture_path": "gfx/interface/buttons/general_264_small.dds",
+    "texture_name": "general_264_small",
+    "frames": 1
+  },
+  "GFX_government_mod_window_bg": {
+    "texture_path": "gfx/interface/tiles/green_bg_tile.dds",
+    "texture_name": "green_bg_tile",
+    "frames": 1
+  },
   "GFX_government_mod_window_trait_entry_bg": {
     "texture_path": "gfx/interface/government_mod_window/trait_entry_bg.dds",
     "texture_name": "trait_entry_bg",
@@ -9939,9 +10279,24 @@
     "texture_name": "government_edit_advisor_voice",
     "frames": 3
   },
+  "GFX_gov_mod_frame": {
+    "texture_path": "gfx/interface/tiles/green_frame_tile.dds",
+    "texture_name": "green_frame_tile",
+    "frames": 1
+  },
   "GFX_government_mod_window_trait_entry_selected": {
     "texture_path": "gfx/interface/government_mod_window/trait_entry_selected.dds",
     "texture_name": "trait_entry_selected",
+    "frames": 1
+  },
+  "GFX_government_view_bg": {
+    "texture_path": "gfx/interface/tiles/green_bg_tile.dds",
+    "texture_name": "green_bg_tile",
+    "frames": 1
+  },
+  "GFX_outliner_header_bg": {
+    "texture_path": "gfx/interface/tiles/green_bg_tile.dds",
+    "texture_name": "green_bg_tile",
     "frames": 1
   },
   "GFX_checkbox_20_20_01": {
@@ -10014,6 +10369,11 @@
     "texture_name": "tab_2_long_inactive",
     "frames": 3
   },
+  "GFX_empire_view_frame": {
+    "texture_path": "gfx/interface/tiles/green_frame_tile.dds",
+    "texture_name": "green_frame_tile",
+    "frames": 1
+  },
   "GFX_population_seperate_line_01": {
     "texture_path": "gfx/interface/planetview/population_seperate_line.dds",
     "texture_name": "population_seperate_line",
@@ -10022,6 +10382,11 @@
   "GFX_population_seperate_line_02": {
     "texture_path": "gfx/interface/planetview/population_seperate_line.dds",
     "texture_name": "population_seperate_line",
+    "frames": 1
+  },
+  "GFX_black_bg_boxes": {
+    "texture_path": "gfx/interface/tiles/tooltip.dds",
+    "texture_name": "tooltip",
     "frames": 1
   },
   "GFX_close_button": {
@@ -10074,6 +10439,21 @@
     "texture_name": "species_plupp",
     "frames": 1
   },
+  "GFX_grand_archive_collection_inactive_bg": {
+    "texture_path": "gfx/interface/grand_archive/grand_archive_collection_inactive_bg.dds",
+    "texture_name": "grand_archive_collection_inactive_bg",
+    "frames": 1
+  },
+  "GFX_grand_archive_collection_active_bg": {
+    "texture_path": "gfx/interface/grand_archive/grand_archive_collection_active_bg.dds",
+    "texture_name": "grand_archive_collection_active_bg",
+    "frames": 1
+  },
+  "GFX_exhibition_bg_tile_frame": {
+    "texture_path": "gfx/interface/tiles/green_frame_tile.dds",
+    "texture_name": "green_frame_tile",
+    "frames": 1
+  },
   "GFX_specimen_income_background": {
     "texture_path": "gfx/interface/grand_archive/specimen_income_background.dds",
     "texture_name": "specimen_income_background",
@@ -10098,6 +10478,11 @@
     "texture_path": "gfx/interface/grand_archive/specimen_auto_sell_state.dds",
     "texture_name": "specimen_auto_sell_state",
     "frames": 2
+  },
+  "GFX_vivarium_panel_bg": {
+    "texture_path": "gfx/interface/grand_archive/vivarium_panel_bg.dds",
+    "texture_name": "vivarium_panel_bg",
+    "frames": 1
   },
   "GFX_vivarium_tank_frame": {
     "texture_path": "gfx/interface/grand_archive/vivarium_tank_frame.dds",
@@ -10124,15 +10509,60 @@
     "texture_name": "vivarium_ship_entry_bg",
     "frames": 1
   },
+  "GFX_tiles_green_hex": {
+    "texture_path": "gfx/interface/tiles/green_hex.dds",
+    "texture_name": "green_hex",
+    "frames": 1
+  },
+  "GFX_tiles_green_hex_wide": {
+    "texture_path": "gfx/interface/tiles/green_hex_wide.dds",
+    "texture_name": "green_hex_wide",
+    "frames": 1
+  },
+  "GFX_tiles_halo_frame": {
+    "texture_path": "gfx/interface/tiles/halo_frame.dds",
+    "texture_name": "halo_frame",
+    "frames": 1
+  },
+  "GFX_tiles_halo_frame_wide": {
+    "texture_path": "gfx/interface/tiles/halo_frame_wide.dds",
+    "texture_name": "halo_frame_wide",
+    "frames": 1
+  },
+  "GFX_transparent_black_backdrop": {
+    "texture_path": "gfx/interface/tiles/tile_backdrop.dds",
+    "texture_name": "tile_backdrop",
+    "frames": 1
+  },
+  "GFX_hotjoin_requests_background": {
+    "texture_path": "gfx/interface/tiles/black_bg_tile.tga",
+    "texture_name": "black_bg_tile.tga",
+    "frames": 1
+  },
   "GFX_green_checkbox": {
     "texture_path": "gfx/interface/main/green_checkbox.dds",
     "texture_name": "green_checkbox",
     "frames": 4
   },
+  "GFX_country_selection_entry_background": {
+    "texture_path": "gfx/interface/tiles/planet_view_glow_tile_orange.dds",
+    "texture_name": "planet_view_glow_tile_orange",
+    "frames": 1
+  },
   "GFX_previously_played": {
     "texture_path": "gfx/interface/icons/leaders/leader_skill.dds",
     "texture_name": "leader_skill",
     "frames": 11
+  },
+  "GFX_hotjoinview_country_entry": {
+    "texture_path": "gfx/interface/tiles/planet_view_glow_tile.dds",
+    "texture_name": "planet_view_glow_tile",
+    "frames": 1
+  },
+  "GFX_hotjoinview_country_entry_special": {
+    "texture_path": "gfx/interface/tiles/planet_view_glow_tile_orange.dds",
+    "texture_name": "planet_view_glow_tile_orange",
+    "frames": 1
   },
   "GFX_faction_icon_imperialist": {
     "texture_path": "gfx/interface/icons/faction_icons/faction_icons_imperialists.dds",
@@ -15909,6 +16339,16 @@
     "texture_name": "sb_pyroclastic_resonator",
     "frames": 1
   },
+  "GFX_button": {
+    "texture_path": "gfx/interface/removed.dds",
+    "texture_name": "removed",
+    "frames": 1
+  },
+  "GFX_button_small": {
+    "texture_path": "gfx/interface/tiles/small_tiles_dialog.tga",
+    "texture_name": "small_tiles_dialog.tga",
+    "frames": 1
+  },
   "GFX_text_0": {
     "texture_path": "gfx/keyicons/0.dds",
     "texture_name": "0",
@@ -16979,6 +17419,16 @@
     "texture_name": "vertical_line",
     "frames": 1
   },
+  "GFX_topbar_bar_03": {
+    "texture_path": "gfx/interface/tiles/topbar_bar.dds",
+    "texture_name": "topbar_bar",
+    "frames": 1
+  },
+  "GFX_green_vertical_delimiters": {
+    "texture_path": "gfx/interface/tiles/green_vertical_delimiters.dds",
+    "texture_name": "green_vertical_delimiters",
+    "frames": 1
+  },
   "GFX_bottombar_details": {
     "texture_path": "gfx/interface/main/bottombar_details.dds",
     "texture_name": "bottombar_details",
@@ -17024,6 +17474,11 @@
     "texture_name": "topbar_date_minus",
     "frames": 1
   },
+  "GFX_topbar_background": {
+    "texture_path": "gfx/interface/main/topbar_background.dds",
+    "texture_name": "topbar_background",
+    "frames": 1
+  },
   "GFX_navbar_bg": {
     "texture_path": "gfx/interface/main/navbar_bg.dds",
     "texture_name": "navbar_bg",
@@ -17059,6 +17514,11 @@
     "texture_name": "navbar_lock_less",
     "frames": 2
   },
+  "GFX_order_window": {
+    "texture_path": "gfx/interface/main/order_window.dds",
+    "texture_name": "order_window",
+    "frames": 1
+  },
   "GFX_speed_indicator": {
     "texture_path": "gfx/interface/main/speed_indicator.dds",
     "texture_name": "speed_indicator",
@@ -17082,6 +17542,16 @@
   "GFX_district_workforce_slider": {
     "texture_path": "gfx/interface/icons/districts/grid_box/district_workforce_slider.dds",
     "texture_name": "district_workforce_slider",
+    "frames": 1
+  },
+  "GFX_pink_box_cornered": {
+    "texture_path": "gfx/interface/pink_box.dds",
+    "texture_name": "pink_box",
+    "frames": 1
+  },
+  "GFX_pink_background": {
+    "texture_path": "gfx/interface/pink_background.dds",
+    "texture_name": "pink_background",
     "frames": 1
   },
   "GFX_pi_logo": {
@@ -17138,6 +17608,26 @@
     "texture_path": "gfx/interface/buttons/mapmode.dds",
     "texture_name": "mapmode",
     "frames": 10
+  },
+  "GFX_ship_army_outliner": {
+    "texture_path": "gfx/interface/tiles/ship_army_outliner.dds",
+    "texture_name": "ship_army_outliner",
+    "frames": 1
+  },
+  "GFX_error_log_button": {
+    "texture_path": "gfx/interface/buttons/error_log_button.dds",
+    "texture_name": "error_log_button",
+    "frames": 1
+  },
+  "GFX_invisible": {
+    "texture_path": "gfx/interface/tiles/invisible.dds",
+    "texture_name": "invisible",
+    "frames": 1
+  },
+  "GFX_invisible_transparent": {
+    "texture_path": "gfx/interface/tiles/invisible.dds",
+    "texture_name": "invisible",
+    "frames": 1
   },
   "GFX_special_project": {
     "texture_path": "gfx/interface/icons/situation_log/situation_log_scanning_beam.dds",
@@ -17424,6 +17914,16 @@
     "texture_name": "menu_icon_edicts",
     "frames": 1
   },
+  "GFX_dark_green_frame_area": {
+    "texture_path": "gfx/interface/tiles/dark_green_frame_area.dds",
+    "texture_name": "dark_green_frame_area",
+    "frames": 1
+  },
+  "GFX_dark_green_area": {
+    "texture_path": "gfx/interface/tiles/dark_green_area.dds",
+    "texture_name": "dark_green_area",
+    "frames": 1
+  },
   "GFX_coop_presence_indicator": {
     "texture_path": "gfx/interface/icons/coop_presence_indicator.dds",
     "texture_name": "coop_presence_indicator",
@@ -17468,6 +17968,11 @@
     "texture_path": "gfx/interface/buttons/button_29_animated_dark.dds",
     "texture_name": "button_29_animated_dark",
     "frames": 3
+  },
+  "GFX_menu_window_bg": {
+    "texture_path": "gfx/interface/tiles/main_menu_tile.dds",
+    "texture_name": "main_menu_tile",
+    "frames": 1
   },
   "GFX_standard_button_large_211_40": {
     "texture_path": "gfx/interface/buttons/button_211_animated.dds",
@@ -17654,6 +18159,31 @@
     "texture_name": "fleet_cloaked",
     "frames": 1
   },
+  "GFX_map_icon_bg": {
+    "texture_path": "gfx/interface/system/map_gui_bg.dds",
+    "texture_name": "map_gui_bg",
+    "frames": 1
+  },
+  "GFX_map_icon_bg_capital": {
+    "texture_path": "gfx/interface/system/map_gui_bg_capital.dds",
+    "texture_name": "map_gui_bg_capital",
+    "frames": 1
+  },
+  "GFX_map_icon_flag": {
+    "texture_path": "gfx/interface/system/map_gui_frame.dds",
+    "texture_name": "map_gui_frame",
+    "frames": 1
+  },
+  "GFX_map_icon_flag_capital": {
+    "texture_path": "gfx/interface/system/map_gui_frame_capital.dds",
+    "texture_name": "map_gui_frame_capital",
+    "frames": 1
+  },
+  "GFX_map_icon_flag_occupied": {
+    "texture_path": "gfx/interface/system/map_gui_frame_occupied.dds",
+    "texture_name": "map_gui_frame_occupied",
+    "frames": 1
+  },
   "GFX_map_icon_flag_capital_decoration": {
     "texture_path": "gfx/interface/system/map_gui_capital_decoration.dds",
     "texture_name": "map_gui_capital_decoration",
@@ -17749,6 +18279,11 @@
     "texture_name": "trade",
     "frames": 2
   },
+  "GFX_market_trade_resource_box": {
+    "texture_path": "gfx/interface/market/market_trade_resource_box.dds",
+    "texture_name": "market_trade_resource_box",
+    "frames": 1
+  },
   "GFX_striped": {
     "texture_path": "gfx/interface/main/striped_bg.png",
     "texture_name": "striped_bg.png",
@@ -17762,6 +18297,11 @@
   "GFX_market_info_box": {
     "texture_path": "gfx/interface/market/market_box.dds",
     "texture_name": "market_box",
+    "frames": 1
+  },
+  "GFX_matchmaker_bg": {
+    "texture_path": "gfx/interface/tiles/green_bg_tile.dds",
+    "texture_name": "green_bg_tile",
     "frames": 1
   },
   "GFX_matchmaking_browser_list_item_bg": {
@@ -19134,6 +19674,16 @@
     "texture_name": "ban",
     "frames": 3
   },
+  "GFX_multiplayer_background": {
+    "texture_path": "gfx/interface/tiles/main_menu_tile.dds",
+    "texture_name": "main_menu_tile",
+    "frames": 1
+  },
+  "GFX_black_box_multi": {
+    "texture_path": "gfx/interface/tiles/black_bg_tile.dds",
+    "texture_name": "black_bg_tile",
+    "frames": 1
+  },
   "GFX_button_copy_to_clipboard": {
     "texture_path": "gfx/interface/buttons/button_copy_to_clipboard.dds",
     "texture_name": "button_copy_to_clipboard",
@@ -19203,6 +19753,21 @@
     "texture_path": "gfx//interface//musicplayer/playlist_button.dds",
     "texture_name": "playlist_button",
     "frames": 3
+  },
+  "GFX_generic_bottom_fade": {
+    "texture_path": "gfx/interface/musicplayer/generic_bottom_fade.dds",
+    "texture_name": "generic_bottom_fade",
+    "frames": 1
+  },
+  "GFX_generic_top_fade": {
+    "texture_path": "gfx/interface/musicplayer/generic_top_fade.dds",
+    "texture_name": "generic_top_fade",
+    "frames": 1
+  },
+  "GFX_topbar_background_cutoff": {
+    "texture_path": "gfx/interface/main/topbar_background_cutoff.dds",
+    "texture_name": "topbar_background_cutoff",
+    "frames": 1
   },
   "GFX_mutation_eye_beam_1": {
     "texture_path": "gfx/interface/icons/mutations/eye_beam_1.dds",
@@ -20079,6 +20644,11 @@
     "texture_name": "origin_cosmic_dawn",
     "frames": 1
   },
+  "GFX_tile_outliner_bg_solid": {
+    "texture_path": "gfx/interface/tiles/outliner_tile_solid.dds",
+    "texture_name": "outliner_tile_solid",
+    "frames": 1
+  },
   "GFX_outliner_options_button": {
     "texture_path": "gfx/interface/buttons/outliner_options_button.dds",
     "texture_name": "outliner_options_button",
@@ -20128,6 +20698,21 @@
     "texture_path": "gfx/interface/outliner/outliner_ship_status_icons.dds",
     "texture_name": "outliner_ship_status_icons",
     "frames": 28
+  },
+  "GFX_tile_outliner_bg": {
+    "texture_path": "gfx/interface/tiles/outliner_tile.dds",
+    "texture_name": "outliner_tile",
+    "frames": 1
+  },
+  "GFX_tile_outliner_bg_synth_queen": {
+    "texture_path": "gfx/interface/tiles/outliner_tile_synth_queen.dds",
+    "texture_name": "outliner_tile_synth_queen",
+    "frames": 1
+  },
+  "GFX_tile_outliner_bg_orange": {
+    "texture_path": "gfx/interface/tiles/outliner_tile_orange.dds",
+    "texture_name": "outliner_tile_orange",
+    "frames": 1
   },
   "GFX_occupation_flag": {
     "texture_path": "gfx/interface/icons/occupation_flag.dds",
@@ -20774,6 +21359,16 @@
     "texture_name": "planet_type_big_icons",
     "frames": 36
   },
+  "GFX_interface_list_dark": {
+    "texture_path": "gfx/interface/tiles/interface_list_dark.dds",
+    "texture_name": "interface_list_dark",
+    "frames": 1
+  },
+  "GFX_horizontal_fade": {
+    "texture_path": "gfx/interface/horizontal_fade.dds",
+    "texture_name": "horizontal_fade",
+    "frames": 1
+  },
   "GFX_terraform_planet": {
     "texture_path": "gfx/interface/planetview/terraform_planet.dds",
     "texture_name": "terraform_planet",
@@ -20783,6 +21378,31 @@
     "texture_path": "gfx/interface/planetview/inspect_features.dds",
     "texture_name": "inspect_features",
     "frames": 3
+  },
+  "GFX_interface_list_light": {
+    "texture_path": "gfx/interface/tiles/interface_list_light.dds",
+    "texture_name": "interface_list_light",
+    "frames": 1
+  },
+  "GFX_interface_list_light_nodown": {
+    "texture_path": "gfx/interface/tiles/interface_list_light.dds",
+    "texture_name": "interface_list_light",
+    "frames": 1
+  },
+  "GFX_planetview_middle": {
+    "texture_path": "gfx/interface/planetview/planetview_middle.dds",
+    "texture_name": "planetview_middle",
+    "frames": 1
+  },
+  "GFX_planet_bg_tile": {
+    "texture_path": "gfx/interface/planetview/planet_view_middle.dds",
+    "texture_name": "planet_view_middle",
+    "frames": 1
+  },
+  "GFX_planet_bg_tile_2": {
+    "texture_path": "gfx/interface/planetview/planet_view_middle_2.dds",
+    "texture_name": "planet_view_middle_2",
+    "frames": 1
   },
   "GFX_bg_planet_view_governor": {
     "texture_path": "gfx/interface/planetview/bg_planet_view_governor.dds",
@@ -21144,6 +21764,16 @@
     "texture_name": "planetview_black_frame",
     "frames": 1
   },
+  "GFX_black_box_planet_view": {
+    "texture_path": "gfx/interface/tiles/black_bg_tile.dds",
+    "texture_name": "black_bg_tile",
+    "frames": 1
+  },
+  "GFX_framed_area_tile": {
+    "texture_path": "gfx/interface/tiles/framed_area_tile.dds",
+    "texture_name": "framed_area_tile",
+    "frames": 1
+  },
   "GFX_lock": {
     "texture_path": "gfx/interface/icons/lock.dds",
     "texture_name": "lock",
@@ -21272,6 +21902,21 @@
   "GFX_planet_view_invasion_frame": {
     "texture_path": "gfx/interface/planetview/invasion_frame.dds",
     "texture_name": "invasion_frame",
+    "frames": 1
+  },
+  "GFX_set_focus_frame": {
+    "texture_path": "gfx/interface/tiles/green_frame_tile.dds",
+    "texture_name": "green_frame_tile",
+    "frames": 1
+  },
+  "GFX_clean_frame_area": {
+    "texture_path": "gfx/interface/tiles/clean_frame_area.dds",
+    "texture_name": "clean_frame_area",
+    "frames": 1
+  },
+  "GFX_light_frame_area": {
+    "texture_path": "gfx/interface/tiles/light_frame.dds",
+    "texture_name": "light_frame",
     "frames": 1
   },
   "GFX_close_solid": {
@@ -21459,15 +22104,195 @@
     "texture_name": "numbers_bg",
     "frames": 1
   },
+  "GFX_tiles_frame": {
+    "texture_path": "gfx/interface/tiles/black_bg_green_frame_tile.dds",
+    "texture_name": "black_bg_green_frame_tile",
+    "frames": 1
+  },
+  "GFX_tiles_frame_button": {
+    "texture_path": "gfx/interface/tiles/black_bg_colored_frame_tile.dds",
+    "texture_name": "black_bg_colored_frame_tile",
+    "frames": 3
+  },
   "GFX_planetview_trade_value": {
     "texture_path": "gfx/interface/planetview/trade_value.dds",
     "texture_name": "trade_value",
+    "frames": 1
+  },
+  "GFX_planet_construction_button": {
+    "texture_path": "gfx/interface/planetview/planet_construction_entry.dds",
+    "texture_name": "planet_construction_entry",
+    "frames": 1
+  },
+  "GFX_planet_entry_button": {
+    "texture_path": "gfx/interface/planetview/planet_entry_background.dds",
+    "texture_name": "planet_entry_background",
+    "frames": 1
+  },
+  "GFX_planet_designation_button": {
+    "texture_path": "gfx/interface/planetview/planet_designation_background.dds",
+    "texture_name": "planet_designation_background",
+    "frames": 1
+  },
+  "GFX_tile_large_bg": {
+    "texture_path": "gfx/interface/tiles/tile_large_bg.dds",
+    "texture_name": "tile_large_bg",
+    "frames": 1
+  },
+  "GFX_tile_large_bg_plain": {
+    "texture_path": "gfx/interface/tiles/tile_large_bg_plain.dds",
+    "texture_name": "tile_large_bg_plain",
+    "frames": 1
+  },
+  "GFX_plain_bg_tile": {
+    "texture_path": "gfx/interface/tiles/plain_bg_tile.dds",
+    "texture_name": "plain_bg_tile",
+    "frames": 1
+  },
+  "GFX_tile_large_bg_trader": {
+    "texture_path": "gfx/interface/tiles/tile_large_bg_trader.dds",
+    "texture_name": "tile_large_bg_trader",
+    "frames": 1
+  },
+  "GFX_tile_large_bg_caravaneer": {
+    "texture_path": "gfx/interface/tiles/tile_large_bg_caravaneer.dds",
+    "texture_name": "tile_large_bg_caravaneer",
+    "frames": 1
+  },
+  "GFX_tile_large_bg_artist": {
+    "texture_path": "gfx/interface/tiles/tile_large_bg_artist.dds",
+    "texture_name": "tile_large_bg_artist",
+    "frames": 1
+  },
+  "GFX_tile_large_bg_curator": {
+    "texture_path": "gfx/interface/tiles/tile_large_bg_curator.dds",
+    "texture_name": "tile_large_bg_curator",
+    "frames": 1
+  },
+  "GFX_tile_large_bg_mercenary": {
+    "texture_path": "gfx/interface/tiles/tile_large_bg_mercenary.dds",
+    "texture_name": "tile_large_bg_mercenary",
+    "frames": 1
+  },
+  "GFX_tile_large_bg_solid": {
+    "texture_path": "gfx/interface/tiles/tile_large_bg_solid.dds",
+    "texture_name": "tile_large_bg_solid",
+    "frames": 1
+  },
+  "GFX_tile_header_bg": {
+    "texture_path": "gfx/interface/tiles/tile_header_bg.dds",
+    "texture_name": "tile_header_bg",
+    "frames": 1
+  },
+  "GFX_sector_header_bg": {
+    "texture_path": "gfx/interface/tiles/tile_bg_sector_list.dds",
+    "texture_name": "tile_bg_sector_list",
+    "frames": 1
+  },
+  "GFX_dark_area_cut": {
+    "texture_path": "gfx/interface/tiles/dark_area_cut.dds",
+    "texture_name": "dark_area_cut",
+    "frames": 1
+  },
+  "GFX_dark_area_button": {
+    "texture_path": "gfx/interface/tiles/dark_area_button.dds",
+    "texture_name": "dark_area_button",
+    "frames": 3
+  },
+  "GFX_dark_area_frame_button": {
+    "texture_path": "gfx/interface/tiles/dark_area_frame_button.dds",
+    "texture_name": "dark_area_frame_button",
+    "frames": 3
+  },
+  "GFX_strata_unemployed_box": {
+    "texture_path": "gfx/interface/planetview/strata_unemployed_box.dds",
+    "texture_name": "strata_unemployed_box",
     "frames": 1
   },
   "GFX_strata_header_button": {
     "texture_path": "gfx/interface/planetview/strata_header.dds",
     "texture_name": "strata_header",
     "frames": 3
+  },
+  "GFX_red_area_cut": {
+    "texture_path": "gfx/interface/tiles/red_area_cut.dds",
+    "texture_name": "red_area_cut",
+    "frames": 1
+  },
+  "GFX_glow_tile_orange": {
+    "texture_path": "gfx/interface/tiles/glow_tile_orange.dds",
+    "texture_name": "glow_tile_orange",
+    "frames": 1
+  },
+  "GFX_glow_tile_striped": {
+    "texture_path": "gfx/interface/tiles/glow_tile_orange_striped.dds",
+    "texture_name": "glow_tile_orange_striped",
+    "frames": 1
+  },
+  "GFX_glow_tile_line": {
+    "texture_path": "gfx/interface/tiles/glow_tile_orange_line.dds",
+    "texture_name": "glow_tile_orange_line",
+    "frames": 1
+  },
+  "GFX_glow_tile_orange_no_padding": {
+    "texture_path": "gfx/interface/tiles/glow_tile_orange_no_padding.dds",
+    "texture_name": "glow_tile_orange_no_padding",
+    "frames": 1
+  },
+  "GFX_glow_tile_cyan": {
+    "texture_path": "gfx/interface/tiles/glow_tile_cyan.dds",
+    "texture_name": "glow_tile_cyan",
+    "frames": 1
+  },
+  "GFX_glow_tile_cyan_no_padding": {
+    "texture_path": "gfx/interface/tiles/glow_tile_cyan_no_padding.dds",
+    "texture_name": "glow_tile_cyan_no_padding",
+    "frames": 1
+  },
+  "GFX_tiles_frame_light": {
+    "texture_path": "gfx/interface/tiles/planet_view_glow_tile.dds",
+    "texture_name": "planet_view_glow_tile",
+    "frames": 1
+  },
+  "GFX_tiles_frame_light_button": {
+    "texture_path": "gfx/interface/tiles/planet_view_glow_tile.dds",
+    "texture_name": "planet_view_glow_tile",
+    "frames": 1
+  },
+  "GFX_tiles_frame_extra_light": {
+    "texture_path": "gfx/interface/tiles/black_bg_green_frame_extra_light_tile.dds",
+    "texture_name": "black_bg_green_frame_extra_light_tile",
+    "frames": 1
+  },
+  "GFX_plain_green_frame_tile": {
+    "texture_path": "gfx/interface/tiles/plain_green_frame_tile.dds",
+    "texture_name": "plain_green_frame_tile",
+    "frames": 1
+  },
+  "GFX_plain_orange_frame_tile": {
+    "texture_path": "gfx/interface/tiles/black_bg_orange_frame_light_tile.dds",
+    "texture_name": "black_bg_orange_frame_light_tile",
+    "frames": 1
+  },
+  "GFX_button_tile": {
+    "texture_path": "gfx/interface/tiles/button_tile.dds",
+    "texture_name": "button_tile",
+    "frames": 1
+  },
+  "GFX_button_tiled_animated": {
+    "texture_path": "gfx/interface/tiles/button_tile.dds",
+    "texture_name": "button_tile",
+    "frames": 1
+  },
+  "GFX_button_job_tile": {
+    "texture_path": "gfx/interface/tiles/button_job_tile.dds",
+    "texture_name": "button_job_tile",
+    "frames": 1
+  },
+  "GFX_button_job_tile_gradient": {
+    "texture_path": "gfx/interface/tiles/button_job_tile_gradient.dds",
+    "texture_name": "button_job_tile_gradient",
+    "frames": 1
   },
   "GFX_tile_output": {
     "texture_path": "gfx/interface/planetview/output_bar.dds",
@@ -21547,6 +22372,16 @@
   "GFX_pop_mod": {
     "texture_path": "gfx/interface/planetview/pop_mod.dds",
     "texture_name": "pop_mod",
+    "frames": 1
+  },
+  "GFX_drop_area_red": {
+    "texture_path": "gfx/interface/planetview/tiles_frame_blocker.dds",
+    "texture_name": "tiles_frame_blocker",
+    "frames": 1
+  },
+  "GFX_drop_area_green": {
+    "texture_path": "gfx/interface/planetview/tiles_frame_allowed.dds",
+    "texture_name": "tiles_frame_allowed",
     "frames": 1
   },
   "GFX_repairing": {
@@ -21689,6 +22524,16 @@
     "texture_name": "pm_under_orbital_bombardment",
     "frames": 7
   },
+  "GFX_workforce_bar_full": {
+    "texture_path": "gfx/interface/planetview/workforce_bar_full.dds",
+    "texture_name": "workforce_bar_full",
+    "frames": 1
+  },
+  "GFX_workforce_bar_empty": {
+    "texture_path": "gfx/interface/planetview/workforce_bar_empty.dds",
+    "texture_name": "workforce_bar_empty",
+    "frames": 1
+  },
   "GFX_workforce_box_icon": {
     "texture_path": "gfx/interface/icons/districts/grid_box/district_generator.dds",
     "texture_name": "district_generator",
@@ -21752,6 +22597,26 @@
   "GFX_district_farming_box_icon_rectangle": {
     "texture_path": "gfx/interface/icons/districts/grid_box/district_farming_rectangle.dds",
     "texture_name": "district_farming_rectangle",
+    "frames": 3
+  },
+  "GFX_district_geothermal_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_generator.dds",
+    "texture_name": "district_generator",
+    "frames": 3
+  },
+  "GFX_district_melting_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_mining.dds",
+    "texture_name": "district_mining",
+    "frames": 3
+  },
+  "GFX_district_melting_uncapped_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_mining.dds",
+    "texture_name": "district_mining",
+    "frames": 3
+  },
+  "GFX_district_polytechnic_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_city.dds",
+    "texture_name": "district_city",
     "frames": 3
   },
   "GFX_district_generator_box_icon_rectangle": {
@@ -22029,6 +22894,11 @@
     "texture_name": "fleet_action_button_delete",
     "frames": 3
   },
+  "GFX_list_hover": {
+    "texture_path": "gfx/interface/tiles/hover_frame.dds",
+    "texture_name": "hover_frame",
+    "frames": 3
+  },
   "GFX_district_upgrade_overlay": {
     "texture_path": "gfx/interface/planetview/upgrade_building_available.dds",
     "texture_name": "upgrade_building_available",
@@ -22072,6 +22942,16 @@
   "GFX_planetview_topright_frame": {
     "texture_path": "gfx/interface/planetview/planetview_topright_frame.dds",
     "texture_name": "planetview_topright_frame",
+    "frames": 1
+  },
+  "GFX_planetview_topright_bg_small": {
+    "texture_path": "gfx/interface/planetview/planetview_topright_bg_small.dds",
+    "texture_name": "planetview_topright_bg_small",
+    "frames": 1
+  },
+  "GFX_planetview_topright_bg_small_synth_queen": {
+    "texture_path": "gfx/interface/planetview/planetview_topright_bg_small_synth_queen.dds",
+    "texture_name": "planetview_topright_bg_small_synth_queen",
     "frames": 1
   },
   "GFX_terraform_bg": {
@@ -22429,6 +23309,86 @@
     "texture_name": "district_orchard_forests_bg",
     "frames": 1
   },
+  "GFX_district_battle_thrall_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_cosmogenesis_world_logic_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_cosmogenesis_world_science_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_industrial_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_industrial_alloys_only_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_orders_demesne_bg": {
+    "texture_path": "gfx/interface/planetview/district_backgrounds/district_hab_housing_bg.dds",
+    "texture_name": "district_hab_housing_bg",
+    "frames": 1
+  },
+  "GFX_district_research_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_rw_commercial_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_rw_industrial_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_rw_science_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_srw_commercial_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_rw_city_secondary_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_hab_commercial_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_hab_cultural_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_hab_industrial_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_district_mindlink_bg": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
   "GFX_button_demolish": {
     "texture_path": "gfx/interface/buttons/button_demolish.dds",
     "texture_name": "button_demolish",
@@ -22437,6 +23397,36 @@
   "GFX_button_build_queue": {
     "texture_path": "gfx/interface/buttons/button_build_queue.dds",
     "texture_name": "button_build_queue",
+    "frames": 3
+  },
+  "GFX_dark_area": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_dark_area_50_opaque": {
+    "texture_path": "gfx/interface/tiles/dark_area_50_opaque.dds",
+    "texture_name": "dark_area_50_opaque",
+    "frames": 1
+  },
+  "GFX_dark_area_50_opaque_cut": {
+    "texture_path": "gfx/interface/tiles/dark_area_cut_50_opaque.dds",
+    "texture_name": "dark_area_cut_50_opaque",
+    "frames": 1
+  },
+  "GFX_dark_green_area_50_opaque": {
+    "texture_path": "gfx/interface/tiles/dark_green_area_50_opaque.dds",
+    "texture_name": "dark_green_area_50_opaque",
+    "frames": 1
+  },
+  "GFX_dark_green_area_50_opaque_cut": {
+    "texture_path": "gfx/interface/tiles/dark_green_area_cut_50_opaque.dds",
+    "texture_name": "dark_green_area_cut_50_opaque",
+    "frames": 1
+  },
+  "GFX_district_hover": {
+    "texture_path": "gfx/interface/buttons/button_district_hover.dds",
+    "texture_name": "button_district_hover",
     "frames": 3
   },
   "GFX_planet_title_banner": {
@@ -22494,6 +23484,21 @@
     "texture_name": "button_hex_151_43",
     "frames": 3
   },
+  "GFX_relics_panel_bg": {
+    "texture_path": "gfx/interface/relics/relics_panel_bg.dds",
+    "texture_name": "relics_panel_bg",
+    "frames": 1
+  },
+  "GFX_relics_panel_bg_wide": {
+    "texture_path": "gfx/interface/relics/relics_panel_bg_wide.dds",
+    "texture_name": "relics_panel_bg_wide",
+    "frames": 1
+  },
+  "GFX_artifacts_panel_bg": {
+    "texture_path": "gfx/interface/relics/artifacts_panel_bg.dds",
+    "texture_name": "artifacts_panel_bg",
+    "frames": 1
+  },
   "GFX_relics_frame": {
     "texture_path": "gfx/interface/relics/relics_frame.dds",
     "texture_name": "relics_frame",
@@ -22507,6 +23512,336 @@
   "GFX_relics_frame_unused": {
     "texture_path": "gfx/interface/relics/relics_frame_unused.dds",
     "texture_name": "relics_frame_unused",
+    "frames": 1
+  },
+  "GFX_relic_dragon_trophy": {
+    "texture_path": "gfx/interface/icons/relics/r_dragon_trophy.dds",
+    "texture_name": "r_dragon_trophy",
+    "frames": 1
+  },
+  "GFX_relic_rubricator": {
+    "texture_path": "gfx/interface/icons/relics/r_rubricator.dds",
+    "texture_name": "r_rubricator",
+    "frames": 1
+  },
+  "GFX_relic_omnicodex": {
+    "texture_path": "gfx/interface/icons/relics/r_omnicodex.dds",
+    "texture_name": "r_omnicodex",
+    "frames": 1
+  },
+  "GFX_relic_galatron": {
+    "texture_path": "gfx/interface/icons/relics/r_galatron.dds",
+    "texture_name": "r_galatron",
+    "frames": 1
+  },
+  "GFX_relic_surveyor": {
+    "texture_path": "gfx/interface/icons/relics/r_surveyor.dds",
+    "texture_name": "r_surveyor",
+    "frames": 1
+  },
+  "GFX_relic_ancient_sword": {
+    "texture_path": "gfx/interface/icons/relics/r_ancient_sword.dds",
+    "texture_name": "r_ancient_sword",
+    "frames": 1
+  },
+  "GFX_relic_severed_head": {
+    "texture_path": "gfx/interface/icons/relics/r_severed_head.dds",
+    "texture_name": "r_severed_head",
+    "frames": 1
+  },
+  "GFX_relic_galaxy": {
+    "texture_path": "gfx/interface/icons/relics/r_galaxy.dds",
+    "texture_name": "r_galaxy",
+    "frames": 1
+  },
+  "GFX_relic_orb_insight": {
+    "texture_path": "gfx/interface/icons/relics/r_orb_insight.dds",
+    "texture_name": "r_orb_insight",
+    "frames": 1
+  },
+  "GFX_relic_khans_throne": {
+    "texture_path": "gfx/interface/icons/relics/r_khans_throne.dds",
+    "texture_name": "r_khans_throne",
+    "frames": 1
+  },
+  "GFX_relic_prethoryn_queen": {
+    "texture_path": "gfx/interface/icons/relics/r_prethoryn_queen.dds",
+    "texture_name": "r_prethoryn_queen",
+    "frames": 1
+  },
+  "GFX_relic_contingency_core": {
+    "texture_path": "gfx/interface/icons/relics/r_contingency_core.dds",
+    "texture_name": "r_contingency_core",
+    "frames": 1
+  },
+  "GFX_relic_unbidden_warlock": {
+    "texture_path": "gfx/interface/icons/relics/r_unbidden_warlock.dds",
+    "texture_name": "r_unbidden_warlock",
+    "frames": 1
+  },
+  "GFX_relic_worm_scales": {
+    "texture_path": "gfx/interface/icons/relics/r_worm_scales.dds",
+    "texture_name": "r_worm_scales",
+    "frames": 1
+  },
+  "GFX_relic_zro_crystal": {
+    "texture_path": "gfx/interface/icons/relics/r_zro_crystal.dds",
+    "texture_name": "r_zro_crystal",
+    "frames": 1
+  },
+  "GFX_relic_pox_sample": {
+    "texture_path": "gfx/interface/icons/relics/r_pox_sample.dds",
+    "texture_name": "r_pox_sample",
+    "frames": 1
+  },
+  "GFX_relic_cryo_core": {
+    "texture_path": "gfx/interface/icons/relics/r_cryo_core.dds",
+    "texture_name": "r_cryo_core",
+    "frames": 1
+  },
+  "GFX_relic_war_forge": {
+    "texture_path": "gfx/interface/icons/relics/r_war_forge.dds",
+    "texture_name": "r_war_forge",
+    "frames": 1
+  },
+  "GFX_relic_mechano_calibrator": {
+    "texture_path": "gfx/interface/icons/relics/r_mechano_calibrator.dds",
+    "texture_name": "r_mechano_calibrator",
+    "frames": 1
+  },
+  "GFX_relic_baol": {
+    "texture_path": "gfx/interface/icons/relics/r_baol.dds",
+    "texture_name": "r_baol",
+    "frames": 1
+  },
+  "GFX_relic_toxic_god": {
+    "texture_path": "gfx/interface/icons/relics/r_toxic_god.dds",
+    "texture_name": "r_toxic_god",
+    "frames": 1
+  },
+  "GFX_relic_the_radiance": {
+    "texture_path": "gfx/interface/icons/relics/r_the_radiance.dds",
+    "texture_name": "r_the_radiance",
+    "frames": 1
+  },
+  "GFX_relic_odryskan_crystal": {
+    "texture_path": "gfx/interface/icons/relics/r_odryskan_crystal.dds",
+    "texture_name": "r_odryskan_crystal",
+    "frames": 1
+  },
+  "GFX_relic_wormhole_key_1": {
+    "texture_path": "gfx/interface/icons/relics/r_wormhole_key_1.dds",
+    "texture_name": "r_wormhole_key_1",
+    "frames": 1
+  },
+  "GFX_relic_wormhole_key_2": {
+    "texture_path": "gfx/interface/icons/relics/r_wormhole_key_2.dds",
+    "texture_name": "r_wormhole_key_2",
+    "frames": 1
+  },
+  "GFX_relic_wormhole_key_3": {
+    "texture_path": "gfx/interface/icons/relics/r_wormhole_key_3.dds",
+    "texture_name": "r_wormhole_key_3",
+    "frames": 1
+  },
+  "GFX_relic_wormhole_key_4": {
+    "texture_path": "gfx/interface/icons/relics/r_wormhole_key_4.dds",
+    "texture_name": "r_wormhole_key_4",
+    "frames": 1
+  },
+  "GFX_relic_wormhole_key_5": {
+    "texture_path": "gfx/interface/icons/relics/r_wormhole_key_5.dds",
+    "texture_name": "r_wormhole_key_5",
+    "frames": 1
+  },
+  "GFX_relic_core_of_the_reckoning": {
+    "texture_path": "gfx/interface/icons/relics/r_core_of_the_reckoning.dds",
+    "texture_name": "r_core_of_the_reckoning",
+    "frames": 1
+  },
+  "GFX_ever_spinning_top": {
+    "texture_path": "gfx/interface/icons/relics/r_ever_spinning_top.dds",
+    "texture_name": "r_ever_spinning_top",
+    "frames": 1
+  },
+  "GFX_celestial_tear": {
+    "texture_path": "gfx/interface/icons/relics/r_celestial_tear.dds",
+    "texture_name": "r_celestial_tear",
+    "frames": 1
+  },
+  "GFX_plasmic_core": {
+    "texture_path": "gfx/interface/icons/relics/r_plasmic_core.dds",
+    "texture_name": "r_plasmic_core",
+    "frames": 1
+  },
+  "GFX_daedalus_seal": {
+    "texture_path": "gfx/interface/icons/relics/r_daedalus_seal.dds",
+    "texture_name": "r_daedalus_seal",
+    "frames": 1
+  },
+  "GFX_the_lost_patron": {
+    "texture_path": "gfx/interface/icons/relics/r_the_lost_patron.dds",
+    "texture_name": "r_the_lost_patron",
+    "frames": 1
+  },
+  "GFX_infinity_root": {
+    "texture_path": "gfx/interface/icons/relics/r_infinity_root.dds",
+    "texture_name": "r_infinity_root",
+    "frames": 1
+  },
+  "GFX_time_crystal": {
+    "texture_path": "gfx/interface/icons/relics/r_time_crystal.dds",
+    "texture_name": "r_time_crystal",
+    "frames": 1
+  },
+  "GFX_continuum": {
+    "texture_path": "gfx/interface/icons/relics/r_continuum.dds",
+    "texture_name": "r_continuum",
+    "frames": 1
+  },
+  "GFX_relic_eternal_throne": {
+    "texture_path": "gfx/interface/icons/relics/r_eternal_throne.dds",
+    "texture_name": "r_eternal_throne",
+    "frames": 1
+  },
+  "GFX_relic_celestial_chart_0": {
+    "texture_path": "gfx/interface/icons/relics/r_celestial_chart_0.dds",
+    "texture_name": "r_celestial_chart_0",
+    "frames": 1
+  },
+  "GFX_relic_celestial_chart_1": {
+    "texture_path": "gfx/interface/icons/relics/r_celestial_chart_1.dds",
+    "texture_name": "r_celestial_chart_1",
+    "frames": 1
+  },
+  "GFX_relic_celestial_chart_2": {
+    "texture_path": "gfx/interface/icons/relics/r_celestial_chart_2.dds",
+    "texture_name": "r_celestial_chart_2",
+    "frames": 1
+  },
+  "GFX_relic_celestial_chart_3": {
+    "texture_path": "gfx/interface/icons/relics/r_celestial_chart_3.dds",
+    "texture_name": "r_celestial_chart_3",
+    "frames": 1
+  },
+  "GFX_relic_celestial_chart_4": {
+    "texture_path": "gfx/interface/icons/relics/r_celestial_chart_4.dds",
+    "texture_name": "r_celestial_chart_4",
+    "frames": 1
+  },
+  "GFX_relic_the_tempest_exsoulcillator": {
+    "texture_path": "gfx/interface/icons/relics/r_the_tempest_invocator.dds",
+    "texture_name": "r_the_tempest_invocator",
+    "frames": 1
+  },
+  "GFX_relic_weather_manipulation": {
+    "texture_path": "gfx/interface/icons/relics/r_weather_manipulator.dds",
+    "texture_name": "r_weather_manipulator",
+    "frames": 1
+  },
+  "GFX_relic_the_rulerchip": {
+    "texture_path": "gfx/interface/icons/relics/r_the_rulerchip.dds",
+    "texture_name": "r_the_rulerchip",
+    "frames": 1
+  },
+  "GFX_relic_the_modularium": {
+    "texture_path": "gfx/interface/icons/relics/r_the_modularium.dds",
+    "texture_name": "r_the_modularium",
+    "frames": 1
+  },
+  "GFX_relic_flowmetal_alloy": {
+    "texture_path": "gfx/interface/icons/relics/r_flowmetal_alloy.dds",
+    "texture_name": "r_flowmetal_alloy",
+    "frames": 1
+  },
+  "GFX_relic_crystallinus_diffuser": {
+    "texture_path": "gfx/interface/icons/relics/r_crystallinus_diffuser.dds",
+    "texture_name": "r_crystallinus_diffuser",
+    "frames": 1
+  },
+  "GFX_relic_everchanging_stone": {
+    "texture_path": "gfx/interface/icons/relics/r_everchanging_stone.dds",
+    "texture_name": "r_everchanging_stone",
+    "frames": 1
+  },
+  "GFX_relic_pulsestone": {
+    "texture_path": "gfx/interface/icons/relics/r_pulsestone.dds",
+    "texture_name": "r_pulsestone",
+    "frames": 1
+  },
+  "GFX_gavel_of_the_tribunal": {
+    "texture_path": "gfx/interface/icons/relics/r_gavel_of_the_tribunal.dds",
+    "texture_name": "r_gavel_of_the_tribunal",
+    "frames": 1
+  },
+  "GFX_entangled_relay": {
+    "texture_path": "gfx/interface/icons/relics/r_entangled_relay.dds",
+    "texture_name": "r_entangled_relay",
+    "frames": 1
+  },
+  "GFX_prototype_vir_core": {
+    "texture_path": "gfx/interface/icons/relics/r_prototype_vir_core.dds",
+    "texture_name": "r_prototype_vir_core",
+    "frames": 1
+  },
+  "GFX_propagandosphere": {
+    "texture_path": "gfx/interface/icons/relics/r_propagandosphere.dds",
+    "texture_name": "r_propagandosphere",
+    "frames": 1
+  },
+  "GFX_executus_compendium": {
+    "texture_path": "gfx/interface/icons/relics/r_executus_compendium.dds",
+    "texture_name": "r_executus_compendium",
+    "frames": 1
+  },
+  "GFX_the_pattern_maker": {
+    "texture_path": "gfx/interface/icons/relics/r_the_pattern_maker.dds",
+    "texture_name": "r_the_pattern_maker",
+    "frames": 1
+  },
+  "GFX_vaporous_mega_orchid": {
+    "texture_path": "gfx/interface/icons/relics/r_vaporous_mega_orchid.dds",
+    "texture_name": "r_vaporous_mega_orchid",
+    "frames": 1
+  },
+  "GFX_tiyanki_matriarch_nerve_core": {
+    "texture_path": "gfx/interface/icons/relics/r_tiyanki_matriarch_nerve_core.dds",
+    "texture_name": "r_tiyanki_matriarch_nerve_core",
+    "frames": 1
+  },
+  "GFX_preservation_chamber": {
+    "texture_path": "gfx/interface/icons/relics/r_preservation_chamber.dds",
+    "texture_name": "r_preservation_chamber",
+    "frames": 1
+  },
+  "GFX_celestial_resonator": {
+    "texture_path": "gfx/interface/icons/relics/r_celestial_resonator.dds",
+    "texture_name": "r_celestial_resonator",
+    "frames": 1
+  },
+  "GFX_relic_cetanas_heart": {
+    "texture_path": "gfx/interface/icons/relics/r_cetanas_heart.dds",
+    "texture_name": "r_cetanas_heart",
+    "frames": 1
+  },
+  "GFX_relic_mutated_voidworm_nest": {
+    "texture_path": "gfx/interface/icons/relics/r_mutated_voidworm_nest.dds",
+    "texture_name": "r_mutated_voidworm_nest",
+    "frames": 1
+  },
+  "GFX_relic_voidspawn_heart": {
+    "texture_path": "gfx/interface/icons/relics/r_voidspawn_heart.dds",
+    "texture_name": "r_voidspawn_heart",
+    "frames": 1
+  },
+  "GFX_relic_pyroglyphic_codex": {
+    "texture_path": "gfx/interface/icons/relics/r_pyroglyphic_codex.dds",
+    "texture_name": "r_pyroglyphic_codex",
+    "frames": 1
+  },
+  "GFX_relic_crystallized_singularity": {
+    "texture_path": "gfx/interface/icons/relics/r_crystallized_singularity.dds",
+    "texture_name": "r_crystallized_singularity",
     "frames": 1
   },
   "GFX_resource": {
@@ -22774,6 +24109,11 @@
     "texture_name": "incompatible_save_icon",
     "frames": 1
   },
+  "GFX_black_box_save": {
+    "texture_path": "gfx/interface/tiles/black_bg_tile.dds",
+    "texture_name": "black_bg_tile",
+    "frames": 1
+  },
   "GFX_save_load_button": {
     "texture_path": "gfx/interface/buttons/button_142_animated.dds",
     "texture_name": "button_142_animated",
@@ -22844,6 +24184,11 @@
     "texture_name": "scrollbar_rightbutton.tga",
     "frames": 1
   },
+  "scrollbar_background": {
+    "texture_path": "gfx/interface/sliders/scrollbar.dds",
+    "texture_name": "scrollbar",
+    "frames": 1
+  },
   "button_left": {
     "texture_path": "gfx/interface/removed.dds",
     "texture_name": "removed",
@@ -22879,6 +24224,11 @@
     "texture_name": "ship_browser_dlc_overlay",
     "frames": 1
   },
+  "GFX_tiles_light_area": {
+    "texture_path": "gfx/interface/tiles/light_area.dds",
+    "texture_name": "light_area",
+    "frames": 1
+  },
   "GFX_camera_transform": {
     "texture_path": "gfx/interface/ship_browser/shipbrowser_camera_transform.dds",
     "texture_name": "shipbrowser_camera_transform",
@@ -22888,6 +24238,11 @@
     "texture_path": "gfx/interface/buttons/standard_button_214_90_dlc_overlay_animated.dds",
     "texture_name": "standard_button_214_90_dlc_overlay_animated",
     "frames": 3
+  },
+  "GFX_black_box_designer": {
+    "texture_path": "gfx/interface/tiles/black_bg_tile.dds",
+    "texture_name": "black_bg_tile",
+    "frames": 1
   },
   "GFX_ship_designer_grid_3_2": {
     "texture_path": "gfx/interface/ship_designer/ship_designer_grid_3_2.dds",
@@ -22920,6 +24275,11 @@
     "frames": 1
   },
   "GFX_ship_designer_rename_box": {
+    "texture_path": "gfx/interface/ship_designer/ship_designer_rename_box.tga",
+    "texture_name": "ship_designer_rename_box.tga",
+    "frames": 1
+  },
+  "GFX_ship_designer_rename_box_resize": {
     "texture_path": "gfx/interface/ship_designer/ship_designer_rename_box.tga",
     "texture_name": "ship_designer_rename_box.tga",
     "frames": 1
@@ -22963,6 +24323,11 @@
     "texture_path": "gfx/interface/ship_designer/ship_designer_slot_indicator.dds",
     "texture_name": "ship_designer_slot_indicator",
     "frames": 10
+  },
+  "GFX_ship_designer_blocker": {
+    "texture_path": "gfx/interface/tiles/black_bg_tile.dds",
+    "texture_name": "black_bg_tile",
+    "frames": 1
   },
   "GFX_ship_designer_selector_item_bg": {
     "texture_path": "gfx/interface/ship_designer/ship_designer_selector_item_bg.dds",
@@ -23097,6 +24462,16 @@
   "GFX_creature_designer_unique_mutation_icon": {
     "texture_path": "gfx/interface/ship_designer/creature_designer_unique_mutation_icon.dds",
     "texture_name": "creature_designer_unique_mutation_icon",
+    "frames": 1
+  },
+  "GFX_section_mask": {
+    "texture_path": "gfx/interface/ship_designer/mask.dds",
+    "texture_name": "mask",
+    "frames": 1
+  },
+  "GFX_section_pattern": {
+    "texture_path": "gfx/interface/ship_designer/pattern.dds",
+    "texture_name": "pattern",
     "frames": 1
   },
   "GFX_role_selection_background": {
@@ -23293,6 +24668,46 @@
     "texture_path": "gfx/interface/ship_designer/button_save_designs.dds",
     "texture_name": "button_save_designs",
     "frames": 3
+  },
+  "GFX_planet_bg_tile_frame": {
+    "texture_path": "gfx/interface/tiles/green_frame_tile.dds",
+    "texture_name": "green_frame_tile",
+    "frames": 1
+  },
+  "GFX_selected_background": {
+    "texture_path": "gfx/interface/tiles/interface_list_light.dds",
+    "texture_name": "interface_list_light",
+    "frames": 1
+  },
+  "GFX_situation_event_progressbar_tile_positive": {
+    "texture_path": "gfx/interface/tiles/situation_progressbar_progress_green.dds",
+    "texture_name": "situation_progressbar_progress_green",
+    "frames": 1
+  },
+  "GFX_situation_event_progressbar_tile_negative": {
+    "texture_path": "gfx/interface/tiles/situation_progressbar_progress_red.dds",
+    "texture_name": "situation_progressbar_progress_red",
+    "frames": 1
+  },
+  "GFX_situation_event_progressbar_tile_neutral": {
+    "texture_path": "gfx/interface/tiles/situation_progressbar_progress_blue.dds",
+    "texture_name": "situation_progressbar_progress_blue",
+    "frames": 1
+  },
+  "GFX_situation_tile_range": {
+    "texture_path": "gfx/interface/tiles/tile_situation_range.dds",
+    "texture_name": "tile_situation_range",
+    "frames": 1
+  },
+  "GFX_situation_tile_range_highlighted": {
+    "texture_path": "gfx/interface/tiles/tile_situation_range_highlighted.dds",
+    "texture_name": "tile_situation_range_highlighted",
+    "frames": 1
+  },
+  "GFX_tiles_light_area_cut_8": {
+    "texture_path": "gfx/interface/tiles/light_area_cut_8.dds",
+    "texture_name": "light_area_cut_8",
+    "frames": 1
   },
   "GFX_situation_approach_bg_green": {
     "texture_path": "gfx/interface/icons/situation_log/situations/approaches/situation_approach_bg_green.dds",
@@ -23982,6 +25397,21 @@
   "GFX_social_chat_bullet": {
     "texture_path": "gfx/interface/social/chatbox_bullet.dds",
     "texture_name": "chatbox_bullet",
+    "frames": 1
+  },
+  "GFX_social_chat_self": {
+    "texture_path": "gfx/interface/social/chatbox_self.dds",
+    "texture_name": "chatbox_self",
+    "frames": 1
+  },
+  "GFX_social_chat_other": {
+    "texture_path": "gfx/interface/social/chatbox_other.dds",
+    "texture_name": "chatbox_other",
+    "frames": 1
+  },
+  "GFX_social_popup_background": {
+    "texture_path": "gfx/interface/social/social_popup_background.dds",
+    "texture_name": "social_popup_background",
     "frames": 1
   },
   "GFX_ship_counter_4": {
@@ -25519,6 +26949,11 @@
     "texture_name": "burning_gem",
     "frames": 1
   },
+  "GFX_standard_dialog_bg": {
+    "texture_path": "gfx/interface/tiles/main_menu_tile.dds",
+    "texture_name": "main_menu_tile",
+    "frames": 1
+  },
   "GFX_standard_dialog_button": {
     "texture_path": "gfx/interface/buttons/button_142_animated.dds",
     "texture_name": "button_142_animated",
@@ -25538,6 +26973,16 @@
     "texture_path": "gfx/interface/buttons/button_starbase_details.dds",
     "texture_name": "button_starbase_details",
     "frames": 3
+  },
+  "GFX_start_screen_bg": {
+    "texture_path": "gfx/interface/tiles/green_bg_tile.dds",
+    "texture_name": "green_bg_tile",
+    "frames": 1
+  },
+  "GFX_start_screen_frame": {
+    "texture_path": "gfx/interface/tiles/green_frame_tile.dds",
+    "texture_name": "green_frame_tile",
+    "frames": 1
   },
   "GFX_start_screen_button": {
     "texture_path": "gfx/interface/buttons/button_520_animated.dds",
@@ -25562,6 +27007,11 @@
   "GFX_synaptic_lathe_efficiency_icon": {
     "texture_path": "gfx/interface/icons/synaptic_lathe_efficiency.dds",
     "texture_name": "synaptic_lathe_efficiency",
+    "frames": 1
+  },
+  "GFX_set_focus_bg": {
+    "texture_path": "gfx/interface/tiles/green_bg_tile.dds",
+    "texture_name": "green_bg_tile",
     "frames": 1
   },
   "GFX_galactic_object_button": {
@@ -28159,6 +29609,31 @@
     "texture_name": "attunement_large",
     "frames": 1
   },
+  "GFX_unknown_patron_north": {
+    "texture_path": "gfx/interface/shroud/patron_unknown_top_left.dds",
+    "texture_name": "patron_unknown_top_left",
+    "frames": 1
+  },
+  "GFX_unknown_patron_south": {
+    "texture_path": "gfx/interface/shroud/patron_unknown_top_right.dds",
+    "texture_name": "patron_unknown_top_right",
+    "frames": 1
+  },
+  "GFX_unknown_patron_west": {
+    "texture_path": "gfx/interface/shroud/patron_unknown_bottom_left.dds",
+    "texture_name": "patron_unknown_bottom_left",
+    "frames": 1
+  },
+  "GFX_unknown_patron_east": {
+    "texture_path": "gfx/interface/shroud/patron_unknown_bottom_right.dds",
+    "texture_name": "patron_unknown_bottom_right",
+    "frames": 1
+  },
+  "GFX_deeds_background": {
+    "texture_path": "gfx/interface/diplomacy/info_background_125.dds",
+    "texture_name": "info_background_125",
+    "frames": 1
+  },
   "GFX_quadrant_hover": {
     "texture_path": "gfx/interface/shroud/quadrant/quadrant_hover.dds",
     "texture_name": "quadrant_hover",
@@ -28234,6 +29709,11 @@
     "texture_name": "delve_spiral",
     "frames": 4
   },
+  "GFX_shroud_plane_bg": {
+    "texture_path": "gfx/interface/shroud/shroud_plane_bg.dds",
+    "texture_name": "shroud_plane_bg",
+    "frames": 1
+  },
   "GFX_shroud_wheel_bg": {
     "texture_path": "gfx/interface/shroud/shroud_wheel_bg.dds",
     "texture_name": "shroud_wheel_bg",
@@ -28242,6 +29722,36 @@
   "GFX_country_plane_icon": {
     "texture_path": "gfx/interface/shroud/country_plane_icon.dds",
     "texture_name": "country_plane_icon",
+    "frames": 1
+  },
+  "GFX_the_instrument_of_desire_bg": {
+    "texture_path": "gfx/interface/icons/patrons/backgrounds/instrument_of_desire_bg.dds",
+    "texture_name": "instrument_of_desire_bg",
+    "frames": 1
+  },
+  "GFX_the_composer_of_strands_bg": {
+    "texture_path": "gfx/interface/icons/patrons/backgrounds/composer_of_strands_bg.dds",
+    "texture_name": "composer_of_strands_bg",
+    "frames": 1
+  },
+  "GFX_the_cradle_of_souls_bg": {
+    "texture_path": "gfx/interface/icons/patrons/backgrounds/cradle_of_souls_bg.dds",
+    "texture_name": "cradle_of_souls_bg",
+    "frames": 1
+  },
+  "GFX_the_eater_of_worlds_bg": {
+    "texture_path": "gfx/interface/icons/patrons/backgrounds/eater_of_worlds_bg.dds",
+    "texture_name": "eater_of_worlds_bg",
+    "frames": 1
+  },
+  "GFX_whisperers_in_the_void_bg": {
+    "texture_path": "gfx/interface/icons/patrons/backgrounds/whisperers_in_the_void_bg.dds",
+    "texture_name": "whisperers_in_the_void_bg",
+    "frames": 1
+  },
+  "GFX_delve_window_bg": {
+    "texture_path": "gfx/interface/shroud/delve/bg_delve_window.dds",
+    "texture_name": "bg_delve_window",
     "frames": 1
   },
   "GFX_delve_button": {
@@ -28257,6 +29767,41 @@
   "GFX_tech_aura_intensification": {
     "texture_path": "gfx/interface/icons/technologies/tech_aura_intensification.dds",
     "texture_name": "tech_aura_intensification",
+    "frames": 1
+  },
+  "GFX_aura_default_background": {
+    "texture_path": "gfx/interface/shroud/aura_default_background.dds",
+    "texture_name": "aura_default_background",
+    "frames": 1
+  },
+  "GFX_aura_eater_background": {
+    "texture_path": "gfx/interface/icons/auras/aura_eater_bg.dds",
+    "texture_name": "aura_eater_bg",
+    "frames": 1
+  },
+  "GFX_aura_cradle_background": {
+    "texture_path": "gfx/interface/icons/auras/aura_cradle_bg.dds",
+    "texture_name": "aura_cradle_bg",
+    "frames": 1
+  },
+  "GFX_aura_instrument_background": {
+    "texture_path": "gfx/interface/icons/auras/aura_instrument_bg.dds",
+    "texture_name": "aura_instrument_bg",
+    "frames": 1
+  },
+  "GFX_aura_composer_background": {
+    "texture_path": "gfx/interface/icons/auras/aura_composer_bg.dds",
+    "texture_name": "aura_composer_bg",
+    "frames": 1
+  },
+  "GFX_aura_whisperers_background": {
+    "texture_path": "gfx/interface/icons/auras/aura_whisperers_bg.dds",
+    "texture_name": "aura_whisperers_bg",
+    "frames": 1
+  },
+  "GFX_aura_end_background": {
+    "texture_path": "gfx/interface/icons/auras/aura_end_bg.dds",
+    "texture_name": "aura_end_bg",
     "frames": 1
   },
   "GFX_the_instrument_of_desire_calling_1_bg": {
@@ -28407,6 +29952,36 @@
   "GFX_whisperers_covenant_large": {
     "texture_path": "gfx/interface/icons/patrons/covenants/whisperers_in_the_void_covenant_large.dds",
     "texture_name": "whisperers_in_the_void_covenant_large",
+    "frames": 1
+  },
+  "GFX_composer_covenant_bg": {
+    "texture_path": "gfx/interface/icons/patrons/covenants/the_composer_of_strands_covenant_bg.dds",
+    "texture_name": "the_composer_of_strands_covenant_bg",
+    "frames": 1
+  },
+  "GFX_cradle_covenant_bg": {
+    "texture_path": "gfx/interface/icons/patrons/covenants/the_cradle_of_souls_covenant_bg.dds",
+    "texture_name": "the_cradle_of_souls_covenant_bg",
+    "frames": 1
+  },
+  "GFX_eater_covenant_bg": {
+    "texture_path": "gfx/interface/icons/patrons/covenants/the_eater_of_worlds_covenant_bg.dds",
+    "texture_name": "the_eater_of_worlds_covenant_bg",
+    "frames": 1
+  },
+  "GFX_instrument_covenant_bg": {
+    "texture_path": "gfx/interface/icons/patrons/covenants/the_instrument_of_desire_covenant_bg.dds",
+    "texture_name": "the_instrument_of_desire_covenant_bg",
+    "frames": 1
+  },
+  "GFX_whisperers_covenant_bg": {
+    "texture_path": "gfx/interface/icons/patrons/covenants/whisperers_in_the_void_covenant_bg.dds",
+    "texture_name": "whisperers_in_the_void_covenant_bg",
+    "frames": 1
+  },
+  "GFX_end_of_the_cycle_covenant_bg": {
+    "texture_path": "gfx/interface/icons/patrons/covenants/whisperers_in_the_void_covenant_bg.dds",
+    "texture_name": "whisperers_in_the_void_covenant_bg",
     "frames": 1
   },
   "GFX_whisperers_in_the_void_accords_bg": {
@@ -28669,6 +30244,26 @@
     "texture_name": "inactive_icon",
     "frames": 1
   },
+  "GFX_timelines_year_vertical_line": {
+    "texture_path": "gfx/interface/timelines/year_vertical_line.dds",
+    "texture_name": "year_vertical_line",
+    "frames": 1
+  },
+  "GFX_timelines_horizontal_dotted_line_3": {
+    "texture_path": "gfx/interface/timelines/horizontal_dotted_line_3.dds",
+    "texture_name": "horizontal_dotted_line_3",
+    "frames": 1
+  },
+  "GFX_timelines_horizontal_dotted_line_2": {
+    "texture_path": "gfx/interface/timelines/horizontal_dotted_line_2.dds",
+    "texture_name": "horizontal_dotted_line_2",
+    "frames": 1
+  },
+  "GFX_timelines_horizontal_dotted_line_1": {
+    "texture_path": "gfx/interface/timelines/horizontal_dotted_line_1.dds",
+    "texture_name": "horizontal_dotted_line_1",
+    "frames": 1
+  },
   "GFX_timelines_dummy_zoom_2": {
     "texture_path": "gfx/interface/timelines/dummy_zoom_2.dds",
     "texture_name": "dummy_zoom_2",
@@ -28859,6 +30454,11 @@
     "texture_name": "button_779_44_animated",
     "frames": 4
   },
+  "GFX_species_modification_portrait_button": {
+    "texture_path": "gfx/interface/buttons/advisor_button.dds",
+    "texture_name": "advisor_button",
+    "frames": 3
+  },
   "GFX_species_save": {
     "texture_path": "gfx/interface/buttons/button_34_34_save.dds",
     "texture_name": "button_34_34_save",
@@ -28868,6 +30468,21 @@
     "texture_path": "gfx/interface/buttons/button_34_34_update.dds",
     "texture_name": "button_34_34_update",
     "frames": 3
+  },
+  "GFX_species_tiles_dark_area": {
+    "texture_path": "gfx/interface/tiles/dark_area.dds",
+    "texture_name": "dark_area",
+    "frames": 1
+  },
+  "GFX_species_tiles_frame": {
+    "texture_path": "gfx/interface/tiles/plain_green_frame_tile.dds",
+    "texture_name": "plain_green_frame_tile",
+    "frames": 1
+  },
+  "GFX_species_tiles_frame_dark_area": {
+    "texture_path": "gfx/interface/tiles/green_frame_dark_area_tile.dds",
+    "texture_name": "green_frame_dark_area_tile",
+    "frames": 1
   },
   "GFX_species_slot": {
     "texture_path": "gfx/interface/species/value_slot_50_30.dds",
@@ -29157,6 +30772,16 @@
   "GFX_hover_for_more": {
     "texture_path": "gfx/interface/icons/species_ui_hover_for_more.dds",
     "texture_name": "species_ui_hover_for_more",
+    "frames": 1
+  },
+  "GFX_trade_transparency": {
+    "texture_path": "gfx/interface/tiles/invisible.tga",
+    "texture_name": "invisible.tga",
+    "frames": 1
+  },
+  "GFX_trade_frame": {
+    "texture_path": "gfx/interface/tiles/green_frame_tile.dds",
+    "texture_name": "green_frame_tile",
     "frames": 1
   },
   "GFX_trade_willingness": {
@@ -29537,6 +31162,151 @@
   "GFX_tradition_category_bg_tradition_mutation": {
     "texture_path": "gfx/interface/tiles/tradition_category_tile_mutation.dds",
     "texture_name": "tradition_category_tile_mutation",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_locked": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_locked.dds",
+    "texture_name": "tradition_category_tile_locked",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_available": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_available.dds",
+    "texture_name": "tradition_category_tile_available",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_diplomacy": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_diplomacy.dds",
+    "texture_name": "tradition_category_tile_diplomacy",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_adaptability": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_adaptability.dds",
+    "texture_name": "tradition_category_tile_adaptability",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_versatility": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_versatility.dds",
+    "texture_name": "tradition_category_tile_versatility",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_discovery": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_discovery.dds",
+    "texture_name": "tradition_category_tile_discovery",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_expansion": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_expansion.dds",
+    "texture_name": "tradition_category_tile_expansion",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_domination": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_domination.dds",
+    "texture_name": "tradition_category_tile_domination",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_supremacy": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_supremacy.dds",
+    "texture_name": "tradition_category_tile_supremacy",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_harmony": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_harmony.dds",
+    "texture_name": "tradition_category_tile_harmony",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_synchronicity": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_synchronicity.dds",
+    "texture_name": "tradition_category_tile_synchronicity",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_prosperity": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_prosperity.dds",
+    "texture_name": "tradition_category_tile_prosperity",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_unyielding": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_unyielding.dds",
+    "texture_name": "tradition_category_tile_unyielding",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_mercantile": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_mercantile.dds",
+    "texture_name": "tradition_category_tile_mercantile",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_logistics": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_mercantile.dds",
+    "texture_name": "tradition_category_tile_mercantile",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_subterfuge": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_subterfuge.dds",
+    "texture_name": "tradition_category_tile_subterfuge",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_psionics": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_psionics.dds",
+    "texture_name": "tradition_category_tile_psionics",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_cybernetics": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_cybernetics.dds",
+    "texture_name": "tradition_category_tile_cybernetics",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_cybernetics_assimilator": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_cybernetics.dds",
+    "texture_name": "tradition_category_tile_cybernetics",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_synthetics": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_synthetics.dds",
+    "texture_name": "tradition_category_tile_synthetics",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_genetics": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_genetics.dds",
+    "texture_name": "tradition_category_tile_genetics",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_aptitude": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_aptitude.dds",
+    "texture_name": "tradition_category_tile_aptitude",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_statecraft": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_statecraft.dds",
+    "texture_name": "tradition_category_tile_statecraft",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_enmity": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_enmity.dds",
+    "texture_name": "tradition_category_tile_enmity",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_nanotech": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_nanotech.dds",
+    "texture_name": "tradition_category_tile_nanotech",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_virtuality": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_virtuality.dds",
+    "texture_name": "tradition_category_tile_virtuality",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_modularity": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_modularity.dds",
+    "texture_name": "tradition_category_tile_modularity",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_domestication": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_domestication.dds",
+    "texture_name": "tradition_category_tile_domestication",
+    "frames": 1
+  },
+  "GFX_tradition_category_tile_tradition_archivism": {
+    "texture_path": "gfx/interface/tiles/tradition_category_tile_archivism.dds",
+    "texture_name": "tradition_category_tile_archivism",
     "frames": 1
   },
   "GFX_tradition_available_button": {
@@ -30834,6 +32604,16 @@
     "texture_name": "tutorial_mission_topic_button_selection_frame",
     "frames": 1
   },
+  "GFX_tile_dark_cut": {
+    "texture_path": "gfx/interface/tiles/tile_dark_cut.dds",
+    "texture_name": "tile_dark_cut",
+    "frames": 1
+  },
+  "GFX_tile_gradient": {
+    "texture_path": "gfx/interface/tiles/tile_gradient.dds",
+    "texture_name": "tile_gradient",
+    "frames": 1
+  },
   "GFX_help_menu_top_panel": {
     "texture_path": "gfx/interface/tutorial_mission_window/help_menu_top_panel.dds",
     "texture_name": "help_menu_top_panel",
@@ -30909,6 +32689,11 @@
     "texture_name": "icon_tutorial_category_1",
     "frames": 1
   },
+  "GFX_tile_glow_tutorial": {
+    "texture_path": "gfx/interface/tutorial_mission_window/tile_glow_tutorial.dds",
+    "texture_name": "tile_glow_tutorial",
+    "frames": 1
+  },
   "GFX_icon_rating": {
     "texture_path": "gfx/interface/icons/icon_rating.dds",
     "texture_name": "icon_rating",
@@ -30919,6 +32704,11 @@
     "texture_name": "button_334_24_animated",
     "frames": 3
   },
+  "GFX_transparent_black_backdrop_no_click": {
+    "texture_path": "gfx/interface/tiles/tile_backdrop.dds",
+    "texture_name": "tile_backdrop",
+    "frames": 1
+  },
   "GFX_frame_portrait": {
     "texture_path": "gfx/interface/tutorial_mission_window/frame_portrait.dds",
     "texture_name": "frame_portrait",
@@ -30927,6 +32717,16 @@
   "GFX_bg_portrait": {
     "texture_path": "gfx/interface/tutorial_mission_window/bg_portrait.dds",
     "texture_name": "bg_portrait",
+    "frames": 1
+  },
+  "GFX_mission_completed_glow": {
+    "texture_path": "gfx/interface/tutorial_mission_window/btn_mission_completed_glow_bg.dds",
+    "texture_name": "btn_mission_completed_glow_bg",
+    "frames": 1
+  },
+  "GFX_toggle_mission_completed_glow": {
+    "texture_path": "gfx/interface/tutorial_mission_window/toggle_mission_completed_glow_bg.dds",
+    "texture_name": "toggle_mission_completed_glow_bg",
     "frames": 1
   },
   "GFX_btn_mission_toggle_closed": {
@@ -31484,6 +33284,16 @@
     "texture_name": "topbarbackground_right_custom",
     "frames": 1
   },
+  "GFX_outliner_custom1": {
+    "texture_path": "gfx/interface/icons/00_customUI/outliner/outliner_custom1.dds",
+    "texture_name": "outliner_custom1",
+    "frames": 1
+  },
+  "GFX_subwindow_tile_custom1": {
+    "texture_path": "gfx/interface/icons/00_customUI/subwindow_tile_custom1.dds",
+    "texture_name": "subwindow_tile_custom1",
+    "frames": 1
+  },
   "GFX_outliner_arrange_button_custom": {
     "texture_path": "gfx/interface/icons/00_customUI/outliner/outliner_arrange_button_custom.dds",
     "texture_name": "outliner_arrange_button_custom",
@@ -31502,6 +33312,11 @@
   "GFX_galaxybutton_background_picard": {
     "texture_path": "gfx/interface/icons/00_customUI/galaxybutton_background_picard.dds",
     "texture_name": "galaxybutton_background_picard",
+    "frames": 1
+  },
+  "GFX_tile_large_bg_custom1": {
+    "texture_path": "gfx/interface/icons/00_customUI/tile_large_bg_custom1.dds",
+    "texture_name": "tile_large_bg_custom1",
     "frames": 1
   },
   "GFX_tab_1_inactive_custom_government": {
@@ -31588,6 +33403,11 @@
     "texture_path": "gfx/interface/icons/00_customUI/tab_1_active_custom.dds",
     "texture_name": "tab_1_active_custom",
     "frames": 3
+  },
+  "GFX_plain_bg_tile_custom": {
+    "texture_path": "gfx/interface/icons/00_customUI/plain_bg_tile_custom.dds",
+    "texture_name": "plain_bg_tile_custom",
+    "frames": 1
   },
   "GFX_diplomacy_background_big_custom": {
     "texture_path": "gfx/interface/icons/00_customUI/diplomacy_background_big_custom.dds",
@@ -31977,6 +33797,11 @@
   "GFX_shroud_background_custom": {
     "texture_path": "gfx/interface/icons/00_customUI/shroud_background_custom.dds",
     "texture_name": "shroud_background_custom",
+    "frames": 1
+  },
+  "GFX_map_icon_bg_custom": {
+    "texture_path": "gfx/interface/icons/00_customUI/map_icon_bg_custom.dds",
+    "texture_name": "map_icon_bg_custom",
     "frames": 1
   },
   "GFX_eventwindow_top_custom": {
@@ -38782,6 +40607,11 @@
   "GFX_council_room_open_desert": {
     "texture_path": "gfx/interface/council_view/council_rooms/council_room_open_desert.dds",
     "texture_name": "council_room_open_desert",
+    "frames": 1
+  },
+  "GFX_tile_large_bg_red": {
+    "texture_path": "gfx/interface/tiles/tile_large_bg_red.dds",
+    "texture_name": "tile_large_bg_red",
     "frames": 1
   },
   "GFX_hex_bg_red": {
@@ -45974,6 +47804,261 @@
     "texture_name": "science_station",
     "frames": 1
   },
+  "GFX_district_mining_cardassian_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_mining.dds",
+    "texture_name": "district_mining",
+    "frames": 3
+  },
+  "GFX_district_mining_spec_uni_engineering_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_mining.dds",
+    "texture_name": "district_mining",
+    "frames": 3
+  },
+  "GFX_district_mining_underground_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_mining.dds",
+    "texture_name": "district_mining",
+    "frames": 3
+  },
+  "GFX_district_mining_uncapped_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_mining.dds",
+    "texture_name": "district_mining",
+    "frames": 3
+  },
+  "GFX_district_spec_just_mining_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_mining.dds",
+    "texture_name": "district_mining",
+    "frames": 3
+  },
+  "GFX_district_mining_lava_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_mining.dds",
+    "texture_name": "district_mining",
+    "frames": 3
+  },
+  "GFX_district_mining_spec_embassy_embassy_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_mining.dds",
+    "texture_name": "district_mining",
+    "frames": 3
+  },
+  "GFX_district_mining_spec_retreat_artificie_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_mining.dds",
+    "texture_name": "district_mining",
+    "frames": 3
+  },
+  "GFX_district_mining_spec_resort_cloning_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_mining.dds",
+    "texture_name": "district_mining",
+    "frames": 3
+  },
+  "GFX_district_mining_spec_resort_convalance_bg": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_mining.dds",
+    "texture_name": "district_mining",
+    "frames": 3
+  },
+  "GFX_district_orbital_city_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_city.dds",
+    "texture_name": "district_city",
+    "frames": 3
+  },
+  "GFX_district_domed_city_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_city.dds",
+    "texture_name": "district_city",
+    "frames": 3
+  },
+  "GFX_district_underground_city_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_city.dds",
+    "texture_name": "district_city",
+    "frames": 3
+  },
+  "GFX_district_city_slums_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_city.dds",
+    "texture_name": "district_city",
+    "frames": 3
+  },
+  "GFX_district_city_village_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_city.dds",
+    "texture_name": "district_city",
+    "frames": 3
+  },
+  "GFX_district_habitation_node_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_hab_housing.dds",
+    "texture_name": "district_hab_housing",
+    "frames": 3
+  },
+  "GFX_district_great_link_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_hab_housing.dds",
+    "texture_name": "district_hab_housing",
+    "frames": 3
+  },
+  "GFX_district_hive_habitat_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_hab_housing.dds",
+    "texture_name": "district_hab_housing",
+    "frames": 3
+  },
+  "GFX_district_farming_hydroponic_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_farming.dds",
+    "texture_name": "district_farming",
+    "frames": 3
+  },
+  "GFX_district_farming_hunting_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_farming.dds",
+    "texture_name": "district_farming",
+    "frames": 3
+  },
+  "GFX_district_farming_CPM_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_farming.dds",
+    "texture_name": "district_farming",
+    "frames": 3
+  },
+  "GFX_district_farming_spec_fortress_crew_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_farming.dds",
+    "texture_name": "district_farming",
+    "frames": 3
+  },
+  "GFX_district_farming_nanites_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_farming.dds",
+    "texture_name": "district_farming",
+    "frames": 3
+  },
+  "GFX_district_farming_spec_forge_alloy_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_farming.dds",
+    "texture_name": "district_farming",
+    "frames": 3
+  },
+  "GFX_district_farming_spec_commercial_trade_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_farming.dds",
+    "texture_name": "district_farming",
+    "frames": 3
+  },
+  "GFX_district_spec_hunting_hunters_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_farming.dds",
+    "texture_name": "district_farming",
+    "frames": 3
+  },
+  "GFX_district_generator_underground_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_generator.dds",
+    "texture_name": "district_generator",
+    "frames": 3
+  },
+  "GFX_district_generator_spec_fortress_naval_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_generator.dds",
+    "texture_name": "district_generator",
+    "frames": 3
+  },
+  "GFX_district_generator_spec_retreat_garden_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_generator.dds",
+    "texture_name": "district_generator",
+    "frames": 3
+  },
+  "GFX_district_energy_node_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_generator.dds",
+    "texture_name": "district_generator",
+    "frames": 3
+  },
+  "GFX_district_generator_spec_uni_physics_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_generator.dds",
+    "texture_name": "district_generator",
+    "frames": 3
+  },
+  "GFX_district_research_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_research.dds",
+    "texture_name": "district_research",
+    "frames": 3
+  },
+  "GFX_district_research_node_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_research.dds",
+    "texture_name": "district_research",
+    "frames": 3
+  },
+  "GFX_district_research_spec_forge_consumer_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_research.dds",
+    "texture_name": "district_research",
+    "frames": 3
+  },
+  "GFX_district_research_spec_resort_tourist_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_research.dds",
+    "texture_name": "district_research",
+    "frames": 3
+  },
+  "GFX_district_research_spec_commercial_starport_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_research.dds",
+    "texture_name": "district_research",
+    "frames": 3
+  },
+  "GFX_district_research_spec_hunting_unity_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_research.dds",
+    "texture_name": "district_research",
+    "frames": 3
+  },
+  "GFX_district_mining_spec_resort_convalance_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_research.dds",
+    "texture_name": "district_research",
+    "frames": 3
+  },
+  "GFX_district_research_spec_embassy_diplo_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_research.dds",
+    "texture_name": "district_research",
+    "frames": 3
+  },
+  "GFX_district_research_spec_penal_prison_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_research.dds",
+    "texture_name": "district_research",
+    "frames": 3
+  },
+  "GFX_district_research_spec_penal_slave_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_research.dds",
+    "texture_name": "district_research",
+    "frames": 3
+  },
+  "GFX_district_research_spec_uni_society_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_research.dds",
+    "texture_name": "district_research",
+    "frames": 3
+  },
+  "GFX_district_admin_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_resort.dds",
+    "texture_name": "district_resort",
+    "frames": 3
+  },
+  "GFX_district_admin_hive_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_resort.dds",
+    "texture_name": "district_resort",
+    "frames": 3
+  },
+  "GFX_district_admin_undine_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_resort.dds",
+    "texture_name": "district_resort",
+    "frames": 3
+  },
+  "GFX_district_admin_spec_fortress_naval_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_resort.dds",
+    "texture_name": "district_resort",
+    "frames": 3
+  },
+  "GFX_district_admin_spec_penal_guard_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_resort.dds",
+    "texture_name": "district_resort",
+    "frames": 3
+  },
+  "GFX_district_admin_spec_hunting_luxuries_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_resort.dds",
+    "texture_name": "district_resort",
+    "frames": 3
+  },
+  "GFX_district_admin_spec_retreat_monastery_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_resort.dds",
+    "texture_name": "district_resort",
+    "frames": 3
+  },
+  "GFX_district_admin_spec_retreat_dig_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_resort.dds",
+    "texture_name": "district_resort",
+    "frames": 3
+  },
+  "GFX_district_admin_spec_resort_luxuries_box_icon_rectangle": {
+    "texture_path": "gfx/interface/icons/districts/grid_box/district_resort.dds",
+    "texture_name": "district_resort",
+    "frames": 3
+  },
   "GFX_district_orbital_city_bg": {
     "texture_path": "gfx/interface/planetview/district_backgrounds/district_city_bg.dds",
     "texture_name": "district_city_bg",
@@ -46212,6 +48297,346 @@
   "GFX_district_admin_spec_penal_guard_bg": {
     "texture_path": "gfx/interface/planetview/district_backgrounds/district_admin_bg.dds",
     "texture_name": "district_admin_bg",
+    "frames": 1
+  },
+  "GFX_relic_doomsday_machine_fragment": {
+    "texture_path": "gfx/interface/icons/relics/r_doomsday_machine_fragment.dds",
+    "texture_name": "r_doomsday_machine_fragment",
+    "frames": 1
+  },
+  "GFX_relic_ferengi_rules_of_acquisition": {
+    "texture_path": "gfx/interface/icons/relics/r_ferengi_rules_of_acquisition.dds",
+    "texture_name": "r_ferengi_rules_of_acquisition",
+    "frames": 1
+  },
+  "GFX_relic_klingon_sword_of_kahless": {
+    "texture_path": "gfx/interface/icons/relics/r_klingon_sword_of_kahless.dds",
+    "texture_name": "r_klingon_sword_of_kahless",
+    "frames": 1
+  },
+  "GFX_relic_andorian_colAndor_scrolls": {
+    "texture_path": "gfx/interface/icons/relics/r_andorian_colAndor_scrolls.dds",
+    "texture_name": "r_andorian_colAndor_scrolls",
+    "frames": 1
+  },
+  "GFX_relic_vulcan_kir_shara": {
+    "texture_path": "gfx/interface/icons/relics/r_vulcan_kir_shara.dds",
+    "texture_name": "r_vulcan_kir_shara",
+    "frames": 1
+  },
+  "GFX_relic_bajoran_orb_of_contemplation": {
+    "texture_path": "gfx/interface/icons/relics/r_bajoran_orb_of_contemplation.dds",
+    "texture_name": "r_bajoran_orb_of_contemplation",
+    "frames": 1
+  },
+  "GFX_relic_bajoran_orb_of_memory": {
+    "texture_path": "gfx/interface/icons/relics/r_bajoran_orb_of_memory.dds",
+    "texture_name": "r_bajoran_orb_of_memory",
+    "frames": 1
+  },
+  "GFX_relic_bajoran_orb_of_peace": {
+    "texture_path": "gfx/interface/icons/relics/r_bajoran_orb_of_peace.dds",
+    "texture_name": "r_bajoran_orb_of_peace",
+    "frames": 1
+  },
+  "GFX_relic_bajoran_orb_of_prophecy": {
+    "texture_path": "gfx/interface/icons/relics/r_bajoran_orb_of_prophecy.dds",
+    "texture_name": "r_bajoran_orb_of_prophecy",
+    "frames": 1
+  },
+  "GFX_relic_bajoran_orb_of_souls": {
+    "texture_path": "gfx/interface/icons/relics/r_bajoran_orb_of_souls.dds",
+    "texture_name": "r_bajoran_orb_of_souls",
+    "frames": 1
+  },
+  "GFX_relic_bajoran_orb_of_time": {
+    "texture_path": "gfx/interface/icons/relics/r_bajoran_orb_of_time.dds",
+    "texture_name": "r_bajoran_orb_of_time",
+    "frames": 1
+  },
+  "GFX_relic_bajoran_orb_of_unity": {
+    "texture_path": "gfx/interface/icons/relics/r_bajoran_orb_of_unity.dds",
+    "texture_name": "r_bajoran_orb_of_unity",
+    "frames": 1
+  },
+  "GFX_relic_bajoran_orb_of_wisdom": {
+    "texture_path": "gfx/interface/icons/relics/r_bajoran_orb_of_wisdom.dds",
+    "texture_name": "r_bajoran_orb_of_wisdom",
+    "frames": 1
+  },
+  "GFX_relic_bajoran_orb_of_emissary": {
+    "texture_path": "gfx/interface/icons/relics/r_bajoran_orb_of_emissary.dds",
+    "texture_name": "r_bajoran_orb_of_emissary",
+    "frames": 1
+  },
+  "GFX_relic_abronath_1": {
+    "texture_path": "gfx/interface/icons/relics/r_abronath_1.dds",
+    "texture_name": "r_abronath_1",
+    "frames": 1
+  },
+  "GFX_relic_abronath_2": {
+    "texture_path": "gfx/interface/icons/relics/r_abronath_2.dds",
+    "texture_name": "r_abronath_2",
+    "frames": 1
+  },
+  "GFX_relic_abronath_3": {
+    "texture_path": "gfx/interface/icons/relics/r_abronath_3.dds",
+    "texture_name": "r_abronath_3",
+    "frames": 1
+  },
+  "GFX_relic_abronath": {
+    "texture_path": "gfx/interface/icons/relics/r_abronath_full.dds",
+    "texture_name": "r_abronath_full",
+    "frames": 1
+  },
+  "GFX_relic_flute": {
+    "texture_path": "gfx/interface/icons/relics/r_ressikian_flute.dds",
+    "texture_name": "r_ressikian_flute",
+    "frames": 1
+  },
+  "GFX_relic_cardbook1": {
+    "texture_path": "gfx/interface/icons/relics/r_never_ending_sacrifice.dds",
+    "texture_name": "r_never_ending_sacrifice",
+    "frames": 1
+  },
+  "GFX_relic_cardbook2": {
+    "texture_path": "gfx/interface/icons/relics/r_enigma_tales.dds",
+    "texture_name": "r_enigma_tales",
+    "frames": 1
+  },
+  "GFX_relic_cardbook3": {
+    "texture_path": "gfx/interface/icons/relics/r_meditations_on_a_crimson_shadow.dds",
+    "texture_name": "r_meditations_on_a_crimson_shadow",
+    "frames": 1
+  },
+  "GFX_relic_terranbadge": {
+    "texture_path": "gfx/interface/icons/relics/r_terran_badge.dds",
+    "texture_name": "r_terran_badge",
+    "frames": 1
+  },
+  "GFX_relic_kcabadge": {
+    "texture_path": "gfx/interface/icons/relics/r_kcabadge.dds",
+    "texture_name": "r_kcabadge",
+    "frames": 1
+  },
+  "GFX_relic_whale_probe": {
+    "texture_path": "gfx/interface/icons/relics/r_whale_probe.dds",
+    "texture_name": "r_whale_probe",
+    "frames": 1
+  },
+  "GFX_vger_probe": {
+    "texture_path": "gfx/interface/icons/relics/r_vger_probe.dds",
+    "texture_name": "r_vger_probe",
+    "frames": 1
+  },
+  "GFX_relic_tribble_1": {
+    "texture_path": "gfx/interface/icons/relics/r_tribble.dds",
+    "texture_name": "r_tribble",
+    "frames": 1
+  },
+  "GFX_relic_tribble_2": {
+    "texture_path": "gfx/interface/icons/relics/r_tribble2.dds",
+    "texture_name": "r_tribble2",
+    "frames": 1
+  },
+  "GFX_relic_tribble_3": {
+    "texture_path": "gfx/interface/icons/relics/r_tribble3.dds",
+    "texture_name": "r_tribble3",
+    "frames": 1
+  },
+  "GFX_relic_tribble_4": {
+    "texture_path": "gfx/interface/icons/relics/r_tribble4.dds",
+    "texture_name": "r_tribble4",
+    "frames": 1
+  },
+  "GFX_relic_tribble_5": {
+    "texture_path": "gfx/interface/icons/relics/r_tribble5.dds",
+    "texture_name": "r_tribble5",
+    "frames": 1
+  },
+  "GFX_relic_horgahn": {
+    "texture_path": "gfx/interface/icons/relics/r_horgahn.dds",
+    "texture_name": "r_horgahn",
+    "frames": 1
+  },
+  "GFX_relic_dilithium_incubator": {
+    "texture_path": "gfx/interface/icons/relics/r_dilithium_incubator.dds",
+    "texture_name": "r_dilithium_incubator",
+    "frames": 1
+  },
+  "GFX_relic_metaphasic_collector": {
+    "texture_path": "gfx/interface/icons/relics/r_metaphasic_collector.dds",
+    "texture_name": "r_metaphasic_collector",
+    "frames": 1
+  },
+  "GFX_relic_borg_queen_trophy": {
+    "texture_path": "gfx/interface/icons/relics/r_borg_queen_trophy.dds",
+    "texture_name": "r_borg_queen_trophy",
+    "frames": 1
+  },
+  "GFX_relic_borg_tribble": {
+    "texture_path": "gfx/interface/icons/relics/r_borg_tribble.dds",
+    "texture_name": "r_borg_tribble",
+    "frames": 1
+  },
+  "GFX_relic_terran_sword": {
+    "texture_path": "gfx/interface/icons/relics/r_terran_sword.dds",
+    "texture_name": "r_terran_sword",
+    "frames": 1
+  },
+  "GFX_relic_tantalus_device": {
+    "texture_path": "gfx/interface/icons/relics/r_tantalus_device.dds",
+    "texture_name": "r_tantalus_device",
+    "frames": 1
+  },
+  "GFX_relic_time_crystal_bracelet": {
+    "texture_path": "gfx/interface/icons/relics/r_time_crystal_bracelet.dds",
+    "texture_name": "r_time_crystal_bracelet",
+    "frames": 1
+  },
+  "GFX_relic_echo_papa_drone": {
+    "texture_path": "gfx/interface/icons/relics/r_echo_papa_drone.dds",
+    "texture_name": "r_echo_papa_drone",
+    "frames": 1
+  },
+  "GFX_relic_zefram_shotgun": {
+    "texture_path": "gfx/interface/icons/relics/r_zefram_shotgun.dds",
+    "texture_name": "r_zefram_shotgun",
+    "frames": 1
+  },
+  "GFX_relic_hand_of_kull": {
+    "texture_path": "gfx/interface/icons/relics/r_hand_of_kull.dds",
+    "texture_name": "r_hand_of_kull",
+    "frames": 1
+  },
+  "GFX_relic_sabaks_armour": {
+    "texture_path": "gfx/interface/icons/relics/r_sabaks_armor.dds",
+    "texture_name": "r_sabaks_armor",
+    "frames": 1
+  },
+  "GFX_relic_gboj_torch": {
+    "texture_path": "gfx/interface/icons/relics/r_gboj_torch.dds",
+    "texture_name": "r_gboj_torch",
+    "frames": 1
+  },
+  "GFX_relic_order_of_basai": {
+    "texture_path": "gfx/interface/icons/relics/r_order_of_basai.dds",
+    "texture_name": "r_order_of_basai",
+    "frames": 1
+  },
+  "GFX_relic_order_of_batleth": {
+    "texture_path": "gfx/interface/icons/relics/r_order_of_the_batleth.dds",
+    "texture_name": "r_order_of_the_batleth",
+    "frames": 1
+  },
+  "GFX_relic_yan_isleth": {
+    "texture_path": "gfx/interface/icons/relics/r_yan_isleth.dds",
+    "texture_name": "r_yan_isleth",
+    "frames": 1
+  },
+  "GFX_relic_sacred_chalice": {
+    "texture_path": "gfx/interface/icons/relics/r_sacred_chalice_of_rixx.dds",
+    "texture_name": "r_sacred_chalice_of_rixx",
+    "frames": 1
+  },
+  "GFX_relic_masaka_mask": {
+    "texture_path": "gfx/interface/icons/relics/r_masaka_mask.dds",
+    "texture_name": "r_masaka_mask",
+    "frames": 1
+  },
+  "GFX_relic_tox_uthat": {
+    "texture_path": "gfx/interface/icons/relics/r_tox_uthat.dds",
+    "texture_name": "r_tox_uthat",
+    "frames": 1
+  },
+  "GFX_relic_stone_of_gol": {
+    "texture_path": "gfx/interface/icons/relics/r_stone_of_gol.dds",
+    "texture_name": "r_stone_of_gol",
+    "frames": 1
+  },
+  "GFX_relic_ncia93": {
+    "texture_path": "gfx/interface/icons/relics/r_ncia93.dds",
+    "texture_name": "r_ncia93",
+    "frames": 1
+  },
+  "GFX_relic_out_of_time": {
+    "texture_path": "gfx/interface/icons/relics/r_relic_out_of_time.dds",
+    "texture_name": "r_relic_out_of_time",
+    "frames": 1
+  },
+  "GFX_relic_gomtuu": {
+    "texture_path": "gfx/interface/icons/relics/r_gomtuu.dds",
+    "texture_name": "r_gomtuu",
+    "frames": 1
+  },
+  "GFX_relic_singing_doctor": {
+    "texture_path": "gfx/interface/icons/relics/r_singing_doctor.dds",
+    "texture_name": "r_singing_doctor",
+    "frames": 1
+  },
+  "GFX_relic_moriarty": {
+    "texture_path": "gfx/interface/icons/relics/r_moriarty.dds",
+    "texture_name": "r_moriarty",
+    "frames": 1
+  },
+  "GFX_relic_phoenix": {
+    "texture_path": "gfx/interface/icons/relics/r_phoenix.dds",
+    "texture_name": "r_phoenix",
+    "frames": 1
+  },
+  "GFX_relic_entD": {
+    "texture_path": "gfx/interface/icons/relics/r_entD.dds",
+    "texture_name": "r_entD",
+    "frames": 1
+  },
+  "GFX_relic_borg_wreckage": {
+    "texture_path": "gfx/interface/icons/relics/r_borg_wreakage.dds",
+    "texture_name": "r_borg_wreakage",
+    "frames": 1
+  },
+  "GFX_relic_ktarian_game": {
+    "texture_path": "gfx/interface/icons/relics/r_rubricator.dds",
+    "texture_name": "r_rubricator",
+    "frames": 1
+  },
+  "GFX_relic_undine_reward": {
+    "texture_path": "gfx/interface/icons/relics/r_undine_virus.dds",
+    "texture_name": "r_undine_virus",
+    "frames": 1
+  },
+  "GFX_relic_klingon_trophy_skull": {
+    "texture_path": "gfx/interface/icons/relics/r_klingon_trophy.dds",
+    "texture_name": "r_klingon_trophy",
+    "frames": 1
+  },
+  "GFX_relic_vulcan_trophy_skull": {
+    "texture_path": "gfx/interface/icons/relics/r_vulcan_trophy.dds",
+    "texture_name": "r_vulcan_trophy",
+    "frames": 1
+  },
+  "GFX_relic_ferengi_trophy_skull": {
+    "texture_path": "gfx/interface/icons/relics/r_ferengi_trophy.dds",
+    "texture_name": "r_ferengi_trophy",
+    "frames": 1
+  },
+  "GFX_relic_borg_trophy_skull": {
+    "texture_path": "gfx/interface/icons/relics/r_borg_trophy.dds",
+    "texture_name": "r_borg_trophy",
+    "frames": 1
+  },
+  "GFX_relic_cardassian_trophy_skull": {
+    "texture_path": "gfx/interface/icons/relics/r_cardassian_trophy.dds",
+    "texture_name": "r_cardassian_trophy",
+    "frames": 1
+  },
+  "GFX_relic_saurian_trophy_skull": {
+    "texture_path": "gfx/interface/icons/relics/r_saurian_trophy.dds",
+    "texture_name": "r_saurian_trophy",
+    "frames": 1
+  },
+  "GFX_r_crystalline_jewel": {
+    "texture_path": "gfx/interface/icons/relics/r_crystalline_jewel.dds",
+    "texture_name": "r_crystalline_jewel",
     "frames": 1
   },
   "GFX_ship_part_required_data_fed_frigate_emette_1": {

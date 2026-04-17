@@ -6,48 +6,31 @@ Parses common/relics/*.txt -> structured relic data.
 import os
 from parse_pdx import parse_file, get_value, get_blocks
 from parse_helpers import serialize_block, to_bool, extract_resources, extract_modifiers
-from config import MOD_RELICS_DIR, OUTPUT_ICONS_DIR
+from config import MOD_RELICS_DIR
 
 
-def _build_relic_icon_lookup():
-    """Build relic icon lookup with substring matching."""
-    icon_dir = os.path.join(OUTPUT_ICONS_DIR, 'relics')
-    if not os.path.isdir(icon_dir):
-        return set(), {}
-    stems = set()
-    suffix_map = {}  # suffix -> full stem (for substring match)
-    for f in os.listdir(icon_dir):
-        if f.endswith('.webp'):
-            stem = f[:-5]
-            stems.add(stem)
-            # Index by suffix after faction prefix: r_bajoran_orb_of_X -> orb_of_X
-            parts = stem.split('_', 2)
-            if len(parts) >= 3:
-                suffix = parts[2]  # after r_faction_
-                suffix_map.setdefault(suffix, stem)
-    return stems, suffix_map
+def _portrait_to_icon_stem(block, relic_id):
+    """Derive the icon stem from the relic's `portrait` field.
 
-_RELIC_ICONS = None
-_RELIC_SUFFIX = None
+    Mod definitions use `portrait = "GFX_relic_<name>"` (occasionally
+    `"GFX_r_<name>"` or bare `"GFX_<name>"`). The frontend looks up icons
+    under icons/relics/r_<core>.webp, and the hybrid resolver in
+    convert_icons.py is configured with stem_strip_prefix='r_' + gfx_key_prefix
+    'GFX_relic_', so we must return stems shaped like 'r_<core>'.
 
-def resolve_relic_icon(relic_id):
-    """Resolve best matching icon for a relic.
-
-    Direct match first, then substring match for faction-prefixed DDS files
-    (e.g. r_orb_of_X -> r_bajoran_orb_of_X).
+    Fall back to the relic id when no portrait is set — that's what many
+    vanilla-ish relics look like and the downstream direct-scan picks them
+    up by filename match.
     """
-    global _RELIC_ICONS, _RELIC_SUFFIX
-    if _RELIC_ICONS is None:
-        _RELIC_ICONS, _RELIC_SUFFIX = _build_relic_icon_lookup()
-
-    # Direct match
-    if relic_id in _RELIC_ICONS:
-        return relic_id
-    # Substring match: r_orb_of_X -> look for *_orb_of_X
-    if relic_id.startswith('r_'):
-        suffix = relic_id[2:]  # strip r_
-        if suffix in _RELIC_SUFFIX:
-            return _RELIC_SUFFIX[suffix]
+    portrait = get_value(block, 'portrait') or ''
+    if isinstance(portrait, str) and portrait.startswith('GFX_'):
+        core = portrait[len('GFX_'):]
+        if core.startswith('relic_'):
+            core = core[len('relic_'):]
+        elif core.startswith('r_'):
+            core = core[len('r_'):]
+        if core:
+            return 'r_' + core
     return relic_id
 
 
@@ -56,7 +39,7 @@ def extract_relic(relic_id, block, source_file):
     return {
         'id': relic_id,
         'name_key': relic_id,
-        'icon': resolve_relic_icon(relic_id),
+        'icon': _portrait_to_icon_stem(block, relic_id),
         'activation_duration': get_value(block, 'activation_duration'),
         'portrait': get_value(block, 'portrait') or '',
         'score': get_value(block, 'score'),

@@ -10,16 +10,34 @@ from config import MOD_INTERFACE_DIR, VANILLA_INTERFACE_DIR, OUTPUT_ASSETS_DIR, 
     MOD_GFX_ROOM_TEXTURES, VANILLA_GFX_ROOM_TEXTURES
 
 
-# Regex to extract sprite definitions from .gfx files
-# Handles both spriteType and frameAnimatedSpriteType
-# Captures the full block so we can extract noOfFrames separately
-SPRITE_RE = re.compile(
-    r'(?:spriteType|frameAnimatedSpriteType)\s*=\s*\{([^}]*?name\s*=\s*"?\S+?"?\s+[^}]*?[tT]exture[fF]ile\s*=\s*"?[^"\s}]+"?[^}]*?)\}',
-    re.DOTALL
+# Match the sprite-type header (case-insensitive — .gfx files use both
+# "SpriteType" and "spriteType", and likewise "frameAnimatedSpriteType").
+SPRITE_HEADER_RE = re.compile(
+    r'(?:spriteType|frameAnimatedSpriteType)\s*=\s*\{',
+    re.IGNORECASE
 )
 NAME_RE = re.compile(r'name\s*=\s*"?(\S+?)"?\s')
 TEXTURE_RE = re.compile(r'[tT]exture[fF]ile\s*=\s*"?([^"\s}]+)"?')
 FRAMES_RE = re.compile(r'noOfFrames\s*=\s*(\d+)')
+
+
+def _extract_block(content, start):
+    """Given an opening brace position, return the content between matching
+    braces (handles nested animation = {...} blocks). Returns (inner, end_pos)
+    or (None, start) on mismatch."""
+    depth = 1
+    i = start + 1
+    n = len(content)
+    while i < n and depth > 0:
+        ch = content[i]
+        if ch == '{':
+            depth += 1
+        elif ch == '}':
+            depth -= 1
+            if depth == 0:
+                return content[start + 1:i], i + 1
+        i += 1
+    return None, start
 
 
 def _parse_gfx_dir(directory, mappings):
@@ -38,8 +56,16 @@ def _parse_gfx_dir(directory, mappings):
             print(f"  [WARN] {fn}: {e}")
             continue
 
-        for match in SPRITE_RE.finditer(content):
-            block = match.group(1)
+        pos = 0
+        while True:
+            header = SPRITE_HEADER_RE.search(content, pos)
+            if not header:
+                break
+            brace_pos = header.end() - 1
+            block, end_pos = _extract_block(content, brace_pos)
+            pos = end_pos if block is not None else header.end()
+            if block is None:
+                continue
             name_m = NAME_RE.search(block)
             tex_m = TEXTURE_RE.search(block)
             if not name_m or not tex_m:
