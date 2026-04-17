@@ -952,7 +952,25 @@ select option:checked {
 
 .page-btn:hover { background: var(--accent-border); }
 .page-btn.active { background: var(--accent-bright); color: #000; border-color: var(--accent-bright); }
-.page-btn:disabled { opacity: 0.3; cursor: default; }
+.page-btn:disabled,
+.page-btn.disabled { opacity: 0.3; cursor: default; pointer-events: none; }
+
+/* Sticky pagination: always pinned to the bottom of the scrollable list.
+   On page 1 it slides out when scrolled to top (via .hide-at-top); from
+   page 2 onwards it stays permanently visible regardless of scroll. */
+#item-list-panel #pagination.pagination-sticky {
+    position: sticky;
+    bottom: 0;
+    background: linear-gradient(to top, var(--bg-body) 65%, rgba(0,0,0,0));
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+}
+/* Page 1 only: while the list is at the top, tuck the sticky bar below
+   the viewport so it can slide in as soon as the user starts to scroll. */
+#item-list-panel.scroll-at-top #pagination.pagination-sticky.hide-at-top {
+    transform: translateY(110%);
+    pointer-events: none;
+}
 
 /* Event Detail Panel */
 #event-detail-panel {

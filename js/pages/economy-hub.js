@@ -38,6 +38,15 @@
             DataManager.loadJSON('assets/megastructures.json'),
             DataManager.loadJSON('assets/relics.json'),
         ]);
+
+        // Which deposit icons actually exist as .webp on disk? Items whose
+        // referenced icon is missing get the d_asteroid_cavern fallback and
+        // are sorted below items with a real icon (see renderAll).
+        let depositIconSet = null;
+        try {
+            const stems = await DataManager.loadJSON('icons/deposits/_index.json');
+            if (Array.isArray(stems)) depositIconSet = new Set(stems);
+        } catch (e) { /* index missing -> treat all as having icons, no re-sort */ }
         await I18n.setLanguageForModule(AppState.get('lang'), 'buildings');
         await Promise.all([
             I18n.mergeModule(AppState.get('lang'), 'economy'),
@@ -275,7 +284,10 @@
             let iconHtml = '';
             if (isBuilding && item.icon_key)    iconHtml = `<img class="detail-icon" src="icons/buildings/${esc(item.icon_key)}.webp"   alt="" onerror="this.style.display='none'">`;
             else if (isJob     && item.icon)     iconHtml = `<img class="detail-icon" src="icons/jobs/${esc(item.icon)}.webp"            alt="" onerror="this.style.display='none'">`;
-            else if (isDeposit && item.icon)     iconHtml = `<img class="detail-icon" src="icons/deposits/${esc(item.icon)}.webp"        alt="" onerror="this.style.display='none'">`;
+            else if (isDeposit) {
+                const stem = item.icon || 'd_asteroid_cavern';
+                iconHtml = `<img class="detail-icon" src="icons/deposits/${esc(stem)}.webp" alt="" onerror="this.onerror=null;this.src='icons/deposits/d_asteroid_cavern.webp'">`;
+            }
             else if (isRelic)                    iconHtml = `<img class="detail-icon" src="icons/relics/${esc(item.icon || item.id)}.webp" alt="" onerror="this.style.display='none'">`;
 
             let html = `<div class="detail-meta" style="align-items:center">${iconHtml}`;
@@ -489,7 +501,17 @@
                 return true;
             });
 
-            items.sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
+            items.sort((a, b) => {
+                // Deposits whose icon file is missing use a generic fallback
+                // (d_asteroid_cavern) — group those after items with a real
+                // icon, regardless of alphabetical order.
+                if (activeTab === 'deposits' && depositIconSet) {
+                    const ai = (a.icon && depositIconSet.has(a.icon)) ? 0 : 1;
+                    const bi = (b.icon && depositIconSet.has(b.icon)) ? 0 : 1;
+                    if (ai !== bi) return ai - bi;
+                }
+                return (a.name || a.id).localeCompare(b.name || b.id);
+            });
 
             document.getElementById('filter-stats').textContent =
                 `${items.length} / ${total} ${I18n.ui('ui.tab.' + activeTab)}`;
@@ -526,7 +548,10 @@
                     let iconCol = '';
                     if      (activeTab === 'buildings' && item.icon_key) iconCol = `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/buildings/${esc(item.icon_key)}.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`;
                     else if (activeTab === 'jobs'      && item.icon)     iconCol = `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/jobs/${esc(item.icon)}.webp"            alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`;
-                    else if (activeTab === 'deposits'  && item.icon)     iconCol = `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/deposits/${esc(item.icon)}.webp"        alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`;
+                    else if (activeTab === 'deposits') {
+                        const stem = item.icon || 'd_asteroid_cavern';
+                        iconCol = `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/deposits/${esc(stem)}.webp" alt="" onerror="this.onerror=null;this.src='icons/deposits/d_asteroid_cavern.webp'"></div>`;
+                    }
 
                     html += `<div class="item-card" data-id="${esc(item.id)}">
                         ${iconCol}
@@ -569,15 +594,21 @@
 
         function renderPagination(totalPages) {
             const pagEl = document.getElementById('pagination');
-            if (totalPages <= 1) { pagEl.innerHTML = ''; return; }
+            if (totalPages <= 1) { pagEl.innerHTML = ''; pagEl.classList.remove('pagination-sticky', 'hide-at-top'); return; }
+            const firstDis = currentPage <= 1;
+            const lastDis = currentPage >= totalPages;
             let html = '';
-            if (currentPage > 1) html += `<button class="page-btn" data-page="${currentPage - 1}">&laquo;</button>`;
+            html += `<button class="page-btn${firstDis ? ' disabled' : ''}" data-page="1"${firstDis ? ' disabled' : ''}>&laquo;&laquo;</button>`;
+            html += `<button class="page-btn${firstDis ? ' disabled' : ''}" data-page="${Math.max(1, currentPage - 1)}"${firstDis ? ' disabled' : ''}>&laquo;</button>`;
             for (let p = Math.max(1, currentPage - 3); p <= Math.min(totalPages, currentPage + 3); p++) {
                 html += `<button class="page-btn${p === currentPage ? ' active' : ''}" data-page="${p}">${p}</button>`;
             }
-            if (currentPage < totalPages) html += `<button class="page-btn" data-page="${currentPage + 1}">&raquo;</button>`;
+            html += `<button class="page-btn${lastDis ? ' disabled' : ''}" data-page="${Math.min(totalPages, currentPage + 1)}"${lastDis ? ' disabled' : ''}>&raquo;</button>`;
+            html += `<button class="page-btn${lastDis ? ' disabled' : ''}" data-page="${totalPages}"${lastDis ? ' disabled' : ''}>&raquo;&raquo;</button>`;
             pagEl.innerHTML = html;
-            pagEl.querySelectorAll('.page-btn').forEach(btn => {
+            pagEl.classList.add('pagination-sticky');
+            pagEl.classList.toggle('hide-at-top', currentPage === 1);
+            pagEl.querySelectorAll('.page-btn:not(.disabled)').forEach(btn => {
                 btn.addEventListener('click', () => {
                     currentPage = parseInt(btn.dataset.page);
                     renderAll();

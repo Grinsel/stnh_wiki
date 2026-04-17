@@ -351,15 +351,21 @@
 
         function renderPagination(totalPages) {
             const pagEl = document.getElementById('pagination');
-            if (totalPages <= 1) { pagEl.innerHTML = ''; return; }
+            if (totalPages <= 1) { pagEl.innerHTML = ''; pagEl.classList.remove('pagination-sticky', 'hide-at-top'); return; }
+            const firstDis = currentPage <= 1;
+            const lastDis = currentPage >= totalPages;
             let html = '';
-            if (currentPage > 1) html += `<button class="page-btn" data-page="${currentPage-1}">&laquo;</button>`;
+            html += `<button class="page-btn${firstDis ? ' disabled' : ''}" data-page="1"${firstDis ? ' disabled' : ''}>&laquo;&laquo;</button>`;
+            html += `<button class="page-btn${firstDis ? ' disabled' : ''}" data-page="${Math.max(1, currentPage - 1)}"${firstDis ? ' disabled' : ''}>&laquo;</button>`;
             for (let p = Math.max(1, currentPage - 3); p <= Math.min(totalPages, currentPage + 3); p++) {
                 html += `<button class="page-btn${p === currentPage ? ' active' : ''}" data-page="${p}">${p}</button>`;
             }
-            if (currentPage < totalPages) html += `<button class="page-btn" data-page="${currentPage+1}">&raquo;</button>`;
+            html += `<button class="page-btn${lastDis ? ' disabled' : ''}" data-page="${Math.min(totalPages, currentPage + 1)}"${lastDis ? ' disabled' : ''}>&raquo;</button>`;
+            html += `<button class="page-btn${lastDis ? ' disabled' : ''}" data-page="${totalPages}"${lastDis ? ' disabled' : ''}>&raquo;&raquo;</button>`;
             pagEl.innerHTML = html;
-            pagEl.querySelectorAll('.page-btn').forEach(btn => {
+            pagEl.classList.add('pagination-sticky');
+            pagEl.classList.toggle('hide-at-top', currentPage === 1);
+            pagEl.querySelectorAll('.page-btn:not(.disabled)').forEach(btn => {
                 btn.addEventListener('click', () => {
                     currentPage = parseInt(btn.dataset.page);
                     renderAll();

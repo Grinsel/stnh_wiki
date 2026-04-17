@@ -344,6 +344,19 @@ def convert_category(config, force=False):
             stats['failed'] += 1
             stats['errors'].append(f"{stem}: {e}")
 
+    # Write a lightweight index of stems that actually made it to .webp —
+    # the frontend uses this to decide which items need the generic fallback
+    # icon (currently only deposits).
+    try:
+        existing = sorted(
+            fn[:-5] for fn in os.listdir(output_dir) if fn.lower().endswith('.webp')
+        )
+        idx_path = os.path.join(output_dir, '_index.json')
+        with open(idx_path, 'w', encoding='utf-8') as f:
+            json.dump(existing, f, separators=(',', ':'))
+    except Exception as e:
+        stats['errors'].append(f"_index.json write: {e}")
+
     return stats
 
 
