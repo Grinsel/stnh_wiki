@@ -27,15 +27,18 @@ import time
 from config import OUTPUT_ASSETS_DIR
 
 
-# Module key -> (json_file, page_url, tab_name)
+# Module key -> (json_file, page_url, tab_name). Kept in sync with
+# WIKI_LINK_MAP in js/shared-render.js and MODULE_PAGES in
+# generate_search_index.py — legacy pages (buildings.html, megastructures.html,
+# anomalies.html) were folded into the consolidated pages.
 MODULE_CONFIG = {
-    'ships':          ('ships.json',          'ships.html',          'ships'),
-    'components':     ('components.json',     'ships.html',          'components'),
-    'buildings':      ('buildings.json',      'buildings.html',      'buildings'),
-    'districts':      ('districts.json',      'buildings.html',      'districts'),
-    'traits':         ('traits.json',         'traits.html',         'traits'),
-    'edicts':         ('edicts.json',         'governments.html',    'edicts'),
-    'megastructures': ('megastructures.json', 'megastructures.html', 'megastructures'),
+    'ships':          ('ships.json',          'ships.html',       'ships'),
+    'components':     ('components.json',     'ships.html',       'components'),
+    'buildings':      ('buildings.json',      'economy.html',     'buildings'),
+    'districts':      ('districts.json',      'economy.html',     'districts'),
+    'traits':         ('traits.json',         'traits.html',      'traits'),
+    'edicts':         ('edicts.json',         'governments.html', 'edicts'),
+    'megastructures': ('megastructures.json', 'economy.html',     'megastructures'),
 }
 
 

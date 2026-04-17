@@ -87,13 +87,8 @@ const Common = (() => {
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
         // Pages that should highlight their hub nav link
         const HUB_MAP = {
-            'anomalies.html': 'exploration.html',
-            'tech-list.html': 'tech-list.html',
-            'tech.html':      'tech-list.html',
-            'empires.html':   'empires.html',
-            'buildings.html': 'economy.html',
-            'megastructures.html': 'economy.html',
-            'traits.html':    'governments.html',
+            'tech.html':   'tech-list.html',
+            'traits.html': 'governments.html',
         };
 
         let hubTarget;
