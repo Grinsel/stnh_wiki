@@ -102,6 +102,11 @@
     }
 
     try {
+        // NOTE: the species tab + all archetype-filter / species-render code
+        // below is cold storage. The tab button was removed from empires.html
+        // pending a redesign (see commit 2163fab); the data, filters and
+        // render paths stay wired up so re-enabling is a one-line HTML add.
+        // activeTab === 'species' branches are reachable only via that path.
         const [empires, species, traits] = await Promise.all([
             DataManager.loadJSON('assets/empires.json'),
             DataManager.loadJSON('assets/species.json'),
