@@ -550,12 +550,14 @@
                     <polygon points="0 0, 7 2.5, 0 5" fill="var(--accent-dim)"/>
                 </marker></defs></svg>`;
             html += '<div class="tradition-trees-grid">';
+            let treeIdx = 0;
             for (const [treeName, tree] of visibleTrees) {
                 const levels = computeLevels(tree.nodes);
                 const treeLabelKey = tree.adopt ? tree.adopt.name_key : treeName;
                 let treeLabel = I18n.t(treeLabelKey) || treeName;
                 if (treeLabel === treeLabelKey) treeLabel = treeName.replace(/_/g, ' ');
-                html += `<div class="tradition-tree-block" data-tree="${esc(treeName)}"><div class="tradition-tree-header">`;
+                html += `<div class="tradition-tree-block" style="--stagger:${treeIdx}" data-tree="${esc(treeName)}"><div class="tradition-tree-header">`;
+                treeIdx++;
                 html += `<span class="tradition-tree-name">${esc(treeLabel)}</span>`;
                 if (tree.adopt) {
                     html += `<button class="tradition-bonus-btn" data-id="${esc(tree.adopt.id)}" title="${esc(tree.adopt.name || tree.adopt.id)}"><img src="icons/traditions/${esc(tree.adopt.icon || tree.adopt.id)}.webp" alt="" onerror="this.style.display='none'"><span>Adopt</span></button>`;

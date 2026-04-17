@@ -448,6 +448,7 @@
 
             html += '<div class="tradition-trees-grid">';
 
+            let treeIdx = 0;
             for (const [treeName, tree] of visibleTrees) {
                 const levels = computeLevels(tree.nodes);
 
@@ -457,7 +458,8 @@
                 // Strip "_adopt" suffix from loc result if it still looks like a key
                 if (treeLabel === treeLabelKey) treeLabel = treeName.replace(/_/g, ' ');
 
-                html += `<div class="tradition-tree-block" data-tree="${esc(treeName)}">`;
+                html += `<div class="tradition-tree-block" style="--stagger:${treeIdx}" data-tree="${esc(treeName)}">`;
+                treeIdx++;
 
                 // Header: tree name + adopt button
                 html += `<div class="tradition-tree-header">`;
