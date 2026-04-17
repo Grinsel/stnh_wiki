@@ -28,7 +28,7 @@ MODULES = [
         'category': e.get('category', ''),
     }),
     ('districts.json', 'buildings', 'district', lambda e: {}),
-    ('traits.json', 'traits', 'trait', lambda e: {
+    ('traits.json', 'empires', 'trait', lambda e: {
         'class': e.get('leader_class', ''),
     }),
     ('traditions.json', 'governments', 'tradition', lambda e: {
@@ -92,7 +92,6 @@ MODULE_PAGES = {
     'events': 'events.html',
     'ships': 'ships.html',
     'buildings': 'economy.html',
-    'traits': 'traits.html',
     'governments': 'governments.html',
     'megastructures': 'economy.html',
     'anomalies': 'exploration.html',

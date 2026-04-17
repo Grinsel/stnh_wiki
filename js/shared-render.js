@@ -154,7 +154,7 @@ const SharedRender = (() => {
         policy:        { page: 'governments.html', param: 'search', tab: 'policies' },
         edict:         { page: 'governments.html', param: 'search', tab: 'edicts' },
         councilor:     { page: 'governments.html', param: 'search', tab: 'councilors' },
-        trait:         { page: 'traits.html',      param: 'search', tab: 'traits' },
+        trait:         { page: 'empires.html',     param: 'search', tab: 'traits' },
         perk:          { page: 'governments.html', param: 'search', tab: 'perks' },
         anomaly:       { page: 'exploration.html', param: 'search', tab: 'anomalies' },
         archaeology:   { page: 'exploration.html', param: 'search', tab: 'archaeology' },
@@ -220,8 +220,9 @@ const SharedRender = (() => {
             ships:      'screenshots/ships.png',
             components: 'screenshots/components.png',
         },
-        'traits.html': {
+        'empires.html': {
             traits: 'screenshots/traits.png',
+            // empires + species placeholders pending.
         },
     };
 
