@@ -1624,9 +1624,14 @@ body.in-iframe #site-footer {
 /* Section Cards */
 .section-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    /* 12 columns so the first three cards span 4 each (3 per row) and the
+       remaining four span 3 each (4 per row). Breaks down to 1fr per card
+       under the mobile media query below. */
+    grid-template-columns: repeat(12, 1fr);
     gap: 1rem;
 }
+.section-cards .section-card:nth-child(-n+3) { grid-column: span 4; }
+.section-cards .section-card:nth-child(n+4)  { grid-column: span 3; }
 
 .section-card {
     background: var(--bg-card);
@@ -2065,6 +2070,8 @@ body.in-iframe #site-footer {
     .filter-group select { flex: 1; }
     .event-card-thumb { display: none; }
     .section-cards { grid-template-columns: 1fr; }
+    .section-cards .section-card:nth-child(-n+3),
+    .section-cards .section-card:nth-child(n+4) { grid-column: auto; }
 }
 
 /* =============================================================================

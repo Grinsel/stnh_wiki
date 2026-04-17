@@ -52,7 +52,6 @@
             ],
             empire:      [
                 { key: 'empire',        label: 'ui.tab.empires',     url: 'empires.html' },
-                { key: 'species',       label: 'ui.tab.species',     url: 'empires.html?tab=species' },
             ],
             governance:  [
                 { key: 'government',     label: 'ui.tab.governments',  url: 'governments.html' },
@@ -62,8 +61,8 @@
                 { key: 'edict',          label: 'ui.tab.edicts',        url: 'governments.html?tab=edicts' },
                 { key: 'councilor',      label: 'ui.tab.councilors',    url: 'governments.html?tab=councilors' },
                 { key: 'trait',          label: 'ui.tab.traits',        url: 'traits.html' },
-                { key: 'tradition',      label: 'ui.tab.traditions',    url: 'traits.html?tab=traditions' },
-                { key: 'ascension_perk', label: 'ui.tab.perks',         url: 'traits.html?tab=perks' },
+                { key: 'tradition',      label: 'ui.tab.traditions',    url: 'governments.html?tab=traditions' },
+                { key: 'ascension_perk', label: 'ui.tab.perks',         url: 'governments.html?tab=perks' },
             ],
             economy:     [
                 { key: 'building',      label: 'ui.tab.buildings',     url: 'economy.html' },
@@ -157,8 +156,8 @@
         buildings:       { label: 'Buildings',       page: 'economy.html',         tab: null },
         districts:       { label: 'Districts',       page: 'economy.html',         tab: 'districts' },
         traits:          { label: 'Traits',          page: 'traits.html',          tab: null },
-        traditions:      { label: 'Traditions',      page: 'traits.html',          tab: 'traditions' },
-        ascension_perks: { label: 'Ascension Perks', page: 'traits.html',          tab: 'perks' },
+        traditions:      { label: 'Traditions',      page: 'governments.html',     tab: 'traditions' },
+        ascension_perks: { label: 'Ascension Perks', page: 'governments.html',     tab: 'perks' },
         governments:     { label: 'Governments',     page: 'governments.html',     tab: null },
         civics:          { label: 'Civics',          page: 'governments.html',     tab: 'civics' },
         authorities:     { label: 'Authorities',     page: 'governments.html',     tab: 'authorities' },
@@ -170,7 +169,7 @@
         anomalies:       { label: 'Anomalies',       page: 'exploration.html',     tab: null },
         archaeology:     { label: 'Archaeology',     page: 'exploration.html',     tab: 'archaeology' },
         empires:         { label: 'Empires',         page: 'exploration.html',     tab: 'empires' },
-        species:         { label: 'Species',         page: 'exploration.html',     tab: 'species' },
+        // species:      { label: 'Species',         page: 'empires.html',         tab: 'species' },  // Hidden while species tab is disabled.
         jobs:            { label: 'Jobs',            page: 'economy.html',         tab: null },
         deposits:        { label: 'Deposits',        page: 'economy.html',         tab: 'deposits' },
         components:      { label: 'Components',      page: 'ships.html',           tab: 'components' },
@@ -226,8 +225,12 @@
         // Determine if modules should be initially expanded
         const expandAll = totalChanges <= 20;
 
+        // Modules hidden from the update notes (tab disabled in UI).
+        const HIDDEN_CHANGE_MODULES = new Set(['species']);
+
         // Modules with changes
         for (const [moduleKey, mod] of Object.entries(modules)) {
+            if (HIDDEN_CHANGE_MODULES.has(moduleKey)) continue;
             const nAdd = (mod.added || []).length;
             const nMod = (mod.modified || []).length;
             const nRem = (mod.removed || []).length;

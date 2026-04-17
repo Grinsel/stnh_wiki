@@ -154,7 +154,7 @@ const SharedRender = (() => {
         policy:        { page: 'governments.html', param: 'search', tab: 'policies' },
         edict:         { page: 'governments.html', param: 'search', tab: 'edicts' },
         trait:         { page: 'traits.html',      param: 'search', tab: 'traits' },
-        perk:          { page: 'traits.html',      param: 'search', tab: 'perks' },
+        perk:          { page: 'governments.html', param: 'search', tab: 'perks' },
         anomaly:       { page: 'exploration.html', param: 'search', tab: 'anomalies' },
         archaeology:   { page: 'exploration.html', param: 'search', tab: 'archaeology' },
         technology:    { page: 'tech.html',        param: 'focus' },
@@ -221,7 +221,6 @@ const SharedRender = (() => {
         },
         'traits.html': {
             traits: 'screenshots/traits.png',
-            perks:  'screenshots/ascension.png',
         },
     };
 

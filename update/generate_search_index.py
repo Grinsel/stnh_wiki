@@ -31,11 +31,11 @@ MODULES = [
     ('traits.json', 'traits', 'trait', lambda e: {
         'class': e.get('leader_class', ''),
     }),
-    ('traditions.json', 'traits', 'tradition', lambda e: {
+    ('traditions.json', 'governments', 'tradition', lambda e: {
         'tree': e.get('tree', ''),
         'role': e.get('role', ''),
     }),
-    ('ascension_perks.json', 'traits', 'ascension_perk', lambda e: {}),
+    ('ascension_perks.json', 'governments', 'ascension_perk', lambda e: {}),
     ('governments.json', 'governments', 'government', lambda e: {}),
     ('civics.json', 'governments', 'civic', lambda e: {
         'origin': e.get('is_origin', False),
@@ -60,9 +60,9 @@ MODULES = [
         'authority': e.get('authority', ''),
         'government': e.get('government', ''),
     }),
-    ('species.json', 'empires', 'species', lambda e: {
-        'archetype': e.get('archetype', ''),
-    }),
+    # ('species.json', 'empires', 'species', lambda e: {
+    #     'archetype': e.get('archetype', ''),
+    # }),  # Species tab is hidden for now; re-enable when species UI returns.
     ('jobs.json', 'economy', 'job', lambda e: {
         'category': e.get('category', ''),
     }),
