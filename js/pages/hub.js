@@ -152,13 +152,13 @@
     // ========================================
     const CHANGE_MODULE_MAP = {
         events_index:    { label: 'Events',          page: 'events.html',         tab: null },
-        ships:           { label: 'Ships',           page: 'ships.html',          tab: null },
-        buildings:       { label: 'Buildings',       page: 'economy.html',         tab: null },
+        ships:           { label: 'Ships',           page: 'ships.html',          tab: 'ships' },
+        buildings:       { label: 'Buildings',       page: 'economy.html',         tab: 'buildings' },
         districts:       { label: 'Districts',       page: 'economy.html',         tab: 'districts' },
-        traits:          { label: 'Traits',          page: 'traits.html',          tab: null },
+        traits:          { label: 'Traits',          page: 'traits.html',          tab: 'traits' },
         traditions:      { label: 'Traditions',      page: 'governments.html',     tab: 'traditions' },
         ascension_perks: { label: 'Ascension Perks', page: 'governments.html',     tab: 'perks' },
-        governments:     { label: 'Governments',     page: 'governments.html',     tab: null },
+        governments:     { label: 'Governments',     page: 'governments.html',     tab: 'governments' },
         civics:          { label: 'Civics',          page: 'governments.html',     tab: 'civics' },
         authorities:     { label: 'Authorities',     page: 'governments.html',     tab: 'authorities' },
         policies:        { label: 'Policies',        page: 'governments.html',     tab: 'policies' },
@@ -166,11 +166,11 @@
         councilors:      { label: 'Councilors',      page: 'governments.html',     tab: 'councilors' },
         megastructures:  { label: 'Megastructures',  page: 'economy.html',         tab: 'megastructures' },
         relics:          { label: 'Relics',          page: 'economy.html',         tab: 'relics' },
-        anomalies:       { label: 'Anomalies',       page: 'exploration.html',     tab: null },
+        anomalies:       { label: 'Anomalies',       page: 'exploration.html',     tab: 'anomalies' },
         archaeology:     { label: 'Archaeology',     page: 'exploration.html',     tab: 'archaeology' },
-        empires:         { label: 'Empires',         page: 'exploration.html',     tab: 'empires' },
+        empires:         { label: 'Empires',         page: 'empires.html',         tab: 'empires' },
         // species:      { label: 'Species',         page: 'empires.html',         tab: 'species' },  // Hidden while species tab is disabled.
-        jobs:            { label: 'Jobs',            page: 'economy.html',         tab: null },
+        jobs:            { label: 'Jobs',            page: 'economy.html',         tab: 'jobs' },
         deposits:        { label: 'Deposits',        page: 'economy.html',         tab: 'deposits' },
         components:      { label: 'Components',      page: 'ships.html',           tab: 'components' },
     };

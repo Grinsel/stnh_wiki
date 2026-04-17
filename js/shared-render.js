@@ -153,6 +153,7 @@ const SharedRender = (() => {
         tradition:     { page: 'governments.html', param: 'search', tab: 'traditions' },
         policy:        { page: 'governments.html', param: 'search', tab: 'policies' },
         edict:         { page: 'governments.html', param: 'search', tab: 'edicts' },
+        councilor:     { page: 'governments.html', param: 'search', tab: 'councilors' },
         trait:         { page: 'traits.html',      param: 'search', tab: 'traits' },
         perk:          { page: 'governments.html', param: 'search', tab: 'perks' },
         anomaly:       { page: 'exploration.html', param: 'search', tab: 'anomalies' },
