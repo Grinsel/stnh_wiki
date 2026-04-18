@@ -2,8 +2,10 @@
  * Namespace sidebar navigation, grouped by faction.
  * Supports chain navigation mode when a chain event is selected.
  */
-const NAMESPACE_NAV_BUILD = 'chain-curve-build-013';
-console.log('[namespace-nav]', NAMESPACE_NAV_BUILD);
+const NAMESPACE_NAV_BUILD = 'chain-curve-build-014';
+if (typeof localStorage !== 'undefined' && localStorage.getItem('stnh-debug')) {
+    console.log('[namespace-nav]', NAMESPACE_NAV_BUILD);
+}
 
 const NamespaceNav = (() => {
     let expanded = {};
@@ -225,6 +227,7 @@ const NamespaceNav = (() => {
     }
 
     let _hScrollWired = false;
+    let _hScrollCleanup = null;   // () => void; removes all listeners wired below
     function wireHScrollOnce() {
         if (_hScrollWired) return;
         if (!curveItems || curveItems.length === 0) return;
@@ -238,18 +241,24 @@ const NamespaceNav = (() => {
         if (!thumb) return;
         _hScrollWired = true;
 
+        // Resize handler flags the next rAF frame instead of measuring right
+        // away — guarantees layout has settled before updateHScrollThumb reads
+        // barRect.width.
+        const onResize = () => { curveDirty = true; };
+
         // Tree scroll -> move thumb
         tree.addEventListener('scroll', updateHScrollThumb, { passive: true });
-        window.addEventListener('resize', updateHScrollThumb, { passive: true });
+        window.addEventListener('resize', onResize, { passive: true });
 
         // Click on bar -> scroll tree so clicked point becomes thumb center
-        bar.addEventListener('mousedown', (e) => {
+        const onBarDown = (e) => {
             if (e.target === thumb) return; // thumb handles its own drag
             const barRect = bar.getBoundingClientRect();
             const ratio = (e.clientX - barRect.left) / barRect.width;
             const scrollable = tree.scrollWidth - tree.clientWidth;
             tree.scrollLeft = ratio * scrollable;
-        });
+        };
+        bar.addEventListener('mousedown', onBarDown);
 
         // Thumb drag
         let dragStartX = 0;
@@ -267,7 +276,7 @@ const NamespaceNav = (() => {
             document.removeEventListener('mousemove', onMove);
             document.removeEventListener('mouseup', onUp);
         };
-        thumb.addEventListener('mousedown', (e) => {
+        const onThumbDown = (e) => {
             e.preventDefault();
             e.stopPropagation();
             dragStartX = e.clientX;
@@ -275,7 +284,17 @@ const NamespaceNav = (() => {
             bar.classList.add('dragging');
             document.addEventListener('mousemove', onMove);
             document.addEventListener('mouseup', onUp);
-        });
+        };
+        thumb.addEventListener('mousedown', onThumbDown);
+
+        _hScrollCleanup = () => {
+            tree.removeEventListener('scroll', updateHScrollThumb);
+            window.removeEventListener('resize', onResize);
+            bar.removeEventListener('mousedown', onBarDown);
+            thumb.removeEventListener('mousedown', onThumbDown);
+            document.removeEventListener('mousemove', onMove);
+            document.removeEventListener('mouseup', onUp);
+        };
     }
 
     function updateHScrollThumb() {
@@ -320,7 +339,6 @@ const NamespaceNav = (() => {
             for (let i = 0; i < curveItems.length; i++) curveCurrent[i] = curveTargets[i];
         }
         curveDirty = true;
-        _diagLogged = false;   // log again after the next settle
     }
 
     function startCurveAnim(itemEls, depths, memberIds, relations, activeId) {
@@ -347,6 +365,11 @@ const NamespaceNav = (() => {
             cancelAnimationFrame(curveRaf);
             curveRaf = null;
         }
+        if (_hScrollCleanup) {
+            _hScrollCleanup();
+            _hScrollCleanup = null;
+        }
+        _hScrollWired = false;
         curveItems = null;
         curveRelations = null;
         curveMembersInOrder = null;

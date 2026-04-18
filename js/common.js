@@ -157,10 +157,14 @@ const Common = (() => {
             document.documentElement.style.setProperty('--header-height', hh + 'px');
             if (nav) document.documentElement.style.setProperty('--nav-height', nh + 'px');
             if (footer) document.documentElement.style.setProperty('--footer-height', footer.offsetHeight + 'px');
+            // --detail-top = top of the main content area, used to size sticky
+            // sidebars/panels. Set unconditionally so pages without a filter bar
+            // (index.html etc.) still get an accurate value.
+            const filterHeight = filterBar ? filterBar.offsetHeight : 0;
             if (filterBar) {
                 document.documentElement.style.setProperty('--filter-bar-top', (hh + nh) + 'px');
-                document.documentElement.style.setProperty('--detail-top', (hh + nh + filterBar.offsetHeight) + 'px');
             }
+            document.documentElement.style.setProperty('--detail-top', (hh + nh + filterHeight) + 'px');
         };
         update();
         window.addEventListener('resize', update);

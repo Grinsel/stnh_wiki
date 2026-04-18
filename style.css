@@ -2099,9 +2099,20 @@ body.in-iframe #site-footer {
         position: static;
     }
 
-    /* Footer: no sticky on mobile */
+    /* Footer on mobile: drop the floating-label styling (fixed position,
+       narrow width, nowrap). Layout falls back to a regular block footer
+       at document end so nothing gets clipped on small screens. */
     #site-footer {
         position: static;
+        left: auto;
+        right: auto;
+        margin: 0;
+        width: auto;
+        max-width: 100%;
+        white-space: normal;
+        border-radius: 0;
+        border: none;
+        border-top: 1px solid var(--card-border);
     }
 
     /* Mobile collapsible filters */
