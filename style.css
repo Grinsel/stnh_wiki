@@ -729,10 +729,48 @@ select option:checked {
 #namespace-sidebar {
     width: 220px;
     flex-shrink: 0;
-    max-height: calc(100vh - 160px - var(--footer-height, 38px));
+    /* Sidebar lives inside #main-content which has padding: 1rem, so its
+       available height is viewport minus the sticky headers (--detail-top)
+       minus top+bottom padding (2rem). Footer is fixed and doesn't count. */
+    height: calc(100vh - var(--detail-top, 160px) - 2rem);
     overflow-y: auto;
+    overflow-x: hidden;
     position: sticky;
-    top: 80px;
+    top: calc(var(--detail-top, 160px) + 1rem);
+}
+
+/* Chain mode: header (#namespace-sidebar > .sidebar-header) + the back
+   button stay fixed at the top; only the tree scrolls internally. The
+   curve animation stays inside .chain-nav-tree and never pushes the
+   header around. */
+#namespace-sidebar:has(.chain-nav) {
+    display: flex;
+    flex-direction: column;
+    /* Use longhands — the base rule uses overflow-y: auto which would
+       otherwise win over the shorthand cascade order and let the custom
+       horizontal scrollbar drift below the visible area. */
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+#namespace-sidebar:has(.chain-nav) > .sidebar-header {
+    flex-shrink: 0;
+}
+#namespace-sidebar:has(.chain-nav) > #namespace-tree {
+    flex: 1 1 auto;
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;                /* sidebar-level y-scroll disabled while
+                                        the tree scrolls internally */
+    display: flex;
+    flex-direction: column;
+}
+#namespace-sidebar:has(.chain-nav) .chain-nav {
+    min-width: 0;
+    overflow: hidden;
+    /* Take the parent's full available height so the tree flex-grows within
+       this wrapper and .chain-hscroll pins to its bottom edge. */
+    flex: 1 1 auto;
+    min-height: 0;
 }
 
 .sidebar-header {
@@ -1359,18 +1397,30 @@ select option:checked {
     padding: 1rem;
 }
 
-/* Footer */
+/* Footer — floats in the centre of the viewport bottom so it doesn't add
+   to document height (no page scrollbar) and doesn't cover the sidebars
+   left/right. Only the centred attribution label is visible. */
 #site-footer {
     text-align: center;
-    padding: 0.75rem;
+    padding: 0.4rem 1rem;
     font-size: 0.65rem;
     color: var(--text-muted);
-    border-top: 1px solid var(--card-border);
-    margin-top: auto;
-    position: sticky;
+    position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
     background: var(--bg-deep);
+    border: 1px solid var(--card-border);
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
     z-index: 10;
+    pointer-events: auto;
+    max-width: 60vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Search section divider */
@@ -1431,11 +1481,13 @@ mark {
     animation: galaxy-tooltip-in 0.18s cubic-bezier(0.2, 0, 0.2, 1) both;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
+/* Scrollbar — thin, muted, matches the chain-nav custom bar */
+html { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparent; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+[data-theme="light"] html { scrollbar-color: rgba(0,0,0,0.15) transparent; }
 
 
 /* =============================================================================
@@ -3191,6 +3243,8 @@ body.in-iframe #site-footer {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
+    flex: 1 1 auto;
+    min-height: 0;
 }
 
 .chain-nav-back {
@@ -3205,6 +3259,7 @@ body.in-iframe #site-footer {
     text-align: left;
     transition: color 0.2s, border-color 0.2s;
     margin-bottom: 0.3rem;
+    flex-shrink: 0;
 }
 .chain-nav-back:hover {
     color: var(--accent);
@@ -3214,7 +3269,84 @@ body.in-iframe #site-footer {
 .chain-nav-tree {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;     /* let items take intrinsic width so
+                                    horizontal overflow triggers the x-scroll */
     gap: 0.1rem;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;          /* native x-bar is unreliable in this nesting;
+                                    we draw our own below as .chain-hscroll */
+    /* Custom thin scrollbar to match the muted sidebar aesthetic. */
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-border) transparent;
+}
+
+/* Custom horizontal scrollbar rendered below the tree. Always visible while
+   chain mode is active; thumb reflects the visible range of scrollLeft.
+   Sticky at the bottom of .chain-nav so it stays pinned to the visible edge
+   of the sidebar regardless of any enclosing scroll state. */
+.chain-hscroll {
+    flex-shrink: 0;
+    height: 5px;
+    margin-top: 2px;
+    background: transparent;
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+.chain-hscroll-thumb {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    min-width: 16px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.15);
+    transition: background 0.15s;
+}
+.chain-hscroll:hover .chain-hscroll-thumb,
+.chain-hscroll.dragging .chain-hscroll-thumb {
+    background: rgba(255, 255, 255, 0.25);
+}
+[data-theme="light"] .chain-hscroll-thumb {
+    background: rgba(0, 0, 0, 0.15);
+}
+[data-theme="light"] .chain-hscroll:hover .chain-hscroll-thumb,
+[data-theme="light"] .chain-hscroll.dragging .chain-hscroll-thumb {
+    background: rgba(0, 0, 0, 0.25);
+}
+/* Invisible spacer that sits below the last row; JS sets its width to the
+   widest row so the browser gets an honest overflow signal and the
+   horizontal scrollbar stays in sync. Items alone don't drive the width
+   because some CSS interactions keep collapsing them to container width. */
+.chain-nav-tree.curve .chain-nav-spacer {
+    display: block;
+    height: 0;
+    flex-shrink: 0;
+    min-width: 100%;
+}
+.chain-nav-tree::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.chain-nav-tree::-webkit-scrollbar-thumb {
+    background: var(--accent-border);
+    border-radius: 3px;
+}
+.chain-nav-tree::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+.chain-nav-tree::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Items must not force their own width; we want the scroll area to expand
+   only when any translateX actually needs more room. */
+.chain-nav-tree .chain-nav-item {
+    width: max-content;
+    min-width: 100%;
 }
 
 .chain-nav-item {
@@ -3228,6 +3360,13 @@ body.in-iframe #site-footer {
     color: var(--text-muted);
     transition: background 0.15s, color 0.15s;
     min-height: 1.3rem;
+}
+
+/* Curve mode: the rAF loop animates padding-left per item so items take
+   up real layout width — this is what lets the horizontal scrollbar show
+   up when any row extends past the sidebar edge. */
+.chain-nav-tree.curve .chain-nav-item {
+    will-change: padding-left;
 }
 
 .chain-nav-item:hover {
@@ -3257,6 +3396,23 @@ body.in-iframe #site-footer {
     text-overflow: ellipsis;
     flex: 1;
     min-width: 0;
+}
+
+/* In curve mode the tree scrolls horizontally, so names grow naturally to
+   their full width instead of being ellipsed inside the 220px sidebar. */
+.chain-nav-tree.curve .chain-nav-name {
+    overflow: visible;
+    text-overflow: clip;
+    flex: 0 0 auto;
+}
+/* Force the item to hug its intrinsic content width so padding + name + id
+   actually add up and trigger x-overflow on the tree. Without this the flex
+   row would stay at the shrink-wrap width of the tree and the scrollbar
+   never appears. */
+.chain-nav-tree.curve .chain-nav-item {
+    width: max-content;
+    min-width: 100%;
+    flex-shrink: 0;
 }
 
 .chain-nav-id {
