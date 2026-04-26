@@ -44144,13 +44144,10 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Building: Organ Storage Facility | Job: Vidiian Honatta",
+      "description": "Building: Organ Storage Facility",
       "unlocks_by_type": {
         "Building": [
           "Organ Storage Facility"
-        ],
-        "Job": [
-          "Vidiian Honatta"
         ]
       }
     },

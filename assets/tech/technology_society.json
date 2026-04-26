@@ -7750,7 +7750,7 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Buildings: Secret 2 Starfleet, Secret S31 Starfleet | Job: Enforcer | Policy: ufp_espionage_0",
+      "description": "Other: Custom | Buildings: Secret 2 Starfleet, Secret S31 Starfleet | Policy: ufp_espionage_0",
       "unlocks_by_type": {
         "Other": [
           "Custom"
@@ -7761,9 +7761,6 @@
         ],
         "Policy": [
           "ufp_espionage_0"
-        ],
-        "Job": [
-          "Enforcer"
         ]
       }
     },
@@ -8721,15 +8718,10 @@
       "other": [
         "diplo_action"
       ],
-      "description": "Other: diplo_action | Jobs: Gene, Gene Drone, Vidiian Honatta",
+      "description": "Other: diplo_action",
       "unlocks_by_type": {
         "Other": [
           "diplo_action"
-        ],
-        "Job": [
-          "Gene",
-          "Gene Drone",
-          "Vidiian Honatta"
         ]
       }
     },
@@ -8891,15 +8883,10 @@
       "other": [
         "diplo_action"
       ],
-      "description": "Other: diplo_action | Jobs: Gene, Gene Drone, Vidiian Honatta",
+      "description": "Other: diplo_action",
       "unlocks_by_type": {
         "Other": [
           "diplo_action"
-        ],
-        "Job": [
-          "Gene",
-          "Gene Drone",
-          "Vidiian Honatta"
         ]
       }
     },
@@ -12468,16 +12455,13 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Buildings: Nanite Factory 1, Nanite Factory 2, Nanite Factory 3, Nanite Factory 4, Borg Mustering 3",
+      "description": "Other: Custom | Buildings: Nanite Factory 3, Borg Mustering 3",
       "unlocks_by_type": {
         "Other": [
           "Custom"
         ],
         "Building": [
-          "Nanite Factory 1",
-          "Nanite Factory 2",
           "Nanite Factory 3",
-          "Nanite Factory 4",
           "Borg Mustering 3"
         ]
       }
@@ -12565,15 +12549,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Buildings: Nanite Factory 2, Nanite Factory 3, Nanite Factory 4",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "Building": [
-          "Nanite Factory 2",
-          "Nanite Factory 3",
-          "Nanite Factory 4"
         ]
       }
     },
@@ -12613,14 +12592,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Buildings: Nanite Factory 3, Nanite Factory 4",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "Building": [
-          "Nanite Factory 3",
-          "Nanite Factory 4"
         ]
       }
     },
@@ -12701,13 +12676,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Building: Nanite Factory 4",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "Building": [
-          "Nanite Factory 4"
         ]
       }
     },
@@ -13121,13 +13093,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Job: Drone Undine",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "Job": [
-          "Drone Undine"
         ]
       }
     },
@@ -13167,16 +13136,13 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Decision: Expand Borg Unicomplex 3 | Job: Drone Undine",
+      "description": "Other: Custom | Decision: Expand Borg Unicomplex 3",
       "unlocks_by_type": {
         "Other": [
           "Custom"
         ],
         "Decision": [
           "Expand Borg Unicomplex 3"
-        ],
-        "Job": [
-          "Drone Undine"
         ]
       }
     },
@@ -13215,13 +13181,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Job: Drone Undine",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "Job": [
-          "Drone Undine"
         ]
       }
     },
@@ -15813,12 +15776,8 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Job: Drone Undine",
-      "unlocks_by_type": {
-        "Job": [
-          "Drone Undine"
-        ]
-      }
+      "description": "",
+      "unlocks_by_type": {}
     },
     "faction_availability": {},
     "is_rare": true,
@@ -16170,81 +16129,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Buildings: Orbital Capital 1, Orbital Capital 2, Orbital Capital 3, Orbital Capital 4, Orbital Capital 5, Deployment Post, Machine Capital 2, Machine Capital 3, Machine Capital 4, Machine Capital 5, Borg Capital 1, Borg Capital 2, Borg Capital 3, Borg Capital 4, Borg Capital 5, Capital Terran 3, Capital Terran 4, Capital Terran 5, Capital Confederacy 3, Capital Confederacy 4, Capital Confederacy 5, Menagerie Capital 5, Penal Capital 2, Penal Capital 3, Penal Capital 4, Penal Capital Rure 2, Penal Slave Colony 2, Penal Slave Colony 3, Penal Slave Colony 4, Penal Slave Colony 5, Resort Capital 2, Resort Capital 3, Resort Capital 4, Resort Capital 5, Wilderness Capital 2, Cloning Capital 2, Cloning Capital 3, Cloning Capital 4, Cloning Capital 5, Commercial Capital 3, Commercial Capital 4, Commercial Capital 5, Forge Capital 3, Forge Capital 4, Forge Capital 5, Religious Capital 2, Religious Capital 3, Religious Capital 4, Religious Capital Vulcan 2, Religious Capital Klingon 2, Religious Capital Hurq 2, Religious Capital Hurq 3, Religious Capital Hurq 4, Embassy Capital 2, Embassy Capital 3, Embassy Capital 4, Embassy Capital 5, Military Capital 3, Military Capital 4, Military Capital 5, University Capital 2, University Capital 3, University Capital 4, University Capital 5, Undine Capital 1, Undine Capital 2, Undine Capital 3, Undine Capital 4, Undine Capital 5",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "Building": [
-          "Orbital Capital 1",
-          "Orbital Capital 2",
-          "Orbital Capital 3",
-          "Orbital Capital 4",
-          "Orbital Capital 5",
-          "Deployment Post",
-          "Machine Capital 2",
-          "Machine Capital 3",
-          "Machine Capital 4",
-          "Machine Capital 5",
-          "Borg Capital 1",
-          "Borg Capital 2",
-          "Borg Capital 3",
-          "Borg Capital 4",
-          "Borg Capital 5",
-          "Capital Terran 3",
-          "Capital Terran 4",
-          "Capital Terran 5",
-          "Capital Confederacy 3",
-          "Capital Confederacy 4",
-          "Capital Confederacy 5",
-          "Menagerie Capital 5",
-          "Penal Capital 2",
-          "Penal Capital 3",
-          "Penal Capital 4",
-          "Penal Capital Rure 2",
-          "Penal Slave Colony 2",
-          "Penal Slave Colony 3",
-          "Penal Slave Colony 4",
-          "Penal Slave Colony 5",
-          "Resort Capital 2",
-          "Resort Capital 3",
-          "Resort Capital 4",
-          "Resort Capital 5",
-          "Wilderness Capital 2",
-          "Cloning Capital 2",
-          "Cloning Capital 3",
-          "Cloning Capital 4",
-          "Cloning Capital 5",
-          "Commercial Capital 3",
-          "Commercial Capital 4",
-          "Commercial Capital 5",
-          "Forge Capital 3",
-          "Forge Capital 4",
-          "Forge Capital 5",
-          "Religious Capital 2",
-          "Religious Capital 3",
-          "Religious Capital 4",
-          "Religious Capital Vulcan 2",
-          "Religious Capital Klingon 2",
-          "Religious Capital Hurq 2",
-          "Religious Capital Hurq 3",
-          "Religious Capital Hurq 4",
-          "Embassy Capital 2",
-          "Embassy Capital 3",
-          "Embassy Capital 4",
-          "Embassy Capital 5",
-          "Military Capital 3",
-          "Military Capital 4",
-          "Military Capital 5",
-          "University Capital 2",
-          "University Capital 3",
-          "University Capital 4",
-          "University Capital 5",
-          "Undine Capital 1",
-          "Undine Capital 2",
-          "Undine Capital 3",
-          "Undine Capital 4",
-          "Undine Capital 5"
         ]
       }
     },
@@ -16279,74 +16167,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Buildings: Orbital Capital 1, Orbital Capital 2, Orbital Capital 3, Orbital Capital 4, Orbital Capital 5, Deployment Post, Machine Capital 2, Machine Capital 3, Machine Capital 4, Machine Capital 5, Borg Capital 2, Borg Capital 3, Borg Capital 4, Borg Capital 5, Capital Terran 3, Capital Terran 4, Capital Terran 5, Capital Confederacy 3, Capital Confederacy 4, Capital Confederacy 5, Menagerie Capital 5, Penal Capital 2, Penal Capital 3, Penal Capital 4, Penal Capital Rure 2, Penal Slave Colony 2, Penal Slave Colony 3, Penal Slave Colony 4, Penal Slave Colony 5, Resort Capital 2, Resort Capital 3, Resort Capital 4, Resort Capital 5, Wilderness Capital 2, Cloning Capital 2, Cloning Capital 3, Cloning Capital 4, Cloning Capital 5, Commercial Capital 3, Commercial Capital 4, Commercial Capital 5, Religious Capital 2, Religious Capital 3, Religious Capital 4, Religious Capital Vulcan 2, Religious Capital Klingon 2, Religious Capital Hurq 2, Religious Capital Hurq 3, Religious Capital Hurq 4, Embassy Capital 2, Embassy Capital 3, Embassy Capital 4, Embassy Capital 5, University Capital 2, University Capital 3, University Capital 4, University Capital 5, Undine Capital 1, Undine Capital 2, Undine Capital 3, Undine Capital 4, Undine Capital 5",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "Building": [
-          "Orbital Capital 1",
-          "Orbital Capital 2",
-          "Orbital Capital 3",
-          "Orbital Capital 4",
-          "Orbital Capital 5",
-          "Deployment Post",
-          "Machine Capital 2",
-          "Machine Capital 3",
-          "Machine Capital 4",
-          "Machine Capital 5",
-          "Borg Capital 2",
-          "Borg Capital 3",
-          "Borg Capital 4",
-          "Borg Capital 5",
-          "Capital Terran 3",
-          "Capital Terran 4",
-          "Capital Terran 5",
-          "Capital Confederacy 3",
-          "Capital Confederacy 4",
-          "Capital Confederacy 5",
-          "Menagerie Capital 5",
-          "Penal Capital 2",
-          "Penal Capital 3",
-          "Penal Capital 4",
-          "Penal Capital Rure 2",
-          "Penal Slave Colony 2",
-          "Penal Slave Colony 3",
-          "Penal Slave Colony 4",
-          "Penal Slave Colony 5",
-          "Resort Capital 2",
-          "Resort Capital 3",
-          "Resort Capital 4",
-          "Resort Capital 5",
-          "Wilderness Capital 2",
-          "Cloning Capital 2",
-          "Cloning Capital 3",
-          "Cloning Capital 4",
-          "Cloning Capital 5",
-          "Commercial Capital 3",
-          "Commercial Capital 4",
-          "Commercial Capital 5",
-          "Religious Capital 2",
-          "Religious Capital 3",
-          "Religious Capital 4",
-          "Religious Capital Vulcan 2",
-          "Religious Capital Klingon 2",
-          "Religious Capital Hurq 2",
-          "Religious Capital Hurq 3",
-          "Religious Capital Hurq 4",
-          "Embassy Capital 2",
-          "Embassy Capital 3",
-          "Embassy Capital 4",
-          "Embassy Capital 5",
-          "University Capital 2",
-          "University Capital 3",
-          "University Capital 4",
-          "University Capital 5",
-          "Undine Capital 1",
-          "Undine Capital 2",
-          "Undine Capital 3",
-          "Undine Capital 4",
-          "Undine Capital 5"
         ]
       }
     },
@@ -16381,65 +16205,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Buildings: Orbital Capital 1, Orbital Capital 2, Orbital Capital 3, Orbital Capital 4, Orbital Capital 5, Deployment Post, Machine Capital 2, Machine Capital 3, Machine Capital 4, Machine Capital 5, Borg Capital 1, Borg Capital 2, Borg Capital 3, Borg Capital 4, Borg Capital 5, Capital Terran 3, Capital Terran 4, Capital Terran 5, Capital Confederacy 3, Capital Confederacy 4, Capital Confederacy 5, Menagerie Capital 5, Penal Capital 2, Penal Capital 3, Penal Capital 4, Penal Capital Rure 2, Penal Slave Colony 2, Penal Slave Colony 3, Penal Slave Colony 4, Penal Slave Colony 5, Resort Capital 2, Resort Capital 3, Resort Capital 4, Resort Capital 5, Wilderness Capital 2, Cloning Capital 2, Cloning Capital 3, Cloning Capital 4, Cloning Capital 5, Commercial Capital 3, Commercial Capital 4, Commercial Capital 5, Forge Capital 3, Forge Capital 4, Forge Capital 5, Military Capital 3, Military Capital 4, Military Capital 5, Undine Capital 1, Undine Capital 2, Undine Capital 3, Undine Capital 4, Undine Capital 5",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "Building": [
-          "Orbital Capital 1",
-          "Orbital Capital 2",
-          "Orbital Capital 3",
-          "Orbital Capital 4",
-          "Orbital Capital 5",
-          "Deployment Post",
-          "Machine Capital 2",
-          "Machine Capital 3",
-          "Machine Capital 4",
-          "Machine Capital 5",
-          "Borg Capital 1",
-          "Borg Capital 2",
-          "Borg Capital 3",
-          "Borg Capital 4",
-          "Borg Capital 5",
-          "Capital Terran 3",
-          "Capital Terran 4",
-          "Capital Terran 5",
-          "Capital Confederacy 3",
-          "Capital Confederacy 4",
-          "Capital Confederacy 5",
-          "Menagerie Capital 5",
-          "Penal Capital 2",
-          "Penal Capital 3",
-          "Penal Capital 4",
-          "Penal Capital Rure 2",
-          "Penal Slave Colony 2",
-          "Penal Slave Colony 3",
-          "Penal Slave Colony 4",
-          "Penal Slave Colony 5",
-          "Resort Capital 2",
-          "Resort Capital 3",
-          "Resort Capital 4",
-          "Resort Capital 5",
-          "Wilderness Capital 2",
-          "Cloning Capital 2",
-          "Cloning Capital 3",
-          "Cloning Capital 4",
-          "Cloning Capital 5",
-          "Commercial Capital 3",
-          "Commercial Capital 4",
-          "Commercial Capital 5",
-          "Forge Capital 3",
-          "Forge Capital 4",
-          "Forge Capital 5",
-          "Military Capital 3",
-          "Military Capital 4",
-          "Military Capital 5",
-          "Undine Capital 1",
-          "Undine Capital 2",
-          "Undine Capital 3",
-          "Undine Capital 4",
-          "Undine Capital 5"
         ]
       }
     },
@@ -16474,74 +16243,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Buildings: Orbital Capital 1, Orbital Capital 2, Orbital Capital 3, Orbital Capital 4, Orbital Capital 5, Deployment Post, Machine Capital 2, Machine Capital 3, Machine Capital 4, Machine Capital 5, Borg Capital 1, Borg Capital 2, Borg Capital 3, Borg Capital 4, Borg Capital 5, Capital Terran 3, Capital Terran 4, Capital Terran 5, Capital Confederacy 3, Capital Confederacy 4, Capital Confederacy 5, Menagerie Capital 5, Penal Capital 2, Penal Capital 3, Penal Capital 4, Penal Capital Rure 2, Penal Slave Colony 2, Penal Slave Colony 3, Penal Slave Colony 4, Penal Slave Colony 5, Resort Capital 2, Resort Capital 3, Resort Capital 4, Resort Capital 5, Wilderness Capital 2, Cloning Capital 2, Cloning Capital 3, Cloning Capital 4, Cloning Capital 5, Commercial Capital 3, Commercial Capital 4, Commercial Capital 5, Forge Capital 3, Forge Capital 4, Forge Capital 5, Religious Capital 2, Religious Capital 3, Religious Capital 4, Religious Capital Vulcan 2, Religious Capital Klingon 2, Religious Capital Hurq 2, Religious Capital Hurq 3, Religious Capital Hurq 4, Embassy Capital 2, Embassy Capital 3, Embassy Capital 4, Embassy Capital 5, Undine Capital 1, Undine Capital 2, Undine Capital 3, Undine Capital 4, Undine Capital 5",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "Building": [
-          "Orbital Capital 1",
-          "Orbital Capital 2",
-          "Orbital Capital 3",
-          "Orbital Capital 4",
-          "Orbital Capital 5",
-          "Deployment Post",
-          "Machine Capital 2",
-          "Machine Capital 3",
-          "Machine Capital 4",
-          "Machine Capital 5",
-          "Borg Capital 1",
-          "Borg Capital 2",
-          "Borg Capital 3",
-          "Borg Capital 4",
-          "Borg Capital 5",
-          "Capital Terran 3",
-          "Capital Terran 4",
-          "Capital Terran 5",
-          "Capital Confederacy 3",
-          "Capital Confederacy 4",
-          "Capital Confederacy 5",
-          "Menagerie Capital 5",
-          "Penal Capital 2",
-          "Penal Capital 3",
-          "Penal Capital 4",
-          "Penal Capital Rure 2",
-          "Penal Slave Colony 2",
-          "Penal Slave Colony 3",
-          "Penal Slave Colony 4",
-          "Penal Slave Colony 5",
-          "Resort Capital 2",
-          "Resort Capital 3",
-          "Resort Capital 4",
-          "Resort Capital 5",
-          "Wilderness Capital 2",
-          "Cloning Capital 2",
-          "Cloning Capital 3",
-          "Cloning Capital 4",
-          "Cloning Capital 5",
-          "Commercial Capital 3",
-          "Commercial Capital 4",
-          "Commercial Capital 5",
-          "Forge Capital 3",
-          "Forge Capital 4",
-          "Forge Capital 5",
-          "Religious Capital 2",
-          "Religious Capital 3",
-          "Religious Capital 4",
-          "Religious Capital Vulcan 2",
-          "Religious Capital Klingon 2",
-          "Religious Capital Hurq 2",
-          "Religious Capital Hurq 3",
-          "Religious Capital Hurq 4",
-          "Embassy Capital 2",
-          "Embassy Capital 3",
-          "Embassy Capital 4",
-          "Embassy Capital 5",
-          "Undine Capital 1",
-          "Undine Capital 2",
-          "Undine Capital 3",
-          "Undine Capital 4",
-          "Undine Capital 5"
         ]
       }
     },
@@ -16576,44 +16281,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Buildings: Orbital Capital 3, Deployment Post, Machine Capital 2, Machine Capital 3, Machine Capital 4, Machine Capital 5, Borg Capital 1, Borg Capital 2, Borg Capital 3, Borg Capital 4, Borg Capital 5, Forge Capital 3, Forge Capital 4, Forge Capital 5, Religious Capital 3, Religious Capital 4, Religious Capital Vulcan 2, Religious Capital Klingon 2, Religious Capital Hurq 2, Religious Capital Hurq 3, Religious Capital Hurq 4, Military Capital 3, Military Capital 4, Military Capital 5, University Capital 2, University Capital 3, University Capital 4, University Capital 5, Undine Capital 1, Undine Capital 2, Undine Capital 3, Undine Capital 4",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "Building": [
-          "Orbital Capital 3",
-          "Deployment Post",
-          "Machine Capital 2",
-          "Machine Capital 3",
-          "Machine Capital 4",
-          "Machine Capital 5",
-          "Borg Capital 1",
-          "Borg Capital 2",
-          "Borg Capital 3",
-          "Borg Capital 4",
-          "Borg Capital 5",
-          "Forge Capital 3",
-          "Forge Capital 4",
-          "Forge Capital 5",
-          "Religious Capital 3",
-          "Religious Capital 4",
-          "Religious Capital Vulcan 2",
-          "Religious Capital Klingon 2",
-          "Religious Capital Hurq 2",
-          "Religious Capital Hurq 3",
-          "Religious Capital Hurq 4",
-          "Military Capital 3",
-          "Military Capital 4",
-          "Military Capital 5",
-          "University Capital 2",
-          "University Capital 3",
-          "University Capital 4",
-          "University Capital 5",
-          "Undine Capital 1",
-          "Undine Capital 2",
-          "Undine Capital 3",
-          "Undine Capital 4"
         ]
       }
     },
@@ -16648,26 +16319,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Buildings: Deployment Post, Machine Capital 2, Machine Capital 3, Machine Capital 4, Machine Capital 5, Borg Capital 1, Borg Capital 2, Borg Capital 3, Borg Capital 4, Borg Capital 5, Undine Capital 1, Undine Capital 2, Undine Capital 3, Undine Capital 4",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "Building": [
-          "Deployment Post",
-          "Machine Capital 2",
-          "Machine Capital 3",
-          "Machine Capital 4",
-          "Machine Capital 5",
-          "Borg Capital 1",
-          "Borg Capital 2",
-          "Borg Capital 3",
-          "Borg Capital 4",
-          "Borg Capital 5",
-          "Undine Capital 1",
-          "Undine Capital 2",
-          "Undine Capital 3",
-          "Undine Capital 4"
         ]
       }
     },
@@ -20406,17 +20061,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Districts: Research, Research Node, Admin, Admin Hive, Admin Undine",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "District": [
-          "Research",
-          "Research Node",
-          "Admin",
-          "Admin Hive",
-          "Admin Undine"
         ]
       }
     },
@@ -20492,16 +20140,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Districts: Research, Admin, Admin Hive, Admin Undine",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "District": [
-          "Research",
-          "Admin",
-          "Admin Hive",
-          "Admin Undine"
         ]
       }
     },
@@ -20536,16 +20178,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Districts: Research Node, Admin, Admin Hive, Admin Undine",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "District": [
-          "Research Node",
-          "Admin",
-          "Admin Hive",
-          "Admin Undine"
         ]
       }
     },
@@ -20579,16 +20215,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Districts: Research, Research Node, Admin, Admin Hive",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "District": [
-          "Research",
-          "Research Node",
-          "Admin",
-          "Admin Hive"
         ]
       }
     },
@@ -20699,17 +20329,10 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Districts: Research, Research Node, Admin, Admin Hive, Admin Undine",
+      "description": "Other: Custom",
       "unlocks_by_type": {
         "Other": [
           "Custom"
-        ],
-        "District": [
-          "Research",
-          "Research Node",
-          "Admin",
-          "Admin Hive",
-          "Admin Undine"
         ]
       }
     },

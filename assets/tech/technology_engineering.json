@@ -12345,20 +12345,14 @@
       "other": [
         "diplo_action"
       ],
-      "description": "Other: diplo_action | Buildings: Fabricator 1, Fabricator 2, Trellium Mine 1, Trellium Mining Facility | Starbase Buildings: Refinery, Processing",
+      "description": "Other: diplo_action | Buildings: Trellium Mine 1, Trellium Mining Facility",
       "unlocks_by_type": {
         "Other": [
           "diplo_action"
         ],
         "Building": [
-          "Fabricator 1",
-          "Fabricator 2",
           "Trellium Mine 1",
           "Trellium Mining Facility"
-        ],
-        "Starbase Building": [
-          "Refinery",
-          "Processing"
         ]
       }
     },

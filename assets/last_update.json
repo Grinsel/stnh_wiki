@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-04-26T12:31:46.051449",
-  "elapsed_seconds": 73.6,
+  "timestamp": "2026-04-26T12:54:20.027567",
+  "elapsed_seconds": 53.0,
   "results": {
     "localisation": {
-      "english": 240897,
-      "german": 241133,
-      "french": 252148,
-      "spanish": 240884,
-      "russian": 241417,
-      "polish": 241392,
-      "braz_por": 235461
+      "english": 240942,
+      "german": 241160,
+      "french": 252176,
+      "spanish": 240905,
+      "russian": 241445,
+      "polish": 241413,
+      "braz_por": 235482
     },
     "inject_missing_loc": {
       "english": 101,
@@ -33311,6 +33311,11 @@
         "texture_name": "outliner_custom1",
         "frames": 1
       },
+      "GFX_outliner_custom2": {
+        "texture_path": "gfx/interface/icons/00_customUI/outliner/outliner_custom2.dds",
+        "texture_name": "outliner_custom2",
+        "frames": 1
+      },
       "GFX_subwindow_tile_custom1": {
         "texture_path": "gfx/interface/icons/00_customUI/subwindow_tile_custom1.dds",
         "texture_name": "subwindow_tile_custom1",
@@ -33895,6 +33900,11 @@
         "texture_path": "gfx/interface/icons/00_customUI/combat_top_background_custom.dds",
         "texture_name": "combat_top_background_custom",
         "frames": 1
+      },
+      "GFX_stnhwiki_button1": {
+        "texture_path": "gfx/interface/icons/00_customUI/stnhwiki_button1.dds",
+        "texture_name": "stnhwiki_button1",
+        "frames": 3
       },
       "sth_GFX_evt_alien_mutiny": {
         "texture_path": "gfx/event_pictures/alien_mutiny.dds",
@@ -62208,14 +62218,14 @@
       }
     },
     "events": {
-      "events": 8873,
+      "events": 8895,
       "namespaces": 287,
       "files": 430,
-      "loc_keys": 240897,
-      "on_actions": 196,
+      "loc_keys": 240942,
+      "on_actions": 199,
       "event_chains": 39,
-      "gfx_sprites": 12437,
-      "relationship_edges": 7057,
+      "gfx_sprites": 12439,
+      "relationship_edges": 7073,
       "detail_files": 272
     },
     "ships": {
@@ -62225,14 +62235,14 @@
       "model_variants": 1624,
       "files": 142,
       "errors": 0,
-      "elapsed": 24.0
+      "elapsed": 14.3
     },
     "buildings": {
       "buildings": 653,
       "districts": 56,
       "files": 51,
       "errors": 0,
-      "elapsed": 0.3
+      "elapsed": 0.2
     },
     "traits": {
       "traits": 470,
@@ -62240,7 +62250,7 @@
       "ascension_perks": 58,
       "files": 90,
       "errors": 0,
-      "elapsed": 0.7
+      "elapsed": 0.2
     },
     "governments": {
       "governments": 185,
@@ -62251,7 +62261,7 @@
       "councilors": 146,
       "files": 43,
       "errors": 0,
-      "elapsed": 0.2
+      "elapsed": 0.1
     },
     "megastructures": {
       "megastructures": 116,
@@ -62260,35 +62270,35 @@
       "mega_model_variants": 103,
       "files": 67,
       "errors": 0,
-      "elapsed": 4.9
+      "elapsed": 4.4
     },
     "anomalies": {
       "anomalies": 132,
       "archaeology": 29,
       "files": 70,
       "errors": 0,
-      "elapsed": 0.2
+      "elapsed": 0.0
     },
     "empires": {
       "empires": 110,
       "species": 255,
       "files": 47,
       "errors": 0,
-      "elapsed": 0.1
+      "elapsed": 0.0
     },
     "galaxy_map": {
       "placed": 103,
       "unplaced": 1,
       "maps": 16,
       "flags_converted": 79,
-      "elapsed": 0.4
+      "elapsed": 0.3
     },
     "economy": {
       "jobs": 306,
       "deposits": 667,
       "files": 58,
       "errors": 0,
-      "elapsed": 0.3
+      "elapsed": 0.1
     },
     "techtree": {
       "skipped": false,
@@ -62297,10 +62307,10 @@
     },
     "search": {
       "search_index": {
-        "total_items": 21625,
-        "size_kb": 3227,
+        "total_items": 21647,
+        "size_kb": 3229,
         "by_type": {
-          "event": 8873,
+          "event": 8895,
           "ship": 423,
           "component": 6406,
           "building": 653,
@@ -62350,7 +62360,7 @@
       "failed": 0,
       "multi_mesh": 0,
       "total": 1624,
-      "elapsed": 0.1
+      "elapsed": 0.0
     },
     "mega_models": {
       "converted": 0,
@@ -62480,8 +62490,8 @@
       "languages": {
         "english": {
           "common": 17469,
-          "events": 10708,
-          "buildings": 1412,
+          "events": 10720,
+          "buildings": 1424,
           "ships": 14252,
           "tech": 3986,
           "traits": 2043,
@@ -62493,7 +62503,7 @@
         },
         "german": {
           "common": 17470,
-          "events": 10702,
+          "events": 10715,
           "buildings": 1412,
           "ships": 14252,
           "tech": 3986,
@@ -62506,7 +62516,7 @@
         },
         "french": {
           "common": 17568,
-          "events": 10739,
+          "events": 10751,
           "buildings": 1412,
           "ships": 14247,
           "tech": 3986,
@@ -62519,7 +62529,7 @@
         },
         "spanish": {
           "common": 17467,
-          "events": 10708,
+          "events": 10718,
           "buildings": 1412,
           "ships": 14171,
           "tech": 3986,
@@ -62532,7 +62542,7 @@
         },
         "russian": {
           "common": 17470,
-          "events": 10708,
+          "events": 10720,
           "buildings": 1412,
           "ships": 14251,
           "tech": 3986,
@@ -62545,7 +62555,7 @@
         },
         "polish": {
           "common": 17460,
-          "events": 10702,
+          "events": 10712,
           "buildings": 1412,
           "ships": 14247,
           "tech": 3986,
@@ -62558,7 +62568,7 @@
         },
         "braz_por": {
           "common": 15973,
-          "events": 10708,
+          "events": 10718,
           "buildings": 1412,
           "ships": 14174,
           "tech": 3986,
@@ -62574,11 +62584,11 @@
       "modules_count": 10
     },
     "changes": {
-      "total_added": 0,
-      "total_removed": 5,
-      "total_modified": 2,
-      "modules_changed": 1,
-      "modules_unchanged": 21
+      "total_added": 25,
+      "total_removed": 3,
+      "total_modified": 125,
+      "modules_changed": 10,
+      "modules_unchanged": 12
     }
   }
 }
