@@ -1,19 +1,55 @@
 {
-  "timestamp": "2026-04-12T22:33:40.246526",
+  "timestamp": "2026-04-26T12:31:46.050690",
   "summary": {
     "total_added": 0,
-    "total_removed": 0,
-    "total_modified": 0,
-    "modules_changed": 0,
-    "modules_unchanged": 22
+    "total_removed": 5,
+    "total_modified": 2,
+    "modules_changed": 1,
+    "modules_unchanged": 21
   },
   "modules": {
     "events_index": {
       "old_count": 8878,
-      "new_count": 8878,
+      "new_count": 8873,
       "added": [],
-      "removed": [],
-      "modified": []
+      "removed": [
+        {
+          "id": "STH_policy.66",
+          "name_key": "Repeal the Treaty of Algeron"
+        },
+        {
+          "id": "STH_policy.67",
+          "name_key": "Federation Repeals the Treaty of Algeron"
+        },
+        {
+          "id": "STH_policy.68",
+          "name_key": "Romulan Condemnation"
+        },
+        {
+          "id": "STH_policy.69",
+          "name_key": "Romulan Watchfulness"
+        },
+        {
+          "id": "STH_policy.70",
+          "name_key": "Romulan Declaration of War"
+        }
+      ],
+      "modified": [
+        {
+          "id": "STH_andorian_flavour.33",
+          "changed_fields": [
+            "snip"
+          ],
+          "name_key": "Weytahn Demilitarised"
+        },
+        {
+          "id": "STH_policy.10",
+          "changed_fields": [
+            "opts"
+          ],
+          "name_key": "Galactic Politics"
+        }
+      ]
     },
     "ships": {
       "old_count": 423,
