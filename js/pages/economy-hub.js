@@ -335,10 +335,8 @@
             governments: 'government', civics: 'civic', authorities: 'authority',
         };
 
-        function fmtFlat(val, kind) {
-            const sign = kind === 'upkeep' ? '-' : '+';
-            return `${sign}${val}`;
-        }
+        function fmtProduceVal(val) { return `+${val}`; }
+        function fmtUpkeepVal(val)  { return `-${val}`; }
         function fmtModifierValue(mod) {
             const sign = mod.value >= 0 ? '+' : '';
             const suffix = mod.op === 'mult' ? '%' : '';
@@ -352,7 +350,7 @@
 
             let html = '';
 
-            // Group producers by module
+            // Group producers by module (direct producers — produces blocks only)
             if (entry.producers && entry.producers.length) {
                 const grouped = {};
                 for (const p of entry.producers) {
@@ -370,8 +368,34 @@
                     for (const p of list) {
                         const linkKind = MODULE_TO_LINK_KIND[p.module] || p.module;
                         const name = I18n.t(p.id) || p.id;
-                        const valStr = fmtFlat(p.flat, p.kind);
+                        const valStr = fmtProduceVal(p.flat);
                         html += `<span class="detail-meta-item">${SharedRender.wikiLink(p.id, linkKind, name)} <span class="resource-producer-value">${esc(valStr)}</span></span>`;
+                    }
+                    html += `</div></div>`;
+                }
+                html += `</div>`;
+            }
+
+            // Consumers — items that have this resource in their `upkeep` block
+            if (entry.consumers && entry.consumers.length) {
+                const grouped = {};
+                for (const c of entry.consumers) {
+                    if (!grouped[c.module]) grouped[c.module] = [];
+                    grouped[c.module].push(c);
+                }
+
+                html += `<div class="detail-section"><div class="detail-section-title">Consumers (${entry.consumers.length})</div>`;
+                for (const moduleKey of Object.keys(PRODUCER_LABELS)) {
+                    const list = grouped[moduleKey];
+                    if (!list || !list.length) continue;
+                    html += `<div class="resource-producer-group">`;
+                    html += `<div class="resource-producer-group-label">${esc(PRODUCER_LABELS[moduleKey])} (${list.length})</div>`;
+                    html += `<div class="detail-meta">`;
+                    for (const c of list) {
+                        const linkKind = MODULE_TO_LINK_KIND[c.module] || c.module;
+                        const name = I18n.t(c.id) || c.id;
+                        const valStr = fmtUpkeepVal(c.flat);
+                        html += `<span class="detail-meta-item">${SharedRender.wikiLink(c.id, linkKind, name)} <span class="resource-consumer-value">${esc(valStr)}</span></span>`;
                     }
                     html += `</div></div>`;
                 }
@@ -749,10 +773,12 @@
                     } else if (activeTab === 'resources') {
                         const entry = (resourceIndex && resourceIndex.by_resource) ? resourceIndex.by_resource[item.id] : null;
                         const prodCount = entry && entry.producers ? entry.producers.length : 0;
+                        const consCount = entry && entry.consumers ? entry.consumers.length : 0;
                         const modCount  = entry && entry.modifiers ? entry.modifiers.length : 0;
                         html += `<span class="detail-meta-item">${esc(resCategoryOf(item))}</span>`;
                         if (item.tradable)    html += `<span class="detail-meta-item">tradable</span>`;
                         if (prodCount)        html += `<span class="detail-meta-item">${prodCount} producers</span>`;
+                        if (consCount)        html += `<span class="detail-meta-item">${consCount} consumers</span>`;
                         if (modCount)         html += `<span class="detail-meta-item">${modCount} modifiers</span>`;
                     }
 

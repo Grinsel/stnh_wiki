@@ -33,10 +33,11 @@ def generate_all():
 
     _write_json(os.path.join(OUTPUT_ASSETS_DIR, 'resources.json'), resources)
 
-    print("  [2/2] Building producer/modifier index...")
+    print("  [2/2] Building producer/consumer/modifier index...")
     index = build_resource_index(resources, OUTPUT_ASSETS_DIR)
     s = index['stats']
     print(f"    {s['producer_links']} producer links, "
+          f"{s['consumer_links']} consumer links, "
           f"{s['modifier_links']} modifier links "
           f"({s['unparsed_modifiers']} unparsed) from {s['modules_loaded']} modules")
 
@@ -48,6 +49,7 @@ def generate_all():
     return {
         'resources': r_stats['items'],
         'producer_links': s['producer_links'],
+        'consumer_links': s['consumer_links'],
         'modifier_links': s['modifier_links'],
         'unparsed_modifiers': s['unparsed_modifiers'],
         'errors': r_stats['errors'],

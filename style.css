@@ -1076,6 +1076,18 @@ select option:checked {
     color: var(--text-muted);
 }
 
+/* Resources tab: signed value chips next to a producer/consumer link.
+   Theme-neutral colours — accents vary across themes, but +produce / -upkeep
+   should always read as green/red regardless of palette. */
+.resource-producer-value {
+    color: #4ade80;
+    font-weight: 600;
+}
+.resource-consumer-value {
+    color: #f87171;
+    font-weight: 600;
+}
+
 .detail-bio {
     font-size: 0.7rem;
     line-height: 1.5;

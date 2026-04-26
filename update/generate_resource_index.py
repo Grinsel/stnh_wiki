@@ -97,12 +97,13 @@ def build_resource_index(resources, assets_dir):
     jobs_for_stems = _load_module(assets_dir, 'jobs.json')
     producer_stems = build_producer_stems(jobs=jobs_for_stems)
 
-    by_resource = defaultdict(lambda: {'producers': [], 'modifiers': []})
+    by_resource = defaultdict(lambda: {'producers': [], 'consumers': [], 'modifiers': []})
     by_producer = {}
 
     stats = {
         'modules_loaded': 0,
         'producer_links': 0,
+        'consumer_links': 0,
         'modifier_links': 0,
         'unparsed_modifiers': 0,
         'unparsed_samples': [],
@@ -135,12 +136,12 @@ def build_resource_index(resources, assets_dir):
                     stats['producer_links'] += 1
             for res, flat in upkeep.items():
                 if res in res_set:
-                    by_resource[res]['producers'].append({
+                    by_resource[res]['consumers'].append({
                         'id': iid, 'module': module,
                         'page': page, 'tab': tab,
                         'kind': 'upkeep', 'flat': flat,
                     })
-                    stats['producer_links'] += 1
+                    stats['consumer_links'] += 1
             for field in _MODIFIER_FIELDS:
                 mfield = item.get(field)
                 for block_name, key, value in _iter_modifier_pairs(mfield):
@@ -185,6 +186,7 @@ if __name__ == '__main__':
     s = out['stats']
     print(f"  modules: {s['modules_loaded']}")
     print(f"  producer links: {s['producer_links']}")
+    print(f"  consumer links: {s['consumer_links']}")
     print(f"  modifier links: {s['modifier_links']}")
     print(f"  unparsed modifier names: {s['unparsed_modifiers']}")
     if s['unparsed_samples']:

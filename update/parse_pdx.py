@@ -96,17 +96,27 @@ class PdxParser:
     def __init__(self):
         pass
 
-    def parse(self, text):
-        """Parse a PDX script string. Returns list of dicts."""
+    def parse(self, text, globals_table=None):
+        """Parse a PDX script string. Returns list of dicts.
+
+        globals_table: optional dict of {@var: value} resolved from
+        common/scripted_variables/. File-local @var = value definitions
+        take precedence over globals (Stellaris semantics).
+        """
         lexer = PdxLexer(text)
         statements = self._parse_statements(lexer)
-        # Build variable table from top-level @var = value
+        # Build file-local variable table from top-level @var = value
         var_table = {}
         for stmt in statements:
             if isinstance(stmt, dict):
                 for k, v in stmt.items():
                     if isinstance(k, str) and k.startswith('@') and not isinstance(v, (list, dict)):
                         var_table[k] = v
+        # Merge globals as fallback (file-local wins)
+        if globals_table:
+            merged = dict(globals_table)
+            merged.update(var_table)
+            var_table = merged
         # Resolve @variable references in all statements
         if var_table:
             statements = _resolve_variables(statements, var_table)
@@ -272,6 +282,68 @@ def _coerce_number(val):
 # Singleton parser
 _parser = PdxParser()
 
+# Globally-scoped @variables resolved across all common/scripted_variables/*
+# files (mod overrides vanilla). Lazily populated on the first parse_file call
+# unless callers reset it via load_global_scripted_variables().
+_GLOBAL_VARS = None
+_GLOBAL_VARS_LOADED = False
+
+
+def load_global_scripted_variables(dirs):
+    """Walk the given list of scripted_variables directories, parse every .txt
+    file, and harvest every top-level @var = value assignment into a single
+    dict. Later dirs override earlier ones (mod after vanilla).
+
+    Files in this directory may also contain non-@ statements (e.g. @-style
+    constants used as map values) — those are ignored, only @-keys are kept.
+    """
+    import os
+    table = {}
+    for d in dirs or []:
+        if not d or not os.path.isdir(d):
+            continue
+        for fn in sorted(os.listdir(d)):
+            if not fn.lower().endswith('.txt'):
+                continue
+            path = os.path.join(d, fn)
+            try:
+                with open(path, 'r', encoding='utf-8-sig') as f:
+                    contents = f.read()
+            except Exception:
+                continue
+            try:
+                # parse without globals — these files only ever define new vars,
+                # never reference other ones in practice (verified via grep).
+                statements = _parser.parse(contents)
+            except Exception:
+                continue
+            for stmt in statements:
+                if not isinstance(stmt, dict):
+                    continue
+                for k, v in stmt.items():
+                    if isinstance(k, str) and k.startswith('@') and not isinstance(v, (list, dict)):
+                        table[k] = v
+    return table
+
+
+def _ensure_globals_loaded():
+    """Lazy-load globals using config-defined scripted-variables dirs.
+    Idempotent — only does work the first call."""
+    global _GLOBAL_VARS, _GLOBAL_VARS_LOADED
+    if _GLOBAL_VARS_LOADED:
+        return
+    _GLOBAL_VARS_LOADED = True  # set first to avoid re-entry on import errors
+    try:
+        import os
+        from config import STNH_MOD_ROOT, VANILLA_ROOT
+        dirs = [
+            os.path.join(VANILLA_ROOT,   'common', 'scripted_variables'),
+            os.path.join(STNH_MOD_ROOT, 'common', 'scripted_variables'),
+        ]
+        _GLOBAL_VARS = load_global_scripted_variables(dirs)
+    except Exception:
+        _GLOBAL_VARS = {}
+
 
 def parse_file(file_path):
     """
@@ -285,7 +357,8 @@ def parse_file(file_path):
         return None, f"Read error: {e}"
 
     try:
-        result = _parser.parse(contents)
+        _ensure_globals_loaded()
+        result = _parser.parse(contents, globals_table=_GLOBAL_VARS)
         return result, None
     except Exception as e:
         return None, f"Parse error: {e}"
@@ -293,7 +366,8 @@ def parse_file(file_path):
 
 def parse_string(text):
     """Parse a PDX script string. Returns list of dicts."""
-    return _parser.parse(text)
+    _ensure_globals_loaded()
+    return _parser.parse(text, globals_table=_GLOBAL_VARS)
 
 
 def get_value(block, key):

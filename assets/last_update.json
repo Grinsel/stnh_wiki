@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-26T13:58:14.203951",
-  "elapsed_seconds": 50.4,
+  "timestamp": "2026-04-26T16:00:03.317678",
+  "elapsed_seconds": 51.0,
   "results": {
     "localisation": {
       "english": 240942,
@@ -62235,7 +62235,7 @@
       "model_variants": 1624,
       "files": 142,
       "errors": 0,
-      "elapsed": 14.6
+      "elapsed": 15.2
     },
     "buildings": {
       "buildings": 653,
@@ -62270,7 +62270,7 @@
       "mega_model_variants": 103,
       "files": 67,
       "errors": 0,
-      "elapsed": 4.7
+      "elapsed": 4.8
     },
     "anomalies": {
       "anomalies": 132,
@@ -62302,11 +62302,12 @@
     },
     "resources": {
       "resources": 46,
-      "producer_links": 1898,
+      "producer_links": 988,
+      "consumer_links": 910,
       "modifier_links": 502,
       "unparsed_modifiers": 214,
       "errors": 0,
-      "elapsed": 0.0
+      "elapsed": 0.1
     },
     "techtree": {
       "skipped": false,
@@ -62476,9 +62477,9 @@
     "changes": {
       "total_added": 0,
       "total_removed": 0,
-      "total_modified": 0,
-      "modules_changed": 0,
-      "modules_unchanged": 22
+      "total_modified": 1139,
+      "modules_changed": 11,
+      "modules_unchanged": 11
     }
   }
 }
