@@ -69,6 +69,10 @@ MODULES = [
     ('deposits.json', 'economy', 'deposit', lambda e: {
         'category': e.get('category', ''),
     }),
+    ('resources.json', 'economy', 'resource', lambda e: {
+        'tradable': e.get('tradable', False),
+        'source': e.get('source', ''),
+    }),
     ('tech/technology_physics.json', 'tech', 'technology', lambda e: {
         'area': 'physics',
         'tier': e.get('tier', ''),

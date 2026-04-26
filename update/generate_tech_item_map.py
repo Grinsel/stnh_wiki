@@ -39,6 +39,7 @@ MODULE_CONFIG = {
     'traits':         ('traits.json',         'empires.html',     'traits'),
     'edicts':         ('edicts.json',         'governments.html', 'edicts'),
     'megastructures': ('megastructures.json', 'economy.html',     'megastructures'),
+    'resources':      ('resources.json',      'economy.html',     'resources'),
 }
 
 

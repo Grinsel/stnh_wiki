@@ -287,10 +287,23 @@ def get_module_keys():
     modules['anomalies'] = anom_keys
     print(f"    anomalies: {len(modules['anomalies']):,} keys")
 
-    # Economy (Jobs + Deposits)
+    # Economy (Jobs + Deposits + Resources)
     jobs = load_json(ASSETS_DIR / 'jobs.json')
     deposits = load_json(ASSETS_DIR / 'deposits.json')
-    modules['economy'] = extract_name_keys(jobs) | extract_name_keys(deposits)
+    resources = load_json(ASSETS_DIR / 'resources.json')
+    economy_keys = extract_name_keys(jobs) | extract_name_keys(deposits) | extract_name_keys(resources)
+    # Resource-specific extras: deficit-modifier loc keys (sr_xxx_deficit) +
+    # explicit desc_key field on resource entries (already covered, but be explicit).
+    for item in resources:
+        if isinstance(item, dict):
+            for field in ('desc_key', 'deficit_modifier'):
+                v = item.get(field)
+                if v:
+                    economy_keys.add(v)
+            rid = item.get('id', '')
+            if rid:
+                economy_keys.add(f'{rid}_deficit')
+    modules['economy'] = economy_keys
     print(f"    economy: {len(modules['economy']):,} keys")
 
     # Empires + Species

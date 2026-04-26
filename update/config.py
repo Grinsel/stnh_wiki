@@ -98,6 +98,11 @@ VANILLA_SHIP_MODELS_DIR = os.path.join(VANILLA_ROOT, "gfx", "models", "ships")
 VANILLA_SECTION_TEMPLATES_DIR = os.path.join(VANILLA_ROOT, "common", "section_templates")
 VANILLA_SHIP_SIZES_DIR = os.path.join(VANILLA_ROOT, "common", "ship_sizes")
 
+MOD_STRATEGIC_RESOURCES_DIR = os.path.join(STNH_MOD_ROOT, "common", "strategic_resources")
+VANILLA_STRATEGIC_RESOURCES_DIR = os.path.join(VANILLA_ROOT, "common", "strategic_resources")
+MOD_GFX_RESOURCES_ICONS = os.path.join(STNH_MOD_ROOT, "gfx", "interface", "icons", "resources")
+VANILLA_GFX_RESOURCES_ICONS = os.path.join(VANILLA_ROOT, "gfx", "interface", "icons", "resources")
+
 # ==========================================
 # OUTPUT PATHS (WRITE)
 # ==========================================

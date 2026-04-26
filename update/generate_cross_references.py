@@ -48,6 +48,7 @@ def generate_cross_references():
     empires = _load('empires.json')
     anomalies = _load('anomalies.json')
     archaeology = _load('archaeology.json')
+    resources = _load('resources.json')
 
     # ========================================
     # 1. Tech Unlocks: tech_id -> what it unlocks
@@ -81,6 +82,10 @@ def generate_cross_references():
     for item in megastructures:
         for tech in (item.get('prerequisites') or []):
             tech_unlocks[tech]['megastructures'].append(item['id'])
+
+    for item in resources:
+        for tech in (item.get('prerequisites') or []):
+            tech_unlocks[tech]['resources'].append(item['id'])
 
     # ========================================
     # 2. Megastructure upgrade chains

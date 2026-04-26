@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-26T12:54:20.027567",
-  "elapsed_seconds": 53.0,
+  "timestamp": "2026-04-26T13:58:14.203951",
+  "elapsed_seconds": 50.4,
   "results": {
     "localisation": {
       "english": 240942,
@@ -62235,7 +62235,7 @@
       "model_variants": 1624,
       "files": 142,
       "errors": 0,
-      "elapsed": 14.3
+      "elapsed": 14.6
     },
     "buildings": {
       "buildings": 653,
@@ -62270,7 +62270,7 @@
       "mega_model_variants": 103,
       "files": 67,
       "errors": 0,
-      "elapsed": 4.4
+      "elapsed": 4.7
     },
     "anomalies": {
       "anomalies": 132,
@@ -62300,6 +62300,14 @@
       "errors": 0,
       "elapsed": 0.1
     },
+    "resources": {
+      "resources": 46,
+      "producer_links": 1898,
+      "modifier_links": 502,
+      "unparsed_modifiers": 214,
+      "errors": 0,
+      "elapsed": 0.0
+    },
     "techtree": {
       "skipped": false,
       "fallback": false,
@@ -62307,8 +62315,8 @@
     },
     "search": {
       "search_index": {
-        "total_items": 21647,
-        "size_kb": 3229,
+        "total_items": 21693,
+        "size_kb": 3234,
         "by_type": {
           "event": 8895,
           "ship": 423,
@@ -62331,14 +62339,15 @@
           "empire": 110,
           "job": 306,
           "deposit": 667,
+          "resource": 46,
           "technology": 618
         },
         "elapsed": 0.2
       },
       "cross_references": {
-        "size_kb": 291,
+        "size_kb": 292,
         "stats": {
-          "tech_unlocks": 1132,
+          "tech_unlocks": 1138,
           "upgrade_chains": 0,
           "anomaly_events": 56,
           "archaeology_events": 29,
@@ -62348,142 +62357,23 @@
         "elapsed": 0.0
       },
       "tech_item_map": {
-        "techs": 1132,
-        "items": 6007,
-        "size_kb": 1023,
+        "techs": 1138,
+        "items": 6027,
+        "size_kb": 1026,
         "elapsed": 0.1
       }
     },
     "ship_models": {
-      "converted": 0,
-      "skipped": 1624,
-      "failed": 0,
-      "multi_mesh": 0,
-      "total": 1624,
-      "elapsed": 0.0
+      "skipped": true
     },
     "mega_models": {
-      "converted": 0,
-      "skipped": 103,
-      "failed": 0,
-      "multi_mesh": 0,
-      "total": 103,
-      "elapsed": 0.0
+      "skipped": true
     },
     "images": {
-      "total": 1031,
-      "converted": 0,
-      "skipped": 1031,
-      "failed": 0,
-      "errors": []
+      "skipped": true
     },
     "all_icons": {
-      "categories": {
-        "buildings": {
-          "total": 753,
-          "converted": 0,
-          "skipped": 753,
-          "failed": 0,
-          "errors": []
-        },
-        "traits": {
-          "total": 1106,
-          "converted": 0,
-          "skipped": 1106,
-          "failed": 0,
-          "errors": []
-        },
-        "traditions": {
-          "total": 407,
-          "converted": 0,
-          "skipped": 407,
-          "failed": 0,
-          "errors": []
-        },
-        "ascension_perks": {
-          "total": 66,
-          "converted": 0,
-          "skipped": 66,
-          "failed": 0,
-          "errors": []
-        },
-        "civics": {
-          "total": 330,
-          "converted": 0,
-          "skipped": 330,
-          "failed": 0,
-          "errors": []
-        },
-        "authorities": {
-          "total": 154,
-          "converted": 0,
-          "skipped": 154,
-          "failed": 0,
-          "errors": []
-        },
-        "jobs": {
-          "total": 267,
-          "converted": 0,
-          "skipped": 267,
-          "failed": 0,
-          "errors": []
-        },
-        "deposits": {
-          "total": 474,
-          "converted": 0,
-          "skipped": 474,
-          "failed": 0,
-          "errors": []
-        },
-        "relics": {
-          "total": 162,
-          "converted": 0,
-          "skipped": 162,
-          "failed": 0,
-          "errors": []
-        },
-        "flags": {
-          "total": 486,
-          "converted": 0,
-          "skipped": 486,
-          "failed": 0,
-          "errors": []
-        },
-        "edicts": {
-          "total": 4,
-          "converted": 0,
-          "skipped": 4,
-          "failed": 0,
-          "errors": []
-        },
-        "policies": {
-          "total": 11,
-          "converted": 0,
-          "skipped": 11,
-          "failed": 0,
-          "errors": []
-        },
-        "councilors": {
-          "total": 20,
-          "converted": 0,
-          "skipped": 20,
-          "failed": 0,
-          "errors": []
-        },
-        "components": {
-          "total": 3913,
-          "converted": 0,
-          "skipped": 3913,
-          "failed": 0,
-          "errors": []
-        }
-      },
-      "total": {
-        "total": 8153,
-        "converted": 0,
-        "skipped": 8153,
-        "failed": 0
-      }
+      "skipped": true
     },
     "split_loc": {
       "modules": {},
@@ -62498,7 +62388,7 @@
           "governments": 4322,
           "megastructures": 368,
           "anomalies": 322,
-          "economy": 1976,
+          "economy": 2102,
           "empires": 952
         },
         "german": {
@@ -62511,7 +62401,7 @@
           "governments": 4322,
           "megastructures": 368,
           "anomalies": 319,
-          "economy": 1976,
+          "economy": 2102,
           "empires": 952
         },
         "french": {
@@ -62524,7 +62414,7 @@
           "governments": 4318,
           "megastructures": 368,
           "anomalies": 319,
-          "economy": 1976,
+          "economy": 2102,
           "empires": 952
         },
         "spanish": {
@@ -62537,7 +62427,7 @@
           "governments": 4317,
           "megastructures": 368,
           "anomalies": 319,
-          "economy": 1976,
+          "economy": 2102,
           "empires": 952
         },
         "russian": {
@@ -62550,7 +62440,7 @@
           "governments": 4322,
           "megastructures": 368,
           "anomalies": 319,
-          "economy": 1976,
+          "economy": 2102,
           "empires": 953
         },
         "polish": {
@@ -62563,7 +62453,7 @@
           "governments": 4313,
           "megastructures": 368,
           "anomalies": 319,
-          "economy": 1976,
+          "economy": 2102,
           "empires": 952
         },
         "braz_por": {
@@ -62576,7 +62466,7 @@
           "governments": 4292,
           "megastructures": 368,
           "anomalies": 319,
-          "economy": 1976,
+          "economy": 2102,
           "empires": 952
         }
       },
@@ -62584,11 +62474,11 @@
       "modules_count": 10
     },
     "changes": {
-      "total_added": 25,
-      "total_removed": 3,
-      "total_modified": 125,
-      "modules_changed": 10,
-      "modules_unchanged": 12
+      "total_added": 0,
+      "total_removed": 0,
+      "total_modified": 0,
+      "modules_changed": 0,
+      "modules_unchanged": 22
     }
   }
 }

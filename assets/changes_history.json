@@ -1,5 +1,1170 @@
 [
   {
+    "timestamp": "2026-04-26T12:54:20.025955",
+    "summary": {
+      "total_added": 25,
+      "total_removed": 3,
+      "total_modified": 125,
+      "modules_changed": 10,
+      "modules_unchanged": 12
+    },
+    "modules": {
+      "events_index": {
+        "old_count": 8873,
+        "new_count": 8895,
+        "added": [
+          {
+            "id": "STH_borg.3101",
+            "name_key": ""
+          },
+          {
+            "id": "STH_borg.55",
+            "name_key": ""
+          },
+          {
+            "id": "STH_borg.57",
+            "name_key": ""
+          },
+          {
+            "id": "STH_borg.6009",
+            "name_key": ""
+          },
+          {
+            "id": "STH_fix.256",
+            "name_key": ""
+          },
+          {
+            "id": "STH_hero_leader.2",
+            "name_key": ""
+          },
+          {
+            "id": "STH_onaction.7076",
+            "name_key": ""
+          },
+          {
+            "id": "STH_onaction.7077",
+            "name_key": ""
+          },
+          {
+            "id": "STH_onaction.7080",
+            "name_key": ""
+          },
+          {
+            "id": "STH_performance.411",
+            "name_key": ""
+          },
+          {
+            "id": "STH_performance.414",
+            "name_key": ""
+          },
+          {
+            "id": "STH_policy.100",
+            "name_key": "Country game stats logging options"
+          },
+          {
+            "id": "STH_policy.66",
+            "name_key": "Repeal the Treaty of Algeron"
+          },
+          {
+            "id": "STH_policy.67",
+            "name_key": "Federation Repeals the Treaty of Algeron"
+          },
+          {
+            "id": "STH_policy.68",
+            "name_key": "Romulan Condemnation"
+          },
+          {
+            "id": "STH_policy.69",
+            "name_key": "Romulan Watchfulness"
+          },
+          {
+            "id": "STH_policy.70",
+            "name_key": "Romulan Declaration of War"
+          },
+          {
+            "id": "nhTest.6064",
+            "name_key": ""
+          },
+          {
+            "id": "nhTest.6065",
+            "name_key": ""
+          },
+          {
+            "id": "nhTest.6066",
+            "name_key": ""
+          },
+          {
+            "id": "nhTest.6070",
+            "name_key": ""
+          },
+          {
+            "id": "sth_borg_situation.29",
+            "name_key": ""
+          },
+          {
+            "id": "sth_species.52",
+            "name_key": ""
+          },
+          {
+            "id": "sth_species.53",
+            "name_key": ""
+          },
+          {
+            "id": "sth_species.57",
+            "name_key": ""
+          }
+        ],
+        "removed": [
+          {
+            "id": "nhTest.6050",
+            "name_key": ""
+          },
+          {
+            "id": "sth_pulse.363",
+            "name_key": ""
+          },
+          {
+            "id": "sth_pulse.520",
+            "name_key": ""
+          }
+        ],
+        "modified": [
+          {
+            "id": "STH_andorian_flavour.33",
+            "changed_fields": [
+              "snip"
+            ],
+            "name_key": "Weytahn Demilitarised"
+          },
+          {
+            "id": "STH_borg.6001",
+            "changed_fields": [
+              "opts"
+            ],
+            "name_key": "Hostile vessel captured"
+          },
+          {
+            "id": "STH_policy.10",
+            "changed_fields": [
+              "opts"
+            ],
+            "name_key": "Galactic Politics"
+          },
+          {
+            "id": "STH_policy.999",
+            "changed_fields": [
+              "opts"
+            ],
+            "name_key": "Advance Diplomacy Menu"
+          }
+        ]
+      },
+      "ships": {
+        "old_count": 423,
+        "new_count": 423,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "super_cube",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "super_cube"
+          }
+        ]
+      },
+      "buildings": {
+        "old_count": 653,
+        "new_count": 653,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "building_alcove_storage",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_alcove_storage"
+          },
+          {
+            "id": "building_borg_assimilation_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_borg_assimilation_1"
+          },
+          {
+            "id": "building_borg_capital_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_borg_capital_1"
+          },
+          {
+            "id": "building_borg_capital_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_borg_capital_2"
+          },
+          {
+            "id": "building_borg_capital_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_borg_capital_3"
+          },
+          {
+            "id": "building_borg_capital_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_borg_capital_4"
+          },
+          {
+            "id": "building_borg_capital_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_borg_capital_5"
+          },
+          {
+            "id": "building_borg_mustering_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_borg_mustering_1"
+          },
+          {
+            "id": "building_borg_mustering_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_borg_mustering_2"
+          },
+          {
+            "id": "building_borg_mustering_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_borg_mustering_3"
+          },
+          {
+            "id": "building_borg_mustering_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_borg_mustering_4"
+          },
+          {
+            "id": "building_capital_confederacy_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_capital_confederacy_3"
+          },
+          {
+            "id": "building_capital_confederacy_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_capital_confederacy_4"
+          },
+          {
+            "id": "building_capital_confederacy_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_capital_confederacy_5"
+          },
+          {
+            "id": "building_capital_terran_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_capital_terran_3"
+          },
+          {
+            "id": "building_capital_terran_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_capital_terran_4"
+          },
+          {
+            "id": "building_capital_terran_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_capital_terran_5"
+          },
+          {
+            "id": "building_cloning_capital_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_cloning_capital_2"
+          },
+          {
+            "id": "building_cloning_capital_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_cloning_capital_3"
+          },
+          {
+            "id": "building_cloning_capital_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_cloning_capital_4"
+          },
+          {
+            "id": "building_cloning_capital_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_cloning_capital_5"
+          },
+          {
+            "id": "building_commercial_capital_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_commercial_capital_3"
+          },
+          {
+            "id": "building_commercial_capital_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_commercial_capital_4"
+          },
+          {
+            "id": "building_commercial_capital_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_commercial_capital_5"
+          },
+          {
+            "id": "building_deployment_post",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_deployment_post"
+          },
+          {
+            "id": "building_embassy_capital_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_embassy_capital_2"
+          },
+          {
+            "id": "building_embassy_capital_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_embassy_capital_3"
+          },
+          {
+            "id": "building_embassy_capital_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_embassy_capital_4"
+          },
+          {
+            "id": "building_embassy_capital_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_embassy_capital_5"
+          },
+          {
+            "id": "building_forge_capital_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_forge_capital_3"
+          },
+          {
+            "id": "building_forge_capital_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_forge_capital_4"
+          },
+          {
+            "id": "building_forge_capital_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_forge_capital_5"
+          },
+          {
+            "id": "building_harvesting_gorn_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_harvesting_gorn_1"
+          },
+          {
+            "id": "building_hirogen_worthy_prey_reserve",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_hirogen_worthy_prey_reserve"
+          },
+          {
+            "id": "building_hurq_curator_collection",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_hurq_curator_collection"
+          },
+          {
+            "id": "building_machine_capital_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_machine_capital_2"
+          },
+          {
+            "id": "building_machine_capital_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_machine_capital_3"
+          },
+          {
+            "id": "building_machine_capital_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_machine_capital_4"
+          },
+          {
+            "id": "building_machine_capital_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_machine_capital_5"
+          },
+          {
+            "id": "building_menagerie_capital_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_menagerie_capital_5"
+          },
+          {
+            "id": "building_military_camp_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_military_camp_1"
+          },
+          {
+            "id": "building_military_camp_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_military_camp_2"
+          },
+          {
+            "id": "building_military_camp_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_military_camp_3"
+          },
+          {
+            "id": "building_military_camp_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_military_camp_4"
+          },
+          {
+            "id": "building_military_camp_borg_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_military_camp_borg_1"
+          },
+          {
+            "id": "building_military_camp_borg_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_military_camp_borg_2"
+          },
+          {
+            "id": "building_military_camp_borg_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_military_camp_borg_3"
+          },
+          {
+            "id": "building_military_camp_borg_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_military_camp_borg_4"
+          },
+          {
+            "id": "building_military_capital_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_military_capital_3"
+          },
+          {
+            "id": "building_military_capital_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_military_capital_4"
+          },
+          {
+            "id": "building_military_capital_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_military_capital_5"
+          },
+          {
+            "id": "building_nanite_factory_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_nanite_factory_1"
+          },
+          {
+            "id": "building_nanite_factory_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_nanite_factory_2"
+          },
+          {
+            "id": "building_nanite_factory_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_nanite_factory_3"
+          },
+          {
+            "id": "building_nanite_factory_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_nanite_factory_4"
+          },
+          {
+            "id": "building_naval_HQ_1_breen",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_naval_HQ_1_breen"
+          },
+          {
+            "id": "building_naval_HQ_1_sona",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_naval_HQ_1_sona"
+          },
+          {
+            "id": "building_orbital_capital_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_orbital_capital_1"
+          },
+          {
+            "id": "building_orbital_capital_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_orbital_capital_2"
+          },
+          {
+            "id": "building_orbital_capital_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_orbital_capital_3"
+          },
+          {
+            "id": "building_orbital_capital_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_orbital_capital_4"
+          },
+          {
+            "id": "building_orbital_capital_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_orbital_capital_5"
+          },
+          {
+            "id": "building_penal_capital_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_penal_capital_2"
+          },
+          {
+            "id": "building_penal_capital_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_penal_capital_3"
+          },
+          {
+            "id": "building_penal_capital_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_penal_capital_4"
+          },
+          {
+            "id": "building_penal_capital_rure_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_penal_capital_rure_2"
+          },
+          {
+            "id": "building_penal_slave_colony_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_penal_slave_colony_2"
+          },
+          {
+            "id": "building_penal_slave_colony_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_penal_slave_colony_3"
+          },
+          {
+            "id": "building_penal_slave_colony_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_penal_slave_colony_4"
+          },
+          {
+            "id": "building_penal_slave_colony_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_penal_slave_colony_5"
+          },
+          {
+            "id": "building_religious_capital_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_religious_capital_2"
+          },
+          {
+            "id": "building_religious_capital_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_religious_capital_3"
+          },
+          {
+            "id": "building_religious_capital_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_religious_capital_4"
+          },
+          {
+            "id": "building_religious_capital_hurq_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_religious_capital_hurq_2"
+          },
+          {
+            "id": "building_religious_capital_hurq_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_religious_capital_hurq_3"
+          },
+          {
+            "id": "building_religious_capital_hurq_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_religious_capital_hurq_4"
+          },
+          {
+            "id": "building_religious_capital_klingon_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_religious_capital_klingon_2"
+          },
+          {
+            "id": "building_religious_capital_vulcan_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_religious_capital_vulcan_2"
+          },
+          {
+            "id": "building_resort_capital_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_resort_capital_2"
+          },
+          {
+            "id": "building_resort_capital_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_resort_capital_3"
+          },
+          {
+            "id": "building_resort_capital_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_resort_capital_4"
+          },
+          {
+            "id": "building_resort_capital_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_resort_capital_5"
+          },
+          {
+            "id": "building_undine_capital_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_undine_capital_1"
+          },
+          {
+            "id": "building_undine_capital_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_undine_capital_2"
+          },
+          {
+            "id": "building_undine_capital_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_undine_capital_3"
+          },
+          {
+            "id": "building_undine_capital_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_undine_capital_4"
+          },
+          {
+            "id": "building_undine_capital_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_undine_capital_5"
+          },
+          {
+            "id": "building_university_capital_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_university_capital_2"
+          },
+          {
+            "id": "building_university_capital_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_university_capital_3"
+          },
+          {
+            "id": "building_university_capital_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_university_capital_4"
+          },
+          {
+            "id": "building_university_capital_5",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_university_capital_5"
+          },
+          {
+            "id": "building_wilderness_capital_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_wilderness_capital_2"
+          },
+          {
+            "id": "temporal_defense_agency_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "temporal_defense_agency_1"
+          }
+        ]
+      },
+      "districts": {
+        "old_count": 56,
+        "new_count": 56,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "district_admin_undine",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "district_admin_undine"
+          }
+        ]
+      },
+      "traits": {
+        "old_count": 461,
+        "new_count": 461,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traditions": {
+        "old_count": 448,
+        "new_count": 448,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "tr_dominion_2_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "tr_dominion_2_2"
+          },
+          {
+            "id": "tr_ferengi_2_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "tr_ferengi_2_1"
+          },
+          {
+            "id": "tr_imperious_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "tr_imperious_2"
+          },
+          {
+            "id": "tr_might_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "tr_might_3"
+          }
+        ]
+      },
+      "ascension_perks": {
+        "old_count": 58,
+        "new_count": 58,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "governments": {
+        "old_count": 185,
+        "new_count": 185,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "civics": {
+        "old_count": 332,
+        "new_count": 332,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "authorities": {
+        "old_count": 17,
+        "new_count": 17,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "policies": {
+        "old_count": 53,
+        "new_count": 53,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "traffic_control_policy",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "policy_traffic_control_policy"
+          }
+        ]
+      },
+      "edicts": {
+        "old_count": 86,
+        "new_count": 86,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "edict_fleet_focus",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "edict_edict_fleet_focus"
+          },
+          {
+            "id": "edict_local_festival_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "edict_edict_local_festival_1"
+          },
+          {
+            "id": "edict_local_festival_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "edict_edict_local_festival_2"
+          },
+          {
+            "id": "edict_local_festival_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "edict_edict_local_festival_3"
+          }
+        ]
+      },
+      "councilors": {
+        "old_count": 146,
+        "new_count": 146,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "megastructures": {
+        "old_count": 116,
+        "new_count": 116,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "relics": {
+        "old_count": 68,
+        "new_count": 68,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "anomalies": {
+        "old_count": 132,
+        "new_count": 132,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "UHB_BUOY_CAT",
+            "changed_fields": [
+              "picture"
+            ],
+            "name_key": "UHB_BUOY_CAT"
+          }
+        ]
+      },
+      "archaeology": {
+        "old_count": 29,
+        "new_count": 29,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "empires": {
+        "old_count": 110,
+        "new_count": 110,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "PakledGroupings",
+            "changed_fields": [
+              "source_file"
+            ],
+            "name_key": "EMPIRE_DESIGN_PakledBigClans"
+          },
+          {
+            "id": "YridianLeague",
+            "changed_fields": [
+              "source_file"
+            ],
+            "name_key": "EMPIRE_DESIGN_YridianLeague"
+          },
+          {
+            "id": "YridianLeague_B",
+            "changed_fields": [
+              "source_file"
+            ],
+            "name_key": "EMPIRE_DESIGN_YridianLeague"
+          }
+        ]
+      },
+      "species": {
+        "old_count": 255,
+        "new_count": 255,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "jobs": {
+        "old_count": 306,
+        "new_count": 306,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "admiral",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_admiral"
+          },
+          {
+            "id": "ambassador",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_ambassador"
+          },
+          {
+            "id": "artisan",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_artisan"
+          },
+          {
+            "id": "artisan_jevonite",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_artisan_jevonite"
+          },
+          {
+            "id": "enforcer_starfleet31",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_enforcer_starfleet31"
+          },
+          {
+            "id": "founder_yeslink",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_founder_yeslink"
+          },
+          {
+            "id": "high_senator",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_high_senator"
+          },
+          {
+            "id": "liquidator",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_liquidator"
+          },
+          {
+            "id": "noble_klingon",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_noble_klingon"
+          },
+          {
+            "id": "patrol_drone_undine",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_patrol_drone_undine"
+          },
+          {
+            "id": "talos_observer",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_talos_observer"
+          },
+          {
+            "id": "telepath",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_telepath"
+          },
+          {
+            "id": "undine_toiler",
+            "changed_fields": [
+              "possible"
+            ],
+            "name_key": "job_undine_toiler"
+          }
+        ]
+      },
+      "deposits": {
+        "old_count": 667,
+        "new_count": 667,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "components": {
+        "old_count": 6406,
+        "new_count": 6406,
+        "added": [],
+        "removed": [],
+        "modified": []
+      }
+    }
+  },
+  {
     "timestamp": "2026-04-26T12:31:46.050690",
     "summary": {
       "total_added": 0,

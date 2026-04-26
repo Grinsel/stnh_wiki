@@ -30,13 +30,16 @@
 
     try {
         // ── Load all data in parallel ────────────────────────────────────────
-        const [buildings, districts, jobs, deposits, megastructures, relics] = await Promise.all([
+        const [buildings, districts, jobs, deposits, megastructures, relics,
+               resources, resourceIndex] = await Promise.all([
             DataManager.loadJSON('assets/buildings.json'),
             DataManager.loadJSON('assets/districts.json'),
             DataManager.loadJSON('assets/jobs.json'),
             DataManager.loadJSON('assets/deposits.json'),
             DataManager.loadJSON('assets/megastructures.json'),
             DataManager.loadJSON('assets/relics.json'),
+            DataManager.loadJSON('assets/resources.json'),
+            DataManager.loadJSON('assets/resource_producers.json'),
         ]);
 
         // Which deposit icons actually exist as .webp on disk? Items whose
@@ -51,6 +54,10 @@
         await Promise.all([
             I18n.mergeModule(AppState.get('lang'), 'economy'),
             I18n.mergeModule(AppState.get('lang'), 'megastructures'),
+            // Resources detail-pane links to producers from goverments-side
+            // modules (traditions, perks, civics, edicts, …) — merge those
+            // loc strings so the producer names render localized.
+            I18n.mergeModule(AppState.get('lang'), 'governments'),
         ]);
 
         for (const item of buildings)     item.name = I18n.t(item.name_key) || item.id;
@@ -59,6 +66,7 @@
         for (const item of deposits)      item.name = I18n.t(item.name_key) || item.id;
         for (const item of megastructures) item.name = I18n.t(item.name_key) || item.id;
         for (const item of relics)        item.name = I18n.t(item.name_key) || item.id;
+        for (const item of resources)     item.name = I18n.t(item.name_key) || item.id;
 
         // ── Tab state (declared early so all closures can reference it) ──────
         let activeTab = 'buildings';
@@ -99,11 +107,41 @@
         const catGroupEl = document.getElementById('filter-category-group');
 
         function updateFilterVis() {
-            chipsEl.classList.toggle('hidden', activeTab !== 'buildings');
+            chipsEl.classList.toggle('hidden', activeTab !== 'buildings' && activeTab !== 'resources');
             catGroupEl.classList.toggle('hidden', activeTab !== 'jobs' && activeTab !== 'deposits');
         }
 
+        // ── Resources: source/category filter chips (basic / advanced / strategic / stnh) ──
+        const resourceCategories = [
+            { value: 'basic',     label: 'Basic',     count: 0 },
+            { value: 'advanced',  label: 'Advanced',  count: 0 },
+            { value: 'strategic', label: 'Strategic', count: 0 },
+            { value: 'stnh',      label: 'STNH',      count: 0 },
+        ];
+        const BASIC_RES   = new Set(['energy', 'minerals', 'food']);
+        const ADVANCED_RES = new Set(['alloys', 'consumer_goods', 'unity', 'influence', 'trade',
+                                       'physics_research', 'society_research', 'engineering_research']);
+        function resCategoryOf(r) {
+            if (r.source === 'stnh' && r.id.startsWith('sr_')) return 'stnh';
+            if (BASIC_RES.has(r.id)) return 'basic';
+            if (ADVANCED_RES.has(r.id)) return 'advanced';
+            return 'strategic';
+        }
+        for (const r of resources) {
+            const cat = resCategoryOf(r);
+            const entry = resourceCategories.find(c => c.value === cat);
+            if (entry) entry.count++;
+        }
+
         // ── Tab switching ────────────────────────────────────────────────────
+        function syncCategoryChipsToTab() {
+            if (activeTab === 'resources') {
+                categoryChips.rebuildAll(resourceCategories, I18n.ui('ui.filter.all_categories'));
+            } else {
+                categoryChips.rebuildAll(buildingCategories, I18n.ui('ui.filter.all_categories'));
+            }
+        }
+
         document.querySelectorAll('.tab-btn[data-tab]').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.tab-btn[data-tab]').forEach(b => b.classList.remove('active'));
@@ -115,6 +153,7 @@
                 SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
                 updateFilterVis();
                 populateCategories();
+                syncCategoryChipsToTab();
                 renderAll();
             });
         });
@@ -273,6 +312,100 @@
             }
         }
 
+        // ── Resource producer/modifier sections ──────────────────────────────
+        const PRODUCER_LABELS = {
+            buildings:       'Buildings',
+            districts:       'Districts',
+            jobs:            'Jobs',
+            deposits:        'Deposits',
+            megastructures:  'Megastructures',
+            relics:          'Relics',
+            edicts:          'Edicts',
+            traditions:      'Traditions',
+            ascension_perks: 'Ascension Perks',
+            governments:     'Governments',
+            civics:          'Civics',
+            authorities:     'Authorities',
+        };
+        // Module name in by_resource entries -> link kind in WIKI_LINK_MAP
+        const MODULE_TO_LINK_KIND = {
+            buildings: 'building', districts: 'district', jobs: 'job',
+            deposits: 'deposit', megastructures: 'megastructure', relics: 'relic',
+            edicts: 'edict', traditions: 'tradition', ascension_perks: 'ascension_perk',
+            governments: 'government', civics: 'civic', authorities: 'authority',
+        };
+
+        function fmtFlat(val, kind) {
+            const sign = kind === 'upkeep' ? '-' : '+';
+            return `${sign}${val}`;
+        }
+        function fmtModifierValue(mod) {
+            const sign = mod.value >= 0 ? '+' : '';
+            const suffix = mod.op === 'mult' ? '%' : '';
+            const val = mod.op === 'mult' ? Math.round(mod.value * 100) : mod.value;
+            return `${sign}${val}${suffix}`;
+        }
+
+        function buildResourceProducerSections(resourceId) {
+            const entry = (resourceIndex && resourceIndex.by_resource) ? resourceIndex.by_resource[resourceId] : null;
+            if (!entry) return '';
+
+            let html = '';
+
+            // Group producers by module
+            if (entry.producers && entry.producers.length) {
+                const grouped = {};
+                for (const p of entry.producers) {
+                    if (!grouped[p.module]) grouped[p.module] = [];
+                    grouped[p.module].push(p);
+                }
+
+                html += `<div class="detail-section"><div class="detail-section-title">Producers (${entry.producers.length})</div>`;
+                for (const moduleKey of Object.keys(PRODUCER_LABELS)) {
+                    const list = grouped[moduleKey];
+                    if (!list || !list.length) continue;
+                    html += `<div class="resource-producer-group">`;
+                    html += `<div class="resource-producer-group-label">${esc(PRODUCER_LABELS[moduleKey])} (${list.length})</div>`;
+                    html += `<div class="detail-meta">`;
+                    for (const p of list) {
+                        const linkKind = MODULE_TO_LINK_KIND[p.module] || p.module;
+                        const name = I18n.t(p.id) || p.id;
+                        const valStr = fmtFlat(p.flat, p.kind);
+                        html += `<span class="detail-meta-item">${SharedRender.wikiLink(p.id, linkKind, name)} <span class="resource-producer-value">${esc(valStr)}</span></span>`;
+                    }
+                    html += `</div></div>`;
+                }
+                html += `</div>`;
+            }
+
+            // Modifiers (boosts/penalties)
+            if (entry.modifiers && entry.modifiers.length) {
+                html += `<div class="detail-section"><div class="detail-section-title">Modifiers Affecting This Resource (${entry.modifiers.length})</div>`;
+                html += `<div class="detail-meta-list">`;
+                // Sort: produces add > produces mult > upkeep, big values first
+                const mods = entry.modifiers.slice().sort((a, b) => {
+                    if (a.axis !== b.axis) return a.axis === 'produces' ? -1 : 1;
+                    if (a.op !== b.op) return a.op === 'add' ? -1 : 1;
+                    return Math.abs(b.value) - Math.abs(a.value);
+                });
+                for (const m of mods) {
+                    const linkKind = MODULE_TO_LINK_KIND[m.owner_module] || m.owner_module;
+                    const ownerName = I18n.t(m.owner_id) || m.owner_id;
+                    const ownerLink = SharedRender.wikiLink(m.owner_id, linkKind, ownerName);
+                    const valStr = fmtModifierValue(m);
+                    const axisLabel = m.axis === 'produces' ? 'Output' : (m.axis === 'upkeep' ? 'Upkeep' : 'Cost');
+                    html += `<div class="resource-modifier-row">`;
+                    html += `<span class="resource-modifier-value">${esc(valStr)} ${esc(axisLabel)}</span> `;
+                    html += `from ${ownerLink}`;
+                    html += ` <span class="resource-modifier-name" title="${esc(m.name)}">(${esc(m.name)})</span>`;
+                    html += `</div>`;
+                }
+                html += `</div></div>`;
+            }
+
+            return html;
+        }
+
         // ── Detail HTML builder ──────────────────────────────────────────────
         function buildItemDetailHtml(item) {
             const isBuilding = activeTab === 'buildings';
@@ -280,6 +413,7 @@
             const isDeposit  = activeTab === 'deposits';
             const isMega     = activeTab === 'megastructures';
             const isRelic    = activeTab === 'relics';
+            const isResource = activeTab === 'resources';
 
             let iconHtml = '';
             if (isBuilding && item.icon_key)    iconHtml = `<img class="detail-icon" src="icons/buildings/${esc(item.icon_key)}.webp"   alt="" onerror="this.style.display='none'">`;
@@ -289,6 +423,7 @@
                 iconHtml = `<img class="detail-icon" src="icons/deposits/${esc(stem)}.webp" alt="" onerror="this.onerror=null;this.src='icons/deposits/d_asteroid_cavern.webp'">`;
             }
             else if (isRelic)                    iconHtml = `<img class="detail-icon" src="icons/relics/${esc(item.icon || item.id)}.webp" alt="" onerror="this.style.display='none'">`;
+            else if (isResource && item.icon)    iconHtml = `<img class="detail-icon" src="icons/resources/${esc(item.icon)}.webp"      alt="" onerror="this.style.display='none'">`;
 
             let html = `<div class="detail-meta" style="align-items:center">${iconHtml}`;
             html += `<span class="detail-meta-item">${I18n.ui('ui.meta.id')}: ${esc(item.id)}</span>`;
@@ -359,6 +494,35 @@
                     html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.info')}</div>`;
                     html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${k}: ${esc(v)}</span>`).join('')}</div></div>`;
                 }
+            }
+
+            // ── Resources ──
+            if (isResource) {
+                const stats = [];
+                if (item.source)        stats.push([I18n.ui('ui.meta.category'), item.source === 'stnh' ? 'STNH' : 'Vanilla']);
+                stats.push(['Tradable', item.tradable ? I18n.ui('ui.misc.yes') : I18n.ui('ui.misc.no')]);
+                if (item.market_price)  stats.push(['Market Price',  item.market_price]);
+                if (item.market_amount) stats.push(['Market Supply', item.market_amount]);
+                if (item.max)           stats.push(['Max Stockpile', item.max]);
+                if (item.ai_weight != null) stats.push(['AI Weight', item.ai_weight]);
+                html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.info')}</div>`;
+                html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${esc(k)}: ${esc(v)}</span>`).join('')}</div></div>`;
+
+                // Description
+                const desc = I18n.t(item.desc_key);
+                if (desc && desc !== item.desc_key) {
+                    html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.description') || 'Description'}</div>`;
+                    html += `<div class="detail-text">${esc(desc)}</div></div>`;
+                }
+
+                // Prerequisites
+                if (item.prerequisites && item.prerequisites.length) {
+                    html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.prerequisites')}</div>`;
+                    html += `<div class="detail-meta">${SharedRender.techLinks(item.prerequisites)}</div></div>`;
+                }
+
+                // Producers + Modifiers from resource_producers.json
+                html += buildResourceProducerSections(item.id);
             }
 
             // ── Shared sections ──
@@ -437,8 +601,9 @@
             for (const item of deposits)       item.name = I18n.t(item.name_key) || item.id;
             for (const item of megastructures) item.name = I18n.t(item.name_key) || item.id;
             for (const item of relics)         item.name = I18n.t(item.name_key) || item.id;
+            for (const item of resources)      item.name = I18n.t(item.name_key) || item.id;
             for (const cat of buildingCategories) cat.label = getCategoryLabel(cat.value);
-            categoryChips.rebuildAll(buildingCategories, I18n.ui('ui.filter.all_categories'));
+            syncCategoryChipsToTab();
             populateCategories();
             removeOverlayImmediate();
             renderAll();
@@ -454,6 +619,7 @@
                 activeTab = urlTab;
                 updateFilterVis();
                 populateCategories();
+                syncCategoryChipsToTab();
             }
         }
 
@@ -464,7 +630,7 @@
         // ── Auto-select item from URL ────────────────────────────────────────
         const selectId = AppState.get('select');
         if (selectId) {
-            const allItems = [...buildings, ...districts, ...jobs, ...deposits, ...megastructures, ...relics];
+            const allItems = [...buildings, ...districts, ...jobs, ...deposits, ...megastructures, ...relics, ...resources];
             const item = allItems.find(i => i.id === selectId);
             if (item) {
                 showDetail(item);
@@ -485,6 +651,7 @@
                 case 'deposits':       items = deposits;       total = deposits.length;       break;
                 case 'megastructures': items = megastructures; total = megastructures.length; break;
                 case 'relics':         items = relics;         total = relics.length;         break;
+                case 'resources':      items = resources;      total = resources.length;      break;
                 default:               items = buildings;      total = buildings.length;
             }
 
@@ -493,6 +660,10 @@
                 if (activeTab === 'buildings') {
                     const cat = categoryChips.getActive();
                     if (cat && item.category !== cat) return false;
+                }
+                if (activeTab === 'resources') {
+                    const cat = categoryChips.getActive();
+                    if (cat && resCategoryOf(item) !== cat) return false;
                 }
                 if (activeTab === 'jobs' || activeTab === 'deposits') {
                     const cat = catSel.value;
@@ -552,6 +723,7 @@
                         const stem = item.icon || 'd_asteroid_cavern';
                         iconCol = `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/deposits/${esc(stem)}.webp" alt="" onerror="this.onerror=null;this.src='icons/deposits/d_asteroid_cavern.webp'"></div>`;
                     }
+                    else if (activeTab === 'resources' && item.icon)     iconCol = `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/resources/${esc(item.icon)}.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`;
 
                     html += `<div class="item-card" data-id="${esc(item.id)}">
                         ${iconCol}
@@ -574,6 +746,14 @@
                         if (item.has_model)   html += `<span class="detail-meta-item">&#9670; 3D</span>`;
                         if (item.build_time)  html += `<span class="detail-meta-item">${I18n.ui('ui.card.build')}: ${item.build_time}</span>`;
                         if (item.prerequisites && item.prerequisites.length) html += `<span class="detail-meta-item">${I18n.ui('ui.card.tech')}: ${item.prerequisites.length}</span>`;
+                    } else if (activeTab === 'resources') {
+                        const entry = (resourceIndex && resourceIndex.by_resource) ? resourceIndex.by_resource[item.id] : null;
+                        const prodCount = entry && entry.producers ? entry.producers.length : 0;
+                        const modCount  = entry && entry.modifiers ? entry.modifiers.length : 0;
+                        html += `<span class="detail-meta-item">${esc(resCategoryOf(item))}</span>`;
+                        if (item.tradable)    html += `<span class="detail-meta-item">tradable</span>`;
+                        if (prodCount)        html += `<span class="detail-meta-item">${prodCount} producers</span>`;
+                        if (modCount)         html += `<span class="detail-meta-item">${modCount} modifiers</span>`;
                     }
 
                     html += `</div></div></div>`;

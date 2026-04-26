@@ -20,6 +20,7 @@ from config import (
     MOD_GFX_DEPOSITS_ICONS, VANILLA_GFX_DEPOSITS_ICONS,
     MOD_GFX_RELICS_ICONS, VANILLA_GFX_RELICS_ICONS,
     MOD_GFX_SHIP_PARTS_ICONS, VANILLA_GFX_SHIP_PARTS_ICONS,
+    MOD_GFX_RESOURCES_ICONS, VANILLA_GFX_RESOURCES_ICONS,
     MOD_FLAGS_DIR, VANILLA_FLAGS_DIR,
 )
 
@@ -81,6 +82,17 @@ ICON_CATEGORIES = [
         'vanilla': [VANILLA_GFX_DEPOSITS_ICONS],
         'output': 'deposits',
         'size': '64x64',
+    },
+    {
+        # Strategic resources: filenames already match the resource id
+        # (sr_<name>.dds, plus core resources like minerals.dds, energy.dds).
+        # Skip the *_grey.dds and *_large.dds variants.
+        'name': 'resources',
+        'mod': [MOD_GFX_RESOURCES_ICONS],
+        'vanilla': [VANILLA_GFX_RESOURCES_ICONS],
+        'output': 'resources',
+        'size': '64x64',
+        'exclude': '_grey',
     },
     {
         # Relics: the JSON field `icon` is the relic id like "r_ktarian_game",

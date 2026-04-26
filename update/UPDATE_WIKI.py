@@ -213,6 +213,20 @@ def phase_economy():
     return generate_all()
 
 
+def phase_resources():
+    """Phase: Strategic Resources + Producer Index.
+
+    Must run AFTER all producer modules (economy, megas, relics, edicts,
+    traditions, perks, governments) have written their JSONs to disk.
+    """
+    print("\n" + "=" * 60)
+    print("PHASE: RESOURCES")
+    print("=" * 60)
+
+    from generate_resources_json import generate_all
+    return generate_all()
+
+
 def phase_content():
     """Phase 5: Run all content modules."""
     print("\n" + "=" * 60)
@@ -420,10 +434,11 @@ ONLY_MODULES = {
     'empires':        ['localisation', 'inject_missing_loc', 'empires', 'split_loc'],
     'galaxy_map':     ['galaxy_map'],
     'economy':        ['localisation', 'inject_missing_loc', 'economy', 'split_loc'],
+    'resources':      ['localisation', 'inject_missing_loc', 'resources', 'all_icons', 'split_loc'],
     'search':         ['search'],
     'content':        ['localisation', 'inject_missing_loc', 'ships', 'buildings', 'all_icons', 'traits',
                        'governments', 'megastructures', 'anomalies', 'empires', 'galaxy_map', 'economy',
-                       'search', 'mega_models', 'split_loc'],
+                       'resources', 'search', 'mega_models', 'split_loc'],
 }
 
 
@@ -479,6 +494,8 @@ def main():
             results['galaxy_map'] = phase_galaxy_map()
         if 'economy' in phases:
             results['economy'] = phase_economy()
+        if 'resources' in phases:
+            results['resources'] = phase_resources()
         if 'search' in phases:
             results['search'] = phase_search()
         if 'ship_models' in phases:
@@ -509,6 +526,7 @@ def main():
         results['empires'] = phase_empires()
         results['galaxy_map'] = phase_galaxy_map()
         results['economy'] = phase_economy()
+        results['resources'] = phase_resources()
         results['techtree'] = phase_techtree()
         results['search'] = phase_search()
         results['ship_models'] = phase_ship_models(skip=args.skip_images)
