@@ -134,7 +134,11 @@ const SharedRender = (() => {
             el.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const techId = el.dataset.techId;
-                if (techId) window.location.href = 'exploration.html?tab=technology&focus=' + encodeURIComponent(techId);
+                if (!techId) return;
+                const target = WIKI_LINK_MAP['technology'];
+                let url = target.page + '?' + target.param + '=' + encodeURIComponent(techId);
+                if (target.tab) url += '&tab=' + encodeURIComponent(target.tab);
+                window.location.href = url;
             });
         });
     }
