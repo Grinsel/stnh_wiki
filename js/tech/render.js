@@ -658,8 +658,15 @@ export function updateLOD(svg, g) {
   };
   const layout = g.property('layout');
   const data = g.datum && g.datum() ? g.datum() : { nodes: [], links: [] };
-  const nodesSel = g.select('.nodes-layer').selectAll('.tech-node');
+  const nodesLayer = g.select('.nodes-layer');
+  const nodesSel = nodesLayer.selectAll('.tech-node');
   const linksLayer = g.select('.links-layer');
+
+  // Enforce paint order: links behind nodes. Defensive against any code path
+  // (LOD lazy-init, layout updates, path-highlight teardown) that may have
+  // re-ordered the layer DOM nodes.
+  if (!linksLayer.empty()) linksLayer.lower();
+  if (!nodesLayer.empty()) nodesLayer.raise();
 
   // Use LOD when graph is large (>= 150 nodes); performance toggle can refine behavior in future
   const totalNodes = (data.nodes || []).length;

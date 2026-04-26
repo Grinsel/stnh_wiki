@@ -465,6 +465,16 @@
             margin-top: 8px;
             overflow: hidden;
         }
+        /* Force a positioned context on the main SVG so its z-index applies.
+           The tier-based layout draws connection lines on a sibling <canvas>
+           (.tech-canvas-layer, z-index:1) that lives in #tech-tree alongside
+           the SVG. Without an explicit position here the SVG is static and its
+           inline z-index="2" is ignored, letting the canvas links paint over
+           the node cards. */
+        #tech-tree > svg {
+            position: relative;
+            z-index: 2;
+        }
         /* Centered initial load button inside tech-tree */
         #load-tree-center-button {
             position: absolute;
@@ -1538,7 +1548,11 @@
                     if (!entry) return key;
                     return entry[lang] || entry['english'] || key;
                 },
-                setLanguage: function() { return Promise.resolve(); }
+                t: function(key) { return key; },
+                setLanguage: function() { return Promise.resolve(); },
+                setLangSync: function() {},
+                mergeModule: function() { return Promise.resolve(); },
+                loadFullLocalisation: function() { return Promise.resolve(); }
             };
         }
     </script>
