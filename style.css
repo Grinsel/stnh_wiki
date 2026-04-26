@@ -2588,6 +2588,7 @@ body.in-iframe #site-footer {
 /* Tab Buttons */
 .tab-buttons {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.2rem;
 }
 

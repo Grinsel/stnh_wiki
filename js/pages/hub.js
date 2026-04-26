@@ -70,6 +70,7 @@
                 { key: 'megastructure', label: 'ui.tab.megastructures', url: 'economy.html?tab=megastructures' },
                 { key: 'relic',         label: 'ui.tab.relics',        url: 'economy.html?tab=relics' },
                 { key: 'job',           label: 'ui.tab.jobs',          url: 'economy.html?tab=jobs' },
+                { key: 'resource',      label: 'ui.tab.resources',     url: 'economy.html?tab=resources' },
                 { key: 'deposit',       label: 'ui.tab.deposits',      url: 'economy.html?tab=deposits' },
             ],
             military:    [
@@ -172,6 +173,7 @@
         // species:      { label: 'Species',         page: 'empires.html',         tab: 'species' },  // Hidden while species tab is disabled.
         jobs:            { label: 'Jobs',            page: 'economy.html',         tab: 'jobs' },
         deposits:        { label: 'Deposits',        page: 'economy.html',         tab: 'deposits' },
+        resources:       { label: 'Resources',       page: 'economy.html',         tab: 'resources' },
         components:      { label: 'Components',      page: 'ships.html',           tab: 'components' },
     };
 
