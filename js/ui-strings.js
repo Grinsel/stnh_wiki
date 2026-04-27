@@ -411,6 +411,7 @@ const UI_STRINGS = {
     'ui.action.view_3d':       { english: 'View 3D Model', german: '3D-Modell anzeigen', french: 'Voir le modèle 3D', russian: 'Посмотреть 3D-модель' },
 
     'ui.misc.yes':             { english: 'Yes', german: 'Ja', french: 'Oui', russian: 'Да' },
+    'ui.misc.no':              { english: 'No',  german: 'Nein', french: 'Non', russian: 'Нет' },
     'ui.misc.stage':           { english: 'Stage', german: 'Stufe', french: 'Étape', russian: 'Этап' },
     'ui.misc.difficulty':      { english: 'difficulty', german: 'Schwierigkeit', french: 'difficulté', russian: 'сложность' },
     'ui.misc.event':           { english: 'Event', german: 'Ereignis', french: 'Événement', russian: 'Событие' },
