@@ -66,6 +66,7 @@ const UI_STRINGS = {
     'ui.filter.all_types':       { english: 'All Types', german: 'Alle Typen', french: 'Tous les types', russian: 'Все типы' },
     'ui.filter.category':        { english: 'Category', german: 'Kategorie', french: 'Cat\u00e9gorie', russian: 'Категория' },
     'ui.filter.all_categories':  { english: 'All Categories', german: 'Alle Kategorien', french: 'Toutes les cat\u00e9gories', russian: 'Все категории' },
+    'ui.filter.show_unused':     { english: 'Show unused', german: 'Ungenutzte zeigen', french: 'Afficher inutilis\u00e9es', russian: 'Показать неиспользуемые' },
     'ui.filter.tree':            { english: 'Tree', german: 'Baum', french: 'Arbre', russian: 'Дерево' },
     'ui.filter.all_trees':       { english: 'All Trees', german: 'Alle B\u00e4ume', french: 'Tous les arbres', russian: 'Все деревья' },
     'ui.filter.level':           { english: 'Level', german: 'Stufe', french: 'Niveau', russian: 'Уровень' },
@@ -359,6 +360,8 @@ const UI_STRINGS = {
     'ui.type.species':         { english: 'Species', german: 'Spezies', french: 'Espèces', russian: 'Вид' },
     'ui.type.job':             { english: 'Job', german: 'Beruf', french: 'Emploi', russian: 'Профессия' },
     'ui.type.deposit':         { english: 'Deposit', german: 'Lagerst\u00e4tte', french: 'Dépôt', russian: 'Месторождение' },
+    'ui.type.resource':        { english: 'Resource', german: 'Ressource', french: 'Ressource', russian: 'Ресурс' },
+    'ui.type.councilor':       { english: 'Councilor', german: 'Ratsmitglied', french: 'Conseiller', russian: 'Советник' },
     'ui.type.technology':      { english: 'Technology', german: 'Technologie', french: 'Technologie', russian: 'Технология' },
 
     // ==========================================

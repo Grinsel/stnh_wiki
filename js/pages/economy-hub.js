@@ -105,26 +105,38 @@
         // ── Filter visibility ────────────────────────────────────────────────
         const chipsEl    = document.getElementById('filter-category-chips');
         const catGroupEl = document.getElementById('filter-category-group');
+        const showUnusedGroupEl = document.getElementById('filter-show-unused-group');
+        const showUnusedEl = document.getElementById('filter-show-unused');
+        if (showUnusedEl) {
+            showUnusedEl.addEventListener('change', (e) => {
+                showUnusedResources = e.target.checked;
+                currentPage = 1;
+                renderAll();
+            });
+        }
 
         function updateFilterVis() {
             chipsEl.classList.toggle('hidden', activeTab !== 'buildings' && activeTab !== 'resources');
             catGroupEl.classList.toggle('hidden', activeTab !== 'jobs' && activeTab !== 'deposits');
+            if (showUnusedGroupEl) showUnusedGroupEl.classList.toggle('hidden', activeTab !== 'resources');
         }
 
         // ── Resources: source/category filter chips (basic / advanced / strategic / stnh) ──
+        // Two top-level groupings: economic (the resources every empire deals
+        // with day-to-day) and strategic (rare specialised resources, mostly
+        // sr_* ids). The old fine-grained Basic/Advanced/Strategic/STNH split
+        // had too many overlapping categories.
         const resourceCategories = [
-            { value: 'basic',     label: 'Basic',     count: 0 },
-            { value: 'advanced',  label: 'Advanced',  count: 0 },
+            { value: 'economic',  label: 'Economic',  count: 0 },
             { value: 'strategic', label: 'Strategic', count: 0 },
-            { value: 'stnh',      label: 'STNH',      count: 0 },
         ];
-        const BASIC_RES   = new Set(['energy', 'minerals', 'food']);
-        const ADVANCED_RES = new Set(['alloys', 'consumer_goods', 'unity', 'influence', 'trade',
-                                       'physics_research', 'society_research', 'engineering_research']);
+        const ECONOMIC_RES = new Set([
+            'energy', 'minerals', 'food',
+            'alloys', 'consumer_goods', 'unity', 'influence', 'trade',
+            'physics_research', 'society_research', 'engineering_research',
+        ]);
         function resCategoryOf(r) {
-            if (r.source === 'stnh' && r.id.startsWith('sr_')) return 'stnh';
-            if (BASIC_RES.has(r.id)) return 'basic';
-            if (ADVANCED_RES.has(r.id)) return 'advanced';
+            if (ECONOMIC_RES.has(r.id)) return 'economic';
             return 'strategic';
         }
         for (const r of resources) {
@@ -132,6 +144,34 @@
             const entry = resourceCategories.find(c => c.value === cat);
             if (entry) entry.count++;
         }
+
+        // Resources with empty producers/consumers/modifiers are hidden from
+        // the Resources tab by default. The allowlist keeps a few genuine mod
+        // resources visible whose only references are in cost blocks,
+        // scripted_effects rewards, or AI hints — none of which the index
+        // currently captures.
+        const RESOURCE_FORCED_VISIBLE = new Set([
+            'sr_living_metal',
+            'sr_dark_matter',
+            'sr_new_horizons',
+        ]);
+        // Resources that DO have index entries but only because vanilla-only
+        // modifiers spill over — they're not actually used in the mod and
+        // should stay hidden until the mod-side modifier hits are cleaned up.
+        const RESOURCE_FORCED_HIDDEN = new Set([
+            'astral_threads',
+            'rare_crystals',
+        ]);
+        function resourceIsUsed(item) {
+            if (RESOURCE_FORCED_HIDDEN.has(item.id)) return false;
+            if (RESOURCE_FORCED_VISIBLE.has(item.id)) return true;
+            const e = (resourceIndex && resourceIndex.by_resource) ? resourceIndex.by_resource[item.id] : null;
+            if (!e) return false;
+            return (e.producers && e.producers.length > 0)
+                || (e.consumers && e.consumers.length > 0)
+                || (e.modifiers && e.modifiers.length > 0);
+        }
+        let showUnusedResources = false;
 
         // ── Tab switching ────────────────────────────────────────────────────
         function syncCategoryChipsToTab() {
@@ -686,6 +726,7 @@
                     if (cat && item.category !== cat) return false;
                 }
                 if (activeTab === 'resources') {
+                    if (!showUnusedResources && !resourceIsUsed(item)) return false;
                     const cat = categoryChips.getActive();
                     if (cat && resCategoryOf(item) !== cat) return false;
                 }
