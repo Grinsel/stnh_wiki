@@ -14,13 +14,18 @@ Phase 4: Events         -> generate_events_json.generate_all()
 Phase 5: Content
    5a: Ships            -> generate_ships_json.generate_all()
    5b: Buildings        -> generate_buildings_json.generate_all()
-   5c: Traits           -> generate_traits_json.generate_all()
+   5c: Traits           -> generate_traits_json.generate_all()  (dict-by-id Dedup, vanilla -> mod override)
    5d: Governments      -> generate_governments_json.generate_all()
    5e: Megastructures   -> generate_megastructures_json.generate_all()
    5f: Anomalies        -> generate_anomalies_json.generate_all()
    5g: Empires          -> generate_empires_json.generate_all()
    5h: Economy          -> generate_economy_json.generate_all()
-   5i: Search           -> generate_search_index + generate_cross_references
+   5i: Resources        -> phase_resources()
+                           -> parse_resources (46 Strategic Resources)
+                           -> generate_resource_index (Producer/Consumer/Modifier-Index
+                              ueber Buildings/Jobs/Districts/Megas/Deposits/Components)
+                           Muss NACH allen Producer-Phasen laufen.
+   5j: Search           -> generate_search_index + generate_cross_references
 Phase 6: Ship Models    -> convert_ship_models.convert_all()  [optional]
 Phase 7: Images         -> convert_images.convert_images()  [optional]
 Phase 8: Summary        -> Statistiken + last_update.json
@@ -40,6 +45,7 @@ python UPDATE_WIKI.py --only megastructures  # Nur Megastructures & Relics
 python UPDATE_WIKI.py --only anomalies       # Nur Anomalies & Archaeology
 python UPDATE_WIKI.py --only empires         # Nur Empires & Species
 python UPDATE_WIKI.py --only economy         # Nur Jobs & Deposits
+python UPDATE_WIKI.py --only resources       # Nur Strategic Resources + Producer-Index
 python UPDATE_WIKI.py --only search          # Nur Search Index & Cross-References
 python UPDATE_WIKI.py --only content         # Alle 8 Content-Module + Search
 python UPDATE_WIKI.py --only loc             # Nur Localisation
@@ -75,6 +81,20 @@ get_all_values(data, key)            # Alle Werte eines Keys
 get_blocks(data, key)                # Alle Bloecke eines Keys
 ```
 
+### Globale @-Variable Aufloesung (parse_pdx.py)
+
+```python
+load_global_scripted_variables() -> dict
+_ensure_globals_loaded()  # Lazy init beim ersten Parse-Aufruf
+```
+
+`parse_pdx.py` laedt beim ersten Aufruf alle `*.txt` aus
+`common/scripted_variables/` (vanilla + mod, mod-Eintraege ueberschreiben).
+Aktuell 2652 globale `@`-Vars. **File-lokale `@vars` haben Vorrang vor
+globalen** (Stellaris-Semantik). Ohne diese Aufloesung erschienen Felder
+wie `energy = @b1_upkeep` in Buildings/Jobs als Literal `@b1_upkeep` im
+Wiki — jetzt wird der numerische Wert eingesetzt.
+
 ## Konfiguration: `config.py`
 
 ```python
@@ -105,12 +125,76 @@ LANGUAGES = ['english', 'german', 'french', 'spanish', 'russian', 'polish', 'bra
 | Anomalies | parse_anomalies, parse_archaeology | generate_anomalies_json | anomalies.json, archaeology.json |
 | Empires | parse_empires, parse_species | generate_empires_json | empires.json, species.json |
 | Economy | parse_jobs, parse_deposits | generate_economy_json | jobs.json, deposits.json |
+| Resources | parse_resources, modifier_name_parser | generate_resources_json, generate_resource_index | resources.json, resource_producers.json |
 | Galaxy Map | (Empires-Daten) | generate_galaxy_map_json | galaxy_map.json |
 | Tech Item Map | (Tech + Content-Daten) | generate_tech_item_map | tech_item_map.json |
 | Loc-Splitting | split_localisation | (direkt) | localisation/{lang}/{module}.json |
 | Changes | generate_changes_json | (direkt) | changes.json, changes_history.json |
 | Search | (alle obigen) | generate_search_index, generate_cross_references | search_index.json, cross_references.json, module_pages.json |
 | Images | (GFX-Mapping) | convert_images | pictures/*.webp |
+
+## Resources-Modul (Phase 5i)
+
+Eigenstaendige Phase, die **nach** allen Producer-Phasen (5a-5h) laufen
+muss. Baut einen Producer/Consumer/Modifier-Index ueber alle bisherigen
+Module.
+
+```
+parse_resources.py (~80 LoC)
+- Liest alle *.txt aus common/strategic_resources/ (vanilla zuerst, dann mod)
+- Mod-Definitionen ueberschreiben Vanilla per ID (vanilla-then-mod-override)
+- 46 Resources: 25 vanilla + 21 STNH-eigene
+
+modifier_name_parser.py (~60 LoC)
+- Heuristik die Stellaris-Modifier-Namen zerlegt:
+    planet_miners_minerals_produces_mult
+        -> resource=minerals, producer_stem=planet_miners,
+           axis=produces, op=mult
+- Erkennt op: add | mult
+- Erkennt axis: produces | upkeep | cost | output
+
+generate_resource_index.py (~150 LoC)
+- Iteriert ueber buildings.json, jobs.json, districts.json,
+  megastructures.json, deposits.json, components.json
+- Sammelt direkte Producer-Links (Felder produces / consumes / cost / upkeep):
+    1898 Producer-Links
+- Wendet modifier_name_parser auf jedes Modifier-Feld an:
+    502 Modifier-Links
+- Output:
+    by_resource[<id>]  = {producers, consumers, modifiers}
+    by_producer[<id>]  = {produces, consumes, modifiers}
+
+generate_resources_json.py (~50 LoC)
+- Orchestrator: ruft parse_resources, schreibt resources.json
+- Loest Loc-Keys, baut UI-Felder (icon, category, market_supply, ...)
+```
+
+Kategorien sind im Frontend von 4 (Basic/Advanced/Strategic/STNH) auf 2
+(Economic/Strategic) konsolidiert. Vanilla-Resources, die in keinem
+STNH-Producer auftauchen, werden default ausgeblendet — siehe
+`RESOURCE_FORCED_VISIBLE` / `RESOURCE_FORCED_HIDDEN` in
+`js/pages/economy-hub.js`.
+
+## Trait-Dedup (Phase 5c)
+
+`parse_traits.py` nutzt jetzt ein **Dict-by-id Pattern** (vanilla → mod
+overrides) statt eines flachen Append-Listens. Vorher: 470 Items mit 9
+Duplikaten (mod-Eintrag UND vanilla-Eintrag). Jetzt: 461 unique. Das
+selbe Pattern findet sich in `parse_resources.py`.
+
+## District-Icons-Pipeline
+
+Neue Kategorie `districts` in `update/convert_icons.py:ICON_CATEGORIES`.
+Filenames matchen 1:1 die District-IDs (55/56 Coverage — 1 Mod-only
+District ohne DDS). 143 Icons konvertiert (mod 81 + vanilla rest).
+Frontend (`js/pages/economy-hub.js`) rendert `icons/districts/<id>.webp`
+in Card-List + Detail-Pane.
+
+## Localisation-Splitting fuer Resources
+
+`update/split_localisation.py`: Das `economy` Loc-Modul nimmt jetzt
+zusaetzlich `resources.json` und alle Deficit-Keys (`<sr_id>_deficit`)
+auf, damit der Resources-Tab im Lang-Switch korrekt uebersetzt wird.
 
 ## Lokalisierungs-Parser
 

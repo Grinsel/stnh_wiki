@@ -6,7 +6,9 @@ Welcome to the Star Trek: New Horizons Wiki project. This file is your entry poi
 
 **What is this?** A modular off-game wiki for the STNH Stellaris mod. Vanilla HTML/CSS/JS, no build tools, no frameworks. Python pipeline generates JSON data, browser renders it.
 
-**Key numbers:** 9 HTML pages, ~21,630 searchable items, 54 JS files, 84 Python pipeline files (57 core + 27 techtree).
+**Key numbers:** 9 HTML pages, ~21,630 searchable items, 54 JS files, ~88 Python pipeline files (~61 core + 27 techtree).
+
+_Last updated: 2026-04-27_
 
 ## Documentation
 
@@ -39,19 +41,25 @@ stnh_wiki/
     ui-strings.js                        UI translations (310+ keys, 7 languages)
     pages/{hub,events,ships,...}.js       8 page controllers (incl. galaxy-map)
     tech/                                Techtree modules (ES Modules, D3.js)
-  assets/                                Generated JSON data (38 files + 272 event details)
+  assets/                                Generated JSON data (40+ files + 272 event details)
+    resources.json                       46 strategic resources (25 vanilla + 21 STNH)
+    resource_producers.json              Resource <-> producer/consumer/modifier index
     flags/trek/                          79 WebP empire flags
-  update/                                Python data pipeline (57 core + 27 techtree)
-    UPDATE_WIKI.py                       Master orchestrator
+  update/                                Python data pipeline (~61 core + 27 techtree)
+    UPDATE_WIKI.py                       Master orchestrator (incl. phase_resources)
     config.py                            Paths (STNH_MOD_ROOT, WIKI_ROOT)
-    parse_pdx.py                         Shared PDX parser (recursive descent)
-    parse_*.py                           26 module-specific parsers
+    parse_pdx.py                         Shared PDX parser (recursive descent, global @-vars)
+    parse_*.py                           ~28 module-specific parsers (incl. parse_resources)
+    modifier_name_parser.py              Heuristic: planet_miners_minerals_produces_mult -> (resource, producer, axis, op)
+    generate_resource_index.py           Builds resource_producers.json (by_resource + by_producer)
     convert_*.py                         3 converters (images, ship models, building icons)
-    generate_*.py                        13 JSON generators
+    generate_*.py                        ~14 JSON generators (incl. resources, resource_index)
     techtree/                            27 scripts (copied from git09, not yet functional)
   pictures/                              986 WebP event images
   icons/tech/                            1,659 tech icons
   icons/buildings/                       754 building icons
+  icons/districts/                       143 district icons (filename = district id)
+  icons/resources/                       120 resource icons
 ```
 
 ## Architecture
@@ -107,7 +115,7 @@ All 6 standard content pages (ships, governments, exploration, empires, economy,
 
 - **index.html (Hub):** Landing page with section cards + stats. GlobalSearch with full-results mode (Enter → replaces page content). Handled by `hub.js`, NOT by `initGlobalSearch()` in common.js.
 - **events.html:** Most complex page. Has its own namespace sidebar, chain viewer modal, event detail panel. Uses chain-index.js for connected components.
-- **tech.html:** Imported from git09. Has its own inline CSS (~780 lines), D3.js (CDN), ES Modules. Sidebar search is `#tech-filter-input` (renamed to avoid conflict with GlobalSearch in header). Has a minimal I18n shim instead of full i18n.js. Tier-Layout is the default view (no separate tech-header).
+- **tech.html:** Imported from git09. Has its own inline CSS (~780 lines), D3.js (CDN), ES Modules. Sidebar search is `#tech-filter-input` (renamed to avoid conflict with GlobalSearch in header). Now uses the full `js/i18n.js` (no longer a mock) and loads the `tech` loc-module on init; `js/i18n.js` exposes `I18n` on `window` so ES-module code under `js/tech/*` can read it. Tier-Layout is the default view (no separate tech-header). CSS sets `#tech-tree > svg { position: relative; z-index: 2 }` so D3 SVG renders above the tier-layout Canvas (CanvasTechRenderer in `js/tech/canvas-renderer.js`); `render.js:updateLOD` additionally calls `linksLayer.lower()` + `nodesLayer.raise()` as a safety net.
 
 ## GlobalSearch Architecture
 
@@ -117,6 +125,36 @@ All 6 standard content pages (ships, governments, exploration, empires, economy,
 - Both local page filtering and GlobalSearch run in parallel on the same input
 - Prefix search: `ship:`, `event:`, `building:`, `trait:`, etc.
 - Faction synonyms: `fed` expands to federation/ufp/starfleet/...
+
+## Recent Changes (2026-04)
+
+### Resources module (new)
+- 46 Strategic Resources (25 vanilla + 21 STNH) parsed from `common/strategic_resources/` with vanilla-then-mod-override semantics.
+- New pipeline files: `parse_resources.py`, `modifier_name_parser.py` (heuristic for `planet_miners_minerals_produces_mult` → resource/producer/axis/op), `generate_resource_index.py`, `generate_resources_json.py`. New `phase_resources()` in `UPDATE_WIKI.py` runs **after** all producer phases.
+- Outputs: `assets/resources.json`, `assets/resource_producers.json` (1898 producer-links + 502 modifier-links, indexed `by_resource` + `by_producer`), `icons/resources/` (120 WebP).
+- Frontend: `economy.html` has a `data-tab="resources"` tab; existing planet-deposit tab renamed to **Deposits**. Default view shows only "used" resources (allowlist `RESOURCE_FORCED_VISIBLE` for sr_living_metal/sr_dark_matter/sr_new_horizons; blocklist `RESOURCE_FORCED_HIDDEN` for vanilla-only astral_threads/rare_crystals). "Show unused" toggle reveals all. Categories consolidated from 4 (Basic/Advanced/Strategic/STNH) to 2 (Economic/Strategic).
+
+### Pipeline: global @variable resolution
+- `parse_pdx.py` now loads all `*.txt` from `common/scripted_variables/` (vanilla + mod, mod overrides) via `load_global_scripted_variables()` with lazy init (`_ensure_globals_loaded()`). 2652 globals loaded.
+- File-local `@vars` still take precedence over globals (Stellaris semantics). Building/job fields like `energy = @b1_upkeep` now show the resolved value instead of the literal `@b1_upkeep`.
+
+### Tech-tree i18n + lang reactivity
+- All 7 content pages now have a `wiki-lang-changed` handler that re-renders the open detail pane. Pattern: track `currentDetailItem`, call `showDetail(currentDetailItem)` on event. Implemented in `economy-hub.js`, `empires.js`, `events.js`, `exploration.js`, `governments.js`, `ships.js`, `tech-list.js`, `tech_showcase.js`.
+- `common.js`: `loadFullLocalisation()` is now `await`-ed before dispatching `wiki-lang-changed` (race-condition fix for cross-module loc lookups, e.g. civic names on empires.html).
+- `economy-hub.js` re-merges `economy`, `megastructures`, `governments` loc-modules in the handler since `common.js` only re-loads the primary module.
+- New helpers in `js/tech/data.js`: `getTechName`, `getTechDescription`, `getCategoryLabel`, `getAreaLabel`, `formatEffectDisplay`. Stellaris modifier loc-key convention: `MOD_<KEY_UPPERCASE>`. `js/pages/tech-list.js` replicates these inline (classic script, no ES-module).
+- New `wiki-lang-changed` handler in `tech_showcase.js` triggers `updateVisualization` to re-render the detail pane.
+
+### Cross-link bug fixes
+- `js/shared-render.js:initTechLinks` had hardcoded `'exploration.html?tab=technology&focus=...'` — clicks on tech prereq badges landed on the anomaly page. Fixed to use `WIKI_LINK_MAP` like `initWikiLinks`.
+- `WIKI_LINK_MAP` extended with `resource`, `job`, `deposit`, `relic`, `ascension_perk`.
+
+### Other
+- `parse_traits.py`: dict-by-id pattern (vanilla → mod overrides) instead of flat append. 470 → 461 unique (9 dups removed).
+- `convert_icons.py`: new `districts` category (143 icons; 55/56 coverage, filename = district id). `economy-hub.js` renders `icons/districts/<id>.webp` in card list + detail pane.
+- `economy-hub.js:megaIsStnh()` hides 40 vanilla-only megastructures (those without `STH_` prefix on `source_file`); 76 STNH megas visible by default. "Show unused" toggle reveals all.
+- `split_localisation.py`: `economy` loc-module now also takes `resources.json` + deficit-keys (`<sr_id>_deficit`).
+- `js/ui-strings.js`: many missing keys added — see `ui.misc.no`, `ui.detail.modifier|conditions|on_spawn`, `ui.card.stage`, `ui.tab.resources` (new), `ui.tab.deposits` (renamed from "Resources"), `ui.filter.show_unused`, `ui.type.resource`, `ui.type.councilor`, `ui.tech.{area,tier,category,rare,dangerous,reverse_engineerable,view_in_tree}`, `ui.resource.{producers,consumers,modifiers,tradable,market_price,market_supply,max_stockpile,ai_weight,axis_output,axis_upkeep,axis_cost}`, `ui.trait.{class,rarity,tier,cost}`.
 
 ## Open Work (see TODO.md)
 
@@ -149,8 +187,11 @@ All 6 standard content pages (ships, governments, exploration, empires, economy,
 | Fix parser error | `update/parse_pdx.py` (base) or module-specific parser |
 | Add UI translation | `js/ui-strings.js` (add key with min. english + german) |
 | Add search prefix | `js/global-search.js` → `TYPE_PREFIXES` |
+| Add wiki-link target type | `js/shared-render.js` → `WIKI_LINK_MAP` |
 | Add PDX keyword to humanizer | `js/humanize.js` → `TRIGGER_MAP` or `EFFECT_MAP` (see `docs/HUMANIZE.md`) |
 | Add modifier display name | `js/humanize.js` → `MODIFIER_MAP` |
+| Add producer-link for new resource modifier | `update/modifier_name_parser.py` (heuristic) |
+| Force resource visible/hidden | `js/pages/economy-hub.js` → `RESOURCE_FORCED_VISIBLE` / `RESOURCE_FORCED_HIDDEN` |
 | Change theme colors | `js/common.js` → `THEMES` object |
 | Fix mobile layout | `style.css` → `@media` rules + hamburger section |
 | Update data | `cd update && python UPDATE_WIKI.py --skip-images` |

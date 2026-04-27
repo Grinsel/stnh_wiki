@@ -69,7 +69,7 @@ common/buildings/     -->  parse_buildings.py     -->  buildings.json     -->  e
 - Komplett eigenes System (aus git09 importiert)
 - Eigenes Inline-CSS (~780 Zeilen), D3.js (CDN), ES Modules
 - Sidebar-Filter + SVG-Visualisierung + Tooltip + Path-Analyse
-- Minimaler I18n-Shim statt vollem i18n.js
+- Nutzt seit 2026-04 das volle `js/i18n.js` (vorher Mock); laedt das `tech` Loc-Modul beim Init
 
 ### JS-Modul-Architektur
 

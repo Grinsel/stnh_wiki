@@ -3,6 +3,8 @@
 Vollstaendige technische Dokumentation des Star Trek: New Horizons Wiki.
 Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des STNH Stellaris-Mods.
 
+_Stand: 2026-04-27_
+
 > **Hinweis:** Die Dokumentation ist auch in spezialisierten Einzeldateien im `docs/`-Ordner verfuegbar:
 > | Datei | Inhalt |
 > |---|---|
@@ -42,10 +44,10 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 | Loc-Keys | ~200.000+ pro Sprache |
 | GFX Sprites | 7.338 gesamt, ~986 konvertierte Event-Bilder, 754 Building-Icons |
 | Tech-Icons | 1.659 (WebP, aus git09) |
-| JSON-Assets | 38 Dateien + 272 Event-Detail-JSONs |
+| JSON-Assets | 40+ Dateien + 272 Event-Detail-JSONs (inkl. resources.json, resource_producers.json) |
 | JS-Dateien | 59 (14 shared + 14 pages + 5 UI + 27 tech) |
-| Python-Pipeline | 84 Dateien (57 core + 27 techtree) |
-| Pipeline-Laufzeit | ~12 Sekunden (ohne Bilder) |
+| Python-Pipeline | ~88 Dateien (~61 core + 27 techtree) |
+| Pipeline-Laufzeit | ~58 Sekunden (ohne Bilder) |
 | Projektgroesse | ~1,4 GB (inkl. 3D-Modelle, ohne: ~294 MB) |
 | Frontend | Vanilla HTML/CSS/JS (kein Framework, kein Build-Tool) |
 | Hub-Navigation | Dynamisch generierte 8-Link Nav-Bar (common.js initNav) |
@@ -80,22 +82,26 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 |  |   +-- archaeological_site_types/  Archaeologie              |
 |  |   +-- pop_jobs/               (31 Dateien)                  |
 |  |   +-- deposits/               (27 Dateien)                  |
+|  |   +-- strategic_resources/    (vanilla + STNH, 46 IDs)      |
+|  |   +-- scripted_variables/     (globale @-Vars, 2652 Keys)   |
 |  |   +-- species_classes/        Spezies                       |
 |  |   +-- species_archetypes/     Archetypen                    |
 |  +-- prescripted_countries/      Empires                       |
 +----------------------------------------------------------------+
                     | Python Pipeline
                     | +-- UPDATE_WIKI.py      (Master-Orchestrator)
-                    | +-- 26 Parser + 13 Generatoren + 3 Konverter
+                    | +-- ~28 Parser + ~14 Generatoren + 3 Konverter
                     v
 +----------------------------------------------------------------+
 |  STNH Wiki (git10/stnh_wiki/)                                   |
 |  +-- 13 HTML-Seiten              (Hub, Events, Exploration,    |
 |  |                                Tech, Tech-List, 8 Content)  |
-|  +-- assets/                     (38 JSON + 272 Event-Details) |
+|  +-- assets/                     (40+ JSON + 272 Event-Details)|
 |  +-- pictures/                   (991 WebP-Bilder)             |
 |  +-- icons/tech/                 (1.659 Tech-Icons)            |
 |  +-- icons/buildings/            (754 Building-Icons)          |
+|  +-- icons/districts/            (143 District-Icons)          |
+|  +-- icons/resources/            (120 Resource-Icons)          |
 |  +-- js/                         (59 JS-Module)                |
 |  +-- style.css                   (44 KB, Dark Theme)           |
 +----------------------------------------------------------------+
@@ -117,7 +123,7 @@ Eine modulare Multi-Page-Website zur Darstellung aller spielrelevanten Daten des
 | 6 | Megastrukturen & Relics | Fertig |
 | 7 | Anomalien & Archaeologie | Fertig |
 | 8 | Fraktionen & Empires | Fertig |
-| 9 | Ressourcen & Wirtschaft | Fertig |
+| 9 | Ressourcen & Wirtschaft (inkl. Strategic Resources Modul + Producer/Consumer-Index) | Fertig |
 | 10 | Suche & Vernetzung (Cross-Module) | Fertig |
 | 11 | Techtree (Kopie aus git09) | 11.1 Fertig, 11.2 offen, 11.3+11.4 teilweise, 11.5+11.6 offen |
 
@@ -341,21 +347,25 @@ Phase 4: Events         -> generate_events_json.generate_all()
 Phase 5: Content
    5a: Ships            -> generate_ships_json.generate_all()
    5b: Buildings        -> generate_buildings_json.generate_all()
-   5c: Traits           -> generate_traits_json.generate_all()
+   5c: Traits           -> generate_traits_json.generate_all()  (dict-by-id dedup)
    5d: Governments      -> generate_governments_json.generate_all()
    5e: Megastructures   -> generate_megastructures_json.generate_all()
    5f: Anomalies        -> generate_anomalies_json.generate_all()
    5g: Empires          -> generate_empires_json.generate_all()
    5h: Economy          -> generate_economy_json.generate_all()
-   5i: Search           -> generate_search_index + generate_cross_references
+   5i: Resources        -> phase_resources() -> parse_resources + generate_resource_index
+                           (laeuft NACH allen Producer-Phasen, scannt Buildings/Jobs/
+                            Districts/Megas/Deposits/Components nach Producer/Consumer/
+                            Modifier-Links)
+   5j: Search           -> generate_search_index + generate_cross_references
 Phase 6: Images         -> convert_images.convert_images()  [optional]
 Phase 7: Summary        -> Statistiken + last_update.json
 ```
 
 **Aufruf:**
 ```bash
-python UPDATE_WIKI.py                        # Vollstaendig (~12s + Bilder)
-python UPDATE_WIKI.py --skip-images          # Ohne Bilder (~12s)
+python UPDATE_WIKI.py                        # Vollstaendig (~58s + Bilder)
+python UPDATE_WIKI.py --skip-images          # Ohne Bilder (~58s)
 python UPDATE_WIKI.py --only events          # Nur Events-Modul
 python UPDATE_WIKI.py --only ships           # Nur Ships & Components
 python UPDATE_WIKI.py --only buildings       # Nur Buildings & Districts
@@ -365,6 +375,7 @@ python UPDATE_WIKI.py --only megastructures  # Nur Megastructures & Relics
 python UPDATE_WIKI.py --only anomalies       # Nur Anomalies & Archaeology
 python UPDATE_WIKI.py --only empires         # Nur Empires & Species
 python UPDATE_WIKI.py --only economy         # Nur Jobs & Deposits
+python UPDATE_WIKI.py --only resources       # Nur Strategic Resources + Producer-Index
 python UPDATE_WIKI.py --only search          # Nur Search Index & Cross-References
 python UPDATE_WIKI.py --only content         # Alle 8 Content-Module + Search
 python UPDATE_WIKI.py --only loc             # Nur Localisation → Inject Loc → Split Loc
@@ -394,6 +405,15 @@ class PdxParser:
 def get_value(data, key, default=None)
 def get_all_values(data, key)
 def get_blocks(data, key)
+
+# Globale @-Variable Aufloesung
+def load_global_scripted_variables() -> dict
+def _ensure_globals_loaded()  # Lazy init beim ersten Parser-Aufruf
+# Liest alle *.txt aus common/scripted_variables/ (vanilla + mod, mod
+# ueberschreibt). 2652 globale @-Vars. File-lokale @-vars haben Vorrang
+# vor globalen (Stellaris-Semantik). Ohne diese Aufloesung wuerde z.B.
+# `energy = @b1_upkeep` in Buildings/Jobs als Literal `@b1_upkeep` durch
+# das Wiki rauschen.
 ```
 
 ### 3.3 Konfiguration: `config.py`
@@ -425,12 +445,52 @@ LANGUAGES = ['english', 'german', 'french', 'spanish', 'russian', 'polish', 'bra
 | Anomalies | parse_anomalies, parse_archaeology | generate_anomalies_json | anomalies.json, archaeology.json |
 | Empires | parse_empires, parse_species | generate_empires_json | empires.json, species.json |
 | Economy | parse_jobs, parse_deposits | generate_economy_json | jobs.json, deposits.json |
+| Resources | parse_resources, modifier_name_parser | generate_resources_json, generate_resource_index | resources.json, resource_producers.json |
 | Galaxy Map | (Empires-Daten) | generate_galaxy_map_json | galaxy_map.json |
 | Tech Item Map | (Tech + Content-Daten) | generate_tech_item_map | tech_item_map.json |
 | Search | (alle obigen) | generate_search_index, generate_cross_references | search_index.json, cross_references.json, module_pages.json |
 | Images | (GFX-Mapping) | convert_images | pictures/*.webp |
 
-### 3.5 Lokalisierungs-Parser
+### 3.5 Resources-Modul (Phase 5i)
+
+Das Resources-Modul baut einen Producer/Consumer/Modifier-Index ueber alle
+bisherigen Producer-Module. Es muss daher **nach** Phase 5a-5h laufen.
+
+```
+parse_resources.py
+- Liest alle *.txt aus common/strategic_resources/ (vanilla + mod, vanilla zuerst)
+- Mod-Definitionen ueberschreiben Vanilla per ID
+- 46 Resources gesamt (25 vanilla + 21 STNH)
+
+modifier_name_parser.py
+- Heuristik: zerlegt Modifier-Namen in (resource, producer_stem, axis, op)
+- Beispiel:
+  planet_miners_minerals_produces_mult
+    -> resource=minerals, producer_stem=planet_miners, axis=produces, op=mult
+- Erkennt Operationen: add/mult, axes: produces/upkeep/cost/output
+
+generate_resource_index.py
+- Iteriert ueber buildings.json, jobs.json, districts.json, megastructures.json,
+  deposits.json, components.json
+- Sammelt direkte Producer-Links (z.B. Job mit "produces = { minerals = 6 }"):
+  1898 Producer-Links
+- Wendet modifier_name_parser auf jedes Modifier-Feld an: 502 Modifier-Links
+- Output-Struktur:
+    by_resource[<resource_id>] = {producers: [...], consumers: [...], modifiers: [...]}
+    by_producer[<producer_id>]  = {produces: [...], consumes: [...], modifiers: [...]}
+
+generate_resources_json.py
+- Orchestrator: ruft parse_resources auf, schreibt resources.json
+- Loest Loc-Keys, baut UI-Felder (icon, category, market_supply, ...)
+```
+
+Das Frontend-Tab `economy.html?tab=resources` zeigt die 46 Resources mit
+Detail-Pane (Modifier, Producer, Consumer, Tradable, Market-Price etc.).
+Default-Filter zeigt nur Resources, die irgendwo benutzt werden — siehe
+`RESOURCE_FORCED_VISIBLE` und `RESOURCE_FORCED_HIDDEN` in
+`js/pages/economy-hub.js` fuer manuelle Overrides.
+
+### 3.6 Lokalisierungs-Parser
 
 ```python
 # parse_localisation.py
@@ -441,7 +501,7 @@ LANGUAGES = ['english', 'german', 'french', 'spanish', 'russian', 'polish', 'bra
 # $key$-Referenzen werden rekursiv aufgeloest (Loop-Protection)
 ```
 
-### 3.6 Bildkonvertierung
+### 3.7 Bildkonvertierung
 
 ```python
 # convert_images.py
@@ -469,7 +529,7 @@ LANGUAGES = ['english', 'german', 'french', 'spanish', 'russian', 'polish', 'bra
 | Governments | governments.html | search-input | Govs, Civics, Auth, Policies, Edicts, Councilors, Traditions, Perks | governments.js |
 | Exploration | exploration.html | search-input | Anomalies, Archaeology | exploration.js |
 | Empires | empires.html | search-input | Empires, Leader Traits (Species tab hidden) | empires.js |
-| Economy | economy.html | search-input | Buildings, Districts, Jobs, Deposits, Megastructures, Relics | economy-hub.js |
+| Economy | economy.html | search-input | Buildings, Districts, Jobs, Deposits, Resources, Megastructures, Relics | economy-hub.js |
 
 Alle Seiten (ausser index.html) teilen dieselbe Grundstruktur:
 - Header (Logo, Suche, Sprach-Dropdown, Theme-Picker)
@@ -479,7 +539,7 @@ Alle Seiten (ausser index.html) teilen dieselbe Grundstruktur:
 - Content (Liste + Detail-Panel)
 - Footer
 
-**tech.html Sonderfall:** Hat zusaetzlich eigenes Inline-CSS (~780 Zeilen), eigene D3.js-Abhaengigkeit (CDN), einen minimalen I18n-Shim statt des vollen i18n.js, und laed D3 + ES-Module. Die Sidebar-Suche nutzt `#tech-filter-input` (nicht `#search-input`), damit kein Konflikt mit dem GlobalSearch im Header.
+**tech.html Sonderfall:** Hat zusaetzlich eigenes Inline-CSS (~780 Zeilen), eigene D3.js-Abhaengigkeit (CDN), und laed D3 + ES-Module. Nutzt seit 2026-04 das volle `js/i18n.js` (kein Mock mehr) und laedt das `tech` Loc-Modul beim Init; `I18n` wird auf `window` exportiert, damit ES-Module unter `js/tech/*` darauf zugreifen koennen. Die Sidebar-Suche nutzt `#tech-filter-input` (nicht `#search-input`), damit kein Konflikt mit dem GlobalSearch im Header. CSS setzt `#tech-tree > svg { position: relative; z-index: 2 }` damit die D3-SVG ueber dem Tier-Layout-Canvas (CanvasTechRenderer) rendert.
 
 ### 4.2 Shared Module
 
@@ -555,11 +615,37 @@ const I18n = (() => {
     tMultiline(key)     // Multiline-Key (\n-getrennt)
     ui(key)             // UI-String aus UI_STRINGS
 })();
+// I18n wird zusaetzlich auf window exportiert, damit ES-Module unter
+// js/tech/* direkt darauf zugreifen koennen (tech.html nutzt jetzt
+// das volle i18n.js statt eines Mocks und laedt das Loc-Modul `tech`
+// beim Init).
 ```
+
+**Lang-Switch-Reaktivitaet:** `common.js` ruft `loadFullLocalisation()`
+ge`await`-ed auf, BEVOR es das `wiki-lang-changed` Event dispatched —
+sonst gab es Race Conditions bei cross-Modul Loc-Lookups (z.B. Civic-Namen
+auf empires.html). Jede Page mit Detail-Pane trackt `currentDetailItem`
+und ruft im `wiki-lang-changed` Handler `showDetail(currentDetailItem)`
+auf, damit der offene Detail-View ohne Reload uebersetzt wird.
+Implementiert in: `economy-hub.js`, `empires.js`, `events.js`,
+`exploration.js`, `governments.js`, `ships.js`, `tech-list.js`,
+`tech_showcase.js`. `economy-hub.js` re-merget zusaetzlich die
+Loc-Module `economy`, `megastructures`, `governments` im Handler, weil
+`common.js` nur das Primary-Modul re-loaded.
 
 #### `js/ui-strings.js` - UI-String-Definitionen
 
-310+ Keys fuer Navigation, Tabs, Filter, Labels, Suchfelder, Detail-Titel, Badges, Fehlermeldungen etc. Jeder Key hat mindestens `english` und `german`, manche alle 7 Sprachen.
+330+ Keys fuer Navigation, Tabs, Filter, Labels, Suchfelder, Detail-Titel, Badges, Fehlermeldungen etc. Jeder Key hat mindestens `english` und `german`, manche alle 7 Sprachen.
+
+Neue Keys (Resources/Tech/Trait/Misc, 2026-04):
+- `ui.misc.no` (war komplett missing)
+- `ui.detail.modifier`, `ui.detail.conditions`, `ui.detail.on_spawn`, `ui.card.stage`
+- `ui.tab.resources` (neu), `ui.tab.deposits` (umbenannt von "Resources")
+- `ui.filter.show_unused`
+- `ui.type.resource`, `ui.type.councilor`
+- `ui.tech.{area, tier, category, rare, dangerous, reverse_engineerable, view_in_tree}`
+- `ui.resource.{producers, consumers, modifiers, tradable, market_price, market_supply, max_stockpile, ai_weight, axis_output, axis_upkeep, axis_cost}`
+- `ui.trait.{class, rarity, tier, cost}`
 
 #### `js/humanize.js` - PDX-Syntax -> lesbarer Text
 
@@ -570,8 +656,8 @@ Konvertiert PDX-Trigger/Effekt-Bloecke in menschenlesbare Saetze.
 Rendering-Funktionen die von allen 8 Content-Seiten (nicht Events, nicht Hub) geteilt werden:
 - Item-Cards, Detail-Panels, Pagination, Tab-Umschaltung
 - Humanisierte Modifier/Trigger/Effekte
-- `wikiLink(itemId, type, displayName)` + `initWikiLinks(container)`: Universelle Cross-Links zwischen Wiki-Items (18 Typen). Klick navigiert zur richtigen Seite+Tab via `WIKI_LINK_MAP`
-- `techLink(id)` + `initTechLinks(container)`: Klickbare Gold-Badges fuer Tech-Prerequisites
+- `wikiLink(itemId, type, displayName)` + `initWikiLinks(container)`: Universelle Cross-Links zwischen Wiki-Items (23 Typen, inkl. `resource`, `job`, `deposit`, `relic`, `ascension_perk`). Klick navigiert zur richtigen Seite+Tab via `WIKI_LINK_MAP`
+- `techLink(id)` + `initTechLinks(container)`: Klickbare Gold-Badges fuer Tech-Prerequisites. Nutzt `WIKI_LINK_MAP` (zuvor war hier ein hardgecodeter `exploration.html?tab=technology&focus=...` URL — Klicks landeten auf der Anomalie-Seite)
 
 ### 4.3 Page-Controller-Muster (Content-Seiten)
 
@@ -681,6 +767,8 @@ Responsive Breakpoints:
 | `species.json` | 74 KB | Spezies: Archetyp, Portraits |
 | `jobs.json` | 219 KB | Berufe: Produktion, Konsum |
 | `deposits.json` | 237 KB | Lagerstetten |
+| `resources.json` | ~50 KB | 46 Strategic Resources (25 vanilla + 21 STNH) |
+| `resource_producers.json` | ~600 KB | by_resource + by_producer Index (1898 Producer-Links + 502 Modifier-Links) |
 | `galaxy_map.json` | 22 KB | Galaxy-Map Empire-Startpositionen |
 | `galaxy_maps.json` | 282 KB | Erweiterte Galaxiekarten mit loc_key |
 | `mega_models_map.json` | 56 KB | Megastruktur-3D-Modell-Mapping |
@@ -789,8 +877,13 @@ WIKI_ROOT = r"D:\Projects\stnh_wiki"
 | Parser-Fehler | `parse_pdx.py` (Basis) oder modulspezifischer Parser |
 | Bilder fehlen | `parse_gfx_mappings.py` + `convert_images.py` |
 | Lokalisierung falsch | `parse_localisation.py` (Encoding? $key$-Referenzen?) |
+| Globale @-Var falsch aufgeloest | `parse_pdx.py` -> `load_global_scripted_variables` (file-lokal hat Vorrang) |
 | UI-String fehlt | `js/ui-strings.js` (Key hinzufuegen, min. english + german) |
 | Neuer Suchprefix | `js/global-search.js` -> `TYPE_PREFIXES` |
+| Neuer Wiki-Link-Typ | `js/shared-render.js` -> `WIKI_LINK_MAP` |
+| Resource sichtbar/unsichtbar zwingen | `js/pages/economy-hub.js` -> `RESOURCE_FORCED_VISIBLE` / `RESOURCE_FORCED_HIDDEN` |
+| Modifier-Name -> Resource-Mapping | `update/modifier_name_parser.py` (Heuristik, ergaenzbar) |
+| Vanilla-Mega als STNH ausgeben | `js/pages/economy-hub.js` -> `megaIsStnh` (filtert nach `source_file` STH_-Prefix) |
 | Styling | `style.css` (44 KB, dark theme) |
 
 ### Abhaengigkeiten

@@ -14,7 +14,7 @@ Vanilla HTML/CSS/JS, kein Build-System, kein Framework. Jede HTML-Seite laedt Sh
 | Governments | governments.html | search-input | Govs, Civics, Auth, Policies, Edicts, Councilors, Traditions, Perks | governments.js |
 | Exploration | exploration.html | search-input | Anomalies, Archaeology | exploration.js |
 | Empires | empires.html | search-input | Empires, Leader Traits (species hidden) | empires.js |
-| Economy | economy.html | search-input | Buildings, Districts, Jobs, Deposits, Megastructures, Relics | economy-hub.js |
+| Economy | economy.html | search-input | Buildings, Districts, Jobs, Deposits, Resources, Megastructures, Relics | economy-hub.js |
 
 **Galaxy Map:** Kein eigenes HTML — eingebettet in empires.html als Canvas-Modul via `galaxy-map.js`. Zeigt Empire-Startpositionen auf einer stilisierten Galaxiekarte. Daten aus `assets/galaxy_map.json`.
 
@@ -83,15 +83,48 @@ const AppState = (() => {
 
 ```javascript
 const I18n = (() => {
-    setLanguage(lang)   // Sprachdatei laden
-    t(key)              // Mod-Content uebersetzen (Fallback: Key selbst)
-    ui(key)             // UI-String aus UI_STRINGS
+    setLanguage(lang)         // Sprachdatei laden
+    setLangSync(lang)         // Sprache setzen ohne Datei laden
+    mergeModule(lang, module) // Modul-Loc-Datei nachladen + mergen
+    t(key)                    // Mod-Content uebersetzen (Fallback: Key selbst)
+    tMultiline(key)           // Multiline-Key (\n-getrennt)
+    ui(key)                   // UI-String aus UI_STRINGS
 })();
+// I18n wird zusaetzlich auf `window` gesetzt, damit ES-Module unter
+// js/tech/* darauf zugreifen koennen. tech.html nutzt jetzt das volle
+// i18n.js (kein Mock mehr) und laedt das `tech` Loc-Modul beim Init.
 ```
+
+### Lang-Switch-Reaktivitaet
+
+`common.js` ruft `loadFullLocalisation()` `await`-ed auf, **bevor** das
+`wiki-lang-changed` Event dispatched wird — sonst Race Condition bei
+cross-Modul Loc-Lookups (z.B. Civic-Namen auf empires.html).
+
+Jede Page mit Detail-Pane trackt `currentDetailItem` und ruft im
+`wiki-lang-changed` Handler `showDetail(currentDetailItem)` auf, damit
+der offene Detail-View ohne Reload uebersetzt wird. Implementiert in:
+`economy-hub.js`, `empires.js`, `events.js`, `exploration.js`,
+`governments.js`, `ships.js`, `tech-list.js`, `tech_showcase.js`.
+
+`economy-hub.js` re-merget zusaetzlich die Loc-Module `economy`,
+`megastructures`, `governments` im Handler, weil `common.js` nur das
+Primary-Modul re-loaded. `tech_showcase.js` triggert
+`updateVisualization` zur Re-Render der Detail-Pane.
 
 ### `js/ui-strings.js` — UI-String-Definitionen
 
-310+ Keys fuer Navigation, Tabs, Filter, Labels, Suchfelder, Detail-Titel, Badges, Fehlermeldungen etc. Jeder Key hat mindestens `english` und `german`, manche alle 7 Sprachen.
+330+ Keys fuer Navigation, Tabs, Filter, Labels, Suchfelder, Detail-Titel, Badges, Fehlermeldungen etc. Jeder Key hat mindestens `english` und `german`, manche alle 7 Sprachen.
+
+Neu (2026-04):
+- `ui.misc.no` (war komplett missing)
+- `ui.detail.modifier`, `ui.detail.conditions`, `ui.detail.on_spawn`, `ui.card.stage`
+- `ui.tab.resources` (neu), `ui.tab.deposits` (umbenannt — vorher "Resources")
+- `ui.filter.show_unused`
+- `ui.type.resource`, `ui.type.councilor`
+- `ui.tech.{area, tier, category, rare, dangerous, reverse_engineerable, view_in_tree}`
+- `ui.resource.{producers, consumers, modifiers, tradable, market_price, market_supply, max_stockpile, ai_weight, axis_output, axis_upkeep, axis_cost}`
+- `ui.trait.{class, rarity, tier, cost}`
 
 ### `js/humanize.js` — PDX-Syntax -> natuerliche Sprache
 
@@ -105,8 +138,8 @@ Rendering-Funktionen die von allen 8 Content-Seiten geteilt werden:
 - Item-Cards, Detail-Panels, Pagination, Tab-Umschaltung
 - `dualView(data, label)`: Code/Human-Toggle, reicht `label` an `Humanize.humanizeBlock(data, label)` weiter
 - `initToggles(container)`: Click-Handler fuer den Toggle-Button
-- `techLink(id)` / `techLinks(arr)` / `initTechLinks(container)`: Klickbare Gold-Badges fuer Tech-Prerequisites
-- `wikiLink(itemId, type, displayName)`: Universeller Cross-Link zu jedem Wiki-Item (18 Typen: event, building, civic, tradition, megastructure, authority, government, trait, perk, anomaly, archaeology, technology, ship, component, empire, district, policy, edict)
+- `techLink(id)` / `techLinks(arr)` / `initTechLinks(container)`: Klickbare Gold-Badges fuer Tech-Prerequisites. **Bugfix 2026-04:** `initTechLinks` nutzt jetzt `WIKI_LINK_MAP` statt einer hardgecodeten `exploration.html?tab=technology&focus=...` URL — vorher landeten Klicks auf der Anomalie-Seite.
+- `wikiLink(itemId, type, displayName)`: Universeller Cross-Link zu jedem Wiki-Item (23 Typen: event, building, civic, tradition, megastructure, authority, government, trait, perk, anomaly, archaeology, technology, ship, component, empire, district, policy, edict, **resource, job, deposit, relic, ascension_perk**)
 - `initWikiLinks(container)`: Click-Handler fuer `.wiki-link` Elemente, navigiert anhand `WIKI_LINK_MAP` zur richtigen Seite+Tab
 - `WIKI_LINK_MAP`: Typ → {page, param, tab} Mapping fuer URL-Generierung
 
@@ -249,12 +282,19 @@ Eigenes modulares System (ES Modules), komplett getrennt von den Wiki-Shared-Mod
 **Sonderfaelle tech.html:**
 - Eigenes Inline-CSS (~780 Zeilen) statt style.css
 - D3.js v7 (CDN) fuer SVG-Rendering
-- Minimaler I18n-Shim statt vollem i18n.js (nur `ui()` + `setLanguage()` als No-Op)
+- Volles `js/i18n.js` (kein Mock mehr seit 2026-04). Laedt das `tech` Loc-Modul beim Init. `I18n` wird auf `window` exportiert, damit ES-Module unter `js/tech/*` darauf zugreifen koennen.
 - Sidebar-Suche: `#tech-filter-input` (umbenannt, damit kein Konflikt mit GlobalSearch auf `#search-input` im Header)
 - ES Modules (`type="module"`) statt IIFE
 - Tier-Layout als Default-Ansicht (kein separater Tech-Header)
 - Prerequisites mit klickbaren Links zu anderen Techs
 - Tech-Item-Map: Cross-Reference welche Items (Ships, Buildings, Components) eine Tech freischaltet
+- Z-Order-Fix: `#tech-tree > svg { position: relative; z-index: 2 }` — sonst rendert die Canvas-Tech-Lines (CanvasTechRenderer in `js/tech/canvas-renderer.js`) im Tier-Layout ueber den Cards. `js/tech/render.js:updateLOD` ruft zusaetzlich `linksLayer.lower()` + `nodesLayer.raise()` als Sicherheitsnetz.
+
+**Tech-Loc-Helpers (in `js/tech/data.js`):**
+- `getTechName`, `getTechDescription`, `getCategoryLabel`, `getAreaLabel`, `formatEffectDisplay`
+- Stellaris-Modifier-Loc-Key Konvention: `MOD_<KEY_UPPERCASE>`
+- `js/pages/tech-list.js` repliziert die Helpers inline (classic script, kein ES-Module)
+- `js/tech/render.js` rendert via Helpers statt pre-baked English Strings.
 
 ## GlobalSearch-Architektur
 
@@ -279,6 +319,33 @@ GlobalSearch.init() -- laedt Index + module_pages.json
         Header-Search (#search-input) -> GlobalSearch
         Sidebar-Search (#tech-filter-input) -> Tech-eigene Suche
 ```
+
+## Economy-Hub (`js/pages/economy-hub.js`)
+
+Sieben Tabs: Buildings, Districts, Jobs, Deposits, **Resources** (neu), Megastructures, Relics.
+
+### Resources-Tab (neu, 2026-04)
+
+- Liest `assets/resources.json` (46 Strategic Resources) + `assets/resource_producers.json` (Producer/Consumer/Modifier-Index, `by_resource` und `by_producer`).
+- Kategorien sind von 4 (Basic/Advanced/Strategic/STNH) auf 2 (**Economic/Strategic**) konsolidiert.
+- Default-Filter zeigt nur "used" Resources (mind. ein Producer/Consumer/Modifier-Link).
+- `RESOURCE_FORCED_VISIBLE` Allowlist: erzwungen sichtbar (sr_living_metal, sr_dark_matter, sr_new_horizons).
+- `RESOURCE_FORCED_HIDDEN` Blocklist: vanilla-only ausgeblendet (astral_threads, rare_crystals).
+- Toggle "Show unused" (`ui.filter.show_unused`) macht alle sichtbar.
+- Detail-Pane zeigt: Producer, Consumer, Modifier, Tradable, Market-Price, Market-Supply, Max-Stockpile, AI-Weight, Axis-Output/Upkeep/Cost.
+
+### Districts-Tab
+
+- Rendert `icons/districts/<id>.webp` in Card-List + Detail-Pane (143 Icons, Filename = District-ID).
+
+### Megastructures-Tab
+
+- `megaIsStnh(item)` filtert Megas, deren `source_file` nicht mit `STH_` beginnt — 40 vanilla-only Megas werden default ausgeblendet, 76 STNH-Megas bleiben sichtbar.
+- "Show unused" Toggle zeigt auch Vanilla-Megas.
+
+### Lang-Switch
+
+`economy-hub.js` re-merget die Loc-Module `economy`, `megastructures`, `governments` im `wiki-lang-changed` Handler, weil `common.js` nur das Primary-Modul re-loaded.
 
 ## 3D Ship Viewer
 

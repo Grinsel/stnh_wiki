@@ -9,7 +9,7 @@ stnh_wiki/
 |   +-- workflows/
 |       +-- deploy.yml                 # GitHub Pages Auto-Deployment
 |
-+-- assets/                            # [GENERIERT] JSON-Daten (36 Dateien)
++-- assets/                            # [GENERIERT] JSON-Daten (40+ Dateien)
 |   +-- events_index.json              # Event-Index (2,6 MB)
 |   +-- namespaces.json                # Namespace-Metadaten (42 KB)
 |   +-- relationships.json             # Event-Trigger-Graph (637 KB)
@@ -37,6 +37,8 @@ stnh_wiki/
 |   +-- species.json                   # Spezies (74 KB)
 |   +-- jobs.json                      # Berufe (219 KB)
 |   +-- deposits.json                  # Lagerstetten (237 KB)
+|   +-- resources.json                 # 46 Strategic Resources (25 vanilla + 21 STNH)
+|   +-- resource_producers.json        # Producer/Consumer/Modifier-Index (by_resource + by_producer, 1898+502 Links)
 |   +-- ship_models_map.json            # Ship-ID -> Fraktions-Modell Mapping (443 KB)
 |   +-- galaxy_map.json                # Galaxy-Map Startpositionen (22 KB)
 |   +-- tech_item_map.json             # Tech -> Item Cross-Reference (1,05 MB)
@@ -53,9 +55,11 @@ stnh_wiki/
 |
 +-- pictures/                          # [GENERIERT] WebP Event-Bilder (991 Dateien)
 |
-+-- icons/                             # Item-Icons (15 Kategorien, 5.901 WebP)
++-- icons/                             # Item-Icons (17 Kategorien, ~6.160 WebP)
 |   +-- tech/                          # 1.659 Tech-Icons (WebP, aus git09)
 |   +-- buildings/                     # 754 Building-Icons (WebP)
+|   +-- districts/                     # 143 District-Icons (filename = district id, 55/56 Coverage)
+|   +-- resources/                     # 120 Strategic-Resource-Icons (WebP)
 |   +-- traits/                        # 1.106 Trait-Icons (WebP)
 |   +-- traditions/                    # 407 Traditions-Icons (WebP)
 |   +-- ascension_perks/               # 66 Ascension-Perk-Icons (WebP)
@@ -119,7 +123,7 @@ stnh_wiki/
 |           +-- worker-physics.js      # Web Worker Physics-Engine
 |           +-- layouts/               # 5 Layout-Engines (force, grid, tier, arrows, disjoint)
 |
-+-- update/                            # Python Daten-Pipeline (84 Dateien: 57 core + 27 techtree)
++-- update/                            # Python Daten-Pipeline (~88 Dateien: ~61 core + 27 techtree)
 |   +-- UPDATE_WIKI.py                 # Master-Orchestrator (alle Phasen)
 |   +-- UPDATE_EVENTS.py               # Modul-Updater: Events
 |   +-- UPDATE_LOC.py                  # Modul-Updater: Localisation
@@ -152,6 +156,10 @@ stnh_wiki/
 |   +-- parse_species.py               # Spezies
 |   +-- parse_jobs.py                  # Berufe
 |   +-- parse_deposits.py              # Lagerstetten
+|   +-- parse_resources.py             # 46 Strategic Resources (vanilla + STNH override)
+|   +-- modifier_name_parser.py        # Heuristik: planet_miners_minerals_produces_mult -> (resource, producer, axis, op)
+|   +-- generate_resource_index.py     # Producer/Consumer/Modifier-Index (by_resource + by_producer)
+|   +-- generate_resources_json.py     # Resources Orchestrator
 |   +-- build_relationships.py         # Event-Trigger-Graph
 |   +-- generate_events_json.py        # Events JSON + Faction-Mapping
 |   +-- generate_ships_json.py         # Ships + Components JSON
@@ -249,6 +257,8 @@ git01/New-Horizons-Development/
 |   +-- archaeological_site_types/
 |   +-- pop_jobs/             31 Dateien
 |   +-- deposits/             27 Dateien
+|   +-- strategic_resources/  46 Resource-IDs (25 vanilla + 21 STNH)
+|   +-- scripted_variables/   Globale @-Vars (2652 Keys)
 |   +-- species_classes/
 |   +-- species_archetypes/
 +-- prescripted_countries/    Empires
