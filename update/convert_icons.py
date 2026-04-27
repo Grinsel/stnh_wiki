@@ -84,6 +84,15 @@ ICON_CATEGORIES = [
         'size': '64x64',
     },
     {
+        # Districts: filenames match the district id 1:1
+        # (district_city.dds, district_mining.dds, …).
+        'name': 'districts',
+        'mod':     [os.path.join(STNH_MOD_ROOT, 'gfx', 'interface', 'icons', 'districts')],
+        'vanilla': [os.path.join(VANILLA_ROOT,  'gfx', 'interface', 'icons', 'districts')],
+        'output':  'districts',
+        'size':    '64x64',
+    },
+    {
         # Strategic resources: filenames already match the resource id
         # (sr_<name>.dds, plus core resources like minerals.dds, energy.dds).
         # Skip the *_grey.dds and *_large.dds variants.

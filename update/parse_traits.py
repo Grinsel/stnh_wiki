@@ -69,13 +69,18 @@ def extract_trait(trait_id, block, source_file):
 
 
 def parse_all_traits():
-    """Parse all trait files. Returns (traits_list, stats_dict)."""
-    traits = []
-    stats = {'files': 0, 'items': 0, 'errors': 0}
+    """Parse all trait files. Returns (traits_list, stats_dict).
+
+    Trait IDs may appear in multiple files (e.g. species_traits + ascension_traits)
+    or even twice within the same file. Stellaris semantics is "last definition
+    wins" — collect into a dict-by-id so later definitions override earlier ones.
+    """
+    by_id = {}
+    stats = {'files': 0, 'items': 0, 'errors': 0, 'overrides': 0}
 
     if not os.path.isdir(MOD_TRAITS_DIR):
         print(f"  [WARN] Traits directory not found: {MOD_TRAITS_DIR}")
-        return traits, stats
+        return [], stats
 
     for filename in sorted(os.listdir(MOD_TRAITS_DIR)):
         if not filename.endswith('.txt'):
@@ -92,9 +97,12 @@ def parse_all_traits():
                     if isinstance(value, list) and key.startswith('trait_'):
                         item = extract_trait(key, value, filepath)
                         if item:
-                            traits.append(item)
-                            stats['items'] += 1
+                            if key in by_id:
+                                stats['overrides'] += 1
+                            by_id[key] = item
 
+    traits = sorted(by_id.values(), key=lambda t: t['id'])
+    stats['items'] = len(traits)
     return traits, stats
 
 

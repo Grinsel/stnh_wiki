@@ -475,12 +475,14 @@
             const isBuilding = activeTab === 'buildings';
             const isJob      = activeTab === 'jobs';
             const isDeposit  = activeTab === 'deposits';
+            const isDistrict = activeTab === 'districts';
             const isMega     = activeTab === 'megastructures';
             const isRelic    = activeTab === 'relics';
             const isResource = activeTab === 'resources';
 
             let iconHtml = '';
             if (isBuilding && item.icon_key)    iconHtml = `<img class="detail-icon" src="icons/buildings/${esc(item.icon_key)}.webp"   alt="" onerror="this.style.display='none'">`;
+            else if (isDistrict)                 iconHtml = `<img class="detail-icon" src="icons/districts/${esc(item.id)}.webp"          alt="" onerror="this.style.display='none'">`;
             else if (isJob     && item.icon)     iconHtml = `<img class="detail-icon" src="icons/jobs/${esc(item.icon)}.webp"            alt="" onerror="this.style.display='none'">`;
             else if (isDeposit) {
                 const stem = item.icon || 'd_asteroid_cavern';
@@ -783,6 +785,7 @@
                 for (const item of pageItems) {
                     let iconCol = '';
                     if      (activeTab === 'buildings' && item.icon_key) iconCol = `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/buildings/${esc(item.icon_key)}.webp" alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`;
+                    else if (activeTab === 'districts')                  iconCol = `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/districts/${esc(item.id)}.webp"             alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`;
                     else if (activeTab === 'jobs'      && item.icon)     iconCol = `<div class="item-card-icon-col"><img class="item-card-icon" src="icons/jobs/${esc(item.icon)}.webp"            alt="" onerror="this.closest('.item-card-icon-col').style.display='none'"></div>`;
                     else if (activeTab === 'deposits') {
                         const stem = item.icon || 'd_asteroid_cavern';

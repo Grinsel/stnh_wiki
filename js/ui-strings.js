@@ -187,6 +187,9 @@ const UI_STRINGS = {
     'ui.detail.prerequisites':    { english: 'Prerequisites', german: 'Voraussetzungen', french: 'Prérequis', russian: 'Предусловия' },
     'ui.detail.resources':        { english: 'Resources', german: 'Ressourcen', french: 'Ressources', russian: 'Ресурсы' },
     'ui.detail.modifiers':        { english: 'Modifiers', german: 'Modifikatoren', french: 'Modificateurs', russian: 'Модификаторы' },
+    'ui.detail.modifier':         { english: 'Modifier',  german: 'Modifikator',   french: 'Modificateur',  russian: 'Модификатор' },
+    'ui.detail.conditions':       { english: 'Conditions', german: 'Bedingungen', french: 'Conditions', russian: 'Условия' },
+    'ui.detail.on_spawn':         { english: 'On Spawn', german: 'Beim Erscheinen', french: 'À l’apparition', russian: 'При появлении' },
     'ui.detail.section_slots':    { english: 'Section Slots', german: 'Sektionspl\u00e4tze', french: 'Emplacements de section', russian: 'Слоты секций' },
     'ui.detail.tags':             { english: 'Tags', german: 'Tags', french: 'Étiquettes', russian: 'Метки' },
     'ui.detail.description':      { english: 'Description', german: 'Beschreibung', french: 'Description', russian: 'Описание' },
@@ -282,6 +285,7 @@ const UI_STRINGS = {
     'ui.card.options':         { english: 'options', german: 'Optionen', french: 'options', russian: 'варианты' },
     'ui.card.outcomes':        { english: 'outcomes', german: 'Ergebnisse', french: 'résultats', russian: 'исходы' },
     'ui.card.stages':          { english: 'stages', german: 'Stufen', french: 'étapes', russian: 'этапы' },
+    'ui.card.stage':           { english: 'Stage',  german: 'Stufe',  french: 'Étape',  russian: 'Этап' },
     'ui.card.ethics':          { english: 'ethics', german: 'Ethiken', french: 'éthiques', russian: 'этика' },
 
     // ==========================================
