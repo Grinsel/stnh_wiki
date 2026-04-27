@@ -118,7 +118,7 @@
         function updateFilterVis() {
             chipsEl.classList.toggle('hidden', activeTab !== 'buildings' && activeTab !== 'resources');
             catGroupEl.classList.toggle('hidden', activeTab !== 'jobs' && activeTab !== 'deposits');
-            if (showUnusedGroupEl) showUnusedGroupEl.classList.toggle('hidden', activeTab !== 'resources');
+            if (showUnusedGroupEl) showUnusedGroupEl.classList.toggle('hidden', activeTab !== 'resources' && activeTab !== 'megastructures');
         }
 
         // ── Resources: source/category filter chips (basic / advanced / strategic / stnh) ──
@@ -171,6 +171,16 @@
                 || (e.consumers && e.consumers.length > 0)
                 || (e.modifiers && e.modifiers.length > 0);
         }
+
+        // Megastructures: hide vanilla-defined ones (dyson sphere, gateways,
+        // mega shipyard, behemoth egg, etc.). STNH source files are prefixed
+        // STH_ — anything else came from vanilla and is filtered out by
+        // default. Same Show-unused toggle as resources reveals them.
+        function megaIsStnh(item) {
+            const sf = item.source_file || '';
+            return sf.startsWith('STH_');
+        }
+
         let showUnusedResources = false;
 
         // ── Tab switching ────────────────────────────────────────────────────
@@ -190,6 +200,7 @@
                 currentPage = 1;
                 if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
                 removeOverlayImmediate();
+                currentDetailItem = null;
                 SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
                 updateFilterVis();
                 populateCategories();
@@ -204,6 +215,7 @@
         const detailContent = document.getElementById('detail-content');
         document.getElementById('detail-close').addEventListener('click', () => {
             if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
+            currentDetailItem = null;
             SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
         });
 
@@ -398,7 +410,7 @@
                     grouped[p.module].push(p);
                 }
 
-                html += `<div class="detail-section"><div class="detail-section-title">Producers (${entry.producers.length})</div>`;
+                html += `<div class="detail-section"><div class="detail-section-title">${esc(I18n.ui('ui.resource.producers'))} (${entry.producers.length})</div>`;
                 for (const moduleKey of Object.keys(PRODUCER_LABELS)) {
                     const list = grouped[moduleKey];
                     if (!list || !list.length) continue;
@@ -424,7 +436,7 @@
                     grouped[c.module].push(c);
                 }
 
-                html += `<div class="detail-section"><div class="detail-section-title">Consumers (${entry.consumers.length})</div>`;
+                html += `<div class="detail-section"><div class="detail-section-title">${esc(I18n.ui('ui.resource.consumers'))} (${entry.consumers.length})</div>`;
                 for (const moduleKey of Object.keys(PRODUCER_LABELS)) {
                     const list = grouped[moduleKey];
                     if (!list || !list.length) continue;
@@ -444,7 +456,7 @@
 
             // Modifiers (boosts/penalties)
             if (entry.modifiers && entry.modifiers.length) {
-                html += `<div class="detail-section"><div class="detail-section-title">Modifiers Affecting This Resource (${entry.modifiers.length})</div>`;
+                html += `<div class="detail-section"><div class="detail-section-title">${esc(I18n.ui('ui.resource.modifiers'))} (${entry.modifiers.length})</div>`;
                 html += `<div class="detail-meta-list">`;
                 // Sort: produces add > produces mult > upkeep, big values first
                 const mods = entry.modifiers.slice().sort((a, b) => {
@@ -457,7 +469,11 @@
                     const ownerName = I18n.t(m.owner_id) || m.owner_id;
                     const ownerLink = SharedRender.wikiLink(m.owner_id, linkKind, ownerName);
                     const valStr = fmtModifierValue(m);
-                    const axisLabel = m.axis === 'produces' ? 'Output' : (m.axis === 'upkeep' ? 'Upkeep' : 'Cost');
+                    const axisLabel = m.axis === 'produces'
+                        ? I18n.ui('ui.resource.axis_output')
+                        : (m.axis === 'upkeep'
+                            ? I18n.ui('ui.resource.axis_upkeep')
+                            : I18n.ui('ui.resource.axis_cost'));
                     html += `<div class="resource-modifier-row">`;
                     html += `<span class="resource-modifier-value">${esc(valStr)} ${esc(axisLabel)}</span> `;
                     html += `from ${ownerLink}`;
@@ -566,11 +582,11 @@
             if (isResource) {
                 const stats = [];
                 if (item.source)        stats.push([I18n.ui('ui.meta.category'), item.source === 'stnh' ? 'STNH' : 'Vanilla']);
-                stats.push(['Tradable', item.tradable ? I18n.ui('ui.misc.yes') : I18n.ui('ui.misc.no')]);
-                if (item.market_price)  stats.push(['Market Price',  item.market_price]);
-                if (item.market_amount) stats.push(['Market Supply', item.market_amount]);
-                if (item.max)           stats.push(['Max Stockpile', item.max]);
-                if (item.ai_weight != null) stats.push(['AI Weight', item.ai_weight]);
+                stats.push([I18n.ui('ui.resource.tradable'), item.tradable ? I18n.ui('ui.misc.yes') : I18n.ui('ui.misc.no')]);
+                if (item.market_price)  stats.push([I18n.ui('ui.resource.market_price'),  item.market_price]);
+                if (item.market_amount) stats.push([I18n.ui('ui.resource.market_supply'), item.market_amount]);
+                if (item.max)           stats.push([I18n.ui('ui.resource.max_stockpile'), item.max]);
+                if (item.ai_weight != null) stats.push([I18n.ui('ui.resource.ai_weight'), item.ai_weight]);
                 html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.info')}</div>`;
                 html += `<div class="detail-meta">${stats.map(([k,v]) => `<span class="detail-meta-item">${esc(k)}: ${esc(v)}</span>`).join('')}</div></div>`;
 
@@ -621,7 +637,9 @@
         }
 
         // ── showDetail ───────────────────────────────────────────────────────
+        let currentDetailItem = null;
         function showDetail(item) {
+            currentDetailItem = item;
             if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
             SharedRender.hidePlaceholder(detailPanel);
             detailTitle.textContent      = item.name || item.id;
@@ -660,7 +678,20 @@
         catSel.addEventListener('change', () => { currentPage = 1; renderAll(); });
 
         // ── Language change ──────────────────────────────────────────────────
-        document.addEventListener('wiki-lang-changed', () => {
+        // common.js' lang-select handler only re-loads the page's primary
+        // module ('buildings'). The economy hub additionally pulls the
+        // economy / megastructures / governments modules — those need to be
+        // re-merged for the new language before any name lookup runs.
+        // After the re-render, also rebuild the currently-open detail pane
+        // so its content tracks the language switch (otherwise the user has
+        // to re-click the item to see translated names).
+        document.addEventListener('wiki-lang-changed', async () => {
+            const lang = AppState.get('lang');
+            await Promise.all([
+                I18n.mergeModule(lang, 'economy'),
+                I18n.mergeModule(lang, 'megastructures'),
+                I18n.mergeModule(lang, 'governments'),
+            ]);
             for (const item of buildings)      item.name = I18n.t(item.name_key) || item.id;
             for (const item of districts)      item.name = I18n.t(item.name_key) || item.id;
             for (const item of jobs)           item.name = I18n.t(item.name_key) || item.id;
@@ -673,6 +704,7 @@
             populateCategories();
             removeOverlayImmediate();
             renderAll();
+            if (currentDetailItem) showDetail(currentDetailItem);
         });
 
         // ── Restore tab from URL ─────────────────────────────────────────────
@@ -731,6 +763,9 @@
                     if (!showUnusedResources && !resourceIsUsed(item)) return false;
                     const cat = categoryChips.getActive();
                     if (cat && resCategoryOf(item) !== cat) return false;
+                }
+                if (activeTab === 'megastructures') {
+                    if (!showUnusedResources && !megaIsStnh(item)) return false;
                 }
                 if (activeTab === 'jobs' || activeTab === 'deposits') {
                     const cat = catSel.value;

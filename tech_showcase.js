@@ -1149,6 +1149,20 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    // Re-render tree + detail pane when language changes so localised tech
+    // names + descriptions take effect without requiring a click on a node.
+    document.addEventListener('wiki-lang-changed', async () => {
+        const lang = AppState.get('lang');
+        if (typeof I18n !== 'undefined' && I18n.setLanguageForModule) {
+            try {
+                await I18n.setLanguageForModule(lang, 'tech');
+            } catch (e) { /* ignore — fall back to English */ }
+        }
+        if (typeof window.updateVisualization === 'function') {
+            window.updateVisualization(speciesSelect.value, activeTechId, false);
+        }
+    });
+
     // Path direction toggle button
     const pathDirectionBtn = document.getElementById('path-direction-btn');
     if (pathDirectionBtn) {

@@ -425,4 +425,34 @@ const UI_STRINGS = {
     'ui.misc.icon':            { english: 'Icon', german: 'Symbol', french: 'Icône', russian: 'Иконка' },
     'ui.misc.unnamed':         { english: '(unnamed)', german: '(unbenannt)', french: '(sans nom)', russian: '(без названия)' },
     'ui.misc.text':            { english: 'Text', german: 'Text', french: 'Texte', russian: 'Текст' },
+
+    // ==========================================
+    // Tech-Tree specific labels
+    // ==========================================
+    'ui.tech.area':                  { english: 'Area',     german: 'Bereich',         french: 'Domaine',     russian: 'Область' },
+    'ui.tech.tier':                  { english: 'Tier',     german: 'Stufe',           french: 'Niveau',      russian: 'Уровень' },
+    'ui.tech.category':              { english: 'Category', german: 'Kategorie',       french: 'Catégorie',   russian: 'Категория' },
+    'ui.tech.rare':                  { english: 'Rare',     german: 'Selten',          french: 'Rare',        russian: 'Редкий' },
+    'ui.tech.dangerous':             { english: 'Dangerous',german: 'Gefährlich',      french: 'Dangereux',   russian: 'Опасный' },
+    'ui.tech.reverse_engineerable':  { english: 'Reverse-Engineerable', german: 'Reverse-Engineering möglich', french: 'Rétroconception possible', russian: 'Поддаётся обратной разработке' },
+    'ui.tech.view_in_tree':          { english: 'View in Tree', german: 'Im Baum anzeigen', french: 'Voir dans l’arbre', russian: 'Показать в дереве' },
+
+    // Resources tab
+    'ui.resource.producers':         { english: 'Producers',  german: 'Produzenten', french: 'Producteurs', russian: 'Производители' },
+    'ui.resource.consumers':         { english: 'Consumers',  german: 'Verbraucher', french: 'Consommateurs', russian: 'Потребители' },
+    'ui.resource.modifiers':         { english: 'Modifiers Affecting This Resource', german: 'Modifikatoren für diese Ressource', french: 'Modificateurs affectant cette ressource', russian: 'Модификаторы для этого ресурса' },
+    'ui.resource.tradable':          { english: 'Tradable',     german: 'Handelbar',  french: 'Commercialisable', russian: 'Продаваемый' },
+    'ui.resource.market_price':      { english: 'Market Price', german: 'Marktpreis', french: 'Prix du marché', russian: 'Рыночная цена' },
+    'ui.resource.market_supply':     { english: 'Market Supply',german: 'Marktangebot', french: 'Offre du marché', russian: 'Рыночное предложение' },
+    'ui.resource.max_stockpile':     { english: 'Max Stockpile',german: 'Max. Lager',  french: 'Stock max',  russian: 'Макс. запас' },
+    'ui.resource.ai_weight':         { english: 'AI Weight',    german: 'KI-Gewicht',  french: 'Poids IA',   russian: 'Вес ИИ' },
+    'ui.resource.axis_output':       { english: 'Output',  german: 'Ausgabe',  french: 'Production', russian: 'Выработка' },
+    'ui.resource.axis_upkeep':       { english: 'Upkeep',  german: 'Unterhalt',french: 'Entretien',  russian: 'Содержание' },
+    'ui.resource.axis_cost':         { english: 'Cost',    german: 'Kosten',   french: 'Coût',       russian: 'Стоимость' },
+
+    // Trait detail
+    'ui.trait.class':                { english: 'Class',   german: 'Klasse',     french: 'Classe',  russian: 'Класс' },
+    'ui.trait.rarity':               { english: 'Rarity',  german: 'Seltenheit', french: 'Rareté',  russian: 'Редкость' },
+    'ui.trait.tier':                 { english: 'Tier',    german: 'Stufe',      french: 'Niveau',  russian: 'Уровень' },
+    'ui.trait.cost':                 { english: 'Cost',    german: 'Kosten',     french: 'Coût',    russian: 'Стоимость' },
 };

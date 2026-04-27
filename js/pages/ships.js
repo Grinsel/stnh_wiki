@@ -176,12 +176,15 @@
         const detailPanel = document.getElementById('detail-panel');
         const detailTitle = document.getElementById('detail-title');
         const detailContent = document.getElementById('detail-content');
+        let currentDetailItem = null;
         document.getElementById('detail-close').addEventListener('click', () => {
             if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
+            currentDetailItem = null;
             SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
         });
 
         function showDetail(item) {
+            currentDetailItem = item;
             if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
             SharedRender.hidePlaceholder(detailPanel);
             detailTitle.textContent = item.name || item.id;
@@ -326,6 +329,7 @@
             sizeChips.rebuildAll(sizeCategoriesFromCounts(sizeCountMap(null)), I18n.ui('ui.filter.all_sizes'));
             comptypeChips.rebuildAll(comptypeCategories, I18n.ui('ui.filter.all_types'));
             renderAll();
+            if (currentDetailItem) showDetail(currentDetailItem);
         });
 
         // Tab from URL (before renderAll)

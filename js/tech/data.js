@@ -354,28 +354,109 @@ export function filterTechsByFaction(techs, factionId) {
  * @param {string} factionId - Faction ID
  * @returns {string} Tech name (faction-specific or default)
  */
+// --- I18n helpers (used by tech-tree localisation) ---
+// tech.html loads js/i18n.js since the localisation work; before that the
+// tree only resolved pre-baked English strings stored in the tech JSONs.
+// _locOr returns the localised string for `key` if I18n.t is available
+// AND the lookup actually matched (I18n.t returns the key itself on miss).
+function _i18n() {
+  return (typeof window !== 'undefined') ? window.I18n : null;
+}
+function _locOr(key, fallback) {
+  const i = _i18n();
+  if (!i || typeof i.t !== 'function') return fallback;
+  const r = i.t(key);
+  return (r && r !== key) ? r : fallback;
+}
+
 export function getTechName(tech, factionId) {
   if (!tech) return '';
 
-  // If no faction or 'all', use default name
+  // If no faction or 'all', use default name with i18n preference
   if (factionId === 'all' || !factionId) {
-    return tech.name || tech.id || '';
+    return _locOr(tech.id, tech.name || tech.id || '');
   }
 
-  // Check for alternate names
+  // Faction-specific alternate names (no separate loc key for them)
   if (tech.alternate_names && typeof tech.alternate_names === 'object') {
-    // Try to find matching faction name
     const altName = Object.keys(tech.alternate_names).find(
       key => key.toLowerCase() === factionId.toLowerCase()
     );
-
     if (altName) {
-      return tech.alternate_names[altName] || tech.name || tech.id || '';
+      return tech.alternate_names[altName] || _locOr(tech.id, tech.name || tech.id || '');
     }
   }
 
-  // Fallback to default name
-  return tech.name || tech.id || '';
+  return _locOr(tech.id, tech.name || tech.id || '');
+}
+
+/**
+ * Tech description, prefer localised <id>_desc loc key over the pre-baked
+ * English string in the tech JSON.
+ */
+export function getTechDescription(tech) {
+  if (!tech) return '';
+  const i = _i18n();
+  if (i && typeof i.tMultiline === 'function') {
+    const r = i.tMultiline(tech.id + '_desc');
+    if (r) return r;
+  }
+  return tech.description || '';
+}
+
+/**
+ * Localise a tech category slug (e.g. 'field_manipulation' → 'Feldmanipulation').
+ * Stellaris stores these as raw lowercase keys in the loc files.
+ */
+export function getCategoryLabel(catSlug) {
+  if (!catSlug) return '';
+  return _locOr(catSlug, catSlug);
+}
+
+/**
+ * Localise a tech area (physics/society/engineering). Stellaris does not
+ * keep these as loc keys — fall back to UI strings, then capitalised raw.
+ */
+export function getAreaLabel(area) {
+  if (!area) return '';
+  const i = _i18n();
+  // ui.filter.<area> already exists for the area-chip filter
+  const k = 'ui.filter.' + area;
+  if (i && typeof i.ui === 'function') {
+    const r = i.ui(k);
+    if (r && r !== k) return r;
+  }
+  return area.charAt(0).toUpperCase() + area.slice(1);
+}
+
+/**
+ * Build a localised effect display string from raw key+value.
+ * Mirrors update/techtree/create_tech_json_new.py:format_modifier_display
+ * but pulls the modifier name from MOD_<KEY> loc data instead of the
+ * humanise_modifier_key() heuristic. Falls back to effect.display
+ * (the pre-baked English string) when the loc lookup misses.
+ */
+export function formatEffectDisplay(effect) {
+  if (!effect) return '';
+  const key = effect.key;
+  if (!key) return effect.display || '';
+  const val = parseFloat(effect.value);
+  if (isNaN(val)) return effect.display || '';
+
+  let formatted;
+  if (key.endsWith('_mult')) {
+    formatted = `${val >= 0 ? '+' : ''}${(val * 100).toFixed(0)}%`;
+  } else if (key.endsWith('_add')) {
+    formatted = `${val >= 0 ? '+' : ''}${val.toFixed(0)}`;
+  } else {
+    formatted = `${val >= 0 ? '+' : ''}${val.toFixed(2)}`;
+  }
+
+  // Stellaris convention: modifier loc key is MOD_<UPPERCASE_KEY>
+  const locKey = 'MOD_' + key.toUpperCase();
+  const name = _locOr(locKey, null);
+  if (name) return `${formatted} ${name}`;
+  return effect.display || `${formatted} ${key}`;
 }
 
 /**

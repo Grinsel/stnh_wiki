@@ -269,7 +269,11 @@
         const detailPanel = document.getElementById('detail-panel');
         const detailTitle = document.getElementById('detail-title');
         const detailContent = document.getElementById('detail-content');
-        document.getElementById('detail-close').addEventListener('click', () => detailPanel.classList.add('hidden'));
+        let currentDetailItem = null;
+        document.getElementById('detail-close').addEventListener('click', () => {
+            currentDetailItem = null;
+            detailPanel.classList.add('hidden');
+        });
 
         // --- Search ---
         let searchTimeout;
@@ -291,6 +295,7 @@
                 { value: 'society', label: I18n.ui('ui.filter.society'), count: society.length },
             ], I18n.ui('ui.filter.all_areas'));
             renderAll();
+            if (currentDetailItem) showDetail(currentDetailItem);
         });
 
         // --- Faction filter (replicated from js/tech/data.js) ---
@@ -337,6 +342,49 @@
 
         const EFFECT_ICONS = { 'Combat':'⚔️','Economy':'💰','Science':'🔬','Ships':'🚀','Population':'👥','Other':'⚙️' };
 
+        // --- Tech-tree i18n helpers (mirror of js/tech/data.js) ---
+        // Note: I18n is declared as `const` at script scope in js/i18n.js, so
+        // it is NOT available on `window` — reference it directly here.
+        function _locOr(key, fallback) {
+            if (typeof I18n === 'undefined' || typeof I18n.t !== 'function') return fallback;
+            const r = I18n.t(key);
+            return (r && r !== key) ? r : fallback;
+        }
+        function getTechDescription(tech) {
+            if (typeof I18n !== 'undefined' && typeof I18n.tMultiline === 'function') {
+                const r = I18n.tMultiline(tech.id + '_desc');
+                if (r) return r;
+            }
+            return tech.description || '';
+        }
+        function getCategoryLabel(slug) {
+            return slug ? _locOr(slug, slug) : '';
+        }
+        function getAreaLabel(area) {
+            if (!area) return '';
+            // ui.filter.<area> already exists from the area-chip code
+            const k = 'ui.filter.' + area;
+            if (typeof I18n !== 'undefined' && typeof I18n.ui === 'function') {
+                const r = I18n.ui(k);
+                if (r && r !== k) return r;
+            }
+            return area.charAt(0).toUpperCase() + area.slice(1);
+        }
+        function formatEffectDisplay(effect) {
+            if (!effect) return '';
+            const key = effect.key;
+            if (!key) return effect.display || '';
+            const val = parseFloat(effect.value);
+            if (isNaN(val)) return effect.display || '';
+            let formatted;
+            if (key.endsWith('_mult'))      formatted = `${val >= 0 ? '+' : ''}${(val * 100).toFixed(0)}%`;
+            else if (key.endsWith('_add'))  formatted = `${val >= 0 ? '+' : ''}${val.toFixed(0)}`;
+            else                            formatted = `${val >= 0 ? '+' : ''}${val.toFixed(2)}`;
+            const name = _locOr('MOD_' + key.toUpperCase(), null);
+            if (name) return `${formatted} ${name}`;
+            return effect.display || `${formatted} ${key}`;
+        }
+
         function formatEffectsGrouped(effects) {
             if (!effects || !effects.length) return '';
             const grouped = { 'Combat':[],'Economy':[],'Science':[],'Ships':[],'Population':[],'Other':[] };
@@ -345,7 +393,7 @@
             for (const [cat, items] of Object.entries(grouped)) {
                 if (!items.length) continue;
                 html += `<div class="effect-category"><span class="effect-category-label">${cat}:</span>`;
-                items.forEach(e => { html += `<div class="effect-item">${EFFECT_ICONS[cat] || '⚙️'} ${esc(e.display || e.key)}</div>`; });
+                items.forEach(e => { html += `<div class="effect-item">${EFFECT_ICONS[cat] || '⚙️'} ${esc(formatEffectDisplay(e))}</div>`; });
                 html += '</div>';
             }
             html += '</div>';
@@ -396,6 +444,7 @@
 
         // --- Show Detail ---
         function showDetail(tech) {
+            currentDetailItem = tech;
             detailTitle.textContent = tech._name;
             const areaColor = AREA_COLORS[tech.area] || '#666';
             const iconHtml = tech.icon
@@ -404,19 +453,20 @@
 
             // --- Header with icon and key badges ---
             let html = `<div class="detail-meta" style="align-items:center">${iconHtml}`;
-            html += `<span class="detail-meta-item" style="color:${areaColor};font-weight:bold">${esc(tech.area)}</span>`;
-            html += `<span class="detail-meta-item">Tier ${tech.tier}</span>`;
-            if (tech.is_rare) html += `<span class="detail-meta-item" style="color:#c792ea;font-weight:bold">Rare</span>`;
-            if (tech.is_dangerous) html += `<span class="detail-meta-item" style="color:#ff5370;font-weight:bold">Dangerous</span>`;
-            if (tech.is_reverse_engineerable) html += `<span class="detail-meta-item" style="color:#80cbc4">Reverse-Engineerable</span>`;
+            html += `<span class="detail-meta-item" style="color:${areaColor};font-weight:bold">${esc(getAreaLabel(tech.area))}</span>`;
+            html += `<span class="detail-meta-item">${esc(I18n.ui('ui.tech.tier'))} ${tech.tier}</span>`;
+            if (tech.is_rare) html += `<span class="detail-meta-item" style="color:#c792ea;font-weight:bold">${esc(I18n.ui('ui.tech.rare'))}</span>`;
+            if (tech.is_dangerous) html += `<span class="detail-meta-item" style="color:#ff5370;font-weight:bold">${esc(I18n.ui('ui.tech.dangerous'))}</span>`;
+            if (tech.is_reverse_engineerable) html += `<span class="detail-meta-item" style="color:#80cbc4">${esc(I18n.ui('ui.tech.reverse_engineerable'))}</span>`;
             html += '</div>';
 
             // --- View in Tree button ---
-            html += `<a href="tech.html?focus=${encodeURIComponent(tech.id)}" class="view-in-tree-btn">View in Tree</a>`;
+            html += `<a href="tech.html?focus=${encodeURIComponent(tech.id)}" class="view-in-tree-btn">${esc(I18n.ui('ui.tech.view_in_tree'))}</a>`;
 
             // --- Description ---
-            if (tech.description && tech.description.trim()) {
-                html += `<div style="margin:0.75rem 0;padding:8px;background:rgba(0,0,0,0.3);border-left:3px solid var(--accent-bright);font-style:italic;line-height:1.5">${esc(tech.description)}</div>`;
+            const desc = getTechDescription(tech);
+            if (desc && desc.trim()) {
+                html += `<div style="margin:0.75rem 0;padding:8px;background:rgba(0,0,0,0.3);border-left:3px solid var(--accent-bright);font-style:italic;line-height:1.5">${esc(desc)}</div>`;
             }
 
             // --- Prerequisites ---
@@ -497,10 +547,10 @@
             html += `<div class="detail-section"><div class="detail-section-title">Properties</div>`;
             html += `<table class="tech-props-table">`;
             html += `<tr><td>ID</td><td><code>${esc(tech.id)}</code></td></tr>`;
-            html += `<tr><td>Area</td><td style="color:${areaColor}">${esc(tech.area)}</td></tr>`;
-            html += `<tr><td>Tier</td><td>${tech.tier}</td></tr>`;
+            html += `<tr><td>${esc(I18n.ui('ui.tech.area'))}</td><td style="color:${areaColor}">${esc(getAreaLabel(tech.area))}</td></tr>`;
+            html += `<tr><td>${esc(I18n.ui('ui.tech.tier'))}</td><td>${tech.tier}</td></tr>`;
             if (tech.category && tech.category.length) {
-                html += `<tr><td>Category</td><td>${esc(tech.category.map(c => c.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())).join(', '))}</td></tr>`;
+                html += `<tr><td>${esc(I18n.ui('ui.tech.category'))}</td><td>${esc(tech.category.map(getCategoryLabel).join(', '))}</td></tr>`;
             }
             html += `<tr><td>Cost</td><td>${tech.cost}</td></tr>`;
             html += `<tr><td>Weight</td><td>${tech.weight}</td></tr>`;
@@ -611,13 +661,13 @@
                             <span class="item-card-id">${esc(tech.id)}</span>
                         </div>
                         <div class="item-card-meta">
-                            <span class="detail-meta-item" style="color:${areaColor}">${esc(tech.area)}</span>
+                            <span class="detail-meta-item" style="color:${areaColor}">${esc(getAreaLabel(tech.area))}</span>
                             <span class="detail-meta-item">T${tech.tier}</span>`;
                 if (tech.category && tech.category.length) {
-                    html += `<span class="detail-meta-item">${esc(tech.category[0].replace(/_/g, ' '))}</span>`;
+                    html += `<span class="detail-meta-item">${esc(getCategoryLabel(tech.category[0]))}</span>`;
                 }
-                if (tech.is_rare) html += `<span class="detail-meta-item" style="color:#c792ea">Rare</span>`;
-                if (tech.is_dangerous) html += `<span class="detail-meta-item" style="color:#ff5370">Dangerous</span>`;
+                if (tech.is_rare) html += `<span class="detail-meta-item" style="color:#c792ea">${esc(I18n.ui('ui.tech.rare'))}</span>`;
+                if (tech.is_dangerous) html += `<span class="detail-meta-item" style="color:#ff5370">${esc(I18n.ui('ui.tech.dangerous'))}</span>`;
                 html += `</div></div></div>`;
             }
             listEl.innerHTML = html || '<div class="loading" style="animation:none">No technologies match the current filters.</div>';

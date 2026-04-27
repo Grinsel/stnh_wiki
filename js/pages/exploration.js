@@ -101,10 +101,15 @@
             }, 340);
         }
 
-        document.getElementById('detail-close').addEventListener('click', closeDetailPanel);
+        let currentDetailItem = null;
+        document.getElementById('detail-close').addEventListener('click', () => {
+            currentDetailItem = null;
+            closeDetailPanel();
+        });
 
         // ── showDetail ───────────────────────────────────────────────────────
         function showDetail(item) {
+            currentDetailItem = item;
             SharedRender.hidePlaceholder(detailPanel);
             detailTitle.textContent = item.name || item.id;
             detailContent.innerHTML = activeTab === 'archaeology' ? buildArchaeologyDetailHtml(item) : buildAnomalyDetailHtml(item);
@@ -190,6 +195,7 @@
             for (const item of anomalies)   item.name = I18n.t(item.name_key) || I18n.t(item.desc) || item.id;
             for (const item of archaeology) item.name = I18n.t(item.name_key) || I18n.t(item.desc) || item.id;
             renderAll();
+            if (currentDetailItem) showDetail(currentDetailItem);
         });
 
         // ── Restore tab from URL ─────────────────────────────────────────────

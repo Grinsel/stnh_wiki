@@ -1,7 +1,10 @@
 // Render module: shared rendering helpers
 // TODO: migrate renderStraightLinks, renderNodeBase, renderTierIndicator, renderNodeLabels, tooltip helpers, wrapText
 
-import { getTechName, isFactionExclusive, factionHasUniqueShips, getTechUnlocks } from './data.js';
+import {
+  getTechName, isFactionExclusive, factionHasUniqueShips, getTechUnlocks,
+  getTechDescription, getCategoryLabel, getAreaLabel, formatEffectDisplay,
+} from './data.js';
 
 /**
  * Map species ID to faction name for faction_ships lookup
@@ -75,7 +78,7 @@ function formatEffectsGrouped(effects) {
 
         categoryEffects.forEach(effect => {
             const icon = getEffectIcon(category);
-            html += `<div class="effect-item">${icon} ${effect.display || effect.key}</div>`;
+            html += `<div class="effect-item">${icon} ${formatEffectDisplay(effect) || effect.display || effect.key}</div>`;
         });
 
         html += `</div>`;
@@ -481,7 +484,10 @@ export function renderNodeLabels(nodeSel, { nodeWidth, nodeHeight }) {
       })
       .attr('text-anchor', 'middle')
       .style('fill', '#ffffff')
-      .text(d => `${d.category || 'N/A'}`);
+      .text(d => {
+        if (Array.isArray(d.category)) return d.category.map(getCategoryLabel).join(', ') || 'N/A';
+        return d.category ? getCategoryLabel(d.category) : 'N/A';
+      });
 
   // Tech Icon - right-aligned in lower half of node
   const iconSize = 28;
@@ -590,10 +596,18 @@ export function formatTooltip(d, currentFactionId = 'all') {
         }
     }
 
-    // NEW Phase 2: Add description if available (from Phase 1 data)
+    // NEW Phase 2: Add description if available (from Phase 1 data).
+    // Prefer the localised description from I18n (tech_<id>_desc) — the
+    // pre-baked d.description is the English fallback.
     let descriptionHtml = '';
-    if (d.description && d.description.trim()) {
-        descriptionHtml = `<div style="margin: 8px 0; padding: 6px; background: rgba(0,0,0,0.3); border-left: 3px solid var(--primary); font-style: italic;">${d.description}</div>`;
+    let resolvedDesc = '';
+    if (typeof window !== 'undefined' && window.I18n && typeof window.I18n.tMultiline === 'function') {
+        resolvedDesc = window.I18n.tMultiline(d.id + '_desc');
+    }
+    if (!resolvedDesc && d.description) resolvedDesc = d.description;
+    if (resolvedDesc && resolvedDesc.trim()) {
+        const safe = resolvedDesc.replace(/\n/g, '<br>');
+        descriptionHtml = `<div style="margin: 8px 0; padding: 6px; background: rgba(0,0,0,0.3); border-left: 3px solid var(--primary); font-style: italic;">${safe}</div>`;
     }
 
     // NEW Phase 3: Enhanced effect display with grouping
@@ -610,6 +624,10 @@ export function formatTooltip(d, currentFactionId = 'all') {
         factionBadge = `<span style="color: #ffd700; font-weight: bold;">⭐ ${factionName}-exclusive</span><br>`;
     }
 
+    const catLabel = Array.isArray(d.category)
+        ? d.category.map(getCategoryLabel).join(', ')
+        : (d.category ? getCategoryLabel(d.category) : 'N/A');
+
     return `
         <strong>Name:</strong> ${displayName}<br>
         ${factionBadge}
@@ -618,8 +636,8 @@ export function formatTooltip(d, currentFactionId = 'all') {
         ${unlocksHtml || '<strong>Unlocks:</strong> None'}
         <strong>Prerequisites:</strong> ${prerequisites || 'None'}<br>
         <strong>ID:</strong> ${d.id}<br>
-        <strong>Area:</strong> ${d.area}<br>
-        <strong>Category:</strong> ${d.category || 'N/A'}<br>
+        <strong>Area:</strong> ${getAreaLabel(d.area)}<br>
+        <strong>Category:</strong> ${catLabel}<br>
         <strong>Tier:</strong> ${d.tier}<br>
         <strong>Access:</strong> ${d.required_species ? d.required_species.join(', ') : 'All'}<br>
         <strong>Cost:</strong> ${d.cost}<br>
@@ -698,7 +716,10 @@ export function updateLOD(svg, g) {
         })
         .attr('text-anchor', 'middle')
         .style('fill', '#ffffff')
-        .text(d => `${d.category || 'N/A'}`);
+        .text(d => {
+        if (Array.isArray(d.category)) return d.category.map(getCategoryLabel).join(', ') || 'N/A';
+        return d.category ? getCategoryLabel(d.category) : 'N/A';
+      });
 
       // Tech Icon - right-aligned in lower half of node
       const iconSize = nodeHeight === 70 ? 24 : 28;
@@ -830,7 +851,10 @@ export function updateLOD(svg, g) {
       })
       .attr('text-anchor', 'middle')
       .style('fill', '#ffffff')
-      .text(d => `${d.category || 'N/A'}`);
+      .text(d => {
+        if (Array.isArray(d.category)) return d.category.map(getCategoryLabel).join(', ') || 'N/A';
+        return d.category ? getCategoryLabel(d.category) : 'N/A';
+      });
 
     // Tech Icon - right-aligned in lower half of node (LOD mode)
     const iconSize = nodeHeight === 70 ? 24 : 28;

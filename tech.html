@@ -1538,27 +1538,19 @@
     <script src="js/data.js"></script>
     <script src="js/state.js"></script>
     <script src="js/ui-strings.js"></script>
-    <script>
-        // Minimal I18n for tech page (no full localisation needed)
-        if (typeof I18n === 'undefined') {
-            var I18n = {
-                ui: function(key) {
-                    var lang = (typeof AppState !== 'undefined' && AppState.get) ? AppState.get('lang') : 'english';
-                    var entry = (typeof UI_STRINGS !== 'undefined') ? UI_STRINGS[key] : null;
-                    if (!entry) return key;
-                    return entry[lang] || entry['english'] || key;
-                },
-                t: function(key) { return key; },
-                setLanguage: function() { return Promise.resolve(); },
-                setLangSync: function() {},
-                mergeModule: function() { return Promise.resolve(); },
-                loadFullLocalisation: function() { return Promise.resolve(); }
-            };
-        }
-    </script>
+    <script src="js/i18n.js"></script>
     <script src="js/global-search.js"></script>
     <script src="js/common.js"></script>
-    <script>AppState.init(); Common.init();</script>
+    <script>
+        AppState.init();
+        Common.init();
+        // Load the tech localisation module so node names + descriptions
+        // can resolve via I18n.t(). Without this the techtree renders the
+        // pre-baked English strings even in non-English UI languages.
+        I18n.setLanguageForModule(AppState.get('lang'), 'tech').then(() => {
+            document.dispatchEvent(new CustomEvent('wiki-lang-changed'));
+        });
+    </script>
     <footer id="site-footer">
         <p>ST:NH Wiki &mdash; Data from <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=688086068" target="_blank">Star Trek: New Horizons</a> mod</p>
     </footer>

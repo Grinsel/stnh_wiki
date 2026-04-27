@@ -117,7 +117,8 @@
         AppState.setMultiple({ showHidden: e.target.checked, page: 1 });
     });
 
-    // Language change: re-resolve event names and re-render
+    // Language change: re-resolve event names and re-render. Also reopen the
+    // currently-selected event so its detail-pane content tracks the switch.
     document.addEventListener('wiki-lang-changed', () => {
         const eventsIndex = DataManager.getEventsIndex();
         for (const ev of eventsIndex) {
@@ -125,6 +126,11 @@
         }
         Filters.populateDropdowns(eventsIndex);
         renderAll();
+        const selectedEvent = AppState.get('selectedEvent');
+        if (selectedEvent) {
+            const entry = eventsIndex.find(e => e.id === selectedEvent);
+            if (entry) EventDetail.show(selectedEvent, entry.ns);
+        }
     });
 
     // Listen for state changes

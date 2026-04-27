@@ -97,7 +97,9 @@
         const detailPanel = document.getElementById('detail-panel');
         const detailTitle = document.getElementById('detail-title');
         const detailContent = document.getElementById('detail-content');
+        let currentDetailItem = null;
         document.getElementById('detail-close').addEventListener('click', () => {
+            currentDetailItem = null;
             SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
         });
 
@@ -111,6 +113,7 @@
         }
 
         function showDetail(item) {
+            currentDetailItem = item;
             SharedRender.hidePlaceholder(detailPanel);
             detailTitle.textContent = item.name || item.id;
             const ic = getIconInfo(item);
@@ -243,6 +246,7 @@
             }
             removeOverlayImmediate();
             renderAll();
+            if (currentDetailItem) showDetail(currentDetailItem);
         });
 
         // Tab from URL (before renderAll)

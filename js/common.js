@@ -59,8 +59,15 @@ const Common = (() => {
             AppState.set('lang', e.target.value);
             const mod = I18n.getCurrentModule();
             if (mod) {
+                // First swap the per-module loc so the spinner doesn't block
+                // on the much larger full file, then await the full load before
+                // dispatching wiki-lang-changed. Page handlers rely on
+                // cross-module keys (e.g. empires.html needs governments
+                // strings to render civic/authority names) — firing the
+                // event with only the per-module file would leave those keys
+                // untranslated until the full load eventually races in.
                 await I18n.setLanguageForModule(e.target.value, mod);
-                I18n.loadFullLocalisation();
+                await I18n.loadFullLocalisation();
             } else {
                 await I18n.setLanguage(e.target.value);
             }

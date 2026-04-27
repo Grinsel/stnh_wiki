@@ -108,3 +108,8 @@ const I18n = (() => {
         t, tMultiline, ui, getLang, getData, isFullLoaded, getCurrentModule, setLangSync
     };
 })();
+
+// Expose on window so ES modules (js/tech/*) can reach the same instance.
+// Classic-script `const` declarations are NOT auto-attached to window, so
+// without this the tech-tree module would always see a missing I18n.
+if (typeof window !== 'undefined') window.I18n = I18n;

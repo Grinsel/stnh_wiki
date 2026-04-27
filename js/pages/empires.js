@@ -218,7 +218,9 @@
             }, 340);
         }
 
+        let currentDetailItem = null;
         document.getElementById('detail-close').addEventListener('click', () => {
+            currentDetailItem = null;
             closeDetailPanel();
             if (activeView === 'map' && galaxyMapReady) {
                 GalaxyMap.deselect();
@@ -230,6 +232,7 @@
         });
 
         function showDetail(item) {
+            currentDetailItem = item;
             SharedRender.hidePlaceholder(detailPanel);
             detailTitle.textContent = item.name || item.id;
             const iconDir = activeTab === 'traits' ? 'traits' : (item.authority !== undefined ? 'flags' : '');
@@ -311,10 +314,10 @@
                     }
                 }
                 const tStats = [];
-                if (item.leader_class) tStats.push(['Class', item.leader_class]);
-                if (item.rarity) tStats.push(['Rarity', item.rarity]);
-                if (item.tier != null) tStats.push(['Tier', item.tier]);
-                if (item.cost != null) tStats.push(['Cost', item.cost]);
+                if (item.leader_class) tStats.push([I18n.ui('ui.trait.class'),  item.leader_class]);
+                if (item.rarity)       tStats.push([I18n.ui('ui.trait.rarity'), item.rarity]);
+                if (item.tier != null) tStats.push([I18n.ui('ui.trait.tier'),   item.tier]);
+                if (item.cost != null) tStats.push([I18n.ui('ui.trait.cost'),   item.cost]);
                 if (tStats.length) {
                     html += `<div class="detail-section"><div class="detail-section-title">${I18n.ui('ui.detail.info')}</div>`;
                     html += `<div class="detail-meta">${tStats.map(([k,v]) => `<span class="detail-meta-item">${esc(k)}: ${esc(v)}</span>`).join('')}</div></div>`;
@@ -367,6 +370,7 @@
             for (const item of species) item.name = I18n.t(item.name_key) || item.id;
             for (const item of traits) item.name = I18n.t(item.name_key) || item.id;
             renderAll();
+            if (currentDetailItem) showDetail(currentDetailItem);
             if (galaxyMapReady) GalaxyMap.refreshOverlay();
         });
 
