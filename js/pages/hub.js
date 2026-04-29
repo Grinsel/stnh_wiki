@@ -571,6 +571,14 @@
             // Reload page to restore hub content
             location.reload();
         }
+
+        // Auto-search from URL: ?q=<query> jumps straight into full results.
+        // Used by external linkers (e.g. STNH Log Analyzer wiki arrows).
+        const initialQuery = new URLSearchParams(window.location.search).get('q');
+        if (initialQuery) {
+            searchInput.value = initialQuery;
+            renderFullResults(initialQuery);
+        }
     }
 
     // ========================================
