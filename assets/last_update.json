@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-04-26T16:00:03.317678",
-  "elapsed_seconds": 51.0,
+  "timestamp": "2026-04-29T03:13:49.928233",
+  "elapsed_seconds": 53.4,
   "results": {
     "localisation": {
-      "english": 240942,
-      "german": 241160,
-      "french": 252176,
-      "spanish": 240905,
-      "russian": 241445,
-      "polish": 241413,
-      "braz_por": 235482
+      "english": 240944,
+      "german": 241162,
+      "french": 252178,
+      "spanish": 240907,
+      "russian": 241447,
+      "polish": 241415,
+      "braz_por": 235484
     },
     "inject_missing_loc": {
       "english": 101,
@@ -62221,7 +62221,7 @@
       "events": 8895,
       "namespaces": 287,
       "files": 430,
-      "loc_keys": 240942,
+      "loc_keys": 240944,
       "on_actions": 199,
       "event_chains": 39,
       "gfx_sprites": 12439,
@@ -62235,7 +62235,7 @@
       "model_variants": 1624,
       "files": 142,
       "errors": 0,
-      "elapsed": 15.2
+      "elapsed": 15.5
     },
     "buildings": {
       "buildings": 653,
@@ -62245,7 +62245,7 @@
       "elapsed": 0.2
     },
     "traits": {
-      "traits": 470,
+      "traits": 461,
       "traditions": 448,
       "ascension_perks": 58,
       "files": 90,
@@ -62316,15 +62316,15 @@
     },
     "search": {
       "search_index": {
-        "total_items": 21693,
-        "size_kb": 3234,
+        "total_items": 21684,
+        "size_kb": 3470,
         "by_type": {
           "event": 8895,
           "ship": 423,
           "component": 6406,
           "building": 653,
           "district": 56,
-          "trait": 470,
+          "trait": 461,
           "tradition": 448,
           "ascension_perk": 58,
           "government": 185,
@@ -62365,16 +62365,149 @@
       }
     },
     "ship_models": {
-      "skipped": true
+      "converted": 0,
+      "skipped": 1624,
+      "failed": 0,
+      "multi_mesh": 0,
+      "total": 1624,
+      "elapsed": 0.0
     },
     "mega_models": {
-      "skipped": true
+      "converted": 0,
+      "skipped": 103,
+      "failed": 0,
+      "multi_mesh": 0,
+      "total": 103,
+      "elapsed": 0.0
     },
     "images": {
-      "skipped": true
+      "total": 1031,
+      "converted": 0,
+      "skipped": 1031,
+      "failed": 0,
+      "errors": []
     },
     "all_icons": {
-      "skipped": true
+      "categories": {
+        "buildings": {
+          "total": 753,
+          "converted": 0,
+          "skipped": 753,
+          "failed": 0,
+          "errors": []
+        },
+        "traits": {
+          "total": 1106,
+          "converted": 0,
+          "skipped": 1106,
+          "failed": 0,
+          "errors": []
+        },
+        "traditions": {
+          "total": 407,
+          "converted": 0,
+          "skipped": 407,
+          "failed": 0,
+          "errors": []
+        },
+        "ascension_perks": {
+          "total": 66,
+          "converted": 0,
+          "skipped": 66,
+          "failed": 0,
+          "errors": []
+        },
+        "civics": {
+          "total": 330,
+          "converted": 0,
+          "skipped": 330,
+          "failed": 0,
+          "errors": []
+        },
+        "authorities": {
+          "total": 154,
+          "converted": 0,
+          "skipped": 154,
+          "failed": 0,
+          "errors": []
+        },
+        "jobs": {
+          "total": 267,
+          "converted": 0,
+          "skipped": 267,
+          "failed": 0,
+          "errors": []
+        },
+        "deposits": {
+          "total": 474,
+          "converted": 0,
+          "skipped": 474,
+          "failed": 0,
+          "errors": []
+        },
+        "districts": {
+          "total": 143,
+          "converted": 0,
+          "skipped": 143,
+          "failed": 0,
+          "errors": []
+        },
+        "resources": {
+          "total": 120,
+          "converted": 0,
+          "skipped": 120,
+          "failed": 0,
+          "errors": []
+        },
+        "relics": {
+          "total": 162,
+          "converted": 0,
+          "skipped": 162,
+          "failed": 0,
+          "errors": []
+        },
+        "flags": {
+          "total": 486,
+          "converted": 0,
+          "skipped": 486,
+          "failed": 0,
+          "errors": []
+        },
+        "edicts": {
+          "total": 4,
+          "converted": 0,
+          "skipped": 4,
+          "failed": 0,
+          "errors": []
+        },
+        "policies": {
+          "total": 11,
+          "converted": 0,
+          "skipped": 11,
+          "failed": 0,
+          "errors": []
+        },
+        "councilors": {
+          "total": 20,
+          "converted": 0,
+          "skipped": 20,
+          "failed": 0,
+          "errors": []
+        },
+        "components": {
+          "total": 3913,
+          "converted": 0,
+          "skipped": 3913,
+          "failed": 0,
+          "errors": []
+        }
+      },
+      "total": {
+        "total": 8416,
+        "converted": 0,
+        "skipped": 8416,
+        "failed": 0
+      }
     },
     "split_loc": {
       "modules": {},
@@ -62477,283 +62610,9 @@
     "changes": {
       "total_added": 0,
       "total_removed": 0,
-      "total_modified": 1139,
-      "modules_changed": 11,
-      "modules_unchanged": 11
-    }
-  },
-  "modules": {
-    "icons": {
-      "timestamp": "2026-04-27T14:38:11.160396",
-      "elapsed_seconds": 4.0,
-      "results": {
-        "all_icons": {
-          "categories": {
-            "buildings": {
-              "total": 753,
-              "converted": 0,
-              "skipped": 753,
-              "failed": 0,
-              "errors": []
-            },
-            "traits": {
-              "total": 1106,
-              "converted": 0,
-              "skipped": 1106,
-              "failed": 0,
-              "errors": []
-            },
-            "traditions": {
-              "total": 407,
-              "converted": 0,
-              "skipped": 407,
-              "failed": 0,
-              "errors": []
-            },
-            "ascension_perks": {
-              "total": 66,
-              "converted": 0,
-              "skipped": 66,
-              "failed": 0,
-              "errors": []
-            },
-            "civics": {
-              "total": 330,
-              "converted": 0,
-              "skipped": 330,
-              "failed": 0,
-              "errors": []
-            },
-            "authorities": {
-              "total": 154,
-              "converted": 0,
-              "skipped": 154,
-              "failed": 0,
-              "errors": []
-            },
-            "jobs": {
-              "total": 267,
-              "converted": 0,
-              "skipped": 267,
-              "failed": 0,
-              "errors": []
-            },
-            "deposits": {
-              "total": 474,
-              "converted": 0,
-              "skipped": 474,
-              "failed": 0,
-              "errors": []
-            },
-            "districts": {
-              "total": 143,
-              "converted": 143,
-              "skipped": 0,
-              "failed": 0,
-              "errors": []
-            },
-            "resources": {
-              "total": 120,
-              "converted": 0,
-              "skipped": 120,
-              "failed": 0,
-              "errors": []
-            },
-            "relics": {
-              "total": 162,
-              "converted": 0,
-              "skipped": 162,
-              "failed": 0,
-              "errors": []
-            },
-            "flags": {
-              "total": 486,
-              "converted": 0,
-              "skipped": 486,
-              "failed": 0,
-              "errors": []
-            },
-            "edicts": {
-              "total": 4,
-              "converted": 0,
-              "skipped": 4,
-              "failed": 0,
-              "errors": []
-            },
-            "policies": {
-              "total": 11,
-              "converted": 0,
-              "skipped": 11,
-              "failed": 0,
-              "errors": []
-            },
-            "councilors": {
-              "total": 20,
-              "converted": 0,
-              "skipped": 20,
-              "failed": 0,
-              "errors": []
-            },
-            "components": {
-              "total": 3913,
-              "converted": 0,
-              "skipped": 3913,
-              "failed": 0,
-              "errors": []
-            }
-          },
-          "total": {
-            "total": 8416,
-            "converted": 143,
-            "skipped": 8273,
-            "failed": 0
-          }
-        },
-        "changes": {
-          "total_added": 0,
-          "total_removed": 0,
-          "total_modified": 0,
-          "modules_changed": 0,
-          "modules_unchanged": 22
-        }
-      }
-    },
-    "traits": {
-      "timestamp": "2026-04-27T14:39:29.550111",
-      "elapsed_seconds": 19.1,
-      "results": {
-        "localisation": {
-          "english": 240942,
-          "german": 241160,
-          "french": 252176,
-          "spanish": 240905,
-          "russian": 241445,
-          "polish": 241413,
-          "braz_por": 235482
-        },
-        "inject_missing_loc": {
-          "english": 101,
-          "german": 101,
-          "french": 100,
-          "spanish": 101,
-          "russian": 101,
-          "polish": 101,
-          "braz_por": 101
-        },
-        "traits": {
-          "traits": 461,
-          "traditions": 448,
-          "ascension_perks": 58,
-          "files": 90,
-          "errors": 0,
-          "elapsed": 0.7
-        },
-        "split_loc": {
-          "modules": {},
-          "languages": {
-            "english": {
-              "common": 17469,
-              "events": 10720,
-              "buildings": 1424,
-              "ships": 14252,
-              "tech": 3986,
-              "traits": 2043,
-              "governments": 4322,
-              "megastructures": 368,
-              "anomalies": 322,
-              "economy": 2102,
-              "empires": 952
-            },
-            "german": {
-              "common": 17470,
-              "events": 10715,
-              "buildings": 1412,
-              "ships": 14252,
-              "tech": 3986,
-              "traits": 2043,
-              "governments": 4322,
-              "megastructures": 368,
-              "anomalies": 319,
-              "economy": 2102,
-              "empires": 952
-            },
-            "french": {
-              "common": 17568,
-              "events": 10751,
-              "buildings": 1412,
-              "ships": 14247,
-              "tech": 3986,
-              "traits": 2039,
-              "governments": 4318,
-              "megastructures": 368,
-              "anomalies": 319,
-              "economy": 2102,
-              "empires": 952
-            },
-            "spanish": {
-              "common": 17467,
-              "events": 10718,
-              "buildings": 1412,
-              "ships": 14171,
-              "tech": 3986,
-              "traits": 2038,
-              "governments": 4317,
-              "megastructures": 368,
-              "anomalies": 319,
-              "economy": 2102,
-              "empires": 952
-            },
-            "russian": {
-              "common": 17470,
-              "events": 10720,
-              "buildings": 1412,
-              "ships": 14251,
-              "tech": 3986,
-              "traits": 2043,
-              "governments": 4322,
-              "megastructures": 368,
-              "anomalies": 319,
-              "economy": 2102,
-              "empires": 953
-            },
-            "polish": {
-              "common": 17460,
-              "events": 10712,
-              "buildings": 1412,
-              "ships": 14247,
-              "tech": 3986,
-              "traits": 2034,
-              "governments": 4313,
-              "megastructures": 368,
-              "anomalies": 319,
-              "economy": 2102,
-              "empires": 952
-            },
-            "braz_por": {
-              "common": 15973,
-              "events": 10718,
-              "buildings": 1412,
-              "ships": 14174,
-              "tech": 3986,
-              "traits": 2013,
-              "governments": 4292,
-              "megastructures": 368,
-              "anomalies": 319,
-              "economy": 2102,
-              "empires": 952
-            }
-          },
-          "total_files": 77,
-          "modules_count": 10
-        },
-        "changes": {
-          "total_added": 0,
-          "total_removed": 0,
-          "total_modified": 0,
-          "modules_changed": 0,
-          "modules_unchanged": 22
-        }
-      }
+      "total_modified": 0,
+      "modules_changed": 0,
+      "modules_unchanged": 22
     }
   }
 }
