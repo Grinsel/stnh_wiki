@@ -341,6 +341,10 @@ const Common = (() => {
                     html += GlobalSearch.getIconHtml(item, 'search-result-icon');
                     html += '<span class="search-result-name">' + esc(name) + '</span>';
                     html += '<span class="search-result-id">' + esc(item.id) + '</span>';
+                    if (item.matchedFlags && item.matchedFlags.length) {
+                        const flagText = item.matchedFlags.slice(0, 2).join(', ') + (item.matchedFlags.length > 2 ? '…' : '');
+                        html += '<span class="search-result-flag" title="sets flag">&#9873; ' + esc(flagText) + '</span>';
+                    }
                     html += '</a>';
                 }
                 html += '</div>';

@@ -5,7 +5,7 @@ Parses common/governments/*.txt, civics/*.txt, authorities/*.txt.
 
 import os
 from parse_pdx import parse_file, get_value, get_blocks
-from parse_helpers import serialize_block, to_bool, extract_modifiers, _extract_icon_stem
+from parse_helpers import serialize_block, to_bool, extract_modifiers, _extract_icon_stem, extract_set_flags
 from config import MOD_GOVERNMENTS_DIR, MOD_CIVICS_DIR, MOD_AUTHORITIES_DIR
 
 
@@ -18,6 +18,7 @@ def extract_government(gov_id, block, source_file):
         'ruler_title_female': get_value(block, 'ruler_title_female') or '',
         'possible': serialize_block(get_value(block, 'possible')) if isinstance(get_value(block, 'possible'), list) else None,
         'weight': serialize_block(get_value(block, 'weight')) if isinstance(get_value(block, 'weight'), list) else None,
+        'set_flags': extract_set_flags(block),
         'source_file': os.path.basename(source_file),
     }
 
@@ -36,6 +37,7 @@ def extract_civic(civic_id, block, source_file):
         'modification': to_bool(get_value(block, 'modification')) if get_value(block, 'modification') is not None else True,
         'random_weight': serialize_block(get_value(block, 'random_weight')) if isinstance(get_value(block, 'random_weight'), list) else None,
         'modifier': extract_modifiers(block, 'modifier'),
+        'set_flags': extract_set_flags(block),
         'source_file': os.path.basename(source_file),
     }
 
@@ -54,6 +56,7 @@ def extract_authority(auth_id, block, source_file):
         'uses_mandates': to_bool(get_value(block, 'uses_mandates')),
         'possible': serialize_block(get_value(block, 'possible')) if isinstance(get_value(block, 'possible'), list) else None,
         'modifier': extract_modifiers(block, 'country_modifier'),
+        'set_flags': extract_set_flags(block),
         'source_file': os.path.basename(source_file),
     }
 

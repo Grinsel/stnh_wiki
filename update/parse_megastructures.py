@@ -6,7 +6,7 @@ Megastructures have multiple build stages (e.g. build_stage -> build_complete).
 
 import os
 from parse_pdx import parse_file, get_value, get_blocks
-from parse_helpers import serialize_block, to_bool, extract_resources, extract_prerequisites, extract_modifiers
+from parse_helpers import serialize_block, to_bool, extract_resources, extract_prerequisites, extract_modifiers, extract_set_flags
 from config import MOD_MEGASTRUCTURES_DIR
 
 
@@ -36,6 +36,7 @@ def extract_megastructure(mega_id, block, source_file):
         'modifier': extract_modifiers(block, 'country_modifier', 'station_modifier', 'triggered_country_modifier'),
         'on_build_complete': serialize_block(get_value(block, 'on_build_complete')) if isinstance(get_value(block, 'on_build_complete'), list) else None,
         'sensor_range': get_value(block, 'sensor_range'),
+        'set_flags': extract_set_flags(block),
         'source_file': os.path.basename(source_file),
     }
 

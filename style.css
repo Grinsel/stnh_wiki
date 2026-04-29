@@ -2298,6 +2298,28 @@ body.in-iframe #site-footer {
     flex-shrink: 0;
 }
 
+.search-result-flag {
+    font-size: 0.6rem;
+    color: var(--accent);
+    background: var(--accent-glow, rgba(120, 180, 255, 0.08));
+    border: 1px solid var(--accent-border, rgba(120, 180, 255, 0.25));
+    border-radius: 3px;
+    padding: 1px 5px;
+    margin-left: auto;
+    font-family: monospace;
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 40%;
+}
+
+.meta-tag-flag {
+    color: var(--accent);
+    background: var(--accent-glow, rgba(120, 180, 255, 0.08));
+    border-color: var(--accent-border, rgba(120, 180, 255, 0.25));
+}
+
 /* Enhanced stat cards */
 .stat-card.highlight {
     border-color: var(--accent-border);

@@ -132,7 +132,7 @@ def build_index_entry(event, loc_english):
     if not pic and not event.get('hide_window'):
         pic = _picture_fallback(pic, event['namespace'])
 
-    return {
+    entry = {
         'id': event['id'],
         'name': title,
         'type': event['type'],
@@ -143,6 +143,9 @@ def build_index_entry(event, loc_english):
         'hide': event['hide_window'],
         'opts': len(event['options']),
     }
+    if event.get('set_flags'):
+        entry['set_flags'] = event['set_flags']
+    return entry
 
 
 def generate_all():

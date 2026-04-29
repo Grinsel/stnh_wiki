@@ -5,7 +5,7 @@ Parses common/archaeological_site_types/*.txt -> structured archaeology data.
 
 import os
 from parse_pdx import parse_file, get_value, get_blocks, get_all_values
-from parse_helpers import serialize_block, to_bool
+from parse_helpers import serialize_block, to_bool, extract_set_flags
 from config import MOD_ARCHAEOLOGICAL_SITES_DIR
 
 
@@ -39,6 +39,7 @@ def extract_archaeology(site_id, block, source_file):
         'visible': serialize_block(get_value(block, 'visible')) if isinstance(get_value(block, 'visible'), list) else None,
         'allow': serialize_block(get_value(block, 'allow')) if isinstance(get_value(block, 'allow'), list) else None,
         'on_roll_failed': serialize_block(get_value(block, 'on_roll_failed')) if isinstance(get_value(block, 'on_roll_failed'), list) else None,
+        'set_flags': extract_set_flags(block),
         'source_file': os.path.basename(source_file),
     }
 

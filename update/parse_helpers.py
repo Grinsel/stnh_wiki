@@ -88,6 +88,53 @@ def extract_list(block, key):
     return []
 
 
+_FLAG_SETTERS = (
+    'set_country_flag', 'set_global_flag', 'set_planet_flag', 'set_ship_flag',
+    'set_fleet_flag', 'set_leader_flag', 'set_species_flag', 'set_pop_flag',
+    'set_starbase_flag', 'set_ambient_object_flag', 'set_megastructure_flag',
+    'set_star_flag', 'set_system_flag', 'set_pop_faction_flag', 'set_army_flag',
+    'set_relic_flag', 'set_federation_flag',
+)
+_FLAG_SETTERS_TIMED = tuple('set_timed_' + s[len('set_'):] for s in _FLAG_SETTERS)
+_FLAG_KEYS = set(_FLAG_SETTERS + _FLAG_SETTERS_TIMED)
+
+
+def extract_set_flags(block):
+    """
+    Recursively walk a parsed PDX block and collect all flag names set via
+    `set_*_flag = name` or `set_timed_*_flag = { flag = name days = N }`.
+
+    Returns a sorted list of unique flag names (strings).
+    """
+    flags = set()
+    _walk_for_flags(block, flags)
+    return sorted(flags)
+
+
+def _walk_for_flags(node, out):
+    if isinstance(node, list):
+        for item in node:
+            _walk_for_flags(item, out)
+        return
+    if not isinstance(node, dict):
+        return
+    for key, val in node.items():
+        if key in _FLAG_KEYS:
+            if isinstance(val, str):
+                out.add(val)
+            elif isinstance(val, list):
+                # set_timed_*_flag = { flag = name days = N }
+                for sub in val:
+                    if isinstance(sub, dict) and 'flag' in sub:
+                        flag_name = sub['flag']
+                        if isinstance(flag_name, str):
+                            out.add(flag_name)
+                # also recurse, in case of nested effects within
+                _walk_for_flags(val, out)
+        elif isinstance(val, list):
+            _walk_for_flags(val, out)
+
+
 def _extract_icon_stem(icon_value):
     """Extract filename stem from a DDS path or GFX reference."""
     if not icon_value:

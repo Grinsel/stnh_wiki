@@ -5,7 +5,7 @@ Parses common/anomalies/*.txt -> structured anomaly data.
 
 import os
 from parse_pdx import parse_file, get_value, get_blocks
-from parse_helpers import serialize_block, to_bool, extract_modifiers
+from parse_helpers import serialize_block, to_bool, extract_modifiers, extract_set_flags
 from config import MOD_ANOMALIES_DIR
 
 
@@ -35,6 +35,7 @@ def extract_anomaly(anom_id, block, source_file):
         'on_success': extract_on_success(block),
         'on_fail': serialize_block(get_value(block, 'on_fail')) if isinstance(get_value(block, 'on_fail'), list) else None,
         'on_critical_fail': serialize_block(get_value(block, 'on_critical_fail')) if isinstance(get_value(block, 'on_critical_fail'), list) else None,
+        'set_flags': extract_set_flags(block),
         'source_file': os.path.basename(source_file),
     }
 

@@ -6,6 +6,7 @@ Iterates over all event files, extracts structured event data.
 import os
 import re
 from parse_pdx import parse_file, get_value, get_all_values, get_blocks
+from parse_helpers import extract_set_flags
 from config import MOD_EVENTS_DIR, EVENT_TYPES
 
 
@@ -94,6 +95,15 @@ def extract_event(event_type, block, source_file, namespace):
     # Find triggered event IDs within this event (for relationship building)
     triggered_events = find_triggered_events(block)
 
+    # Flags set by this event (immediate / after / option effects)
+    set_flags = set()
+    for src in (immediate, after):
+        if isinstance(src, list):
+            set_flags.update(extract_set_flags(src))
+    for opt in options:
+        for f in opt.get('set_flags', ()):
+            set_flags.add(f)
+
     return {
         'id': str(event_id),
         'type': event_type,
@@ -105,6 +115,7 @@ def extract_event(event_type, block, source_file, namespace):
         'trigger': trigger_data,
         'immediate': immediate_data,
         'after': after_data,
+        'set_flags': sorted(set_flags),
         'is_triggered_only': _to_bool(is_triggered_only),
         'hide_window': _to_bool(hide_window),
         'fire_only_once': _to_bool(fire_only_once),
@@ -149,6 +160,10 @@ def extract_option(block):
     # Custom tooltip
     custom_tooltip = get_value(block, 'custom_tooltip')
 
+    # Flags set within this option (effects only — allow/trigger/ai_chance are
+    # conditions, not effects, so we walk the raw effects list).
+    set_flags = extract_set_flags(effects)
+
     return {
         'name_key': name_key,
         'allow': allow_data,
@@ -157,6 +172,7 @@ def extract_option(block):
         'effects': effects,
         'triggered_events': triggered_events,
         'custom_tooltip': custom_tooltip,
+        'set_flags': set_flags,
     }
 
 

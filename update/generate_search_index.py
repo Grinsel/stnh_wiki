@@ -147,6 +147,11 @@ def generate_search_index():
             if prereqs:
                 entry['p'] = prereqs
 
+            # Add flags set by this item (for flag-based search)
+            flags = item.get('set_flags', [])
+            if flags:
+                entry['f'] = flags
+
             # Icon stem (used by frontend to resolve icons/<category>/<stem>.webp).
             # Currently only components carry a GFX_-prefixed icon reference in
             # their JSON; other types store icons differently and aren't wired

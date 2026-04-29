@@ -7,7 +7,7 @@ multi-word trees like the_link, great_houses, section_31 etc.)
 
 import os
 from parse_pdx import parse_file, get_value, get_blocks
-from parse_helpers import serialize_block, to_bool, extract_prerequisites, extract_modifiers
+from parse_helpers import serialize_block, to_bool, extract_prerequisites, extract_modifiers, extract_set_flags
 from config import MOD_TRADITIONS_DIR, OUTPUT_ICONS_DIR, OUTPUT_ASSETS_DIR, STNH_MOD_ROOT, VANILLA_ROOT
 
 
@@ -185,6 +185,7 @@ def extract_tradition(trad_id, block, source_file):
         'possible': serialize_block(get_value(block, 'possible')) if isinstance(get_value(block, 'possible'), list) else None,
         'required_technologies': req_techs if req_techs else None,
         'ai_weight': serialize_block(get_value(block, 'ai_weight')) if isinstance(get_value(block, 'ai_weight'), list) else None,
+        'set_flags': extract_set_flags(block),
         'source_file': os.path.basename(source_file),
     }
 

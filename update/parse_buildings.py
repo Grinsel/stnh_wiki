@@ -5,7 +5,7 @@ Parses common/buildings/*.txt -> structured building data.
 
 import os
 from parse_pdx import parse_file, get_value, get_all_values, get_blocks
-from parse_helpers import serialize_block, to_bool, extract_resources, extract_prerequisites, extract_modifiers, extract_list
+from parse_helpers import serialize_block, to_bool, extract_resources, extract_prerequisites, extract_modifiers, extract_list, extract_set_flags
 from config import MOD_BUILDINGS_DIR
 
 
@@ -30,6 +30,7 @@ def extract_building(building_id, block, source_file):
         'allow': serialize_block(get_value(block, 'allow')) if isinstance(get_value(block, 'allow'), list) else None,
         'ai_weight': serialize_block(get_value(block, 'ai_weight')) if isinstance(get_value(block, 'ai_weight'), list) else None,
         'building_sets': extract_list(block, 'building_sets'),
+        'set_flags': extract_set_flags(block),
         'source_file': os.path.basename(source_file),
     }
 

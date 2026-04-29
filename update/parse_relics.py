@@ -5,7 +5,7 @@ Parses common/relics/*.txt -> structured relic data.
 
 import os
 from parse_pdx import parse_file, get_value, get_blocks
-from parse_helpers import serialize_block, to_bool, extract_resources, extract_modifiers
+from parse_helpers import serialize_block, to_bool, extract_resources, extract_modifiers, extract_set_flags
 from config import MOD_RELICS_DIR
 
 
@@ -48,6 +48,7 @@ def extract_relic(relic_id, block, source_file):
         'active_effect': serialize_block(get_value(block, 'active_effect')) if isinstance(get_value(block, 'active_effect'), list) else None,
         'possible': serialize_block(get_value(block, 'possible')) if isinstance(get_value(block, 'possible'), list) else None,
         'ai_weight': serialize_block(get_value(block, 'ai_weight')) if isinstance(get_value(block, 'ai_weight'), list) else None,
+        'set_flags': extract_set_flags(block),
         'source_file': os.path.basename(source_file),
     }
 

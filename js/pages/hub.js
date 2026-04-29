@@ -448,9 +448,13 @@
                         .filter(Boolean)
                         .join(' | ');
                     const iconHtml = GlobalSearch.getIconHtml(item, 'search-result-icon');
+                    const flagBadge = (item.matchedFlags && item.matchedFlags.length)
+                        ? `<span class="search-result-flag" title="sets flag">&#9873; ${esc(item.matchedFlags.slice(0, 3).join(', '))}${item.matchedFlags.length > 3 ? '…' : ''}</span>`
+                        : '';
                     html += `<a href="${esc(url)}" class="search-result-item">
                         ${iconHtml}<span class="search-result-name">${esc(name)}</span>
                         <span class="search-result-id">${esc(item.id)}</span>
+                        ${flagBadge}
                         ${metaStr ? `<span class="search-result-meta">${esc(metaStr)}</span>` : ''}
                     </a>`;
                 }
@@ -519,6 +523,11 @@
                         const metaParts = Object.entries(item.meta)
                             .filter(([k, v]) => v)
                             .map(([k, v]) => `<span class="meta-tag">${esc(k)}: ${esc(v)}</span>`);
+                        if (item.matchedFlags && item.matchedFlags.length) {
+                            for (const f of item.matchedFlags) {
+                                metaParts.push(`<span class="meta-tag meta-tag-flag">&#9873; ${esc(f)}</span>`);
+                            }
+                        }
                         const iconHtml = GlobalSearch.getIconHtml(item, 'full-result-icon');
                         html += `<a href="${esc(url)}" class="full-result-item">
                             ${iconHtml}<span class="full-result-name">${esc(name)}</span>

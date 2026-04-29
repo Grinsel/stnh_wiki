@@ -5,7 +5,7 @@ Parses common/ascension_perks/*.txt -> structured perk data.
 
 import os
 from parse_pdx import parse_file, get_value, get_blocks
-from parse_helpers import serialize_block, to_bool, extract_prerequisites, extract_modifiers
+from parse_helpers import serialize_block, to_bool, extract_prerequisites, extract_modifiers, extract_set_flags
 from config import MOD_ASCENSION_PERKS_DIR
 
 
@@ -68,6 +68,7 @@ def extract_perk(perk_id, block, source_file):
         'required_traditions': req_traditions if req_traditions else None,
         'required_flags': req_flags if req_flags else None,
         'min_perks': min_perks,
+        'set_flags': extract_set_flags(block),
         'source_file': os.path.basename(source_file),
     }
 

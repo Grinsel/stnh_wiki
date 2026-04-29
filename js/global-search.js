@@ -162,27 +162,64 @@ const GlobalSearch = (() => {
 
     function _parseQuery(query) {
         let typeFilter = null;
+        let flagOnly = false;
         let searchTerm = query.trim().toLowerCase();
         const colonIdx = query.indexOf(':');
         if (colonIdx > 0 && colonIdx < 20) {
             const prefix = query.slice(0, colonIdx).toLowerCase();
-            if (TYPE_PREFIXES[prefix]) {
+            if (prefix === 'flag' || prefix === 'flags') {
+                flagOnly = true;
+                searchTerm = query.slice(colonIdx + 1).trim().toLowerCase();
+            } else if (TYPE_PREFIXES[prefix]) {
                 typeFilter = TYPE_PREFIXES[prefix];
                 searchTerm = query.slice(colonIdx + 1).trim().toLowerCase();
             }
         }
         const terms = searchTerm.split(/\s+/).filter(Boolean);
-        return { typeFilter, terms };
+        return { typeFilter, flagOnly, terms };
     }
 
-    function _matchItem(item, expandedTerms) {
+    function _matchItem(item, expandedTerms, flagOnly) {
         const name = (typeof I18n !== 'undefined' && locReady)
             ? (I18n.t(item.nk) || item.nk || item.id)
             : (item.nk || item.id);
-        const metaStr = item.x ? Object.values(item.x).join(' ') : '';
-        const searchable = `${item.id} ${name} ${metaStr}`.toLowerCase();
-        // Each term group must have at least one alternative matching
-        if (!expandedTerms.every(alts => alts.some(a => searchable.includes(a)))) return null;
+        const flags = item.f || [];
+        const flagsStr = flags.join(' ').toLowerCase();
+
+        let matchedFlags = null;
+        if (flagOnly) {
+            // Every term group must match at least one flag name
+            if (!flags.length) return null;
+            const flagsLower = flags.map(f => f.toLowerCase());
+            if (!expandedTerms.every(alts => alts.some(a => flagsLower.some(f => f.includes(a))))) {
+                return null;
+            }
+            matchedFlags = flags.filter(f => {
+                const fl = f.toLowerCase();
+                return expandedTerms.every(alts => alts.some(a => fl.includes(a)));
+            });
+            // Fallback: if no single flag matches all terms (e.g. multi-term search),
+            // show every flag that matched any term so the badge stays informative.
+            if (!matchedFlags.length) {
+                matchedFlags = flags.filter(f => {
+                    const fl = f.toLowerCase();
+                    return expandedTerms.some(alts => alts.some(a => fl.includes(a)));
+                });
+            }
+        } else {
+            const metaStr = item.x ? Object.values(item.x).join(' ') : '';
+            const searchable = `${item.id} ${name} ${metaStr} ${flagsStr}`.toLowerCase();
+            if (!expandedTerms.every(alts => alts.some(a => searchable.includes(a)))) return null;
+            // Track flags that matched (so the UI can show a "sets flag: X" badge)
+            if (flags.length) {
+                const hits = flags.filter(f => {
+                    const fl = f.toLowerCase();
+                    return expandedTerms.some(alts => alts.some(a => fl.includes(a)));
+                });
+                if (hits.length) matchedFlags = hits;
+            }
+        }
+
         return {
             id: item.id,
             name: name,
@@ -190,6 +227,8 @@ const GlobalSearch = (() => {
             module: item.m,
             meta: item.x || {},
             icon: item.i || '',
+            flags: flags,
+            matchedFlags: matchedFlags,
             label: (typeof I18n !== 'undefined' && I18n.ui) ? (I18n.ui('ui.type.' + item.t) || TYPE_LABELS[item.t] || item.t) : (TYPE_LABELS[item.t] || item.t),
             page: modulePages ? modulePages[item.m] : null,
             tab: TYPE_TABS[item.t] || null,
@@ -202,7 +241,7 @@ const GlobalSearch = (() => {
      */
     function searchPreview(query, perType = 5) {
         if (!searchIndex || !query || !query.trim()) return [];
-        const { typeFilter, terms } = _parseQuery(query);
+        const { typeFilter, flagOnly, terms } = _parseQuery(query);
         if (!terms.length) return [];
         const expandedTerms = _expandTerms(terms);
 
@@ -211,7 +250,7 @@ const GlobalSearch = (() => {
 
         for (const item of searchIndex) {
             if (typeFilter && item.t !== typeFilter) continue;
-            const result = _matchItem(item, expandedTerms);
+            const result = _matchItem(item, expandedTerms, flagOnly);
             if (!result) continue;
 
             const t = item.t;
@@ -251,14 +290,14 @@ const GlobalSearch = (() => {
      */
     function searchFull(query) {
         if (!searchIndex || !query || !query.trim()) return [];
-        const { typeFilter, terms } = _parseQuery(query);
+        const { typeFilter, flagOnly, terms } = _parseQuery(query);
         if (!terms.length) return [];
         const expandedTerms = _expandTerms(terms);
 
         const results = [];
         for (const item of searchIndex) {
             if (typeFilter && item.t !== typeFilter) continue;
-            const result = _matchItem(item, expandedTerms);
+            const result = _matchItem(item, expandedTerms, flagOnly);
             if (result) results.push(result);
         }
         return results;

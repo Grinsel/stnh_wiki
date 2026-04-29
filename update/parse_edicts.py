@@ -5,7 +5,7 @@ Parses common/edicts/*.txt -> structured edict data.
 
 import os
 from parse_pdx import parse_file, get_value, get_blocks
-from parse_helpers import serialize_block, to_bool, extract_resources, extract_prerequisites, extract_modifiers, _extract_icon_stem
+from parse_helpers import serialize_block, to_bool, extract_resources, extract_prerequisites, extract_modifiers, _extract_icon_stem, extract_set_flags
 from config import MOD_EDICTS_DIR
 
 
@@ -23,6 +23,7 @@ def extract_edict(edict_id, block, source_file):
         'potential': serialize_block(get_value(block, 'potential')) if isinstance(get_value(block, 'potential'), list) else None,
         'allow': serialize_block(get_value(block, 'allow')) if isinstance(get_value(block, 'allow'), list) else None,
         'ai_weight': serialize_block(get_value(block, 'ai_weight')) if isinstance(get_value(block, 'ai_weight'), list) else None,
+        'set_flags': extract_set_flags(block),
         'source_file': os.path.basename(source_file),
     }
 
