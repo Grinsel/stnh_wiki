@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-04-29T03:13:49.928233",
-  "elapsed_seconds": 53.4,
+  "timestamp": "2026-05-17T00:24:14.074087",
+  "elapsed_seconds": 73.5,
   "results": {
     "localisation": {
-      "english": 240944,
-      "german": 241162,
-      "french": 252178,
-      "spanish": 240907,
-      "russian": 241447,
-      "polish": 241415,
-      "braz_por": 235484
+      "english": 240969,
+      "german": 241163,
+      "french": 252179,
+      "spanish": 240908,
+      "russian": 241448,
+      "polish": 241416,
+      "braz_por": 235485
     },
     "inject_missing_loc": {
       "english": 101,
@@ -841,6 +841,21 @@
         "texture_name": "ap_galactic_wonders",
         "frames": 1
       },
+      "GFX_ap_galactic_wonders_utopia": {
+        "texture_path": "gfx/interface/icons/ascension_perks/ap_galactic_wonders.dds",
+        "texture_name": "ap_galactic_wonders",
+        "frames": 1
+      },
+      "GFX_ap_galactic_wonders_megacorp": {
+        "texture_path": "gfx/interface/icons/ascension_perks/ap_galactic_wonders.dds",
+        "texture_name": "ap_galactic_wonders",
+        "frames": 1
+      },
+      "GFX_ap_galactic_wonders_utopia_and_megacorp": {
+        "texture_path": "gfx/interface/icons/ascension_perks/ap_galactic_wonders.dds",
+        "texture_name": "ap_galactic_wonders",
+        "frames": 1
+      },
       "GFX_ap_imperial_prerogative": {
         "texture_path": "gfx/interface/icons/ascension_perks/ap_imperial_prerogative.dds",
         "texture_name": "ap_imperial_prerogative",
@@ -874,21 +889,6 @@
       "GFX_ap_transcendent_learning": {
         "texture_path": "gfx/interface/icons/ascension_perks/ap_transcendent_learning.dds",
         "texture_name": "ap_transcendent_learning",
-        "frames": 1
-      },
-      "GFX_ap_galactic_wonders_utopia": {
-        "texture_path": "gfx/interface/icons/ascension_perks/ap_galactic_wonders.dds",
-        "texture_name": "ap_galactic_wonders",
-        "frames": 1
-      },
-      "GFX_ap_galactic_wonders_megacorp": {
-        "texture_path": "gfx/interface/icons/ascension_perks/ap_galactic_wonders.dds",
-        "texture_name": "ap_galactic_wonders",
-        "frames": 1
-      },
-      "GFX_ap_galactic_wonders_utopia_and_megacorp": {
-        "texture_path": "gfx/interface/icons/ascension_perks/ap_galactic_wonders.dds",
-        "texture_name": "ap_galactic_wonders",
         "frames": 1
       },
       "GFX_ap_xeno_compatibility": {
@@ -18826,6 +18826,11 @@
         "texture_name": "mod_ship_hull_regen_add_perc",
         "frames": 1
       },
+      "GFX_mod_ship_hull_regen_mult": {
+        "texture_path": "gfx/interface/icons/modifiers/mod_ship_hull_regen_add_perc.dds",
+        "texture_name": "mod_ship_hull_regen_add_perc",
+        "frames": 1
+      },
       "GFX_mod_ship_hull_regen_add_static": {
         "texture_path": "gfx/interface/icons/modifiers/mod_ship_hull_regen_add_static.dds",
         "texture_name": "mod_ship_hull_regen_add_static",
@@ -18851,6 +18856,11 @@
         "texture_name": "mod_ship_shield_regen_add_perc",
         "frames": 1
       },
+      "GFX_mod_ship_shield_regen_mult": {
+        "texture_path": "gfx/interface/icons/modifiers/mod_ship_shield_regen_add_perc.dds",
+        "texture_name": "mod_ship_shield_regen_add_perc",
+        "frames": 1
+      },
       "GFX_mod_ship_shield_regen_add_static": {
         "texture_path": "gfx/interface/icons/modifiers/mod_ship_shield_regen_add_perc.dds",
         "texture_name": "mod_ship_shield_regen_add_perc",
@@ -18872,6 +18882,11 @@
         "frames": 1
       },
       "GFX_mod_ship_armor_regen_add_perc": {
+        "texture_path": "gfx/interface/icons/modifiers/mod_ship_armor_regen_add_perc.dds",
+        "texture_name": "mod_ship_armor_regen_add_perc",
+        "frames": 1
+      },
+      "GFX_mod_ship_armor_regen_mult": {
         "texture_path": "gfx/interface/icons/modifiers/mod_ship_armor_regen_add_perc.dds",
         "texture_name": "mod_ship_armor_regen_add_perc",
         "frames": 1
@@ -47101,6 +47116,11 @@
         "texture_name": "edict_ufp",
         "frames": 1
       },
+      "GFX_stnh_documentary": {
+        "texture_path": "gfx/interface/frontend/Documentary.dds",
+        "texture_name": "Documentary",
+        "frames": 1
+      },
       "GFX_megastructure_argus_background": {
         "texture_path": "gfx/interface/planetview/argus.dds",
         "texture_name": "argus",
@@ -62218,14 +62238,14 @@
       }
     },
     "events": {
-      "events": 8895,
+      "events": 8904,
       "namespaces": 287,
       "files": 430,
-      "loc_keys": 240944,
-      "on_actions": 199,
+      "loc_keys": 240969,
+      "on_actions": 200,
       "event_chains": 39,
-      "gfx_sprites": 12439,
-      "relationship_edges": 7073,
+      "gfx_sprites": 12443,
+      "relationship_edges": 7086,
       "detail_files": 272
     },
     "ships": {
@@ -62235,14 +62255,14 @@
       "model_variants": 1624,
       "files": 142,
       "errors": 0,
-      "elapsed": 15.5
+      "elapsed": 21.4
     },
     "buildings": {
       "buildings": 653,
       "districts": 56,
       "files": 51,
       "errors": 0,
-      "elapsed": 0.2
+      "elapsed": 0.3
     },
     "traits": {
       "traits": 461,
@@ -62250,7 +62270,7 @@
       "ascension_perks": 58,
       "files": 90,
       "errors": 0,
-      "elapsed": 0.2
+      "elapsed": 0.6
     },
     "governments": {
       "governments": 185,
@@ -62261,7 +62281,7 @@
       "councilors": 146,
       "files": 43,
       "errors": 0,
-      "elapsed": 0.1
+      "elapsed": 0.2
     },
     "megastructures": {
       "megastructures": 116,
@@ -62270,39 +62290,39 @@
       "mega_model_variants": 103,
       "files": 67,
       "errors": 0,
-      "elapsed": 4.8
+      "elapsed": 5.0
     },
     "anomalies": {
       "anomalies": 132,
       "archaeology": 29,
       "files": 70,
       "errors": 0,
-      "elapsed": 0.0
+      "elapsed": 0.2
     },
     "empires": {
       "empires": 110,
       "species": 255,
       "files": 47,
       "errors": 0,
-      "elapsed": 0.0
+      "elapsed": 0.1
     },
     "galaxy_map": {
       "placed": 103,
       "unplaced": 1,
       "maps": 16,
       "flags_converted": 79,
-      "elapsed": 0.3
+      "elapsed": 0.4
     },
     "economy": {
       "jobs": 306,
       "deposits": 667,
       "files": 58,
       "errors": 0,
-      "elapsed": 0.1
+      "elapsed": 0.3
     },
     "resources": {
       "resources": 46,
-      "producer_links": 988,
+      "producer_links": 989,
       "consumer_links": 910,
       "modifier_links": 502,
       "unparsed_modifiers": 214,
@@ -62316,10 +62336,10 @@
     },
     "search": {
       "search_index": {
-        "total_items": 21684,
-        "size_kb": 3470,
+        "total_items": 21693,
+        "size_kb": 3471,
         "by_type": {
-          "event": 8895,
+          "event": 8904,
           "ship": 423,
           "component": 6406,
           "building": 653,
@@ -62370,7 +62390,7 @@
       "failed": 0,
       "multi_mesh": 0,
       "total": 1624,
-      "elapsed": 0.0
+      "elapsed": 0.1
     },
     "mega_models": {
       "converted": 0,
@@ -62390,8 +62410,8 @@
     "all_icons": {
       "categories": {
         "buildings": {
-          "total": 753,
-          "converted": 0,
+          "total": 756,
+          "converted": 3,
           "skipped": 753,
           "failed": 0,
           "errors": []
@@ -62503,8 +62523,8 @@
         }
       },
       "total": {
-        "total": 8416,
-        "converted": 0,
+        "total": 8419,
+        "converted": 3,
         "skipped": 8416,
         "failed": 0
       }
@@ -62513,7 +62533,7 @@
       "modules": {},
       "languages": {
         "english": {
-          "common": 17469,
+          "common": 17474,
           "events": 10720,
           "buildings": 1424,
           "ships": 14252,
@@ -62608,11 +62628,11 @@
       "modules_count": 10
     },
     "changes": {
-      "total_added": 0,
+      "total_added": 9,
       "total_removed": 0,
-      "total_modified": 0,
-      "modules_changed": 0,
-      "modules_unchanged": 22
+      "total_modified": 514,
+      "modules_changed": 8,
+      "modules_unchanged": 14
     }
   }
 }
