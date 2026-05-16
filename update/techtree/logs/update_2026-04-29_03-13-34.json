@@ -1,0 +1,151 @@
+{
+  "session": {
+    "start_time": "2026-04-29T03:13:34.155328",
+    "end_time": "2026-04-29T03:13:45.599072",
+    "duration_seconds": 11.44,
+    "success": true
+  },
+  "environment": {
+    "python_version": "3.14.0",
+    "platform": "Windows",
+    "platform_version": "10.0.26200",
+    "working_directory": "C:\\Users\\marcj\\git10\\stnh_wiki\\update\\techtree",
+    "stnh_mod_path": "C:\\Users\\marcj\\git01\\New-Horizons-Development",
+    "techtree_path": "C:\\Users\\marcj\\git10\\stnh_wiki"
+  },
+  "phases": [
+    {
+      "name": "Validierung",
+      "start_time": "2026-04-29T03:13:34.203871",
+      "end_time": "2026-04-29T03:13:34.347709",
+      "duration_ms": 143,
+      "steps": [
+        {
+          "script": "config.py",
+          "status": "success",
+          "duration_ms": 143,
+          "timestamp": "2026-04-29T03:13:34.347701",
+          "output": {
+            "paths_valid": true,
+            "balance_center_available": true
+          }
+        }
+      ],
+      "success": true
+    },
+    {
+      "name": "Daten-Caching",
+      "start_time": "2026-04-29T03:13:34.347725",
+      "end_time": "2026-04-29T03:13:35.030126",
+      "duration_ms": 682,
+      "steps": [
+        {
+          "script": "parse_localisation.py",
+          "status": "success",
+          "duration_ms": 641,
+          "timestamp": "2026-04-29T03:13:34.988847"
+        },
+        {
+          "script": "create_trigger_map.py",
+          "status": "success",
+          "duration_ms": 41,
+          "timestamp": "2026-04-29T03:13:35.030118"
+        }
+      ],
+      "success": true
+    },
+    {
+      "name": "Icon-Vorbereitung",
+      "start_time": "2026-04-29T03:13:35.030140",
+      "end_time": "2026-04-29T03:13:35.140189",
+      "duration_ms": 110,
+      "steps": [
+        {
+          "script": "extract_icon_mappings.py",
+          "status": "success",
+          "duration_ms": 109,
+          "timestamp": "2026-04-29T03:13:35.140180"
+        }
+      ],
+      "success": true
+    },
+    {
+      "name": "Tech-Generierung",
+      "start_time": "2026-04-29T03:13:35.140202",
+      "end_time": "2026-04-29T03:13:45.547818",
+      "duration_ms": 10407,
+      "steps": [
+        {
+          "script": "create_tech_json_new.py",
+          "status": "success",
+          "duration_ms": 10310,
+          "timestamp": "2026-04-29T03:13:45.488139",
+          "output": {
+            "techs_physics": 739,
+            "techs_engineering": 634,
+            "techs_society": 618,
+            "techs_total": 1991,
+            "factions": 35
+          }
+        },
+        {
+          "script": "generate_unlock_types.py",
+          "status": "success",
+          "duration_ms": 59,
+          "timestamp": "2026-04-29T03:13:45.547805"
+        }
+      ],
+      "success": true
+    },
+    {
+      "name": "Icon-Verifikation",
+      "start_time": "2026-04-29T03:13:45.548840",
+      "end_time": "2026-04-29T03:13:45.599034",
+      "duration_ms": 50,
+      "steps": [
+        {
+          "script": "verify_all_icons.py",
+          "status": "success",
+          "duration_ms": 49,
+          "timestamp": "2026-04-29T03:13:45.599022",
+          "output": {
+            "dds_files_to_convert": 0,
+            "webp_icons_available": 0
+          }
+        }
+      ],
+      "success": true
+    },
+    {
+      "name": "Abschluss",
+      "start_time": "2026-04-29T03:13:45.599057",
+      "end_time": "2026-04-29T03:13:45.599069",
+      "duration_ms": 0,
+      "steps": [
+        {
+          "script": "finalization",
+          "status": "success",
+          "duration_ms": 0,
+          "timestamp": "2026-04-29T03:13:45.599067"
+        }
+      ],
+      "success": true
+    }
+  ],
+  "statistics": {
+    "techs_physics": 739,
+    "techs_engineering": 634,
+    "techs_society": 618,
+    "techs_total": 1991,
+    "factions": 35,
+    "dds_files_to_convert": 0,
+    "icons_webp_available": 0,
+    "icon_coverage_percent": 0.0
+  },
+  "manual_steps_required": [
+    "Test locally in browser",
+    "Commit and push changes"
+  ],
+  "errors": [],
+  "warnings": []
+}
