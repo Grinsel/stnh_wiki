@@ -45,6 +45,15 @@
     <!-- Global Search Results -->
     <div id="global-search-results" class="global-search-results hidden"></div>
 
+    <!-- Active Search Banner (only when arriving from the full-results page) -->
+    <div id="active-search-banner" class="active-search-banner hidden">
+        <span class="active-search-label" data-i18n="ui.search.active_filter">Active search filter:</span>
+        <span class="active-search-query" id="active-search-query"></span>
+        <button type="button" class="active-search-clear" id="active-search-clear"
+                data-i18n="ui.search.clear_filter"
+                data-i18n-title="ui.search.clear_filter_tooltip">Clear search</button>
+    </div>
+
     <!-- Filter Bar -->
     <div id="filter-bar">
         <div class="filter-inner">

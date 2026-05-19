@@ -201,6 +201,7 @@
                 if (typeof ShipViewer !== 'undefined') ShipViewer.dispose();
                 removeOverlayImmediate();
                 currentDetailItem = null;
+                clearActiveSearch();
                 SharedRender.renderPlaceholder(detailPanel, detailContent, activeTab);
                 updateFilterVis();
                 populateCategories();
@@ -208,6 +209,40 @@
                 renderAll();
             });
         });
+
+        function clearActiveSearch() {
+            if (AppState.get('search')) {
+                AppState.set('search', '');
+                if (searchInput) searchInput.value = '';
+            }
+            if (AppState.get('from')) {
+                AppState.set('from', '');
+            }
+            updateActiveSearchBanner();
+        }
+
+        const activeSearchBanner = document.getElementById('active-search-banner');
+        const activeSearchQueryEl = document.getElementById('active-search-query');
+        const activeSearchClearBtn = document.getElementById('active-search-clear');
+
+        function updateActiveSearchBanner() {
+            if (!activeSearchBanner) return;
+            const query = AppState.get('search');
+            const fromSearch = AppState.get('from') === 'search';
+            if (query && fromSearch) {
+                if (activeSearchQueryEl) activeSearchQueryEl.textContent = '"' + query + '"';
+                activeSearchBanner.classList.remove('hidden');
+            } else {
+                activeSearchBanner.classList.add('hidden');
+            }
+        }
+
+        if (activeSearchClearBtn) {
+            activeSearchClearBtn.addEventListener('click', () => {
+                clearActiveSearch();
+                renderAll();
+            });
+        }
 
         // ── Detail panel ─────────────────────────────────────────────────────
         const detailPanel   = document.getElementById('detail-panel');
@@ -669,6 +704,8 @@
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
                 AppState.set('search', e.target.value);
+                if (AppState.get('from')) AppState.set('from', '');
+                updateActiveSearchBanner();
                 currentPage = 1;
                 removeOverlayImmediate();
                 renderAll();
@@ -728,6 +765,13 @@
         // ── Auto-select item from URL ────────────────────────────────────────
         const selectId = AppState.get('select');
         if (selectId) {
+            // Direct-select navigation (e.g. dropdown click, cross-link): drop
+            // any stale search filter so the list isn't accidentally narrowed.
+            if (AppState.get('search')) {
+                AppState.set('search', '');
+                if (searchInput) searchInput.value = '';
+                renderAll();
+            }
             const allItems = [...buildings, ...districts, ...jobs, ...deposits, ...megastructures, ...relics, ...resources];
             const item = allItems.find(i => i.id === selectId);
             if (item) {
@@ -735,6 +779,8 @@
                 AppState.set('select', '');
             }
         }
+
+        updateActiveSearchBanner();
 
         // ── renderAll ────────────────────────────────────────────────────────
         function renderAll() {
@@ -874,7 +920,38 @@
                 });
             }
 
+            scheduleGlobalFallback(query, items.length);
             renderPagination(totalPages);
+        }
+
+        // Schedule a 3s deferred global-search fallback: if the current tab
+        // has zero matches for an active query, populate the empty list with
+        // hits from other modules. Re-running renderAll cancels any pending
+        // timer so the fallback only fires when the user has actually
+        // stopped typing.
+        // (uses `var` so the binding is hoisted — `renderAll` is called
+        //  during init before this source line is reached.)
+        var globalFallbackTimer = null;
+        function scheduleGlobalFallback(query, localCount) {
+            if (globalFallbackTimer) {
+                clearTimeout(globalFallbackTimer);
+                globalFallbackTimer = null;
+            }
+            const q = (query || '').trim();
+            if (!q || q.length < 2 || localCount > 0) return;
+            globalFallbackTimer = setTimeout(() => {
+                globalFallbackTimer = null;
+                // Re-check current state: if user typed more or results appeared, bail.
+                const currentQ = (AppState.get('search') || '').trim().toLowerCase();
+                if (currentQ !== q) return;
+                if (typeof GlobalSearch === 'undefined' || !GlobalSearch.renderHitsHtml) return;
+                const hitsHtml = GlobalSearch.renderHitsHtml(q, 5);
+                if (!hitsHtml) return;
+                const hint = I18n.ui('ui.search.no_local_global_hits');
+                listEl.innerHTML =
+                    '<div class="global-fallback-hint">' + hint + '</div>' +
+                    '<div class="global-fallback-results">' + hitsHtml + '</div>';
+            }, 3000);
         }
 
         function renderPagination(totalPages) {

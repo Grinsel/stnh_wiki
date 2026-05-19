@@ -2201,6 +2201,69 @@ body.in-iframe #site-footer {
     display: none;
 }
 
+/* Active search filter banner — shown when arriving from the global search
+   results page. Sits between the page header and the module's filter bar. */
+.active-search-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding: 0.55rem 1rem;
+    margin: 0 1rem 0.5rem 1rem;
+    background: var(--bg-card, #1a1f2e);
+    border: 1px solid var(--accent-border, #3a4a6a);
+    border-left: 3px solid var(--accent, #4a9eff);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--text-primary, #e0e0e0);
+}
+.active-search-banner.hidden {
+    display: none;
+}
+.active-search-banner .active-search-label {
+    opacity: 0.85;
+}
+.active-search-banner .active-search-query {
+    font-weight: 600;
+    color: var(--accent, #4a9eff);
+    font-family: var(--font-mono, monospace);
+}
+.active-search-banner .active-search-clear {
+    margin-left: auto;
+    background: transparent;
+    color: var(--text-primary, #e0e0e0);
+    border: 1px solid var(--accent-border, #3a4a6a);
+    border-radius: 3px;
+    padding: 0.3rem 0.75rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.15s, border-color 0.15s;
+}
+.active-search-banner .active-search-clear:hover {
+    background: var(--accent, #4a9eff);
+    border-color: var(--accent, #4a9eff);
+    color: #fff;
+}
+
+/* Global-search fallback shown inside the module list when the local tab
+   filter yielded zero hits. Reuses the existing .search-results-inner /
+   .search-group / .search-result-item styles, just wrapped in a hint. */
+.global-fallback-hint {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    background: var(--bg-card, #1a1f2e);
+    border-left: 3px solid var(--accent, #4a9eff);
+    border-radius: 4px;
+    font-size: 0.92rem;
+    color: var(--text-primary, #e0e0e0);
+    opacity: 0.95;
+}
+.global-fallback-results .search-results-inner {
+    position: static;
+    max-height: none;
+    box-shadow: none;
+}
+
 .search-results-inner {
     background: var(--bg-card);
     border: 1px solid var(--accent-border);

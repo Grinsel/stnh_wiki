@@ -16,6 +16,7 @@ const AppState = (() => {
         triggeredOnly: false,
         selectedEvent: '',
         sort: '',
+        from: '',
     };
 
     let state = { ...defaults };

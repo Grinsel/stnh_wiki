@@ -518,7 +518,7 @@
                     html += `<h3 class="full-results-group-title">${esc(g.label)} <span class="count">(${g.items.length})</span></h3>`;
                     html += '<div class="full-results-list">';
                     for (const item of g.items) {
-                        const url = GlobalSearch.getItemUrl(item);
+                        const url = GlobalSearch.getItemUrl(item, 'search');
                         const name = item.name || item.id;
                         const metaParts = Object.entries(item.meta)
                             .filter(([k, v]) => v)

@@ -142,6 +142,7 @@ const GlobalSearch = (() => {
         'species': 'species',
         'job': 'jobs',
         'deposit': 'deposits',
+        'resource': 'resources',
         'technology': null,
     };
 
@@ -303,14 +304,19 @@ const GlobalSearch = (() => {
         return results;
     }
 
-    function getItemUrl(result) {
+    function getItemUrl(result, mode) {
         if (!result.page) return '#';
         if (result.type === 'technology') {
             return result.page + '?focus=' + encodeURIComponent(result.id);
         }
-        let url = result.page + '?search=' + encodeURIComponent(result.id);
+        const useSearch = mode === 'search';
+        const param = useSearch ? 'search' : 'select';
+        let url = result.page + '?' + param + '=' + encodeURIComponent(result.id);
         if (result.tab) {
             url += '&tab=' + encodeURIComponent(result.tab);
+        }
+        if (useSearch) {
+            url += '&from=search';
         }
         return url;
     }
@@ -364,9 +370,59 @@ const GlobalSearch = (() => {
         return info;
     }
 
+    /**
+     * Build HTML markup with global search results grouped by item type.
+     * Used by both the header dropdown and module-level fallbacks (e.g. when
+     * the local tab filter yields zero hits).
+     */
+    function renderHitsHtml(query, limit) {
+        const results = searchPreview(query, limit || 3);
+        if (!results.length) return '';
+
+        const esc = (s) => String(s).replace(/[&<>"']/g, c =>
+            ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+        const uiStr = (k) => (typeof I18n !== 'undefined' && I18n.ui) ? I18n.ui(k) : k;
+
+        const grouped = {};
+        for (const r of results) {
+            const key = r.label;
+            if (!grouped[key]) grouped[key] = { items: [], total: 0 };
+            grouped[key].items.push(r);
+            grouped[key].total = r._totalForType || grouped[key].items.length;
+        }
+
+        const totalMatches = Object.values(grouped).reduce((s, g) => s + g.total, 0);
+
+        let html = '<div class="search-results-inner">';
+        html += '<div class="search-results-header">' + uiStr('ui.search.global_results') + ' &mdash; ' + totalMatches + ' ' + (totalMatches !== 1 ? uiStr('ui.search.matches_plural') : uiStr('ui.search.matches')) + '</div>';
+
+        for (const [typeName, group] of Object.entries(grouped)) {
+            html += '<div class="search-group">';
+            html += '<div class="search-group-title">' + esc(typeName) + ' (' + group.total + ')</div>';
+            for (const item of group.items) {
+                const url = getItemUrl(item);
+                const name = item.name || item.id;
+                html += '<a href="' + esc(url) + '" class="search-result-item">';
+                html += getIconHtml(item, 'search-result-icon');
+                html += '<span class="search-result-name">' + esc(name) + '</span>';
+                html += '<span class="search-result-id">' + esc(item.id) + '</span>';
+                if (item.matchedFlags && item.matchedFlags.length) {
+                    const flagText = item.matchedFlags.slice(0, 2).join(', ') + (item.matchedFlags.length > 2 ? '…' : '');
+                    html += '<span class="search-result-flag" title="sets flag">&#9873; ' + esc(flagText) + '</span>';
+                }
+                html += '</a>';
+            }
+            html += '</div>';
+        }
+
+        html += '</div>';
+        return html;
+    }
+
     return {
         init, searchPreview, searchFull, getItemUrl, getIconHtml,
         setLocReady, getStats, getTotalCount, getExpandedInfo,
+        renderHitsHtml,
         TYPE_LABELS, TYPE_ORDER,
     };
 })();
