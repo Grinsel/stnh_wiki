@@ -1745,6 +1745,52 @@ body.in-iframe #site-footer {
     line-height: 1.4;
 }
 
+/* Hub Blog Banner — external link to stnh-blog.org, shown below module cards */
+.hub-blog-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--card-border);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.hub-blog-banner:hover {
+    border-color: var(--accent-border);
+    background: var(--bg-card-hover);
+    transform: translateX(2px);
+}
+.hub-blog-banner-text h3 {
+    font-size: 1.05rem;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+}
+.hub-blog-banner-text p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin: 0;
+}
+.hub-blog-banner-cta {
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-bright, var(--accent));
+    white-space: nowrap;
+}
+@media (max-width: 640px) {
+    .hub-blog-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+}
+
 /* Card Count Badge (top-right corner) */
 .card-count {
     position: absolute;
