@@ -1,5 +1,3819 @@
 [
   {
+    "timestamp": "2026-05-17T00:24:14.071457",
+    "summary": {
+      "total_added": 9,
+      "total_removed": 0,
+      "total_modified": 514,
+      "modules_changed": 8,
+      "modules_unchanged": 14
+    },
+    "modules": {
+      "events_index": {
+        "old_count": 8895,
+        "new_count": 8904,
+        "added": [
+          {
+            "id": "STH_onaction.7078",
+            "name_key": ""
+          },
+          {
+            "id": "STH_trill_mechanics.302",
+            "name_key": ""
+          },
+          {
+            "id": "nhTest.6061",
+            "name_key": ""
+          },
+          {
+            "id": "nhTest.6062",
+            "name_key": ""
+          },
+          {
+            "id": "nhTest.6063",
+            "name_key": ""
+          },
+          {
+            "id": "nhTest.6075",
+            "name_key": ""
+          },
+          {
+            "id": "nhTest.6076",
+            "name_key": ""
+          },
+          {
+            "id": "nhTest.6080",
+            "name_key": ""
+          },
+          {
+            "id": "nhTest.6081",
+            "name_key": ""
+          }
+        ],
+        "removed": [],
+        "modified": [
+          {
+            "id": "STH_policy.100",
+            "changed_fields": [
+              "opts",
+              "set_flags"
+            ],
+            "name_key": "Country game stats logging options"
+          },
+          {
+            "id": "STH_trill_mechanics.100",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "A joined Trill has died"
+          },
+          {
+            "id": "STH_trill_mechanics.102",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "Death of a Symbiont"
+          },
+          {
+            "id": "STH_trill_mechanics.103",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "Death of a Host"
+          },
+          {
+            "id": "STH_trill_mechanics.110",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "A joined Trill has died"
+          }
+        ]
+      },
+      "ships": {
+        "old_count": 423,
+        "new_count": 423,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "buildings": {
+        "old_count": 653,
+        "new_count": 653,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "building_fabricator_1",
+            "changed_fields": [
+              "icon_key"
+            ],
+            "name_key": "building_fabricator_1"
+          },
+          {
+            "id": "building_food_fabricator_1",
+            "changed_fields": [
+              "icon_key"
+            ],
+            "name_key": "building_food_fabricator_1"
+          },
+          {
+            "id": "building_generator_water_1",
+            "changed_fields": [
+              "icon_key"
+            ],
+            "name_key": "building_generator_water_1"
+          }
+        ]
+      },
+      "districts": {
+        "old_count": 56,
+        "new_count": 56,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traits": {
+        "old_count": 461,
+        "new_count": 461,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "trait_ruler_world_shaper",
+            "changed_fields": [
+              "leader_potential_add",
+              "modifier"
+            ],
+            "name_key": "trait_ruler_world_shaper"
+          },
+          {
+            "id": "trait_ruler_world_shaper_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "trait_ruler_world_shaper_2"
+          },
+          {
+            "id": "trait_ruler_world_shaper_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "trait_ruler_world_shaper_3"
+          }
+        ]
+      },
+      "traditions": {
+        "old_count": 448,
+        "new_count": 448,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "ascension_perks": {
+        "old_count": 58,
+        "new_count": 58,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "ap_machine_worlds",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "ap_machine_worlds"
+          },
+          {
+            "id": "ap_synthetic_age",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "ap_synthetic_age"
+          }
+        ]
+      },
+      "governments": {
+        "old_count": 185,
+        "new_count": 185,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "civics": {
+        "old_count": 332,
+        "new_count": 332,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "civic_ascensionists",
+            "changed_fields": [
+              "playable"
+            ],
+            "name_key": "civic_ascensionists"
+          },
+          {
+            "id": "civic_corporate_ascensionists",
+            "changed_fields": [
+              "playable"
+            ],
+            "name_key": "civic_corporate_ascensionists"
+          },
+          {
+            "id": "civic_corporate_crafters",
+            "changed_fields": [
+              "playable"
+            ],
+            "name_key": "civic_corporate_crafters"
+          },
+          {
+            "id": "civic_corporate_hedonism",
+            "changed_fields": [
+              "playable"
+            ],
+            "name_key": "civic_corporate_hedonism"
+          },
+          {
+            "id": "civic_crafters",
+            "changed_fields": [
+              "playable"
+            ],
+            "name_key": "civic_crafters"
+          },
+          {
+            "id": "civic_fanatic_purifiers",
+            "changed_fields": [
+              "playable",
+              "random_weight"
+            ],
+            "name_key": "civic_fanatic_purifiers"
+          },
+          {
+            "id": "civic_hive_ascensionists",
+            "changed_fields": [
+              "playable"
+            ],
+            "name_key": "civic_hive_ascensionists"
+          },
+          {
+            "id": "civic_machine_assimilator",
+            "changed_fields": [
+              "random_weight"
+            ],
+            "name_key": "civic_machine_assimilator"
+          },
+          {
+            "id": "civic_machine_servitor",
+            "changed_fields": [
+              "random_weight"
+            ],
+            "name_key": "civic_machine_servitor"
+          },
+          {
+            "id": "civic_machine_terminator",
+            "changed_fields": [
+              "random_weight"
+            ],
+            "name_key": "civic_machine_terminator"
+          },
+          {
+            "id": "civic_mechanists",
+            "changed_fields": [
+              "playable",
+              "random_weight"
+            ],
+            "name_key": "civic_mechanists"
+          },
+          {
+            "id": "civic_sona_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "civic_sona_1"
+          },
+          {
+            "id": "civic_sona_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "civic_sona_2"
+          },
+          {
+            "id": "civic_syncretic_evolution",
+            "changed_fields": [
+              "playable",
+              "random_weight"
+            ],
+            "name_key": "civic_syncretic_evolution"
+          }
+        ]
+      },
+      "authorities": {
+        "old_count": 17,
+        "new_count": 17,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "policies": {
+        "old_count": 53,
+        "new_count": 53,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "edicts": {
+        "old_count": 86,
+        "new_count": 86,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "councilors": {
+        "old_count": 146,
+        "new_count": 146,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "megastructures": {
+        "old_count": 116,
+        "new_count": 116,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "relics": {
+        "old_count": 68,
+        "new_count": 68,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "anomalies": {
+        "old_count": 132,
+        "new_count": 132,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "archaeology": {
+        "old_count": 29,
+        "new_count": 29,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "empires": {
+        "old_count": 110,
+        "new_count": 110,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "species": {
+        "old_count": 255,
+        "new_count": 255,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "jobs": {
+        "old_count": 306,
+        "new_count": 306,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "administrator",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_administrator"
+          },
+          {
+            "id": "administrator_UND",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_administrator_UND"
+          },
+          {
+            "id": "admiral",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_admiral"
+          },
+          {
+            "id": "broken_shackles_scavenger",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_broken_shackles_scavenger"
+          },
+          {
+            "id": "commodore",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_commodore"
+          },
+          {
+            "id": "crime_boss",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_crime_boss"
+          },
+          {
+            "id": "entertainer",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_entertainer"
+          },
+          {
+            "id": "entertainer_jemhadar",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_entertainer_jemhadar"
+          },
+          {
+            "id": "founder_yeslink",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_founder_yeslink"
+          },
+          {
+            "id": "holo_commodore",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_holo_commodore"
+          },
+          {
+            "id": "honored_first",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_honored_first"
+          },
+          {
+            "id": "low_tech_researcher",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_low_tech_researcher"
+          },
+          {
+            "id": "overlord_ambassador_kdf",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_overlord_ambassador_kdf"
+          },
+          {
+            "id": "patrol_drone_borg",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_patrol_drone_borg"
+          },
+          {
+            "id": "patrol_drone_undine",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_patrol_drone_undine"
+          },
+          {
+            "id": "preacher",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_preacher"
+          },
+          {
+            "id": "soldier",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_soldier"
+          },
+          {
+            "id": "soldier_UND",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_soldier_UND"
+          },
+          {
+            "id": "soldier_gunner",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_soldier_gunner"
+          },
+          {
+            "id": "soldier_superior_gladiator",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_soldier_superior_gladiator"
+          },
+          {
+            "id": "synapse_drone_borg",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_synapse_drone_borg"
+          },
+          {
+            "id": "talos_observer",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_talos_observer"
+          },
+          {
+            "id": "warrior_drone",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "job_warrior_drone"
+          }
+        ]
+      },
+      "deposits": {
+        "old_count": 667,
+        "new_count": 667,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "d_sona_refuge",
+            "changed_fields": [
+              "resources"
+            ],
+            "name_key": "d_sona_refuge"
+          }
+        ]
+      },
+      "components": {
+        "old_count": 6406,
+        "new_count": 6406,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "REQUIRED_WARP_3_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_A"
+          },
+          {
+            "id": "REQUIRED_WARP_3_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_B"
+          },
+          {
+            "id": "REQUIRED_WARP_3_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_C"
+          },
+          {
+            "id": "REQUIRED_WARP_3_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_D"
+          },
+          {
+            "id": "REQUIRED_WARP_3_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_E"
+          },
+          {
+            "id": "REQUIRED_WARP_3_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_F"
+          },
+          {
+            "id": "REQUIRED_WARP_3_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_G"
+          },
+          {
+            "id": "REQUIRED_WARP_3_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_H"
+          },
+          {
+            "id": "REQUIRED_WARP_3_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_I"
+          },
+          {
+            "id": "REQUIRED_WARP_3_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_J"
+          },
+          {
+            "id": "REQUIRED_WARP_3_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_K"
+          },
+          {
+            "id": "REQUIRED_WARP_3_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_L"
+          },
+          {
+            "id": "REQUIRED_WARP_3_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_M"
+          },
+          {
+            "id": "REQUIRED_WARP_3_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_N"
+          },
+          {
+            "id": "REQUIRED_WARP_3_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_3_O"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_4_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_4_A"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_4_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_4_C"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_4_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_4_D"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_4_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_4_J"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_4_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_4_K"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_4_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_4_L"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_4_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_4_M"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_4_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_4_N"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_4_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_4_O"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_5_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_5_A"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_5_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_5_C"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_5_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_5_D"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_5_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_5_J"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_5_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_5_K"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_5_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_5_L"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_5_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_5_M"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_5_Ma",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_5_Ma"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_5_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_5_N"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_5_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_5_O"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_6_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_6_A"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_6_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_6_C"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_6_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_6_D"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_6_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_6_J"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_6_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_6_K"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_6_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_6_L"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_6_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_6_M"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_6_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_6_N"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_6_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_6_O"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_7_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_7_A"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_7_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_7_C"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_7_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_7_D"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_7_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_7_J"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_7_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_7_K"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_7_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_7_L"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_7_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_7_M"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_7_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_7_N"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_7_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_7_O"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_8_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_8_A"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_8_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_8_C"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_8_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_8_D"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_8_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_8_J"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_8_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_8_K"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_8_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_8_L"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_8_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_8_M"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_8_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_8_N"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_8_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_8_O"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_9_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_9_A"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_9_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_9_C"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_9_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_9_D"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_9_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_9_J"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_9_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_9_K"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_9_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_9_L"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_9_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_9_M"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_9_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_9_N"
+          },
+          {
+            "id": "REQUIRED_WARP_BORG_9_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_BORG_9_O"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_A"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_B"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_C"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_D"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_E"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_F"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_G"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_H"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_I"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_J"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_K"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_L"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_M"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_N"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_4_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_4_O"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_A"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_B"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_C"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_D"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_E"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_F"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_G"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_H"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_I"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_J"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_K"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_L"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_M"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_N"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_5_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_5_O"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_A"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_B"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_C"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_E"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_F"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_G"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_H"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_I"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_J"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_K"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_L"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_M"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_N"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_6_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_6_O"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_A"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_B"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_C"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_E"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_F"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_G"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_H"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_I"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_J"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_K"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_L"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_M"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_N"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_7_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_7_O"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_A"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_B"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_C"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_E"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_F"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_G"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_H"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_I"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_J"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_K"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_L"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_M"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_N"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_8_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_8_O"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_9_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_9_A"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_9_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_9_B"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_9_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_9_C"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_9_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_9_E"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_9_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_9_G"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_9_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_9_H"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_9_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_9_I"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_9_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_9_J"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_9_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_9_K"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_9_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_9_L"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_9_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_9_M"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_9_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_9_N"
+          },
+          {
+            "id": "REQUIRED_WARP_COMBAT_9_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_COMBAT_9_O"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_A"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_B"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_C"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_D"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_E"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_F"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_G"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_H"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_I"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_J"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_K"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_L"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_M"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_N"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_4_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_4_O"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_A"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_B"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_C"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_D"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_E"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_F"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_G"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_H"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_I"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_J"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_K"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_L"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_M"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_N"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_5_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_5_O"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_A"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_B"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_C"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_E"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_F"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_G"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_H"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_I"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_J"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_K"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_L"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_M"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_N"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_6_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_6_O"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_A"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_B"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_C"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_E"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_F"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_G"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_H"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_I"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_J"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_K"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_L"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_M"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_N"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_7_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_7_O"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_A"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_B"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_C"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_E"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_F"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_G"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_H"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_I"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_J"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_K"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_L"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_M"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_N"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_8_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_8_O"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_9_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_9_A"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_9_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_9_B"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_9_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_9_C"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_9_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_9_E"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_9_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_9_G"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_9_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_9_H"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_9_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_9_I"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_9_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_9_J"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_9_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_9_K"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_9_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_9_L"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_9_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_9_M"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_9_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_9_N"
+          },
+          {
+            "id": "REQUIRED_WARP_EXPLORATION_9_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_EXPLORATION_9_O"
+          },
+          {
+            "id": "REQUIRED_WARP_KRENIM_9_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_KRENIM_9_A"
+          },
+          {
+            "id": "REQUIRED_WARP_KRENIM_9_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_KRENIM_9_B"
+          },
+          {
+            "id": "REQUIRED_WARP_KRENIM_9_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_KRENIM_9_C"
+          },
+          {
+            "id": "REQUIRED_WARP_KRENIM_9_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_KRENIM_9_E"
+          },
+          {
+            "id": "REQUIRED_WARP_KRENIM_9_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_KRENIM_9_G"
+          },
+          {
+            "id": "REQUIRED_WARP_KRENIM_9_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_KRENIM_9_H"
+          },
+          {
+            "id": "REQUIRED_WARP_KRENIM_9_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_KRENIM_9_I"
+          },
+          {
+            "id": "REQUIRED_WARP_KRENIM_9_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_KRENIM_9_J"
+          },
+          {
+            "id": "REQUIRED_WARP_KRENIM_9_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_KRENIM_9_K"
+          },
+          {
+            "id": "REQUIRED_WARP_KRENIM_9_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_KRENIM_9_L"
+          },
+          {
+            "id": "REQUIRED_WARP_KRENIM_9_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_KRENIM_9_M"
+          },
+          {
+            "id": "REQUIRED_WARP_KRENIM_9_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_KRENIM_9_N"
+          },
+          {
+            "id": "REQUIRED_WARP_KRENIM_9_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_KRENIM_9_O"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_A"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_B"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_C"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_D"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_E"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_F"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_G"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_H"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_I"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_J"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_K"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_L"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_M"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_N"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_3_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_3_O"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_A"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_B"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_C"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_D"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_E"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_F"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_G"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_H"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_I"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_J"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_K"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_L"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_M"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_N"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_4_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_4_O"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_A"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_B"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_C"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_D"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_E"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_F"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_G"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_H"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_I"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_J"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_K"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_L"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_M"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_N"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_5_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_5_O"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_A"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_B"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_C"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_E"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_F"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_G"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_H"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_I"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_J"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_K"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_L"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_M"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_N"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_6_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_6_O"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_A"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_B"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_C"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_E"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_F"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_G"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_H"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_I"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_J"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_K"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_L"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_M"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_N"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_7_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_7_O"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_A"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_B"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_C"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_E"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_F"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_G"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_H"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_I"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_J"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_K"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_L"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_M"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_N"
+          },
+          {
+            "id": "REQUIRED_WARP_RING_8_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_RING_8_O"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_A"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_B"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_C"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_D"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_E"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_F"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_G"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_H"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_I"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_J"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_K"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_L"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_M"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_N"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_3_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_3_O"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_A"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_B"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_C"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_D"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_E"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_F"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_G"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_H"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_I"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_J"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_K"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_L"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_M"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_N"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_4_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_4_O"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_A"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_B"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_C"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_D",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_D"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_E"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_F"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_G"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_H"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_I"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_J"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_K"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_L"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_M"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_N"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_5_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_5_O"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_A"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_B"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_C"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_E"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_F"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_G"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_H"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_I"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_J"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_K"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_L"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_M"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_N"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_6_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_6_O"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_A"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_B"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_C"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_E"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_F"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_G"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_H"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_I"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_J"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_K"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_L"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_M"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_N"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_7_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_7_O"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_A"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_B"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_C"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_E"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_F"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_G"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_H"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_I"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_J"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_K"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_L"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_M"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_N"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_8_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_8_O"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_9_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_9_A"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_9_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_9_B"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_9_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_9_C"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_9_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_9_E"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_9_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_9_G"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_9_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_9_H"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_9_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_9_I"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_9_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_9_J"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_9_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_9_K"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_9_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_9_L"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_9_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_9_M"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_9_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_9_N"
+          },
+          {
+            "id": "REQUIRED_WARP_SINGULARITY_9_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_SINGULARITY_9_O"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_MYLECIAL_1_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_MYLECIAL_1_C"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_MYLECIAL_1_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_MYLECIAL_1_I"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_MYLECIAL_1_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_MYLECIAL_1_K"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_MYLECIAL_1_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_MYLECIAL_1_L"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_MYLECIAL_1_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_MYLECIAL_1_M"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_MYLECIAL_1_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_MYLECIAL_1_N"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_PROTOSTAR_1_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_PROTOSTAR_1_C"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_SLIPSTREAM_1_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_SLIPSTREAM_1_C"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_SLIPSTREAM_1_F",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_SLIPSTREAM_1_F"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_SLIPSTREAM_1_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_SLIPSTREAM_1_I"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_SLIPSTREAM_1_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_SLIPSTREAM_1_K"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_SLIPSTREAM_1_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_SLIPSTREAM_1_L"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_SLIPSTREAM_1_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_SLIPSTREAM_1_M"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_SPORE_1_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_SPORE_1_C"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_SPORE_1_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_SPORE_1_I"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_SPORE_1_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_SPORE_1_K"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_SPORE_1_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_SPORE_1_L"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_SPORE_1_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_SPORE_1_M"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_TRANSWARP_1_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_TRANSWARP_1_C"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_TRANSWARP_1_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_TRANSWARP_1_I"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_TRANSWARP_1_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_TRANSWARP_1_K"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_TRANSWARP_1_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_TRANSWARP_1_L"
+          },
+          {
+            "id": "REQUIRED_WARP_Z_TRANSWARP_1_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_Z_TRANSWARP_1_M"
+          }
+        ]
+      }
+    }
+  },
+  {
     "timestamp": "2026-04-29T03:08:47.756952",
     "summary": {
       "total_added": 0,

@@ -16352,7 +16352,7 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Buildings: Capital 2, Orbital Capital 2, Machine Capital 2, Undine Capital 2, Monitor Station, Housing, Drone Storage, Alcove Storage | Zone Slots: Special, Admin",
+      "description": "Buildings: Capital 2, Orbital Capital 2, Machine Capital 2, Undine Capital 2, Monitor Station, Housing, Drone Storage, Alcove Storage | Zone Slots: Special, Special Default Research, Admin, Admin Default Unity",
       "unlocks_by_type": {
         "Building": [
           "Capital 2",
@@ -16366,7 +16366,9 @@
         ],
         "Zone Slot": [
           "Special",
-          "Admin"
+          "Special Default Research",
+          "Admin",
+          "Admin Default Unity"
         ]
       }
     },

@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-17T00:24:14.074087",
-  "elapsed_seconds": 73.5,
+  "timestamp": "2026-05-19T16:23:00.118924",
+  "elapsed_seconds": 75.3,
   "results": {
     "localisation": {
       "english": 240969,
@@ -62255,7 +62255,7 @@
       "model_variants": 1624,
       "files": 142,
       "errors": 0,
-      "elapsed": 21.4
+      "elapsed": 23.9
     },
     "buildings": {
       "buildings": 653,
@@ -62270,7 +62270,7 @@
       "ascension_perks": 58,
       "files": 90,
       "errors": 0,
-      "elapsed": 0.6
+      "elapsed": 0.7
     },
     "governments": {
       "governments": 185,
@@ -62290,7 +62290,7 @@
       "mega_model_variants": 103,
       "files": 67,
       "errors": 0,
-      "elapsed": 5.0
+      "elapsed": 5.1
     },
     "anomalies": {
       "anomalies": 132,
@@ -62324,7 +62324,7 @@
       "resources": 46,
       "producer_links": 989,
       "consumer_links": 910,
-      "modifier_links": 502,
+      "modifier_links": 504,
       "unparsed_modifiers": 214,
       "errors": 0,
       "elapsed": 0.1
@@ -62390,7 +62390,7 @@
       "failed": 0,
       "multi_mesh": 0,
       "total": 1624,
-      "elapsed": 0.1
+      "elapsed": 0.0
     },
     "mega_models": {
       "converted": 0,
@@ -62411,8 +62411,8 @@
       "categories": {
         "buildings": {
           "total": 756,
-          "converted": 3,
-          "skipped": 753,
+          "converted": 0,
+          "skipped": 756,
           "failed": 0,
           "errors": []
         },
@@ -62524,8 +62524,8 @@
       },
       "total": {
         "total": 8419,
-        "converted": 3,
-        "skipped": 8416,
+        "converted": 0,
+        "skipped": 8419,
         "failed": 0
       }
     },
@@ -62628,11 +62628,11 @@
       "modules_count": 10
     },
     "changes": {
-      "total_added": 9,
+      "total_added": 0,
       "total_removed": 0,
-      "total_modified": 514,
-      "modules_changed": 8,
-      "modules_unchanged": 14
+      "total_modified": 33,
+      "modules_changed": 5,
+      "modules_unchanged": 17
     }
   }
 }
