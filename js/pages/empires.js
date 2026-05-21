@@ -113,6 +113,7 @@
             DataManager.loadJSON('assets/traits.json'),
         ]);
         await I18n.setLanguageForModule(AppState.get('lang'), 'empires');
+        await I18n.mergeModule(AppState.get('lang'), 'traits');
 
         for (const item of empires) item.name = I18n.t(item.name_key) || item.id;
         for (const item of species) item.name = I18n.t(item.name_key) || item.id;

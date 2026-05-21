@@ -82,12 +82,12 @@ const Common = (() => {
         navInner.innerHTML =
             '<a href="index.html" class="nav-link" data-i18n="ui.nav.hub">Hub</a>' +
             '<a href="events.html" class="nav-link" data-i18n="ui.nav.events">Events</a>' +
-            '<a href="exploration.html" class="nav-link" data-i18n="ui.nav.exploration">Exploration</a>' +
             '<a href="tech-list.html" class="nav-link" data-i18n="ui.nav.tech">Technology</a>' +
             '<a href="empires.html" class="nav-link" data-i18n="ui.nav.empire">Empire</a>' +
             '<a href="governments.html" class="nav-link" data-i18n="ui.nav.governments">Governance</a>' +
             '<a href="economy.html" class="nav-link" data-i18n="ui.nav.economy">Economy</a>' +
-            '<a href="ships.html" class="nav-link" data-i18n="ui.nav.military">Military</a>';
+            '<a href="ships.html" class="nav-link" data-i18n="ui.nav.military">Military</a>' +
+            '<a href="exploration.html" class="nav-link" data-i18n="ui.nav.exploration">Exploration</a>';
     }
 
     function initNavHighlight() {
