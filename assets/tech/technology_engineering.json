@@ -14633,7 +14633,7 @@
     ],
     "weight": 200,
     "icon": "tech_engineering_structural_605",
-    "description": "The structural integrity field was developed to supplement the natural structural integrity of the material their starship hulls were composed of. Engineers use a structural integrity force field to supplement the supports and bulkheads that give a spacecraft its shape. Improved force field generators make starships more capable of enduring the harsh elements and forces of interstellar travel.",
+    "description": "The structural integrity field was developed to supplement the natural structural integrity of the material their starship hulls were composed of. Engineers use a structural integrity force field to supplement the supports and bulkheads that give a spacecraft its shape. Improved force field generators make starships more capable of enduring the harsh elements and forces of interstellar travel.",
     "alternate_names": {},
     "effects": [
       {
@@ -14962,7 +14962,7 @@
     ],
     "weight": 50,
     "icon": "tech_engineering_armor_670",
-    "description": "Ablative armor is was originally designed as a primitive heat shielding for spacecraft. Over time it has been refined into an armor designed to disintegrate at a controlled rate under directed energy blasts, providing an additional layer of defense for starships.",
+    "description": "Ablative armor is was originally designed as a primitive heat shielding for spacecraft. Over time it has been refined into an armor designed to disintegrate at a controlled rate under directed energy blasts, providing an additional layer of defense for starships.",
     "alternate_names": {},
     "effects": [
       {
@@ -27959,22 +27959,22 @@
       {
         "type": "modifier",
         "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "value": 0.3,
+        "display": "+0.30 Factor",
         "component": "required_aura_destroyer_sweeper"
       },
       {
         "type": "modifier",
         "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "value": 0.3,
+        "display": "+0.30 Factor",
         "component": "required_aura_cruiser_sweeper"
       },
       {
         "type": "modifier",
         "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "value": 0.5,
+        "display": "+0.50 Factor",
         "component": "required_aura_battleship_sweeper"
       }
     ],
@@ -28633,37 +28633,37 @@
     "effects": [
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_A_BORG_TORPEDO_4"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_B_BORG_TORPEDO_4"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_C_BORG_TORPEDO_4"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_D_BORG_TORPEDO_4"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_E_BORG_TORPEDO_4"
       }
     ],
@@ -28705,37 +28705,37 @@
     "effects": [
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_A_BORG_TORPEDO_5"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_B_BORG_TORPEDO_5"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_C_BORG_TORPEDO_5"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_D_BORG_TORPEDO_5"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_E_BORG_TORPEDO_5"
       }
     ],
@@ -28777,37 +28777,37 @@
     "effects": [
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_A_BORG_TORPEDO_6"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_B_BORG_TORPEDO_6"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_C_BORG_TORPEDO_6"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_D_BORG_TORPEDO_6"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_E_BORG_TORPEDO_6"
       }
     ],
@@ -32512,37 +32512,37 @@
     "effects": [
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_A_GRAVIMETRIC_TORPEDO_1"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_B_GRAVIMETRIC_TORPEDO_1"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_C_GRAVIMETRIC_TORPEDO_1"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_D_GRAVIMETRIC_TORPEDO_1"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_E_GRAVIMETRIC_TORPEDO_1"
       }
     ],
@@ -32580,37 +32580,37 @@
     "effects": [
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_A_GRAVIMETRIC_TORPEDO_2"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_B_GRAVIMETRIC_TORPEDO_2"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_C_GRAVIMETRIC_TORPEDO_2"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_D_GRAVIMETRIC_TORPEDO_2"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_E_GRAVIMETRIC_TORPEDO_2"
       }
     ],
@@ -32679,37 +32679,37 @@
     "effects": [
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_A_GRAVIMETRIC_TORPEDO_4"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_B_GRAVIMETRIC_TORPEDO_4"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_C_GRAVIMETRIC_TORPEDO_4"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_D_GRAVIMETRIC_TORPEDO_4"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_E_GRAVIMETRIC_TORPEDO_4"
       }
     ],
@@ -33278,37 +33278,37 @@
     "effects": [
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_A_BORG_TORPEDO_7"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_B_BORG_TORPEDO_7"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_C_BORG_TORPEDO_7"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_D_BORG_TORPEDO_7"
       },
       {
         "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
+        "key": "add",
+        "value": 500.0,
+        "display": "+500.00 Add",
         "component": "TORPEDO_E_BORG_TORPEDO_7"
       }
     ],

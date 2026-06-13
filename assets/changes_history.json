@@ -1,5 +1,407 @@
 [
   {
+    "timestamp": "2026-05-19T16:23:00.116336",
+    "summary": {
+      "total_added": 0,
+      "total_removed": 0,
+      "total_modified": 33,
+      "modules_changed": 5,
+      "modules_unchanged": 17
+    },
+    "modules": {
+      "events_index": {
+        "old_count": 8904,
+        "new_count": 8904,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "STH_hero_ship.3",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": ""
+          },
+          {
+            "id": "STH_hero_ship.5",
+            "changed_fields": [
+              "snip"
+            ],
+            "name_key": "NX-01 Enterprise Refit"
+          }
+        ]
+      },
+      "ships": {
+        "old_count": 423,
+        "new_count": 423,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "buildings": {
+        "old_count": 653,
+        "new_count": 653,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "building_apu_mustering_1",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_apu_mustering_1"
+          },
+          {
+            "id": "building_apu_mustering_2",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_apu_mustering_2"
+          },
+          {
+            "id": "building_apu_mustering_3",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_apu_mustering_3"
+          },
+          {
+            "id": "building_apu_mustering_4",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_apu_mustering_4"
+          },
+          {
+            "id": "building_military_academy_1",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_1"
+          },
+          {
+            "id": "building_military_academy_2",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_2"
+          },
+          {
+            "id": "building_military_academy_3",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_3"
+          },
+          {
+            "id": "building_military_academy_4",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_4"
+          },
+          {
+            "id": "building_military_academy_andoria_1",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_andoria_1"
+          },
+          {
+            "id": "building_military_academy_andoria_2",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_andoria_2"
+          },
+          {
+            "id": "building_military_academy_andoria_3",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_andoria_3"
+          },
+          {
+            "id": "building_military_academy_andoria_4",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_andoria_4"
+          },
+          {
+            "id": "building_military_academy_hirogen_1",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_hirogen_1"
+          },
+          {
+            "id": "building_military_academy_hirogen_2",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_hirogen_2"
+          },
+          {
+            "id": "building_military_academy_hirogen_3",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_hirogen_3"
+          },
+          {
+            "id": "building_military_academy_hirogen_4",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_hirogen_4"
+          },
+          {
+            "id": "building_military_academy_stragegos_1",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_stragegos_1"
+          },
+          {
+            "id": "building_military_academy_stragegos_2",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_stragegos_2"
+          },
+          {
+            "id": "building_military_academy_stragegos_3",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_stragegos_3"
+          },
+          {
+            "id": "building_military_academy_stragegos_4",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_military_academy_stragegos_4"
+          },
+          {
+            "id": "building_religious_capital_klingon_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_religious_capital_klingon_2"
+          },
+          {
+            "id": "building_undine_academy_1",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_undine_academy_1"
+          },
+          {
+            "id": "building_undine_academy_2",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_undine_academy_2"
+          },
+          {
+            "id": "building_undine_academy_3",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_undine_academy_3"
+          },
+          {
+            "id": "building_undine_academy_4",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_undine_academy_4"
+          }
+        ]
+      },
+      "districts": {
+        "old_count": 56,
+        "new_count": 56,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traits": {
+        "old_count": 461,
+        "new_count": 461,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traditions": {
+        "old_count": 448,
+        "new_count": 448,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "tr_federation_2_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "tr_federation_2_1"
+          },
+          {
+            "id": "tr_harmony_mind_and_body",
+            "changed_fields": [
+              "possible"
+            ],
+            "name_key": "tr_harmony_mind_and_body"
+          }
+        ]
+      },
+      "ascension_perks": {
+        "old_count": 58,
+        "new_count": 58,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "governments": {
+        "old_count": 185,
+        "new_count": 185,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "civics": {
+        "old_count": 332,
+        "new_count": 332,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "authorities": {
+        "old_count": 17,
+        "new_count": 17,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "policies": {
+        "old_count": 53,
+        "new_count": 53,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "edicts": {
+        "old_count": 86,
+        "new_count": 86,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "councilors": {
+        "old_count": 146,
+        "new_count": 146,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "megastructures": {
+        "old_count": 116,
+        "new_count": 116,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "relics": {
+        "old_count": 68,
+        "new_count": 68,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "anomalies": {
+        "old_count": 132,
+        "new_count": 132,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "archaeology": {
+        "old_count": 29,
+        "new_count": 29,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "empires": {
+        "old_count": 110,
+        "new_count": 110,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "species": {
+        "old_count": 255,
+        "new_count": 255,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "jobs": {
+        "old_count": 306,
+        "new_count": 306,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "roboticist_dred",
+            "changed_fields": [
+              "weight"
+            ],
+            "name_key": "job_roboticist_dred"
+          },
+          {
+            "id": "roboticist_holo",
+            "changed_fields": [
+              "weight"
+            ],
+            "name_key": "job_roboticist_holo"
+          }
+        ]
+      },
+      "deposits": {
+        "old_count": 667,
+        "new_count": 667,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "d_qonos_hamar_mountains",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "d_qonos_hamar_mountains"
+          },
+          {
+            "id": "d_qonos_ketha_lowlands",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "d_qonos_ketha_lowlands"
+          }
+        ]
+      },
+      "components": {
+        "old_count": 6406,
+        "new_count": 6406,
+        "added": [],
+        "removed": [],
+        "modified": []
+      }
+    }
+  },
+  {
     "timestamp": "2026-05-17T00:24:14.071457",
     "summary": {
       "total_added": 9,

@@ -64,7 +64,7 @@
     "name": "Banea",
     "short_name": "BAN",
     "quadrant": "delta",
-    "graphical_culture": "delta_01",
+    "graphical_culture": "delta_02",
     "has_unique_ships": true,
     "playable": true,
     "playable_condition": null
@@ -214,7 +214,7 @@
     "name": "Devore",
     "short_name": "DEV",
     "quadrant": "delta",
-    "graphical_culture": "delta_01",
+    "graphical_culture": "devore_01",
     "has_unique_ships": true,
     "playable": true,
     "playable_condition": null
@@ -580,6 +580,16 @@
     "playable_condition": null
   },
   {
+    "id": "nygeansectorauthority",
+    "name": "Nygean",
+    "short_name": "NYG",
+    "quadrant": "delta",
+    "graphical_culture": "nygean_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": null
+  },
+  {
     "id": "orionfreestates",
     "name": "Orion",
     "short_name": "ORI",
@@ -744,8 +754,8 @@
     "name": "Tamarian",
     "short_name": "TAM",
     "quadrant": "alpha",
-    "graphical_culture": "generic_05",
-    "has_unique_ships": false,
+    "graphical_culture": "tamarian_01",
+    "has_unique_ships": true,
     "playable": true,
     "playable_condition": null
   },
@@ -944,8 +954,8 @@
     "name": "Yridian",
     "short_name": "YRI",
     "quadrant": "beta",
-    "graphical_culture": "generic_02",
-    "has_unique_ships": false,
+    "graphical_culture": "yridian_01",
+    "has_unique_ships": true,
     "playable": true,
     "playable_condition": "has_megacorp"
   },

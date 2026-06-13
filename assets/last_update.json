@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-05-19T16:23:00.118924",
-  "elapsed_seconds": 75.3,
+  "timestamp": "2026-06-13T23:24:46.050009",
+  "elapsed_seconds": 79.2,
   "results": {
     "localisation": {
-      "english": 240969,
-      "german": 241163,
-      "french": 252179,
-      "spanish": 240908,
-      "russian": 241448,
-      "polish": 241416,
-      "braz_por": 235485
+      "english": 241488,
+      "german": 241325,
+      "french": 252341,
+      "spanish": 241077,
+      "russian": 241610,
+      "polish": 241585,
+      "braz_por": 235654
     },
     "inject_missing_loc": {
       "english": 101,
@@ -44706,6 +44706,26 @@
         "texture_name": "borgDeassimilation1",
         "frames": 1
       },
+      "sth_GFX_evt_lembatta_battle": {
+        "texture_path": "gfx/event_pictures/Lembatta_Cluster_battle.dds",
+        "texture_name": "Lembatta_Cluster_battle",
+        "frames": 1
+      },
+      "sth_GFX_evt_lembatta_cluster": {
+        "texture_path": "gfx/event_pictures/Lembatta_Cluster.dds",
+        "texture_name": "Lembatta_Cluster",
+        "frames": 1
+      },
+      "sth_GFX_evt_lembatta_cluste2": {
+        "texture_path": "gfx/event_pictures/Lembatta_Cluster2.dds",
+        "texture_name": "Lembatta_Cluster2",
+        "frames": 1
+      },
+      "sth_GFX_evt_lembatta_cluster2": {
+        "texture_path": "gfx/event_pictures/Lembatta_Cluster2.dds",
+        "texture_name": "Lembatta_Cluster2",
+        "frames": 1
+      },
       "GFX_faction_icon_sth_klingon_ho_mogh": {
         "texture_path": "gfx/interface/icons/faction_icons/faction_icons_house_of_mogh.dds",
         "texture_name": "faction_icons_house_of_mogh",
@@ -62238,24 +62258,24 @@
       }
     },
     "events": {
-      "events": 8904,
-      "namespaces": 287,
-      "files": 430,
-      "loc_keys": 240969,
+      "events": 8952,
+      "namespaces": 288,
+      "files": 431,
+      "loc_keys": 241488,
       "on_actions": 200,
       "event_chains": 39,
-      "gfx_sprites": 12443,
-      "relationship_edges": 7086,
-      "detail_files": 272
+      "gfx_sprites": 12447,
+      "relationship_edges": 7123,
+      "detail_files": 273
     },
     "ships": {
       "ships": 423,
       "components": 6406,
       "ships_with_models": 374,
-      "model_variants": 1624,
+      "model_variants": 1691,
       "files": 142,
       "errors": 0,
-      "elapsed": 23.9
+      "elapsed": 25.4
     },
     "buildings": {
       "buildings": 653,
@@ -62287,10 +62307,10 @@
       "megastructures": 116,
       "relics": 68,
       "megas_with_models": 53,
-      "mega_model_variants": 103,
+      "mega_model_variants": 104,
       "files": 67,
       "errors": 0,
-      "elapsed": 5.1
+      "elapsed": 4.9
     },
     "anomalies": {
       "anomalies": 132,
@@ -62300,14 +62320,14 @@
       "elapsed": 0.2
     },
     "empires": {
-      "empires": 110,
-      "species": 255,
+      "empires": 111,
+      "species": 257,
       "files": 47,
       "errors": 0,
       "elapsed": 0.1
     },
     "galaxy_map": {
-      "placed": 103,
+      "placed": 104,
       "unplaced": 1,
       "maps": 16,
       "flags_converted": 79,
@@ -62324,8 +62344,8 @@
       "resources": 46,
       "producer_links": 989,
       "consumer_links": 910,
-      "modifier_links": 504,
-      "unparsed_modifiers": 214,
+      "modifier_links": 507,
+      "unparsed_modifiers": 216,
       "errors": 0,
       "elapsed": 0.1
     },
@@ -62336,10 +62356,10 @@
     },
     "search": {
       "search_index": {
-        "total_items": 21693,
-        "size_kb": 3471,
+        "total_items": 21742,
+        "size_kb": 3479,
         "by_type": {
-          "event": 8904,
+          "event": 8952,
           "ship": 423,
           "component": 6406,
           "building": 653,
@@ -62357,7 +62377,7 @@
           "relic": 68,
           "anomaly": 132,
           "archaeology": 29,
-          "empire": 110,
+          "empire": 111,
           "job": 306,
           "deposit": 667,
           "resource": 46,
@@ -62372,7 +62392,7 @@
           "upgrade_chains": 0,
           "anomaly_events": 56,
           "archaeology_events": 29,
-          "empire_refs": 110,
+          "empire_refs": 111,
           "building_upgrades": 307
         },
         "elapsed": 0.0
@@ -62385,24 +62405,24 @@
       }
     },
     "ship_models": {
-      "converted": 0,
+      "converted": 67,
       "skipped": 1624,
       "failed": 0,
-      "multi_mesh": 0,
-      "total": 1624,
-      "elapsed": 0.0
+      "multi_mesh": 10,
+      "total": 1691,
+      "elapsed": 1.0
     },
     "mega_models": {
-      "converted": 0,
+      "converted": 1,
       "skipped": 103,
       "failed": 0,
       "multi_mesh": 0,
-      "total": 103,
+      "total": 104,
       "elapsed": 0.0
     },
     "images": {
-      "total": 1031,
-      "converted": 0,
+      "total": 1034,
+      "converted": 3,
       "skipped": 1031,
       "failed": 0,
       "errors": []
@@ -62534,7 +62554,7 @@
       "languages": {
         "english": {
           "common": 17474,
-          "events": 10720,
+          "events": 10766,
           "buildings": 1424,
           "ships": 14252,
           "tech": 3986,
@@ -62543,12 +62563,12 @@
           "megastructures": 368,
           "anomalies": 322,
           "economy": 2102,
-          "empires": 952
+          "empires": 962
         },
         "german": {
           "common": 17470,
-          "events": 10715,
-          "buildings": 1412,
+          "events": 10728,
+          "buildings": 1424,
           "ships": 14252,
           "tech": 3986,
           "traits": 2043,
@@ -62560,8 +62580,8 @@
         },
         "french": {
           "common": 17568,
-          "events": 10751,
-          "buildings": 1412,
+          "events": 10764,
+          "buildings": 1424,
           "ships": 14247,
           "tech": 3986,
           "traits": 2039,
@@ -62573,8 +62593,8 @@
         },
         "spanish": {
           "common": 17467,
-          "events": 10718,
-          "buildings": 1412,
+          "events": 10733,
+          "buildings": 1424,
           "ships": 14171,
           "tech": 3986,
           "traits": 2038,
@@ -62586,8 +62606,8 @@
         },
         "russian": {
           "common": 17470,
-          "events": 10720,
-          "buildings": 1412,
+          "events": 10733,
+          "buildings": 1424,
           "ships": 14251,
           "tech": 3986,
           "traits": 2043,
@@ -62599,8 +62619,8 @@
         },
         "polish": {
           "common": 17460,
-          "events": 10712,
-          "buildings": 1412,
+          "events": 10727,
+          "buildings": 1424,
           "ships": 14247,
           "tech": 3986,
           "traits": 2034,
@@ -62612,8 +62632,8 @@
         },
         "braz_por": {
           "common": 15973,
-          "events": 10718,
-          "buildings": 1412,
+          "events": 10733,
+          "buildings": 1424,
           "ships": 14174,
           "tech": 3986,
           "traits": 2013,
@@ -62628,11 +62648,11 @@
       "modules_count": 10
     },
     "changes": {
-      "total_added": 0,
+      "total_added": 51,
       "total_removed": 0,
-      "total_modified": 33,
-      "modules_changed": 5,
-      "modules_unchanged": 17
+      "total_modified": 160,
+      "modules_changed": 13,
+      "modules_unchanged": 9
     }
   }
 }
