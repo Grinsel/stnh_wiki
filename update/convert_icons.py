@@ -6,6 +6,7 @@ Replaces convert_building_icons.py with a unified approach.
 
 import os
 import json
+import shutil
 import subprocess
 import time
 from config import (
@@ -387,10 +388,16 @@ def convert_category(config, force=False):
         except FileNotFoundError:
             print(f"  [ERROR] ImageMagick not found. Install it to convert icons.")
             stats['failed'] += 1
+            stats['magick_missing'] = True
             break
         except Exception as e:
             stats['failed'] += 1
             stats['errors'].append(f"{stem}: {e}")
+
+    # If ImageMagick was missing, do NOT rewrite _index.json — it would drop to
+    # only the previously-converted stems and mislead the frontend fallback.
+    if stats.get('magick_missing'):
+        return stats
 
     # Write a lightweight index of stems that actually made it to .webp —
     # the frontend uses this to decide which items need the generic fallback
@@ -410,6 +417,16 @@ def convert_category(config, force=False):
 
 def convert_all_icons(categories=None, force=False):
     """Convert icons for all (or specified) categories. Returns combined stats."""
+    # Fail fast if ImageMagick is unavailable: without it every category would
+    # "fail" silently while still rewriting each _index.json to reflect only the
+    # previously-converted files. Aborting here lets the phase runner record the
+    # failure (exit code 2) and leaves the committed indices authoritative.
+    if shutil.which('magick') is None:
+        raise RuntimeError(
+            "ImageMagick ('magick') not found on PATH. Install it to convert "
+            "icons. Aborting the icon phase without touching existing _index.json."
+        )
+
     all_stats = {}
     total = {'total': 0, 'converted': 0, 'skipped': 0, 'failed': 0}
 

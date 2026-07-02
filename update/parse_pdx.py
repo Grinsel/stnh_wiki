@@ -27,6 +27,7 @@ class PdxLexer:
         (?P<EQUALS>=)                        |
         (?P<LBRACE>\{)                       |
         (?P<RBRACE>\})                       |
+        (?P<INLINE_MATH>@\[[^\]]*\])         |
         (?P<VARIABLE>@[a-zA-Z_]\w*)          |
         (?P<NUMBER>-?\d+(?:\.\d+)?)          |
         (?P<BAREWORD>[a-zA-Z_][-\w.:']*)     |
@@ -183,7 +184,23 @@ class PdxParser:
         elif tok[0] == 'NUMBER':
             lexer.advance()
             return _coerce_number(tok[1])
+        elif tok[0] == 'INLINE_MATH':
+            lexer.advance()
+            # Kept as literal here; resolved later in _resolve_variables when
+            # the variable table is available.
+            return tok[1]
         elif tok[0] in ('BAREWORD', 'VARIABLE'):
+            # Named-block color value: `hsv { ... }` -> {'hsv': [...]}. Only when
+            # the word is a known color tag AND immediately followed by a block,
+            # so ordinary barewords are unaffected.
+            if tok[0] == 'BAREWORD' and tok[1] in COLOR_BLOCK_TAGS:
+                saved_pos = lexer.pos
+                lexer.advance()
+                nxt = lexer.peek()
+                if nxt and nxt[0] == 'LBRACE':
+                    block = self._parse_block_or_list(lexer)
+                    return {tok[1]: block}
+                lexer.pos = saved_pos  # not a color block, restore
             lexer.advance()
             return tok[1]
         else:
@@ -263,8 +280,11 @@ def _resolve_variables(obj, var_table):
         for k, v in obj.items():
             result[k] = _resolve_variables(v, var_table)
         return result
-    if isinstance(obj, str) and obj.startswith('@') and obj in var_table:
-        return var_table[obj]
+    if isinstance(obj, str) and obj.startswith('@'):
+        if obj in var_table:
+            return var_table[obj]
+        if obj.startswith('@['):
+            return _eval_inline_math(obj, var_table)
     return obj
 
 
@@ -277,6 +297,47 @@ def _coerce_number(val):
         except (ValueError, TypeError):
             pass
     return val
+
+
+# Named-block color value forms: `key = hsv { ... }`, `key = rgb { ... }`, etc.
+# Without special handling the leading word is read as a scalar and the trailing
+# { ... } desyncs the parser into a stray statement. We keep the values as a
+# tagged dict, e.g. {'hsv': [0.0, 0.0, 0.8]}.
+COLOR_BLOCK_TAGS = frozenset({'hsv', 'rgb', 'hsv360', 'rgb255', 'cw'})
+
+_INLINE_MATH_RE = re.compile(r'^@\[\s*(.*?)\s*\]$')
+_SAFE_MATH_RE = re.compile(r'^[\d\s.+\-*/()@a-zA-Z_]+$')
+
+
+def _eval_inline_math(token, var_table=None):
+    """Best-effort evaluation of a Stellaris `@[ expr ]` inline-math token.
+
+    Substitutes known @vars, then evaluates a whitelisted arithmetic
+    expression. Returns a number on success, otherwise the original literal
+    string (so the token stream never desyncs and info is not lost).
+    """
+    m = _INLINE_MATH_RE.match(token)
+    if not m:
+        return token
+    expr = m.group(1)
+    if not _SAFE_MATH_RE.match(expr):
+        return token
+    # Resolve @var / bare identifiers against the variable table
+    def _sub(match):
+        name = match.group(0)
+        key = name if name.startswith('@') else '@' + name
+        if var_table and key in var_table:
+            v = var_table[key]
+            return str(v) if isinstance(v, (int, float)) else '(0)'
+        return name
+    resolved = re.sub(r'@?[a-zA-Z_]\w*', _sub, expr)
+    # After substitution only numbers and operators may remain
+    if not re.match(r'^[\d\s.+\-*/()]+$', resolved):
+        return token
+    try:
+        return eval(resolved, {'__builtins__': {}}, {})  # noqa: S307 - whitelisted chars only
+    except Exception:
+        return token
 
 
 # Singleton parser

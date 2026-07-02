@@ -434,7 +434,12 @@ ONLY_MODULES = {
     'empires':        ['localisation', 'inject_missing_loc', 'empires', 'split_loc'],
     'galaxy_map':     ['galaxy_map'],
     'economy':        ['localisation', 'inject_missing_loc', 'economy', 'split_loc'],
-    'resources':      ['localisation', 'inject_missing_loc', 'resources', 'all_icons', 'split_loc'],
+    # resources needs every producer JSON (buildings, traits/traditions/perks,
+    # governments/civics/authorities/edicts, megastructures/relics, economy
+    # jobs/deposits) on disk before generate_resource_index runs.
+    'resources':      ['localisation', 'inject_missing_loc', 'buildings', 'traits',
+                       'governments', 'megastructures', 'economy', 'resources',
+                       'all_icons', 'split_loc'],
     'search':         ['search'],
     'content':        ['localisation', 'inject_missing_loc', 'ships', 'buildings', 'all_icons', 'traits',
                        'governments', 'megastructures', 'anomalies', 'empires', 'galaxy_map', 'economy',
