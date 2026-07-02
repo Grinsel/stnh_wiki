@@ -12,9 +12,14 @@ from pathlib import Path
 # PATH CONFIGURATION
 # ==========================================
 
-STNH_MOD_ROOT = r"C:\Users\marcj\git01\New-Horizons-Development"
-WIKI_ROOT = r"C:\Users\marcj\git10\stnh_wiki"
-VANILLA_ROOT = r"C:\Program Files (x86)\Steam\steamapps\common\Stellaris"
+# Paths are overridable via environment variables (defaults match this machine).
+# WIKI_ROOT is derived from this file's location so it never needs overriding.
+STNH_MOD_ROOT = os.environ.get(
+    "STNH_MOD_ROOT", r"C:\Users\marcj\git01\New-Horizons-Development")
+WIKI_ROOT = os.environ.get(
+    "STNH_WIKI_ROOT", str(Path(__file__).resolve().parent.parent))
+VANILLA_ROOT = os.environ.get(
+    "STNH_VANILLA_ROOT", r"C:\Program Files (x86)\Steam\steamapps\common\Stellaris")
 
 # ==========================================
 # SOURCE PATHS (READ-ONLY) - Core
