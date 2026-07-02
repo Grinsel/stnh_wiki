@@ -517,7 +517,7 @@
     "graphical_culture": "malon_01",
     "has_unique_ships": true,
     "playable": true,
-    "playable_condition": "has_toxoids"
+    "playable_condition": null
   },
   {
     "id": "medusancorporium",
@@ -897,7 +897,17 @@
     "graphical_culture": "voth_01",
     "has_unique_ships": true,
     "playable": true,
-    "playable_condition": null
+    "playable_condition": "has_not_nomads_dlc"
+  },
+  {
+    "id": "voththeocracyb",
+    "name": "Voth",
+    "short_name": "VOT",
+    "quadrant": "delta",
+    "graphical_culture": "voth_01",
+    "has_unique_ships": true,
+    "playable": true,
+    "playable_condition": "has_nomads_dlc"
   },
   {
     "id": "vulcanhighcommand",

@@ -1,5 +1,1541 @@
 [
   {
+    "timestamp": "2026-06-13T23:24:46.046989",
+    "summary": {
+      "total_added": 51,
+      "total_removed": 0,
+      "total_modified": 160,
+      "modules_changed": 13,
+      "modules_unchanged": 9
+    },
+    "modules": {
+      "events_index": {
+        "old_count": 8904,
+        "new_count": 8952,
+        "added": [
+          {
+            "id": "STH_borg.1021",
+            "name_key": ""
+          },
+          {
+            "id": "STH_fix.259",
+            "name_key": ""
+          },
+          {
+            "id": "STH_fix.260",
+            "name_key": ""
+          },
+          {
+            "id": "STH_fix.263",
+            "name_key": ""
+          },
+          {
+            "id": "STH_fix.264",
+            "name_key": ""
+          },
+          {
+            "id": "STH_fix.265",
+            "name_key": ""
+          },
+          {
+            "id": "STH_fix.266",
+            "name_key": ""
+          },
+          {
+            "id": "STH_fix.270",
+            "name_key": ""
+          },
+          {
+            "id": "STH_lembatta.1",
+            "name_key": "The Acheron Signal"
+          },
+          {
+            "id": "STH_lembatta.100",
+            "name_key": ""
+          },
+          {
+            "id": "STH_lembatta.101",
+            "name_key": "The Beacon Speaks"
+          },
+          {
+            "id": "STH_lembatta.102",
+            "name_key": "Fragments of the Lost"
+          },
+          {
+            "id": "STH_lembatta.103",
+            "name_key": "The Sable Moon Archive"
+          },
+          {
+            "id": "STH_lembatta.104",
+            "name_key": "The Veil Relay"
+          },
+          {
+            "id": "STH_lembatta.105",
+            "name_key": "Havenfall"
+          },
+          {
+            "id": "STH_lembatta.106",
+            "name_key": "The Citadel Node"
+          },
+          {
+            "id": "STH_lembatta.107",
+            "name_key": "Onferin"
+          },
+          {
+            "id": "STH_lembatta.110",
+            "name_key": ""
+          },
+          {
+            "id": "STH_lembatta.120",
+            "name_key": ""
+          },
+          {
+            "id": "STH_lembatta.130",
+            "name_key": ""
+          },
+          {
+            "id": "STH_lembatta.140",
+            "name_key": ""
+          },
+          {
+            "id": "STH_lembatta.150",
+            "name_key": ""
+          },
+          {
+            "id": "STH_lembatta.20",
+            "name_key": "New Flight Corridor"
+          },
+          {
+            "id": "STH_lembatta.200",
+            "name_key": "The Judgment of Lembatta"
+          },
+          {
+            "id": "STH_lembatta.205",
+            "name_key": ""
+          },
+          {
+            "id": "STH_lembatta.210",
+            "name_key": "The Renao Emerge"
+          },
+          {
+            "id": "STH_lembatta.220",
+            "name_key": "A Cautious Opening"
+          },
+          {
+            "id": "STH_lembatta.230",
+            "name_key": "War in the Red Lanes"
+          },
+          {
+            "id": "STH_lembatta.240",
+            "name_key": "Resistance on Onferin"
+          },
+          {
+            "id": "STH_lembatta.30",
+            "name_key": "Ghosts in the Red Lanes"
+          },
+          {
+            "id": "STH_lembatta.40",
+            "name_key": "A Mask Beneath the Radiation"
+          },
+          {
+            "id": "STH_lembatta.50",
+            "name_key": "The Quarantine Horizon"
+          },
+          {
+            "id": "STH_lembatta.60",
+            "name_key": "The Heart of the Veil"
+          },
+          {
+            "id": "STH_onaction.7082",
+            "name_key": ""
+          },
+          {
+            "id": "STH_onaction.7085",
+            "name_key": ""
+          },
+          {
+            "id": "STH_policy.110",
+            "name_key": "Coalition Realignment"
+          },
+          {
+            "id": "STH_policy.111",
+            "name_key": "A Quiet Political Offer"
+          },
+          {
+            "id": "STH_policy.112",
+            "name_key": "Coalition Defection Secured"
+          },
+          {
+            "id": "STH_policy.113",
+            "name_key": "A New Bloc Begins"
+          },
+          {
+            "id": "STH_policy.114",
+            "name_key": "Coalition Approach Rejected"
+          },
+          {
+            "id": "STH_policy.115",
+            "name_key": ""
+          },
+          {
+            "id": "STH_policy.116",
+            "name_key": "A Member Is Being Courted"
+          },
+          {
+            "id": "STH_policy.117",
+            "name_key": ""
+          },
+          {
+            "id": "STH_policy.118",
+            "name_key": "Our Member Remains"
+          },
+          {
+            "id": "STH_policy.119",
+            "name_key": "A Coalition Member Defects"
+          },
+          {
+            "id": "STH_policy.49",
+            "name_key": ""
+          },
+          {
+            "id": "STH_policy.55",
+            "name_key": "Direct Intervention Blocked"
+          },
+          {
+            "id": "observation.13011",
+            "name_key": ""
+          }
+        ],
+        "removed": [],
+        "modified": [
+          {
+            "id": "STH_bajoran_mechanics.1000",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": ""
+          },
+          {
+            "id": "STH_bajoran_mechanics.12",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": ""
+          },
+          {
+            "id": "STH_bajoran_mechanics.8",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "Time for the Vedeks to Elect a new Kai"
+          },
+          {
+            "id": "STH_bajoran_mechanics.9",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "Time to appoint a new Vedek to the Assembly"
+          },
+          {
+            "id": "STH_expedition_situations.55",
+            "changed_fields": [
+              "snip"
+            ],
+            "name_key": "Expedition to Cluster Complete"
+          },
+          {
+            "id": "STH_hero_leader.10",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": ""
+          },
+          {
+            "id": "STH_hero_leader1.21",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": ""
+          },
+          {
+            "id": "STH_hero_leader_tng.10",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": ""
+          },
+          {
+            "id": "STH_hero_leader_tng.65",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": ""
+          },
+          {
+            "id": "STH_hero_leader_tng_mu.65",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": ""
+          },
+          {
+            "id": "STH_hero_ship.5",
+            "changed_fields": [
+              "snip"
+            ],
+            "name_key": "NX-01 Enterprise Refit"
+          },
+          {
+            "id": "STH_onaction.202",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": ""
+          },
+          {
+            "id": "STH_pirate.1",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": ""
+          },
+          {
+            "id": "STH_pirate.2",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "SOS call received"
+          },
+          {
+            "id": "STH_policy.100",
+            "changed_fields": [
+              "snip"
+            ],
+            "name_key": "Country game stats logging options"
+          },
+          {
+            "id": "STH_policy.43",
+            "changed_fields": [
+              "snip"
+            ],
+            "name_key": "No Ceasefire"
+          },
+          {
+            "id": "STH_policy.999",
+            "changed_fields": [
+              "opts"
+            ],
+            "name_key": "Advance Diplomacy Menu"
+          },
+          {
+            "id": "STH_resolute.3",
+            "changed_fields": [
+              "pic"
+            ],
+            "name_key": "Warp Theory Breakthrough"
+          },
+          {
+            "id": "STH_resolute.4",
+            "changed_fields": [
+              "pic"
+            ],
+            "name_key": "Failed to make a breakthrough"
+          },
+          {
+            "id": "STH_resolute.5",
+            "changed_fields": [
+              "pic"
+            ],
+            "name_key": "Scientist has gone missing"
+          },
+          {
+            "id": "STH_resolute.8",
+            "changed_fields": [
+              "pic"
+            ],
+            "name_key": "Incoming Message"
+          },
+          {
+            "id": "STH_resolute.9",
+            "changed_fields": [
+              "pic"
+            ],
+            "name_key": "Incoming Message"
+          },
+          {
+            "id": "STH_shipyards.170",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "To Boldly Go..."
+          },
+          {
+            "id": "STH_shipyards.171",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "USS Enterprise NCC-1701-G Commissioned"
+          },
+          {
+            "id": "STH_shipyards.172",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "USS Enterprise NCC-1701-G Commissioned"
+          },
+          {
+            "id": "STH_site_bajoran_orbs.7",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "The Orb of the Emissary"
+          },
+          {
+            "id": "game_start.73",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": ""
+          },
+          {
+            "id": "sth_setup.8",
+            "changed_fields": [
+              "opts",
+              "set_flags"
+            ],
+            "name_key": "Empires of the Delta Quadrant"
+          },
+          {
+            "id": "sth_start.1005",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "Galaxy Creation - Minor Empires"
+          },
+          {
+            "id": "sth_start.1006",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "Galaxy Creation - Major Empires"
+          }
+        ]
+      },
+      "ships": {
+        "old_count": 423,
+        "new_count": 423,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "adv_cruiser",
+            "changed_fields": [
+              "graphical_culture",
+              "model_factions"
+            ],
+            "name_key": "adv_cruiser"
+          },
+          {
+            "id": "assault_cruiser",
+            "changed_fields": [
+              "graphical_culture",
+              "model_factions"
+            ],
+            "name_key": "assault_cruiser"
+          },
+          {
+            "id": "attack_ship",
+            "changed_fields": [
+              "graphical_culture",
+              "model_factions"
+            ],
+            "name_key": "attack_ship"
+          },
+          {
+            "id": "cardassian_01_adv_cruiser_obsidian",
+            "changed_fields": [
+              "base_buildtime",
+              "resources"
+            ],
+            "name_key": "cardassian_01_adv_cruiser_obsidian"
+          },
+          {
+            "id": "cardassian_01_weapons_platform_chintoka",
+            "changed_fields": [
+              "base_buildtime",
+              "modifier",
+              "resources"
+            ],
+            "name_key": "cardassian_01_weapons_platform_chintoka"
+          },
+          {
+            "id": "corvette",
+            "changed_fields": [
+              "graphical_culture",
+              "model_factions"
+            ],
+            "name_key": "corvette"
+          },
+          {
+            "id": "deep_space_starbase",
+            "changed_fields": [
+              "graphical_culture",
+              "model_factions"
+            ],
+            "name_key": "deep_space_starbase"
+          },
+          {
+            "id": "exploration_cruiser",
+            "changed_fields": [
+              "graphical_culture",
+              "model_factions"
+            ],
+            "name_key": "exploration_cruiser"
+          },
+          {
+            "id": "fed_carrier_minuteman",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "fed_carrier_minuteman"
+          },
+          {
+            "id": "fed_carrier_sarajevo",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "fed_carrier_sarajevo"
+          },
+          {
+            "id": "fed_exploration_cruiser_ambassador",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "fed_exploration_cruiser_ambassador"
+          },
+          {
+            "id": "fed_exploration_cruiser_ross",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "fed_exploration_cruiser_ross"
+          },
+          {
+            "id": "fed_explorer_cardenas",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "fed_explorer_cardenas"
+          },
+          {
+            "id": "fed_explorer_hoover",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "fed_explorer_hoover"
+          },
+          {
+            "id": "fed_explorer_nx",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "fed_explorer_nx"
+          },
+          {
+            "id": "fed_heavy_cruiser_ares",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "fed_heavy_cruiser_ares"
+          },
+          {
+            "id": "fed_heavy_cruiser_constitution",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "fed_heavy_cruiser_constitution"
+          },
+          {
+            "id": "fed_heavy_cruiser_nimitz",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "fed_heavy_cruiser_nimitz"
+          },
+          {
+            "id": "fed_heavy_cruiser_proxima",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "fed_heavy_cruiser_proxima"
+          },
+          {
+            "id": "fed_heavy_cruiser_yorktown",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "fed_heavy_cruiser_yorktown"
+          },
+          {
+            "id": "fed_mmv_poseidon",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "fed_mmv_poseidon"
+          },
+          {
+            "id": "federation_member_world_shipyard",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "federation_member_world_shipyard"
+          },
+          {
+            "id": "kdf_battlecruiser_d7",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_battlecruiser_d7"
+          },
+          {
+            "id": "kdf_battlecruiser_jach",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_battlecruiser_jach"
+          },
+          {
+            "id": "kdf_battlecruiser_ktinga",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_battlecruiser_ktinga"
+          },
+          {
+            "id": "kdf_bop_blasrika",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_bop_blasrika"
+          },
+          {
+            "id": "kdf_bop_borghel",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_bop_borghel"
+          },
+          {
+            "id": "kdf_bop_pagh",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_bop_pagh"
+          },
+          {
+            "id": "kdf_hero_ship_chtang",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "kdf_hero_ship_chtang"
+          },
+          {
+            "id": "kdf_raider_d6",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_raider_d6"
+          },
+          {
+            "id": "kdf_raider_klalath",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_raider_klalath"
+          },
+          {
+            "id": "kdf_raider_sech",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_raider_sech"
+          },
+          {
+            "id": "kdf_raptor_d5",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_raptor_d5"
+          },
+          {
+            "id": "kdf_raptor_qoj",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_raptor_qoj"
+          },
+          {
+            "id": "kdf_raptor_somraw",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_raptor_somraw"
+          },
+          {
+            "id": "kdf_warship_jejha",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_warship_jejha"
+          },
+          {
+            "id": "kdf_warship_roj",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "kdf_warship_roj"
+          },
+          {
+            "id": "military_station_large",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "military_station_large"
+          },
+          {
+            "id": "military_station_medium",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "military_station_medium"
+          },
+          {
+            "id": "military_station_small",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "military_station_small"
+          },
+          {
+            "id": "orbital_cannon",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "orbital_cannon"
+          },
+          {
+            "id": "research_starbase",
+            "changed_fields": [
+              "graphical_culture",
+              "model_factions"
+            ],
+            "name_key": "research_starbase"
+          },
+          {
+            "id": "rom_battleship_dderidex",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_battleship_dderidex"
+          },
+          {
+            "id": "rom_battleship_gallant",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_battleship_gallant"
+          },
+          {
+            "id": "rom_battleship_pontilus",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_battleship_pontilus"
+          },
+          {
+            "id": "rom_battleship_praetor",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_battleship_praetor"
+          },
+          {
+            "id": "rom_bop_arhael",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_bop_arhael"
+          },
+          {
+            "id": "rom_bop_rea",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_bop_rea"
+          },
+          {
+            "id": "rom_interceptor_arrenhe",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_interceptor_arrenhe"
+          },
+          {
+            "id": "rom_interceptor_tdair",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_interceptor_tdair"
+          },
+          {
+            "id": "rom_interceptor_tvaro",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_interceptor_tvaro"
+          },
+          {
+            "id": "rom_starbird_debrune",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_starbird_debrune"
+          },
+          {
+            "id": "rom_starbird_tshen",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_starbird_tshen"
+          },
+          {
+            "id": "rom_starbird_valkis",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_starbird_valkis"
+          },
+          {
+            "id": "rom_warbird_kanassarum",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_warbird_kanassarum"
+          },
+          {
+            "id": "rom_warbird_sharien",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_warbird_sharien"
+          },
+          {
+            "id": "rom_warbird_stasek",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_warbird_stasek"
+          },
+          {
+            "id": "rom_warbird_tellus",
+            "changed_fields": [
+              "size_multiplier"
+            ],
+            "name_key": "rom_warbird_tellus"
+          },
+          {
+            "id": "saber",
+            "changed_fields": [
+              "graphical_culture",
+              "model_factions"
+            ],
+            "name_key": "saber"
+          },
+          {
+            "id": "science",
+            "changed_fields": [
+              "graphical_culture",
+              "model_factions"
+            ],
+            "name_key": "science"
+          },
+          {
+            "id": "shuttle",
+            "changed_fields": [
+              "graphical_culture",
+              "model_factions"
+            ],
+            "name_key": "shuttle"
+          },
+          {
+            "id": "sovereign",
+            "changed_fields": [
+              "graphical_culture",
+              "model_factions"
+            ],
+            "name_key": "sovereign"
+          },
+          {
+            "id": "starbase_castle",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "starbase_castle"
+          },
+          {
+            "id": "steamrunner",
+            "changed_fields": [
+              "graphical_culture",
+              "model_factions"
+            ],
+            "name_key": "steamrunner"
+          },
+          {
+            "id": "strike",
+            "changed_fields": [
+              "graphical_culture",
+              "model_factions"
+            ],
+            "name_key": "strike"
+          },
+          {
+            "id": "super_battleship",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "super_battleship"
+          }
+        ]
+      },
+      "buildings": {
+        "old_count": 653,
+        "new_count": 653,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "building_dilithium_mine_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_dilithium_mine_1"
+          },
+          {
+            "id": "building_javonite_jewellery_1",
+            "changed_fields": [
+              "building_sets"
+            ],
+            "name_key": "building_javonite_jewellery_1"
+          },
+          {
+            "id": "building_kemocite_mine_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_kemocite_mine_1"
+          },
+          {
+            "id": "building_secret_1_generic",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "building_secret_1_generic"
+          },
+          {
+            "id": "building_spawning_pool_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_spawning_pool_2"
+          },
+          {
+            "id": "building_spawning_pool_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_spawning_pool_3"
+          },
+          {
+            "id": "building_spawning_pool_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_spawning_pool_4"
+          },
+          {
+            "id": "building_undine_capital_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "building_undine_capital_1"
+          },
+          {
+            "id": "undine_building_nursery_3",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "undine_building_nursery_3"
+          }
+        ]
+      },
+      "districts": {
+        "old_count": 56,
+        "new_count": 56,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traits": {
+        "old_count": 461,
+        "new_count": 461,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traditions": {
+        "old_count": 448,
+        "new_count": 448,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "tr_dominion_2_finish",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "tr_dominion_2_finish"
+          },
+          {
+            "id": "tr_futility_borg_5",
+            "changed_fields": [
+              "possible"
+            ],
+            "name_key": "tr_futility_borg_5"
+          },
+          {
+            "id": "tr_klingon_2_4",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "tr_klingon_2_4"
+          },
+          {
+            "id": "tr_klingon_2_finish",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "tr_klingon_2_finish"
+          },
+          {
+            "id": "tr_romulan_2_finish",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "tr_romulan_2_finish"
+          },
+          {
+            "id": "tr_tal_shiar_finish",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "tr_tal_shiar_finish"
+          },
+          {
+            "id": "tr_xindi_finish",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "tr_xindi_finish"
+          }
+        ]
+      },
+      "ascension_perks": {
+        "old_count": 58,
+        "new_count": 58,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "governments": {
+        "old_count": 185,
+        "new_count": 185,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "civics": {
+        "old_count": 332,
+        "new_count": 332,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "authorities": {
+        "old_count": 17,
+        "new_count": 17,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "policies": {
+        "old_count": 53,
+        "new_count": 53,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "xeno_rights_policy",
+            "changed_fields": [
+              "options"
+            ],
+            "name_key": "policy_xeno_rights_policy"
+          }
+        ]
+      },
+      "edicts": {
+        "old_count": 86,
+        "new_count": 86,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "edict_fleet_focus",
+            "changed_fields": [
+              "ai_weight",
+              "modifier",
+              "potential"
+            ],
+            "name_key": "edict_edict_fleet_focus"
+          },
+          {
+            "id": "edict_research_focus",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "edict_edict_research_focus"
+          },
+          {
+            "id": "edict_research_focus_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "edict_edict_research_focus_2"
+          },
+          {
+            "id": "fortify_the_border",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "edict_fortify_the_border"
+          }
+        ]
+      },
+      "councilors": {
+        "old_count": 146,
+        "new_count": 146,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "councilor_tal_shiar",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "councilor_tal_shiar"
+          }
+        ]
+      },
+      "megastructures": {
+        "old_count": 116,
+        "new_count": 116,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "STH_orbital_battery_upgrade",
+            "changed_fields": [
+              "on_build_complete"
+            ],
+            "name_key": "STH_orbital_battery_upgrade"
+          },
+          {
+            "id": "STH_research_starbase_1",
+            "changed_fields": [
+              "on_build_complete"
+            ],
+            "name_key": "STH_research_starbase_1"
+          },
+          {
+            "id": "STH_research_starbase_upgrade",
+            "changed_fields": [
+              "on_build_complete"
+            ],
+            "name_key": "STH_research_starbase_upgrade"
+          },
+          {
+            "id": "sth_hyper_relay",
+            "changed_fields": [
+              "build_time",
+              "model_factions",
+              "resources"
+            ],
+            "name_key": "sth_hyper_relay"
+          }
+        ]
+      },
+      "relics": {
+        "old_count": 68,
+        "new_count": 68,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "r_stone_of_gol",
+            "changed_fields": [
+              "active_effect"
+            ],
+            "name_key": "r_stone_of_gol"
+          }
+        ]
+      },
+      "anomalies": {
+        "old_count": 132,
+        "new_count": 132,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "archaeology": {
+        "old_count": 29,
+        "new_count": 29,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "empires": {
+        "old_count": 110,
+        "new_count": 111,
+        "added": [
+          {
+            "id": "NygeanSectorAuthority",
+            "name_key": "EMPIRE_DESIGN_NygeanSectorAuthority"
+          }
+        ],
+        "removed": [],
+        "modified": [
+          {
+            "id": "DevoreImperium",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "EMPIRE_DESIGN_DevoreImperium"
+          },
+          {
+            "id": "MedusanCorporium",
+            "changed_fields": [
+              "species"
+            ],
+            "name_key": "EMPIRE_DESIGN_MedusanCorporium"
+          },
+          {
+            "id": "TamarianUnity",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "EMPIRE_DESIGN_TamarianUnity"
+          },
+          {
+            "id": "UnitedCongressOfBanea",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "EMPIRE_DESIGN_UnitedCongressOfBanea"
+          },
+          {
+            "id": "YridianLeague",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "EMPIRE_DESIGN_YridianLeague"
+          },
+          {
+            "id": "YridianLeague_B",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "EMPIRE_DESIGN_YridianLeague"
+          }
+        ]
+      },
+      "species": {
+        "old_count": 255,
+        "new_count": 257,
+        "added": [
+          {
+            "id": "NYG",
+            "name_key": "NYG"
+          },
+          {
+            "id": "REN",
+            "name_key": "REN"
+          }
+        ],
+        "removed": [],
+        "modified": [
+          {
+            "id": "DEV",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "DEV"
+          },
+          {
+            "id": "MAR",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "MAR"
+          },
+          {
+            "id": "TAM",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "TAM"
+          },
+          {
+            "id": "YRI",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "YRI"
+          }
+        ]
+      },
+      "jobs": {
+        "old_count": 306,
+        "new_count": 306,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "farmer",
+            "changed_fields": [
+              "resources"
+            ],
+            "name_key": "job_farmer"
+          },
+          {
+            "id": "miner",
+            "changed_fields": [
+              "resources"
+            ],
+            "name_key": "job_miner"
+          },
+          {
+            "id": "technician",
+            "changed_fields": [
+              "resources"
+            ],
+            "name_key": "job_technician"
+          },
+          {
+            "id": "technician_drone",
+            "changed_fields": [
+              "resources"
+            ],
+            "name_key": "job_technician_drone"
+          }
+        ]
+      },
+      "deposits": {
+        "old_count": 667,
+        "new_count": 667,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "components": {
+        "old_count": 6406,
+        "new_count": 6406,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "HANGAR_FEDERATION_5_LARGE",
+            "changed_fields": [
+              "cooldown",
+              "damage"
+            ],
+            "name_key": "HANGAR_FEDERATION_5_LARGE"
+          },
+          {
+            "id": "HANGAR_FEDERATION_5_MEDIUM",
+            "changed_fields": [
+              "cooldown",
+              "damage"
+            ],
+            "name_key": "HANGAR_FEDERATION_5_MEDIUM"
+          },
+          {
+            "id": "HANGAR_FEDERATION_5_SMALL",
+            "changed_fields": [
+              "cooldown",
+              "damage"
+            ],
+            "name_key": "HANGAR_FEDERATION_5_SMALL"
+          },
+          {
+            "id": "HANGAR_FEDERATION_DELTA_4_LARGE",
+            "changed_fields": [
+              "cooldown",
+              "damage"
+            ],
+            "name_key": "HANGAR_FEDERATION_DELTA_4_LARGE"
+          },
+          {
+            "id": "HANGAR_FEDERATION_DELTA_4_MEDIUM",
+            "changed_fields": [
+              "cooldown",
+              "damage"
+            ],
+            "name_key": "HANGAR_FEDERATION_DELTA_4_MEDIUM"
+          },
+          {
+            "id": "HANGAR_FEDERATION_DELTA_4_SMALL",
+            "changed_fields": [
+              "cooldown",
+              "damage"
+            ],
+            "name_key": "HANGAR_FEDERATION_DELTA_4_SMALL"
+          },
+          {
+            "id": "HANGAR_FEDERATION_RUNABOUT_4_MEDIUM",
+            "changed_fields": [
+              "cooldown",
+              "damage"
+            ],
+            "name_key": "HANGAR_FEDERATION_RUNABOUT_4_MEDIUM"
+          },
+          {
+            "id": "HANGAR_FEDERATION_RUNABOUT_4_SMALL",
+            "changed_fields": [
+              "cooldown",
+              "damage"
+            ],
+            "name_key": "HANGAR_FEDERATION_RUNABOUT_4_SMALL"
+          },
+          {
+            "id": "REQUIRED_WARP_XINDI_1_A",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_XINDI_1_A"
+          },
+          {
+            "id": "REQUIRED_WARP_XINDI_1_B",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_XINDI_1_B"
+          },
+          {
+            "id": "REQUIRED_WARP_XINDI_1_C",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_XINDI_1_C"
+          },
+          {
+            "id": "REQUIRED_WARP_XINDI_1_E",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_XINDI_1_E"
+          },
+          {
+            "id": "REQUIRED_WARP_XINDI_1_G",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_XINDI_1_G"
+          },
+          {
+            "id": "REQUIRED_WARP_XINDI_1_H",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_XINDI_1_H"
+          },
+          {
+            "id": "REQUIRED_WARP_XINDI_1_I",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_XINDI_1_I"
+          },
+          {
+            "id": "REQUIRED_WARP_XINDI_1_J",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_XINDI_1_J"
+          },
+          {
+            "id": "REQUIRED_WARP_XINDI_1_K",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_XINDI_1_K"
+          },
+          {
+            "id": "REQUIRED_WARP_XINDI_1_L",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_XINDI_1_L"
+          },
+          {
+            "id": "REQUIRED_WARP_XINDI_1_M",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_XINDI_1_M"
+          },
+          {
+            "id": "REQUIRED_WARP_XINDI_1_N",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_XINDI_1_N"
+          },
+          {
+            "id": "REQUIRED_WARP_XINDI_1_O",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "REQUIRED_WARP_XINDI_1_O"
+          },
+          {
+            "id": "hangar_federation_runabout_4_large",
+            "changed_fields": [
+              "cooldown",
+              "damage"
+            ],
+            "name_key": "hangar_federation_runabout_4_large"
+          },
+          {
+            "id": "required_data_cardassian_01_weapons_platform_chintoka_1",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "required_data_cardassian_01_weapons_platform_chintoka_1"
+          }
+        ]
+      }
+    }
+  },
+  {
     "timestamp": "2026-05-19T16:23:00.116336",
     "summary": {
       "total_added": 0,

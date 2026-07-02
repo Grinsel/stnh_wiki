@@ -172,8 +172,11 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Strategic Resource: Living Metal | Tradable Action: Action Prospectorium Technology",
+      "description": "Starbase Module: Research Module | Strategic Resource: Living Metal | Tradable Action: Action Prospectorium Technology",
       "unlocks_by_type": {
+        "Starbase Module": [
+          "Research Module"
+        ],
         "Strategic Resource": [
           "Living Metal"
         ],
@@ -208,8 +211,11 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Anomaly: Zro Ice Cat | Tradable Action: Action Prospectorium Technology",
+      "description": "Anomaly: Zro Ice Cat | Starbase Module: Research Module | Tradable Action: Action Prospectorium Technology",
       "unlocks_by_type": {
+        "Starbase Module": [
+          "Research Module"
+        ],
         "Anomaly": [
           "Zro Ice Cat"
         ],
@@ -244,8 +250,12 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Government/Civic: Corporate Dark Consortium | Tradable Action: Action Prospectorium Technology",
+      "description": "Government/Civic: Corporate Dark Consortium | Starbase Modules: Research Module, Observatory | Tradable Action: Action Prospectorium Technology",
       "unlocks_by_type": {
+        "Starbase Module": [
+          "Research Module",
+          "Observatory"
+        ],
         "Government/Civic": [
           "Corporate Dark Consortium"
         ],
@@ -444,8 +454,12 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "",
-      "unlocks_by_type": {}
+      "description": "District: Ark City",
+      "unlocks_by_type": {
+        "District": [
+          "Ark City"
+        ]
+      }
     },
     "faction_availability": {},
     "is_rare": false,
@@ -473,8 +487,14 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Ascension Perk: Arcology Project",
+      "description": "Ascension Perk: Arcology Project | District: Ark City | Starbase Module: Habitation Module",
       "unlocks_by_type": {
+        "District": [
+          "Ark City"
+        ],
+        "Starbase Module": [
+          "Habitation Module"
+        ],
         "Ascension Perk": [
           "Arcology Project"
         ]
@@ -506,8 +526,12 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "",
-      "unlocks_by_type": {}
+      "description": "District: Ark Basic",
+      "unlocks_by_type": {
+        "District": [
+          "Ark Basic"
+        ]
+      }
     },
     "faction_availability": {},
     "is_rare": false,
@@ -2398,12 +2422,17 @@
       "other": [
         "ship"
       ],
-      "description": "Other: ship | Ship Type: Station Small",
+      "description": "Other: ship | Ship Types: Constructor, Engineer Vessel, Station Small | Starbase Module: Engineering Bay",
       "unlocks_by_type": {
         "Other": [
           "ship"
         ],
+        "Starbase Module": [
+          "Engineering Bay"
+        ],
         "Ship Type": [
+          "Constructor",
+          "Engineer Vessel",
           "Station Small"
         ]
       }
@@ -3175,6 +3204,34 @@
     "effects": [
       {
         "type": "modifier",
+        "key": "ships_logistics_mult",
+        "value": -0.75,
+        "display": "-75% Ships Logistics",
+        "component": "JUGGERNAUT_FUSION_REACTOR"
+      },
+      {
+        "type": "modifier",
+        "key": "ships_logistics_mult",
+        "value": -0.75,
+        "display": "-75% Ships Logistics",
+        "component": "JUGGERNAUT_COLD_FUSION_REACTOR"
+      },
+      {
+        "type": "modifier",
+        "key": "ships_logistics_mult",
+        "value": -0.75,
+        "display": "-75% Ships Logistics",
+        "component": "JUGGERNAUT_ANTIMATTER_REACTOR"
+      },
+      {
+        "type": "modifier",
+        "key": "ships_logistics_mult",
+        "value": -0.75,
+        "display": "-75% Ships Logistics",
+        "component": "JUGGERNAUT_ZERO_POINT_REACTOR"
+      },
+      {
+        "type": "modifier",
         "key": "ship_evasion_mult",
         "value": 0.1,
         "display": "+10% Evasion",
@@ -3473,14 +3530,35 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Megastructures: Sphere 1, Sphere 2, Sphere 3, Sphere 4, Archive 0 | Ship Types: Juggernaut, Colossus, Battlecruiser, Lightship, Raider, Destroyer, Cruiser, Ent Fleet Museum, Ent Naval Museum, Seleya, Kumari, Sirena, Station, One, Cannon, Dy100, Station, Science Station, Science Station, Science Station, Starbase | Strategic Resources: Zro, Dark Matter, Nanites, Threads, Biomass, Insight, Crystals",
+      "description": "Buildings: Passenger Paradise, Forever Cruise Passenger Research, Forever Cruise Crew Resources, Forever Cruise Crew Industry, Forever Cruise Crew Service | District: Ark Forever Cruise | Megastructures: Sphere 1, Sphere 2, Sphere 3, Sphere 4, Archive 0, Megastructure | Ship Types: Juggernaut, Colossus, Battlecruiser, Lightship, Raider, Destroyer, Cruiser, Ent Fleet Museum, Ent Naval Museum, Seleya, Kumari, Sirena, Station, One, Cannon, Dy100, Station, Science Station, Science Station, Science Station, Starbase | Starbase Modules: Grand Archive, Research Module, Resource Silo, Nebula Refinery, Cybrex Mining Hub, Yuht Detection Array, Cloaking, Growth Chamber | Strategic Resources: Zro, Dark Matter, Nanites, Threads, Biomass, Insight, Crystals | Zones: Ark Engine Bypass, Ark Shield Overloader, Ark Reactor Physics, Ark Farm Society, Ark Shipwright, Ark Military Engineering, Ark Forever Cruise Engineering",
       "unlocks_by_type": {
+        "Building": [
+          "Passenger Paradise",
+          "Forever Cruise Passenger Research",
+          "Forever Cruise Crew Resources",
+          "Forever Cruise Crew Industry",
+          "Forever Cruise Crew Service"
+        ],
+        "District": [
+          "Ark Forever Cruise"
+        ],
+        "Starbase Module": [
+          "Grand Archive",
+          "Research Module",
+          "Resource Silo",
+          "Nebula Refinery",
+          "Cybrex Mining Hub",
+          "Yuht Detection Array",
+          "Cloaking",
+          "Growth Chamber"
+        ],
         "Megastructure": [
           "Sphere 1",
           "Sphere 2",
           "Sphere 3",
           "Sphere 4",
-          "Archive 0"
+          "Archive 0",
+          "Megastructure"
         ],
         "Ship Type": [
           "Juggernaut",
@@ -3514,6 +3592,15 @@
           "Biomass",
           "Insight",
           "Crystals"
+        ],
+        "Zone": [
+          "Ark Engine Bypass",
+          "Ark Shield Overloader",
+          "Ark Reactor Physics",
+          "Ark Farm Society",
+          "Ark Shipwright",
+          "Ark Military Engineering",
+          "Ark Forever Cruise Engineering"
         ]
       }
     },
@@ -11620,7 +11707,7 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Districts: Mining, Mining Underground, Mining Lava, Mining Cardassian, Mining Uncapped | Starbase Building: Refinery",
+      "description": "Other: Custom | Districts: Mining, Mining Underground, Mining Lava, Mining Cardassian, Mining Uncapped | Edict: Subsidies Nomadic | Starbase Building: Refinery",
       "unlocks_by_type": {
         "Other": [
           "Custom"
@@ -11634,6 +11721,9 @@
         ],
         "Starbase Building": [
           "Refinery"
+        ],
+        "Edict": [
+          "Subsidies Nomadic"
         ]
       }
     },
@@ -36690,13 +36780,16 @@
       "technologies": [],
       "components": [],
       "buildings": [],
-      "description": "Ship Type: Defense Generic 1 | Starbase Module: Bay",
+      "description": "Ship Type: Defense Generic 1 | Starbase Module: Bay | Zone: Ark Flight Decks",
       "unlocks_by_type": {
         "Starbase Module": [
           "Bay"
         ],
         "Ship Type": [
           "Defense Generic 1"
+        ],
+        "Zone": [
+          "Ark Flight Decks"
         ]
       }
     },

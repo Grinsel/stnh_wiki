@@ -1820,10 +1820,13 @@
       "other": [
         "component"
       ],
-      "description": "Other: component",
+      "description": "Other: component | Starbase Module: Sensor Array",
       "unlocks_by_type": {
         "Other": [
           "component"
+        ],
+        "Starbase Module": [
+          "Sensor Array"
         ]
       }
     },
@@ -1928,10 +1931,13 @@
       "other": [
         "component"
       ],
-      "description": "Other: component",
+      "description": "Other: component | Starbase Module: Observatory",
       "unlocks_by_type": {
         "Other": [
           "component"
+        ],
+        "Starbase Module": [
+          "Observatory"
         ]
       }
     },
@@ -29362,14 +29368,14 @@
         "key": "factor",
         "value": 0.0,
         "display": "+0.00 Factor",
-        "component": "LARGE_CANNON_PHASER_2"
+        "component": "EXTRA_LARGE_PULSE_PHASER_4"
       },
       {
         "type": "modifier",
         "key": "factor",
         "value": 0.0,
         "display": "+0.00 Factor",
-        "component": "EXTRA_LARGE_PULSE_PHASER_4"
+        "component": "LARGE_CANNON_PHASER_2"
       },
       {
         "type": "modifier",
@@ -30111,6 +30117,13 @@
         "value": 0.0,
         "display": "+0.00 Factor",
         "component": "MEDIUM_WAVE_DISRUPTOR_PHASER_2"
+      },
+      {
+        "type": "modifier",
+        "key": "factor",
+        "value": 0.0,
+        "display": "+0.00 Factor",
+        "component": "STARBASE_WAVE_DISRUPTOR_PHASER_2"
       }
     ],
     "unlock_details": {
@@ -30234,6 +30247,13 @@
         "value": 0.0,
         "display": "+0.00 Factor",
         "component": "LARGE_WAVE_DISRUPTOR_PHASER_5"
+      },
+      {
+        "type": "modifier",
+        "key": "factor",
+        "value": 0.0,
+        "display": "+0.00 Factor",
+        "component": "STARBASE_WAVE_DISRUPTOR_PHASER_5"
       }
     ],
     "unlock_details": {
@@ -30295,6 +30315,13 @@
         "value": 0.0,
         "display": "+0.00 Factor",
         "component": "EXTRA_LARGE_WAVE_DISRUPTOR_PHASER_6"
+      },
+      {
+        "type": "modifier",
+        "key": "factor",
+        "value": 0.0,
+        "display": "+0.00 Factor",
+        "component": "STARBASE_WAVE_DISRUPTOR_PHASER_6"
       }
     ],
     "unlock_details": {
@@ -36875,13 +36902,6 @@
         "key": "factor",
         "value": 0.0,
         "display": "+0.00 Factor",
-        "component": "SMALL_BORG_ANTI_1"
-      },
-      {
-        "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
         "component": "MEDIUM_BORG_ANTI_1"
       },
       {
@@ -36897,13 +36917,6 @@
         "value": 0.0,
         "display": "+0.00 Factor",
         "component": "EXTRA_LARGE_BORG_ANTI_1"
-      },
-      {
-        "type": "modifier",
-        "key": "factor",
-        "value": 0.0,
-        "display": "+0.00 Factor",
-        "component": "POINT_DEFENCE_BORG_ANTI_1"
       },
       {
         "type": "modifier",
@@ -37784,6 +37797,13 @@
         "value": 0.0,
         "display": "+0.00 Factor",
         "component": "EXTRA_LARGE_BIO_ANTI_2"
+      },
+      {
+        "type": "modifier",
+        "key": "factor",
+        "value": 0.0,
+        "display": "+0.00 Factor",
+        "component": "STARBASE_BIO_ANTI_2"
       }
     ],
     "unlock_details": {
@@ -37868,6 +37888,13 @@
         "value": 0.0,
         "display": "+0.00 Factor",
         "component": "LARGE_BIO_ANTI_3"
+      },
+      {
+        "type": "modifier",
+        "key": "factor",
+        "value": 0.0,
+        "display": "+0.00 Factor",
+        "component": "STARBASE_BIO_ANTI_3"
       }
     ],
     "unlock_details": {
@@ -48193,7 +48220,15 @@
     "icon": "tech_fission_power",
     "description": "Nuclear fusion is a process where atomic nuclei and subatomic particles fuse together resulting in new atomic nuclei, particles and released energy. Fitting starships with fusion reactors will provide enough power for travel at low warp speeds and to power life support and a limited range of other systems.",
     "alternate_names": {},
-    "effects": [],
+    "effects": [
+      {
+        "type": "modifier",
+        "key": "ships_logistics_mult",
+        "value": -0.75,
+        "display": "-75% Ships Logistics",
+        "component": "JUGGERNAUT_FISSION_REACTOR"
+      }
+    ],
     "unlock_details": {
       "technologies": [],
       "components": [],
