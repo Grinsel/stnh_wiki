@@ -87,8 +87,57 @@ def collect_referenced_keys(loc_data):
     return refs
 
 
-def parse_all_languages():
-    """Parse localisation files for all languages. Returns dict of lang -> {key: text}."""
+def _newest_source_mtime(lang):
+    """Newest mtime among all .yml source files for one language (mod+vanilla)."""
+    newest = 0.0
+    for base in (VANILLA_LOCALISATION_DIR, MOD_LOCALISATION_DIR):
+        d = os.path.join(base, lang)
+        if not os.path.isdir(d):
+            continue
+        for fn in os.listdir(d):
+            if fn.endswith('.yml'):
+                m = os.path.getmtime(os.path.join(d, fn))
+                if m > newest:
+                    newest = m
+    return newest
+
+
+def _cache_is_fresh():
+    """True if every language's output JSON is newer than all its .yml sources."""
+    for lang in LANGUAGES:
+        out = os.path.join(OUTPUT_LOCALISATION_DIR, f"{lang}.json")
+        if not os.path.isfile(out):
+            return False
+        if _newest_source_mtime(lang) > os.path.getmtime(out):
+            return False
+    return True
+
+
+def _load_cached_localisation():
+    """Load previously written per-language JSONs. Returns (all_loc, stats)."""
+    all_loc, stats = {}, {}
+    for lang in LANGUAGES:
+        out = os.path.join(OUTPUT_LOCALISATION_DIR, f"{lang}.json")
+        with open(out, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        all_loc[lang] = data
+        stats[lang] = len(data)
+    return all_loc, stats
+
+
+def parse_all_languages(use_cache=True):
+    """Parse localisation files for all languages. Returns dict of lang -> {key: text}.
+
+    If use_cache is set and every output JSON is newer than all its .yml
+    sources, load the JSONs instead of re-parsing (~240k keys x 7 languages is
+    the pipeline's biggest hotspot, and it is re-run several times per full run).
+    """
+    if use_cache and _cache_is_fresh():
+        all_loc, stats = _load_cached_localisation()
+        print("  [cache] localisation up to date, loaded "
+              f"{sum(stats.values())} keys from JSON (skipped re-parse)")
+        return all_loc, stats
+
     all_loc = {}
     stats = {}
 
@@ -146,10 +195,15 @@ def write_localisation_json(all_loc):
         print(f"  Written: {output_path} ({len(data)} keys)")
 
 
-def main():
+def main(use_cache=True):
     print("=== Parsing Localisation (all 7 languages) ===")
-    all_loc, stats = parse_all_languages()
-    write_localisation_json(all_loc)
+    # If the cache is fresh, the JSONs are already current: load them and skip
+    # the rewrite (rewriting would bump mtimes and defeat the cache next run).
+    if use_cache and _cache_is_fresh():
+        all_loc, stats = parse_all_languages(use_cache=True)
+    else:
+        all_loc, stats = parse_all_languages(use_cache=False)
+        write_localisation_json(all_loc)
     print(f"\nTotal keys across all languages:")
     for lang, count in stats.items():
         print(f"  {lang}: {count}")

@@ -71,14 +71,14 @@ def phase_validation():
         return False
 
 
-def phase_localisation():
+def phase_localisation(use_cache=True):
     """Phase 2: Parse localisation."""
     print("\n" + "=" * 60)
     print("PHASE 2: LOCALISATION")
     print("=" * 60)
 
     from parse_localisation import main as loc_main
-    loc_data, stats = loc_main()
+    loc_data, stats = loc_main(use_cache=use_cache)
     return stats
 
 
@@ -474,6 +474,9 @@ def main():
                         help='Skip DDS to WebP image conversion')
     parser.add_argument('--only', choices=list(ONLY_MODULES.keys()),
                         help='Run only a specific module')
+    parser.add_argument('--fresh-loc', action='store_true',
+                        help='Force a full localisation re-parse, ignoring the '
+                             'per-language JSON freshness cache')
     args = parser.parse_args()
 
     # Phase 1
@@ -493,8 +496,9 @@ def main():
     # ONLY_MODULES[args.only] membership. Order matters: resources after all
     # producers, search after techtree, split_loc last.
     skip = args.skip_images
+    use_loc_cache = not args.fresh_loc
     PHASES = [
-        ('localisation',       phase_localisation),
+        ('localisation',       lambda: phase_localisation(use_cache=use_loc_cache)),
         ('inject_missing_loc', phase_inject_missing_loc),
         ('gfx',                phase_gfx),
         ('events',             phase_events),
