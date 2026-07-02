@@ -442,6 +442,24 @@ ONLY_MODULES = {
 }
 
 
+def run_phase(key, fn, results, failures):
+    """Run a single pipeline phase in isolation.
+
+    On success, stores the phase's return value in results[key] (unchanged
+    contract). On failure, prints the traceback, records an error marker in
+    results[key], appends the key to failures, and lets the run continue so
+    one bad phase does not discard every downstream phase (and the commit).
+    """
+    try:
+        results[key] = fn()
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        print(f"\n  [PHASE FAILED] {key}: {type(e).__name__}: {e}")
+        results[key] = {'error': f'{type(e).__name__}: {e}'}
+        failures.append(key)
+
+
 def main():
     print_banner()
     start_time = time.time()
@@ -460,81 +478,50 @@ def main():
 
     results = {}
     results['validation'] = 'OK'
+    failures = []
 
     # Collect snapshots of all tracked JSONs before update
     from diff_tracker import collect_snapshots, compute_all_changes, print_changes, save_changes
     snapshots = collect_snapshots(ASSETS_DIR)
 
+    # Ordered phase table. Full mode runs every entry; --only filters it by
+    # ONLY_MODULES[args.only] membership. Order matters: resources after all
+    # producers, search after techtree, split_loc last.
+    skip = args.skip_images
+    PHASES = [
+        ('localisation',       phase_localisation),
+        ('inject_missing_loc', phase_inject_missing_loc),
+        ('gfx',                phase_gfx),
+        ('events',             phase_events),
+        ('ships',              phase_ships),
+        ('buildings',          phase_buildings),
+        ('traits',             phase_traits),
+        ('governments',        phase_governments),
+        ('megastructures',     phase_megastructures),
+        ('anomalies',          phase_anomalies),
+        ('empires',            phase_empires),
+        ('galaxy_map',         phase_galaxy_map),
+        ('economy',            phase_economy),
+        ('resources',          phase_resources),
+        ('techtree',           phase_techtree),
+        ('search',             phase_search),
+        ('ship_models',        lambda: phase_ship_models(skip=skip)),
+        ('mega_models',        lambda: phase_mega_models(skip=skip)),
+        ('images',             lambda: phase_images(skip=skip)),
+        ('all_icons',          lambda: phase_all_icons(skip=skip)),
+        ('split_loc',          phase_split_localisation),
+    ]
+
     if args.only:
-        # Selective mode: run only specified phases
-        phases = ONLY_MODULES[args.only]
-        if 'localisation' in phases:
-            results['localisation'] = phase_localisation()
-        if 'inject_missing_loc' in phases:
-            results['inject_missing_loc'] = phase_inject_missing_loc()
-        if 'gfx' in phases:
-            results['gfx'] = phase_gfx()
-        if 'events' in phases:
-            results['events'] = phase_events()
-        if 'ships' in phases:
-            results['ships'] = phase_ships()
-        if 'buildings' in phases:
-            results['buildings'] = phase_buildings()
-        if 'traits' in phases:
-            results['traits'] = phase_traits()
-        if 'governments' in phases:
-            results['governments'] = phase_governments()
-        if 'megastructures' in phases:
-            results['megastructures'] = phase_megastructures()
-        if 'anomalies' in phases:
-            results['anomalies'] = phase_anomalies()
-        if 'empires' in phases:
-            results['empires'] = phase_empires()
-        if 'galaxy_map' in phases:
-            results['galaxy_map'] = phase_galaxy_map()
-        if 'economy' in phases:
-            results['economy'] = phase_economy()
-        if 'resources' in phases:
-            results['resources'] = phase_resources()
-        if 'search' in phases:
-            results['search'] = phase_search()
-        if 'ship_models' in phases:
-            results['ship_models'] = phase_ship_models(skip=args.skip_images)
-        if 'mega_models' in phases:
-            results['mega_models'] = phase_mega_models(skip=args.skip_images)
-        if 'images' in phases:
-            results['images'] = phase_images(skip=args.skip_images)
-        if 'all_icons' in phases:
-            results['all_icons'] = phase_all_icons(skip=args.skip_images)
-        if 'techtree' in phases:
-            results['techtree'] = phase_techtree()
-        if 'split_loc' in phases:
-            results['split_loc'] = phase_split_localisation()
+        selected = set(ONLY_MODULES[args.only])
+        run_list = [(k, fn) for k, fn in PHASES if k in selected]
         module_name = args.only
     else:
-        # Full mode: run all phases
-        results['localisation'] = phase_localisation()
-        results['inject_missing_loc'] = phase_inject_missing_loc()
-        results['gfx'] = phase_gfx()
-        results['events'] = phase_events()
-        results['ships'] = phase_ships()
-        results['buildings'] = phase_buildings()
-        results['traits'] = phase_traits()
-        results['governments'] = phase_governments()
-        results['megastructures'] = phase_megastructures()
-        results['anomalies'] = phase_anomalies()
-        results['empires'] = phase_empires()
-        results['galaxy_map'] = phase_galaxy_map()
-        results['economy'] = phase_economy()
-        results['resources'] = phase_resources()
-        results['techtree'] = phase_techtree()
-        results['search'] = phase_search()
-        results['ship_models'] = phase_ship_models(skip=args.skip_images)
-        results['mega_models'] = phase_mega_models(skip=args.skip_images)
-        results['images'] = phase_images(skip=args.skip_images)
-        results['all_icons'] = phase_all_icons(skip=args.skip_images)
-        results['split_loc'] = phase_split_localisation()
+        run_list = PHASES
         module_name = 'full'
+
+    for key, fn in run_list:
+        run_phase(key, fn, results, failures)
 
     # Change tracking
     all_diffs = compute_all_changes(snapshots, ASSETS_DIR)
@@ -554,6 +541,15 @@ def main():
     # Include change summary in log
     results['changes'] = changes_report.get('summary', {})
     write_log_entry(module_name, results, elapsed)
+
+    if failures:
+        print("\n" + "=" * 60)
+        print(f"  [DONE WITH ERRORS] {len(failures)} phase(s) failed:")
+        for key in failures:
+            print(f"    - {key}: {results[key].get('error')}")
+        print("  Partial results were still written and can be committed.")
+        print("=" * 60)
+        return 2
 
     print("\n  [DONE] Update complete!")
     return 0

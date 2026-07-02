@@ -13,6 +13,7 @@ import json
 import math
 import time
 import struct
+import hashlib
 
 from config import STNH_MOD_ROOT, OUTPUT_MODELS_DIR, OUTPUT_ASSETS_DIR, VANILLA_ROOT
 from pdx_mesh_reader import parse_mesh_file, extract_mesh_data
@@ -320,6 +321,108 @@ def convert_ship_to_glb(mesh_file_path, model_scale, output_path, attachments=No
 convert_mesh_to_glb = convert_ship_to_glb
 
 
+# ---------------------------------------------------------------------------
+# Conversion cache (mtime + info-hash manifest)
+#
+# The old skip logic only checked whether the output .glb existed, so a mesh
+# edited in place (or a changed scale/attachment set in the .gfx/.asset) was
+# never re-converted. The manifest records, per output path, the newest source
+# mtime and a hash of the model's info dict. An output is up to date only if it
+# exists, the manifest matches the current info hash, and no source .mesh is
+# newer than the recorded mtime.
+# ---------------------------------------------------------------------------
+
+CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cache')
+
+
+def _resolve_source_path(mesh_file_path):
+    """Resolve a relative .mesh path to an absolute file (mod root, then vanilla).
+    Returns the absolute path if found, else None.
+    """
+    rel = mesh_file_path.replace('/', os.sep)
+    for root in (STNH_MOD_ROOT, VANILLA_ROOT):
+        cand = os.path.join(root, rel)
+        if os.path.isfile(cand):
+            return cand
+    return None
+
+
+def _source_mesh_paths(info):
+    """All source .mesh paths for a model variant (primary + attachments)."""
+    paths = [info['mesh_file']]
+    for att in (info.get('attachments') or []):
+        mf = att.get('mesh_file')
+        if mf:
+            paths.append(mf)
+    return paths
+
+
+def _info_signature(info):
+    """Stable hash of the fields that affect conversion output."""
+    relevant = {
+        'mesh_file': info.get('mesh_file'),
+        'scale': info.get('scale', 1.0),
+        'attachments': info.get('attachments'),
+    }
+    blob = json.dumps(relevant, sort_keys=True, ensure_ascii=False)
+    return hashlib.sha1(blob.encode('utf-8')).hexdigest()
+
+
+def _load_manifest(name):
+    path = os.path.join(CACHE_DIR, name)
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def _save_manifest(name, manifest):
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    path = os.path.join(CACHE_DIR, name)
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(manifest, f)
+
+
+def _bootstrap_manifest(manifest, models_map, output_path_fn):
+    """One-time seed for the migration from existence-only skipping.
+
+    If the manifest is empty but GLBs already exist on disk, record their
+    current signature + mtime so the first run after this change does not
+    re-convert every already-present model. Mutates and returns manifest.
+    """
+    if manifest:
+        return manifest
+    for item_id, factions in models_map.items():
+        for faction, info in factions.items():
+            op = output_path_fn(item_id, faction)
+            if os.path.isfile(op):
+                manifest[op] = {
+                    'sig': _info_signature(info),
+                    'mtime': os.path.getmtime(op),
+                }
+    return manifest
+
+
+def _is_up_to_date(output_path, info, manifest):
+    """True if output_path exists and is current w.r.t. info + source mtimes."""
+    if not os.path.isfile(output_path):
+        return False
+    rec = manifest.get(output_path)
+    if not rec or rec.get('sig') != _info_signature(info):
+        return False
+    out_mtime = os.path.getmtime(output_path)
+    for rel in _source_mesh_paths(info):
+        src = _resolve_source_path(rel)
+        if src is None:
+            # Source vanished -> force a reconvert attempt (fails loudly rather
+            # than silently serving a stale GLB).
+            return False
+        if os.path.getmtime(src) > out_mtime:
+            return False
+    return True
+
+
 def convert_all(skip_existing=True):
     """Convert all ship models from ship_models_map.json to GLB.
 
@@ -336,6 +439,12 @@ def convert_all(skip_existing=True):
     with open(map_path, 'r', encoding='utf-8') as f:
         ship_models_map = json.load(f)
 
+    manifest = _load_manifest('ship_model_manifest.json')
+    _bootstrap_manifest(
+        manifest, ship_models_map,
+        lambda sid, fac: os.path.join(OUTPUT_MODELS_DIR, fac, f"{sid}.glb"),
+    )
+
     converted = 0
     skipped = 0
     failed = 0
@@ -348,7 +457,7 @@ def convert_all(skip_existing=True):
         for faction, info in factions.items():
             output_path = os.path.join(OUTPUT_MODELS_DIR, faction, f"{ship_id}.glb")
 
-            if skip_existing and os.path.isfile(output_path):
+            if skip_existing and _is_up_to_date(output_path, info, manifest):
                 skipped += 1
                 continue
 
@@ -364,8 +473,14 @@ def convert_all(skip_existing=True):
                 converted += 1
                 if attachments:
                     multi_mesh += 1
+                manifest[output_path] = {
+                    'sig': _info_signature(info),
+                    'mtime': os.path.getmtime(output_path),
+                }
             else:
                 failed += 1
+
+    _save_manifest('ship_model_manifest.json', manifest)
 
     elapsed = time.time() - start
     stats = {

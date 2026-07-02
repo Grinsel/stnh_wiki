@@ -223,9 +223,14 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         filepath = sys.argv[1]
     else:
-        # Default test file
+        # Default test file (mod root via config, with a hardcoded fallback so
+        # this reader stays runnable standalone even without config on the path)
+        try:
+            from config import STNH_MOD_ROOT as _mod_root
+        except Exception:
+            _mod_root = r"C:\Users\marcj\git01\New-Horizons-Development"
         filepath = os.path.join(
-            r"C:\Users\marcj\git01\New-Horizons-Development",
+            _mod_root,
             "gfx", "models", "ships", "federation", "carrier",
             "federation_carrier_achilles.mesh"
         )

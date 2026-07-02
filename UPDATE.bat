@@ -53,8 +53,18 @@ echo [1/3] Running UPDATE_WIKI.py ...
 echo.
 cd /d "%~dp0update"
 
+set PIPELINE_WARN=
 python UPDATE_WIKI.py
-if %ERRORLEVEL% neq 0 goto :pipeline_failed
+set RC=%ERRORLEVEL%
+if %RC% equ 0 goto :pipeline_ok
+if %RC% equ 2 (
+    echo.
+    echo WARNING: pipeline completed with phase errors - committing partial results.
+    set PIPELINE_WARN= (with phase errors)
+    goto :pipeline_ok
+)
+goto :pipeline_failed
+:pipeline_ok
 
 echo.
 echo [2/3] Git commit ...
@@ -68,7 +78,7 @@ if %ERRORLEVEL% equ 0 (
     goto :done
 )
 
-git commit -m "Update STNH Wiki - %date% %time:~0,8%"
+git commit -m "Update STNH Wiki - %date% %time:~0,8%%PIPELINE_WARN%"
 if %ERRORLEVEL% neq 0 goto :commit_failed
 
 echo.

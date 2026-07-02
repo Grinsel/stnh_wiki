@@ -11,7 +11,10 @@ import json
 import time
 
 from config import STNH_MOD_ROOT, OUTPUT_MEGA_MODELS_DIR, OUTPUT_ASSETS_DIR
-from convert_ship_models import convert_ship_to_glb
+from convert_ship_models import (
+    convert_ship_to_glb, _load_manifest, _save_manifest,
+    _is_up_to_date, _info_signature, _bootstrap_manifest,
+)
 
 
 def convert_all(skip_existing=True):
@@ -28,6 +31,12 @@ def convert_all(skip_existing=True):
     with open(map_path, 'r', encoding='utf-8') as f:
         mega_models_map = json.load(f)
 
+    manifest = _load_manifest('mega_model_manifest.json')
+    _bootstrap_manifest(
+        manifest, mega_models_map,
+        lambda mid, fac: os.path.join(OUTPUT_MEGA_MODELS_DIR, mid, f"{fac}.glb"),
+    )
+
     converted = 0
     skipped = 0
     failed = 0
@@ -40,7 +49,7 @@ def convert_all(skip_existing=True):
         for faction, info in factions.items():
             output_path = os.path.join(OUTPUT_MEGA_MODELS_DIR, mega_id, f"{faction}.glb")
 
-            if skip_existing and os.path.isfile(output_path):
+            if skip_existing and _is_up_to_date(output_path, info, manifest):
                 skipped += 1
                 continue
 
@@ -57,8 +66,14 @@ def convert_all(skip_existing=True):
                 converted += 1
                 if attachments:
                     multi_mesh += 1
+                manifest[output_path] = {
+                    'sig': _info_signature(info),
+                    'mtime': os.path.getmtime(output_path),
+                }
             else:
                 failed += 1
+
+    _save_manifest('mega_model_manifest.json', manifest)
 
     elapsed = time.time() - start
     stats = {
