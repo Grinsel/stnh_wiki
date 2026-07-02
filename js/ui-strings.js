@@ -411,6 +411,7 @@ const UI_STRINGS = {
     'ui.search.results_for':   { english: 'results for', german: 'Ergebnisse f\u00fcr', french: 'résultats pour', russian: 'результаты по' },
     'ui.search.result':        { english: 'result', german: 'Ergebnis', french: 'résultat', russian: 'результат' },
     'ui.search.results':       { english: 'results', german: 'Ergebnisse', french: 'résultats', russian: 'результаты' },
+    'ui.search.show_more':     { english: 'Show more', german: 'Mehr anzeigen', french: 'Afficher plus', spanish: 'Mostrar más', russian: 'Показать ещё', polish: 'Pokaż więcej', braz_por: 'Mostrar mais' },
     'ui.search.also_searching':{ english: 'also searching', german: 'sucht auch nach', french: 'recherche également', russian: 'также ищет' },
     'ui.search.global_results':{ english: 'Cross-module results', german: 'Modul\u00fcbergreifende Ergebnisse', french: 'R\u00e9sultats inter-modules', spanish: 'Resultados multi-m\u00f3dulo', russian: '\u041c\u0435\u0436\u043c\u043e\u0434\u0443\u043b\u044c\u043d\u044b\u0435 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b', polish: 'Wyniki mi\u0119dzymodu\u0142owe', braz_por: 'Resultados entre m\u00f3dulos' },
     'ui.search.global':        { english: 'Search all wiki...', german: 'Gesamtes Wiki durchsuchen...', french: 'Rechercher dans tout le wiki...', spanish: 'Buscar en toda la wiki...', russian: '\u041f\u043e\u0438\u0441\u043a \u043f\u043e \u0432\u0441\u0435\u0439 \u0432\u0438\u043a\u0438...', polish: 'Szukaj w ca\u0142ej wiki...', braz_por: 'Pesquisar em toda a wiki...' },

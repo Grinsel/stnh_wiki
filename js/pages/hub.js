@@ -467,6 +467,27 @@
         }
 
         // ---- Full results page (all matches) ----
+        const RESULTS_PER_GROUP_CAP = 50;
+
+        function renderResultItem(item) {
+            const url = GlobalSearch.getItemUrl(item, 'search');
+            const name = item.name || item.id;
+            const metaParts = Object.entries(item.meta)
+                .filter(([k, v]) => v)
+                .map(([k, v]) => `<span class="meta-tag">${esc(k)}: ${esc(v)}</span>`);
+            if (item.matchedFlags && item.matchedFlags.length) {
+                for (const f of item.matchedFlags) {
+                    metaParts.push(`<span class="meta-tag meta-tag-flag">&#9873; ${esc(f)}</span>`);
+                }
+            }
+            const iconHtml = GlobalSearch.getIconHtml(item, 'full-result-icon');
+            return `<a href="${esc(url)}" class="full-result-item">
+                ${iconHtml}<span class="full-result-name">${esc(name)}</span>
+                <span class="full-result-id">${esc(item.id)}</span>
+                ${metaParts.length ? `<span class="full-result-meta">${metaParts.join('')}</span>` : ''}
+            </a>`;
+        }
+
         function renderFullResults(query) {
             isFullResultsMode = true;
             const results = GlobalSearch.searchFull(query);
@@ -511,31 +532,24 @@
                 }
                 html += '</div>';
 
-                // Results grouped by type
+                // Results grouped by type. Cap the initial render per group so a
+                // broad query (e.g. "a") does not build tens of thousands of DOM
+                // nodes at once; the rest load on demand via "Show more".
                 for (const t of typeOrder) {
                     const g = grouped[t];
                     html += `<div class="full-results-group" data-group-type="${esc(t)}">`;
                     html += `<h3 class="full-results-group-title">${esc(g.label)} <span class="count">(${g.items.length})</span></h3>`;
                     html += '<div class="full-results-list">';
-                    for (const item of g.items) {
-                        const url = GlobalSearch.getItemUrl(item, 'search');
-                        const name = item.name || item.id;
-                        const metaParts = Object.entries(item.meta)
-                            .filter(([k, v]) => v)
-                            .map(([k, v]) => `<span class="meta-tag">${esc(k)}: ${esc(v)}</span>`);
-                        if (item.matchedFlags && item.matchedFlags.length) {
-                            for (const f of item.matchedFlags) {
-                                metaParts.push(`<span class="meta-tag meta-tag-flag">&#9873; ${esc(f)}</span>`);
-                            }
-                        }
-                        const iconHtml = GlobalSearch.getIconHtml(item, 'full-result-icon');
-                        html += `<a href="${esc(url)}" class="full-result-item">
-                            ${iconHtml}<span class="full-result-name">${esc(name)}</span>
-                            <span class="full-result-id">${esc(item.id)}</span>
-                            ${metaParts.length ? `<span class="full-result-meta">${metaParts.join('')}</span>` : ''}
-                        </a>`;
+                    const initial = g.items.slice(0, RESULTS_PER_GROUP_CAP);
+                    for (const item of initial) {
+                        html += renderResultItem(item);
                     }
-                    html += '</div></div>';
+                    html += '</div>';
+                    if (g.items.length > RESULTS_PER_GROUP_CAP) {
+                        html += `<button class="full-results-more" data-group-type="${esc(t)}">`
+                            + `${I18n.ui('ui.search.show_more')} (${g.items.length - RESULTS_PER_GROUP_CAP})</button>`;
+                    }
+                    html += '</div>';
                 }
             }
 
@@ -561,6 +575,20 @@
                             group.style.display = 'none';
                         }
                     });
+                });
+            });
+
+            // "Show more" per group: render the remaining items on demand.
+            hubContent.querySelectorAll('.full-results-more').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const t = btn.dataset.groupType;
+                    const g = grouped[t];
+                    if (!g) return;
+                    const list = btn.previousElementSibling; // .full-results-list
+                    const rest = g.items.slice(RESULTS_PER_GROUP_CAP)
+                        .map(renderResultItem).join('');
+                    list.insertAdjacentHTML('beforeend', rest);
+                    btn.remove();
                 });
             });
         }

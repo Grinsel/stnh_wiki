@@ -154,6 +154,8 @@ const GlobalSearch = (() => {
             ]);
             searchIndex = idx;
             modulePages = pages;
+            // Localised names change on language switch -> drop cached haystacks.
+            document.addEventListener('wiki-lang-changed', () => { _hayVersion++; });
             return true;
         } catch (err) {
             console.warn('GlobalSearch: failed to load index', err);
@@ -180,12 +182,28 @@ const GlobalSearch = (() => {
         return { typeFilter, flagOnly, terms };
     }
 
-    function _matchItem(item, expandedTerms, flagOnly) {
+    // Precomputed lowercase haystack per item, rebuilt only when the display
+    // language changes (the localised name is the only language-dependent part).
+    // Without this, every keystroke rebuilt id+name+meta+flags and lowercased
+    // it for all ~20k items.
+    let _hayVersion = 0;
+
+    function _itemHaystack(item) {
+        if (item._hay !== undefined && item._hayVer === _hayVersion) {
+            return item._hay;
+        }
         const name = (typeof I18n !== 'undefined' && locReady)
             ? (I18n.t(item.nk) || item.nk || item.id)
             : (item.nk || item.id);
+        const metaStr = item.x ? Object.values(item.x).join(' ') : '';
+        const flagsStr = (item.f || []).join(' ');
+        item._hay = `${item.id} ${name} ${metaStr} ${flagsStr}`.toLowerCase();
+        item._hayVer = _hayVersion;
+        return item._hay;
+    }
+
+    function _matchItem(item, expandedTerms, flagOnly) {
         const flags = item.f || [];
-        const flagsStr = flags.join(' ').toLowerCase();
 
         let matchedFlags = null;
         if (flagOnly) {
@@ -208,8 +226,7 @@ const GlobalSearch = (() => {
                 });
             }
         } else {
-            const metaStr = item.x ? Object.values(item.x).join(' ') : '';
-            const searchable = `${item.id} ${name} ${metaStr} ${flagsStr}`.toLowerCase();
+            const searchable = _itemHaystack(item);
             if (!expandedTerms.every(alts => alts.some(a => searchable.includes(a)))) return null;
             // Track flags that matched (so the UI can show a "sets flag: X" badge)
             if (flags.length) {
@@ -220,6 +237,11 @@ const GlobalSearch = (() => {
                 if (hits.length) matchedFlags = hits;
             }
         }
+
+        // Only computed for the (few) items that actually matched.
+        const name = (typeof I18n !== 'undefined' && locReady)
+            ? (I18n.t(item.nk) || item.nk || item.id)
+            : (item.nk || item.id);
 
         return {
             id: item.id,
@@ -338,6 +360,8 @@ const GlobalSearch = (() => {
 
     function setLocReady(ready) {
         locReady = ready;
+        // Localised names may have changed -> invalidate precomputed haystacks.
+        _hayVersion++;
     }
 
     function getStats() {
