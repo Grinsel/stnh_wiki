@@ -88,29 +88,30 @@ const Humanize = (() => {
             const ops = Object.entries(val);
             if (ops.length === 1 && ['>', '<', '>=', '<='].includes(ops[0][0])) {
                 const sym = { '>': 'more than', '<': 'fewer than', '>=': 'at least', '<=': 'at most' };
-                return `${label}: ${sym[ops[0][0]] || ops[0][0]} ${ops[0][1]}`;
+                return `${esc(label)}: ${sym[ops[0][0]] || ops[0][0]} ${esc(ops[0][1])}`;
             }
         }
-        return `${label}: ${val}`;
+        return `${esc(label)}: ${esc(val)}`;
     }
 
     function parseResourceCheck(v) {
-        if (!Array.isArray(v)) return `Has resource: ${JSON.stringify(v)}`;
+        if (!Array.isArray(v)) return `Has resource: ${esc(JSON.stringify(v))}`;
         const parts = []; let type = null;
         for (const item of v) {
             if (typeof item === 'object') for (const [k, val] of Object.entries(item)) {
                 if (k === 'type') type = val; else parts.push(fmtCmp(locOrClean(k), val));
             }
         }
-        return type ? `Has ${locOrClean(type)}: ${parts.join(', ')}` : `Has resource: ${parts.join(', ')}`;
+        // fmtCmp already escapes its parts; only the type label needs escaping here.
+        return type ? `Has ${esc(locOrClean(type))}: ${parts.join(', ')}` : `Has resource: ${parts.join(', ')}`;
     }
 
     function parseResourceEffect(v) {
-        if (!Array.isArray(v)) return `Add resources: ${JSON.stringify(v)}`;
+        if (!Array.isArray(v)) return `Add resources: ${esc(JSON.stringify(v))}`;
         const parts = [];
         for (const item of v) {
             if (typeof item === 'object') for (const [k, val] of Object.entries(item)) {
-                parts.push(`${locOrClean(k)} ${Number(val) >= 0 ? '+' : ''}${val}`);
+                parts.push(`${esc(locOrClean(k))} ${Number(val) >= 0 ? '+' : ''}${esc(val)}`);
             }
         }
         return `Gain ${parts.join(', ')}`;
@@ -221,8 +222,8 @@ const Humanize = (() => {
         const fn = TRIGGER_MAP[k] || EFFECT_MAP[k];
         if (fn && fn.length < 2) return fn(v);
         if (typeof v === 'number' && !STRUCTURAL_KEYS.has(k)) return formatModifierValue(k, v);
-        if (typeof v === 'string') return `${locOrClean(k)}: ${locOrClean(v)}`;
-        return `${locOrClean(k)} = ${v}`;
+        if (typeof v === 'string') return `${esc(locOrClean(k))}: ${esc(locOrClean(v))}`;
+        return `${esc(locOrClean(k))} = ${esc(v)}`;
     }
 
     // =========================================================================
@@ -408,7 +409,7 @@ const Humanize = (() => {
         'has_policy_flag':      (v) => `Has policy: <em>"${esc(v)}"</em>`,
         'has_valid_civic':      (v) => `Has valid civic: <strong>${esc(locOrClean(v))}</strong>`,
         'check_variable':       (v) => parseVariable(v),
-        'text':                 (v) => `${locOrClean(v)}`,
+        'text':                 (v) => `${esc(locOrClean(v))}`,
         'custom_tooltip':       (v, d) => {
             if (typeof v === 'string') return `<em>${esc(locOrClean(v))}</em>`;
             if (Array.isArray(v)) {

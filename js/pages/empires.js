@@ -219,9 +219,8 @@
             }, 340);
         }
 
-        let currentDetailItem = null;
         document.getElementById('detail-close').addEventListener('click', () => {
-            currentDetailItem = null;
+            _currentDetailItem = null;
             closeDetailPanel();
             if (activeView === 'map' && galaxyMapReady) {
                 GalaxyMap.deselect();
@@ -233,7 +232,7 @@
         });
 
         function showDetail(item) {
-            currentDetailItem = item;
+            _currentDetailItem = item;
             SharedRender.hidePlaceholder(detailPanel);
             detailTitle.textContent = item.name || item.id;
             const iconDir = activeTab === 'traits' ? 'traits' : (item.authority !== undefined ? 'flags' : '');
@@ -330,7 +329,6 @@
             detailContent.innerHTML = html;
             SharedRender.initToggles(detailContent);
             SharedRender.initWikiLinks(detailContent);
-            _currentDetailItem = item;
             // Show "View on map" only for empires in list view
             viewOnMapBtn.classList.toggle('hidden', activeView === 'map' || activeTab !== 'empires' || item.authority === undefined);
             openDetailPanel();
@@ -371,7 +369,7 @@
             for (const item of species) item.name = I18n.t(item.name_key) || item.id;
             for (const item of traits) item.name = I18n.t(item.name_key) || item.id;
             renderAll();
-            if (currentDetailItem) showDetail(currentDetailItem);
+            if (_currentDetailItem) showDetail(_currentDetailItem);
             if (galaxyMapReady) GalaxyMap.refreshOverlay();
         });
 

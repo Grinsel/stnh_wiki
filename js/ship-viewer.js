@@ -8,8 +8,8 @@ const ShipViewer = (() => {
     const CDN_BASE = `https://cdn.jsdelivr.net/npm/three@${THREE_VERSION}`;
 
     let _loaded = false;
-    let _loading = false;
-    let _loadCallbacks = [];
+    let _threePromise = null;
+    const THREE_LOAD_TIMEOUT_MS = 15000;
 
     // Active viewer state
     let _renderer = null;
@@ -24,16 +24,49 @@ const ShipViewer = (() => {
      */
     function _ensureThreeJS() {
         if (_loaded) return Promise.resolve();
-        if (_loading) {
-            return new Promise(resolve => _loadCallbacks.push(resolve));
-        }
-        _loading = true;
+        if (_threePromise) return _threePromise;
 
-        return new Promise((resolve, reject) => {
-            _loadCallbacks.push(resolve);
+        _threePromise = new Promise((resolve, reject) => {
+            let settled = false;
+            let importMap = null;
+            let loader = null;
+            let timeoutId = null;
+
+            const cleanup = () => {
+                if (timeoutId) clearTimeout(timeoutId);
+                window.removeEventListener('three-ready', onReady);
+            };
+            // On failure, reset so a later createViewer() can retry cleanly,
+            // and remove the injected nodes we added.
+            const fail = (err) => {
+                if (settled) return;
+                settled = true;
+                cleanup();
+                _threePromise = null;
+                if (importMap && importMap.parentNode) importMap.parentNode.removeChild(importMap);
+                if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+                reject(err);
+            };
+            const onReady = () => {
+                if (settled) return;
+                settled = true;
+                cleanup();
+                _loaded = true;
+                resolve();
+            };
+
+            // Timeout catches the case where the script tag loads but an
+            // import throws at runtime (CDN/import-map mismatch): three-ready
+            // then never fires and every queued viewer would hang forever.
+            timeoutId = setTimeout(
+                () => fail(new Error('Three.js load timed out')),
+                THREE_LOAD_TIMEOUT_MS
+            );
+
+            window.addEventListener('three-ready', onReady, { once: true });
 
             // Inject import map so ES module imports of 'three' resolve
-            const importMap = document.createElement('script');
+            importMap = document.createElement('script');
             importMap.type = 'importmap';
             importMap.textContent = JSON.stringify({
                 imports: {
@@ -44,7 +77,7 @@ const ShipViewer = (() => {
             document.head.appendChild(importMap);
 
             // Use an inline ES module to import everything
-            const loader = document.createElement('script');
+            loader = document.createElement('script');
             loader.type = 'module';
             loader.textContent = `
                 import * as THREE from 'three';
@@ -54,18 +87,11 @@ const ShipViewer = (() => {
                 window.__THREE_ADDONS = { GLTFLoader, OrbitControls };
                 window.dispatchEvent(new Event('three-ready'));
             `;
-            window.addEventListener('three-ready', () => {
-                _loaded = true;
-                _loading = false;
-                _loadCallbacks.forEach(cb => cb());
-                _loadCallbacks = [];
-            }, { once: true });
-            loader.onerror = () => {
-                _loading = false;
-                reject(new Error('Failed to load Three.js'));
-            };
+            loader.onerror = () => fail(new Error('Failed to load Three.js'));
             document.head.appendChild(loader);
         });
+
+        return _threePromise;
     }
 
     /**
@@ -195,6 +221,24 @@ const ShipViewer = (() => {
     /**
      * Dispose the current viewer, freeing WebGL resources.
      */
+    // Texture slots a GLTF PBR material may carry — all are GPU allocations
+    // that leak if only material.map is disposed.
+    const _TEXTURE_SLOTS = [
+        'map', 'normalMap', 'roughnessMap', 'metalnessMap', 'emissiveMap',
+        'aoMap', 'specularMap', 'envMap', 'alphaMap', 'bumpMap',
+        'displacementMap', 'lightMap',
+    ];
+
+    function _disposeMaterial(m) {
+        if (!m) return;
+        for (const slot of _TEXTURE_SLOTS) {
+            if (m[slot] && typeof m[slot].dispose === 'function') {
+                m[slot].dispose();
+            }
+        }
+        m.dispose();
+    }
+
     function dispose() {
         if (_animFrameId) {
             cancelAnimationFrame(_animFrameId);
@@ -204,26 +248,30 @@ const ShipViewer = (() => {
             _controls.dispose();
             _controls = null;
         }
-        if (_renderer) {
-            _renderer.dispose();
-            _renderer = null;
-        }
         if (_scene) {
             _scene.traverse(obj => {
                 if (obj.geometry) obj.geometry.dispose();
                 if (obj.material) {
                     if (Array.isArray(obj.material)) {
-                        obj.material.forEach(m => {
-                            if (m.map) m.map.dispose();
-                            m.dispose();
-                        });
+                        obj.material.forEach(_disposeMaterial);
                     } else {
-                        if (obj.material.map) obj.material.map.dispose();
-                        obj.material.dispose();
+                        _disposeMaterial(obj.material);
                     }
                 }
             });
             _scene = null;
+        }
+        if (_renderer) {
+            // Free the WebGL context explicitly and detach the canvas.
+            // Without forceContextLoss() the context lingers until GC, and
+            // browsers cap live contexts (~16 in Chrome) — repeated ship/faction
+            // switches would exhaust the pool and the viewer would go black.
+            _renderer.forceContextLoss();
+            _renderer.dispose();
+            if (_renderer.domElement && _renderer.domElement.parentNode) {
+                _renderer.domElement.parentNode.removeChild(_renderer.domElement);
+            }
+            _renderer = null;
         }
         if (_container && _container._resizeObserver) {
             _container._resizeObserver.disconnect();
