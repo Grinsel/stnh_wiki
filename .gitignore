@@ -27,7 +27,12 @@ update/techtree/__pycache__/
 localisation_map.json
 trigger_map.json
 
+# Pipeline logs (do not sweep new run logs into history via git add -A)
+logs/
+update/techtree/logs/
 
+# Pipeline model-conversion cache (mtime/hash manifest, see convert_ship_models.py)
+update/cache/
 
 
 # Claude
