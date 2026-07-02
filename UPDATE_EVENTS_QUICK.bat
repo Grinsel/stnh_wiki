@@ -61,7 +61,7 @@ echo [2/3] Git commit ...
 echo.
 cd /d "%~dp0"
 
-git add assets/
+git add assets/ models/
 git diff --cached --quiet
 if %ERRORLEVEL% equ 0 (
     echo No changes to commit.
