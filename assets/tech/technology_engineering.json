@@ -487,13 +487,10 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Ascension Perk: Arcology Project | District: Ark City | Starbase Module: Habitation Module",
+      "description": "Ascension Perk: Arcology Project | District: Ark City",
       "unlocks_by_type": {
         "District": [
           "Ark City"
-        ],
-        "Starbase Module": [
-          "Habitation Module"
         ],
         "Ascension Perk": [
           "Arcology Project"
@@ -2148,13 +2145,14 @@
         "ship",
         "custom"
       ],
-      "description": "Other: ship, Custom | Ship Types: Science, Constructor",
+      "description": "Other: ship, Custom | Ship Types: Constructor, Science, Constructor",
       "unlocks_by_type": {
         "Other": [
           "ship",
           "Custom"
         ],
         "Ship Type": [
+          "Constructor",
           "Science",
           "Constructor"
         ]
@@ -2422,16 +2420,24 @@
       "other": [
         "ship"
       ],
-      "description": "Other: ship | Ship Types: Constructor, Engineer Vessel, Station Small | Starbase Module: Engineering Bay",
+      "description": "Other: ship | Ship Types: Engineer Vessel, Station Small | Starbase Modules: Spinal Devastator Mount, Capital Shipyard, Planetary Refinery, Stellar Igniter, System Scanner, Exodus Jump, Engineering Bay, Beastport, Habitation Module, Mining Array",
       "unlocks_by_type": {
         "Other": [
           "ship"
         ],
         "Starbase Module": [
-          "Engineering Bay"
+          "Spinal Devastator Mount",
+          "Capital Shipyard",
+          "Planetary Refinery",
+          "Stellar Igniter",
+          "System Scanner",
+          "Exodus Jump",
+          "Engineering Bay",
+          "Beastport",
+          "Habitation Module",
+          "Mining Array"
         ],
         "Ship Type": [
-          "Constructor",
           "Engineer Vessel",
           "Station Small"
         ]

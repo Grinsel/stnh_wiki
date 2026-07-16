@@ -16395,12 +16395,13 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Buildings: Capital 2, Orbital Capital 2, Machine Capital 2, Undine Capital 2, Monitor Station, Housing, Drone Storage, Alcove Storage | Zone Slots: Special, Special Default Research, Admin, Admin Default Unity",
+      "description": "Buildings: Capital 2, Orbital Capital 2, Machine Capital 2, City Ship Capital 2, Undine Capital 2, Monitor Station, Housing, Drone Storage, Alcove Storage | Zone Slots: Special, Special Default Research, Admin, Admin Default Unity",
       "unlocks_by_type": {
         "Building": [
           "Capital 2",
           "Orbital Capital 2",
           "Machine Capital 2",
+          "City Ship Capital 2",
           "Undine Capital 2",
           "Monitor Station",
           "Housing",
@@ -16443,13 +16444,14 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Buildings: Capital 3, Orbital Capital 3, Machine Capital 3, Borg Capital 3, Penal Capital 3, Penal Slave Colony 3, Resort Capital 3, Cloning Capital 3, Religious Capital 3, Religious Capital Hurq 3, Embassy Capital 3, University Capital 3, Undine Capital 3 | Zone Slots: City 04, City 05",
+      "description": "Buildings: Capital 3, Orbital Capital 3, Machine Capital 3, Borg Capital 3, City Ship Capital 3, Penal Capital 3, Penal Slave Colony 3, Resort Capital 3, Cloning Capital 3, Religious Capital 3, Religious Capital Hurq 3, Embassy Capital 3, University Capital 3, Undine Capital 3 | Zone Slots: City 04, City 05",
       "unlocks_by_type": {
         "Building": [
           "Capital 3",
           "Orbital Capital 3",
           "Machine Capital 3",
           "Borg Capital 3",
+          "City Ship Capital 3",
           "Penal Capital 3",
           "Penal Slave Colony 3",
           "Resort Capital 3",
@@ -16494,7 +16496,7 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Ascension Perk: Executive Vigor | Buildings: Capital 4, Orbital Capital 4, Machine Capital 4, Borg Capital 4, Capital Terran 4, Capital Confederacy 4, Penal Capital 4, Penal Slave Colony 4, Resort Capital 4, Cloning Capital 4, Commercial Capital 4, Forge Capital 4, Religious Capital 4, Religious Capital Hurq 4, Embassy Capital 4, Military Capital 4, University Capital 4, Undine Capital 4, Housing Large, Drone Megastorage, Alcove Megastorage | Federation Perk: Spiritualist 1",
+      "description": "Ascension Perk: Executive Vigor | Buildings: Capital 4, Orbital Capital 4, Machine Capital 4, Borg Capital 4, Capital Terran 4, Capital Confederacy 4, City Ship Capital 4, Penal Capital 4, Penal Slave Colony 4, Resort Capital 4, Cloning Capital 4, Commercial Capital 4, Forge Capital 4, Religious Capital 4, Religious Capital Hurq 4, Embassy Capital 4, Military Capital 4, University Capital 4, Undine Capital 4, Housing Large, Drone Megastorage, Alcove Megastorage | Federation Perk: Spiritualist 1",
       "unlocks_by_type": {
         "Building": [
           "Capital 4",
@@ -16503,6 +16505,7 @@
           "Borg Capital 4",
           "Capital Terran 4",
           "Capital Confederacy 4",
+          "City Ship Capital 4",
           "Penal Capital 4",
           "Penal Slave Colony 4",
           "Resort Capital 4",

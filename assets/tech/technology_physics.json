@@ -10553,21 +10553,7 @@
         "key": "ship_shield_mult",
         "value": 0.01,
         "display": "+1% Shield",
-        "component": "REQUIRED_WARP_1_A"
-      },
-      {
-        "type": "modifier",
-        "key": "ship_shield_mult",
-        "value": 0.01,
-        "display": "+1% Shield",
         "component": "REQUIRED_WARP_1_B"
-      },
-      {
-        "type": "modifier",
-        "key": "ship_shield_mult",
-        "value": 0.01,
-        "display": "+1% Shield",
-        "component": "REQUIRED_WARP_1_C"
       },
       {
         "type": "modifier",
