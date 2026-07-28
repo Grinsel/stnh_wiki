@@ -252,10 +252,18 @@ class PdxParser:
                     else:
                         is_list = False
                 elif tok[0] == 'LBRACE':
-                    # Bare block inside block = list of blocks (very rare)
+                    # Bare block inside block = list of blocks. Handled below by
+                    # the explicit LBRACE branch; not a scalar value list.
                     is_list = False
                 else:
                     is_list = False
+
+            # `key = { { ... } { ... } }` (list of anonymous blocks). Without
+            # this branch _parse_statement swallows the opening brace, the
+            # parser desyncs and siblings leak onto the parent level.
+            if tok[0] == 'LBRACE':
+                items.append(self._parse_block_or_list(lexer))
+                continue
 
             if is_list:
                 val_tok = lexer.advance()
