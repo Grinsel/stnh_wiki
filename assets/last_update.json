@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-07-16T18:25:21.595975",
-  "elapsed_seconds": 74.9,
+  "timestamp": "2026-10-01T10:19:44.659812",
+  "elapsed_seconds": 98.4,
   "results": {
     "localisation": {
-      "english": 239078,
-      "german": 239289,
-      "french": 250301,
-      "spanish": 239037,
-      "russian": 240701,
-      "polish": 239545,
-      "braz_por": 233936
+      "english": 251958,
+      "german": 252137,
+      "french": 263153,
+      "spanish": 251889,
+      "russian": 253604,
+      "polish": 252397,
+      "braz_por": 246459
     },
     "inject_missing_loc": {
       "english": 101,
@@ -13677,137 +13677,137 @@
         "frames": 1
       },
       "GFX_faction_icon_imperialist": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_imperialists.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_imperialists.dds",
         "texture_name": "faction_icons_imperialists",
         "frames": 1
       },
       "GFX_faction_icon_prosperity": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_prosperity.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_prosperity.dds",
         "texture_name": "faction_icons_prosperity",
         "frames": 1
       },
       "GFX_faction_icon_colonialist": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_colonialist_lobby.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_colonialist_lobby.dds",
         "texture_name": "faction_icons_colonialist_lobby",
         "frames": 1
       },
       "GFX_faction_icon_isolationist": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_isolationists.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_isolationists.dds",
         "texture_name": "faction_icons_isolationists",
         "frames": 1
       },
       "GFX_faction_icon_progressive": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_progressives.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_progressives.dds",
         "texture_name": "faction_icons_progressives",
         "frames": 1
       },
       "GFX_faction_icon_separatist": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_manifesti.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_manifesti.dds",
         "texture_name": "faction_icons_manifesti",
         "frames": 1
       },
       "GFX_faction_icon_manifesti": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_progressives.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_progressives.dds",
         "texture_name": "faction_icons_progressives",
         "frames": 1
       },
       "GFX_faction_icon_rebellious_slaves": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_rebellious_slaves.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_rebellious_slaves.dds",
         "texture_name": "faction_icons_rebellious_slaves",
         "frames": 1
       },
       "GFX_faction_icon_supremacist": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_supremacists.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_supremacists.dds",
         "texture_name": "faction_icons_supremacists",
         "frames": 1
       },
       "GFX_faction_icon_technologist": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_technologists.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_technologists.dds",
         "texture_name": "faction_icons_technologists",
         "frames": 1
       },
       "GFX_faction_icon_totalitarian": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_totalitarians.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_totalitarians.dds",
         "texture_name": "faction_icons_totalitarians",
         "frames": 1
       },
       "GFX_faction_icon_traditionalist": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_traditionalists.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_traditionalists.dds",
         "texture_name": "faction_icons_traditionalists",
         "frames": 1
       },
       "GFX_faction_icon_interlink": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_interlink.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_interlink.dds",
         "texture_name": "faction_icons_interlink",
         "frames": 1
       },
       "GFX_faction_icon_cyber_creed_labor": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_labor.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_cyber_creed_labor.dds",
         "texture_name": "faction_icons_cyber_creed_labor",
         "frames": 1
       },
       "GFX_faction_icon_cyber_creed_war": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_war.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_cyber_creed_war.dds",
         "texture_name": "faction_icons_cyber_creed_war",
         "frames": 1
       },
       "GFX_faction_icon_cyber_creed_construction": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_construction.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_cyber_creed_construction.dds",
         "texture_name": "faction_icons_cyber_creed_construction",
         "frames": 1
       },
       "GFX_faction_icon_cyber_creed_research": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_research.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_cyber_creed_research.dds",
         "texture_name": "faction_icons_cyber_creed_research",
         "frames": 1
       },
       "GFX_faction_icon_cyber_creed_labor_2": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_labor.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_cyber_creed_labor.dds",
         "texture_name": "faction_icons_cyber_creed_labor",
         "frames": 1
       },
       "GFX_faction_icon_cyber_creed_war_2": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_war.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_cyber_creed_war.dds",
         "texture_name": "faction_icons_cyber_creed_war",
         "frames": 1
       },
       "GFX_faction_icon_cyber_creed_construction_2": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_construction.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_cyber_creed_construction.dds",
         "texture_name": "faction_icons_cyber_creed_construction",
         "frames": 1
       },
       "GFX_faction_icon_cyber_creed_research_2": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_research.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_cyber_creed_research.dds",
         "texture_name": "faction_icons_cyber_creed_research",
         "frames": 1
       },
       "GFX_faction_icon_cyber_creed_general": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_cyber_creed_creedless.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_cyber_creed_creedless.dds",
         "texture_name": "faction_icons_cyber_creed_creedless",
         "frames": 1
       },
       "GFX_faction_icon_xenoist": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_xenoists.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_xenoists.dds",
         "texture_name": "faction_icons_xenoists",
         "frames": 1
       },
       "GFX_faction_icon_the_masquerade": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_the_masquerade.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_the_masquerade.dds",
         "texture_name": "faction_icons_the_masquerade",
         "frames": 1
       },
       "GFX_faction_icon_the_curtain": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_the_curtain.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_the_curtain.dds",
         "texture_name": "faction_icons_the_curtain",
         "frames": 1
       },
       "GFX_faction_icon_the_grand_dance": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_the_grand_dance.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_the_grand_dance.dds",
         "texture_name": "faction_icons_the_grand_dance",
         "frames": 1
       },
       "GFX_faction_icon_fire_cult": {
-        "texture_path": "gfx/interface/icons/faction_icons/faction_icons_fire_cult.dds",
+        "texture_path": "gfx/interface/icons/factions/types/faction_icons_fire_cult.dds",
         "texture_name": "faction_icons_fire_cult",
         "frames": 1
       },
@@ -13986,9 +13986,24 @@
         "texture_name": "trade_subcat_history",
         "frames": 1
       },
+      "GFX_faction_approval_icon": {
+        "texture_path": "gfx/interface/icons/factions/faction_approval.dds",
+        "texture_name": "faction_approval",
+        "frames": 1
+      },
+      "GFX_political_power_icon": {
+        "texture_path": "gfx/interface/icons/modifiers/mod_pop_political_power.dds",
+        "texture_name": "mod_pop_political_power",
+        "frames": 1
+      },
       "GFX_faction_support_icon": {
-        "texture_path": "gfx/interface/icons/faction_support.dds",
+        "texture_path": "gfx/interface/icons/factions/faction_support.dds",
         "texture_name": "faction_support",
+        "frames": 1
+      },
+      "GFX_faction_supporters_icon": {
+        "texture_path": "gfx/interface/icons/factions/faction_supporters.dds",
+        "texture_name": "faction_supporters",
         "frames": 1
       },
       "GFX_faction_header_blue": {
@@ -14062,8 +14077,8 @@
         "frames": 2
       },
       "GFX_faction_attraction_icon": {
-        "texture_path": "gfx/interface/icons/faction_attraction_icon.dds",
-        "texture_name": "faction_attraction_icon",
+        "texture_path": "gfx/interface/icons/factions/faction_attraction.dds",
+        "texture_name": "faction_attraction",
         "frames": 1
       },
       "GFX_government_authority": {
@@ -19097,52 +19112,52 @@
         "frames": 1
       },
       "GFX_faction_icon_traditionalist_small": {
-        "texture_path": "gfx/interface/icons/faction_icons/traditionalists.dds",
+        "texture_path": "gfx/interface/icons/factions/types/traditionalists.dds",
         "texture_name": "traditionalists",
         "frames": 1
       },
       "GFX_faction_icon_imperialist_small": {
-        "texture_path": "gfx/interface/icons/faction_icons/imperialists.dds",
+        "texture_path": "gfx/interface/icons/factions/types/imperialists.dds",
         "texture_name": "imperialists",
         "frames": 1
       },
       "GFX_faction_icon_isolationists_small": {
-        "texture_path": "gfx/interface/icons/faction_icons/isolationists.dds",
+        "texture_path": "gfx/interface/icons/factions/types/isolationists.dds",
         "texture_name": "isolationists",
         "frames": 1
       },
       "GFX_faction_icon_manifesti_small": {
-        "texture_path": "gfx/interface/icons/faction_icons/manifesti.dds",
+        "texture_path": "gfx/interface/icons/factions/types/manifesti.dds",
         "texture_name": "manifesti",
         "frames": 1
       },
       "GFX_faction_icon_progressives_small": {
-        "texture_path": "gfx/interface/icons/faction_icons/progressives.dds",
+        "texture_path": "gfx/interface/icons/factions/types/progressives.dds",
         "texture_name": "progressives",
         "frames": 1
       },
       "GFX_faction_icon_prosperity_small": {
-        "texture_path": "gfx/interface/icons/faction_icons/prosperity.dds",
+        "texture_path": "gfx/interface/icons/factions/types/prosperity.dds",
         "texture_name": "prosperity",
         "frames": 1
       },
       "GFX_faction_icon_supremacists_small": {
-        "texture_path": "gfx/interface/icons/faction_icons/supremacists.dds",
+        "texture_path": "gfx/interface/icons/factions/types/supremacists.dds",
         "texture_name": "supremacists",
         "frames": 1
       },
       "GFX_faction_icon_technologists_small": {
-        "texture_path": "gfx/interface/icons/faction_icons/technologists.dds",
+        "texture_path": "gfx/interface/icons/factions/types/technologists.dds",
         "texture_name": "technologists",
         "frames": 1
       },
       "GFX_faction_icon_totalitarians_small": {
-        "texture_path": "gfx/interface/icons/faction_icons/totalitarians.dds",
+        "texture_path": "gfx/interface/icons/factions/types/totalitarians.dds",
         "texture_name": "totalitarians",
         "frames": 1
       },
       "GFX_faction_icon_xenoists_small": {
-        "texture_path": "gfx/interface/icons/faction_icons/xenoists.dds",
+        "texture_path": "gfx/interface/icons/factions/types/xenoists.dds",
         "texture_name": "xenoists",
         "frames": 1
       },
@@ -19309,7 +19324,7 @@
       "GFX_district_sprite_sheet": {
         "texture_path": "gfx/interface/icons/resources/district_resources.dds",
         "texture_name": "district_resources",
-        "frames": 22
+        "frames": 29
       },
       "GFX_district_specialization_wilderness_spawning": {
         "texture_path": "gfx/interface/icons/districts/district_specialization_icons/district_specialization_wilderness_spawning.dds",
@@ -22554,6 +22569,46 @@
       "GFX_button_go_to_collection": {
         "texture_path": "gfx/interface/buttons/button_go_to_collection.dds",
         "texture_name": "button_go_to_collection",
+        "frames": 3
+      },
+      "GFX_overclock_arc_minerals": {
+        "texture_path": "gfx/interface/icons/megastructures/overclocking/overclock_arc_minerals.dds",
+        "texture_name": "overclock_arc_minerals",
+        "frames": 3
+      },
+      "GFX_overclock_arc_minerals_selected": {
+        "texture_path": "gfx/interface/icons/megastructures/overclocking/overclock_arc_minerals_selected.dds",
+        "texture_name": "overclock_arc_minerals_selected",
+        "frames": 3
+      },
+      "GFX_overclock_arc_balanced": {
+        "texture_path": "gfx/interface/icons/megastructures/overclocking/overclock_arc_balanced.dds",
+        "texture_name": "overclock_arc_balanced",
+        "frames": 3
+      },
+      "GFX_overclock_arc_balanced_selected": {
+        "texture_path": "gfx/interface/icons/megastructures/overclocking/overclock_arc_balanced_selected.dds",
+        "texture_name": "overclock_arc_balanced_selected",
+        "frames": 3
+      },
+      "GFX_overclock_arc_alloys": {
+        "texture_path": "gfx/interface/icons/megastructures/overclocking/overclock_arc_alloys.dds",
+        "texture_name": "overclock_arc_alloys",
+        "frames": 3
+      },
+      "GFX_overclock_arc_alloys_selected": {
+        "texture_path": "gfx/interface/icons/megastructures/overclocking/overclock_arc_alloys_selected.dds",
+        "texture_name": "overclock_arc_alloys_selected",
+        "frames": 3
+      },
+      "GFX_overclock_arc_obsessional_directive": {
+        "texture_path": "gfx/interface/icons/megastructures/overclocking/overclock_arc_obsessional_directive.dds",
+        "texture_name": "overclock_arc_obsessional_directive",
+        "frames": 3
+      },
+      "GFX_overclock_arc_obsessional_directive_selected": {
+        "texture_path": "gfx/interface/icons/megastructures/overclocking/overclock_arc_obsessional_directive_selected.dds",
+        "texture_name": "overclock_arc_obsessional_directive_selected",
         "frames": 3
       },
       "GFX_modifier_unknown": {
@@ -32196,6 +32251,11 @@
         "texture_name": "icon_text_pop",
         "frames": 1
       },
+      "GFX_text_tooltip_pop": {
+        "texture_path": "gfx/interface/icons/text_icons/tooltip_pop.dds",
+        "texture_name": "tooltip_pop",
+        "frames": 1
+      },
       "GFX_text_pops": {
         "texture_path": "gfx/interface/icons/text_icons/icon_text_pop.dds",
         "texture_name": "icon_text_pop",
@@ -32209,6 +32269,11 @@
       "GFX_text_job_unemployment": {
         "texture_path": "gfx/interface/icons/text_icons/unemployed.dds",
         "texture_name": "unemployed",
+        "frames": 1
+      },
+      "GFX_text_denizen": {
+        "texture_path": "gfx/interface/icons/text_icons/tooltip_pop.dds",
+        "texture_name": "tooltip_pop",
         "frames": 1
       },
       "GFX_text_economy": {
@@ -32654,6 +32719,11 @@
       "GFX_text_dot_red": {
         "texture_path": "gfx/interface/icons/dot_red.dds",
         "texture_name": "dot_red",
+        "frames": 1
+      },
+      "GFX_text_ethic_attraction": {
+        "texture_path": "gfx/interface/icons/modifiers/mod_pop_government_ethic_attraction.dds",
+        "texture_name": "mod_pop_government_ethic_attraction",
         "frames": 1
       },
       "GFX_text_authoritarian": {
@@ -34206,6 +34276,11 @@
         "texture_name": "text_icon_contract",
         "frames": 1
       },
+      "GFX_text_faction_attraction": {
+        "texture_path": "gfx/interface/icons/factions/faction_attraction_small.dds",
+        "texture_name": "faction_attraction_small",
+        "frames": 1
+      },
       "GFX_undiscovered_patron_icon": {
         "texture_path": "gfx/interface/shroud/unknown_patron.dds",
         "texture_name": "unknown_patron",
@@ -34872,13 +34947,13 @@
         "frames": 1
       },
       "GFX_timelines_navigation_active_icon": {
-        "texture_path": "gfx/interface/timelines/active_icon.dds",
-        "texture_name": "active_icon",
+        "texture_path": "gfx/interface/planetview/circle_bg.dds",
+        "texture_name": "circle_bg",
         "frames": 1
       },
       "GFX_timelines_navigation_inactive_icon": {
-        "texture_path": "gfx/interface/timelines/inactive_icon.dds",
-        "texture_name": "inactive_icon",
+        "texture_path": "gfx/interface/planetview/circle_bg.dds",
+        "texture_name": "circle_bg",
         "frames": 1
       },
       "GFX_timelines_year_vertical_line": {
@@ -34912,28 +34987,28 @@
         "frames": 1
       },
       "GFX_timelines_back_button": {
-        "texture_path": "gfx/interface/timelines/back_button.dds",
-        "texture_name": "back_button",
-        "frames": 3
+        "texture_path": "gfx/interface/buttons/button_29_animated.dds",
+        "texture_name": "button_29_animated",
+        "frames": 4
       },
       "GFX_timelines_forward_button": {
-        "texture_path": "gfx/interface/timelines/forward_button.dds",
-        "texture_name": "forward_button",
-        "frames": 3
+        "texture_path": "gfx/interface/buttons/button_29_animated.dds",
+        "texture_name": "button_29_animated",
+        "frames": 4
       },
       "GFX_timelines_zoom_in_button": {
-        "texture_path": "gfx/interface/timelines/zoom_in_button.dds",
-        "texture_name": "zoom_in_button",
-        "frames": 3
+        "texture_path": "gfx/interface/buttons/button_29_animated.dds",
+        "texture_name": "button_29_animated",
+        "frames": 4
       },
       "GFX_timelines_zoom_out_button": {
-        "texture_path": "gfx/interface/timelines/zoom_out_button.dds",
-        "texture_name": "zoom_out_button",
-        "frames": 3
+        "texture_path": "gfx/interface/buttons/button_29_animated.dds",
+        "texture_name": "button_29_animated",
+        "frames": 4
       },
-      "GFX_timelines_background_core": {
-        "texture_path": "gfx/interface/timelines/timelines_background_core.dds",
-        "texture_name": "timelines_background_core",
+      "GFX_timelines_background_core_focus": {
+        "texture_path": "gfx/interface/tiles/plain_bg_tile.dds",
+        "texture_name": "plain_bg_tile",
         "frames": 1
       },
       "GFX_timelines_background_conquest": {
@@ -49516,6 +49591,11 @@
         "texture_name": "scanning",
         "frames": 1
       },
+      "sth_GFX_evt_GriffinIncident": {
+        "texture_path": "gfx/event_pictures/GriffinIncident.dds",
+        "texture_name": "GriffinIncident",
+        "frames": 1
+      },
       "GFX_faction_icon_sth_klingon_ho_mogh": {
         "texture_path": "gfx/interface/icons/faction_icons/faction_icons_house_of_mogh.dds",
         "texture_name": "faction_icons_house_of_mogh",
@@ -52261,6 +52341,11 @@
         "texture_name": "tech_physics_computing_70",
         "frames": 1
       },
+      "STH_generic_science_station_build_icon": {
+        "texture_path": "gfx/interface/icons/technologies/tech_physics_planetary_44.dds",
+        "texture_name": "tech_physics_planetary_44",
+        "frames": 1
+      },
       "GFX_borg_transwarp_conduit_0_outliner_icon": {
         "texture_path": "gfx/interface/icons/megastructures/borg_transwarp_conduit_0.dds",
         "texture_name": "borg_transwarp_conduit_0",
@@ -53429,6 +53514,11 @@
       "GFX_relic_gomtuu": {
         "texture_path": "gfx/interface/icons/relics/r_gomtuu.dds",
         "texture_name": "r_gomtuu",
+        "frames": 1
+      },
+      "GFX_relic_griffin": {
+        "texture_path": "gfx/interface/icons/relics/r_griffin.dds",
+        "texture_name": "r_griffin",
         "frames": 1
       },
       "GFX_relic_singing_doctor": {
@@ -60476,6 +60566,11 @@
         "texture_name": "mugato_horn",
         "frames": 1
       },
+      "GFX_specimen_griffin_incident": {
+        "texture_path": "gfx/interface/icons/specimens/griffin_report.dds",
+        "texture_name": "griffin_report",
+        "frames": 1
+      },
       "GFX_text_megacorp": {
         "texture_path": "gfx/interface/icons/megacorp_text.dds",
         "texture_name": "megacorp_text",
@@ -64186,6 +64281,11 @@
         "texture_name": "borg_assimilation_war",
         "frames": 1
       },
+      "GFX_wg_borg_civil_war": {
+        "texture_path": "gfx/interface/icons/diplomacy/borg_assimilation_war.dds",
+        "texture_name": "borg_assimilation_war",
+        "frames": 1
+      },
       "GFX_wg_borg_assimilation_defence": {
         "texture_path": "gfx/interface/icons/diplomacy/borg_assimilation_defence_war.dds",
         "texture_name": "borg_assimilation_defence_war",
@@ -64352,6 +64452,11 @@
         "frames": 1
       },
       "GFX_wg_leadership_change_event": {
+        "texture_path": "gfx/interface/icons/diplomacy/kdf_cu_border_war.dds",
+        "texture_name": "kdf_cu_border_war",
+        "frames": 1
+      },
+      "GFX_wg_binary_stars_event": {
         "texture_path": "gfx/interface/icons/diplomacy/kdf_cu_border_war.dds",
         "texture_name": "kdf_cu_border_war",
         "frames": 1
@@ -67083,15 +67188,15 @@
       }
     },
     "events": {
-      "events": 8497,
-      "namespaces": 295,
-      "files": 441,
-      "loc_keys": 239179,
-      "on_actions": 213,
+      "events": 8675,
+      "namespaces": 302,
+      "files": 448,
+      "loc_keys": 252059,
+      "on_actions": 218,
       "event_chains": 63,
-      "gfx_sprites": 13412,
-      "relationship_edges": 6847,
-      "detail_files": 274
+      "gfx_sprites": 13433,
+      "relationship_edges": 6930,
+      "detail_files": 282
     },
     "ships": {
       "ships": 439,
@@ -67100,47 +67205,47 @@
       "model_variants": 1734,
       "files": 145,
       "errors": 0,
-      "elapsed": 24.1
+      "elapsed": 32.8
     },
     "buildings": {
       "buildings": 665,
       "districts": 71,
       "files": 53,
       "errors": 0,
-      "elapsed": 0.3
+      "elapsed": 0.4
     },
     "traits": {
-      "traits": 464,
-      "traditions": 450,
+      "traits": 465,
+      "traditions": 457,
       "ascension_perks": 61,
       "files": 94,
       "errors": 0,
-      "elapsed": 0.6
+      "elapsed": 0.8
     },
     "governments": {
       "governments": 185,
       "civics": 348,
       "authorities": 17,
-      "policies": 57,
+      "policies": 59,
       "edicts": 88,
       "councilors": 150,
-      "files": 45,
+      "files": 46,
       "errors": 0,
-      "elapsed": 0.2
+      "elapsed": 0.3
     },
     "megastructures": {
       "megastructures": 133,
-      "relics": 68,
+      "relics": 69,
       "megas_with_models": 59,
       "mega_model_variants": 115,
       "files": 71,
       "errors": 0,
-      "elapsed": 5.3
+      "elapsed": 7.6
     },
     "anomalies": {
-      "anomalies": 132,
-      "archaeology": 29,
-      "files": 71,
+      "anomalies": 133,
+      "archaeology": 31,
+      "files": 72,
       "errors": 0,
       "elapsed": 0.2
     },
@@ -67160,17 +67265,17 @@
     },
     "economy": {
       "jobs": 299,
-      "deposits": 676,
-      "files": 58,
+      "deposits": 686,
+      "files": 59,
       "errors": 0,
-      "elapsed": 0.2
+      "elapsed": 0.3
     },
     "resources": {
       "resources": 47,
-      "producer_links": 991,
+      "producer_links": 1013,
       "consumer_links": 931,
-      "modifier_links": 518,
-      "unparsed_modifiers": 222,
+      "modifier_links": 519,
+      "unparsed_modifiers": 224,
       "errors": 0,
       "elapsed": 0.1
     },
@@ -67181,46 +67286,46 @@
     },
     "search": {
       "search_index": {
-        "total_items": 21512,
-        "size_kb": 3453,
+        "total_items": 21720,
+        "size_kb": 3484,
         "by_type": {
-          "event": 8497,
+          "event": 8675,
           "ship": 439,
           "component": 6532,
           "building": 665,
           "district": 71,
-          "trait": 464,
-          "tradition": 450,
+          "trait": 465,
+          "tradition": 457,
           "ascension_perk": 61,
           "government": 185,
           "civic": 348,
           "authority": 17,
-          "policy": 57,
+          "policy": 59,
           "edict": 88,
           "councilor": 150,
           "megastructure": 133,
-          "relic": 68,
-          "anomaly": 132,
-          "archaeology": 29,
+          "relic": 69,
+          "anomaly": 133,
+          "archaeology": 31,
           "empire": 112,
           "job": 299,
-          "deposit": 676,
+          "deposit": 686,
           "resource": 47,
-          "technology": 619
+          "technology": 622
         },
-        "elapsed": 0.2
+        "elapsed": 0.3
       },
       "cross_references": {
-        "size_kb": 298,
+        "size_kb": 299,
         "stats": {
           "tech_unlocks": 1142,
           "upgrade_chains": 0,
           "anomaly_events": 56,
-          "archaeology_events": 29,
+          "archaeology_events": 31,
           "empire_refs": 112,
           "building_upgrades": 312
         },
-        "elapsed": 0.0
+        "elapsed": 0.1
       },
       "tech_item_map": {
         "techs": 1142,
@@ -67230,20 +67335,20 @@
       }
     },
     "ship_models": {
-      "converted": 47,
-      "skipped": 1686,
+      "converted": 0,
+      "skipped": 1733,
       "failed": 1,
-      "multi_mesh": 19,
+      "multi_mesh": 0,
       "total": 1734,
-      "elapsed": 1.7
+      "elapsed": 0.2
     },
     "mega_models": {
-      "converted": 6,
-      "skipped": 109,
+      "converted": 0,
+      "skipped": 115,
       "failed": 0,
-      "multi_mesh": 4,
+      "multi_mesh": 0,
       "total": 115,
-      "elapsed": 0.3
+      "elapsed": 0.0
     },
     "verify_models": {
       "ship_expected": 1734,
@@ -67260,18 +67365,18 @@
       "ok": false
     },
     "images": {
-      "total": 1014,
+      "total": 1017,
       "converted": 2,
-      "skipped": 1012,
+      "skipped": 1015,
       "failed": 0,
       "errors": []
     },
     "all_icons": {
       "categories": {
         "buildings": {
-          "total": 767,
+          "total": 772,
           "converted": 5,
-          "skipped": 762,
+          "skipped": 767,
           "failed": 0,
           "errors": []
         },
@@ -67313,9 +67418,9 @@
           "errors": []
         },
         "jobs": {
-          "total": 279,
+          "total": 280,
           "converted": 1,
-          "skipped": 278,
+          "skipped": 279,
           "failed": 0,
           "errors": []
         },
@@ -67341,8 +67446,8 @@
           "errors": []
         },
         "relics": {
-          "total": 164,
-          "converted": 0,
+          "total": 165,
+          "converted": 1,
           "skipped": 164,
           "failed": 0,
           "errors": []
@@ -67384,9 +67489,9 @@
         }
       },
       "total": {
-        "total": 8511,
-        "converted": 6,
-        "skipped": 8504,
+        "total": 8518,
+        "converted": 7,
+        "skipped": 8510,
         "failed": 1
       }
     },
@@ -67394,94 +67499,94 @@
       "modules": {},
       "languages": {
         "english": {
-          "common": 18809,
-          "events": 10288,
-          "buildings": 1478,
-          "ships": 7559,
-          "tech": 3988,
-          "traits": 2057,
-          "governments": 4422,
-          "megastructures": 402,
-          "anomalies": 322,
-          "economy": 2109,
+          "common": 18880,
+          "events": 10466,
+          "buildings": 1477,
+          "ships": 14409,
+          "tech": 4002,
+          "traits": 2073,
+          "governments": 4458,
+          "megastructures": 404,
+          "anomalies": 328,
+          "economy": 2129,
           "empires": 961
         },
         "german": {
-          "common": 18810,
-          "events": 10284,
-          "buildings": 1478,
-          "ships": 7559,
-          "tech": 3988,
-          "traits": 2057,
-          "governments": 4422,
-          "megastructures": 402,
-          "anomalies": 319,
-          "economy": 2109,
+          "common": 18881,
+          "events": 10454,
+          "buildings": 1477,
+          "ships": 14409,
+          "tech": 4002,
+          "traits": 2073,
+          "governments": 4458,
+          "megastructures": 404,
+          "anomalies": 325,
+          "economy": 2129,
           "empires": 961
         },
         "french": {
-          "common": 18908,
-          "events": 10311,
-          "buildings": 1478,
-          "ships": 7554,
-          "tech": 3988,
-          "traits": 2053,
-          "governments": 4418,
-          "megastructures": 402,
-          "anomalies": 319,
-          "economy": 2109,
+          "common": 18979,
+          "events": 10484,
+          "buildings": 1477,
+          "ships": 14404,
+          "tech": 4002,
+          "traits": 2069,
+          "governments": 4454,
+          "megastructures": 404,
+          "anomalies": 325,
+          "economy": 2129,
           "empires": 961
         },
         "spanish": {
-          "common": 18807,
-          "events": 10281,
-          "buildings": 1478,
-          "ships": 7478,
-          "tech": 3988,
-          "traits": 2052,
-          "governments": 4417,
-          "megastructures": 402,
-          "anomalies": 319,
-          "economy": 2109,
+          "common": 18878,
+          "events": 10454,
+          "buildings": 1477,
+          "ships": 14328,
+          "tech": 4002,
+          "traits": 2068,
+          "governments": 4453,
+          "megastructures": 404,
+          "anomalies": 325,
+          "economy": 2129,
           "empires": 961
         },
         "russian": {
-          "common": 18905,
-          "events": 10284,
-          "buildings": 1478,
-          "ships": 7558,
-          "tech": 3988,
-          "traits": 2057,
-          "governments": 4422,
-          "megastructures": 402,
-          "anomalies": 319,
-          "economy": 2109,
-          "empires": 961
+          "common": 18976,
+          "events": 10454,
+          "buildings": 1477,
+          "ships": 14408,
+          "tech": 4002,
+          "traits": 2073,
+          "governments": 4458,
+          "megastructures": 404,
+          "anomalies": 325,
+          "economy": 2129,
+          "empires": 962
         },
         "polish": {
-          "common": 18800,
-          "events": 10275,
-          "buildings": 1478,
-          "ships": 7554,
-          "tech": 3988,
-          "traits": 2048,
-          "governments": 4413,
-          "megastructures": 402,
-          "anomalies": 319,
-          "economy": 2109,
+          "common": 18871,
+          "events": 10448,
+          "buildings": 1477,
+          "ships": 14404,
+          "tech": 4002,
+          "traits": 2064,
+          "governments": 4449,
+          "megastructures": 404,
+          "anomalies": 325,
+          "economy": 2129,
           "empires": 961
         },
         "braz_por": {
-          "common": 17313,
-          "events": 10281,
-          "buildings": 1478,
-          "ships": 7546,
-          "tech": 3988,
-          "traits": 2027,
-          "governments": 4392,
-          "megastructures": 402,
-          "anomalies": 319,
-          "economy": 2109,
+          "common": 17384,
+          "events": 10436,
+          "buildings": 1477,
+          "ships": 14331,
+          "tech": 4002,
+          "traits": 2043,
+          "governments": 4428,
+          "megastructures": 404,
+          "anomalies": 323,
+          "economy": 2129,
           "empires": 961
         }
       },
@@ -67489,11 +67594,11 @@
       "modules_count": 10
     },
     "changes": {
-      "total_added": 103,
-      "total_removed": 2,
-      "total_modified": 78,
-      "modules_changed": 11,
-      "modules_unchanged": 11
+      "total_added": 203,
+      "total_removed": 1,
+      "total_modified": 265,
+      "modules_changed": 18,
+      "modules_unchanged": 4
     }
   }
 }

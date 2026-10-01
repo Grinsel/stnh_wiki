@@ -237,8 +237,12 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "",
-      "unlocks_by_type": {}
+      "description": "Starbase Module: Cloaking",
+      "unlocks_by_type": {
+        "Starbase Module": [
+          "Cloaking"
+        ]
+      }
     },
     "faction_availability": {
       "Federation": {
@@ -2594,13 +2598,12 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Megastructures: Build Stage, Build Complete",
+      "description": "Other: Custom | Megastructure: Build Complete",
       "unlocks_by_type": {
         "Other": [
           "Custom"
         ],
         "Megastructure": [
-          "Build Stage",
           "Build Complete"
         ]
       }
@@ -11391,7 +11394,6 @@
     "tier": 5,
     "cost": 8400,
     "prerequisites": [
-      "tech_physics_applied_20",
       "tech_physics_exploration_68"
     ],
     "weight": 70,
@@ -47887,8 +47889,8 @@
       {
         "type": "modifier",
         "key": "intel_decryption_add",
-        "value": 2.0,
-        "display": "+2 Intel Decryption",
+        "value": 3.0,
+        "display": "+3 Intel Decryption",
         "source": "tech_direct"
       }
     ],
@@ -47925,8 +47927,15 @@
       {
         "type": "modifier",
         "key": "intel_decryption_add",
-        "value": 2.0,
-        "display": "+2 Intel Decryption",
+        "value": 4.0,
+        "display": "+4 Intel Decryption",
+        "source": "tech_direct"
+      },
+      {
+        "type": "modifier",
+        "key": "spy_network_levels_add",
+        "value": 20.0,
+        "display": "+20 Spy Network Levels",
         "source": "tech_direct"
       }
     ],

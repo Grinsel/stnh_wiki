@@ -1,894 +1,2125 @@
 {
-  "timestamp": "2026-07-16T18:25:21.593785",
+  "timestamp": "2026-10-01T10:19:44.654434",
   "summary": {
-    "total_added": 103,
-    "total_removed": 2,
-    "total_modified": 78,
-    "modules_changed": 11,
-    "modules_unchanged": 11
+    "total_added": 203,
+    "total_removed": 1,
+    "total_modified": 265,
+    "modules_changed": 18,
+    "modules_unchanged": 4
   },
   "modules": {
     "events_index": {
-      "old_count": 8401,
-      "new_count": 8497,
+      "old_count": 8497,
+      "new_count": 8675,
       "added": [
         {
-          "id": "STH_components.5070",
+          "id": "STH_bajoran_mechanics.90",
+          "name_key": "The Stewardship of Bajor"
+        },
+        {
+          "id": "STH_bajoran_mechanics.91",
+          "name_key": "A Message from the Vedek Assembly"
+        },
+        {
+          "id": "STH_borg.1022",
           "name_key": ""
         },
         {
-          "id": "STH_components.5071",
+          "id": "STH_borg.1023",
           "name_key": ""
         },
         {
-          "id": "STH_components.5073",
-          "name_key": "Long-Range Sensor Sweep Complete"
+          "id": "STH_borg.1024",
+          "name_key": "Borg Threat"
         },
         {
-          "id": "STH_components.5074",
+          "id": "STH_borg.6104",
           "name_key": ""
         },
         {
-          "id": "STH_components.5075",
-          "name_key": "Tactical Command Net Established"
-        },
-        {
-          "id": "STH_components.5076",
+          "id": "STH_borg.6208",
           "name_key": ""
         },
         {
-          "id": "STH_components.5077",
-          "name_key": "Diplomatic Mission Complete"
+          "id": "STH_borg_flavour.9500",
+          "name_key": "Strategic Node Lost"
         },
         {
-          "id": "STH_components.5078",
-          "name_key": "Flagship Diplomatic Visit"
-        },
-        {
-          "id": "STH_mia_event.1",
+          "id": "STH_cardassian_flavour.30",
           "name_key": ""
         },
         {
-          "id": "STH_mia_event.2",
-          "name_key": "[This.GetName] fleet severely damaged"
+          "id": "STH_cardassian_flavour.31",
+          "name_key": "The Great Drought"
         },
         {
-          "id": "STH_mia_event.3",
-          "name_key": "Repair ship fails to leave on time"
+          "id": "STH_cardassian_flavour.9500",
+          "name_key": "The Price of Order"
         },
         {
-          "id": "STH_mia_event.4",
-          "name_key": "A repair ship is sent to aid the mia fleet"
-        },
-        {
-          "id": "STH_mia_event.5",
-          "name_key": "Repair ship arrives at [TH_mia_fleet_1.GetName]"
-        },
-        {
-          "id": "STH_mia_event.6",
-          "name_key": "STH_mia_fleet_1.GetName] repaired"
-        },
-        {
-          "id": "STH_nomads.1",
+          "id": "STH_components.5003",
           "name_key": ""
         },
         {
-          "id": "STH_nomads.7005",
-          "name_key": "Drifters and Settlers"
-        },
-        {
-          "id": "STH_war_story.110",
-          "name_key": "Federation War Council"
-        },
-        {
-          "id": "STH_war_story.111",
-          "name_key": "Andorian Intelligence Review"
-        },
-        {
-          "id": "STH_war_story.112",
+          "id": "STH_decision_events.679",
           "name_key": ""
         },
         {
-          "id": "STH_war_story.113",
-          "name_key": "The Cheron Assessment"
-        },
-        {
-          "id": "STH_war_story.114",
-          "name_key": "Empty Orbit at Cheron"
-        },
-        {
-          "id": "STH_war_story.115",
+          "id": "STH_decision_events.681",
           "name_key": ""
         },
         {
-          "id": "STH_war_story.116",
-          "name_key": "Vindicated"
-        },
-        {
-          "id": "STH_war_story.117",
-          "name_key": "Defeat at Cheron"
-        },
-        {
-          "id": "STH_war_story.118",
+          "id": "STH_decision_events.682",
           "name_key": ""
         },
         {
-          "id": "STH_war_story.119",
+          "id": "STH_espionage.9000",
+          "name_key": "Intelligence Briefing"
+        },
+        {
+          "id": "STH_espionage.9001",
+          "name_key": "Counter-Intelligence Alert"
+        },
+        {
+          "id": "STH_espionage.9002",
+          "name_key": "Interference Exposed"
+        },
+        {
+          "id": "STH_espionage.9003",
+          "name_key": "Federation Council Hearing"
+        },
+        {
+          "id": "STH_espionage.9004",
+          "name_key": "Pattern of Interference"
+        },
+        {
+          "id": "STH_espionage_mechanic.900",
           "name_key": ""
         },
         {
-          "id": "STH_war_story.120",
-          "name_key": "Romulan Operational Briefing"
-        },
-        {
-          "id": "STH_war_story.121",
-          "name_key": "The Cheron Concentration"
-        },
-        {
-          "id": "STH_war_story.122",
-          "name_key": "The Cheron Trap"
-        },
-        {
-          "id": "STH_war_story.123",
-          "name_key": "The Cheron Feint"
-        },
-        {
-          "id": "STH_war_story.124",
+          "id": "STH_espionage_mechanic.901",
           "name_key": ""
         },
         {
-          "id": "STH_war_story.125",
+          "id": "STH_espionage_mechanic.902",
+          "name_key": "Compromised Transponder"
+        },
+        {
+          "id": "STH_espionage_mechanic.910",
           "name_key": ""
         },
         {
-          "id": "STH_war_story.126",
-          "name_key": "Cheron Reconsidered"
-        },
-        {
-          "id": "STH_war_story.127",
-          "name_key": "Shadows over Cheron"
-        },
-        {
-          "id": "STH_war_story.128",
-          "name_key": "Cheron Held in Reserve"
-        },
-        {
-          "id": "STH_war_story.129",
-          "name_key": "Earth Holds Back at Cheron"
-        },
-        {
-          "id": "STH_war_story.130",
-          "name_key": "A Federation Message after Cheron"
-        },
-        {
-          "id": "STH_war_story.131",
-          "name_key": "A Romulan Message after Cheron"
-        },
-        {
-          "id": "STH_war_story.132",
-          "name_key": "Romulan Message from the Shadows"
-        },
-        {
-          "id": "STH_war_story.133",
+          "id": "STH_espionage_mechanic.911",
           "name_key": ""
         },
         {
-          "id": "STH_war_story.134",
+          "id": "STH_espionage_mechanic.912",
+          "name_key": "Clean Exit"
+        },
+        {
+          "id": "STH_espionage_mechanic.9500",
           "name_key": ""
         },
         {
-          "id": "STH_war_story.135",
+          "id": "STH_espionage_mechanic.9501",
+          "name_key": "Tal Shiar Activity Detected"
+        },
+        {
+          "id": "STH_federation_flavour.9500",
+          "name_key": "Emergency Session of the Federation Council"
+        },
+        {
+          "id": "STH_federation_story.2256",
           "name_key": ""
         },
         {
-          "id": "STH_war_story.136",
+          "id": "STH_ferengi_mechanics.900",
           "name_key": ""
         },
         {
-          "id": "STH_war_story.137",
+          "id": "STH_ferengi_mechanics.901",
           "name_key": ""
         },
         {
-          "id": "STH_war_story.138",
+          "id": "STH_ferengi_mechanics.902",
           "name_key": ""
         },
         {
-          "id": "nomads.3002",
+          "id": "STH_ferengi_mechanics.903",
           "name_key": ""
         },
         {
-          "id": "nomads.6000",
+          "id": "STH_ferengi_mechanics.904",
+          "name_key": "A Ferengi Commercial Proposal"
+        },
+        {
+          "id": "STH_fix.1000",
           "name_key": ""
         },
         {
-          "id": "nomads.6998",
+          "id": "STH_fix.1001",
           "name_key": ""
         },
         {
-          "id": "sth_voth_distant_origin.1",
+          "id": "STH_fix.271",
           "name_key": ""
         },
         {
-          "id": "sth_voth_distant_origin.10",
-          "name_key": "The Fossil Discontinuity"
-        },
-        {
-          "id": "sth_voth_distant_origin.100",
-          "name_key": "The Blue World"
-        },
-        {
-          "id": "sth_voth_distant_origin.110",
-          "name_key": "Visitors from the Distant Origin"
-        },
-        {
-          "id": "sth_voth_distant_origin.120",
-          "name_key": "The Long-Range Expedition"
-        },
-        {
-          "id": "sth_voth_distant_origin.130",
+          "id": "STH_fix.272",
           "name_key": ""
         },
         {
-          "id": "sth_voth_distant_origin.20",
-          "name_key": "The Missing Cradle"
-        },
-        {
-          "id": "sth_voth_distant_origin.200",
-          "name_key": "The Verdict of the Ministry"
-        },
-        {
-          "id": "sth_voth_distant_origin.201",
+          "id": "STH_fix.279",
           "name_key": ""
         },
         {
-          "id": "sth_voth_distant_origin.30",
-          "name_key": "The Heresy Index"
-        },
-        {
-          "id": "sth_voth_distant_origin.300",
-          "name_key": "The Great Remembering"
-        },
-        {
-          "id": "sth_voth_distant_origin.310",
-          "name_key": "The Distant Origin Institute"
-        },
-        {
-          "id": "sth_voth_distant_origin.319",
+          "id": "STH_fix.280",
           "name_key": ""
         },
         {
-          "id": "sth_voth_distant_origin.320",
-          "name_key": "Envoys to the Cradle"
-        },
-        {
-          "id": "sth_voth_distant_origin.321",
-          "name_key": "The Distant Origin Accord"
-        },
-        {
-          "id": "sth_voth_distant_origin.330",
-          "name_key": "Children of the Distant Origin"
-        },
-        {
-          "id": "sth_voth_distant_origin.331",
-          "name_key": "A Measured Exchange"
-        },
-        {
-          "id": "sth_voth_distant_origin.332",
-          "name_key": "sth_voth_distant_origin.332.name"
-        },
-        {
-          "id": "sth_voth_distant_origin.400",
-          "name_key": "sth_voth_distant_origin.400.name"
-        },
-        {
-          "id": "sth_voth_distant_origin.410",
-          "name_key": "War Councils of the Ministry"
-        },
-        {
-          "id": "sth_voth_distant_origin.420",
-          "name_key": "The Claim to the Cradle"
-        },
-        {
-          "id": "sth_voth_distant_origin.421",
-          "name_key": "The Voth Claim Earth"
-        },
-        {
-          "id": "sth_voth_distant_origin.422",
-          "name_key": "The Cradle Claim Broadcast"
-        },
-        {
-          "id": "sth_voth_distant_origin.430",
-          "name_key": "The Ultimatum Prepared"
-        },
-        {
-          "id": "sth_voth_distant_origin.500",
-          "name_key": "The Ultimatum to the Cradle"
-        },
-        {
-          "id": "sth_voth_distant_origin.501",
-          "name_key": "The Voth Ultimatum"
-        },
-        {
-          "id": "sth_voth_distant_origin.502",
+          "id": "STH_fix.281",
           "name_key": ""
         },
         {
-          "id": "sth_voth_distant_origin.503",
-          "name_key": "The Cradle Without a Voice"
-        },
-        {
-          "id": "sth_voth_distant_origin.510",
-          "name_key": "Custodianship Offered"
-        },
-        {
-          "id": "sth_voth_distant_origin.511",
-          "name_key": "A Scientific Claim Only"
-        },
-        {
-          "id": "sth_voth_distant_origin.550",
-          "name_key": "The Cradle Reclaimed"
-        },
-        {
-          "id": "sth_voth_distant_origin.560",
-          "name_key": "The Cradle Denied"
-        },
-        {
-          "id": "sth_voth_distant_origin.570",
-          "name_key": "The Cradle Already Held"
-        },
-        {
-          "id": "sth_voth_distant_origin.600",
-          "name_key": "Doctrine Eternal"
-        },
-        {
-          "id": "sth_voth_distant_origin.610",
-          "name_key": "The Silence of the Archives"
-        },
-        {
-          "id": "sth_voth_distant_origin.620",
-          "name_key": "A Stable Lie"
-        },
-        {
-          "id": "sth_voth_distant_origin.621",
-          "name_key": "The Voth Withdraw"
-        },
-        {
-          "id": "sth_voth_distant_origin.90",
+          "id": "STH_fix.282",
           "name_key": ""
         },
         {
-          "id": "sth_voth_distant_origin.996",
+          "id": "STH_fix.283",
           "name_key": ""
         },
         {
-          "id": "sth_voth_distant_origin.998",
+          "id": "STH_fix.284",
           "name_key": ""
         },
         {
-          "id": "sth_voth_distant_origin.999",
+          "id": "STH_fix.285",
           "name_key": ""
         },
         {
-          "id": "sth_voth_great_journey.10",
+          "id": "STH_fix.286",
           "name_key": ""
         },
         {
-          "id": "sth_voth_great_journey.12",
+          "id": "STH_fix.287",
           "name_key": ""
         },
         {
-          "id": "sth_voth_great_journey.13",
+          "id": "STH_fix.288",
           "name_key": ""
         },
         {
-          "id": "sth_voth_great_journey.19",
+          "id": "STH_fix.289",
           "name_key": ""
         },
         {
-          "id": "sth_voth_great_journey.20",
+          "id": "STH_fix.290",
           "name_key": ""
         },
         {
-          "id": "sth_voth_great_journey.21",
+          "id": "STH_fix.291",
           "name_key": ""
         },
         {
-          "id": "sth_voth_great_journey.22",
+          "id": "STH_fix.292",
           "name_key": ""
         },
         {
-          "id": "sth_voth_great_journey.23",
+          "id": "STH_fix.293",
+          "name_key": ""
+        },
+        {
+          "id": "STH_fix.294",
+          "name_key": ""
+        },
+        {
+          "id": "STH_fix.999",
+          "name_key": ""
+        },
+        {
+          "id": "STH_galactic_features.30",
+          "name_key": ""
+        },
+        {
+          "id": "STH_griffin_incident.1",
+          "name_key": "The Griffin Incident"
+        },
+        {
+          "id": "STH_griffin_incident.10",
+          "name_key": "The Casefile Secured"
+        },
+        {
+          "id": "STH_griffin_incident.11",
+          "name_key": "An Officer Lost"
+        },
+        {
+          "id": "STH_griffin_incident.12",
+          "name_key": "A Partial Recovery"
+        },
+        {
+          "id": "STH_griffin_incident.13",
+          "name_key": "Quarantine Marker Deployed"
+        },
+        {
+          "id": "STH_griffin_incident.20",
+          "name_key": "The Griffin Casefile Reopened"
+        },
+        {
+          "id": "STH_griffin_incident.5",
+          "name_key": "The Mind Reflected"
+        },
+        {
+          "id": "STH_griffin_incident.6",
+          "name_key": "No Logical Exit"
+        },
+        {
+          "id": "STH_hero_mission.100",
+          "name_key": "Organize a diplomatic conference to Typhon Pact partner capital"
+        },
+        {
+          "id": "STH_hero_ship.69",
+          "name_key": ""
+        },
+        {
+          "id": "STH_hero_ship_design.400",
+          "name_key": ""
+        },
+        {
+          "id": "STH_hero_ship_design.401",
+          "name_key": ""
+        },
+        {
+          "id": "STH_klingon_flavour.9500",
+          "name_key": "Honour Demands an Answer"
+        },
+        {
+          "id": "STH_klingon_houses.3052",
+          "name_key": "Imperial War Muster"
+        },
+        {
+          "id": "STH_klingon_houses.3053",
+          "name_key": "Honours of the War"
+        },
+        {
+          "id": "STH_klingon_houses.3054",
+          "name_key": "A House Claims War Spoils"
+        },
+        {
+          "id": "STH_klingon_houses.3055",
+          "name_key": ""
+        },
+        {
+          "id": "STH_klingon_houses.3056",
+          "name_key": ""
+        },
+        {
+          "id": "STH_klingon_houses.352",
+          "name_key": ""
+        },
+        {
+          "id": "STH_klingon_houses.451",
+          "name_key": ""
+        },
+        {
+          "id": "STH_klingon_houses.452",
+          "name_key": ""
+        },
+        {
+          "id": "STH_klingon_houses.453",
+          "name_key": ""
+        },
+        {
+          "id": "STH_klingon_mechanics_new.176",
+          "name_key": ""
+        },
+        {
+          "id": "STH_klingon_mechanics_new.177",
+          "name_key": "State of the Great Houses"
+        },
+        {
+          "id": "STH_klingon_mechanics_new.178",
+          "name_key": ""
+        },
+        {
+          "id": "STH_klingon_mechanics_new.179",
+          "name_key": "A House Offers Its Strength"
+        },
+        {
+          "id": "STH_klingon_mechanics_new.180",
+          "name_key": "A House Presses Its Claim"
+        },
+        {
+          "id": "STH_klingon_mechanics_new.181",
+          "name_key": ""
+        },
+        {
+          "id": "STH_klingon_mechanics_new.182",
+          "name_key": "Rival Claims Before the Council"
+        },
+        {
+          "id": "STH_klingon_mechanics_new.183",
+          "name_key": ""
+        },
+        {
+          "id": "STH_klingon_mechanics_new.184",
+          "name_key": ""
+        },
+        {
+          "id": "STH_klingon_mechanics_new.185",
+          "name_key": ""
+        },
+        {
+          "id": "STH_lembatta.111",
+          "name_key": "Acheron Relay Observatory Operational"
+        },
+        {
+          "id": "STH_lembatta.112",
+          "name_key": "Veil Relay Stabilized"
+        },
+        {
+          "id": "STH_lembatta.113",
+          "name_key": "Havenfall Monitor Established"
+        },
+        {
+          "id": "STH_lembatta.114",
+          "name_key": "Lembatta Accord Field Office Established"
+        },
+        {
+          "id": "STH_lembatta.160",
+          "name_key": "Lembatta Expedition Log"
+        },
+        {
+          "id": "STH_lembatta.161",
+          "name_key": "Opportunity: Acheron Relay Observatory"
+        },
+        {
+          "id": "STH_lembatta.162",
+          "name_key": "Opportunity: Stabilize the Veil Relay"
+        },
+        {
+          "id": "STH_lembatta.163",
+          "name_key": "Opportunity: Establish a Havenfall Monitor"
+        },
+        {
+          "id": "STH_lembatta.164",
+          "name_key": "Opportunity: Establish the Lembatta Accord Field Office"
+        },
+        {
+          "id": "STH_lembatta.165",
+          "name_key": ""
+        },
+        {
+          "id": "STH_lembatta.170",
+          "name_key": "A Voice from the Acheron"
+        },
+        {
+          "id": "STH_lembatta.180",
+          "name_key": "The Silent Constellation"
+        },
+        {
+          "id": "STH_lembatta.190",
+          "name_key": "The Quarantine Ledger"
+        },
+        {
+          "id": "STH_lembatta.300",
+          "name_key": "The Acheron Record"
+        },
+        {
+          "id": "STH_lembatta.301",
+          "name_key": "The Renao Delegation"
+        },
+        {
+          "id": "STH_lembatta.302",
+          "name_key": "The Lembatta Accord"
+        },
+        {
+          "id": "STH_lembatta.310",
+          "name_key": "The Horizon Signal"
+        },
+        {
+          "id": "STH_lembatta.319",
+          "name_key": "Accord Patrol Requested"
+        },
+        {
+          "id": "STH_lembatta.320",
+          "name_key": "The Long Watch Begins"
+        },
+        {
+          "id": "STH_lembatta.321",
+          "name_key": "A Voice Beyond the Red Lanes"
+        },
+        {
+          "id": "STH_lembatta.322",
+          "name_key": "The Quarantine Margin"
+        },
+        {
+          "id": "STH_lembatta.323",
+          "name_key": "Horizon Cartography"
+        },
+        {
+          "id": "STH_lembatta.324",
+          "name_key": "The Long Watch Concludes"
+        },
+        {
+          "id": "STH_lembatta.325",
+          "name_key": "Lembatta Patrol Recalled"
+        },
+        {
+          "id": "STH_lembatta.326",
+          "name_key": "The Missing Flight Recorder"
+        },
+        {
+          "id": "STH_lembatta.327",
+          "name_key": "The Quiet Cartographer"
+        },
+        {
+          "id": "STH_lembatta.328",
+          "name_key": "The Relay's Unfinished Work"
+        },
+        {
+          "id": "STH_lembatta.329",
+          "name_key": "The Garden in the Dark"
+        },
+        {
+          "id": "STH_lembatta.330",
+          "name_key": "The Horizon Echo"
+        },
+        {
+          "id": "STH_lembatta.331",
+          "name_key": "The Acheron Watch"
+        },
+        {
+          "id": "STH_lembatta.332",
+          "name_key": "Accord Listening Post Complete"
+        },
+        {
+          "id": "STH_lembatta.333",
+          "name_key": "The Horizon Echo Resolved"
+        },
+        {
+          "id": "STH_lembatta.334",
+          "name_key": "Accord Construction Delayed"
+        },
+        {
+          "id": "STH_lembatta.335",
+          "name_key": "Horizon Analysis Delayed"
+        },
+        {
+          "id": "STH_lembatta_dig.1",
+          "name_key": "The Field Archive"
+        },
+        {
+          "id": "STH_lembatta_dig.2",
+          "name_key": "A Ledger of Survivors"
+        },
+        {
+          "id": "STH_lembatta_dig.3",
+          "name_key": "The Last Safe Cache"
+        },
+        {
+          "id": "STH_lembatta_dig.4",
+          "name_key": "STH_lembatta_dig.4.name"
+        },
+        {
+          "id": "STH_lembatta_dig.5",
+          "name_key": "STH_lembatta_dig.5.name"
+        },
+        {
+          "id": "STH_lembatta_dig.6",
+          "name_key": "STH_lembatta_dig.6.name"
+        },
+        {
+          "id": "STH_onaction.1021",
+          "name_key": ""
+        },
+        {
+          "id": "STH_onaction.1210",
+          "name_key": ""
+        },
+        {
+          "id": "STH_onaction.7087",
+          "name_key": ""
+        },
+        {
+          "id": "STH_onaction.7089",
+          "name_key": ""
+        },
+        {
+          "id": "STH_onaction.7090",
+          "name_key": ""
+        },
+        {
+          "id": "STH_performance.501",
+          "name_key": ""
+        },
+        {
+          "id": "STH_quadrant_isolation.1",
+          "name_key": ""
+        },
+        {
+          "id": "STH_quadrant_isolation.2",
+          "name_key": ""
+        },
+        {
+          "id": "STH_quadrant_isolation.3",
+          "name_key": ""
+        },
+        {
+          "id": "STH_quadrant_isolation.4",
+          "name_key": ""
+        },
+        {
+          "id": "STH_quadrant_isolation.5",
+          "name_key": ""
+        },
+        {
+          "id": "STH_quadrant_isolation.6",
+          "name_key": ""
+        },
+        {
+          "id": "STH_quadrant_isolation.7",
+          "name_key": ""
+        },
+        {
+          "id": "STH_quadrant_isolation.8",
+          "name_key": ""
+        },
+        {
+          "id": "STH_romulan_flavour.2000",
+          "name_key": ""
+        },
+        {
+          "id": "STH_romulan_flavour.2001",
+          "name_key": "The Garidian expansion"
+        },
+        {
+          "id": "STH_romulan_flavour.2002",
+          "name_key": ""
+        },
+        {
+          "id": "STH_romulan_flavour.9500",
+          "name_key": "Questions in the Senate"
+        },
+        {
+          "id": "STH_shipyards.2008",
+          "name_key": "Flagship disbanded"
+        },
+        {
+          "id": "STH_starbase_doctrine.1",
+          "name_key": ""
+        },
+        {
+          "id": "STH_starbase_doctrine.10",
+          "name_key": ""
+        },
+        {
+          "id": "STH_starbase_doctrine.2",
+          "name_key": ""
+        },
+        {
+          "id": "STH_subject.1",
+          "name_key": ""
+        },
+        {
+          "id": "STH_subject.2",
+          "name_key": "A Subject Seeks Our Support"
+        },
+        {
+          "id": "STH_subject.3",
+          "name_key": ""
+        },
+        {
+          "id": "STH_subject.4",
+          "name_key": ""
+        },
+        {
+          "id": "STH_tomed.16",
+          "name_key": ""
+        },
+        {
+          "id": "STH_tomed.39",
+          "name_key": "Colony receives help"
+        },
+        {
+          "id": "STH_tomed.50",
+          "name_key": ""
+        },
+        {
+          "id": "STH_tomed.54",
+          "name_key": ""
+        },
+        {
+          "id": "STH_tomed.55",
+          "name_key": "The Tomed Incident"
+        },
+        {
+          "id": "STH_typhon_cluster.1",
+          "name_key": ""
+        },
+        {
+          "id": "STH_typhon_cluster.2",
+          "name_key": "Opportunity: The Typhon Expanse"
+        },
+        {
+          "id": "STH_typhon_cluster.3",
+          "name_key": "Into the Typhon Expanse"
+        },
+        {
+          "id": "STH_typhon_cluster.4",
+          "name_key": "A Deliberate Wake"
+        },
+        {
+          "id": "STH_typhon_cluster.5",
+          "name_key": "The Quiet Boundary"
+        },
+        {
+          "id": "STH_typhon_cluster.6",
+          "name_key": "Typhon Survey Complete"
+        },
+        {
+          "id": "STH_typhon_cluster.7",
+          "name_key": "Typhon Survey Recalled"
+        },
+        {
+          "id": "STH_undine_mechanics.7000",
+          "name_key": "Aggressive Cells Detected"
+        },
+        {
+          "id": "STH_undine_mechanics.7002",
+          "name_key": "Undine Cellular Contamination"
+        },
+        {
+          "id": "STH_undine_story.9500",
+          "name_key": "Brood Node Severed"
+        },
+        {
+          "id": "STH_war_diplomacy.10",
+          "name_key": "Open Hailing Frequencies"
+        },
+        {
+          "id": "STH_war_diplomacy.20",
+          "name_key": "A Matter for the Council"
+        },
+        {
+          "id": "STH_war_diplomacy.30",
+          "name_key": "The Cost of Continuing"
+        },
+        {
+          "id": "sth_start.10015",
+          "name_key": "Multiplayer Naval Cap Setup"
+        },
+        {
+          "id": "sth_start.1300",
+          "name_key": "The classic Birth of the Federation country expansion"
+        },
+        {
+          "id": "sth_voth_great_journey.24",
+          "name_key": ""
+        },
+        {
+          "id": "sth_voth_great_journey.25",
+          "name_key": ""
+        },
+        {
+          "id": "sth_voth_great_journey.40",
+          "name_key": "Wayline Anchor Lost"
+        },
+        {
+          "id": "theFederation.1219",
           "name_key": ""
         }
       ],
       "removed": [
         {
-          "id": "nomads.7005",
-          "name_key": "Drifters and Settlers"
+          "id": "STH_onaction.7068",
+          "name_key": ""
         }
       ],
       "modified": [
         {
-          "id": "STH_hirogen_mechanics.3",
+          "id": "STH_andromeda.1012",
           "changed_fields": [
-            "name",
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_andromeda.1115",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_andromeda.1215",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_arsenalOfFreedom_event.2",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Arsenal of Freedom"
+        },
+        {
+          "id": "STH_arsenalOfFreedom_event.5",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Arsenal of Freedom"
+        },
+        {
+          "id": "STH_arsenalOfFreedom_event.6",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Arsenal of Freedom"
+        },
+        {
+          "id": "STH_borg.1001",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_borg.1004",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Unicomplex Reclamation"
+        },
+        {
+          "id": "STH_components.5070",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_components.5071",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_components.5077",
+          "changed_fields": [
+            "pic"
+          ],
+          "name_key": "Diplomatic Mission Complete"
+        },
+        {
+          "id": "STH_components.5078",
+          "changed_fields": [
+            "pic"
+          ],
+          "name_key": "Flagship Diplomatic Visit"
+        },
+        {
+          "id": "STH_dangerous_technology.32",
+          "changed_fields": [
+            "name"
+          ],
+          "name_key": "Romulans Backdown"
+        },
+        {
+          "id": "STH_dominion_flavour.1102",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Infiltrator Found"
+        },
+        {
+          "id": "STH_dominion_flavour.1103",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Infiltrator Found"
+        },
+        {
+          "id": "STH_dominion_war.35",
+          "changed_fields": [
             "snip"
           ],
-          "name_key": "The hunt goes well"
+          "name_key": "A Necessary Lie"
+        },
+        {
+          "id": "STH_dominion_war.36",
+          "changed_fields": [
+            "snip"
+          ],
+          "name_key": "The Deception Exposed"
+        },
+        {
+          "id": "STH_dominion_war.40",
+          "changed_fields": [
+            "snip"
+          ],
+          "name_key": "Cardassia Pays the Price"
+        },
+        {
+          "id": "STH_espionage_mechanic.12",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Diplomatic Incident"
+        },
+        {
+          "id": "STH_espionage_mechanic.14",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Diplomatic Incident Avoided"
+        },
+        {
+          "id": "STH_espionage_mechanic.16",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Public Infrastructure Targeted"
+        },
+        {
+          "id": "STH_espionage_mechanic.18",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Sabotage Attempt Prevented"
+        },
+        {
+          "id": "STH_espionage_mechanic.192",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Infiltrator Found"
+        },
+        {
+          "id": "STH_espionage_mechanic.193",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Undine Agent Found"
+        },
+        {
+          "id": "STH_espionage_mechanic.20",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Military Assets Sabotaged"
+        },
+        {
+          "id": "STH_espionage_mechanic.22",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Sabotage Attempt Prevented"
+        },
+        {
+          "id": "STH_espionage_mechanic.24",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Leader Killed!"
+        },
+        {
+          "id": "STH_espionage_mechanic.26",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Assassination Attempt Prevented"
+        },
+        {
+          "id": "STH_expedition.9999",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Star Cluster Expeditions"
+        },
+        {
+          "id": "STH_expedition_situations.2",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Star Cluster Expeditions"
+        },
+        {
+          "id": "STH_expedition_situations.50",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Expedition to the Lembatta Cluster"
+        },
+        {
+          "id": "STH_expedition_situations.55",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Expedition to Cluster Complete"
+        },
+        {
+          "id": "STH_federation_council.102",
+          "changed_fields": [
+            "opts"
+          ],
+          "name_key": "Federation Council Session"
+        },
+        {
+          "id": "STH_federation_flavour.144",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Transfer Leaders to Starfleet"
+        },
+        {
+          "id": "STH_federation_story.1045",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Cry havoc, and let slip the Dogs of War"
+        },
+        {
+          "id": "STH_federation_story.2202",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_federation_story.2209",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_fix.67",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_galactic_war.121",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Remain Klingon"
+        },
+        {
+          "id": "STH_hero_mission.1",
+          "changed_fields": [
+            "opts"
+          ],
+          "name_key": "Diplomatic Outreach"
+        },
+        {
+          "id": "STH_hero_ship.5",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "NX-01 Enterprise Refit"
         },
         {
           "id": "STH_hirogen_mechanics.4",
           "changed_fields": [
-            "name",
             "snip"
           ],
           "name_key": "The hunt is successful"
         },
         {
-          "id": "STH_hirogen_mechanics.5",
-          "changed_fields": [
-            "name",
-            "snip"
-          ],
-          "name_key": "The prey was too cunning"
-        },
-        {
-          "id": "STH_war_story.39",
-          "changed_fields": [
-            "pic"
-          ],
-          "name_key": "Attack in Progress"
-        },
-        {
-          "id": "STH_war_story.53",
-          "changed_fields": [
-            "snip"
-          ],
-          "name_key": "Battle of [planet_cheron.GetName]"
-        },
-        {
-          "id": "STH_war_story.54",
-          "changed_fields": [
-            "set_flags"
-          ],
-          "name_key": "Battle of [planet_cheron.GetName]"
-        },
-        {
-          "id": "STH_war_story.55",
+          "id": "STH_klingon_houses.3050",
           "changed_fields": [
             "set_flags"
           ],
           "name_key": ""
         },
         {
-          "id": "STH_war_story.56",
+          "id": "STH_klingon_houses.3051",
           "changed_fields": [
-            "set_flags",
-            "snip"
+            "set_flags"
           ],
-          "name_key": "Victory at [planet_cheron.GetName]"
+          "name_key": ""
         },
         {
-          "id": "STH_war_story.99",
+          "id": "STH_klingon_houses.351",
           "changed_fields": [
             "name",
-            "set_flags",
+            "opts",
             "snip"
           ],
-          "name_key": "To Secure the Peace"
+          "name_key": "A Great House Claims a New System"
         },
         {
-          "id": "preftl.2035",
+          "id": "STH_lembatta.101",
+          "changed_fields": [
+            "opts"
+          ],
+          "name_key": "The Beacon Speaks"
+        },
+        {
+          "id": "STH_lembatta.102",
+          "changed_fields": [
+            "opts"
+          ],
+          "name_key": "Fragments of the Lost"
+        },
+        {
+          "id": "STH_lembatta.103",
+          "changed_fields": [
+            "opts",
+            "set_flags"
+          ],
+          "name_key": "The Sable Moon Archive"
+        },
+        {
+          "id": "STH_lembatta.104",
+          "changed_fields": [
+            "opts"
+          ],
+          "name_key": "The Veil Relay"
+        },
+        {
+          "id": "STH_lembatta.105",
+          "changed_fields": [
+            "opts",
+            "snip"
+          ],
+          "name_key": "Havenfall"
+        },
+        {
+          "id": "STH_lembatta.205",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_lembatta.210",
+          "changed_fields": [
+            "snip"
+          ],
+          "name_key": "The Renao Emerge"
+        },
+        {
+          "id": "STH_mia_event.3",
+          "changed_fields": [
+            "snip"
+          ],
+          "name_key": "Repair ship fails to leave on time"
+        },
+        {
+          "id": "STH_mia_event.6",
+          "changed_fields": [
+            "name",
+            "snip"
+          ],
+          "name_key": "[STH_mia_fleet_1.GetName] repaired"
+        },
+        {
+          "id": "STH_militaryship.21",
           "changed_fields": [
             "pic"
           ],
-          "name_key": "Apocalypse Now"
+          "name_key": "Planetary Devastation Relief Mission"
+        },
+        {
+          "id": "STH_mirror_invasion.21",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Broken Mirror"
+        },
+        {
+          "id": "STH_mirror_invasion.31",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Broken Mirror"
+        },
+        {
+          "id": "STH_mirror_invasion.41",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Broken Mirror"
+        },
+        {
+          "id": "STH_naval_museum.2000",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_nemesis.52",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Incoming hail from Remus"
+        },
+        {
+          "id": "STH_nemesis.53",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "The Reman Free State"
+        },
+        {
+          "id": "STH_nemesis.55",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Reman freedom granted"
+        },
+        {
+          "id": "STH_onaction.7074",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_onaction.7075",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_onaction.7077",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_performance.2",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_relics_flavour.2103",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Leader Killed!"
+        },
+        {
+          "id": "STH_shipyards.101",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "NX-Class Explorer"
+        },
+        {
+          "id": "STH_shipyards.120",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Constitution-Class Cruiser"
+        },
+        {
+          "id": "STH_shipyards.130",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Excelsior-Class Starship"
+        },
+        {
+          "id": "STH_shipyards.133",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Constitution II-Class Starship"
+        },
+        {
+          "id": "STH_shipyards.140",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Ambassador-Class Explorer"
+        },
+        {
+          "id": "STH_shipyards.150",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Galaxy-Class Explorer"
+        },
+        {
+          "id": "STH_shipyards.160",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Sovereign-Class Assault Crusier"
+        },
+        {
+          "id": "STH_shipyards.163",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Odyssey-Class Command Crusier"
+        },
+        {
+          "id": "STH_shipyards.170",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "To Boldly Go..."
+        },
+        {
+          "id": "STH_shipyards.20",
+          "changed_fields": [
+            "opts"
+          ],
+          "name_key": "Flagship Retirement"
+        },
+        {
+          "id": "STH_shipyards.30",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Available Starship designs"
+        },
+        {
+          "id": "STH_shipyards.300",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Available Starship designs"
+        },
+        {
+          "id": "STH_shipyards.31",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Available Starship designs"
+        },
+        {
+          "id": "STH_shipyards.32",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Available Starship designs"
+        },
+        {
+          "id": "STH_shipyards.33",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Available Starship designs"
+        },
+        {
+          "id": "STH_shipyards.4001",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Available Starship designs"
+        },
+        {
+          "id": "STH_shipyards.4002",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Available Starship designs"
+        },
+        {
+          "id": "STH_shipyards.4003",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Available Starship designs"
+        },
+        {
+          "id": "STH_shipyards.5001",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Available Starship designs"
+        },
+        {
+          "id": "STH_shipyards.5002",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Available Starship designs"
+        },
+        {
+          "id": "STH_shipyards.5003",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Available Starship designs"
+        },
+        {
+          "id": "STH_tomed.12",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "The Tomed Incident"
+        },
+        {
+          "id": "STH_tomed.2",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Tal Shiar Report"
+        },
+        {
+          "id": "STH_tomed.28",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "The Treaty of Algeron"
+        },
+        {
+          "id": "STH_tomed.3",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Starfleet Security Report"
+        },
+        {
+          "id": "STH_tomed.5",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Federation Backs Down"
+        },
+        {
+          "id": "STH_united_earth_story.25",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_war_story.121",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "The Cheron Concentration"
+        },
+        {
+          "id": "STH_war_story.122",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "The Cheron Trap"
+        },
+        {
+          "id": "STH_war_story.3",
+          "changed_fields": [
+            "name",
+            "snip"
+          ],
+          "name_key": "Distress call from [event_target:rom_earth_war_unity_ship_1.GetName]"
+        },
+        {
+          "id": "observer.82",
+          "changed_fields": [
+            "snip"
+          ],
+          "name_key": "Machine Uprising Conquers Their Makers"
+        },
+        {
+          "id": "observer.83",
+          "changed_fields": [
+            "snip"
+          ],
+          "name_key": "[current_uprising_originator.GetAdj] Machine Uprising Quelled"
         },
         {
           "id": "sth_start.1001",
           "changed_fields": [
-            "opts"
+            "opts",
+            "set_flags"
           ],
           "name_key": "The Q Continuum"
         },
         {
-          "id": "sth_start.50",
-          "changed_fields": [
-            "name"
-          ],
-          "name_key": "Good. Let them keep watching the wrong stars."
-        },
-        {
-          "id": "sth_voth_great_journey.11",
+          "id": "sth_start.10014",
           "changed_fields": [
             "set_flags"
           ],
           "name_key": ""
+        },
+        {
+          "id": "sth_start.999",
+          "changed_fields": [
+            "snip"
+          ],
+          "name_key": "What's new in ST Horizons"
+        },
+        {
+          "id": "sth_voth_distant_origin.120",
+          "changed_fields": [
+            "snip"
+          ],
+          "name_key": "The Long-Range Expedition"
+        },
+        {
+          "id": "sth_voth_distant_origin.332",
+          "changed_fields": [
+            "snip"
+          ],
+          "name_key": "sth_voth_distant_origin.332.name"
+        },
+        {
+          "id": "sth_voth_great_journey.19",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "theFederation.10",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "The United Federation of Planets"
+        },
+        {
+          "id": "theFederation.11",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "The United Federation of Planets"
+        },
+        {
+          "id": "theFederation.118",
+          "changed_fields": [
+            "opts"
+          ],
+          "name_key": "[From.GetName] Joins the [Root.GetName]"
+        },
+        {
+          "id": "theFederation.5",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "The United Federation of Planets"
+        },
+        {
+          "id": "theFederation.9",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "The United Federation of Planets"
         }
       ]
     },
     "ships": {
-      "old_count": 440,
+      "old_count": 439,
       "new_count": 439,
       "added": [],
-      "removed": [
-        {
-          "id": "paladin_ship",
-          "name_key": "paladin_ship"
-        }
-      ],
+      "removed": [],
       "modified": [
         {
-          "id": "civilian_arkship_tier_1",
+          "id": "deep_space_starbase",
           "changed_fields": [
-            "attachment_count",
-            "default_model",
-            "graphical_culture",
-            "has_model",
-            "model_factions",
-            "model_source"
+            "class",
+            "is_space_station"
           ],
-          "name_key": "civilian_arkship_tier_1"
+          "name_key": "deep_space_starbase"
         },
         {
-          "id": "civilian_arkship_tier_2",
+          "id": "fed_carrier_engle",
           "changed_fields": [
-            "attachment_count",
-            "default_model",
-            "graphical_culture",
-            "has_model",
-            "model_factions",
-            "model_source"
+            "size_multiplier"
           ],
-          "name_key": "civilian_arkship_tier_2"
+          "name_key": "fed_carrier_engle"
         },
         {
-          "id": "civilian_arkship_tier_3",
+          "id": "fed_carrier_minuteman",
           "changed_fields": [
-            "attachment_count",
-            "default_model",
-            "graphical_culture",
-            "has_model",
-            "model_factions",
-            "model_source"
+            "size_multiplier"
           ],
-          "name_key": "civilian_arkship_tier_3"
+          "name_key": "fed_carrier_minuteman"
         },
         {
-          "id": "dimensional_horror",
+          "id": "fed_carrier_ptolomy",
           "changed_fields": [
-            "attachment_count",
-            "default_model",
-            "has_model",
-            "model_factions",
-            "model_source"
+            "size_multiplier"
           ],
-          "name_key": "dimensional_horror"
+          "name_key": "fed_carrier_ptolomy"
         },
         {
-          "id": "dimensional_portal_ed",
+          "id": "fed_carrier_sarajevo",
           "changed_fields": [
-            "default_model",
-            "has_model",
-            "model_factions",
-            "model_source"
+            "size_multiplier"
           ],
-          "name_key": "dimensional_portal_ed"
+          "name_key": "fed_carrier_sarajevo"
         },
         {
-          "id": "military_arkship_champions_forge",
+          "id": "fed_exploration_cruiser_ambassador",
           "changed_fields": [
-            "graphical_culture"
+            "base_buildtime",
+            "modifier",
+            "resources",
+            "size_multiplier"
           ],
-          "name_key": "military_arkship_champions_forge"
+          "name_key": "fed_exploration_cruiser_ambassador"
         },
         {
-          "id": "military_arkship_tier_1",
+          "id": "nor_starbase_nor",
           "changed_fields": [
-            "attachment_count",
-            "default_model",
-            "graphical_culture",
-            "has_model",
-            "model_factions",
-            "model_source"
+            "class",
+            "is_space_station"
           ],
-          "name_key": "military_arkship_tier_1"
+          "name_key": "nor_starbase_nor"
         },
         {
-          "id": "military_arkship_tier_2",
+          "id": "research_starbase",
           "changed_fields": [
-            "attachment_count",
-            "default_model",
-            "graphical_culture",
-            "has_model",
-            "model_factions",
-            "model_source"
+            "class",
+            "is_space_station"
           ],
-          "name_key": "military_arkship_tier_2"
-        },
-        {
-          "id": "military_arkship_tier_3",
-          "changed_fields": [
-            "attachment_count",
-            "default_model",
-            "graphical_culture",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "military_arkship_tier_3"
-        },
-        {
-          "id": "military_station_large",
-          "changed_fields": [
-            "default_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "military_station_large"
-        },
-        {
-          "id": "military_station_small",
-          "changed_fields": [
-            "default_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "military_station_small"
-        },
-        {
-          "id": "nomads_constructor",
-          "changed_fields": [
-            "prerequisites"
-          ],
-          "name_key": "nomads_constructor"
-        },
-        {
-          "id": "nomads_engineer_vessel",
-          "changed_fields": [
-            "default_model",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "nomads_engineer_vessel"
-        },
-        {
-          "id": "science_arkship_tier_1",
-          "changed_fields": [
-            "attachment_count",
-            "default_model",
-            "graphical_culture",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "science_arkship_tier_1"
-        },
-        {
-          "id": "science_arkship_tier_2",
-          "changed_fields": [
-            "attachment_count",
-            "default_model",
-            "graphical_culture",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "science_arkship_tier_2"
-        },
-        {
-          "id": "science_arkship_tier_3",
-          "changed_fields": [
-            "attachment_count",
-            "default_model",
-            "graphical_culture",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "science_arkship_tier_3"
-        },
-        {
-          "id": "space_ark",
-          "changed_fields": [
-            "default_model",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "space_ark"
-        },
-        {
-          "id": "space_dragon_baby",
-          "changed_fields": [
-            "default_model",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "space_dragon_baby"
-        },
-        {
-          "id": "space_dragon_blue",
-          "changed_fields": [
-            "default_model",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "space_dragon_blue"
-        },
-        {
-          "id": "space_dragon_red",
-          "changed_fields": [
-            "default_model",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "space_dragon_red"
-        },
-        {
-          "id": "starbase_exd",
-          "changed_fields": [
-            "default_model",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "starbase_exd"
-        },
-        {
-          "id": "starbase_exd_0",
-          "changed_fields": [
-            "default_model",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "starbase_exd_0"
-        },
-        {
-          "id": "starbase_fe_outpost",
-          "changed_fields": [
-            "default_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "starbase_fe_outpost"
-        },
-        {
-          "id": "stellarite",
-          "changed_fields": [
-            "default_model",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "stellarite"
-        },
-        {
-          "id": "wraith_01_blue",
-          "changed_fields": [
-            "default_model",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "wraith_01_blue"
-        },
-        {
-          "id": "wraith_01_red",
-          "changed_fields": [
-            "default_model",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "wraith_01_red"
-        },
-        {
-          "id": "wraith_01_yellow",
-          "changed_fields": [
-            "default_model",
-            "has_model",
-            "model_factions",
-            "model_source"
-          ],
-          "name_key": "wraith_01_yellow"
+          "name_key": "research_starbase"
         }
       ]
     },
     "buildings": {
-      "old_count": 661,
+      "old_count": 665,
       "new_count": 665,
-      "added": [
+      "added": [],
+      "removed": [],
+      "modified": [
+        {
+          "id": "building_capital_2",
+          "changed_fields": [
+            "modifier",
+            "potential"
+          ],
+          "name_key": "building_capital_2"
+        },
+        {
+          "id": "building_capital_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_capital_3"
+        },
+        {
+          "id": "building_capital_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_capital_4"
+        },
+        {
+          "id": "building_capital_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_capital_5"
+        },
+        {
+          "id": "building_capital_confederacy_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_capital_confederacy_3"
+        },
+        {
+          "id": "building_capital_confederacy_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_capital_confederacy_4"
+        },
+        {
+          "id": "building_capital_confederacy_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_capital_confederacy_5"
+        },
+        {
+          "id": "building_capital_terran_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_capital_terran_3"
+        },
+        {
+          "id": "building_capital_terran_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_capital_terran_4"
+        },
+        {
+          "id": "building_capital_terran_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_capital_terran_5"
+        },
         {
           "id": "building_city_ship_capital_1",
+          "changed_fields": [
+            "modifier"
+          ],
           "name_key": "building_city_ship_capital_1"
         },
         {
           "id": "building_city_ship_capital_2",
+          "changed_fields": [
+            "modifier"
+          ],
           "name_key": "building_city_ship_capital_2"
         },
         {
           "id": "building_city_ship_capital_3",
+          "changed_fields": [
+            "modifier"
+          ],
           "name_key": "building_city_ship_capital_3"
         },
         {
           "id": "building_city_ship_capital_4",
+          "changed_fields": [
+            "modifier"
+          ],
           "name_key": "building_city_ship_capital_4"
-        }
-      ],
-      "removed": [],
-      "modified": [
+        },
         {
           "id": "building_city_ship_capital_5",
           "changed_fields": [
-            "building_sets",
-            "icon_key",
-            "potential"
+            "modifier"
           ],
           "name_key": "building_city_ship_capital_5"
         },
         {
-          "id": "building_galactic_institute_VOT",
+          "id": "building_cloning_capital_2",
           "changed_fields": [
-            "potential"
+            "modifier"
           ],
-          "name_key": "building_galactic_institute_VOT"
+          "name_key": "building_cloning_capital_2"
+        },
+        {
+          "id": "building_cloning_capital_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_cloning_capital_3"
+        },
+        {
+          "id": "building_cloning_capital_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_cloning_capital_4"
+        },
+        {
+          "id": "building_cloning_capital_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_cloning_capital_5"
+        },
+        {
+          "id": "building_colony_shelter",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_colony_shelter"
+        },
+        {
+          "id": "building_commercial_capital_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_commercial_capital_3"
+        },
+        {
+          "id": "building_commercial_capital_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_commercial_capital_4"
+        },
+        {
+          "id": "building_commercial_capital_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_commercial_capital_5"
+        },
+        {
+          "id": "building_deployment_post",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_deployment_post"
+        },
+        {
+          "id": "building_embassy_capital_2",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_embassy_capital_2"
+        },
+        {
+          "id": "building_embassy_capital_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_embassy_capital_3"
+        },
+        {
+          "id": "building_embassy_capital_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_embassy_capital_4"
+        },
+        {
+          "id": "building_embassy_capital_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_embassy_capital_5"
+        },
+        {
+          "id": "building_ferengi_bar",
+          "changed_fields": [
+            "modifier",
+            "resources"
+          ],
+          "name_key": "building_ferengi_bar"
+        },
+        {
+          "id": "building_ferengi_holosuite",
+          "changed_fields": [
+            "modifier",
+            "resources"
+          ],
+          "name_key": "building_ferengi_holosuite"
+        },
+        {
+          "id": "building_forge_capital_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_forge_capital_3"
+        },
+        {
+          "id": "building_forge_capital_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_forge_capital_4"
+        },
+        {
+          "id": "building_forge_capital_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_forge_capital_5"
+        },
+        {
+          "id": "building_link_capital_2",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_link_capital_2"
+        },
+        {
+          "id": "building_machine_capital_2",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_machine_capital_2"
+        },
+        {
+          "id": "building_machine_capital_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_machine_capital_3"
+        },
+        {
+          "id": "building_machine_capital_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_machine_capital_4"
+        },
+        {
+          "id": "building_machine_capital_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_machine_capital_5"
+        },
+        {
+          "id": "building_menagerie_capital_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_menagerie_capital_5"
+        },
+        {
+          "id": "building_military_capital_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_military_capital_3"
+        },
+        {
+          "id": "building_military_capital_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_military_capital_4"
+        },
+        {
+          "id": "building_military_capital_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_military_capital_5"
         },
         {
           "id": "building_orbital_capital_1",
           "changed_fields": [
-            "potential"
+            "modifier"
           ],
           "name_key": "building_orbital_capital_1"
         },
         {
           "id": "building_orbital_capital_2",
           "changed_fields": [
-            "potential"
+            "modifier"
           ],
           "name_key": "building_orbital_capital_2"
         },
         {
           "id": "building_orbital_capital_3",
           "changed_fields": [
-            "potential"
+            "modifier"
           ],
           "name_key": "building_orbital_capital_3"
         },
         {
           "id": "building_orbital_capital_4",
           "changed_fields": [
-            "potential"
+            "modifier"
           ],
           "name_key": "building_orbital_capital_4"
         },
         {
           "id": "building_orbital_capital_5",
           "changed_fields": [
-            "potential"
+            "modifier"
           ],
           "name_key": "building_orbital_capital_5"
         },
         {
-          "id": "space_building_military_camp_1_voth",
+          "id": "building_penal_capital_2",
           "changed_fields": [
-            "building_sets",
-            "potential"
+            "modifier"
           ],
-          "name_key": "space_building_military_camp_1_voth"
+          "name_key": "building_penal_capital_2"
         },
         {
-          "id": "space_building_planetary_shield_1_voth",
+          "id": "building_penal_capital_3",
           "changed_fields": [
-            "building_sets",
-            "potential"
+            "modifier"
           ],
-          "name_key": "space_building_planetary_shield_1_voth"
+          "name_key": "building_penal_capital_3"
+        },
+        {
+          "id": "building_penal_capital_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_penal_capital_4"
+        },
+        {
+          "id": "building_penal_capital_rure_2",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_penal_capital_rure_2"
+        },
+        {
+          "id": "building_penal_slave_colony_2",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_penal_slave_colony_2"
+        },
+        {
+          "id": "building_penal_slave_colony_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_penal_slave_colony_3"
+        },
+        {
+          "id": "building_penal_slave_colony_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_penal_slave_colony_4"
+        },
+        {
+          "id": "building_penal_slave_colony_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_penal_slave_colony_5"
+        },
+        {
+          "id": "building_private_mining_consortium",
+          "changed_fields": [
+            "modifier",
+            "resources"
+          ],
+          "name_key": "building_private_mining_consortium"
+        },
+        {
+          "id": "building_religious_capital_2",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_religious_capital_2"
+        },
+        {
+          "id": "building_religious_capital_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_religious_capital_3"
+        },
+        {
+          "id": "building_religious_capital_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_religious_capital_4"
+        },
+        {
+          "id": "building_religious_capital_hurq_2",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_religious_capital_hurq_2"
+        },
+        {
+          "id": "building_religious_capital_hurq_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_religious_capital_hurq_3"
+        },
+        {
+          "id": "building_religious_capital_hurq_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_religious_capital_hurq_4"
+        },
+        {
+          "id": "building_religious_capital_klingon_2",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_religious_capital_klingon_2"
+        },
+        {
+          "id": "building_religious_capital_vulcan_2",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_religious_capital_vulcan_2"
+        },
+        {
+          "id": "building_resort_capital_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_resort_capital_3"
+        },
+        {
+          "id": "building_resort_capital_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_resort_capital_4"
+        },
+        {
+          "id": "building_resort_capital_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_resort_capital_5"
+        },
+        {
+          "id": "building_secret_1_dominion",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_secret_1_dominion"
+        },
+        {
+          "id": "building_secret_2_cardassian",
+          "changed_fields": [
+            "allow"
+          ],
+          "name_key": "building_secret_2_cardassian"
+        },
+        {
+          "id": "building_university_capital_2",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_university_capital_2"
+        },
+        {
+          "id": "building_university_capital_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_university_capital_3"
+        },
+        {
+          "id": "building_university_capital_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_university_capital_4"
+        },
+        {
+          "id": "building_university_capital_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_university_capital_5"
+        },
+        {
+          "id": "building_war_factory",
+          "changed_fields": [
+            "modifier",
+            "resources"
+          ],
+          "name_key": "building_war_factory"
+        },
+        {
+          "id": "building_wilderness_capital_2",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "building_wilderness_capital_2"
         }
       ]
     },
@@ -899,91 +2130,323 @@
       "removed": [],
       "modified": [
         {
-          "id": "district_ark_forever_cruise",
+          "id": "district_city",
           "changed_fields": [
-            "potential"
+            "modifier"
           ],
-          "name_key": "district_ark_forever_cruise"
+          "name_key": "district_city"
         },
         {
-          "id": "district_farming_hydroponic",
+          "id": "district_city_slums",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "district_city_slums"
+        },
+        {
+          "id": "district_city_village",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "district_city_village"
+        },
+        {
+          "id": "district_domed_city",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "district_domed_city"
+        },
+        {
+          "id": "district_generator",
           "changed_fields": [
             "potential"
           ],
-          "name_key": "district_farming_hydroponic"
+          "name_key": "district_generator"
+        },
+        {
+          "id": "district_great_link",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "district_great_link"
+        },
+        {
+          "id": "district_habitation_node",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "district_habitation_node"
+        },
+        {
+          "id": "district_hive_habitat",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "district_hive_habitat"
+        },
+        {
+          "id": "district_nexus",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "district_nexus"
+        },
+        {
+          "id": "district_orbital_city",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "district_orbital_city"
+        },
+        {
+          "id": "district_underground_city",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "district_underground_city"
         }
       ]
     },
     "traits": {
       "old_count": 464,
-      "new_count": 464,
-      "added": [],
-      "removed": [],
-      "modified": [
+      "new_count": 465,
+      "added": [
         {
-          "id": "trait_pc_ark_preference",
-          "changed_fields": [
-            "modifier"
-          ],
-          "name_key": "trait_pc_ark_preference"
-        },
-        {
-          "id": "trait_pc_assimilated_preference",
-          "changed_fields": [
-            "modifier"
-          ],
-          "name_key": "trait_pc_assimilated_preference"
-        },
-        {
-          "id": "trait_pc_continental_preference",
-          "changed_fields": [
-            "modifier"
-          ],
-          "name_key": "trait_pc_continental_preference"
-        },
-        {
-          "id": "trait_pc_desert_preference",
-          "changed_fields": [
-            "modifier"
-          ],
-          "name_key": "trait_pc_desert_preference"
-        },
-        {
-          "id": "trait_pc_helix_preference",
-          "changed_fields": [
-            "modifier"
-          ],
-          "name_key": "trait_pc_helix_preference"
-        },
-        {
-          "id": "trait_pc_hunters_lodge_preference",
-          "changed_fields": [
-            "modifier"
-          ],
-          "name_key": "trait_pc_hunters_lodge_preference"
-        },
-        {
-          "id": "trait_pc_unimatrix_preference",
-          "changed_fields": [
-            "modifier"
-          ],
-          "name_key": "trait_pc_unimatrix_preference"
+          "id": "trait_robot_aquatic",
+          "name_key": "trait_robot_aquatic"
         }
-      ]
+      ],
+      "removed": [],
+      "modified": []
     },
     "traditions": {
       "old_count": 450,
-      "new_count": 450,
-      "added": [],
+      "new_count": 457,
+      "added": [
+        {
+          "id": "tr_nanotech_1",
+          "name_key": "tr_nanotech_1"
+        },
+        {
+          "id": "tr_nanotech_2",
+          "name_key": "tr_nanotech_2"
+        },
+        {
+          "id": "tr_nanotech_3",
+          "name_key": "tr_nanotech_3"
+        },
+        {
+          "id": "tr_nanotech_4",
+          "name_key": "tr_nanotech_4"
+        },
+        {
+          "id": "tr_nanotech_5",
+          "name_key": "tr_nanotech_5"
+        },
+        {
+          "id": "tr_nanotech_adopt",
+          "name_key": "tr_nanotech_adopt"
+        },
+        {
+          "id": "tr_nanotech_finish",
+          "name_key": "tr_nanotech_finish"
+        }
+      ],
       "removed": [],
-      "modified": []
+      "modified": [
+        {
+          "id": "tr_adaptability_adaptive_ecology",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_adaptability_adaptive_ecology"
+        },
+        {
+          "id": "tr_connectivity_borg_adopt",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_connectivity_borg_adopt"
+        },
+        {
+          "id": "tr_cunning_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_cunning_5"
+        },
+        {
+          "id": "tr_diplomacy_insider_trading",
+          "changed_fields": [
+            "tradition_swap"
+          ],
+          "name_key": "tr_diplomacy_insider_trading"
+        },
+        {
+          "id": "tr_diplomacy_secure_shipping",
+          "changed_fields": [
+            "tradition_swap"
+          ],
+          "name_key": "tr_diplomacy_secure_shipping"
+        },
+        {
+          "id": "tr_obsidian_order_1",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_obsidian_order_1"
+        },
+        {
+          "id": "tr_obsidian_order_2",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_obsidian_order_2"
+        },
+        {
+          "id": "tr_obsidian_order_3",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_obsidian_order_3"
+        },
+        {
+          "id": "tr_obsidian_order_4",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_obsidian_order_4"
+        },
+        {
+          "id": "tr_obsidian_order_5",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_obsidian_order_5"
+        },
+        {
+          "id": "tr_obsidian_order_adopt",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_obsidian_order_adopt"
+        },
+        {
+          "id": "tr_obsidian_order_finish",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_obsidian_order_finish"
+        },
+        {
+          "id": "tr_section_31_adopt",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_section_31_adopt"
+        },
+        {
+          "id": "tr_section_31_hq",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_section_31_hq"
+        },
+        {
+          "id": "tr_section_31_infiltration_agents",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_section_31_infiltration_agents"
+        },
+        {
+          "id": "tr_section_31_nda",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_section_31_nda"
+        },
+        {
+          "id": "tr_section_31_operational_security",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_section_31_operational_security"
+        },
+        {
+          "id": "tr_section_31_shadow_recruits",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_section_31_shadow_recruits"
+        },
+        {
+          "id": "tr_tal_shiar_adopt",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_tal_shiar_adopt"
+        },
+        {
+          "id": "tr_tal_shiar_infiltration",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_tal_shiar_infiltration"
+        },
+        {
+          "id": "tr_tal_shiar_operational_security",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_tal_shiar_operational_security"
+        },
+        {
+          "id": "tr_tal_shiar_operations",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_tal_shiar_operations"
+        },
+        {
+          "id": "tr_tal_shiar_ruthlessness",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_tal_shiar_ruthlessness"
+        },
+        {
+          "id": "tr_tal_shiar_shadow_agents",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "tr_tal_shiar_shadow_agents"
+        }
+      ]
     },
     "ascension_perks": {
       "old_count": 61,
       "new_count": 61,
       "added": [],
       "removed": [],
-      "modified": []
+      "modified": [
+        {
+          "id": "ap_consecrated_worlds",
+          "changed_fields": [
+            "on_enabled"
+          ],
+          "name_key": "ap_consecrated_worlds"
+        },
+        {
+          "id": "ap_enigmatic_engineering",
+          "changed_fields": [
+            "ai_weight",
+            "potential"
+          ],
+          "name_key": "ap_enigmatic_engineering"
+        }
+      ]
     },
     "governments": {
       "old_count": 185,
@@ -997,7 +2460,50 @@
       "new_count": 348,
       "added": [],
       "removed": [],
-      "modified": []
+      "modified": [
+        {
+          "id": "civic_born_of_order",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "civic_born_of_order"
+        },
+        {
+          "id": "civic_functional_architecture",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "civic_functional_architecture"
+        },
+        {
+          "id": "civic_machine_builder",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "civic_machine_builder"
+        },
+        {
+          "id": "civic_megacorp_slave_bazaars",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "civic_megacorp_slave_bazaars"
+        },
+        {
+          "id": "civic_obsidian_order",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "civic_obsidian_order"
+        },
+        {
+          "id": "civic_slaver_superior",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "civic_slaver_superior"
+        }
+      ]
     },
     "authorities": {
       "old_count": 17,
@@ -1008,10 +2514,55 @@
     },
     "policies": {
       "old_count": 57,
-      "new_count": 57,
-      "added": [],
+      "new_count": 59,
+      "added": [
+        {
+          "id": "defense_platform_protocols",
+          "name_key": "policy_defense_platform_protocols"
+        },
+        {
+          "id": "sth_starbase_doctrine_legacy_policy_flags",
+          "name_key": "policy_sth_starbase_doctrine_legacy_policy_flags"
+        }
+      ],
       "removed": [],
-      "modified": []
+      "modified": [
+        {
+          "id": "counter_espionage_policy",
+          "changed_fields": [
+            "options"
+          ],
+          "name_key": "policy_counter_espionage_policy"
+        },
+        {
+          "id": "espionage_policy_obsidian",
+          "changed_fields": [
+            "options"
+          ],
+          "name_key": "policy_espionage_policy_obsidian"
+        },
+        {
+          "id": "espionage_policy_tal_shiar",
+          "changed_fields": [
+            "options"
+          ],
+          "name_key": "policy_espionage_policy_tal_shiar"
+        },
+        {
+          "id": "espionage_policy_ufp",
+          "changed_fields": [
+            "options"
+          ],
+          "name_key": "policy_espionage_policy_ufp"
+        },
+        {
+          "id": "internal_security_policy",
+          "changed_fields": [
+            "options"
+          ],
+          "name_key": "policy_internal_security_policy"
+        }
+      ]
     },
     "edicts": {
       "old_count": 88,
@@ -1020,32 +2571,18 @@
       "removed": [],
       "modified": [
         {
-          "id": "advanced_spy_network_undine",
+          "id": "edict_counter_esp_2",
           "changed_fields": [
-            "ai_weight"
+            "modifier"
           ],
-          "name_key": "edict_advanced_spy_network_undine"
+          "name_key": "edict_edict_counter_esp_2"
         },
         {
-          "id": "edict_advanced_spy_network",
+          "id": "edict_counter_esp_3",
           "changed_fields": [
-            "ai_weight"
+            "modifier"
           ],
-          "name_key": "edict_edict_advanced_spy_network"
-        },
-        {
-          "id": "edict_spy_counter_undine",
-          "changed_fields": [
-            "ai_weight"
-          ],
-          "name_key": "edict_edict_spy_counter_undine"
-        },
-        {
-          "id": "edict_spy_network",
-          "changed_fields": [
-            "ai_weight"
-          ],
-          "name_key": "edict_edict_spy_network"
+          "name_key": "edict_edict_counter_esp_3"
         }
       ]
     },
@@ -1054,7 +2591,36 @@
       "new_count": 150,
       "added": [],
       "removed": [],
-      "modified": []
+      "modified": [
+        {
+          "id": "councilor_obsidian_order",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "councilor_obsidian_order"
+        },
+        {
+          "id": "councilor_orion_syndicate",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "councilor_orion_syndicate"
+        },
+        {
+          "id": "councilor_starfleet_security",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "councilor_starfleet_security"
+        },
+        {
+          "id": "councilor_tal_shiar",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "councilor_tal_shiar"
+        }
+      ]
     },
     "megastructures": {
       "old_count": 133,
@@ -1063,57 +2629,57 @@
       "removed": [],
       "modified": [
         {
-          "id": "STH_kdf_imperial_shipyards",
+          "id": "STH_grand_archive",
+          "changed_fields": [
+            "on_build_complete",
+            "possible",
+            "potential",
+            "set_flags"
+          ],
+          "name_key": "STH_grand_archive"
+        },
+        {
+          "id": "STH_orbital_battery_1",
           "changed_fields": [
             "on_build_complete"
           ],
-          "name_key": "STH_kdf_imperial_shipyards"
+          "name_key": "STH_orbital_battery_1"
         },
         {
-          "id": "STH_rom_praetorian_shipyards",
+          "id": "STH_orbital_battery_upgrade",
+          "changed_fields": [
+            "on_build_complete",
+            "set_flags"
+          ],
+          "name_key": "STH_orbital_battery_upgrade"
+        },
+        {
+          "id": "STH_relocate_ds9",
           "changed_fields": [
             "potential"
           ],
-          "name_key": "STH_rom_praetorian_shipyards"
+          "name_key": "STH_relocate_ds9"
         },
         {
-          "id": "STH_voth_city_ship_0",
+          "id": "STH_research_starbase_1",
+          "changed_fields": [
+            "on_build_complete"
+          ],
+          "name_key": "STH_research_starbase_1"
+        },
+        {
+          "id": "STH_research_starbase_upgrade",
+          "changed_fields": [
+            "on_build_complete"
+          ],
+          "name_key": "STH_research_starbase_upgrade"
+        },
+        {
+          "id": "argus_build_stage",
           "changed_fields": [
             "potential"
           ],
-          "name_key": "STH_voth_city_ship_0"
-        },
-        {
-          "id": "arkship_civilian_dummy",
-          "changed_fields": [
-            "has_model",
-            "model_factions"
-          ],
-          "name_key": "arkship_civilian_dummy"
-        },
-        {
-          "id": "arkship_military_dummy",
-          "changed_fields": [
-            "has_model",
-            "model_factions"
-          ],
-          "name_key": "arkship_military_dummy"
-        },
-        {
-          "id": "arkship_ruined",
-          "changed_fields": [
-            "has_model",
-            "model_factions"
-          ],
-          "name_key": "arkship_ruined"
-        },
-        {
-          "id": "arkship_science_dummy",
-          "changed_fields": [
-            "has_model",
-            "model_factions"
-          ],
-          "name_key": "arkship_science_dummy"
+          "name_key": "argus_build_stage"
         },
         {
           "id": "deep_space_station_build_stage_1",
@@ -1123,24 +2689,30 @@
           "name_key": "deep_space_station_build_stage_1"
         },
         {
-          "id": "gateway_final",
+          "id": "deep_space_station_upgrade_stage_2",
           "changed_fields": [
-            "model_factions"
+            "on_build_complete"
           ],
-          "name_key": "gateway_final"
+          "name_key": "deep_space_station_upgrade_stage_2"
         },
         {
-          "id": "iconian_gateway_0",
+          "id": "fountain_build_stage",
           "changed_fields": [
-            "has_model",
-            "model_factions"
+            "potential"
           ],
-          "name_key": "iconian_gateway_0"
+          "name_key": "fountain_build_stage"
+        },
+        {
+          "id": "midas_build_stage",
+          "changed_fields": [
+            "potential"
+          ],
+          "name_key": "midas_build_stage"
         },
         {
           "id": "waystation_megastructure",
           "changed_fields": [
-            "on_build_complete",
+            "possible",
             "potential"
           ],
           "name_key": "waystation_megastructure"
@@ -1149,22 +2721,41 @@
     },
     "relics": {
       "old_count": 68,
-      "new_count": 68,
-      "added": [],
+      "new_count": 69,
+      "added": [
+        {
+          "id": "r_griffin_incident_casefile",
+          "name_key": "r_griffin_incident_casefile"
+        }
+      ],
       "removed": [],
       "modified": []
     },
     "anomalies": {
       "old_count": 132,
-      "new_count": 132,
-      "added": [],
+      "new_count": 133,
+      "added": [
+        {
+          "id": "STH_griffin_incident_category",
+          "name_key": "STH_griffin_incident_category"
+        }
+      ],
       "removed": [],
       "modified": []
     },
     "archaeology": {
       "old_count": 29,
-      "new_count": 29,
-      "added": [],
+      "new_count": 31,
+      "added": [
+        {
+          "id": "lembatta_acheron_flight_recorder",
+          "name_key": "lembatta_acheron_flight_recorder"
+        },
+        {
+          "id": "lembatta_sable_moon_archive",
+          "name_key": "lembatta_sable_moon_archive"
+        }
+      ],
       "removed": [],
       "modified": []
     },
@@ -1173,16 +2764,7 @@
       "new_count": 112,
       "added": [],
       "removed": [],
-      "modified": [
-        {
-          "id": "VothTheocracyB",
-          "changed_fields": [
-            "flag",
-            "system_name"
-          ],
-          "name_key": "EMPIRE_DESIGN_VothTheocracy"
-        }
-      ]
+      "modified": []
     },
     "species": {
       "old_count": 257,
@@ -1192,40 +2774,94 @@
       "modified": []
     },
     "jobs": {
-      "old_count": 297,
+      "old_count": 299,
       "new_count": 299,
-      "added": [
-        {
-          "id": "ark_harvester",
-          "name_key": "job_ark_harvester"
-        },
-        {
-          "id": "ark_harvester_gestalt",
-          "name_key": "job_ark_harvester_gestalt"
-        }
-      ],
-      "removed": [],
-      "modified": []
-    },
-    "deposits": {
-      "old_count": 676,
-      "new_count": 676,
       "added": [],
       "removed": [],
       "modified": [
         {
-          "id": "d_voth_city_park",
+          "id": "soldier",
           "changed_fields": [
-            "resources"
+            "modifier"
           ],
-          "name_key": "d_voth_city_park"
+          "name_key": "job_soldier"
         },
         {
-          "id": "d_voth_city_storage",
+          "id": "technician",
           "changed_fields": [
-            "resources"
+            "possible"
           ],
-          "name_key": "d_voth_city_storage"
+          "name_key": "job_technician"
+        }
+      ]
+    },
+    "deposits": {
+      "old_count": 676,
+      "new_count": 686,
+      "added": [
+        {
+          "id": "d_lembatta_accord_field_office",
+          "name_key": "d_lembatta_accord_field_office"
+        },
+        {
+          "id": "d_lembatta_accord_listening_post",
+          "name_key": "d_lembatta_accord_listening_post"
+        },
+        {
+          "id": "d_lembatta_accord_memorial",
+          "name_key": "d_lembatta_accord_memorial"
+        },
+        {
+          "id": "d_lembatta_accord_open_observatory",
+          "name_key": "d_lembatta_accord_open_observatory"
+        },
+        {
+          "id": "d_lembatta_accord_security_relay",
+          "name_key": "d_lembatta_accord_security_relay"
+        },
+        {
+          "id": "d_lembatta_acheron_flight_archive",
+          "name_key": "d_lembatta_acheron_flight_archive"
+        },
+        {
+          "id": "d_lembatta_acheron_observatory",
+          "name_key": "d_lembatta_acheron_observatory"
+        },
+        {
+          "id": "d_lembatta_havenfall_monitor",
+          "name_key": "d_lembatta_havenfall_monitor"
+        },
+        {
+          "id": "d_lembatta_sable_archive",
+          "name_key": "d_lembatta_sable_archive"
+        },
+        {
+          "id": "d_lembatta_veil_relay",
+          "name_key": "d_lembatta_veil_relay"
+        }
+      ],
+      "removed": [],
+      "modified": [
+        {
+          "id": "d_migrating_forests",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "d_migrating_forests"
+        },
+        {
+          "id": "d_rotten_soil",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "d_rotten_soil"
+        },
+        {
+          "id": "d_venomous_insects",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "d_venomous_insects"
         }
       ]
     },
@@ -1236,18 +2872,11 @@
       "removed": [],
       "modified": [
         {
-          "id": "REQUIRED_WARP_1_A",
+          "id": "STARBASE_AURA_MINES_1",
           "changed_fields": [
-            "prerequisites"
+            "upgrades_to"
           ],
-          "name_key": "REQUIRED_WARP_1_A"
-        },
-        {
-          "id": "REQUIRED_WARP_1_C",
-          "changed_fields": [
-            "prerequisites"
-          ],
-          "name_key": "REQUIRED_WARP_1_C"
+          "name_key": "STARBASE_AURA_MINES_1"
         }
       ]
     }

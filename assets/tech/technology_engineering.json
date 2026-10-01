@@ -409,6 +409,93 @@
     "required_species": []
   },
   {
+    "id": "tech_archaeo_lasers",
+    "name": "Ancient Cavitation Collapser",
+    "area": "engineering",
+    "tier": 0,
+    "cost": 0,
+    "prerequisites": [],
+    "weight": 0,
+    "icon": "tech_archaeo_lasers",
+    "description": "This high energy weapon causes brutal micro collapsing events on impact, generating tremendous heat and force inside its targets armor.",
+    "alternate_names": {},
+    "effects": [],
+    "unlock_details": {
+      "technologies": [],
+      "components": [],
+      "buildings": [],
+      "other": [],
+      "description": "",
+      "unlocks_by_type": {}
+    },
+    "faction_availability": {},
+    "is_rare": false,
+    "is_dangerous": false,
+    "is_reverse_engineerable": true,
+    "category": [
+      "industry"
+    ],
+    "required_species": []
+  },
+  {
+    "id": "tech_archaeo_mass_drivers",
+    "name": "Ancient Macro Batteries",
+    "area": "engineering",
+    "tier": 0,
+    "cost": 0,
+    "prerequisites": [],
+    "weight": 0,
+    "icon": "tech_archaeo_mass_drivers",
+    "description": "These cannons of gargantuan size deliver relatively slow but devastating projectiles, and can fire pretty much anything, from scrap metal, to asteroid chunks.",
+    "alternate_names": {},
+    "effects": [],
+    "unlock_details": {
+      "technologies": [],
+      "components": [],
+      "buildings": [],
+      "other": [],
+      "description": "",
+      "unlocks_by_type": {}
+    },
+    "faction_availability": {},
+    "is_rare": false,
+    "is_dangerous": false,
+    "is_reverse_engineerable": true,
+    "category": [
+      "industry"
+    ],
+    "required_species": []
+  },
+  {
+    "id": "tech_archaeo_strike_crafts",
+    "name": "Ancient Driller Drones",
+    "area": "engineering",
+    "tier": 0,
+    "cost": 0,
+    "prerequisites": [],
+    "weight": 0,
+    "icon": "tech_archaeo_strike_crafts",
+    "description": "These high velocity drones have been equipped with antique mining lasers that virtually ignore any plating protecting their target. A tech too good to be wasted on astro mining.",
+    "alternate_names": {},
+    "effects": [],
+    "unlock_details": {
+      "technologies": [],
+      "components": [],
+      "buildings": [],
+      "other": [],
+      "description": "",
+      "unlocks_by_type": {}
+    },
+    "faction_availability": {},
+    "is_rare": false,
+    "is_dangerous": false,
+    "is_reverse_engineerable": true,
+    "category": [
+      "industry"
+    ],
+    "required_species": []
+  },
+  {
     "id": "tech_ground_defense_planning",
     "name": "Ground Defense Planning",
     "area": "engineering",
@@ -3536,7 +3623,7 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Buildings: Passenger Paradise, Forever Cruise Passenger Research, Forever Cruise Crew Resources, Forever Cruise Crew Industry, Forever Cruise Crew Service | District: Ark Forever Cruise | Megastructures: Sphere 1, Sphere 2, Sphere 3, Sphere 4, Archive 0, Megastructure | Ship Types: Juggernaut, Colossus, Battlecruiser, Lightship, Raider, Destroyer, Cruiser, Ent Fleet Museum, Ent Naval Museum, Seleya, Kumari, Sirena, Station, One, Cannon, Dy100, Station, Science Station, Science Station, Science Station, Starbase | Starbase Modules: Grand Archive, Research Module, Resource Silo, Nebula Refinery, Cybrex Mining Hub, Yuht Detection Array, Cloaking, Growth Chamber | Strategic Resources: Zro, Dark Matter, Nanites, Threads, Biomass, Insight, Crystals | Zones: Ark Engine Bypass, Ark Shield Overloader, Ark Reactor Physics, Ark Farm Society, Ark Shipwright, Ark Military Engineering, Ark Forever Cruise Engineering",
+      "description": "Buildings: Passenger Paradise, Forever Cruise Passenger Research, Forever Cruise Crew Resources, Forever Cruise Crew Industry, Forever Cruise Crew Service | District: Ark Forever Cruise | Megastructures: Sphere 1, Sphere 2, Sphere 3, Sphere 4, Archive 0 | Ship Types: Juggernaut, Colossus, Battlecruiser, Lightship, Raider, Destroyer, Cruiser, Ent Fleet Museum, Ent Naval Museum, Seleya, Kumari, Sirena, Station, One, Cannon, Dy100, Station, Science Station, Science Station, Science Station, Starbase | Starbase Modules: Grand Archive, Research Module, Resource Silo, Nebula Refinery, Cybrex Mining Hub, Yuht Detection Array, Cloaking, Growth Chamber | Strategic Resources: Zro, Dark Matter, Nanites, Threads, Biomass, Insight, Crystals | Zones: Ark Engine Bypass, Ark Shield Overloader, Ark Reactor Physics, Ark Farm Society, Ark Shipwright, Ark Military Engineering, Ark Forever Cruise Engineering",
       "unlocks_by_type": {
         "Building": [
           "Passenger Paradise",
@@ -3563,8 +3650,7 @@
           "Sphere 2",
           "Sphere 3",
           "Sphere 4",
-          "Archive 0",
-          "Megastructure"
+          "Archive 0"
         ],
         "Ship Type": [
           "Juggernaut",
@@ -5504,7 +5590,7 @@
         "custom",
         "ship"
       ],
-      "description": "Other: Custom, ship | Country Limit: Hero Ship Ambassador Limit | Ship Types: Hero Ship Ambassador, Flagship Excelsior, Flagship Ambassador, Light Cruiser Curry Type, Mmv Constellation, Exploration Cruiser Ambassador",
+      "description": "Other: Custom, ship | Country Limit: Hero Ship Ambassador Limit | Ship Types: Hero Ship Ambassador, Flagship Ambassador, Light Cruiser Curry Type, Mmv Constellation, Exploration Cruiser Ambassador",
       "unlocks_by_type": {
         "Other": [
           "Custom",
@@ -5512,7 +5598,6 @@
         ],
         "Ship Type": [
           "Hero Ship Ambassador",
-          "Flagship Excelsior",
           "Flagship Ambassador",
           "Light Cruiser Curry Type",
           "Mmv Constellation",
@@ -5708,13 +5793,6 @@
       },
       {
         "type": "modifier",
-        "key": "ship_weapon_damage",
-        "value": 0.17,
-        "display": "+0.17 Weapon Damage",
-        "component": "required_data_fed_exploration_cruiser_ambassador_2"
-      },
-      {
-        "type": "modifier",
         "key": "ship_hull_mult",
         "value": 0.3,
         "display": "+30% Hull",
@@ -5725,6 +5803,20 @@
         "key": "ship_shield_mult",
         "value": 0.3,
         "display": "+30% Shield",
+        "component": "required_data_fed_exploration_cruiser_ambassador_2"
+      },
+      {
+        "type": "modifier",
+        "key": "ship_fire_rate_mult",
+        "value": 0.3,
+        "display": "+30% Fire Rate",
+        "component": "required_data_fed_exploration_cruiser_ambassador_2"
+      },
+      {
+        "type": "modifier",
+        "key": "ship_weapon_damage",
+        "value": 0.3,
+        "display": "+0.30 Weapon Damage",
         "component": "required_data_fed_exploration_cruiser_ambassador_2"
       }
     ],
@@ -5931,14 +6023,13 @@
       "other": [
         "ship"
       ],
-      "description": "Other: ship | Country Limit: Hero Ship Sovereign Limit | Ship Types: Hero Ship Sovereign, Flagship Galaxy, Flagship Sovereign, Scout Nova, Carrier Iwo Jima, Explorer Intrepid Class, Heavy Cruiser Sovereign, Exploration Cruiser Luna",
+      "description": "Other: ship | Country Limit: Hero Ship Sovereign Limit | Ship Types: Hero Ship Sovereign, Flagship Sovereign, Scout Nova, Carrier Iwo Jima, Explorer Intrepid Class, Heavy Cruiser Sovereign, Exploration Cruiser Luna",
       "unlocks_by_type": {
         "Other": [
           "ship"
         ],
         "Ship Type": [
           "Hero Ship Sovereign",
-          "Flagship Galaxy",
           "Flagship Sovereign",
           "Scout Nova",
           "Carrier Iwo Jima",
@@ -6440,11 +6531,8 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Ship Types: Shuttle Class C Shuttle, Shuttle Class F Shuttle, Attack Wing Galileo, Attack Wing Daqtagh, Attack Wing Shalimar | Starbase Module: Bay Fed",
+      "description": "Ship Types: Shuttle Class C Shuttle, Shuttle Class F Shuttle, Attack Wing Galileo, Attack Wing Daqtagh, Attack Wing Shalimar",
       "unlocks_by_type": {
-        "Starbase Module": [
-          "Bay Fed"
-        ],
         "Ship Type": [
           "Shuttle Class C Shuttle",
           "Shuttle Class F Shuttle",
@@ -6573,11 +6661,8 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Ship Types: Defense Fed 2, Runabout Danube | Starbase Module: Bay Fed",
+      "description": "Ship Types: Defense Fed 2, Runabout Danube",
       "unlocks_by_type": {
-        "Starbase Module": [
-          "Bay Fed"
-        ],
         "Ship Type": [
           "Defense Fed 2",
           "Runabout Danube",
@@ -9205,11 +9290,8 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Ship Type: Defense Kdf 2 | Starbase Module: Bay Kdf",
+      "description": "Ship Type: Defense Kdf 2",
       "unlocks_by_type": {
-        "Starbase Module": [
-          "Bay Kdf"
-        ],
         "Ship Type": [
           "Defense Kdf 2"
         ]
@@ -9248,12 +9330,8 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Starbase Module: Bay Kdf",
-      "unlocks_by_type": {
-        "Starbase Module": [
-          "Bay Kdf"
-        ]
-      }
+      "description": "",
+      "unlocks_by_type": {}
     },
     "faction_availability": {
       "Klingon": {
@@ -10574,12 +10652,8 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Starbase Module: Bay Rom",
-      "unlocks_by_type": {
-        "Starbase Module": [
-          "Bay Rom"
-        ]
-      }
+      "description": "",
+      "unlocks_by_type": {}
     },
     "faction_availability": {},
     "is_rare": false,
@@ -10641,12 +10715,8 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Starbase Module: Bay Rom",
-      "unlocks_by_type": {
-        "Starbase Module": [
-          "Bay Rom"
-        ]
-      }
+      "description": "",
+      "unlocks_by_type": {}
     },
     "faction_availability": {},
     "is_rare": false,
@@ -34939,7 +35009,7 @@
       "description_parts": [
         "Unlocks Starbase: Starbase Level I"
       ],
-      "description": "Unlocks Starbase: Starbase Level I | Megastructure: Terok Nor | Ship Types: Outpost, Starport, Fe Outpost, Member World Shipyard | Starbase Building: Solar Battery | Starbase Modules: Panel Network, Solar Panel Network",
+      "description": "Unlocks Starbase: Starbase Level I | Megastructure: Terok Nor | Policy: defense_platform_standard | Ship Types: Outpost, Starport, Fe Outpost, Member World Shipyard | Starbase Building: Solar Battery | Starbase Modules: Panel Network, Solar Panel Network",
       "unlocks_by_type": {
         "Starbase Building": [
           "Solar Battery"
@@ -34956,6 +35026,9 @@
           "Starport",
           "Fe Outpost",
           "Member World Shipyard"
+        ],
+        "Policy": [
+          "defense_platform_standard"
         ]
       }
     },
@@ -36665,12 +36738,7 @@
       "technologies": [],
       "components": [],
       "buildings": [],
-      "description": "Starbase Module: Bay Dom",
-      "unlocks_by_type": {
-        "Starbase Module": [
-          "Bay Dom"
-        ]
-      }
+      "description": ""
     },
     "faction_availability": {},
     "is_rare": false,
@@ -36744,12 +36812,7 @@
       "technologies": [],
       "components": [],
       "buildings": [],
-      "description": "Starbase Module: Bay Dom",
-      "unlocks_by_type": {
-        "Starbase Module": [
-          "Bay Dom"
-        ]
-      }
+      "description": ""
     },
     "faction_availability": {},
     "is_rare": false,
@@ -36990,12 +37053,7 @@
       "technologies": [],
       "components": [],
       "buildings": [],
-      "description": "Starbase Module: Bay Car",
-      "unlocks_by_type": {
-        "Starbase Module": [
-          "Bay Car"
-        ]
-      }
+      "description": ""
     },
     "faction_availability": {},
     "is_rare": false,
@@ -37081,12 +37139,7 @@
       "technologies": [],
       "components": [],
       "buildings": [],
-      "description": "Starbase Module: Bay Car",
-      "unlocks_by_type": {
-        "Starbase Module": [
-          "Bay Car"
-        ]
-      }
+      "description": ""
     },
     "faction_availability": {},
     "is_rare": false,

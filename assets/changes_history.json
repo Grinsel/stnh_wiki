@@ -1,5 +1,1260 @@
 [
   {
+    "timestamp": "2026-07-16T18:25:21.593785",
+    "summary": {
+      "total_added": 103,
+      "total_removed": 2,
+      "total_modified": 78,
+      "modules_changed": 11,
+      "modules_unchanged": 11
+    },
+    "modules": {
+      "events_index": {
+        "old_count": 8401,
+        "new_count": 8497,
+        "added": [
+          {
+            "id": "STH_components.5070",
+            "name_key": ""
+          },
+          {
+            "id": "STH_components.5071",
+            "name_key": ""
+          },
+          {
+            "id": "STH_components.5073",
+            "name_key": "Long-Range Sensor Sweep Complete"
+          },
+          {
+            "id": "STH_components.5074",
+            "name_key": ""
+          },
+          {
+            "id": "STH_components.5075",
+            "name_key": "Tactical Command Net Established"
+          },
+          {
+            "id": "STH_components.5076",
+            "name_key": ""
+          },
+          {
+            "id": "STH_components.5077",
+            "name_key": "Diplomatic Mission Complete"
+          },
+          {
+            "id": "STH_components.5078",
+            "name_key": "Flagship Diplomatic Visit"
+          },
+          {
+            "id": "STH_mia_event.1",
+            "name_key": ""
+          },
+          {
+            "id": "STH_mia_event.2",
+            "name_key": "[This.GetName] fleet severely damaged"
+          },
+          {
+            "id": "STH_mia_event.3",
+            "name_key": "Repair ship fails to leave on time"
+          },
+          {
+            "id": "STH_mia_event.4",
+            "name_key": "A repair ship is sent to aid the mia fleet"
+          },
+          {
+            "id": "STH_mia_event.5",
+            "name_key": "Repair ship arrives at [TH_mia_fleet_1.GetName]"
+          },
+          {
+            "id": "STH_mia_event.6",
+            "name_key": "STH_mia_fleet_1.GetName] repaired"
+          },
+          {
+            "id": "STH_nomads.1",
+            "name_key": ""
+          },
+          {
+            "id": "STH_nomads.7005",
+            "name_key": "Drifters and Settlers"
+          },
+          {
+            "id": "STH_war_story.110",
+            "name_key": "Federation War Council"
+          },
+          {
+            "id": "STH_war_story.111",
+            "name_key": "Andorian Intelligence Review"
+          },
+          {
+            "id": "STH_war_story.112",
+            "name_key": ""
+          },
+          {
+            "id": "STH_war_story.113",
+            "name_key": "The Cheron Assessment"
+          },
+          {
+            "id": "STH_war_story.114",
+            "name_key": "Empty Orbit at Cheron"
+          },
+          {
+            "id": "STH_war_story.115",
+            "name_key": ""
+          },
+          {
+            "id": "STH_war_story.116",
+            "name_key": "Vindicated"
+          },
+          {
+            "id": "STH_war_story.117",
+            "name_key": "Defeat at Cheron"
+          },
+          {
+            "id": "STH_war_story.118",
+            "name_key": ""
+          },
+          {
+            "id": "STH_war_story.119",
+            "name_key": ""
+          },
+          {
+            "id": "STH_war_story.120",
+            "name_key": "Romulan Operational Briefing"
+          },
+          {
+            "id": "STH_war_story.121",
+            "name_key": "The Cheron Concentration"
+          },
+          {
+            "id": "STH_war_story.122",
+            "name_key": "The Cheron Trap"
+          },
+          {
+            "id": "STH_war_story.123",
+            "name_key": "The Cheron Feint"
+          },
+          {
+            "id": "STH_war_story.124",
+            "name_key": ""
+          },
+          {
+            "id": "STH_war_story.125",
+            "name_key": ""
+          },
+          {
+            "id": "STH_war_story.126",
+            "name_key": "Cheron Reconsidered"
+          },
+          {
+            "id": "STH_war_story.127",
+            "name_key": "Shadows over Cheron"
+          },
+          {
+            "id": "STH_war_story.128",
+            "name_key": "Cheron Held in Reserve"
+          },
+          {
+            "id": "STH_war_story.129",
+            "name_key": "Earth Holds Back at Cheron"
+          },
+          {
+            "id": "STH_war_story.130",
+            "name_key": "A Federation Message after Cheron"
+          },
+          {
+            "id": "STH_war_story.131",
+            "name_key": "A Romulan Message after Cheron"
+          },
+          {
+            "id": "STH_war_story.132",
+            "name_key": "Romulan Message from the Shadows"
+          },
+          {
+            "id": "STH_war_story.133",
+            "name_key": ""
+          },
+          {
+            "id": "STH_war_story.134",
+            "name_key": ""
+          },
+          {
+            "id": "STH_war_story.135",
+            "name_key": ""
+          },
+          {
+            "id": "STH_war_story.136",
+            "name_key": ""
+          },
+          {
+            "id": "STH_war_story.137",
+            "name_key": ""
+          },
+          {
+            "id": "STH_war_story.138",
+            "name_key": ""
+          },
+          {
+            "id": "nomads.3002",
+            "name_key": ""
+          },
+          {
+            "id": "nomads.6000",
+            "name_key": ""
+          },
+          {
+            "id": "nomads.6998",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_distant_origin.1",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_distant_origin.10",
+            "name_key": "The Fossil Discontinuity"
+          },
+          {
+            "id": "sth_voth_distant_origin.100",
+            "name_key": "The Blue World"
+          },
+          {
+            "id": "sth_voth_distant_origin.110",
+            "name_key": "Visitors from the Distant Origin"
+          },
+          {
+            "id": "sth_voth_distant_origin.120",
+            "name_key": "The Long-Range Expedition"
+          },
+          {
+            "id": "sth_voth_distant_origin.130",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_distant_origin.20",
+            "name_key": "The Missing Cradle"
+          },
+          {
+            "id": "sth_voth_distant_origin.200",
+            "name_key": "The Verdict of the Ministry"
+          },
+          {
+            "id": "sth_voth_distant_origin.201",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_distant_origin.30",
+            "name_key": "The Heresy Index"
+          },
+          {
+            "id": "sth_voth_distant_origin.300",
+            "name_key": "The Great Remembering"
+          },
+          {
+            "id": "sth_voth_distant_origin.310",
+            "name_key": "The Distant Origin Institute"
+          },
+          {
+            "id": "sth_voth_distant_origin.319",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_distant_origin.320",
+            "name_key": "Envoys to the Cradle"
+          },
+          {
+            "id": "sth_voth_distant_origin.321",
+            "name_key": "The Distant Origin Accord"
+          },
+          {
+            "id": "sth_voth_distant_origin.330",
+            "name_key": "Children of the Distant Origin"
+          },
+          {
+            "id": "sth_voth_distant_origin.331",
+            "name_key": "A Measured Exchange"
+          },
+          {
+            "id": "sth_voth_distant_origin.332",
+            "name_key": "sth_voth_distant_origin.332.name"
+          },
+          {
+            "id": "sth_voth_distant_origin.400",
+            "name_key": "sth_voth_distant_origin.400.name"
+          },
+          {
+            "id": "sth_voth_distant_origin.410",
+            "name_key": "War Councils of the Ministry"
+          },
+          {
+            "id": "sth_voth_distant_origin.420",
+            "name_key": "The Claim to the Cradle"
+          },
+          {
+            "id": "sth_voth_distant_origin.421",
+            "name_key": "The Voth Claim Earth"
+          },
+          {
+            "id": "sth_voth_distant_origin.422",
+            "name_key": "The Cradle Claim Broadcast"
+          },
+          {
+            "id": "sth_voth_distant_origin.430",
+            "name_key": "The Ultimatum Prepared"
+          },
+          {
+            "id": "sth_voth_distant_origin.500",
+            "name_key": "The Ultimatum to the Cradle"
+          },
+          {
+            "id": "sth_voth_distant_origin.501",
+            "name_key": "The Voth Ultimatum"
+          },
+          {
+            "id": "sth_voth_distant_origin.502",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_distant_origin.503",
+            "name_key": "The Cradle Without a Voice"
+          },
+          {
+            "id": "sth_voth_distant_origin.510",
+            "name_key": "Custodianship Offered"
+          },
+          {
+            "id": "sth_voth_distant_origin.511",
+            "name_key": "A Scientific Claim Only"
+          },
+          {
+            "id": "sth_voth_distant_origin.550",
+            "name_key": "The Cradle Reclaimed"
+          },
+          {
+            "id": "sth_voth_distant_origin.560",
+            "name_key": "The Cradle Denied"
+          },
+          {
+            "id": "sth_voth_distant_origin.570",
+            "name_key": "The Cradle Already Held"
+          },
+          {
+            "id": "sth_voth_distant_origin.600",
+            "name_key": "Doctrine Eternal"
+          },
+          {
+            "id": "sth_voth_distant_origin.610",
+            "name_key": "The Silence of the Archives"
+          },
+          {
+            "id": "sth_voth_distant_origin.620",
+            "name_key": "A Stable Lie"
+          },
+          {
+            "id": "sth_voth_distant_origin.621",
+            "name_key": "The Voth Withdraw"
+          },
+          {
+            "id": "sth_voth_distant_origin.90",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_distant_origin.996",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_distant_origin.998",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_distant_origin.999",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_great_journey.10",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_great_journey.12",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_great_journey.13",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_great_journey.19",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_great_journey.20",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_great_journey.21",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_great_journey.22",
+            "name_key": ""
+          },
+          {
+            "id": "sth_voth_great_journey.23",
+            "name_key": ""
+          }
+        ],
+        "removed": [
+          {
+            "id": "nomads.7005",
+            "name_key": "Drifters and Settlers"
+          }
+        ],
+        "modified": [
+          {
+            "id": "STH_hirogen_mechanics.3",
+            "changed_fields": [
+              "name",
+              "snip"
+            ],
+            "name_key": "The hunt goes well"
+          },
+          {
+            "id": "STH_hirogen_mechanics.4",
+            "changed_fields": [
+              "name",
+              "snip"
+            ],
+            "name_key": "The hunt is successful"
+          },
+          {
+            "id": "STH_hirogen_mechanics.5",
+            "changed_fields": [
+              "name",
+              "snip"
+            ],
+            "name_key": "The prey was too cunning"
+          },
+          {
+            "id": "STH_war_story.39",
+            "changed_fields": [
+              "pic"
+            ],
+            "name_key": "Attack in Progress"
+          },
+          {
+            "id": "STH_war_story.53",
+            "changed_fields": [
+              "snip"
+            ],
+            "name_key": "Battle of [planet_cheron.GetName]"
+          },
+          {
+            "id": "STH_war_story.54",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "Battle of [planet_cheron.GetName]"
+          },
+          {
+            "id": "STH_war_story.55",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": ""
+          },
+          {
+            "id": "STH_war_story.56",
+            "changed_fields": [
+              "set_flags",
+              "snip"
+            ],
+            "name_key": "Victory at [planet_cheron.GetName]"
+          },
+          {
+            "id": "STH_war_story.99",
+            "changed_fields": [
+              "name",
+              "set_flags",
+              "snip"
+            ],
+            "name_key": "To Secure the Peace"
+          },
+          {
+            "id": "preftl.2035",
+            "changed_fields": [
+              "pic"
+            ],
+            "name_key": "Apocalypse Now"
+          },
+          {
+            "id": "sth_start.1001",
+            "changed_fields": [
+              "opts"
+            ],
+            "name_key": "The Q Continuum"
+          },
+          {
+            "id": "sth_start.50",
+            "changed_fields": [
+              "name"
+            ],
+            "name_key": "Good. Let them keep watching the wrong stars."
+          },
+          {
+            "id": "sth_voth_great_journey.11",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": ""
+          }
+        ]
+      },
+      "ships": {
+        "old_count": 440,
+        "new_count": 439,
+        "added": [],
+        "removed": [
+          {
+            "id": "paladin_ship",
+            "name_key": "paladin_ship"
+          }
+        ],
+        "modified": [
+          {
+            "id": "civilian_arkship_tier_1",
+            "changed_fields": [
+              "attachment_count",
+              "default_model",
+              "graphical_culture",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "civilian_arkship_tier_1"
+          },
+          {
+            "id": "civilian_arkship_tier_2",
+            "changed_fields": [
+              "attachment_count",
+              "default_model",
+              "graphical_culture",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "civilian_arkship_tier_2"
+          },
+          {
+            "id": "civilian_arkship_tier_3",
+            "changed_fields": [
+              "attachment_count",
+              "default_model",
+              "graphical_culture",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "civilian_arkship_tier_3"
+          },
+          {
+            "id": "dimensional_horror",
+            "changed_fields": [
+              "attachment_count",
+              "default_model",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "dimensional_horror"
+          },
+          {
+            "id": "dimensional_portal_ed",
+            "changed_fields": [
+              "default_model",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "dimensional_portal_ed"
+          },
+          {
+            "id": "military_arkship_champions_forge",
+            "changed_fields": [
+              "graphical_culture"
+            ],
+            "name_key": "military_arkship_champions_forge"
+          },
+          {
+            "id": "military_arkship_tier_1",
+            "changed_fields": [
+              "attachment_count",
+              "default_model",
+              "graphical_culture",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "military_arkship_tier_1"
+          },
+          {
+            "id": "military_arkship_tier_2",
+            "changed_fields": [
+              "attachment_count",
+              "default_model",
+              "graphical_culture",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "military_arkship_tier_2"
+          },
+          {
+            "id": "military_arkship_tier_3",
+            "changed_fields": [
+              "attachment_count",
+              "default_model",
+              "graphical_culture",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "military_arkship_tier_3"
+          },
+          {
+            "id": "military_station_large",
+            "changed_fields": [
+              "default_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "military_station_large"
+          },
+          {
+            "id": "military_station_small",
+            "changed_fields": [
+              "default_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "military_station_small"
+          },
+          {
+            "id": "nomads_constructor",
+            "changed_fields": [
+              "prerequisites"
+            ],
+            "name_key": "nomads_constructor"
+          },
+          {
+            "id": "nomads_engineer_vessel",
+            "changed_fields": [
+              "default_model",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "nomads_engineer_vessel"
+          },
+          {
+            "id": "science_arkship_tier_1",
+            "changed_fields": [
+              "attachment_count",
+              "default_model",
+              "graphical_culture",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "science_arkship_tier_1"
+          },
+          {
+            "id": "science_arkship_tier_2",
+            "changed_fields": [
+              "attachment_count",
+              "default_model",
+              "graphical_culture",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "science_arkship_tier_2"
+          },
+          {
+            "id": "science_arkship_tier_3",
+            "changed_fields": [
+              "attachment_count",
+              "default_model",
+              "graphical_culture",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "science_arkship_tier_3"
+          },
+          {
+            "id": "space_ark",
+            "changed_fields": [
+              "default_model",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "space_ark"
+          },
+          {
+            "id": "space_dragon_baby",
+            "changed_fields": [
+              "default_model",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "space_dragon_baby"
+          },
+          {
+            "id": "space_dragon_blue",
+            "changed_fields": [
+              "default_model",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "space_dragon_blue"
+          },
+          {
+            "id": "space_dragon_red",
+            "changed_fields": [
+              "default_model",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "space_dragon_red"
+          },
+          {
+            "id": "starbase_exd",
+            "changed_fields": [
+              "default_model",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "starbase_exd"
+          },
+          {
+            "id": "starbase_exd_0",
+            "changed_fields": [
+              "default_model",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "starbase_exd_0"
+          },
+          {
+            "id": "starbase_fe_outpost",
+            "changed_fields": [
+              "default_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "starbase_fe_outpost"
+          },
+          {
+            "id": "stellarite",
+            "changed_fields": [
+              "default_model",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "stellarite"
+          },
+          {
+            "id": "wraith_01_blue",
+            "changed_fields": [
+              "default_model",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "wraith_01_blue"
+          },
+          {
+            "id": "wraith_01_red",
+            "changed_fields": [
+              "default_model",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "wraith_01_red"
+          },
+          {
+            "id": "wraith_01_yellow",
+            "changed_fields": [
+              "default_model",
+              "has_model",
+              "model_factions",
+              "model_source"
+            ],
+            "name_key": "wraith_01_yellow"
+          }
+        ]
+      },
+      "buildings": {
+        "old_count": 661,
+        "new_count": 665,
+        "added": [
+          {
+            "id": "building_city_ship_capital_1",
+            "name_key": "building_city_ship_capital_1"
+          },
+          {
+            "id": "building_city_ship_capital_2",
+            "name_key": "building_city_ship_capital_2"
+          },
+          {
+            "id": "building_city_ship_capital_3",
+            "name_key": "building_city_ship_capital_3"
+          },
+          {
+            "id": "building_city_ship_capital_4",
+            "name_key": "building_city_ship_capital_4"
+          }
+        ],
+        "removed": [],
+        "modified": [
+          {
+            "id": "building_city_ship_capital_5",
+            "changed_fields": [
+              "building_sets",
+              "icon_key",
+              "potential"
+            ],
+            "name_key": "building_city_ship_capital_5"
+          },
+          {
+            "id": "building_galactic_institute_VOT",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "building_galactic_institute_VOT"
+          },
+          {
+            "id": "building_orbital_capital_1",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "building_orbital_capital_1"
+          },
+          {
+            "id": "building_orbital_capital_2",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "building_orbital_capital_2"
+          },
+          {
+            "id": "building_orbital_capital_3",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "building_orbital_capital_3"
+          },
+          {
+            "id": "building_orbital_capital_4",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "building_orbital_capital_4"
+          },
+          {
+            "id": "building_orbital_capital_5",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "building_orbital_capital_5"
+          },
+          {
+            "id": "space_building_military_camp_1_voth",
+            "changed_fields": [
+              "building_sets",
+              "potential"
+            ],
+            "name_key": "space_building_military_camp_1_voth"
+          },
+          {
+            "id": "space_building_planetary_shield_1_voth",
+            "changed_fields": [
+              "building_sets",
+              "potential"
+            ],
+            "name_key": "space_building_planetary_shield_1_voth"
+          }
+        ]
+      },
+      "districts": {
+        "old_count": 71,
+        "new_count": 71,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "district_ark_forever_cruise",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "district_ark_forever_cruise"
+          },
+          {
+            "id": "district_farming_hydroponic",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "district_farming_hydroponic"
+          }
+        ]
+      },
+      "traits": {
+        "old_count": 464,
+        "new_count": 464,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "trait_pc_ark_preference",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "trait_pc_ark_preference"
+          },
+          {
+            "id": "trait_pc_assimilated_preference",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "trait_pc_assimilated_preference"
+          },
+          {
+            "id": "trait_pc_continental_preference",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "trait_pc_continental_preference"
+          },
+          {
+            "id": "trait_pc_desert_preference",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "trait_pc_desert_preference"
+          },
+          {
+            "id": "trait_pc_helix_preference",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "trait_pc_helix_preference"
+          },
+          {
+            "id": "trait_pc_hunters_lodge_preference",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "trait_pc_hunters_lodge_preference"
+          },
+          {
+            "id": "trait_pc_unimatrix_preference",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "trait_pc_unimatrix_preference"
+          }
+        ]
+      },
+      "traditions": {
+        "old_count": 450,
+        "new_count": 450,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "ascension_perks": {
+        "old_count": 61,
+        "new_count": 61,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "governments": {
+        "old_count": 185,
+        "new_count": 185,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "civics": {
+        "old_count": 348,
+        "new_count": 348,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "authorities": {
+        "old_count": 17,
+        "new_count": 17,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "policies": {
+        "old_count": 57,
+        "new_count": 57,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "edicts": {
+        "old_count": 88,
+        "new_count": 88,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "advanced_spy_network_undine",
+            "changed_fields": [
+              "ai_weight"
+            ],
+            "name_key": "edict_advanced_spy_network_undine"
+          },
+          {
+            "id": "edict_advanced_spy_network",
+            "changed_fields": [
+              "ai_weight"
+            ],
+            "name_key": "edict_edict_advanced_spy_network"
+          },
+          {
+            "id": "edict_spy_counter_undine",
+            "changed_fields": [
+              "ai_weight"
+            ],
+            "name_key": "edict_edict_spy_counter_undine"
+          },
+          {
+            "id": "edict_spy_network",
+            "changed_fields": [
+              "ai_weight"
+            ],
+            "name_key": "edict_edict_spy_network"
+          }
+        ]
+      },
+      "councilors": {
+        "old_count": 150,
+        "new_count": 150,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "megastructures": {
+        "old_count": 133,
+        "new_count": 133,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "STH_kdf_imperial_shipyards",
+            "changed_fields": [
+              "on_build_complete"
+            ],
+            "name_key": "STH_kdf_imperial_shipyards"
+          },
+          {
+            "id": "STH_rom_praetorian_shipyards",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "STH_rom_praetorian_shipyards"
+          },
+          {
+            "id": "STH_voth_city_ship_0",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "STH_voth_city_ship_0"
+          },
+          {
+            "id": "arkship_civilian_dummy",
+            "changed_fields": [
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "arkship_civilian_dummy"
+          },
+          {
+            "id": "arkship_military_dummy",
+            "changed_fields": [
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "arkship_military_dummy"
+          },
+          {
+            "id": "arkship_ruined",
+            "changed_fields": [
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "arkship_ruined"
+          },
+          {
+            "id": "arkship_science_dummy",
+            "changed_fields": [
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "arkship_science_dummy"
+          },
+          {
+            "id": "deep_space_station_build_stage_1",
+            "changed_fields": [
+              "on_build_complete"
+            ],
+            "name_key": "deep_space_station_build_stage_1"
+          },
+          {
+            "id": "gateway_final",
+            "changed_fields": [
+              "model_factions"
+            ],
+            "name_key": "gateway_final"
+          },
+          {
+            "id": "iconian_gateway_0",
+            "changed_fields": [
+              "has_model",
+              "model_factions"
+            ],
+            "name_key": "iconian_gateway_0"
+          },
+          {
+            "id": "waystation_megastructure",
+            "changed_fields": [
+              "on_build_complete",
+              "potential"
+            ],
+            "name_key": "waystation_megastructure"
+          }
+        ]
+      },
+      "relics": {
+        "old_count": 68,
+        "new_count": 68,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "anomalies": {
+        "old_count": 132,
+        "new_count": 132,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "archaeology": {
+        "old_count": 29,
+        "new_count": 29,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "empires": {
+        "old_count": 112,
+        "new_count": 112,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "VothTheocracyB",
+            "changed_fields": [
+              "flag",
+              "system_name"
+            ],
+            "name_key": "EMPIRE_DESIGN_VothTheocracy"
+          }
+        ]
+      },
+      "species": {
+        "old_count": 257,
+        "new_count": 257,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "jobs": {
+        "old_count": 297,
+        "new_count": 299,
+        "added": [
+          {
+            "id": "ark_harvester",
+            "name_key": "job_ark_harvester"
+          },
+          {
+            "id": "ark_harvester_gestalt",
+            "name_key": "job_ark_harvester_gestalt"
+          }
+        ],
+        "removed": [],
+        "modified": []
+      },
+      "deposits": {
+        "old_count": 676,
+        "new_count": 676,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "d_voth_city_park",
+            "changed_fields": [
+              "resources"
+            ],
+            "name_key": "d_voth_city_park"
+          },
+          {
+            "id": "d_voth_city_storage",
+            "changed_fields": [
+              "resources"
+            ],
+            "name_key": "d_voth_city_storage"
+          }
+        ]
+      },
+      "components": {
+        "old_count": 6532,
+        "new_count": 6532,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "REQUIRED_WARP_1_A",
+            "changed_fields": [
+              "prerequisites"
+            ],
+            "name_key": "REQUIRED_WARP_1_A"
+          },
+          {
+            "id": "REQUIRED_WARP_1_C",
+            "changed_fields": [
+              "prerequisites"
+            ],
+            "name_key": "REQUIRED_WARP_1_C"
+          }
+        ]
+      }
+    }
+  },
+  {
     "timestamp": "2026-07-02T08:31:04.611913",
     "summary": {
       "total_added": 272,

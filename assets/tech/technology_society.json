@@ -7409,7 +7409,7 @@
       "other": [
         "custom"
       ],
-      "description": "Other: Custom | Building: Commercial Capital 3 | Decision: Planet Specialisation Configuration | Megastructure: Megastructure | Starbase Module: Trade Module",
+      "description": "Other: Custom | Building: Commercial Capital 3 | Decision: Planet Specialisation Configuration | Starbase Module: Trade Module",
       "unlocks_by_type": {
         "Other": [
           "Custom"
@@ -7419,9 +7419,6 @@
         ],
         "Starbase Module": [
           "Trade Module"
-        ],
-        "Megastructure": [
-          "Megastructure"
         ],
         "Decision": [
           "Planet Specialisation Configuration"
@@ -8487,8 +8484,12 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "",
-      "unlocks_by_type": {}
+      "description": "Starbase Module: Cloaking",
+      "unlocks_by_type": {
+        "Starbase Module": [
+          "Cloaking"
+        ]
+      }
     },
     "faction_availability": {
       "Federation": {
@@ -27750,6 +27751,124 @@
     },
     "faction_availability": {},
     "is_rare": false,
+    "is_dangerous": false,
+    "is_reverse_engineerable": true,
+    "category": [
+      "biology"
+    ],
+    "required_species": []
+  },
+  {
+    "id": "tech_society_undine_cell_containment",
+    "name": "Cellular Quarantine Protocols",
+    "area": "society",
+    "tier": 2,
+    "cost": 1500,
+    "prerequisites": [],
+    "weight": 80,
+    "icon": "tech_icon_disease_cure",
+    "description": "Undine aggressive cells do not behave like conventional pathogens. They alter tissue, atmosphere and infrastructure as a single hostile ecology. Containment protocols give our medical and security teams a chance to isolate the infection before it consumes a world.",
+    "alternate_names": {},
+    "effects": [],
+    "unlock_details": {
+      "technologies": [],
+      "components": [],
+      "buildings": [],
+      "other": [
+        "custom"
+      ],
+      "description": "Other: Custom | Decision: Undine Cellular Quarantine",
+      "unlocks_by_type": {
+        "Other": [
+          "Custom"
+        ],
+        "Decision": [
+          "Undine Cellular Quarantine"
+        ]
+      }
+    },
+    "faction_availability": {},
+    "is_rare": true,
+    "is_dangerous": false,
+    "is_reverse_engineerable": true,
+    "category": [
+      "biology"
+    ],
+    "required_species": []
+  },
+  {
+    "id": "tech_society_undine_biomolecular_counteragent",
+    "name": "Bio-Molecular Counteragent",
+    "area": "society",
+    "tier": 3,
+    "cost": 3200,
+    "prerequisites": [
+      "tech_society_undine_cell_containment"
+    ],
+    "weight": 60,
+    "icon": "tech_icon_disease_cure",
+    "description": "By mapping the signalling structure of Undine cells, we can deploy counteragents that interrupt their ability to coordinate mass biological conversion.",
+    "alternate_names": {},
+    "effects": [],
+    "unlock_details": {
+      "technologies": [],
+      "components": [],
+      "buildings": [],
+      "other": [
+        "custom"
+      ],
+      "description": "Other: Custom | Decision: Undine Cellular Quarantine",
+      "unlocks_by_type": {
+        "Other": [
+          "Custom"
+        ],
+        "Decision": [
+          "Undine Cellular Quarantine"
+        ]
+      }
+    },
+    "faction_availability": {},
+    "is_rare": true,
+    "is_dangerous": false,
+    "is_reverse_engineerable": true,
+    "category": [
+      "biology"
+    ],
+    "required_species": []
+  },
+  {
+    "id": "tech_society_undine_fluidic_immunisation",
+    "name": "Fluidic Immunisation Matrix",
+    "area": "society",
+    "tier": 4,
+    "cost": 5500,
+    "prerequisites": [
+      "tech_society_undine_biomolecular_counteragent"
+    ],
+    "weight": 45,
+    "icon": "tech_icon_disease_cure",
+    "description": "A lattice of immunological treatments, environmental scrubbers and rapid-response field protocols can prevent Undine aggressive cells from achieving runaway conversion on our worlds.",
+    "alternate_names": {},
+    "effects": [],
+    "unlock_details": {
+      "technologies": [],
+      "components": [],
+      "buildings": [],
+      "other": [
+        "custom"
+      ],
+      "description": "Other: Custom | Decision: Undine Cellular Quarantine",
+      "unlocks_by_type": {
+        "Other": [
+          "Custom"
+        ],
+        "Decision": [
+          "Undine Cellular Quarantine"
+        ]
+      }
+    },
+    "faction_availability": {},
+    "is_rare": true,
     "is_dangerous": false,
     "is_reverse_engineerable": true,
     "category": [
