@@ -47126,7 +47126,6 @@
     "cost": 21400,
     "prerequisites": [
       "tech_physics_field_manipulation_182",
-      "tech_physics_field_manipulation_192",
       "tech_engineering_03664"
     ],
     "weight": 15.0,
@@ -47158,8 +47157,8 @@
       {
         "type": "modifier",
         "key": "ship_cloaking_strength_add",
-        "value": 1.0,
-        "display": "+1 Cloaking Strength",
+        "value": 3.0,
+        "display": "+3 Cloaking Strength",
         "source": "tech_direct"
       }
     ],
