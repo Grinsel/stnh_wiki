@@ -1772,7 +1772,7 @@
       "other": [
         "ship"
       ],
-      "description": "Other: ship | Country Limits: Space Stations Limit, Starbase Nor Limit | Megastructures: Borg Catapult 1, Deep Space Station, NAME_deep_space_9, Nor Class Installation, Space Station Upgrade Stage 1, Space Station Upgrade Stage 2, Hyper Relay, Orbital Defense Grid, Orbital Defense Grid, Federation Recycle 01, Romulan Recycle 01, Klingon Recycle 01, Dominion Recycle 01, Cardassian Recycle 01, Generic Recycle 01, Borg Recycle 01, Undine Recycle 01, Research Starbase, Research Starbase, NAME_shipyard_earth_1 | Policy: policy_traffic_control_enabled | Ship Types: Starhold, Space Starbase, Starbase Nor, Cannon, Starbase | Tradable Action: Action Bulwark Technology",
+      "description": "Other: ship | Country Limits: Space Stations Limit, Starbase Nor Limit | Megastructures: Borg Catapult 1, Deep Space Station, NAME_deep_space_9, Nor Class Installation, Deep Space Station, Nor Class Installation, Hyper Relay, Orbital Defense Grid, Orbital Defense Grid, Federation Recycle 01, Romulan Recycle 01, Klingon Recycle 01, Dominion Recycle 01, Cardassian Recycle 01, Generic Recycle 01, Borg Recycle 01, Undine Recycle 01, Research Starbase, Research Starbase, NAME_shipyard_earth_1 | Policy: policy_traffic_control_enabled | Ship Types: Starhold, Space Starbase, Starbase Nor, Cannon, Starbase | Tradable Action: Action Bulwark Technology",
       "unlocks_by_type": {
         "Other": [
           "ship"
@@ -1782,8 +1782,8 @@
           "Deep Space Station",
           "NAME_deep_space_9",
           "Nor Class Installation",
-          "Space Station Upgrade Stage 1",
-          "Space Station Upgrade Stage 2",
+          "Deep Space Station",
+          "Nor Class Installation",
           "Hyper Relay",
           "Orbital Defense Grid",
           "Orbital Defense Grid",
@@ -3623,7 +3623,7 @@
       "components": [],
       "buildings": [],
       "other": [],
-      "description": "Buildings: Passenger Paradise, Forever Cruise Passenger Research, Forever Cruise Crew Resources, Forever Cruise Crew Industry, Forever Cruise Crew Service | District: Ark Forever Cruise | Megastructures: Sphere 1, Sphere 2, Sphere 3, Sphere 4, Archive 0 | Ship Types: Juggernaut, Colossus, Battlecruiser, Lightship, Raider, Destroyer, Cruiser, Ent Fleet Museum, Ent Naval Museum, Seleya, Kumari, Sirena, Station, One, Cannon, Dy100, Station, Science Station, Science Station, Science Station, Starbase | Starbase Modules: Grand Archive, Research Module, Resource Silo, Nebula Refinery, Cybrex Mining Hub, Yuht Detection Array, Cloaking, Growth Chamber | Strategic Resources: Zro, Dark Matter, Nanites, Threads, Biomass, Insight, Crystals | Zones: Ark Engine Bypass, Ark Shield Overloader, Ark Reactor Physics, Ark Farm Society, Ark Shipwright, Ark Military Engineering, Ark Forever Cruise Engineering",
+      "description": "Buildings: Passenger Paradise, Forever Cruise Passenger Research, Forever Cruise Crew Resources, Forever Cruise Crew Industry, Forever Cruise Crew Service | District: Ark Forever Cruise | Megastructures: Sphere 1, Sphere 2, Sphere 3, Sphere 4, Archive 0 | Ship Types: Ring Tier 1, Juggernaut, Colossus, Battlecruiser, Lightship, Raider, Destroyer, Cruiser, Ent Fleet Museum, Ent Naval Museum, Seleya, Kumari, Sirena, Station, One, Cannon, Dy100, Station, Science Station, Science Station, Science Station, Starbase | Starbase Modules: Grand Archive, Research Module, Resource Silo, Nebula Refinery, Cybrex Mining Hub, Yuht Detection Array, Cloaking, Growth Chamber | Strategic Resources: Zro, Dark Matter, Nanites, Threads, Biomass, Insight, Crystals | Zones: Ark Engine Bypass, Ark Shield Overloader, Ark Reactor Physics, Ark Farm Society, Ark Shipwright, Ark Military Engineering, Ark Forever Cruise Engineering",
       "unlocks_by_type": {
         "Building": [
           "Passenger Paradise",
@@ -3653,6 +3653,7 @@
           "Archive 0"
         ],
         "Ship Type": [
+          "Ring Tier 1",
           "Juggernaut",
           "Colossus",
           "Battlecruiser",

@@ -1,108 +1,222 @@
 {
-  "timestamp": "2026-10-01T18:11:58.198661",
+  "timestamp": "2026-10-07T23:16:15.803958",
   "summary": {
-    "total_added": 11,
+    "total_added": 27,
     "total_removed": 0,
-    "total_modified": 10,
-    "modules_changed": 6,
-    "modules_unchanged": 16
+    "total_modified": 35,
+    "modules_changed": 8,
+    "modules_unchanged": 14
   },
   "modules": {
     "events_index": {
-      "old_count": 8675,
-      "new_count": 8681,
+      "old_count": 8681,
+      "new_count": 8692,
       "added": [
         {
-          "id": "STH_klingon_houses.3060",
+          "id": "STH_borg_story.314",
           "name_key": ""
         },
         {
-          "id": "STH_klingon_houses.3061",
+          "id": "STH_fix.274",
           "name_key": ""
         },
         {
-          "id": "STH_klingon_houses.3062",
+          "id": "STH_galactic_war.9000",
           "name_key": ""
         },
         {
-          "id": "STH_sol_feature_repair.1",
+          "id": "STH_klingon_houses.3063",
+          "name_key": "The Ruling House Pledges Its Fleet"
+        },
+        {
+          "id": "STH_situation.50",
           "name_key": ""
         },
         {
-          "id": "STH_trade_policy.1",
+          "id": "STH_situation.51",
           "name_key": ""
         },
         {
-          "id": "STH_war_diplomacy.1",
+          "id": "STH_situation.52",
+          "name_key": ""
+        },
+        {
+          "id": "game_start.140",
+          "name_key": ""
+        },
+        {
+          "id": "sth_start.10016",
+          "name_key": ""
+        },
+        {
+          "id": "sth_start.10017",
+          "name_key": ""
+        },
+        {
+          "id": "sth_start.10018",
           "name_key": ""
         }
       ],
       "removed": [],
       "modified": [
         {
-          "id": "STH_hero_ship.5",
+          "id": "STH_admonition.1000",
           "changed_fields": [
             "set_flags"
           ],
-          "name_key": "NX-01 Enterprise Refit"
+          "name_key": ""
+        },
+        {
+          "id": "STH_borg_story.310",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Flight of the Raven"
+        },
+        {
+          "id": "STH_borg_story.311",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "Flight of the Raven"
+        },
+        {
+          "id": "STH_maquis_dmz_story.0",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": ""
+        },
+        {
+          "id": "STH_redemption.4",
+          "changed_fields": [
+            "set_flags"
+          ],
+          "name_key": "High Council Meeting"
+        },
+        {
+          "id": "sth_start.10015",
+          "changed_fields": [
+            "opts",
+            "snip"
+          ],
+          "name_key": "Multiplayer Naval Cap Setup"
         }
       ]
     },
     "ships": {
       "old_count": 439,
-      "new_count": 439,
-      "added": [],
+      "new_count": 440,
+      "added": [
+        {
+          "id": "orbital_ring_tier_1",
+          "name_key": "orbital_ring_tier_1"
+        }
+      ],
       "removed": [],
       "modified": [
         {
-          "id": "research_starbase",
+          "id": "fed_carrier_engle",
           "changed_fields": [
-            "is_designable"
+            "size_multiplier"
           ],
-          "name_key": "research_starbase"
+          "name_key": "fed_carrier_engle"
+        },
+        {
+          "id": "fed_carrier_iwo_jima",
+          "changed_fields": [
+            "size_multiplier"
+          ],
+          "name_key": "fed_carrier_iwo_jima"
+        },
+        {
+          "id": "fed_carrier_minuteman",
+          "changed_fields": [
+            "size_multiplier"
+          ],
+          "name_key": "fed_carrier_minuteman"
+        },
+        {
+          "id": "fed_carrier_ptolomy",
+          "changed_fields": [
+            "size_multiplier"
+          ],
+          "name_key": "fed_carrier_ptolomy"
+        },
+        {
+          "id": "fed_carrier_samson",
+          "changed_fields": [
+            "size_multiplier"
+          ],
+          "name_key": "fed_carrier_samson"
+        },
+        {
+          "id": "fed_carrier_sarajevo",
+          "changed_fields": [
+            "size_multiplier"
+          ],
+          "name_key": "fed_carrier_sarajevo"
+        },
+        {
+          "id": "fed_carrier_sydney",
+          "changed_fields": [
+            "size_multiplier"
+          ],
+          "name_key": "fed_carrier_sydney"
         }
       ]
     },
     "buildings": {
       "old_count": 665,
-      "new_count": 665,
-      "added": [],
+      "new_count": 671,
+      "added": [
+        {
+          "id": "building_penal_capital_rure_3",
+          "name_key": "building_penal_capital_rure_3"
+        },
+        {
+          "id": "building_penal_capital_rure_4",
+          "name_key": "building_penal_capital_rure_4"
+        },
+        {
+          "id": "building_religious_capital_klingon_3",
+          "name_key": "building_religious_capital_klingon_3"
+        },
+        {
+          "id": "building_religious_capital_klingon_4",
+          "name_key": "building_religious_capital_klingon_4"
+        },
+        {
+          "id": "building_religious_capital_vulcan_3",
+          "name_key": "building_religious_capital_vulcan_3"
+        },
+        {
+          "id": "building_religious_capital_vulcan_4",
+          "name_key": "building_religious_capital_vulcan_4"
+        }
+      ],
       "removed": [],
       "modified": [
         {
-          "id": "building_central_temple_bajor_1",
+          "id": "building_penal_capital_rure_2",
           "changed_fields": [
-            "potential"
+            "upgrades"
           ],
-          "name_key": "building_central_temple_bajor_1"
+          "name_key": "building_penal_capital_rure_2"
         },
         {
-          "id": "building_central_temple_bajor_2",
+          "id": "building_religious_capital_klingon_2",
           "changed_fields": [
-            "potential"
+            "upgrades"
           ],
-          "name_key": "building_central_temple_bajor_2"
+          "name_key": "building_religious_capital_klingon_2"
         },
         {
-          "id": "building_central_temple_bajor_3",
+          "id": "building_religious_capital_vulcan_2",
           "changed_fields": [
-            "potential"
+            "upgrades"
           ],
-          "name_key": "building_central_temple_bajor_3"
-        },
-        {
-          "id": "building_central_temple_bajor_4",
-          "changed_fields": [
-            "potential"
-          ],
-          "name_key": "building_central_temple_bajor_4"
-        },
-        {
-          "id": "building_enricher_1",
-          "changed_fields": [
-            "potential"
-          ],
-          "name_key": "building_enricher_1"
+          "name_key": "building_religious_capital_vulcan_2"
         }
       ]
     },
@@ -125,7 +239,16 @@
       "new_count": 457,
       "added": [],
       "removed": [],
-      "modified": []
+      "modified": [
+        {
+          "id": "tr_aptitude_healthcare_program",
+          "changed_fields": [
+            "modifier",
+            "tradition_swap"
+          ],
+          "name_key": "tr_aptitude_healthcare_program"
+        }
+      ]
     },
     "ascension_perks": {
       "old_count": 61,
@@ -146,7 +269,15 @@
       "new_count": 348,
       "added": [],
       "removed": [],
-      "modified": []
+      "modified": [
+        {
+          "id": "civic_pyrolatry",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "civic_pyrolatry"
+        }
+      ]
     },
     "authorities": {
       "old_count": 17,
@@ -157,38 +288,105 @@
     },
     "policies": {
       "old_count": 59,
-      "new_count": 59,
-      "added": [],
-      "removed": [],
-      "modified": []
-    },
-    "edicts": {
-      "old_count": 88,
-      "new_count": 93,
+      "new_count": 68,
       "added": [
         {
+          "id": "arkship_weapon_preference",
+          "name_key": "policy_arkship_weapon_preference"
+        },
+        {
+          "id": "defense_preference",
+          "name_key": "policy_defense_preference"
+        },
+        {
+          "id": "fleet_doctrine",
+          "name_key": "policy_fleet_doctrine"
+        },
+        {
+          "id": "platform_defense_preference",
+          "name_key": "policy_platform_defense_preference"
+        },
+        {
+          "id": "platform_weapon_preference",
+          "name_key": "policy_platform_weapon_preference"
+        },
+        {
+          "id": "starbase_defense_preference",
+          "name_key": "policy_starbase_defense_preference"
+        },
+        {
+          "id": "starbase_weapon_preference",
+          "name_key": "policy_starbase_weapon_preference"
+        },
+        {
+          "id": "waystation_defense_preference",
+          "name_key": "policy_waystation_defense_preference"
+        },
+        {
+          "id": "weapon_preference",
+          "name_key": "policy_weapon_preference"
+        }
+      ],
+      "removed": [],
+      "modified": [
+        {
+          "id": "defense_platform_protocols",
+          "changed_fields": [
+            "source_file"
+          ],
+          "name_key": "policy_defense_platform_protocols"
+        },
+        {
+          "id": "sth_starbase_doctrine_legacy_policy_flags",
+          "changed_fields": [
+            "source_file"
+          ],
+          "name_key": "policy_sth_starbase_doctrine_legacy_policy_flags"
+        }
+      ]
+    },
+    "edicts": {
+      "old_count": 93,
+      "new_count": 93,
+      "added": [],
+      "removed": [],
+      "modified": [
+        {
           "id": "edict_sth_cardassian_requisition_network",
+          "changed_fields": [
+            "length"
+          ],
           "name_key": "edict_edict_sth_cardassian_requisition_network"
         },
         {
           "id": "edict_sth_civilian_freight_priority",
+          "changed_fields": [
+            "length"
+          ],
           "name_key": "edict_edict_sth_civilian_freight_priority"
         },
         {
           "id": "edict_sth_ferengi_contract_ledger",
+          "changed_fields": [
+            "length"
+          ],
           "name_key": "edict_edict_sth_ferengi_contract_ledger"
         },
         {
           "id": "edict_sth_interstellar_relief_network",
+          "changed_fields": [
+            "length"
+          ],
           "name_key": "edict_edict_sth_interstellar_relief_network"
         },
         {
           "id": "edict_sth_romulan_quiet_procurement",
+          "changed_fields": [
+            "length"
+          ],
           "name_key": "edict_edict_sth_romulan_quiet_procurement"
         }
-      ],
-      "removed": [],
-      "modified": []
+      ]
     },
     "councilors": {
       "old_count": 150,
@@ -204,18 +402,81 @@
       "removed": [],
       "modified": [
         {
+          "id": "STH_kdf_imperial_shipyards",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "STH_kdf_imperial_shipyards"
+        },
+        {
+          "id": "STH_mega_shipyard",
+          "changed_fields": [
+            "modifier",
+            "potential"
+          ],
+          "name_key": "STH_mega_shipyard"
+        },
+        {
+          "id": "STH_orbital_battery_upgrade",
+          "changed_fields": [
+            "on_build_complete",
+            "possible"
+          ],
+          "name_key": "STH_orbital_battery_upgrade"
+        },
+        {
           "id": "STH_research_starbase_1",
           "changed_fields": [
-            "on_build_complete"
+            "on_build_complete",
+            "set_flags"
           ],
           "name_key": "STH_research_starbase_1"
         },
         {
           "id": "STH_research_starbase_upgrade",
           "changed_fields": [
-            "on_build_complete"
+            "on_build_complete",
+            "set_flags"
           ],
           "name_key": "STH_research_starbase_upgrade"
+        },
+        {
+          "id": "STH_rom_praetorian_shipyards",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "STH_rom_praetorian_shipyards"
+        },
+        {
+          "id": "STH_starfleet_utopia_planitia",
+          "changed_fields": [
+            "modifier"
+          ],
+          "name_key": "STH_starfleet_utopia_planitia"
+        },
+        {
+          "id": "deep_space_station_upgrade_stage_1",
+          "changed_fields": [
+            "on_build_complete",
+            "set_flags"
+          ],
+          "name_key": "deep_space_station_upgrade_stage_1"
+        },
+        {
+          "id": "deep_space_station_upgrade_stage_2",
+          "changed_fields": [
+            "on_build_complete",
+            "set_flags"
+          ],
+          "name_key": "deep_space_station_upgrade_stage_2"
+        },
+        {
+          "id": "deep_space_station_upgrade_stage_3",
+          "changed_fields": [
+            "on_build_complete",
+            "set_flags"
+          ],
+          "name_key": "deep_space_station_upgrade_stage_3"
         }
       ]
     },
@@ -273,15 +534,7 @@
       "new_count": 6532,
       "added": [],
       "removed": [],
-      "modified": [
-        {
-          "id": "required_tactical_rom_cloak_2",
-          "changed_fields": [
-            "modifier"
-          ],
-          "name_key": "required_tactical_rom_cloak_2"
-        }
-      ]
+      "modified": []
     }
   }
 }

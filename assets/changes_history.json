@@ -1,5 +1,292 @@
 [
   {
+    "timestamp": "2026-10-01T18:11:58.198661",
+    "summary": {
+      "total_added": 11,
+      "total_removed": 0,
+      "total_modified": 10,
+      "modules_changed": 6,
+      "modules_unchanged": 16
+    },
+    "modules": {
+      "events_index": {
+        "old_count": 8675,
+        "new_count": 8681,
+        "added": [
+          {
+            "id": "STH_klingon_houses.3060",
+            "name_key": ""
+          },
+          {
+            "id": "STH_klingon_houses.3061",
+            "name_key": ""
+          },
+          {
+            "id": "STH_klingon_houses.3062",
+            "name_key": ""
+          },
+          {
+            "id": "STH_sol_feature_repair.1",
+            "name_key": ""
+          },
+          {
+            "id": "STH_trade_policy.1",
+            "name_key": ""
+          },
+          {
+            "id": "STH_war_diplomacy.1",
+            "name_key": ""
+          }
+        ],
+        "removed": [],
+        "modified": [
+          {
+            "id": "STH_hero_ship.5",
+            "changed_fields": [
+              "set_flags"
+            ],
+            "name_key": "NX-01 Enterprise Refit"
+          }
+        ]
+      },
+      "ships": {
+        "old_count": 439,
+        "new_count": 439,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "research_starbase",
+            "changed_fields": [
+              "is_designable"
+            ],
+            "name_key": "research_starbase"
+          }
+        ]
+      },
+      "buildings": {
+        "old_count": 665,
+        "new_count": 665,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "building_central_temple_bajor_1",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "building_central_temple_bajor_1"
+          },
+          {
+            "id": "building_central_temple_bajor_2",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "building_central_temple_bajor_2"
+          },
+          {
+            "id": "building_central_temple_bajor_3",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "building_central_temple_bajor_3"
+          },
+          {
+            "id": "building_central_temple_bajor_4",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "building_central_temple_bajor_4"
+          },
+          {
+            "id": "building_enricher_1",
+            "changed_fields": [
+              "potential"
+            ],
+            "name_key": "building_enricher_1"
+          }
+        ]
+      },
+      "districts": {
+        "old_count": 71,
+        "new_count": 71,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traits": {
+        "old_count": 465,
+        "new_count": 465,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "traditions": {
+        "old_count": 457,
+        "new_count": 457,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "ascension_perks": {
+        "old_count": 61,
+        "new_count": 61,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "governments": {
+        "old_count": 185,
+        "new_count": 185,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "civics": {
+        "old_count": 348,
+        "new_count": 348,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "authorities": {
+        "old_count": 17,
+        "new_count": 17,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "policies": {
+        "old_count": 59,
+        "new_count": 59,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "edicts": {
+        "old_count": 88,
+        "new_count": 93,
+        "added": [
+          {
+            "id": "edict_sth_cardassian_requisition_network",
+            "name_key": "edict_edict_sth_cardassian_requisition_network"
+          },
+          {
+            "id": "edict_sth_civilian_freight_priority",
+            "name_key": "edict_edict_sth_civilian_freight_priority"
+          },
+          {
+            "id": "edict_sth_ferengi_contract_ledger",
+            "name_key": "edict_edict_sth_ferengi_contract_ledger"
+          },
+          {
+            "id": "edict_sth_interstellar_relief_network",
+            "name_key": "edict_edict_sth_interstellar_relief_network"
+          },
+          {
+            "id": "edict_sth_romulan_quiet_procurement",
+            "name_key": "edict_edict_sth_romulan_quiet_procurement"
+          }
+        ],
+        "removed": [],
+        "modified": []
+      },
+      "councilors": {
+        "old_count": 150,
+        "new_count": 150,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "megastructures": {
+        "old_count": 133,
+        "new_count": 133,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "STH_research_starbase_1",
+            "changed_fields": [
+              "on_build_complete"
+            ],
+            "name_key": "STH_research_starbase_1"
+          },
+          {
+            "id": "STH_research_starbase_upgrade",
+            "changed_fields": [
+              "on_build_complete"
+            ],
+            "name_key": "STH_research_starbase_upgrade"
+          }
+        ]
+      },
+      "relics": {
+        "old_count": 69,
+        "new_count": 69,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "anomalies": {
+        "old_count": 133,
+        "new_count": 133,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "archaeology": {
+        "old_count": 31,
+        "new_count": 31,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "empires": {
+        "old_count": 112,
+        "new_count": 112,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "species": {
+        "old_count": 257,
+        "new_count": 257,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "jobs": {
+        "old_count": 299,
+        "new_count": 299,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "deposits": {
+        "old_count": 686,
+        "new_count": 686,
+        "added": [],
+        "removed": [],
+        "modified": []
+      },
+      "components": {
+        "old_count": 6532,
+        "new_count": 6532,
+        "added": [],
+        "removed": [],
+        "modified": [
+          {
+            "id": "required_tactical_rom_cloak_2",
+            "changed_fields": [
+              "modifier"
+            ],
+            "name_key": "required_tactical_rom_cloak_2"
+          }
+        ]
+      }
+    }
+  },
+  {
     "timestamp": "2026-10-01T10:19:44.654434",
     "summary": {
       "total_added": 203,

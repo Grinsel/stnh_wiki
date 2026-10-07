@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-10-01T18:11:58.204464",
-  "elapsed_seconds": 123.1,
+  "timestamp": "2026-10-07T23:16:15.808573",
+  "elapsed_seconds": 361.7,
   "results": {
     "localisation": {
-      "english": 251968,
-      "german": 252147,
-      "french": 263163,
-      "spanish": 251899,
-      "russian": 253614,
-      "polish": 252407,
-      "braz_por": 246469
+      "english": 252118,
+      "german": 252284,
+      "french": 263300,
+      "spanish": 252036,
+      "russian": 253751,
+      "polish": 252544,
+      "braz_por": 246606
     },
     "inject_missing_loc": {
       "english": 101,
@@ -12099,6 +12099,11 @@
       "GFX_fleet_action_button_arkship_exodus_jump": {
         "texture_path": "gfx/interface/fleet_view/arkship_exodus_jump.dds",
         "texture_name": "arkship_exodus_jump",
+        "frames": 3
+      },
+      "GFX_fleet_action_button_deselect": {
+        "texture_path": "gfx/interface/fleet_view/fleet_action_button_deselect.dds",
+        "texture_name": "fleet_action_button_deselect",
         "frames": 3
       },
       "GFX_focus_card_background_highlight": {
@@ -51546,6 +51551,21 @@
         "texture_name": "leader_trait_bajoran_kai",
         "frames": 1
       },
+      "GFX_leader_subclass_official_spiritual_guide_small": {
+        "texture_path": "gfx/interface/icons/traits/leader_traits/leader_trait_bajoran_kai.dds",
+        "texture_name": "leader_trait_bajoran_kai",
+        "frames": 1
+      },
+      "GFX_leader_subclass_official_spiritual_guide_medium": {
+        "texture_path": "gfx/interface/icons/traits/leader_traits/leader_trait_bajoran_kai.dds",
+        "texture_name": "leader_trait_bajoran_kai",
+        "frames": 1
+      },
+      "GFX_leader_subclass_official_spiritual_guide_large": {
+        "texture_path": "gfx/interface/icons/traits/leader_traits/leader_trait_bajoran_kai.dds",
+        "texture_name": "leader_trait_bajoran_kai",
+        "frames": 1
+      },
       "GFX_leader_trait_disease": {
         "texture_path": "gfx/interface/icons/traits/leader_traits/leader_trait_disease.dds",
         "texture_name": "leader_trait_disease",
@@ -67188,31 +67208,31 @@
       }
     },
     "events": {
-      "events": 8681,
+      "events": 8692,
       "namespaces": 304,
       "files": 450,
-      "loc_keys": 252069,
+      "loc_keys": 252219,
       "on_actions": 218,
       "event_chains": 63,
-      "gfx_sprites": 13433,
-      "relationship_edges": 6929,
+      "gfx_sprites": 13437,
+      "relationship_edges": 6935,
       "detail_files": 284
     },
     "ships": {
-      "ships": 439,
+      "ships": 440,
       "components": 6532,
       "ships_with_models": 396,
       "model_variants": 1734,
       "files": 145,
       "errors": 0,
-      "elapsed": 38.1
+      "elapsed": 120.5
     },
     "buildings": {
-      "buildings": 665,
+      "buildings": 671,
       "districts": 71,
       "files": 53,
       "errors": 0,
-      "elapsed": 0.5
+      "elapsed": 0.4
     },
     "traits": {
       "traits": 465,
@@ -67220,18 +67240,18 @@
       "ascension_perks": 61,
       "files": 94,
       "errors": 0,
-      "elapsed": 1.0
+      "elapsed": 0.9
     },
     "governments": {
       "governments": 185,
       "civics": 348,
       "authorities": 17,
-      "policies": 59,
+      "policies": 68,
       "edicts": 93,
       "councilors": 150,
-      "files": 47,
+      "files": 48,
       "errors": 0,
-      "elapsed": 0.4
+      "elapsed": 0.3
     },
     "megastructures": {
       "megastructures": 133,
@@ -67240,7 +67260,7 @@
       "mega_model_variants": 115,
       "files": 71,
       "errors": 0,
-      "elapsed": 9.3
+      "elapsed": 7.5
     },
     "anomalies": {
       "anomalies": 133,
@@ -67261,7 +67281,7 @@
       "unplaced": 1,
       "maps": 16,
       "flags_converted": 79,
-      "elapsed": 0.6
+      "elapsed": 0.5
     },
     "economy": {
       "jobs": 299,
@@ -67272,10 +67292,10 @@
     },
     "resources": {
       "resources": 47,
-      "producer_links": 1013,
-      "consumer_links": 936,
+      "producer_links": 1015,
+      "consumer_links": 942,
       "modifier_links": 521,
-      "unparsed_modifiers": 225,
+      "unparsed_modifiers": 232,
       "errors": 0,
       "elapsed": 0.1
     },
@@ -67286,13 +67306,13 @@
     },
     "search": {
       "search_index": {
-        "total_items": 21731,
-        "size_kb": 3486,
+        "total_items": 21758,
+        "size_kb": 3491,
         "by_type": {
-          "event": 8681,
-          "ship": 439,
+          "event": 8692,
+          "ship": 440,
           "component": 6532,
-          "building": 665,
+          "building": 671,
           "district": 71,
           "trait": 465,
           "tradition": 457,
@@ -67300,7 +67320,7 @@
           "government": 185,
           "civic": 348,
           "authority": 17,
-          "policy": 59,
+          "policy": 68,
           "edict": 93,
           "councilor": 150,
           "megastructure": 133,
@@ -67313,7 +67333,7 @@
           "resource": 47,
           "technology": 622
         },
-        "elapsed": 0.3
+        "elapsed": 0.4
       },
       "cross_references": {
         "size_kb": 299,
@@ -67323,14 +67343,14 @@
           "anomaly_events": 56,
           "archaeology_events": 31,
           "empire_refs": 112,
-          "building_upgrades": 312
+          "building_upgrades": 318
         },
         "elapsed": 0.1
       },
       "tech_item_map": {
         "techs": 1142,
-        "items": 6207,
-        "size_kb": 1054,
+        "items": 6213,
+        "size_kb": 1056,
         "elapsed": 0.1
       }
     },
@@ -67340,7 +67360,7 @@
       "failed": 1,
       "multi_mesh": 0,
       "total": 1734,
-      "elapsed": 0.1
+      "elapsed": 0.2
     },
     "mega_models": {
       "converted": 0,
@@ -67361,7 +67381,7 @@
       "mega_missing": 0,
       "mega_missing_list": [],
       "mega_orphan": 0,
-      "ships_without_model": 43,
+      "ships_without_model": 44,
       "ok": false
     },
     "images": {
@@ -67381,8 +67401,8 @@
           "errors": []
         },
         "traits": {
-          "total": 1136,
-          "converted": 0,
+          "total": 1137,
+          "converted": 1,
           "skipped": 1135,
           "failed": 1,
           "errors": [
@@ -67489,8 +67509,8 @@
         }
       },
       "total": {
-        "total": 8518,
-        "converted": 0,
+        "total": 8519,
+        "converted": 1,
         "skipped": 8517,
         "failed": 1
       }
@@ -67499,91 +67519,91 @@
       "modules": {},
       "languages": {
         "english": {
-          "common": 18890,
-          "events": 10466,
-          "buildings": 1477,
-          "ships": 14409,
+          "common": 18920,
+          "events": 10468,
+          "buildings": 1489,
+          "ships": 14411,
           "tech": 4002,
           "traits": 2073,
-          "governments": 4468,
+          "governments": 4550,
           "megastructures": 404,
           "anomalies": 328,
           "economy": 2129,
           "empires": 961
         },
         "german": {
-          "common": 18891,
-          "events": 10454,
+          "common": 18921,
+          "events": 10456,
           "buildings": 1477,
-          "ships": 14409,
+          "ships": 14411,
           "tech": 4002,
           "traits": 2073,
-          "governments": 4468,
+          "governments": 4550,
           "megastructures": 404,
           "anomalies": 325,
           "economy": 2129,
           "empires": 961
         },
         "french": {
-          "common": 18989,
-          "events": 10484,
+          "common": 19019,
+          "events": 10486,
           "buildings": 1477,
-          "ships": 14404,
+          "ships": 14406,
           "tech": 4002,
           "traits": 2069,
-          "governments": 4464,
+          "governments": 4546,
           "megastructures": 404,
           "anomalies": 325,
           "economy": 2129,
           "empires": 961
         },
         "spanish": {
-          "common": 18888,
-          "events": 10454,
+          "common": 18918,
+          "events": 10456,
           "buildings": 1477,
-          "ships": 14328,
+          "ships": 14330,
           "tech": 4002,
           "traits": 2068,
-          "governments": 4463,
+          "governments": 4545,
           "megastructures": 404,
           "anomalies": 325,
           "economy": 2129,
           "empires": 961
         },
         "russian": {
-          "common": 18986,
-          "events": 10454,
+          "common": 19016,
+          "events": 10456,
           "buildings": 1477,
-          "ships": 14408,
+          "ships": 14410,
           "tech": 4002,
           "traits": 2073,
-          "governments": 4468,
+          "governments": 4550,
           "megastructures": 404,
           "anomalies": 325,
           "economy": 2129,
           "empires": 962
         },
         "polish": {
-          "common": 18881,
-          "events": 10448,
+          "common": 18911,
+          "events": 10450,
           "buildings": 1477,
-          "ships": 14404,
+          "ships": 14406,
           "tech": 4002,
           "traits": 2064,
-          "governments": 4459,
+          "governments": 4541,
           "megastructures": 404,
           "anomalies": 325,
           "economy": 2129,
           "empires": 961
         },
         "braz_por": {
-          "common": 17394,
-          "events": 10436,
+          "common": 17424,
+          "events": 10438,
           "buildings": 1477,
-          "ships": 14331,
+          "ships": 14333,
           "tech": 4002,
           "traits": 2043,
-          "governments": 4438,
+          "governments": 4520,
           "megastructures": 404,
           "anomalies": 323,
           "economy": 2129,
@@ -67594,11 +67614,11 @@
       "modules_count": 10
     },
     "changes": {
-      "total_added": 11,
+      "total_added": 27,
       "total_removed": 0,
-      "total_modified": 10,
-      "modules_changed": 6,
-      "modules_unchanged": 16
+      "total_modified": 35,
+      "modules_changed": 8,
+      "modules_unchanged": 14
     }
   }
 }
